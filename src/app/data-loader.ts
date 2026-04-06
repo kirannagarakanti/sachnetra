@@ -548,9 +548,6 @@ export class DataLoaderManager implements AppModule {
     // Desktop: server digest has fewer categories than client FEEDS config.
     // Enable per-feed RSS fallback so missing categories fetch directly.
     if (isDesktopRuntime()) return true;
-    // India variant: no server-side digest exists for india categories.
-    // Enable per-feed fallback so feeds load directly via rss-proxy.
-    if (SITE_VARIANT === 'india') return true;
     return isFeatureEnabled('newsPerFeedFallback');
   }
 
