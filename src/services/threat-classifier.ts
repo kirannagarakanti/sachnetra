@@ -196,6 +196,43 @@ const MEDIUM_KEYWORDS: KeywordMap = {
   'power outage': 'infrastructure',
   'internet outage': 'infrastructure',
   'derailment': 'infrastructure',
+  // Indian politics
+  'parliament': 'diplomatic',
+  'lok sabha': 'diplomatic',
+  'rajya sabha': 'diplomatic',
+  'minister': 'diplomatic',
+  'chief minister': 'diplomatic',
+  'bjp': 'diplomatic',
+  'congress': 'diplomatic',
+  'modi': 'diplomatic',
+  'kejriwal': 'diplomatic',
+  'policy': 'diplomatic',
+  // Indian economy
+  'gst': 'economic',
+  'rbi': 'economic',
+  'rupee': 'economic',
+  'sensex': 'economic',
+  'nifty': 'economic',
+  'crore': 'economic',
+  'lakh': 'economic',
+  'startup': 'economic',
+  'funding': 'economic',
+  'ipo': 'economic',
+  'budget': 'economic',
+  // Indian disaster / environment
+  'cyclone': 'disaster',
+  'landslide': 'disaster',
+  'ngt': 'environmental',
+  'forest': 'environmental',
+  // Indian tech / education
+  'dpdp': 'tech',
+  'ugc': 'diplomatic',
+  'nta': 'diplomatic',
+  'upsc': 'diplomatic',
+  'tiger': 'environmental',
+  'wildlife': 'environmental',
+  'lpg': 'economic',
+  'gas prices': 'economic',
 };
 
 const LOW_KEYWORDS: KeywordMap = {
@@ -226,6 +263,28 @@ const LOW_KEYWORDS: KeywordMap = {
   'gdp': 'economic',
   'unemployment': 'economic',
   'regulation': 'economic',
+  // Indian governance / judiciary
+  'scheme': 'diplomatic',
+  'yojana': 'diplomatic',
+  'supreme court': 'diplomatic',
+  'high court': 'diplomatic',
+  // Indian science / tech
+  'isro': 'tech',
+  'semiconductor': 'tech',
+  'ai model': 'tech',
+  // Indian governance / people
+  'passport': 'diplomatic',
+  'himanta': 'diplomatic',
+  'sarma': 'diplomatic',
+  'by-election': 'diplomatic',
+  // Indian economy
+  'short-seller': 'economic',
+  'short seller': 'economic',
+  'quick commerce': 'economic',
+  // Indian military / infrastructure
+  'raising day': 'military',
+  'bro project': 'military',
+  'bsf': 'military',
 };
 
 const TECH_HIGH_KEYWORDS: KeywordMap = {

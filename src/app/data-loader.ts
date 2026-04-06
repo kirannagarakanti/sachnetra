@@ -151,7 +151,7 @@ import { fetchCachedRiskScores } from '@/services/cached-risk-scores';
 import { generateSummary, generateDailyBrief } from '@/services/summarization';
 import { escapeHtml } from '@/utils/sanitize';
 import { filterNewsByState } from '@/services/rss';
-import { INDIA_STATE_KEYWORDS } from '@/config/variants/india';
+import { INDIA_STATE_KEYWORDS, INDIA_STATES } from '@/config/variants/india';
 import type { ThreatLevel as ClientThreatLevel } from '@/types';
 import type { NewsItem as ProtoNewsItem, ThreatLevel as ProtoThreatLevel } from '@/generated/client/worldmonitor/news/v1/service_client';
 
@@ -183,6 +183,63 @@ function protoItemToNewsItem(p: ProtoNewsItem): NewsItem {
 }
 
 // ── SachNetra India: story detail helpers ──
+
+// Category accent colours — purple / saffron / green — matching SachNetra brand
+const CATEGORY_ICON_COLOR: Record<string, string> = {
+  disaster:       '#7b7bff', // purple  — map pin
+  conflict:       '#FF9933', // saffron — warning
+  protest:        '#FF9933', // saffron — megaphone
+  economic:       '#22c55e', // green   — chart
+  diplomatic:     '#7b7bff', // purple  — people
+  terrorism:      '#FF9933', // saffron — triangle
+  cyber:          '#22c55e', // green   — shield
+  health:         '#f43f5e', // rose    — cross
+  environmental:  '#22c55e', // green   — leaf
+  military:       '#7b7bff', // purple  — star shield
+  crime:          '#FF9933', // saffron — lock
+  infrastructure: '#9090c0', // muted   — grid
+  tech:           '#22c55e', // green   — monitor
+  general:        '#7b7bff', // purple  — document
+};
+
+/** Returns an inline SVG icon string for a given EventCategory. */
+function getCategoryIcon(category: string): string {
+  const cat = category.toLowerCase();
+  const c = CATEGORY_ICON_COLOR[cat] ?? '#7b7bff';
+  const icon = ((): string => {
+    switch (cat) {
+      case 'disaster':
+        return '<svg width="30" height="30" viewBox="0 0 24 24" fill="none"><path d="M12 2C9 2 7 5 7 8C7 12 12 18 12 18C12 18 17 12 17 8C17 5 15 2 12 2Z" stroke="currentColor" stroke-width="1.5" fill="none"/><circle cx="12" cy="8" r="2" fill="currentColor"/></svg>';
+      case 'conflict':
+        return '<svg width="30" height="30" viewBox="0 0 24 24" fill="none"><path d="M12 3L22 20H2L12 3Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><line x1="12" y1="10" x2="12" y2="14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><circle cx="12" cy="17" r="0.8" fill="currentColor"/></svg>';
+      case 'protest':
+        return '<svg width="30" height="30" viewBox="0 0 24 24" fill="none"><path d="M3 21L5 14L14 5L19 10L10 19L3 21Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/><path d="M14 5L19 10" stroke="currentColor" stroke-width="1.5"/></svg>';
+      case 'economic':
+        return '<svg width="30" height="30" viewBox="0 0 24 24" fill="none"><polyline points="3,17 8,12 13,15 21,7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>';
+      case 'diplomatic':
+        return '<svg width="34" height="34" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="4" r="2" stroke="currentColor" stroke-width="1.5"/><path d="M9 8C9 6.9 10.3 6 12 6C13.7 6 15 6.9 15 8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><rect x="5" y="9" width="14" height="2.5" rx="1.2" fill="currentColor"/><path d="M6.5 11.5V17" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M17.5 11.5V17" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M6.5 17H17.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><line x1="12" y1="9" x2="12" y2="7" stroke="currentColor" stroke-width="1" stroke-linecap="round"/><circle cx="12" cy="6.5" r="1" stroke="currentColor" stroke-width="1"/></svg>';
+      case 'terrorism':
+        return '<svg width="30" height="30" viewBox="0 0 24 24" fill="none"><path d="M12 3L22 20H2L12 3Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><line x1="12" y1="10" x2="12" y2="14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><circle cx="12" cy="17" r="0.8" fill="currentColor"/></svg>';
+      case 'cyber':
+        return '<svg width="30" height="30" viewBox="0 0 24 24" fill="none"><path d="M12 3L20 7V13C20 17 16 20 12 22C8 20 4 17 4 13V7L12 3Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" fill="none"/></svg>';
+      case 'health':
+        return '<svg width="30" height="30" viewBox="0 0 24 24" fill="none"><path d="M9 4H15V8H19V14H15V18H9V14H5V8H9V4Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" fill="none"/></svg>';
+      case 'environmental':
+        return '<svg width="30" height="30" viewBox="0 0 24 24" fill="none"><path d="M12 21C12 21 4 14 4 9C4 5 8 3 12 6C16 3 20 5 20 9C20 14 12 21 12 21Z" stroke="currentColor" stroke-width="1.5" fill="none"/><line x1="12" y1="12" x2="12" y2="21" stroke="currentColor" stroke-width="1" stroke-linecap="round"/></svg>';
+      case 'military':
+        return '<svg width="30" height="30" viewBox="0 0 24 24" fill="none"><path d="M12 3L20 7V13C20 17 16 20 12 22C8 20 4 17 4 13V7L12 3Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" fill="none"/><path d="M12 8L13.5 11H16L14 13L15 16L12 14L9 16L10 13L8 11H10.5L12 8Z" fill="currentColor"/></svg>';
+      case 'crime':
+        return '<svg width="30" height="30" viewBox="0 0 24 24" fill="none"><rect x="7" y="11" width="10" height="8" rx="1" stroke="currentColor" stroke-width="1.5" fill="none"/><path d="M9 11V8C9 6 10.3 5 12 5C13.7 5 15 6 15 8V11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" fill="none"/></svg>';
+      case 'infrastructure':
+        return '<svg width="30" height="30" viewBox="0 0 24 24" fill="none"><rect x="4" y="4" width="16" height="16" rx="2" stroke="currentColor" stroke-width="1.5" fill="none"/><line x1="4" y1="10" x2="20" y2="10" stroke="currentColor" stroke-width="1"/><line x1="12" y1="10" x2="12" y2="20" stroke="currentColor" stroke-width="1"/></svg>';
+      case 'tech':
+        return '<svg width="30" height="30" viewBox="0 0 24 24" fill="none"><rect x="3" y="4" width="18" height="13" rx="2" stroke="currentColor" stroke-width="1.5" fill="none"/><line x1="8" y1="20" x2="16" y2="20" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><line x1="12" y1="17" x2="12" y2="20" stroke="currentColor" stroke-width="1.5"/></svg>';
+      default:
+        return '<svg width="30" height="30" viewBox="0 0 24 24" fill="none"><rect x="4" y="3" width="16" height="18" rx="2" stroke="currentColor" stroke-width="1.5" fill="none"/><line x1="8" y1="8" x2="16" y2="8" stroke="currentColor" stroke-width="1"/><line x1="8" y1="12" x2="14" y2="12" stroke="currentColor" stroke-width="1"/><line x1="8" y1="16" x2="12" y2="16" stroke="currentColor" stroke-width="1"/></svg>';
+    }
+  })();
+  return icon.replace('<svg ', `<svg style="color:${c}" `);
+}
 
 function shareToWhatsApp(title: string): void {
   const text = encodeURIComponent(
@@ -491,9 +548,6 @@ export class DataLoaderManager implements AppModule {
     // Desktop: server digest has fewer categories than client FEEDS config.
     // Enable per-feed RSS fallback so missing categories fetch directly.
     if (isDesktopRuntime()) return true;
-    // India variant: no server-side digest exists for india categories.
-    // Enable per-feed fallback so feeds load directly via rss-proxy.
-    if (SITE_VARIANT === 'india') return true;
     return isFeatureEnabled('newsPerFeedFallback');
   }
 
@@ -1335,7 +1389,9 @@ export class DataLoaderManager implements AppModule {
     cardsEl.innerHTML = sorted.map((item, idx) => {
       const ago = this.timeAgo(item.pubDate);
       const category = item.threat?.category ?? 'General';
-      const location = item.locationName ?? '';
+      const location = item.locationName
+        || (this.ctx.selectedState && INDIA_STATES.find(s => s.code === this.ctx.selectedState)?.name)
+        || 'India';
 
       return `
         <div class="sn-story-card" data-story-idx="${idx}" role="button" tabindex="0">
@@ -1347,10 +1403,10 @@ export class DataLoaderManager implements AppModule {
               </div>
               <p class="sn-story-title">${escapeHtml(item.title)}</p>
             </div>
-            <div class="sn-story-thumb" aria-hidden="true"></div>
+            <div class="sn-story-thumb" aria-hidden="true">${getCategoryIcon(category)}</div>
           </div>
           <div class="sn-story-footer">
-            <span class="sn-story-meta">${ago}${location ? ' · ' + escapeHtml(location) : ''}</span>
+            <span class="sn-story-meta">${ago} · ${escapeHtml(location)}</span>
             <div class="sn-story-actions">
               <button class="sn-story-action" aria-label="View story" data-story-idx="${idx}">
                 <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7C2 7 4 3 7 3C10 3 12 7 12 7C12 7 10 11 7 11C4 11 2 7 2 7Z" stroke="currentColor" stroke-width="1" fill="none"/><circle cx="7" cy="7" r="2" stroke="currentColor" stroke-width="1"/></svg>

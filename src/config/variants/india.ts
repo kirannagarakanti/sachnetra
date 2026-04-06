@@ -87,7 +87,7 @@ export const INDIA_STATE_KEYWORDS: Record<string, string[]> = {
   'CH': ['chandigarh'],
   'CT': ['chhattisgarh', 'raipur', 'bilaspur', 'bastar', 'naxal'],
   'DD': ['daman', 'diu'],
-  'DL': ['delhi', 'new delhi', 'ncr', 'lutyen', 'parliament', 'rashtrapati'],
+  'DL': ['delhi', 'new delhi', 'ncr', 'lutyen', 'rashtrapati'],
   'DN': ['dadra', 'nagar haveli'],
   'GA': ['goa', 'panaji', 'margao'],
   'GJ': ['gujarat', 'ahmedabad', 'surat', 'vadodara', 'gandhinagar', 'kutch'],

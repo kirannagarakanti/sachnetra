@@ -266,14 +266,36 @@ In browser (`npm run dev` with `VITE_VARIANT=india`, Chrome DevTools → iPhone 
 
 ---
 
+### Phase 5: India keyword enrichment — threat classifier
+**Goal**: Improve category accuracy for India-variant stories by adding Indian-specific keywords to the existing `MEDIUM_KEYWORDS` and `LOW_KEYWORDS` maps in `src/services/threat-classifier.ts`.
+
+**Write only to**: `src/services/threat-classifier.ts`
+**Do not**: change map structure, rename keys, or touch `CRITICAL_KEYWORDS`, `HIGH_KEYWORDS`, or any `TECH_*` maps.
+
+- [x] **Step 5.1** — Add to `MEDIUM_KEYWORDS` (lines 165–199)
+  - **Indian politics**: `parliament`, `lok sabha`, `rajya sabha`, `minister`, `chief minister`, `bjp`, `congress`, `modi`, `kejriwal`, `policy` → `'diplomatic'`
+  - **Indian economy**: `gst`, `rbi`, `rupee`, `sensex`, `nifty`, `crore`, `lakh`, `startup`, `funding`, `ipo`, `budget` → `'economic'`
+  - **Indian disaster/environment**: `cyclone`, `landslide` → `'disaster'`; `ngt`, `forest` → `'environmental'`
+  - **Indian tech/education**: `dpdp` → `'tech'`; `ugc`, `nta`, `upsc` → `'diplomatic'`
+  - ⚠️ `election` was **NOT** added to MEDIUM — it already exists in `LOW_KEYWORDS` (line 202). Adding it to MEDIUM would shadow the LOW entry but is a duplicate. Leave as-is.
+
+- [x] **Step 5.2** — Add to `LOW_KEYWORDS` (lines 201–229)
+  - **Indian governance/judiciary**: `scheme`, `yojana`, `supreme court`, `high court` → `'diplomatic'`
+  - **Indian science/tech**: `isro`, `semiconductor`, `ai model` → `'tech'`
+  - ⚠️ `startup` and `ai model` also exist in `TECH_LOW_KEYWORDS` — keeping them in `LOW_KEYWORDS` too is intentional (the `india` variant doesn't use `TECH_*` maps, so this is the only way these get matched for India stories).
+
+- [x] **Verify**: `npm run typecheck` → 0 errors
+
+---
+
 ## Completion Log
 
 - [x] Phase 1 complete — Mobile layout foundation CSS — 2026-03-21 17:10 IST
 - [x] Phase 2 complete — Mobile HTML + JS (header, state bar, feed, bottom nav) — 2026-03-23 12:15 IST
 - [x] Phase 3 complete — Component CSS (state bar, bottom nav, brief, time dividers, story cards) — 2026-03-23 12:15 IST
 - [x] Phase 4 complete — Story detail CSS (CSS-only) — 2026-03-23 13:25 IST
-- [x] Typecheck: 0 errors — 2026-03-23 13:30 IST
-- [x] Browser verified at 375px — 2026-03-23 13:35 IST
+- [x] Phase 5 complete — India keyword enrichment in threat classifier — 2026-04-05
+- [x] Typecheck: 0 errors — 2026-04-05
 - [x] **TASK 004 COMPLETE** ✅ — 2026-03-23 13:35 IST
 
 ---

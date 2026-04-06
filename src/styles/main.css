@@ -19051,7 +19051,7 @@ body.has-breaking-alert .panels-grid {
     color: var(--sn-text-muted);
     letter-spacing: 0.1em;
     text-transform: uppercase;
-    margin: 0 0 10px;
+    margin: 0;
   }
 
   [data-variant="india"] .sn-state-grid-cells {
@@ -19096,18 +19096,31 @@ body.has-breaking-alert .panels-grid {
     margin: 10px 0 6px;
   }
 
-  [data-variant="india"] .sn-state-done {
-    width: 100%;
-    background: var(--sn-purple);
-    color: #fff;
+  [data-variant="india"] .sn-state-grid-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 4px 10px;
+  }
+
+  [data-variant="india"] .sn-state-grid-close {
+    background: none;
     border: none;
-    border-radius: 8px;
-    padding: 10px;
-    font-size: 13px;
-    font-weight: 500;
+    color: var(--sn-text-muted);
     cursor: pointer;
+    padding: 4px;
     min-height: 44px;
+    min-width: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     -webkit-tap-highlight-color: transparent;
+    border-radius: 6px;
+    transition: color 0.15s;
+  }
+
+  [data-variant="india"] .sn-state-grid-close:hover {
+    color: var(--sn-text-primary);
   }
 
   /* Today's Brief */
@@ -19331,17 +19344,17 @@ body.has-breaking-alert .panels-grid {
 
   [data-variant="india"] .sn-story-card-body {
     display: flex;
-    align-items: flex-start;
+    align-items: center;
     gap: 10px;
   }
 
-  [data-variant="india"] .sn-story-card-text {
+  [data-variant="india"] .sn-story-content {
     flex: 1;
     min-width: 0;
   }
 
   [data-variant="india"] .sn-story-title {
-    font-size: 13px;
+    font-size: 14px;
     font-weight: 500;
     color: var(--sn-text-primary);
     line-height: 1.4;
@@ -19361,7 +19374,16 @@ body.has-breaking-alert .panels-grid {
     border-radius: 8px;
     background: #1e1830;
     flex-shrink: 0;
-    object-fit: cover;
+    align-self: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  [data-variant="india"] .sn-story-thumb svg {
+    display: block;
+    flex-shrink: 0;
   }
 
   [data-variant="india"] .sn-story-footer {
@@ -19547,13 +19569,12 @@ body.has-breaking-alert .panels-grid {
   [data-variant="india"] .sn-detail-body {
     flex: 1;
     overflow-y: auto;
-    padding: 16px;
+    padding: 16px 16px 24px; /* bottom: space above sticky WhatsApp bar */
     display: flex;
     flex-direction: column;
     gap: 14px;
     scrollbar-width: none;
     -webkit-overflow-scrolling: touch;
-    padding-bottom: 80px; /* space for WhatsApp button */
   }
 
   [data-variant="india"] .sn-detail-body::-webkit-scrollbar {
@@ -19605,7 +19626,15 @@ body.has-breaking-alert .panels-grid {
     background: var(--sn-border);
   }
 
+  /* AI summary + sources container — flex column so cards have spacing between them */
+  [data-variant="india"] #snDetailCards {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+
   /* "What Happened" card (purple accent) */
+
   [data-variant="india"] .sn-detail-what-happened {
     background: #13112a;
     border-radius: 12px;
