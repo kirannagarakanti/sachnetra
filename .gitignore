@@ -24,7 +24,9 @@ docs/internal/
 internal/
 test-results/
 src-tauri/sidecar/node/*
-!src-tauri/sidecar/node/.gitkeep
+!src-tauri/sidecar/node/.
+ai_docs/vercel build/
+ai_docs/har_analysis.txt
 
 # AI planning session state
 .planning/
