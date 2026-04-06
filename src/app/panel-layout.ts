@@ -353,7 +353,14 @@ export class PanelLayoutManager implements AppModule {
           </div>
 
           <div class="sn-state-grid" id="snStateGrid">
-            <p class="sn-state-grid-label">SELECT YOUR STATE</p>
+            <div class="sn-state-grid-header">
+              <p class="sn-state-grid-label">SELECT YOUR STATE</p>
+              <button class="sn-state-grid-close" id="snStateClose" aria-label="Close">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                  <path d="M4 4L12 12M12 4L4 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                </svg>
+              </button>
+            </div>
             <div class="sn-state-grid-cells">
               <div class="sn-state-cell sn-state-cell--active" data-state="all">All India<span>National view</span></div>
               <div class="sn-state-cell" data-state="maharashtra">Maharashtra<span>Mumbai, Pune</span></div>
@@ -388,8 +395,6 @@ export class PanelLayoutManager implements AppModule {
               <div class="sn-state-cell" data-state="jammu-kashmir">J &amp; K<span>Srinagar</span></div>
               <div class="sn-state-cell" data-state="ladakh">Ladakh<span>Leh</span></div>
             </div>
-
-            <button class="sn-state-done" id="snStateDone">Done</button>
           </div>
 
           <div class="sn-feed" id="snFeed">
@@ -616,7 +621,7 @@ export class PanelLayoutManager implements AppModule {
     // --- State selector toggle ---
     const stateBar = document.getElementById('snStateBar');
     const stateGrid = document.getElementById('snStateGrid');
-    const stateDone = document.getElementById('snStateDone');
+    const stateClose = document.getElementById('snStateClose');
     const stateArrow = stateBar?.querySelector<SVGElement>('.sn-state-arrow');
     const stateName = stateBar?.querySelector<HTMLElement>('.sn-state-name');
 
@@ -637,7 +642,7 @@ export class PanelLayoutManager implements AppModule {
       if (isOpen) closeStateGrid(); else openStateGrid();
     });
 
-    stateDone?.addEventListener('click', (e) => {
+    stateClose?.addEventListener('click', (e) => {
       e.stopPropagation();
       closeStateGrid();
     });

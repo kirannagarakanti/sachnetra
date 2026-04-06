@@ -387,8 +387,7 @@ export function filterNewsByState(
 
   return items.filter(item =>
     stateKeywords.some(kw =>
-      item.title.toLowerCase().includes(kw) ||
-      (item.locationName && item.locationName.toLowerCase().includes(kw))
+      item.title.toLowerCase().includes(kw)
     )
   );
 }
