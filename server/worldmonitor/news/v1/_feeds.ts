@@ -7,6 +7,9 @@ export interface ServerFeed {
 const gn = (q: string) =>
   `https://news.google.com/rss/search?q=${encodeURIComponent(q)}&hl=en-US&gl=US&ceid=US:en`;
 
+const gnIn = (q: string) =>
+  `https://news.google.com/rss/search?q=${encodeURIComponent(q)}&hl=en&gl=IN&ceid=IN:en`;
+
 export const VARIANT_FEEDS: Record<string, Record<string, ServerFeed[]>> = {
   full: {
     politics: [
@@ -397,6 +400,39 @@ export const VARIANT_FEEDS: Record<string, Record<string, ServerFeed[]>> = {
     community: [
       { name: 'Yes! Magazine', url: 'https://www.yesmagazine.org/feed' },
       { name: 'Shareable', url: 'https://www.shareable.net/feed/' },
+    ],
+  },
+
+  // ── India variant (SachNetra) ───────────────────────────────────────────────
+  india: {
+    politics: [
+      { name: 'NDTV', url: 'https://feeds.feedburner.com/ndtvnews-top-stories' },
+      { name: 'The Hindu', url: 'https://www.thehindu.com/news/feeder/default.rss' },
+      { name: 'Indian Express', url: gnIn('site:indianexpress.com India') },
+      { name: 'ANI', url: 'https://www.aninews.in/rss/india.xml' },
+      { name: 'Times of India', url: 'https://timesofindia.indiatimes.com/rssfeedstopstories.cms' },
+      { name: 'Hindustan Times', url: gnIn('site:hindustantimes.com India') },
+      { name: 'India Today', url: 'https://www.indiatoday.in/rss/1206578' },
+      { name: 'The Wire', url: 'https://thewire.in/feed' },
+      { name: 'Scroll', url: 'https://scroll.in/feed' },
+      { name: 'The Print', url: 'https://theprint.in/feed' },
+    ],
+    disaster: [
+      { name: 'NDTV India', url: 'https://feeds.feedburner.com/ndtvnews-india-news' },
+      { name: 'The Hindu Environment', url: 'https://www.thehindu.com/sci-tech/energy-and-environment/feeder/default.rss' },
+    ],
+    economy: [
+      { name: 'LiveMint', url: gnIn('site:livemint.com') },
+      { name: 'Economic Times', url: gnIn('site:economictimes.indiatimes.com') },
+      { name: 'Business Standard', url: gnIn('site:business-standard.com') },
+    ],
+    technology: [
+      { name: 'YourStory', url: 'https://yourstory.com/feed' },
+      { name: 'Inc42', url: 'https://inc42.com/feed/' },
+    ],
+    government: [
+      { name: 'DD News', url: gnIn('site:ddnews.gov.in') },
+      { name: 'PIB', url: gnIn('site:pib.gov.in') },
     ],
   },
 };
