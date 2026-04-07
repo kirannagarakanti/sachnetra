@@ -1,4 +1,4 @@
-import type { Feed, NewsItem } from '@/types';
+import type { Feed, NewsItem, ClusteredEvent } from '@/types';
 import { SITE_VARIANT } from '@/config';
 import { chunkArray, fetchWithProxy } from '@/utils';
 import { classifyByKeyword, classifyWithAI } from './threat-classifier';
@@ -388,6 +388,30 @@ export function filterNewsByState(
   return items.filter(item =>
     stateKeywords.some(kw =>
       item.title.toLowerCase().includes(kw)
+    )
+  );
+}
+
+/**
+ * Filter clusters by Indian state keywords.
+ * Returns all clusters if stateCode is null/empty (All India).
+ * A cluster matches if ANY of its allItems match a state keyword in title.
+ */
+export function filterClustersByState(
+  clusters: ClusteredEvent[],
+  stateCode: string | null,
+  keywords: Record<string, string[]>
+): ClusteredEvent[] {
+  if (!stateCode) return clusters;
+
+  const stateKeywords = keywords[stateCode] || [];
+  if (stateKeywords.length === 0) return clusters;
+
+  return clusters.filter(cluster =>
+    cluster.allItems.some(item =>
+      stateKeywords.some(kw =>
+        item.title.toLowerCase().includes(kw)
+      )
     )
   );
 }

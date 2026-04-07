@@ -1,7 +1,7 @@
 import type { AppContext, AppModule } from '@/app/app-context';
 import { getRpcBaseUrl } from '@/services/rpc-client';
 import { enqueuePanelCall } from '@/app/pending-panel-data';
-import type { NewsItem, MapLayers, SocialUnrestEvent } from '@/types';
+import type { NewsItem, ClusteredEvent, MapLayers, SocialUnrestEvent } from '@/types';
 import type { MarketData } from '@/types';
 import type { TimeRange } from '@/components';
 import {
@@ -150,7 +150,7 @@ import {
 import { fetchCachedRiskScores } from '@/services/cached-risk-scores';
 import { generateSummary, generateDailyBrief } from '@/services/summarization';
 import { escapeHtml } from '@/utils/sanitize';
-import { filterNewsByState } from '@/services/rss';
+import { filterClustersByState } from '@/services/rss';
 import { INDIA_STATE_KEYWORDS, INDIA_STATES } from '@/config/variants/india';
 import type { ThreatLevel as ClientThreatLevel } from '@/types';
 import type { NewsItem as ProtoNewsItem, ThreatLevel as ProtoThreatLevel } from '@/generated/client/worldmonitor/news/v1/service_client';
@@ -249,7 +249,7 @@ function shareToWhatsApp(title: string): void {
 }
 
 /** Open the story detail overlay for a news item. */
-function openStoryDetail(item: NewsItem): void {
+function openStoryDetail(item: NewsItem, cluster?: ClusteredEvent): void {
   // Remove any existing detail overlay
   document.getElementById('snDetailOverlay')?.remove();
 
@@ -343,7 +343,12 @@ function openStoryDetail(item: NewsItem): void {
   const cardsContainer = document.getElementById('snDetailCards');
   if (!cardsContainer) return;
 
-  generateSummary([item.title, `${item.source}: ${item.title}`], undefined, 'india')
+  // Build headlines: use all cluster sources for richer Groq context
+  const headlines = cluster && cluster.sourceCount > 1
+    ? cluster.allItems.map(i => `${i.source}: ${i.title}`)
+    : [item.title, `${item.source}: ${item.title}`];
+
+  generateSummary(headlines, undefined, 'india')
     .then(result => {
       // Overlay may have been closed while fetching
       if (!document.getElementById('snDetailOverlay')) return;
@@ -390,20 +395,36 @@ function openStoryDetail(item: NewsItem): void {
         html = `<p class="sn-detail-card-text" style="color:var(--sn-text-muted)">AI summary unavailable for this story.</p>`;
       }
 
-      // Add source info
+      // Build source list — show all cluster sources or fall back to single
+      const sources = cluster && cluster.sourceCount > 1
+        ? cluster.topSources
+        : [{ name: source, tier: 0, url: item.link }];
+
+      const sourceRows = sources.map(s => {
+        const sItem = cluster?.allItems.find(i => i.source === s.name);
+        const sMs = sItem ? Date.now() - new Date(sItem.pubDate).getTime() : ms;
+        const sMins = Math.floor(sMs / 60000);
+        let sAgo: string;
+        if (sMins < 60) sAgo = `${sMins}m ago`;
+        else { const hrs = Math.floor(sMins / 60); sAgo = hrs < 24 ? `${hrs}h ago` : `${Math.floor(hrs / 24)}d ago`; }
+        return `
+          <div class="sn-detail-source-row">
+            <div class="sn-detail-source-left">
+              <span class="sn-detail-source-dot"></span>
+              <span class="sn-detail-source-name">${escapeHtml(s.name)}</span>
+            </div>
+            <span class="sn-detail-source-time">${sAgo}</span>
+          </div>
+        `;
+      }).join('');
+
       html += `
         <div class="sn-detail-sources">
           <div class="sn-detail-sources-header">
-            <span class="sn-detail-sources-label">Source</span>
+            <span class="sn-detail-sources-label">SOURCE</span>
           </div>
           <div class="sn-detail-source-list">
-            <div class="sn-detail-source-row">
-              <div class="sn-detail-source-left">
-                <span class="sn-detail-source-dot"></span>
-                <span class="sn-detail-source-name">${escapeHtml(source)}</span>
-              </div>
-              <span class="sn-detail-source-time">${timeAgo}</span>
-            </div>
+            ${sourceRows}
           </div>
         </div>
       `;
@@ -1327,11 +1348,11 @@ export class DataLoaderManager implements AppModule {
    */
   refilterIndiaStories(): void {
     if (SITE_VARIANT !== 'india') return;
-    const allNews = this.ctx.allNews;
-    if (allNews.length === 0) return;
+    const clusters = this.ctx.latestClusters;
+    if (clusters.length === 0) return;
     const cardsEl = document.getElementById('snCards');
     if (!cardsEl) return;
-    this.renderIndiaStoryCards(cardsEl, allNews);
+    this.renderIndiaStoryCards(cardsEl, clusters);
   }
 
   private async populateIndiaBrief(allNews: NewsItem[]): Promise<void> {
@@ -1339,9 +1360,9 @@ export class DataLoaderManager implements AppModule {
     const cardsEl = document.getElementById('snCards');
     if (!briefEl && !cardsEl) return;
 
-    // --- Populate story cards (filtered by selected state) ---
-    if (cardsEl && allNews.length > 0) {
-      this.renderIndiaStoryCards(cardsEl, allNews);
+    // --- Populate story cards from clusters (filtered by selected state) ---
+    if (cardsEl && this.ctx.latestClusters.length > 0) {
+      this.renderIndiaStoryCards(cardsEl, this.ctx.latestClusters);
     }
 
     // --- Populate Today's Brief via daily overview AI summary ---
@@ -1371,14 +1392,14 @@ export class DataLoaderManager implements AppModule {
   }
 
   /**
-   * Render filtered story cards into the given container.
-   * Extracted from populateIndiaBrief so it can be called independently
-   * when the state selector changes (without re-generating the AI brief).
+   * Render clustered story cards into the given container.
+   * Uses ClusteredEvent[] to deduplicate stories — one card per cluster.
+   * Called independently when the state selector changes.
    */
-  private renderIndiaStoryCards(cardsEl: HTMLElement, allNews: NewsItem[]): void {
-    const filtered = filterNewsByState(allNews, this.ctx.selectedState, INDIA_STATE_KEYWORDS);
+  private renderIndiaStoryCards(cardsEl: HTMLElement, clusters: ClusteredEvent[]): void {
+    const filtered = filterClustersByState(clusters, this.ctx.selectedState, INDIA_STATE_KEYWORDS);
     const sorted = [...filtered]
-      .sort((a, b) => new Date(b.pubDate).getTime() - new Date(a.pubDate).getTime())
+      .sort((a, b) => b.lastUpdated.getTime() - a.lastUpdated.getTime())
       .slice(0, 20);
 
     if (sorted.length === 0) {
@@ -1386,12 +1407,18 @@ export class DataLoaderManager implements AppModule {
       return;
     }
 
-    cardsEl.innerHTML = sorted.map((item, idx) => {
-      const ago = this.timeAgo(item.pubDate);
-      const category = item.threat?.category ?? 'General';
-      const location = item.locationName
+    cardsEl.innerHTML = sorted.map((cluster, idx) => {
+      const ago = this.timeAgo(cluster.lastUpdated);
+      const category = cluster.threat?.category ?? 'General';
+      const location = cluster.allItems.find(i => i.locationName)?.locationName
         || (this.ctx.selectedState && INDIA_STATES.find(s => s.code === this.ctx.selectedState)?.name)
         || 'India';
+      const sourceBadge = cluster.sourceCount > 1
+        ? `${cluster.primarySource} +${cluster.sourceCount - 1}`
+        : cluster.primarySource;
+      const sourceCountMeta = cluster.sourceCount > 1
+        ? ` · ${cluster.sourceCount} sources`
+        : '';
 
       return `
         <div class="sn-story-card" data-story-idx="${idx}" role="button" tabindex="0">
@@ -1399,14 +1426,14 @@ export class DataLoaderManager implements AppModule {
             <div class="sn-story-content">
               <div class="sn-story-badges">
                 <span class="sn-story-badge">${escapeHtml(category)}</span>
-                <span class="sn-story-sources">${escapeHtml(item.source)}</span>
+                <span class="sn-story-sources">${escapeHtml(sourceBadge)}</span>
               </div>
-              <p class="sn-story-title">${escapeHtml(item.title)}</p>
+              <p class="sn-story-title">${escapeHtml(cluster.primaryTitle)}</p>
             </div>
             <div class="sn-story-thumb" aria-hidden="true">${getCategoryIcon(category)}</div>
           </div>
           <div class="sn-story-footer">
-            <span class="sn-story-meta">${ago} · ${escapeHtml(location)}</span>
+            <span class="sn-story-meta">${ago} · ${escapeHtml(location)}${sourceCountMeta}</span>
             <div class="sn-story-actions">
               <button class="sn-story-action" aria-label="View story" data-story-idx="${idx}">
                 <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7C2 7 4 3 7 3C10 3 12 7 12 7C12 7 10 11 7 11C4 11 2 7 2 7Z" stroke="currentColor" stroke-width="1" fill="none"/><circle cx="7" cy="7" r="2" stroke="currentColor" stroke-width="1"/></svg>
@@ -1420,20 +1447,20 @@ export class DataLoaderManager implements AppModule {
       `;
     }).join('');
 
-    // Attach tap handlers
+    // Attach tap handlers — pass cluster to detail for multi-source context
     cardsEl.querySelectorAll<HTMLElement>('.sn-story-card').forEach(card => {
       card.addEventListener('click', (e) => {
         if ((e.target as HTMLElement).closest('.sn-story-share')) return;
         const idx = parseInt(card.dataset.storyIdx ?? '0', 10);
-        const item = sorted[idx];
-        if (item) openStoryDetail(item);
+        const cluster = sorted[idx];
+        if (cluster) openStoryDetail(cluster.allItems[0]!, cluster);
       });
       card.addEventListener('keydown', (e) => {
         if (e.key === 'Enter' || e.key === ' ') {
           e.preventDefault();
           const idx = parseInt(card.dataset.storyIdx ?? '0', 10);
-          const item = sorted[idx];
-          if (item) openStoryDetail(item);
+          const cluster = sorted[idx];
+          if (cluster) openStoryDetail(cluster.allItems[0]!, cluster);
         }
       });
     });
@@ -1443,8 +1470,8 @@ export class DataLoaderManager implements AppModule {
       btn.addEventListener('click', (e) => {
         e.stopPropagation();
         const idx = parseInt(btn.dataset.storyIdx ?? '0', 10);
-        const item = sorted[idx];
-        if (item) shareToWhatsApp(item.title);
+        const cluster = sorted[idx];
+        if (cluster) shareToWhatsApp(cluster.primaryTitle);
       });
     });
   }

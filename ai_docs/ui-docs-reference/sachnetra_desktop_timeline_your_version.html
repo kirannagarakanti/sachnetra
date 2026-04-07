@@ -1,0 +1,147 @@
+
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: var(--font-sans); }
+.wrap { background: #0d0b1a; min-height: 520px; border-radius: 12px; overflow: hidden; display: flex; flex-direction: column; }
+.topbar { background: #110e22; border-bottom: 0.5px solid #2a2450; padding: 10px 16px; display: flex; align-items: center; justify-content: space-between; }
+.logo { display: flex; align-items: center; gap: 8px; }
+.logo-icon { width: 26px; height: 26px; border-radius: 7px; background: linear-gradient(135deg, #1a1040, #2a1200); display: flex; align-items: center; justify-content: center; }
+.logo-text { font-size: 15px; font-weight: 500; color: #fff; letter-spacing: 0.03em; }
+.filters { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+.chip { padding: 5px 13px; border-radius: 20px; font-size: 12px; cursor: pointer; border: 0.5px solid #3a3060; color: #9090c0; background: transparent; transition: all 0.15s; white-space: nowrap; }
+.chip:hover { border-color: #6060a0; color: #c0c0e8; }
+.chip.active { background: #2a2060; border-color: #7b7bff; color: #c0c0ff; }
+.chip.econ.active { background: #1a2a10; border-color: #4a9933; color: #90d060; }
+.chip.govt.active { background: #2a1a10; border-color: #FF9933; color: #ffb866; }
+.chip.tech.active { background: #10202a; border-color: #3399cc; color: #66bbdd; }
+.chip.conflict.active { background: #2a1010; border-color: #cc3333; color: #ff8888; }
+.panels { display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap: 10px; padding: 12px 16px; flex: 1; }
+.panel { background: #110e22; border: 0.5px solid #2a2450; border-radius: 10px; overflow: hidden; display: flex; flex-direction: column; }
+.panel.hidden { display: none; }
+.panel-head { padding: 10px 12px 8px; border-bottom: 0.5px solid #2a2450; display: flex; align-items: center; justify-content: space-between; }
+.panel-title { font-size: 12px; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; }
+.panel-title.all { color: #8888cc; }
+.panel-title.econ { color: #90d060; }
+.panel-title.govt { color: #ffb866; }
+.panel-title.tech { color: #66bbdd; }
+.panel-title.conflict { color: #ff8888; }
+.live-badge { font-size: 10px; padding: 2px 7px; border-radius: 10px; font-weight: 500; }
+.live-badge.live { background: #1a3010; color: #66cc44; border: 0.5px solid #338822; }
+.stories { flex: 1; overflow-y: auto; }
+.story { padding: 10px 12px; border-bottom: 0.5px solid #1a1830; cursor: pointer; }
+.story:hover { background: #181530; }
+.story-meta { display: flex; align-items: center; gap: 6px; margin-bottom: 4px; }
+.source { font-size: 10px; color: #6060a0; }
+.cat-pill { font-size: 10px; padding: 1px 6px; border-radius: 8px; }
+.cat-pill.econ { background: #1a2a10; color: #90d060; }
+.cat-pill.govt { background: #2a1a10; color: #ffb866; }
+.cat-pill.tech { background: #10202a; color: #66bbdd; }
+.cat-pill.conflict { background: #2a1010; color: #ff8888; }
+.cat-pill.general { background: #1a1a30; color: #9090c0; }
+.story-title { font-size: 12px; color: #d0d0e8; line-height: 1.4; }
+.story-time { font-size: 10px; color: #4a4a70; margin-top: 3px; }
+.note { font-size: 11px; color: #4a4a70; padding: 1rem 0; text-align: center; }
+</style>
+
+<div class="wrap">
+  <div class="topbar">
+    <div class="logo">
+      <div class="logo-icon">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="6" r="4" stroke="#7b7bff" stroke-width="1.2" fill="none"/><circle cx="8" cy="6" r="1.5" fill="#FF9933"/><line x1="8" y1="10" x2="8" y2="13" stroke="#FF9933" stroke-width="1.2" stroke-linecap="round"/></svg>
+      </div>
+      <span class="logo-text">SachNetra</span>
+      <span style="font-size:11px;color:#4a4a70;margin-left:4px;">Timeline</span>
+    </div>
+    <div class="filters" id="filters">
+      <div class="chip active" data-panel="all" onclick="toggleChip(this)">All</div>
+      <div class="chip econ" data-panel="econ" onclick="toggleChip(this)">Economy</div>
+      <div class="chip tech" data-panel="tech" onclick="toggleChip(this)">Technology</div>
+      <div class="chip govt" data-panel="govt" onclick="toggleChip(this)">Government</div>
+      <div class="chip conflict" data-panel="conflict" onclick="toggleChip(this)">Conflict</div>
+    </div>
+  </div>
+
+  <div class="panels" id="panels">
+    <div class="panel" id="panel-all">
+      <div class="panel-head">
+        <span class="panel-title all">World News</span>
+        <span class="live-badge live">LIVE</span>
+      </div>
+      <div class="stories">
+        <div class="story"><div class="story-meta"><span class="source">The Hindu</span><span class="cat-pill general">general</span></div><div class="story-title">Away from poll glitz, Adivasis of Anamalai hills fight for survival</div><div class="story-time">12 min ago</div></div>
+        <div class="story"><div class="story-meta"><span class="source">India Today</span><span class="cat-pill conflict">conflict</span></div><div class="story-title">Iran-Israel war LIVE: Trump threatens to destroy all Iran bridges in four hours</div><div class="story-time">18 min ago</div></div>
+        <div class="story"><div class="story-meta"><span class="source">NDTV</span><span class="cat-pill general">general</span></div><div class="story-title">4 Days To Death, 6 Years To Justice: Inside The Tamil Nadu Custodial Killings</div><div class="story-time">2 hr ago</div></div>
+      </div>
+    </div>
+    <div class="panel hidden" id="panel-econ">
+      <div class="panel-head">
+        <span class="panel-title econ">Economy</span>
+        <span class="live-badge live">LIVE</span>
+      </div>
+      <div class="stories">
+        <div class="story"><div class="story-meta"><span class="source">Economic Times</span><span class="cat-pill econ">economy</span></div><div class="story-title">Italy airports flag jet fuel shortages as Iran war bites — ET EnergyWorld</div><div class="story-time">16 hr ago</div></div>
+        <div class="story"><div class="story-meta"><span class="source">LiveMint</span><span class="cat-pill econ">economy</span></div><div class="story-title">Nykaa projects high-twenties net revenue growth in Q4 FY26</div><div class="story-time">13 hr ago</div></div>
+        <div class="story"><div class="story-meta"><span class="source">Bloomberg</span><span class="cat-pill econ">economy</span></div><div class="story-title">Nasdaq 21,987 — markets edge up 0.50% amid global uncertainty</div><div class="story-time">1 hr ago</div></div>
+      </div>
+    </div>
+    <div class="panel hidden" id="panel-tech">
+      <div class="panel-head">
+        <span class="panel-title tech">Technology</span>
+        <span class="live-badge live">LIVE</span>
+      </div>
+      <div class="stories">
+        <div class="story"><div class="story-meta"><span class="source">LiveMint</span><span class="cat-pill tech">tech</span></div><div class="story-title">Zuckerberg's Meta reportedly pauses work with Mercor after $10 billion deal</div><div class="story-time">14 hr ago</div></div>
+        <div class="story"><div class="story-meta"><span class="source">YourStory</span><span class="cat-pill tech">tech</span></div><div class="story-title">Leading AI with empathy: Why human-centered leadership matters in the age of automation</div><div class="story-time">14 hr ago</div></div>
+      </div>
+    </div>
+    <div class="panel hidden" id="panel-govt">
+      <div class="panel-head">
+        <span class="panel-title govt">Government</span>
+        <span class="live-badge live">LIVE</span>
+      </div>
+      <div class="stories">
+        <div class="story"><div class="story-meta"><span class="source">DD News</span><span class="cat-pill conflict">conflict</span></div><div class="story-title">How many people have been killed in the Iran war? Full casualty report</div><div class="story-time">12 hr ago</div></div>
+        <div class="story"><div class="story-meta"><span class="source">DD News</span><span class="cat-pill govt">govt</span></div><div class="story-title">"India's action will be unprecedented and decisive" — Rajnath Singh warns neighbours</div><div class="story-time">11 hr ago</div></div>
+      </div>
+    </div>
+    <div class="panel hidden" id="panel-conflict">
+      <div class="panel-head">
+        <span class="panel-title conflict">Conflict</span>
+        <span class="live-badge live">LIVE</span>
+      </div>
+      <div class="stories">
+        <div class="story"><div class="story-meta"><span class="source">The Hindu</span><span class="cat-pill conflict">conflict</span></div><div class="story-title">Iran-Israel war LIVE: Trump threatens to destroy all Iran bridges in four hours if no deal</div><div class="story-time">18 min ago</div></div>
+        <div class="story"><div class="story-meta"><span class="source">India Today</span><span class="cat-pill conflict">conflict</span></div><div class="story-title">Rajnath Singh issues warning — India watching situation closely</div><div class="story-time">3 hr ago</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="note">Your design — filters open/close panels · no state filter</div>
+</div>
+
+<script>
+function toggleChip(el) {
+  const panel = el.dataset.panel;
+  const allChip = document.querySelector('[data-panel="all"]');
+  
+  if (panel === 'all') {
+    document.querySelectorAll('.chip').forEach(c => c.classList.remove('active'));
+    el.classList.add('active');
+    document.querySelectorAll('.panel').forEach(p => p.classList.remove('hidden'));
+  } else {
+    allChip.classList.remove('active');
+    el.classList.toggle('active');
+    const anyActive = [...document.querySelectorAll('.chip:not([data-panel="all"])')].some(c => c.classList.contains('active'));
+    if (!anyActive) {
+      allChip.classList.add('active');
+      document.querySelectorAll('.panel').forEach(p => p.classList.remove('hidden'));
+    } else {
+      document.querySelectorAll('.panel').forEach(p => {
+        const id = p.id.replace('panel-', '');
+        const chip = document.querySelector(`[data-panel="${id}"]`);
+        p.classList.toggle('hidden', id !== 'all' && (!chip || !chip.classList.contains('active')));
+      });
+      document.getElementById('panel-all').classList.add('hidden');
+    }
+  }
+}
+</script>
