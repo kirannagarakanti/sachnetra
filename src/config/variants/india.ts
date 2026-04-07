@@ -24,10 +24,10 @@ export const MAP_CONFIG = {
 };
 
 // Kashmir-compliant boundary overlay — MUST always load for india variant
-// Source: https://github.com/datameet/maps (Survey of India official boundary, ODbL license)
-// Upload target: R2 bucket at maps.sachnetra.com — deferred to infrastructure setup
-// DeckGLMap wiring: deferred to Task 006.5
-export const INDIA_BOUNDARY_OVERLAY = 'https://maps.sachnetra.com/india-states-official.geojson';
+// Source: simplemaps.com (uses India's official boundaries, includes J&K + Ladakh)
+// Hosted locally as static asset — no external dependency
+// Wired into DeckGLMap.ts in Task 012
+export const INDIA_BOUNDARY_OVERLAY = '/data/india-states.geojson';
 
 // --------------------------------------------
 // State filtering — Task 007
