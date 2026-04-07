@@ -334,6 +334,22 @@ Since shared internal edges are drawn twice by both layers (appearing visually d
 
 ---
 
+### 8. Hide Irrelevant UI When Switching Tabs
+
+**Problem**: The state selector bar ("★ Karnataka — Change state") remained visible on the Map tab, overlapping the map view. The state filter is only relevant for the Home/Timeline news feed — it has no effect on the map.
+
+**Solution**: In `setupMobileIndiaLayout()` → `activateTab()`, toggle the state bar visibility:
+```typescript
+const stateBarEl = document.getElementById('snStateBar');
+if (stateBarEl) stateBarEl.style.display = tabKey === 'map' ? 'none' : '';
+```
+
+**File**: `src/app/panel-layout.ts` — inside the `activateTab()` closure.
+
+**Rule**: When adding tab-based navigation, audit every persistent UI element (headers, bars, FABs) and explicitly hide/show them per tab. Don't assume elements outside the tab container will be hidden automatically.
+
+---
+
 ## Completion Log
 
 - [x] Phase 1 — Host GeoJSON (2026-04-07)
