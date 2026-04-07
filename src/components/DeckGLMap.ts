@@ -110,6 +110,9 @@ import type { SpeciesRecovery } from '@/services/conservation-data';
 import { getCountriesGeoJson, getCountryAtCoordinates, getCountryBbox } from '@/services/country-geometry';
 import type { FeatureCollection, Geometry } from 'geojson';
 
+// India variant: boundary overlay — uses SITE_VARIANT (same as rest of app)
+const isIndiaVariant = SITE_VARIANT === 'india';
+
 import { isAllowedPreviewUrl } from '@/utils/imagery-preview';
 import { pinWebcam, isPinned } from '@/services/webcams/pinned-store';
 import type { WebcamEntry, WebcamCluster } from '@/generated/client/worldmonitor/webcam/v1/service_client';
@@ -357,6 +360,10 @@ export class DeckGLMap {
   private countryHoverSetup = false;
   private highlightedCountryCode: string | null = null;
 
+  // India boundary overlay state (Task 012)
+  private indiaBoundaryLoaded = false;
+  private indiaBoundaryData: GeoJSON.FeatureCollection | null = null;
+
   // Callbacks
   private onHotspotClick?: (hotspot: Hotspot) => void;
   private onTimeRangeChange?: (range: TimeRange) => void;
@@ -479,6 +486,7 @@ export class DeckGLMap {
       this.rebuildDatacenterSupercluster();
       this.initDeck();
       this.loadCountryBoundaries();
+      if (isIndiaVariant) this.loadIndiaBoundary();
       this.fetchServerBases();
       this.render();
     });
@@ -609,6 +617,7 @@ export class DeckGLMap {
         this.rebuildDatacenterSupercluster();
         this.initDeck();
         this.loadCountryBoundaries();
+        if (isIndiaVariant) this.loadIndiaBoundary();
         this.fetchServerBases();
         this.render();
       });
@@ -1204,6 +1213,37 @@ export class DeckGLMap {
     const filteredMilitaryVesselClusters = mapLayers.military ? this.filterMilitaryVesselClustersByTime(this.militaryVesselClusters) : [];
     // UCDP is a historical dataset (events aged months); time-range filter always zeroes it out
     const filteredUcdpEvents = mapLayers.ucdpEvents ? this.ucdpEvents : [];
+
+    // India boundary overlay — deck.gl GeoJsonLayer (bypasses broken MapLibre worker)
+    // Rendered first so it sits behind all other data layers
+    if (isIndiaVariant && this.indiaBoundaryData && mapLayers.indiaStates) {
+      const provider = getMapProvider();
+      const mapTheme = getMapTheme(provider);
+      const lightMap = isLightMapTheme(mapTheme);
+
+      layers.push(
+        new GeoJsonLayer({
+          id: 'india-boundary-borders',
+          data: this.indiaBoundaryData,
+          filled: false,
+          stroked: true,
+          getLineColor: lightMap ? [120, 120, 120, 100] : [180, 180, 180, 80],
+          getLineWidth: 0.3,
+          lineWidthUnits: 'pixels' as const,
+          pickable: false,
+        }),
+        new GeoJsonLayer({
+          id: 'india-boundary-outer',
+          data: this.indiaBoundaryData,
+          filled: false,
+          stroked: true,
+          getLineColor: lightMap ? [60, 60, 60, 180] : [200, 200, 200, 160],
+          getLineWidth: 0.4,
+          lineWidthUnits: 'pixels' as const,
+          pickable: false,
+        }),
+      );
+    }
 
     // Day/night overlay (rendered first as background)
     if (mapLayers.dayNight) {
@@ -1946,11 +1986,11 @@ export class DeckGLMap {
   private static readonly TC_WIND_COLORS: [number, [number, number, number, number]][] = [
     [137, [255, 96, 96, 200]],    // Cat5
     [113, [255, 140, 0, 200]],    // Cat4
-    [96,  [255, 140, 0, 200]],    // Cat3
-    [83,  [255, 231, 117, 200]],  // Cat2
-    [64,  [255, 231, 117, 200]],  // Cat1
-    [34,  [94, 186, 255, 200]],   // TS
-    [0,   [160, 160, 160, 160]],  // TD
+    [96, [255, 140, 0, 200]],    // Cat3
+    [83, [255, 231, 117, 200]],  // Cat2
+    [64, [255, 231, 117, 200]],  // Cat1
+    [34, [94, 186, 255, 200]],   // TS
+    [0, [160, 160, 160, 160]],  // TD
   ];
 
   private static windColor(kt: number): [number, number, number, number] {
@@ -2479,19 +2519,19 @@ export class DeckGLMap {
 
   private mineralColor(mineral: string): [number, number, number, number] {
     switch (mineral) {
-      case 'Gold':        return [255, 215, 0, 210];
-      case 'Silver':      return [192, 192, 192, 200];
-      case 'Copper':      return [184, 115, 51, 210];
-      case 'Lithium':     return [0, 200, 255, 200];
-      case 'Cobalt':      return [100, 100, 255, 200];
+      case 'Gold': return [255, 215, 0, 210];
+      case 'Silver': return [192, 192, 192, 200];
+      case 'Copper': return [184, 115, 51, 210];
+      case 'Lithium': return [0, 200, 255, 200];
+      case 'Cobalt': return [100, 100, 255, 200];
       case 'Rare Earths': return [255, 100, 200, 200];
-      case 'Nickel':      return [100, 220, 100, 200];
-      case 'Platinum':    return [210, 210, 255, 200];
-      case 'Palladium':   return [180, 220, 180, 200];
-      case 'Iron Ore':    return [139, 69, 19, 210];
-      case 'Uranium':     return [50, 255, 80, 200];
-      case 'Coal':        return [80, 80, 80, 200];
-      default:            return [200, 200, 200, 200];
+      case 'Nickel': return [100, 220, 100, 200];
+      case 'Platinum': return [210, 210, 255, 200];
+      case 'Palladium': return [180, 220, 180, 200];
+      case 'Iron Ore': return [139, 69, 19, 210];
+      case 'Uranium': return [50, 255, 80, 200];
+      case 'Coal': return [80, 80, 80, 200];
+      default: return [200, 200, 200, 200];
     }
   }
 
@@ -2520,11 +2560,11 @@ export class DeckGLMap {
       getRadius: 8000,
       getFillColor: (d) => {
         switch (d.type) {
-          case 'smelter':    return [255, 80, 30, 210] as [number, number, number, number];
-          case 'refinery':   return [255, 160, 50, 200] as [number, number, number, number];
+          case 'smelter': return [255, 80, 30, 210] as [number, number, number, number];
+          case 'refinery': return [255, 160, 50, 200] as [number, number, number, number];
           case 'separation': return [160, 100, 255, 200] as [number, number, number, number];
           case 'processing': return [100, 200, 150, 200] as [number, number, number, number];
-          default:           return [200, 150, 100, 200] as [number, number, number, number];
+          default: return [200, 150, 100, 200] as [number, number, number, number];
         }
       },
       radiusMinPixels: 5,
@@ -3145,10 +3185,10 @@ export class DeckGLMap {
   }
 
   private static readonly CII_LEVEL_COLORS: Record<string, [number, number, number, number]> = {
-    low:      [40, 180, 60, 130],
-    normal:   [220, 200, 50, 135],
+    low: [40, 180, 60, 130],
+    normal: [220, 200, 50, 135],
     elevated: [240, 140, 30, 145],
-    high:     [220, 50, 20, 155],
+    high: [220, 50, 20, 155],
     critical: [140, 10, 0, 170],
   };
 
@@ -3924,15 +3964,15 @@ export class DeckGLMap {
       <input type="text" class="layer-search" placeholder="${t('components.deckgl.layerSearch')}" autocomplete="off" spellcheck="false" />
       <div class="toggle-list" style="max-height: 32vh; overflow-y: auto; scrollbar-width: thin;">
         ${layerConfig.map(({ key, label, icon, premium }) => {
-          const isLocked = premium === 'locked' && !_wmKey;
-          const isEnhanced = premium === 'enhanced' && !_wmKey;
-          return `
+      const isLocked = premium === 'locked' && !_wmKey;
+      const isEnhanced = premium === 'enhanced' && !_wmKey;
+      return `
           <label class="layer-toggle${isLocked ? ' layer-toggle-locked' : ''}" data-layer="${key}">
             <input type="checkbox" ${this.state.layers[key as keyof MapLayers] ? 'checked' : ''}${isLocked ? ' disabled' : ''}>
             <span class="toggle-icon">${icon}</span>
             <span class="toggle-label">${label}${isLocked ? ' \uD83D\uDD12' : ''}${isEnhanced ? ' <span class="layer-pro-badge">PRO</span>' : ''}</span>
           </label>`;
-        }).join('')}
+    }).join('')}
       </div>
     `;
 
@@ -5316,6 +5356,32 @@ export class DeckGLMap {
       .catch((err) => console.warn('[DeckGLMap] Failed to load country boundaries:', err));
   }
 
+  /**
+   * Load India's official boundary overlay (Survey of India compliant).
+   * Draws state boundaries + solid international border on top of basemap tiles.
+   * Only called when VITE_VARIANT === 'india'. (Task 012)
+   */
+  /**
+   * Fetch India's official boundary GeoJSON and store for deck.gl rendering.
+   * Uses deck.gl GeoJsonLayer instead of MapLibre source/layer because
+   * MapLibre's GeoJSON web worker has a __publicField bug in Vite dev mode.
+   */
+  private loadIndiaBoundary(): void {
+    if (this.indiaBoundaryLoaded) return;
+    this.indiaBoundaryLoaded = true;
+
+    console.info('[DeckGLMap] loadIndiaBoundary() — fetching /data/india-states.geojson');
+
+    fetch('/data/india-states.geojson')
+      .then(r => { if (!r.ok) throw new Error(`HTTP ${r.status}`); return r.json(); })
+      .then((geojson: GeoJSON.FeatureCollection) => {
+        this.indiaBoundaryData = geojson;
+        console.info('[DeckGLMap] India boundary loaded ✅ (%d features) — triggering render', geojson.features?.length ?? 0);
+        this.render(); // triggers buildLayers() which now includes the GeoJsonLayers
+      })
+      .catch(err => console.error('[DeckGLMap] Failed to load India boundary:', err));
+  }
+
   private setupCountryHover(): void {
     if (!this.maplibreMap || this.countryHoverSetup) return;
     this.countryHoverSetup = true;
@@ -5424,9 +5490,11 @@ export class DeckGLMap {
         : getStyleForProvider(provider, mapTheme);
     this.maplibreMap.setStyle(style);
     this.countryGeoJsonLoaded = false;
+    this.indiaBoundaryLoaded = false;
     this.maplibreMap.once('style.load', () => {
       localizeMapLabels(this.maplibreMap);
       this.loadCountryBoundaries();
+      if (isIndiaVariant) this.loadIndiaBoundary();
       const paintTheme = isLightMapTheme(mapTheme) ? 'light' as const : 'dark' as const;
       this.updateCountryLayerPaint(paintTheme);
       this.render();
@@ -5485,9 +5553,11 @@ export class DeckGLMap {
     console.warn(`[DeckGLMap] Basemap tiles failed, falling back to OpenFreeMap: ${fallback}`);
     this.maplibreMap.setStyle(fallback);
     this.countryGeoJsonLoaded = false;
+    this.indiaBoundaryLoaded = false;
     this.maplibreMap.once('style.load', () => {
       localizeMapLabels(this.maplibreMap);
       this.loadCountryBoundaries();
+      if (isIndiaVariant) this.loadIndiaBoundary();
       const paintTheme = isLightMapTheme(mapTheme) ? 'light' as const : 'dark' as const;
       this.updateCountryLayerPaint(paintTheme);
       this.render();
