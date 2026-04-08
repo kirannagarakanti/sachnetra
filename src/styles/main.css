@@ -19951,4 +19951,201 @@ body.has-breaking-alert .panels-grid {
     animation: sn-shimmer 1.5s ease-in-out infinite;
   }
 
+  /* ─────────────────────────────────────────────────────
+     Timeline River — Task 013
+     ───────────────────────────────────────────────────── */
+
+  /* Timeline tab layout */
+  [data-variant="india"] .sn-timeline-tab {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+
+  /* ── Chip bar ── */
+  [data-variant="india"] .sn-tl-chips {
+    display: flex;
+    gap: 6px;
+    padding: 10px 16px 8px;
+    overflow-x: auto;
+    scrollbar-width: none;
+    background: var(--sn-deep-bg);
+    border-bottom: 0.5px solid var(--sn-border);
+    flex-shrink: 0;
+  }
+  [data-variant="india"] .sn-tl-chips::-webkit-scrollbar { display: none; }
+
+  [data-variant="india"] .sn-tl-chip {
+    padding: 6px 16px;
+    border-radius: 16px;
+    font-size: 12px;
+    font-weight: 500;
+    cursor: pointer;
+    border: 0.5px solid var(--sn-border);
+    white-space: nowrap;
+    min-height: 28px;
+    background: transparent;
+    color: var(--sn-text-muted);
+    opacity: 0.35;
+    transition: opacity 0.15s, border-color 0.15s, background 0.15s;
+    font-family: inherit;
+  }
+
+  /* Active state — "All" chip */
+  [data-variant="india"] .sn-tl-chip.sn-tl-chip--active {
+    opacity: 1;
+    border-color: #7070c0;
+    color: #b0b0e0;
+    background: #1e1c3a;
+  }
+
+  /* Category chip colors — active */
+  [data-variant="india"] .sn-tl-chip--conflict.sn-tl-chip--active {
+    border-color: #cc4444; color: #ff9090; background: #2a1010;
+  }
+  [data-variant="india"] .sn-tl-chip--economic.sn-tl-chip--active {
+    border-color: #4a9930; color: #90d060; background: #1a2a10;
+  }
+  [data-variant="india"] .sn-tl-chip--tech.sn-tl-chip--active {
+    border-color: #2288aa; color: #66bbdd; background: #102030;
+  }
+  [data-variant="india"] .sn-tl-chip--diplomatic.sn-tl-chip--active {
+    border-color: #aa6820; color: #ffaa44; background: #2a1a08;
+  }
+  [data-variant="india"] .sn-tl-chip--environmental.sn-tl-chip--active {
+    border-color: #208870; color: #55ccaa; background: #102820;
+  }
+
+  /* Category chip colors — inactive (border hint only) */
+  [data-variant="india"] .sn-tl-chip--conflict  { border-color: #6a2020; color: #ff7070; }
+  [data-variant="india"] .sn-tl-chip--economic   { border-color: #2a5a18; color: #80cc40; }
+  [data-variant="india"] .sn-tl-chip--tech       { border-color: #18405a; color: #50aacc; }
+  [data-variant="india"] .sn-tl-chip--diplomatic { border-color: #5a3a10; color: #cc8830; }
+  [data-variant="india"] .sn-tl-chip--environmental { border-color: #1a4a40; color: #40aa90; }
+
+  /* ── River body ── */
+  [data-variant="india"] .sn-tl-river {
+    flex: 1;
+    overflow-y: auto;
+    padding-bottom: 80px;
+  }
+  [data-variant="india"] .sn-tl-river::-webkit-scrollbar { width: 2px; }
+  [data-variant="india"] .sn-tl-river::-webkit-scrollbar-thumb { background: #2a2450; }
+
+  /* ── Time dividers ── */
+  [data-variant="india"] .sn-tl-divider {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 16px 4px;
+  }
+  [data-variant="india"] .sn-tl-divider-line {
+    flex: 1;
+    height: 0.5px;
+    background: var(--sn-border);
+  }
+  [data-variant="india"] .sn-tl-divider-text {
+    font-size: 11px;
+    color: #3a3860;
+    letter-spacing: 0.07em;
+    white-space: nowrap;
+  }
+
+  /* ── Story rows ── */
+  [data-variant="india"] .sn-tl-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 9px 16px;
+    border-bottom: 0.5px solid #120f20;
+    cursor: pointer;
+    transition: background 0.1s;
+  }
+  [data-variant="india"] .sn-tl-row:active { background: #110e20; }
+  [data-variant="india"] .sn-tl-row.hidden { display: none; }
+  [data-variant="india"] .sn-tl-row--alert {
+    border-left: 2px solid #cc3333;
+    padding-left: 14px;
+  }
+
+  /* ── Category dots ── */
+  [data-variant="india"] .sn-tl-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    margin-top: 5px;
+  }
+  [data-variant="india"] .sn-tl-dot--conflict      { background: #cc3333; }
+  [data-variant="india"] .sn-tl-dot--economic       { background: #66bb33; }
+  [data-variant="india"] .sn-tl-dot--tech           { background: #2299bb; }
+  [data-variant="india"] .sn-tl-dot--diplomatic     { background: #cc8820; }
+  [data-variant="india"] .sn-tl-dot--environmental  { background: #22aa88; }
+  [data-variant="india"] .sn-tl-dot--general        { background: #5050a0; }
+
+  /* ── Row content ── */
+  [data-variant="india"] .sn-tl-content {
+    flex: 1;
+    min-width: 0;
+  }
+  [data-variant="india"] .sn-tl-meta {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    margin-bottom: 3px;
+    flex-wrap: wrap;
+  }
+  [data-variant="india"] .sn-tl-source {
+    font-size: 11px;
+    color: var(--sn-text-muted);
+  }
+  [data-variant="india"] .sn-tl-title {
+    font-size: 13px;
+    color: #d0cce8;
+    line-height: 1.4;
+    font-weight: 400;
+  }
+  [data-variant="india"] .sn-tl-footer {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 4px;
+  }
+  [data-variant="india"] .sn-tl-ago {
+    font-size: 10px;
+    color: #3a3860;
+  }
+
+  /* ── Category pills ── */
+  [data-variant="india"] .sn-tl-pill {
+    font-size: 11px;
+    padding: 1px 6px;
+    border-radius: 8px;
+  }
+  [data-variant="india"] .sn-tl-pill--conflict      { background: #2a1010; color: #ff7070; }
+  [data-variant="india"] .sn-tl-pill--economic       { background: #142210; color: #80cc40; }
+  [data-variant="india"] .sn-tl-pill--tech           { background: #0a1a22; color: #55bbdd; }
+  [data-variant="india"] .sn-tl-pill--diplomatic     { background: #221608; color: #ddaa44; }
+  [data-variant="india"] .sn-tl-pill--environmental  { background: #081a18; color: #44ccaa; }
+  [data-variant="india"] .sn-tl-pill--general        { background: #161428; color: #8080bb; }
+
+  /* ── Alert badge ── */
+  [data-variant="india"] .sn-tl-alert {
+    font-size: 11px;
+    padding: 1px 6px;
+    border-radius: 8px;
+    background: #2a0a0a;
+    color: #ff5050;
+    border: 0.5px solid #441010;
+  }
+
+  /* ── Cluster badge ── */
+  [data-variant="india"] .sn-tl-cluster {
+    font-size: 11px;
+    padding: 1px 6px;
+    border-radius: 8px;
+    background: #1a1830;
+    color: #7070b0;
+  }
+
 } /* end @media (max-width: 768px) */

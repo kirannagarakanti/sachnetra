@@ -1,0 +1,373 @@
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+.phone-wrap{display:flex;justify-content:center;padding:1rem 0;}
+.phone{width:360px;background:#09080f;border-radius:36px;border:1.5px solid #1e1c35;overflow:hidden;display:flex;flex-direction:column;min-height:700px;font-family:var(--font-sans);}
+.ph-head{background:#0f0d1e;border-bottom:0.5px solid #1e1c35;padding:12px 16px 10px;}
+.ph-title-row{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;}
+.ph-logo{display:flex;align-items:center;gap:7px;}
+.ph-logo-icon{width:22px;height:22px;border-radius:6px;background:#1a1040;display:flex;align-items:center;justify-content:center;}
+.ph-logo-text{font-size:14px;font-weight:500;color:#fff;letter-spacing:0.03em;}
+.ph-page-label{font-size:12px;color:#4a4870;}
+.new-pill{background:#1a2a10;border:0.5px solid #3a7020;border-radius:12px;padding:3px 10px;font-size:11px;color:#66bb44;cursor:pointer;display:flex;align-items:center;gap:4px;}
+.new-pill-dot{width:5px;height:5px;border-radius:50%;background:#66bb44;}
+.chips-row{display:flex;gap:6px;overflow-x:auto;padding-bottom:2px;scrollbar-width:none;}
+.chips-row::-webkit-scrollbar{display:none;}
+.chip{padding:4px 12px;border-radius:16px;font-size:11px;font-weight:500;cursor:pointer;border:0.5px solid;white-space:nowrap;transition:opacity 0.15s;}
+.chip.off{opacity:0.3;}
+.chip-all{border-color:#4a4870;color:#9090c0;background:#16142a;}
+.chip-all.sel{border-color:#7070c0;color:#b0b0e0;background:#1e1c3a;}
+.chip-conflict{border-color:#6a2020;color:#ff7070;background:#1e0c0c;}
+.chip-conflict.on{border-color:#cc4444;color:#ff9090;background:#2a1010;}
+.chip-econ{border-color:#2a5a18;color:#80cc40;background:#0e1a0a;}
+.chip-econ.on{border-color:#4a9930;color:#90d060;background:#1a2a10;}
+.chip-tech{border-color:#18405a;color:#50aacc;background:#0a161e;}
+.chip-tech.on{border-color:#2288aa;color:#66bbdd;background:#102030;}
+.chip-govt{border-color:#5a3a10;color:#cc8830;background:#1a1008;}
+.chip-govt.on{border-color:#aa6820;color:#ffaa44;background:#2a1a08;}
+.chip-env{border-color:#1a4a40;color:#40aa90;background:#08181a;}
+.chip-env.on{border-color:#208870;color:#55ccaa;background:#102820;}
+.river-body{flex:1;overflow-y:auto;padding:0 0 80px;}
+.river-body::-webkit-scrollbar{width:2px;}
+.river-body::-webkit-scrollbar-thumb{background:#2a2450;}
+.time-divider{padding:10px 16px 4px;display:flex;align-items:center;gap:8px;}
+.time-line{flex:1;height:0.5px;background:#1e1c35;}
+.time-text{font-size:10px;color:#3a3860;letter-spacing:0.07em;white-space:nowrap;}
+.story-row{display:flex;align-items:flex-start;gap:10px;padding:9px 16px;border-bottom:0.5px solid #120f20;cursor:pointer;transition:background 0.1s;}
+.story-row:hover{background:#110e20;}
+.story-row.hidden{display:none;}
+.story-row.alert-row{border-left:2px solid #cc3333;padding-left:14px;}
+.cat-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0;margin-top:5px;}
+.dot-conflict{background:#cc3333;}
+.dot-econ{background:#66bb33;}
+.dot-tech{background:#2299bb;}
+.dot-govt{background:#cc8820;}
+.dot-env{background:#22aa88;}
+.dot-general{background:#5050a0;}
+.story-content{flex:1;min-width:0;}
+.story-meta{display:flex;align-items:center;gap:5px;margin-bottom:3px;flex-wrap:wrap;}
+.story-source{font-size:10px;color:#4a4878;}
+.story-cat-pill{font-size:10px;padding:1px 6px;border-radius:8px;}
+.pill-conflict{background:#2a1010;color:#ff7070;}
+.pill-econ{background:#142210;color:#80cc40;}
+.pill-tech{background:#0a1a22;color:#55bbdd;}
+.pill-govt{background:#221608;color:#ddaa44;}
+.pill-env{background:#081a18;color:#44ccaa;}
+.pill-general{background:#161428;color:#8080bb;}
+.alert-badge{font-size:10px;padding:1px 6px;border-radius:8px;background:#2a0a0a;color:#ff5050;border:0.5px solid #441010;}
+.cluster-badge{font-size:10px;padding:1px 6px;border-radius:8px;background:#1a1830;color:#7070b0;}
+.story-title{font-size:12px;color:#d0cce8;line-height:1.4;font-weight:400;}
+.story-footer{display:flex;align-items:center;gap:8px;margin-top:4px;}
+.story-ago{font-size:10px;color:#3a3860;}
+.story-share{font-size:10px;color:#3a5030;cursor:pointer;}
+.bottom-nav{background:#0f0d1e;border-top:0.5px solid #1e1c35;padding:8px 0 12px;display:flex;justify-content:space-around;}
+.nav-item{display:flex;flex-direction:column;align-items:center;gap:3px;cursor:pointer;opacity:0.4;padding:0 10px;}
+.nav-item.active{opacity:1;}
+.nav-icon{width:20px;height:20px;display:flex;align-items:center;justify-content:center;}
+.nav-label{font-size:9px;color:#7070a0;}
+.nav-item.active .nav-label{color:#7b7bff;}
+.detail-overlay{display:none;position:absolute;inset:0;background:#09080f;z-index:10;flex-direction:column;border-radius:34px;overflow:hidden;}
+.detail-overlay.show{display:flex;}
+.detail-head{background:#0f0d1e;border-bottom:0.5px solid #1e1c35;padding:12px 16px;display:flex;align-items:center;gap:10px;}
+.back-btn{width:28px;height:28px;border-radius:8px;background:#1a1830;display:flex;align-items:center;justify-content:center;cursor:pointer;border:0.5px solid #2a2450;}
+.detail-body{flex:1;overflow-y:auto;padding:16px;}
+.detail-cat-row{display:flex;align-items:center;gap:6px;margin-bottom:10px;}
+.detail-title{font-size:16px;font-weight:500;color:#e0daf8;line-height:1.4;margin-bottom:12px;}
+.detail-meta{font-size:11px;color:#4a4870;margin-bottom:14px;}
+.detail-divider{height:0.5px;background:#1e1c35;margin:14px 0;}
+.ai-summary-label{font-size:10px;color:#5050a0;letter-spacing:0.08em;margin-bottom:6px;}
+.ai-summary{font-size:12px;color:#b0aad0;line-height:1.6;}
+.sources-label{font-size:10px;color:#5050a0;letter-spacing:0.08em;margin-bottom:8px;}
+.source-chip{display:inline-block;padding:3px 9px;border-radius:10px;background:#16142a;border:0.5px solid #2a2450;font-size:11px;color:#8080b0;margin:3px 3px 3px 0;}
+.share-row{display:flex;gap:8px;margin-top:16px;}
+.share-btn{flex:1;padding:9px;border-radius:10px;background:#1a2a10;border:0.5px solid #3a6820;font-size:12px;color:#80cc40;cursor:pointer;text-align:center;}
+.read-btn{flex:1;padding:9px;border-radius:10px;background:#16142a;border:0.5px solid #2a2450;font-size:12px;color:#8080c0;cursor:pointer;text-align:center;}
+.phone-rel{position:relative;}
+</style>
+
+<div class="phone-wrap">
+<div class="phone phone-rel" id="phone">
+
+  <div class="detail-overlay" id="detail-overlay">
+    <div class="detail-head">
+      <div class="back-btn" onclick="closeDetail()">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M9 2L4 7L9 12" stroke="#7070a0" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+      <span style="font-size:13px;color:#6060a0;" id="detail-source-label">The Hindu</span>
+    </div>
+    <div class="detail-body">
+      <div class="detail-cat-row">
+        <span class="story-cat-pill" id="detail-cat-pill">conflict</span>
+        <span class="alert-badge" id="detail-alert-badge" style="display:none;">ALERT</span>
+      </div>
+      <div class="detail-title" id="detail-title">Story title here</div>
+      <div class="detail-meta" id="detail-meta">6 min ago · India</div>
+      <div class="detail-divider"></div>
+      <div class="ai-summary-label">AI SUMMARY</div>
+      <div class="ai-summary" id="detail-summary">Summary appears here.</div>
+      <div class="detail-divider"></div>
+      <div class="sources-label">SOURCES COVERING THIS</div>
+      <div id="detail-sources"></div>
+      <div class="share-row">
+        <div class="share-btn">Share on WhatsApp</div>
+        <div class="read-btn">Read full story</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="ph-head">
+    <div class="ph-title-row">
+      <div class="ph-logo">
+        <div class="ph-logo-icon">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="5.5" r="3.5" stroke="#7b7bff" stroke-width="1.1" fill="none"/><circle cx="7" cy="5.5" r="1.3" fill="#FF9933"/><line x1="7" y1="9" x2="7" y2="12" stroke="#FF9933" stroke-width="1.1" stroke-linecap="round"/></svg>
+        </div>
+        <span class="ph-logo-text">SachNetra</span>
+      </div>
+      <span class="ph-page-label">Timeline</span>
+      <div class="new-pill" id="new-pill" onclick="dismissNew()" style="display:none;">
+        <div class="new-pill-dot"></div>
+        <span>3 new</span>
+      </div>
+    </div>
+    <div class="chips-row" id="chips-row">
+      <div class="chip chip-all sel" data-cat="all" onclick="selectChip(this)">All</div>
+      <div class="chip chip-conflict on" data-cat="conflict" onclick="selectChip(this)">Conflict</div>
+      <div class="chip chip-econ on" data-cat="econ" onclick="selectChip(this)">Economy</div>
+      <div class="chip chip-tech on" data-cat="tech" onclick="selectChip(this)">Technology</div>
+      <div class="chip chip-govt on" data-cat="govt" onclick="selectChip(this)">Government</div>
+      <div class="chip chip-env on" data-cat="env" onclick="selectChip(this)">Environment</div>
+    </div>
+  </div>
+
+  <div class="river-body" id="river">
+
+    <div class="time-divider"><div class="time-line"></div><span class="time-text">JUST NOW</span><div class="time-line"></div></div>
+
+    <div class="story-row alert-row" data-cat="conflict" onclick="openDetail(this)">
+      <div class="cat-dot dot-conflict"></div>
+      <div class="story-content">
+        <div class="story-meta">
+          <span class="story-source">The Hindu</span>
+          <span class="story-cat-pill pill-conflict">conflict</span>
+          <span class="alert-badge">ALERT</span>
+          <span class="cluster-badge">3 sources</span>
+        </div>
+        <div class="story-title">Iran-Israel war LIVE: Trump threatens to destroy all Iran bridges, power plants in four hours if no deal</div>
+        <div class="story-footer"><span class="story-ago">6 min ago</span></div>
+      </div>
+    </div>
+
+    <div class="story-row" data-cat="conflict" onclick="openDetail(this)">
+      <div class="cat-dot dot-conflict"></div>
+      <div class="story-content">
+        <div class="story-meta"><span class="story-source">India Today</span><span class="story-cat-pill pill-conflict">conflict</span></div>
+        <div class="story-title">Rajnath Singh: India's response will be unprecedented and decisive</div>
+        <div class="story-footer"><span class="story-ago">11 min ago</span></div>
+      </div>
+    </div>
+
+    <div class="story-row" data-cat="general" onclick="openDetail(this)">
+      <div class="cat-dot dot-general"></div>
+      <div class="story-content">
+        <div class="story-meta"><span class="story-source">The Hindu</span><span class="story-cat-pill pill-general">general</span></div>
+        <div class="story-title">Away from poll glitz, Adivasis of Anamalai hills fight for survival</div>
+        <div class="story-footer"><span class="story-ago">12 min ago</span></div>
+      </div>
+    </div>
+
+    <div class="time-divider"><div class="time-line"></div><span class="time-text">1–3 HOURS AGO</span><div class="time-line"></div></div>
+
+    <div class="story-row" data-cat="econ" onclick="openDetail(this)">
+      <div class="cat-dot dot-econ"></div>
+      <div class="story-content">
+        <div class="story-meta"><span class="story-source">Bloomberg</span><span class="story-cat-pill pill-econ">economy</span></div>
+        <div class="story-title">Nasdaq edges up 0.50% to 21,987 amid Iran war supply shock concerns</div>
+        <div class="story-footer"><span class="story-ago">1 hr ago</span></div>
+      </div>
+    </div>
+
+    <div class="story-row" data-cat="general" onclick="openDetail(this)">
+      <div class="cat-dot dot-general"></div>
+      <div class="story-content">
+        <div class="story-meta"><span class="story-source">NDTV India</span><span class="story-cat-pill pill-general">general</span><span class="cluster-badge">2 sources</span></div>
+        <div class="story-title">4 Days To Death, 6 Years To Justice: Inside the Tamil Nadu custodial killings</div>
+        <div class="story-footer"><span class="story-ago">2 hr ago</span></div>
+      </div>
+    </div>
+
+    <div class="story-row" data-cat="govt" onclick="openDetail(this)">
+      <div class="cat-dot dot-govt"></div>
+      <div class="story-content">
+        <div class="story-meta"><span class="story-source">DD News</span><span class="story-cat-pill pill-govt">government</span></div>
+        <div class="story-title">SC seeks Centre's response on electoral bond data transparency petition</div>
+        <div class="story-footer"><span class="story-ago">2 hr ago</span></div>
+      </div>
+    </div>
+
+    <div class="story-row" data-cat="env" onclick="openDetail(this)">
+      <div class="cat-dot dot-env"></div>
+      <div class="story-content">
+        <div class="story-meta"><span class="story-source">The Wire</span><span class="story-cat-pill pill-env">environment</span></div>
+        <div class="story-title">Odisha forest clearances hit decade high as industrial projects surge in tribal zones</div>
+        <div class="story-footer"><span class="story-ago">3 hr ago</span></div>
+      </div>
+    </div>
+
+    <div class="time-divider"><div class="time-line"></div><span class="time-text">EARLIER TODAY</span><div class="time-line"></div></div>
+
+    <div class="story-row" data-cat="tech" onclick="openDetail(this)">
+      <div class="cat-dot dot-tech"></div>
+      <div class="story-content">
+        <div class="story-meta"><span class="story-source">LiveMint</span><span class="story-cat-pill pill-tech">technology</span></div>
+        <div class="story-title">Zuckerberg's Meta reportedly pauses work with Mercor after $10 billion deal scrutiny</div>
+        <div class="story-footer"><span class="story-ago">14 hr ago</span></div>
+      </div>
+    </div>
+
+    <div class="story-row" data-cat="econ" onclick="openDetail(this)">
+      <div class="cat-dot dot-econ"></div>
+      <div class="story-content">
+        <div class="story-meta"><span class="story-source">Economic Times</span><span class="story-cat-pill pill-econ">economy</span></div>
+        <div class="story-title">Italy airports flag jet fuel shortages as Iran war bites — ET EnergyWorld</div>
+        <div class="story-footer"><span class="story-ago">16 hr ago</span></div>
+      </div>
+    </div>
+
+    <div class="story-row" data-cat="econ" onclick="openDetail(this)">
+      <div class="cat-dot dot-econ"></div>
+      <div class="story-content">
+        <div class="story-meta"><span class="story-source">LiveMint</span><span class="story-cat-pill pill-econ">economy</span></div>
+        <div class="story-title">Nykaa projects high-twenties net revenue growth in Q4 FY26 earnings call</div>
+        <div class="story-footer"><span class="story-ago">13 hr ago</span></div>
+      </div>
+    </div>
+
+    <div class="story-row" data-cat="tech" onclick="openDetail(this)">
+      <div class="cat-dot dot-tech"></div>
+      <div class="story-content">
+        <div class="story-meta"><span class="story-source">YourStory</span><span class="story-cat-pill pill-tech">technology</span></div>
+        <div class="story-title">Leading AI with empathy: Why human-centered leadership matters in the age of automation</div>
+        <div class="story-footer"><span class="story-ago">14 hr ago</span></div>
+      </div>
+    </div>
+
+    <div class="story-row" data-cat="govt" onclick="openDetail(this)">
+      <div class="cat-dot dot-govt"></div>
+      <div class="story-content">
+        <div class="story-meta"><span class="story-source">DD News</span><span class="story-cat-pill pill-govt">government</span><span class="alert-badge">ALERT</span></div>
+        <div class="story-title">How many people have been killed in the Iran war? Full casualty count — DD News</div>
+        <div class="story-footer"><span class="story-ago">12 hr ago</span></div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="bottom-nav">
+    <div class="nav-item" onclick="navClick(this)">
+      <div class="nav-icon"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><rect x="2" y="2" width="6" height="6" rx="1.5" stroke="#7070a0" stroke-width="1.2"/><rect x="10" y="2" width="6" height="6" rx="1.5" stroke="#7070a0" stroke-width="1.2"/><rect x="2" y="10" width="6" height="6" rx="1.5" stroke="#7070a0" stroke-width="1.2"/><rect x="10" y="10" width="6" height="6" rx="1.5" stroke="#7070a0" stroke-width="1.2"/></svg></div>
+      <span class="nav-label">Home</span>
+    </div>
+    <div class="nav-item active">
+      <div class="nav-icon"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="7" stroke="#7b7bff" stroke-width="1.2"/><line x1="9" y1="5" x2="9" y2="9" stroke="#7b7bff" stroke-width="1.2" stroke-linecap="round"/><line x1="9" y1="9" x2="12" y2="11" stroke="#7b7bff" stroke-width="1.2" stroke-linecap="round"/></svg></div>
+      <span class="nav-label" style="color:#7b7bff;">Timeline</span>
+    </div>
+    <div class="nav-item" onclick="navClick(this)">
+      <div class="nav-icon"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="8" r="5.5" stroke="#7070a0" stroke-width="1.2"/><circle cx="9" cy="8" r="2" fill="#7070a0"/><line x1="9" y1="13.5" x2="9" y2="16" stroke="#7070a0" stroke-width="1.2" stroke-linecap="round"/></svg></div>
+      <span class="nav-label">Map</span>
+    </div>
+    <div class="nav-item" onclick="navClick(this)">
+      <div class="nav-icon"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M9 2C6 2 3 5 3 8c0 4 6 10 6 10s6-6 6-10c0-3-3-6-6-6z" stroke="#7070a0" stroke-width="1.2" fill="none"/><circle cx="9" cy="8" r="2" stroke="#7070a0" stroke-width="1.2" fill="none"/></svg></div>
+      <span class="nav-label">States</span>
+    </div>
+  </div>
+
+</div>
+</div>
+
+<script>
+var activeChips = {all:true,conflict:true,econ:true,tech:true,govt:true,env:true,general:true};
+
+function selectChip(el){
+  var cat = el.dataset.cat;
+  var chips = document.querySelectorAll('.chip');
+  if(cat==='all'){
+    Object.keys(activeChips).forEach(function(k){activeChips[k]=true;});
+    chips.forEach(function(c){
+      c.classList.remove('off');
+      if(c.dataset.cat!=='all'){c.classList.add('on');c.classList.remove('sel');}
+      else{c.classList.add('sel');}
+    });
+    document.querySelectorAll('.story-row').forEach(function(r){r.classList.remove('hidden');});
+  } else {
+    document.querySelector('.chip-all').classList.remove('sel');
+    activeChips[cat] = !activeChips[cat];
+    var chip = document.querySelector('[data-cat="'+cat+'"]');
+    chip.classList.toggle('on', activeChips[cat]);
+    chip.classList.toggle('off', !activeChips[cat]);
+    var anyOn = Object.keys(activeChips).filter(function(k){return k!=='all';}).some(function(k){return activeChips[k];});
+    if(!anyOn){
+      Object.keys(activeChips).forEach(function(k){activeChips[k]=true;});
+      chips.forEach(function(c){c.classList.remove('off');if(c.dataset.cat!=='all'){c.classList.add('on');}else{c.classList.add('sel');}});
+      document.querySelectorAll('.story-row').forEach(function(r){r.classList.remove('hidden');});
+      return;
+    }
+    document.querySelectorAll('.story-row').forEach(function(r){
+      var rc = r.dataset.cat;
+      var show = activeChips[rc] || (rc==='general' && activeChips['general']);
+      r.classList.toggle('hidden',!show);
+    });
+  }
+}
+
+var stories = [
+  {title:"Iran-Israel war LIVE: Trump threatens to destroy all Iran bridges, power plants in four hours if no deal",cat:"conflict",catClass:"pill-conflict",source:"The Hindu",ago:"6 min ago",alert:true,summary:"Tensions between Iran and Israel have escalated sharply after former US President Trump publicly threatened to destroy Iranian infrastructure — including bridges and power plants — within four hours unless a diplomatic deal is reached. Multiple Indian and international outlets are tracking this story live.",sources:["The Hindu","India Today","Al Jazeera"]},
+  {title:"Rajnath Singh: India's response will be unprecedented and decisive",cat:"conflict",catClass:"pill-conflict",source:"India Today",ago:"11 min ago",alert:false,summary:"Defence Minister Rajnath Singh issued a strong statement warning that India would respond decisively to any threat to its sovereignty. The statement comes amid rising regional tensions.",sources:["India Today","DD News"]},
+  {title:"Away from poll glitz, Adivasis of Anamalai hills fight for survival",cat:"general",catClass:"pill-general",source:"The Hindu",ago:"12 min ago",alert:false,summary:"A ground report from The Hindu explores how Adivasi communities in the Anamalai hills of Tamil Nadu continue to face severe deprivation — lack of clean water, healthcare, and roads — even as election campaigns focus on urban development.",sources:["The Hindu"]},
+  {title:"Nasdaq edges up 0.50% to 21,987 amid Iran war supply shock concerns",cat:"econ",catClass:"pill-econ",source:"Bloomberg",ago:"1 hr ago",alert:false,summary:"US markets showed modest gains despite ongoing geopolitical uncertainty tied to the Iran-Israel conflict. Analysts note that energy supply risks are being priced in gradually, with oil futures rising 2.3%.",sources:["Bloomberg","Economic Times"]},
+  {title:"4 Days To Death, 6 Years To Justice: Inside the Tamil Nadu custodial killings",cat:"general",catClass:"pill-general",source:"NDTV India",ago:"2 hr ago",alert:false,summary:"An in-depth investigation revisits the 2020 custodial deaths of P. Jayaraj and his son Benix in Tamil Nadu. The story details the systemic failures in police accountability that allowed the case to drag on for six years.",sources:["NDTV India","The Hindu"]},
+  {title:"SC seeks Centre's response on electoral bond data transparency petition",cat:"govt",catClass:"pill-govt",source:"DD News",ago:"2 hr ago",alert:false,summary:"The Supreme Court has issued notice to the central government over a petition demanding full disclosure of electoral bond transaction data. The court has given four weeks for a response.",sources:["DD News","LiveLaw"]},
+  {title:"Odisha forest clearances hit decade high as industrial projects surge in tribal zones",cat:"env",catClass:"pill-env",source:"The Wire",ago:"3 hr ago",alert:false,summary:"Data compiled by The Wire shows that forest clearances in Odisha have reached their highest level in ten years, with a disproportionate impact on Scheduled Tribe areas. Environmental activists have raised concerns about due process.",sources:["The Wire"]},
+  {title:"Zuckerberg's Meta reportedly pauses work with Mercor after $10 billion deal scrutiny",cat:"tech",catClass:"pill-tech",source:"LiveMint",ago:"14 hr ago",alert:false,summary:"Meta has reportedly put on hold its engagement with AI hiring platform Mercor following internal scrutiny of the $10 billion partnership. Sources say concerns around data handling and liability surfaced during a compliance review.",sources:["LiveMint","TechCrunch"]},
+  {title:"Italy airports flag jet fuel shortages as Iran war bites",cat:"econ",catClass:"pill-econ",source:"Economic Times",ago:"16 hr ago",alert:false,summary:"Several Italian airports have issued alerts about tightening jet fuel supplies, directly linking the shortage to disrupted supply chains caused by the Iran-Israel conflict. Indian carriers with European routes may face cost increases.",sources:["ET EnergyWorld","Reuters"]},
+  {title:"Nykaa projects high-twenties net revenue growth in Q4 FY26",cat:"econ",catClass:"pill-econ",source:"LiveMint",ago:"13 hr ago",alert:false,summary:"Beauty and lifestyle platform Nykaa signalled strong Q4 performance in its earnings call, projecting revenue growth in the high-twenties percentage range driven by fashion and beauty verticals. Analysts revised estimates upward.",sources:["LiveMint","Moneycontrol"]},
+  {title:"Leading AI with empathy: Why human-centered leadership matters in the age of automation",cat:"tech",catClass:"pill-tech",source:"YourStory",ago:"14 hr ago",alert:false,summary:"An op-ed in YourStory argues that as AI adoption accelerates across Indian enterprises, the leaders who thrive will be those who prioritise human empathy alongside technical efficiency.",sources:["YourStory"]},
+  {title:"How many people have been killed in the Iran war? Full casualty count",cat:"govt",catClass:"pill-govt",source:"DD News",ago:"12 hr ago",alert:true,summary:"DD News has published a running count of confirmed casualties from the ongoing Iran-Israel conflict, drawing from UN, Red Cross, and local health ministry data. The figures remain contested by multiple parties.",sources:["DD News","UN OCHA"]}
+];
+
+var currentStoryIndex = -1;
+
+function openDetail(row){
+  var rows = Array.from(document.querySelectorAll('.story-row'));
+  var idx = rows.indexOf(row);
+  if(idx<0) return;
+  var s = stories[idx];
+  if(!s) return;
+  document.getElementById('detail-source-label').textContent = s.source;
+  var pill = document.getElementById('detail-cat-pill');
+  pill.textContent = s.cat;
+  pill.className = 'story-cat-pill ' + s.catClass;
+  var alertBadge = document.getElementById('detail-alert-badge');
+  alertBadge.style.display = s.alert ? 'inline-block' : 'none';
+  document.getElementById('detail-title').textContent = s.title;
+  document.getElementById('detail-meta').textContent = s.ago + ' · India';
+  document.getElementById('detail-summary').textContent = s.summary;
+  var sc = document.getElementById('detail-sources');
+  sc.innerHTML = s.sources.map(function(src){return '<span class="source-chip">'+src+'</span>';}).join('');
+  document.getElementById('detail-overlay').classList.add('show');
+}
+
+function closeDetail(){
+  document.getElementById('detail-overlay').classList.remove('show');
+}
+
+function dismissNew(){
+  document.getElementById('new-pill').style.display='none';
+}
+
+function navClick(el){
+}
+
+setTimeout(function(){
+  document.getElementById('new-pill').style.display='flex';
+},3000);
+</script>

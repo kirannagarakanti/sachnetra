@@ -98,6 +98,11 @@ const MEDIUM_KEYWORDS: KeywordMap = {
   'power outage': 'infrastructure',
   'internet outage': 'infrastructure',
   'derailment': 'infrastructure',
+  // India crime — strong unambiguous signals, promoted to MEDIUM (Task 014)
+  'bribe': 'crime',
+  'police custody': 'crime',
+  'custodial': 'crime',
+  'murder accused': 'crime',
 };
 
 const LOW_KEYWORDS: KeywordMap = {
@@ -113,6 +118,16 @@ const LOW_KEYWORDS: KeywordMap = {
   'humanitarian aid': 'diplomatic',
   'ceasefire': 'diplomatic',
   'peace treaty': 'diplomatic',
+  // India elections + legislature (Task 014)
+  'assembly poll': 'diplomatic',
+  'lok sabha': 'diplomatic',
+  'rajya sabha': 'diplomatic',
+  'election commission': 'diplomatic',
+  'campaigning': 'diplomatic',
+  'repolls': 'diplomatic',
+  'union minister': 'diplomatic',
+  'bill passed': 'diplomatic',
+  'amendment bill': 'diplomatic',
   'climate change': 'environmental',
   'emissions': 'environmental',
   'pollution': 'environmental',
@@ -128,6 +143,23 @@ const LOW_KEYWORDS: KeywordMap = {
   'gdp': 'economic',
   'unemployment': 'economic',
   'regulation': 'economic',
+  // India financial markets (Task 014)
+  'nifty': 'economic',
+  'sensex': 'economic',
+  'share market': 'economic',
+  'stock market': 'economic',
+  'income tax': 'economic',
+  'bank fd': 'economic',
+  'futures trade': 'economic',
+  'defence stock': 'economic',
+  'index fund': 'economic',
+  'epf': 'economic',
+  'gst': 'economic',
+  // India crime — weaker signals, kept at LOW (Task 014)
+  'scam': 'crime',
+  'cancels bail': 'crime',
+  'arrested for': 'crime',
+  'held for': 'crime',
 };
 
 const TECH_HIGH_KEYWORDS: KeywordMap = {
@@ -172,11 +204,17 @@ const EXCLUSIONS = [
   'recipe', 'cooking', 'shopping', 'fashion', 'celebrity', 'movie',
   'tv show', 'sports', 'game', 'concert', 'festival', 'wedding',
   'vacation', 'travel tips', 'life hack', 'self-care', 'wellness',
+  // India sports + lifestyle noise (Task 014)
+  'ipl', 'cricket', 'bollywood', 't20',
+  'match preview', 'match report',
+  'reading list', 'books to read', 'writing skills',
 ];
 
 const SHORT_KEYWORDS = new Set([
   'war', 'coup', 'ban', 'vote', 'riot', 'riots', 'hack', 'talks', 'ipo', 'gdp',
   'virus', 'disease', 'flood',
+  // India short terms added Task 014 — need word-boundary to avoid substring false hits
+  'epf', 'gst',
 ]);
 
 const keywordRegexCache = new Map<string, RegExp>();

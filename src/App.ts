@@ -467,6 +467,7 @@ export class App {
       updateMonitorResults: () => this.dataLoader.updateMonitorResults(),
       loadSecurityAdvisories: () => this.dataLoader.loadSecurityAdvisories(),
       refilterIndiaStories: () => this.dataLoader.refilterIndiaStories(),
+      renderTimeline: () => this.dataLoader.renderTimelineRiver(),
     });
 
     this.eventHandlers = new EventHandlerManager(this.state, {
