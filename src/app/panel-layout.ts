@@ -67,6 +67,7 @@ export interface PanelLayoutCallbacks {
   updateMonitorResults: () => void;
   loadSecurityAdvisories?: () => Promise<void>;
   refilterIndiaStories?: () => void;
+  renderTimeline?: () => void;
 }
 
 /** Returns a human-readable time-of-day label for the news feed time divider. */
@@ -423,9 +424,19 @@ export class PanelLayoutManager implements AppModule {
             <div class="sn-map-placeholder">Tap to load map</div>
           </div>
 
-          <!-- Timeline placeholder -->
+          <!-- Timeline river — Task 013 -->
           <div class="sn-timeline-tab" id="snTimelineTab" style="display:none">
-            <div class="sn-empty">Timeline coming soon</div>
+            <div class="sn-tl-chips" id="snTlChips">
+              <button class="sn-tl-chip sn-tl-chip--active" data-tl-cat="all">All</button>
+              <button class="sn-tl-chip sn-tl-chip--conflict" data-tl-cat="conflict">Conflict</button>
+              <button class="sn-tl-chip sn-tl-chip--economic" data-tl-cat="economic">Economy</button>
+              <button class="sn-tl-chip sn-tl-chip--tech" data-tl-cat="tech">Tech</button>
+              <button class="sn-tl-chip sn-tl-chip--diplomatic" data-tl-cat="diplomatic">Govt</button>
+              <button class="sn-tl-chip sn-tl-chip--environmental" data-tl-cat="environmental">Environ</button>
+            </div>
+            <div class="sn-tl-river" id="snTlRiver">
+              <div class="sn-empty">Loading timeline…</div>
+            </div>
           </div>
 
           <!-- States placeholder -->
@@ -609,6 +620,17 @@ export class PanelLayoutManager implements AppModule {
           this.ctx.map.setRenderPaused(true);
         }
       }
+
+      // Populate timeline river when Timeline tab is activated
+      if (tabKey === 'timeline') {
+        this.callbacks.renderTimeline?.();
+      }
+
+      // Hide state bar on non-Home tabs — Timeline is all-India, no state filter needed
+      const stateBarEl = document.getElementById('snStateBar');
+      const stateGridEl = document.getElementById('snStateGrid');
+      if (stateBarEl) stateBarEl.style.display = tabKey === 'home' ? '' : 'none';
+      if (stateGridEl) stateGridEl.style.display = tabKey === 'home' ? '' : 'none';
     };
 
     tabs.forEach((tab) => {
@@ -685,6 +707,87 @@ export class PanelLayoutManager implements AppModule {
         this.callbacks.refilterIndiaStories?.();
 
         closeStateGrid();
+      });
+    });
+
+    // --- Timeline chip filtering (Task 013) ---
+    this.setupTimelineChips();
+  }
+
+  /**
+   * Wire category chip toggle logic for the Timeline tab.
+   * "All" chip = show everything (default). Category chips toggle individually.
+   * When all category chips are deactivated, reverts to "All".
+   */
+  private setupTimelineChips(): void {
+    const chipsContainer = document.getElementById('snTlChips');
+    if (!chipsContainer) return;
+
+    const chips = chipsContainer.querySelectorAll<HTMLButtonElement>('.sn-tl-chip');
+
+    // Track which categories are active (all = everything shown)
+    const activeCategories = new Set<string>();
+
+    const applyFilter = () => {
+      const rows = document.querySelectorAll<HTMLElement>('.sn-tl-row');
+      const showAll = activeCategories.size === 0;
+
+      rows.forEach(row => {
+        if (showAll) {
+          row.classList.remove('hidden');
+          return;
+        }
+        const rowCat = row.dataset.tlCat ?? '';
+        row.classList.toggle('hidden', !activeCategories.has(rowCat));
+      });
+
+      // Update chip visual states
+      chips.forEach(chip => {
+        const cat = chip.dataset.tlCat ?? '';
+        if (cat === 'all') {
+          chip.classList.toggle('sn-tl-chip--active', showAll);
+        } else {
+          chip.classList.toggle('sn-tl-chip--active', activeCategories.has(cat));
+        }
+      });
+
+      // Hide time-bucket dividers when all rows in that bucket are hidden.
+      // Walk siblings: for each divider, collect rows until the next divider,
+      // then hide the divider if none of those rows are visible.
+      const river = document.getElementById('snTlRiver');
+      if (!river) return;
+      const dividers = river.querySelectorAll<HTMLElement>('.sn-tl-divider');
+      dividers.forEach(divider => {
+        let hasVisible = false;
+        let sibling = divider.nextElementSibling;
+        while (sibling && !sibling.classList.contains('sn-tl-divider')) {
+          if (sibling.classList.contains('sn-tl-row') && !sibling.classList.contains('hidden')) {
+            hasVisible = true;
+            break;
+          }
+          sibling = sibling.nextElementSibling;
+        }
+        divider.style.display = hasVisible ? '' : 'none';
+      });
+    };
+
+    chips.forEach(chip => {
+      chip.addEventListener('click', () => {
+        const cat = chip.dataset.tlCat ?? '';
+
+        if (cat === 'all') {
+          // "All" chip — clear all category filters, show everything
+          activeCategories.clear();
+        } else {
+          // Toggle this category
+          if (activeCategories.has(cat)) {
+            activeCategories.delete(cat);
+          } else {
+            activeCategories.add(cat);
+          }
+        }
+
+        applyFilter();
       });
     });
   }

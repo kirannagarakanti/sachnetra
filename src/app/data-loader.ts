@@ -1365,6 +1365,9 @@ export class DataLoaderManager implements AppModule {
       this.renderIndiaStoryCards(cardsEl, this.ctx.latestClusters);
     }
 
+    // --- Populate timeline river (all-India, last 24 hours) ---
+    this.renderTimelineRiver();
+
     // --- Populate Today's Brief via daily overview AI summary ---
     if (!briefEl) return;
 
@@ -1472,6 +1475,150 @@ export class DataLoaderManager implements AppModule {
         const idx = parseInt(btn.dataset.storyIdx ?? '0', 10);
         const cluster = sorted[idx];
         if (cluster) shareToWhatsApp(cluster.primaryTitle);
+      });
+    });
+  }
+
+  /**
+   * Render the Timeline tab river — chronological list of all stories from the
+   * last 24 hours, bucketed into time groups, with category filtering via chips.
+   * Does NOT apply state filtering — Timeline is all-India by design.
+   * Called on tab activation (panel-layout callback) and on every news refresh.
+   */
+  renderTimelineRiver(): void {
+    if (SITE_VARIANT !== 'india') return;
+    const riverEl = document.getElementById('snTlRiver');
+    if (!riverEl) return;
+
+    const now = Date.now();
+    const MAX_AGE_MS = 24 * 60 * 60 * 1000; // 24 hours
+
+    // All clusters from the last 24 hours, newest first
+    const clusters = this.ctx.latestClusters
+      .filter(c => (now - c.lastUpdated.getTime()) < MAX_AGE_MS)
+      .sort((a, b) => b.lastUpdated.getTime() - a.lastUpdated.getTime());
+
+    if (clusters.length === 0) {
+      riverEl.innerHTML = '<div class="sn-empty">No stories in the last 24 hours.</div>';
+      return;
+    }
+
+    // --- Category mapping: 14 EventCategory values → 6 chip groups ---
+    // When classifier returns 'general' (low confidence), fall back to
+    // source-based heuristic using the known feed buckets from india.ts.
+    const ECONOMY_SOURCES = new Set([
+      'livemint', 'economic times', 'business standard',
+    ]);
+    const TECH_SOURCES = new Set([
+      'yourstory', 'inc42',
+    ]);
+    const ENV_SOURCES = new Set([
+      'the hindu environment',
+    ]);
+    const GOVT_SOURCES = new Set([
+      'pib', 'dd news',
+    ]);
+
+    const mapCategory = (cat: string | undefined, source: string): string => {
+      switch (cat) {
+        case 'conflict': case 'military': case 'terrorism': case 'crime': return 'conflict';
+        case 'economic': case 'infrastructure': return 'economic';
+        case 'tech': case 'cyber': return 'tech';
+        case 'diplomatic': case 'protest': return 'diplomatic';
+        case 'environmental': case 'disaster': case 'health': return 'environmental';
+        default: {
+          // Classifier wasn't confident — use source name as a signal
+          const src = source.toLowerCase();
+          if (ECONOMY_SOURCES.has(src)) return 'economic';
+          if (TECH_SOURCES.has(src)) return 'tech';
+          if (ENV_SOURCES.has(src)) return 'environmental';
+          if (GOVT_SOURCES.has(src)) return 'diplomatic';
+          return 'general';
+        }
+      }
+    };
+
+    // --- Time bucketing: group into labelled sections ---
+    const BUCKET_LABELS: Array<{ label: string; maxMs: number }> = [
+      { label: 'JUST NOW',      maxMs: 30 * 60 * 1000 },
+      { label: '1–3 HOURS AGO', maxMs: 3 * 60 * 60 * 1000 },
+      { label: 'EARLIER TODAY', maxMs: 12 * 60 * 60 * 1000 },
+      { label: 'YESTERDAY',     maxMs: 24 * 60 * 60 * 1000 },
+    ];
+
+    type Bucket = { label: string; clusters: typeof clusters };
+    const buckets: Bucket[] = BUCKET_LABELS.map(b => ({ label: b.label, clusters: [] }));
+
+    for (const cluster of clusters) {
+      const ageMs = now - cluster.lastUpdated.getTime();
+      for (let i = 0; i < BUCKET_LABELS.length; i++) {
+        if (ageMs <= BUCKET_LABELS[i]!.maxMs) {
+          buckets[i]!.clusters.push(cluster);
+          break;
+        }
+      }
+    }
+
+    // --- Build HTML ---
+    const rows: Array<{ cluster: (typeof clusters)[0]; chipCat: string }> = [];
+    const parts: string[] = [];
+
+    for (const bucket of buckets) {
+      if (bucket.clusters.length === 0) continue;
+
+      parts.push(`
+        <div class="sn-tl-divider">
+          <div class="sn-tl-divider-line"></div>
+          <span class="sn-tl-divider-text">${bucket.label}</span>
+          <div class="sn-tl-divider-line"></div>
+        </div>
+      `);
+
+      for (const cluster of bucket.clusters) {
+        const chipCat = mapCategory(cluster.threat?.category, cluster.primarySource);
+        const alertClass = cluster.isAlert ? ' sn-tl-row--alert' : '';
+        const alertBadge = cluster.isAlert
+          ? '<span class="sn-tl-alert">ALERT</span>'
+          : '';
+        const clusterBadge = cluster.sourceCount > 1
+          ? `<span class="sn-tl-cluster">${cluster.sourceCount} sources</span>`
+          : '';
+        const ago = this.timeAgo(cluster.lastUpdated);
+        const idx = rows.length;
+        rows.push({ cluster, chipCat });
+
+        parts.push(`
+          <div class="sn-tl-row${alertClass}" data-tl-idx="${idx}" data-tl-cat="${chipCat}" role="button" tabindex="0">
+            <div class="sn-tl-dot sn-tl-dot--${chipCat}"></div>
+            <div class="sn-tl-content">
+              <div class="sn-tl-meta">
+                <span class="sn-tl-source">${escapeHtml(cluster.primarySource)}</span>
+                <span class="sn-tl-pill sn-tl-pill--${chipCat}">${chipCat}</span>
+                ${alertBadge}
+                ${clusterBadge}
+              </div>
+              <div class="sn-tl-title">${escapeHtml(cluster.primaryTitle)}</div>
+              <div class="sn-tl-footer">
+                <span class="sn-tl-ago">${ago}</span>
+              </div>
+            </div>
+          </div>
+        `);
+      }
+    }
+
+    riverEl.innerHTML = parts.join('');
+
+    // --- Attach click handlers — reuse existing openStoryDetail() ---
+    riverEl.querySelectorAll<HTMLElement>('.sn-tl-row').forEach(row => {
+      const handler = () => {
+        const idx = parseInt(row.dataset.tlIdx ?? '0', 10);
+        const entry = rows[idx];
+        if (entry) openStoryDetail(entry.cluster.allItems[0]!, entry.cluster);
+      };
+      row.addEventListener('click', handler);
+      row.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); handler(); }
       });
     });
   }
