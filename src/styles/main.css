@@ -19765,6 +19765,33 @@ body.has-breaking-alert .panels-grid {
     color: #c8c0e8;
   }
 
+  [data-variant="india"] .sn-detail-source-link {
+    font-size: 12px;
+    color: #a78bfa;
+    text-decoration: none;
+    border-bottom: 1px dashed rgba(167, 139, 250, 0.3);
+    padding-bottom: 1px;
+    transition: color 0.15s, border-color 0.15s;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  [data-variant="india"] .sn-detail-source-link:active {
+    color: #c4b5fd;
+    border-color: rgba(196, 181, 253, 0.5);
+  }
+
+  [data-variant="india"] .sn-detail-source-row[data-url] {
+    cursor: pointer;
+    border-radius: 6px;
+    padding: 4px 6px;
+    margin: -4px -6px;
+    transition: background 0.15s;
+  }
+
+  [data-variant="india"] .sn-detail-source-row[data-url]:active {
+    background: rgba(139, 92, 246, 0.08);
+  }
+
   [data-variant="india"] .sn-detail-tier-badge {
     font-size: 10px;
     background: #1a1840;

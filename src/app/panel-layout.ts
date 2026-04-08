@@ -569,6 +569,10 @@ export class PanelLayoutManager implements AppModule {
         el.style.display = key === tabKey ? 'block' : 'none';
       }
 
+      // Hide state selector on Map tab (not relevant for map view)
+      const stateBarEl = document.getElementById('snStateBar');
+      if (stateBarEl) stateBarEl.style.display = tabKey === 'map' ? 'none' : '';
+
       // Lazy-load map on first tap — Task 006 wiring
       if (tabKey === 'map' && !mapInitialized) {
         mapInitialized = true;

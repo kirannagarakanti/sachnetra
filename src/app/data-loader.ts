@@ -402,16 +402,23 @@ function openStoryDetail(item: NewsItem, cluster?: ClusteredEvent): void {
 
       const sourceRows = sources.map(s => {
         const sItem = cluster?.allItems.find(i => i.source === s.name);
+        const sUrl = sItem?.link || s.url || '';
         const sMs = sItem ? Date.now() - new Date(sItem.pubDate).getTime() : ms;
         const sMins = Math.floor(sMs / 60000);
         let sAgo: string;
         if (sMins < 60) sAgo = `${sMins}m ago`;
         else { const hrs = Math.floor(sMins / 60); sAgo = hrs < 24 ? `${hrs}h ago` : `${Math.floor(hrs / 24)}d ago`; }
+
+        // Make the source name a clickable link to the original article
+        const nameHtml = sUrl
+          ? `<a href="${escapeHtml(sUrl)}" target="_blank" rel="noopener noreferrer" class="sn-detail-source-link">${escapeHtml(s.name)}</a>`
+          : `<span class="sn-detail-source-name">${escapeHtml(s.name)}</span>`;
+
         return `
-          <div class="sn-detail-source-row">
+          <div class="sn-detail-source-row"${sUrl ? ` data-url="${escapeHtml(sUrl)}"` : ''}>
             <div class="sn-detail-source-left">
               <span class="sn-detail-source-dot"></span>
-              <span class="sn-detail-source-name">${escapeHtml(s.name)}</span>
+              ${nameHtml}
             </div>
             <span class="sn-detail-source-time">${sAgo}</span>
           </div>

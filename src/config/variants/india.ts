@@ -24,10 +24,10 @@ export const MAP_CONFIG = {
 };
 
 // Kashmir-compliant boundary overlay — MUST always load for india variant
-// Source: https://github.com/datameet/maps (Survey of India official boundary, ODbL license)
-// Upload target: R2 bucket at maps.sachnetra.com — deferred to infrastructure setup
-// DeckGLMap wiring: deferred to Task 006.5
-export const INDIA_BOUNDARY_OVERLAY = 'https://maps.sachnetra.com/india-states-official.geojson';
+// Source: simplemaps.com (uses India's official boundaries, includes J&K + Ladakh)
+// Hosted locally as static asset — no external dependency
+// Wired into DeckGLMap.ts in Task 012
+export const INDIA_BOUNDARY_OVERLAY = '/data/india-states.geojson';
 
 // --------------------------------------------
 // State filtering — Task 007
@@ -172,13 +172,39 @@ export const FEEDS: Record<string, Feed[]> = {
     { name: 'Indian Express', url: rss('https://news.google.com/rss/search?q=site:indianexpress.com+India&hl=en&gl=IN&ceid=IN:en'), region: 'national' },
     { name: 'ANI', url: rss('https://www.aninews.in/rss/india.xml'), region: 'national' },
     { name: 'Times of India', url: rss('https://timesofindia.indiatimes.com/rssfeedstopstories.cms'), region: 'national' },
-    // Tier 2 — Established outlets
+    // Tier 2 — Established national outlets
     { name: 'Hindustan Times', url: rss('https://news.google.com/rss/search?q=site:hindustantimes.com+India&hl=en&gl=IN&ceid=IN:en'), region: 'national' },
     { name: 'India Today', url: rss('https://www.indiatoday.in/rss/1206578'), region: 'national' },
+    { name: 'New Indian Express', url: rss('https://news.google.com/rss/search?q=site:newindianexpress.com&hl=en&gl=IN&ceid=IN:en'), region: 'national' },
+    { name: 'ABP Live', url: rss('https://news.abplive.com/home/feed'), region: 'national' },
+    { name: 'Zee News', url: rss('https://news.google.com/rss/search?q=site:zeenews.india.com&hl=en&gl=IN&ceid=IN:en'), region: 'national' },
+    { name: 'News18', url: rss('https://news.google.com/rss/search?q=site:news18.com&hl=en&gl=IN&ceid=IN:en'), region: 'national' },
+    { name: 'The Quint', url: rss('https://prod-qt-images.s3.amazonaws.com/production/thequint/feed.xml'), region: 'national' },
+    { name: 'Firstpost', url: rss('https://news.google.com/rss/search?q=site:firstpost.com&hl=en&gl=IN&ceid=IN:en'), region: 'national' },
+    { name: 'DNA India', url: rss('https://www.dnaindia.com/feeds/india.xml'), region: 'national' },
+    { name: 'The Week', url: rss('https://news.google.com/rss/search?q=site:theweek.in&hl=en&gl=IN&ceid=IN:en'), region: 'national' },
+    { name: 'Outlook India', url: rss('https://news.google.com/rss/search?q=site:outlookindia.com&hl=en&gl=IN&ceid=IN:en'), region: 'national' },
+    { name: 'Frontline', url: rss('https://frontline.thehindu.com/cover-story/feeder/default.rss'), region: 'national' },
+    { name: 'LiveLaw', url: rss('https://news.google.com/rss/search?q=site:livelaw.in&hl=en&gl=IN&ceid=IN:en'), region: 'national' },
     // Tier 2 — Quality independent journalism
     { name: 'The Wire', url: rss('https://thewire.in/feed'), region: 'national', propagandaRisk: 'low' },
     { name: 'Scroll', url: rss('https://scroll.in/feed'), region: 'national' },
     { name: 'The Print', url: rss('https://theprint.in/feed'), region: 'national' },
+    { name: 'The News Minute', url: rss('https://news.google.com/rss/search?q=site:thenewsminute.com&hl=en&gl=IN&ceid=IN:en'), region: 'national' },
+    { name: 'AltNews', url: rss('https://www.altnews.in/feed/'), region: 'national' },
+    { name: 'The Better India', url: rss('https://thebetterindia.com/feed/'), region: 'national' },
+    { name: 'Deccan Herald', url: rss('https://news.google.com/rss/search?q=site:deccanherald.com&hl=en&gl=IN&ceid=IN:en'), region: 'national' },
+    // Regional — Major state/city outlets
+    { name: 'Tribune India', url: rss('https://news.google.com/rss/search?q=site:tribuneindia.com&hl=en&gl=IN&ceid=IN:en'), region: 'national' },
+    { name: 'Telangana Today', url: rss('https://telanganatoday.com/feed'), region: 'south' },
+    { name: 'Onmanorama', url: rss('https://news.google.com/rss/search?q=site:onmanorama.com&hl=en&gl=IN&ceid=IN:en'), region: 'south' },
+    { name: 'Siasat', url: rss('https://www.siasat.com/feed/'), region: 'south' },
+    { name: 'Bangalore Mirror', url: rss('https://news.google.com/rss/search?q=site:bangaloremirror.indiatimes.com&hl=en&gl=IN&ceid=IN:en'), region: 'south' },
+    { name: 'Orissa Post', url: rss('https://www.orissapost.com/feed/'), region: 'east' },
+    { name: 'NENews Online', url: rss('https://nenow.in/feed'), region: 'northeast' },
+    { name: 'Daily Excelsior', url: rss('https://www.dailyexcelsior.com/feed/'), region: 'north' },
+    { name: 'Greater Kashmir', url: rss('https://prod-qt-images.s3.amazonaws.com/production/greaterkashmir/feed.xml'), region: 'north' },
+    { name: 'Amarujala', url: rss('https://www.amarujala.com/rss/breaking-news.xml'), region: 'national' },
   ],
 
   disaster: [
@@ -190,11 +216,33 @@ export const FEEDS: Record<string, Feed[]> = {
     { name: 'LiveMint', url: rss('https://news.google.com/rss/search?q=site:livemint.com&hl=en&gl=IN&ceid=IN:en'), region: 'national' },
     { name: 'Economic Times', url: rss('https://news.google.com/rss/search?q=site:economictimes.indiatimes.com&hl=en&gl=IN&ceid=IN:en'), region: 'national' },
     { name: 'Business Standard', url: rss('https://news.google.com/rss/search?q=site:business-standard.com&hl=en&gl=IN&ceid=IN:en'), region: 'national' },
+    { name: 'Business Today', url: rss('https://www.businesstoday.in/rssfeeds/?id=home'), region: 'national' },
+    { name: 'Financial Express', url: rss('https://news.google.com/rss/search?q=site:financialexpress.com&hl=en&gl=IN&ceid=IN:en'), region: 'national' },
+    { name: 'Hindu Business Line', url: rss('https://www.thehindubusinessline.com/?service=rss'), region: 'national' },
+    { name: 'Fortune India', url: rss('https://prod-qt-images.s3.amazonaws.com/production/fortuneindia/feed.xml'), region: 'national' },
+    { name: 'The Ken', url: rss('https://news.google.com/rss/search?q=site:the-ken.com&hl=en&gl=IN&ceid=IN:en'), region: 'national' },
+    { name: 'IBEF', url: rss('https://news.google.com/rss/search?q=site:ibef.org&hl=en&gl=IN&ceid=IN:en'), region: 'national' },
+    { name: 'Business Talk Magazine', url: rss('https://businesstalkmagazine.com/feed/'), region: 'national' },
   ],
 
   technology: [
+    // Established tech/startup outlets
     { name: 'YourStory', url: rss('https://yourstory.com/feed'), region: 'national' },
     { name: 'Inc42', url: rss('https://inc42.com/feed/'), region: 'national' },
+    { name: 'Entrackr', url: rss('https://news.google.com/rss/search?q=site:entrackr.com&hl=en&gl=IN&ceid=IN:en'), region: 'national' },
+    { name: 'StartupTalky', url: rss('https://startuptalky.com/rss/'), region: 'national' },
+    { name: 'TechCircle', url: rss('https://news.google.com/rss/search?q=site:techcircle.in&hl=en&gl=IN&ceid=IN:en'), region: 'national' },
+    // Startup ecosystem
+    { name: 'Startup India Magazine', url: rss('https://startupindiamagazine.com/feed/'), region: 'national' },
+    { name: 'Know Startup', url: rss('https://knowstartup.com/feed/'), region: 'national' },
+    { name: 'OfficeChai', url: rss('https://officechai.com/feed/'), region: 'national' },
+    { name: 'Indian Startup News', url: rss('https://news.google.com/rss/search?q=site:indianstartupnews.com&hl=en&gl=IN&ceid=IN:en'), region: 'national' },
+    { name: 'Indian Web2', url: rss('https://www.indianweb2.com/feeds/posts/default'), region: 'national' },
+    { name: 'The Tech Panda', url: rss('https://thetechpanda.com/startups-businesses-funding-ma-accelerators/startup-stories-startups/feed/'), region: 'national' },
+    { name: 'Startup Reporter', url: rss('https://startupreporter.in/feed/'), region: 'national' },
+    { name: 'Forbes India Startups', url: rss('https://news.google.com/rss/search?q=site:forbesindia.com+startup&hl=en&gl=IN&ceid=IN:en'), region: 'national' },
+    { name: 'Startup India Gov', url: rss('https://news.google.com/rss/search?q=site:startupindia.gov.in&hl=en&gl=IN&ceid=IN:en'), region: 'national', stateAffiliated: 'India' },
+    { name: 'Business Outreach', url: rss('https://www.businessoutreach.in/startup/feed/'), region: 'national' },
   ],
 
   // State-affiliated sources — tagged for UI transparency
