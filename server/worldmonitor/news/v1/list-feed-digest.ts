@@ -168,8 +168,12 @@ function parseRssXml(xml: string, feed: ServerFeed, variant: string): ParsedItem
     const pubDateStr = isAtom
       ? (extractTag(block, 'published') || extractTag(block, 'updated'))
       : extractTag(block, 'pubDate');
-    const parsedDate = pubDateStr ? new Date(pubDateStr) : new Date();
-    const publishedAt = Number.isNaN(parsedDate.getTime()) ? Date.now() : parsedDate.getTime();
+    // Skip items with no valid publish date — they would sort to the
+    // top as "Just now" on every refresh and stay permanently.
+    if (!pubDateStr) continue;
+    const parsedDate = new Date(pubDateStr);
+    if (Number.isNaN(parsedDate.getTime())) continue;
+    const publishedAt = parsedDate.getTime();
 
     const threat = classifyByKeyword(title, variant);
     const isAlert = threat.level === 'critical' || threat.level === 'high';

@@ -7,7 +7,7 @@ import { getPersistentCache, setPersistentCache } from './persistent-cache';
 import { dataFreshness } from './data-freshness';
 import { ingestHeadlines } from './trending-keywords';
 import { getCurrentLanguage } from './i18n';
-import { parseFeedDateOrNow } from './feed-date';
+import { parseFeedDate } from './feed-date';
 import { canQueueAiClassification, AI_CLASSIFY_MAX_PER_FEED } from './ai-classify-queue';
 import { mlWorker } from './ml-worker';
 import { isHeadlineMemoryEnabled } from './ai-flow-settings';
@@ -239,9 +239,8 @@ export async function fetchFeed(feed: Feed): Promise<NewsItem[]> {
     const isAtom = items.length === 0;
     if (isAtom) items = doc.querySelectorAll('entry');
 
-    const parsed = Array.from(items)
-      .slice(0, 5)
-      .map((item) => {
+    const parsed: NewsItem[] = [];
+    for (const item of Array.from(items).slice(0, 5)) {
         const title = item.querySelector('title')?.textContent || '';
         let link = '';
         if (isAtom) {
@@ -254,13 +253,17 @@ export async function fetchFeed(feed: Feed): Promise<NewsItem[]> {
         const pubDateStr = isAtom
           ? (item.querySelector('published')?.textContent || item.querySelector('updated')?.textContent || '')
           : (item.querySelector('pubDate')?.textContent || '');
-        const pubDate = parseFeedDateOrNow(pubDateStr);
+        const pubDate = parseFeedDate(pubDateStr);
+        // Skip items with no valid publish date — they would sort
+        // to the top as "Just now" on every refresh and stay permanently.
+        if (!pubDate) continue;
+
         const threat = classifyByKeyword(title, SITE_VARIANT);
         const isAlert = threat.level === 'critical' || threat.level === 'high';
         const geoMatches = inferGeoHubsFromTitle(title);
         const topGeo = geoMatches[0];
 
-        return {
+        parsed.push({
           source: feed.name,
           title,
           link,
@@ -270,8 +273,8 @@ export async function fetchFeed(feed: Feed): Promise<NewsItem[]> {
           ...(topGeo && { lat: topGeo.hub.lat, lon: topGeo.hub.lon, locationName: topGeo.hub.name }),
           lang: feed.lang,
           ...(SITE_VARIANT === 'happy' && { imageUrl: extractImageUrl(item) }),
-        };
-      });
+        });
+    }
 
     feedCache.set(feedScope, { items: parsed, timestamp: Date.now() });
     void setPersistentCache(getPersistentFeedKey(feedScope), toSerializable(parsed));
@@ -294,14 +297,14 @@ export async function fetchFeed(feed: Feed): Promise<NewsItem[]> {
     }
 
     const aiCandidates = parsed
-      .filter(item => item.threat.source === 'keyword')
+      .filter(item => item.threat?.source === 'keyword')
       .sort((a, b) => b.pubDate.getTime() - a.pubDate.getTime())
       .slice(0, AI_CLASSIFY_MAX_PER_FEED);
 
     for (const item of aiCandidates) {
       if (!canQueueAiClassification(item.title)) continue;
       classifyWithAI(item.title, SITE_VARIANT).then((aiResult) => {
-        if (aiResult && aiResult.confidence > item.threat.confidence) {
+        if (aiResult && aiResult.confidence > (item.threat?.confidence ?? 0)) {
           item.threat = aiResult;
           item.isAlert = aiResult.level === 'critical' || aiResult.level === 'high';
         }

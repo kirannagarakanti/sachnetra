@@ -169,3 +169,32 @@ All other feeds use direct RSS URLs wrapped in `rss()`.
 | **Total** | **19** | **64** |
 
 Adding **45 curated feeds** from the 153 in the JSON. **14 duplicates removed**, **94 skipped** (niche/partisan/defunct/poor RSS).
+
+---
+
+## Lessons Learned
+
+### 1. Client vs Server feed config — both must be updated
+The architecture has **two separate feed configs** that must stay in sync:
+
+| File | Purpose |
+|------|---------|
+| `src/config/variants/india.ts` | Client-side fallback (used only when server digest fails) |
+| `server/worldmonitor/news/v1/_feeds.ts` | Server-side digest (this is what actually fetches articles) |
+
+We initially only updated the client-side config. Since the server digest always succeeded, the client never fell back — so the new 45 feeds were silently ignored for ~8 hours. **Always update both files together.**
+
+### 2. Direct RSS URLs vs Google News proxy
+Of the 45 new feeds, **15 failed** on first test (403s and 404s from direct RSS URLs). All 15 were fixed by switching to the Google News RSS proxy pattern: `gnIn('site:domain.com')`. This confirms that **most Indian news sites block server-side RSS requests** — prefer the proxy by default for new feeds.
+
+### 3. Feed URL testing script
+Created `scripts/test-india-feeds.mjs` — a standalone Node.js script that tests all feed URLs by checking HTTP status, content-type, and RSS item count. Run with `node scripts/test-india-feeds.mjs`. This should be used **before deploying** any new feed additions.
+
+### 4. Clickable source links in story detail
+**Added**: Source names in the story detail overlay are now clickable links that open the original article in a new tab.
+
+**Files modified:**
+- `src/app/data-loader.ts` (lines ~403–427) — source rows now render as `<a>` tags with `target="_blank"` linking to the article URL via `sItem.link`
+- `src/styles/main.css` — added `.sn-detail-source-link` style (purple text `#a78bfa`, dashed underline, tap feedback) and `.sn-detail-source-row[data-url]` interactive state
+
+**Behavior:** Each source name resolves its URL from the cluster item's `link` field. If no URL is available, it falls back to plain text (non-clickable). The entire row also has a subtle active state on tap.
