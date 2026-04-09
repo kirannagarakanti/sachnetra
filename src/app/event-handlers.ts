@@ -96,6 +96,8 @@ export class EventHandlerManager implements AppModule {
 
   private readonly idlePauseMs = IDLE_PAUSE_MS;
   private readonly debouncedUrlSync = debounce(() => {
+    // India variant: tab routing owns the URL — map state must not overwrite it (Task 017)
+    if (SITE_VARIANT === 'india') return;
     const shareUrl = this.getShareUrl();
     if (!shareUrl) return;
     try { history.replaceState(null, '', shareUrl); } catch { }
@@ -579,7 +581,8 @@ export class EventHandlerManager implements AppModule {
   }
 
   setupUrlStateSync(): void {
-    if (!this.ctx.map) return;
+    // India variant: tab routing owns the URL, so map state listener is not needed (Task 017)
+    if (!this.ctx.map || SITE_VARIANT === 'india') return;
 
     this.ctx.map.onStateChanged(() => {
       this.debouncedUrlSync();

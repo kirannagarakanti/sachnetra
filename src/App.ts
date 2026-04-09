@@ -61,6 +61,7 @@ export class App {
   private pendingDeepLinkCountry: string | null = null;
   private pendingDeepLinkExpanded = false;
   private pendingDeepLinkStoryCode: string | null = null;
+  private pendingDeepLinkStorySlug: string | null = null; // Task 017: India story deep-link
 
   private panelLayout: PanelLayoutManager;
   private dataLoader: DataLoaderManager;
@@ -718,6 +719,18 @@ export class App {
     const url = new URL(window.location.href);
     const DEEP_LINK_INITIAL_DELAY_MS = 1500;
 
+    // SachNetra India: story deep-link — /story?id=<slug> (Task 017)
+    // Must run before the ?c= country-brief check below, because both share /story pathname.
+    if (SITE_VARIANT === 'india' && url.pathname === '/story' && url.searchParams.has('id')) {
+      const slugParam = url.searchParams.get('id') ?? '';
+      // Immediately set URL to /home so the address bar is clean on load
+      try { history.replaceState(null, '', '/home'); } catch { /* ignore */ }
+      this.pendingDeepLinkStorySlug = slugParam;
+      // Give data 3 seconds to load before attempting cluster match
+      setTimeout(() => this.tryOpenStoryFromSlug(), 3000);
+      return;
+    }
+
     // Check for country brief deep link: ?c=IR (captured early before URL sync)
     const storyCode = this.pendingDeepLinkStoryCode ?? url.searchParams.get('c');
     this.pendingDeepLinkStoryCode = null;
@@ -751,6 +764,39 @@ export class App {
         this.eventHandlers.syncUrlState();
       }, DEEP_LINK_INITIAL_DELAY_MS);
     }
+  }
+
+  /**
+   * Attempt to auto-open the story detail overlay after landing on a /story?id= deep-link.
+   * Decodes the base64 slug, searches loaded clusters for a matching item, and dispatches
+   * an event that data-loader.ts handles by calling openStoryDetail() (Task 017).
+   */
+  private tryOpenStoryFromSlug(): void {
+    const slug = this.pendingDeepLinkStorySlug;
+    this.pendingDeepLinkStorySlug = null;
+    if (!slug) return;
+
+    // Decode slug — same algorithm as decodeStorySlug() in data-loader.ts
+    let title: string | null = null;
+    try {
+      const base64 = slug.replace(/-/g, '+').replace(/_/g, '/');
+      const padded = base64 + '=='.slice((base64.length % 4) || 4);
+      title = decodeURIComponent(atob(padded));
+    } catch { /* malformed slug — stay on /home */ }
+    if (!title) return;
+
+    // Search already-loaded clusters for a matching item
+    const matchTitle = title;
+    const cluster = this.state.latestClusters.find(
+      c => c.allItems.some(i => i.title === matchTitle)
+    );
+    if (!cluster) return; // story has rotated out of the feed — user stays on /home
+
+    const item = cluster.allItems.find(i => i.title === matchTitle) ?? cluster.allItems[0];
+    if (!item) return;
+
+    // Dispatch custom event — DataLoaderManager.init() listens and calls openStoryDetail
+    window.dispatchEvent(new CustomEvent('sn:open-story', { detail: { item, cluster } }));
   }
 
   private setupRefreshIntervals(): void {

@@ -241,11 +241,35 @@ function getCategoryIcon(category: string): string {
   return icon.replace('<svg ', `<svg style="color:${c}" `);
 }
 
-function shareToWhatsApp(title: string): void {
+function shareToWhatsApp(title: string, storyUrl?: string): void {
+  const url = storyUrl ?? 'https://sachnetra.com';
   const text = encodeURIComponent(
-    `📰 *${title}*\n\n_Via SachNetra_ — India's clarity app\n🔗 sachnetra.com`
+    `📰 *${title}*\n\n_Via SachNetra_ — India's clarity app\n🔗 ${url}`
   );
   window.open(`https://wa.me/?text=${text}`, '_blank');
+}
+
+/**
+ * URL-safe base64 encoding of a story title for shareable deep links (Task 017).
+ * Encodes up to 120 chars of the title, replacing base64 special chars so the
+ * slug is safe in query strings without further percent-encoding.
+ */
+function storySlug(title: string): string {
+  return btoa(encodeURIComponent(title.trim().slice(0, 120)))
+    .replace(/[+/=]/g, c => ({ '+': '-', '/': '_', '=': '' }[c] ?? ''));
+}
+
+/**
+ * Decode a story slug produced by storySlug() back to the original title.
+ * Returns null if the slug is invalid or malformed.
+ */
+export function decodeStorySlug(slug: string): string | null {
+  try {
+    const base64 = slug.replace(/-/g, '+').replace(/_/g, '/');
+    // restore stripped padding
+    const padded = base64 + '=='.slice((base64.length % 4) || 4);
+    return decodeURIComponent(atob(padded));
+  } catch { return null; }
 }
 
 /** Open the story detail overlay for a news item. */
@@ -329,10 +353,23 @@ function openStoryDetail(item: NewsItem, cluster?: ClusteredEvent): void {
     overlay.appendChild(modal);
   }
 
+  // --- Story URL — generated once, used by pushState + share buttons (Task 017) ---
+  const slug = storySlug(item.title);
+  const storyUrl = `${window.location.origin}/story?id=${slug}`;
+
   // --- Close handlers ---
   const closeOverlay = () => {
     overlay.remove();
     window.removeEventListener('popstate', onPopState);
+    // Restore the tab URL so the address bar doesn't show /story after closing (Task 017)
+    if (SITE_VARIANT === 'india') {
+      const activeTab = document.querySelector('.sn-nav-tab--active') as HTMLElement | null;
+      const tabKey = activeTab?.dataset.tab ?? 'home';
+      const tabPath = tabKey === 'home' ? '/home' : `/${tabKey}`;
+      // On desktop there are no tabs — always restore /timeline
+      const restorePath = activeTab ? tabPath : '/timeline';
+      try { history.replaceState(null, '', restorePath); } catch { /* ignore */ }
+    }
   };
 
   document.getElementById('snDetailBack')?.addEventListener('click', closeOverlay);
@@ -344,17 +381,18 @@ function openStoryDetail(item: NewsItem, cluster?: ClusteredEvent): void {
     });
   }
 
-  // Android back button / swipe-back via popstate
+  // Android back button / swipe-back via popstate.
+  // Also pushes the /story?id= URL so the address bar shows a shareable link (Task 017).
   const onPopState = () => closeOverlay();
-  history.pushState(null, '', window.location.href);
+  history.pushState({ storyId: slug }, '', storyUrl);
   window.addEventListener('popstate', onPopState);
 
-  // Share buttons
+  // Share buttons — both now pass the full story URL (Task 017)
   document.getElementById('snDetailShareHeader')?.addEventListener('click', () => {
-    shareToWhatsApp(item.title);
+    shareToWhatsApp(item.title, storyUrl);
   });
   document.getElementById('snDetailWhatsApp')?.addEventListener('click', () => {
-    shareToWhatsApp(item.title);
+    shareToWhatsApp(item.title, storyUrl);
   });
 
   // --- Fetch AI summary asynchronously ---
@@ -493,6 +531,7 @@ export class DataLoaderManager implements AppModule {
   }
 
   private boundMarketWatchlistHandler: (() => void) | null = null;
+  private boundOpenStoryHandler: ((e: Event) => void) | null = null; // Task 017: story deep-link
   private satellitePropagationCleanup: (() => void) | null = null;
   private cachedSatRecs: SatRecEntry[] | null = null;
 
@@ -521,6 +560,15 @@ export class DataLoaderManager implements AppModule {
       });
     };
     window.addEventListener('wm-market-watchlist-changed', this.boundMarketWatchlistHandler as EventListener);
+
+    // India story deep-link: open story overlay when App.ts resolves a /story?id= URL (Task 017)
+    if (SITE_VARIANT === 'india') {
+      this.boundOpenStoryHandler = (e: Event) => {
+        const { item, cluster } = (e as CustomEvent<{ item: NewsItem; cluster?: ClusteredEvent }>).detail;
+        openStoryDetail(item, cluster);
+      };
+      window.addEventListener('sn:open-story', this.boundOpenStoryHandler);
+    }
   }
 
   destroy(): void {
@@ -531,6 +579,10 @@ export class DataLoaderManager implements AppModule {
     if (this.boundMarketWatchlistHandler) {
       window.removeEventListener('wm-market-watchlist-changed', this.boundMarketWatchlistHandler as EventListener);
       this.boundMarketWatchlistHandler = null;
+    }
+    if (this.boundOpenStoryHandler) {
+      window.removeEventListener('sn:open-story', this.boundOpenStoryHandler);
+      this.boundOpenStoryHandler = null;
     }
   }
 

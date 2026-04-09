@@ -67,8 +67,8 @@ export default function middleware(request: Request) {
   const path = url.pathname;
   const host = normalizeHost(request.headers.get('host') ?? url.hostname);
 
-  // Social bot OG response for variant subdomain root pages
-  if (path === '/' && SOCIAL_PREVIEW_UA.test(ua)) {
+  // Social bot OG response for variant subdomain root pages and India tab/story paths (Task 017)
+  if ((path === '/' || path === '/home' || path === '/timeline' || path.startsWith('/story')) && SOCIAL_PREVIEW_UA.test(ua)) {
     const variant = VARIANT_HOST_MAP[host];
     if (variant && isAllowedHost(host)) {
       const og = VARIANT_OG[variant as keyof typeof VARIANT_OG];
@@ -137,5 +137,5 @@ export default function middleware(request: Request) {
 }
 
 export const config = {
-  matcher: ['/', '/api/:path*', '/favico/:path*'],
+  matcher: ['/', '/home', '/timeline', '/story', '/api/:path*', '/favico/:path*'],
 };

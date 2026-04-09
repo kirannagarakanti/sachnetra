@@ -636,6 +636,10 @@ export class PanelLayoutManager implements AppModule {
       const stateGridEl = document.getElementById('snStateGrid');
       if (stateBarEl) stateBarEl.style.display = tabKey === 'home' ? '' : 'none';
       if (stateGridEl) stateGridEl.style.display = tabKey === 'home' ? '' : 'none';
+
+      // Update URL path to reflect the active tab (Task 017)
+      const tabPath = tabKey === 'home' ? '/home' : `/${tabKey}`;
+      try { history.replaceState(null, '', tabPath); } catch { /* ignore — replaceState blocked in some embedded contexts */ }
     };
 
     tabs.forEach((tab) => {
@@ -717,6 +721,19 @@ export class PanelLayoutManager implements AppModule {
 
     // --- Timeline chip filtering (Task 013) ---
     this.setupTimelineChips();
+
+    // --- Initial URL path (Task 017) ---
+    // If the user landed on /timeline, /map, or /states, activate that tab immediately.
+    // If they landed on / or /home (or anything else), ensure URL shows /home.
+    const initialPath = window.location.pathname.replace(/^\//, '') || 'home';
+    const validTabs = ['home', 'timeline', 'map', 'states'];
+    const startTab = validTabs.includes(initialPath) ? initialPath : 'home';
+    if (startTab !== 'home') {
+      activateTab(startTab);
+    } else {
+      // Normalise root / → /home
+      try { history.replaceState(null, '', '/home'); } catch { /* ignore */ }
+    }
   }
 
   /**
@@ -728,6 +745,9 @@ export class PanelLayoutManager implements AppModule {
   private setupDesktopIndiaLayout(): void {
     // Wire timeline chip filtering — reuses same logic as mobile
     this.setupTimelineChips();
+
+    // Desktop India is a single-page timeline view (no tabs). Set URL once on load (Task 017).
+    try { history.replaceState(null, '', '/timeline'); } catch { /* ignore */ }
 
     const timelineTab = document.getElementById('snTimelineTab');
     if (!timelineTab) return;
