@@ -18842,7 +18842,7 @@ body.has-breaking-alert .panels-grid {
    Scoped to [data-variant="india"] + min-width: 769px
    ═══════════════════════════════════════════════════════════════════════════════ */
 
-@media (min-width: 769px) {
+@media (min-width: 821px) {
 
   /* --- Hide WorldMonitor desktop chrome, show timeline --- */
   [data-variant="india"] .panels-grid,
@@ -19353,8 +19353,11 @@ body.has-breaking-alert .panels-grid {
     50% { opacity: 0.8; }
   }
 
-  /* --- Sidebar hidden on narrower desktops (769px–1024px: single column) --- */
-  @media (max-width: 1024px) {
+  /* --- Sidebar: responsive sizing ---
+     < 820px : sidebar hidden (screen too narrow for both columns)
+     820-1100px: sidebar narrows to 280px so river gets more space
+     > 1100px : full 380px sidebar */
+  @media (max-width: 820px) {
     [data-variant="india"] .sn-tl-desktop-wrap {
       grid-template-columns: 1fr;
     }
@@ -19362,16 +19365,25 @@ body.has-breaking-alert .panels-grid {
       display: none;
     }
   }
+  @media (min-width: 821px) and (max-width: 1100px) {
+    [data-variant="india"] .sn-tl-desktop-wrap {
+      grid-template-columns: minmax(0, 1fr) 280px;
+    }
+  }
 
-} /* end @media (min-width: 769px) — SachNetra India Desktop */
+} /* end @media (min-width: 821px) — SachNetra India Desktop */
 
 /* ═══════════════════════════════════════════════════════════════════════════════
    SachNetra India — Mobile Layout
    Phase 1: Foundation (body scroll, hide desktop, mobile header)
-   Scoped to [data-variant="india"] + max-width: 768px
+   Scoped to [data-variant="india"] + max-width: 820px
    ═══════════════════════════════════════════════════════════════════════════════ */
 
-@media (max-width: 768px) {
+@media (max-width: 820px) {
+
+  /* --- Hide WorldMonitor-specific elements that don't belong in SachNetra mobile --- */
+  [data-variant="india"] .pizzint-indicator,
+  [data-variant="india"] .community-widget { display: none !important; }
 
   /* --- Body: Allow natural mobile scroll --- */
   [data-variant="india"] html,
