@@ -266,8 +266,9 @@ function storySlug(title: string): string {
 export function decodeStorySlug(slug: string): string | null {
   try {
     const base64 = slug.replace(/-/g, '+').replace(/_/g, '/');
-    // restore stripped padding
-    const padded = base64 + '=='.slice((base64.length % 4) || 4);
+    // restore stripped padding: pad to the next multiple of 4
+    const padLen = (4 - (base64.length % 4)) % 4;
+    const padded = base64 + '='.repeat(padLen);
     return decodeURIComponent(atob(padded));
   } catch { return null; }
 }
