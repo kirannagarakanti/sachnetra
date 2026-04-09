@@ -1,0 +1,201 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,400&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --purple:#7c5cfc;--purple-dim:#4a3899;--purple-glow:rgba(124,92,252,0.18);
+  --saffron:#ff9a3c;--saffron-dim:#c96a10;
+  --bg:#0a0812;--card-bg:#0f0b1e;--surface:#16112e;
+  --border:rgba(124,92,252,0.18);
+  --text-bright:#f0eaff;--text-mid:#9085c0;--text-dim:#4a4270;
+}
+body{background:var(--bg);font-family:'DM Sans',sans-serif;min-height:100vh;display:flex;justify-content:center;align-items:flex-start;padding:32px 16px;}
+.stage{display:flex;flex-direction:column;align-items:center;gap:20px;width:100%;max-width:440px;}
+.preview-label{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--text-dim);}
+
+/* TABS */
+.tabs{display:flex;gap:6px;flex-wrap:wrap;justify-content:center;padding:6px 10px;background:var(--surface);border-radius:40px;border:0.5px solid var(--border);}
+.tab{padding:5px 14px;border-radius:30px;font-size:11.5px;font-weight:500;cursor:pointer;border:0.5px solid transparent;color:var(--text-mid);transition:all .2s;letter-spacing:.02em;}
+.tab:hover{color:var(--text-bright);}
+.tab.active-general{background:rgba(124,92,252,0.15);color:#c4b0ff;border-color:rgba(124,92,252,0.35);}
+.tab.active-conflict{background:rgba(200,40,40,0.15);color:#ff9090;border-color:rgba(200,40,40,0.35);}
+.tab.active-econ{background:rgba(30,160,80,0.15);color:#80dd99;border-color:rgba(30,160,80,0.3);}
+.tab.active-govt{background:rgba(220,160,0,0.15);color:#f0c84a;border-color:rgba(220,160,0,0.3);}
+
+/* CARD */
+.card{width:100%;max-width:400px;border-radius:22px;overflow:hidden;background:var(--card-bg);border:0.5px solid var(--border);box-shadow:0 0 40px rgba(124,92,252,0.1),0 20px 60px rgba(0,0,0,0.5);position:relative;}
+.card-topline{height:2.5px;width:100%;}
+.topline-general{background:linear-gradient(90deg,var(--purple) 0%,var(--saffron) 100%);}
+.topline-conflict{background:linear-gradient(90deg,#cc2222 0%,var(--purple) 60%,var(--saffron) 100%);}
+.topline-econ{background:linear-gradient(90deg,#22bb55 0%,var(--purple) 70%,var(--saffron) 100%);}
+.topline-govt{background:linear-gradient(90deg,#d49500 0%,var(--purple) 70%,var(--saffron) 100%);}
+.card-mesh{position:absolute;top:-80px;right:-60px;width:220px;height:220px;border-radius:50%;opacity:.04;filter:blur(50px);pointer-events:none;}
+.mesh-general{background:var(--purple);}
+.mesh-conflict{background:#cc2222;}
+.mesh-econ{background:#22bb55;}
+.mesh-govt{background:#d49500;}
+
+/* HEAD */
+.card-head{padding:18px 20px 0;position:relative;}
+.card-meta{display:flex;align-items:center;gap:6px;margin-bottom:16px;flex-wrap:wrap;}
+.cat-pill{padding:3px 10px;border-radius:20px;font-size:10.5px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;}
+.pill-general{background:rgba(124,92,252,0.15);color:#c4b0ff;border:0.5px solid rgba(124,92,252,0.35);}
+.pill-conflict{background:rgba(200,40,40,0.15);color:#ff9090;border:0.5px solid rgba(200,40,40,0.35);}
+.pill-econ{background:rgba(30,160,80,0.13);color:#80dd99;border:0.5px solid rgba(30,160,80,0.3);}
+.pill-govt{background:rgba(220,160,0,0.13);color:#f0c84a;border:0.5px solid rgba(220,160,0,0.3);}
+.dot{width:3px;height:3px;border-radius:50%;background:var(--text-dim);}
+.card-source{font-size:11px;color:var(--text-dim);}
+.card-time{font-size:11px;color:var(--text-dim);}
+
+/* TITLE */
+.card-title{font-family:'Syne',sans-serif;font-size:18px;font-weight:700;color:var(--text-bright);line-height:1.35;letter-spacing:-.01em;text-align:center;padding:0 18px 22px;position:relative;}
+
+/* SECTION */
+.card-section{margin:0 14px 14px;border-radius:14px;padding:14px 16px;background:rgba(124,92,252,0.07);border:0.5px solid rgba(124,92,252,0.14);}
+.card-section-conflict{background:rgba(180,30,30,0.07);border-color:rgba(180,30,30,0.18);}
+.card-section-econ{background:rgba(30,160,80,0.07);border-color:rgba(30,160,80,0.16);}
+.card-section-govt{background:rgba(220,160,0,0.07);border-color:rgba(220,160,0,0.18);}
+
+.cs-label{display:flex;align-items:center;gap:7px;margin-bottom:9px;}
+.cs-dot{width:6px;height:6px;border-radius:50%;flex-shrink:0;}
+
+/* per-category dot glow */
+.dot-general{background:linear-gradient(135deg,var(--purple),var(--saffron));box-shadow:0 0 6px 1px rgba(124,92,252,0.7);}
+.dot-conflict{background:#ff6060;box-shadow:0 0 6px 1px rgba(255,80,80,0.65);}
+.dot-econ{background:#44cc77;box-shadow:0 0 6px 1px rgba(50,200,100,0.6);}
+.dot-govt{background:#f0c84a;box-shadow:0 0 6px 1px rgba(240,180,40,0.6);}
+
+/* WHAT HAPPENED label — now bright & glowing per category */
+.cs-lbl-text{font-size:9.5px;font-weight:700;letter-spacing:.13em;}
+.lbl-general{color:#b8aaff;text-shadow:0 0 8px rgba(124,92,252,0.6);}
+.lbl-conflict{color:#ff9090;text-shadow:0 0 8px rgba(255,80,80,0.55);}
+.lbl-econ{color:#80dd99;text-shadow:0 0 8px rgba(50,200,100,0.55);}
+.lbl-govt{color:#f0c84a;text-shadow:0 0 8px rgba(240,180,40,0.55);}
+
+.cs-body{font-size:12.5px;line-height:1.65;color:var(--text-mid);}
+
+/* DIVIDER */
+.card-divider{height:0.5px;background:linear-gradient(90deg,transparent,var(--border),transparent);margin:2px 0 14px;}
+
+/* FOOTER */
+.card-footer{display:flex;align-items:center;justify-content:space-between;padding:0 18px 18px;}
+.brand{display:flex;align-items:center;gap:9px;}
+.brand-icon{width:34px;height:34px;border-radius:10px;background:linear-gradient(135deg,rgba(124,92,252,0.25),rgba(255,154,60,0.15));border:0.5px solid rgba(124,92,252,0.3);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.brand-name{font-family:'Syne',sans-serif;font-size:14px;font-weight:700;color:var(--text-bright);letter-spacing:.03em;}
+.brand-sub{font-size:10px;color:var(--text-dim);margin-top:1px;}
+.brand-url{font-size:10px;color:var(--text-dim);letter-spacing:.04em;}
+
+/* SHARE BTN */
+.share-wrap{width:100%;max-width:400px;}
+.share-btn{width:100%;padding:15px;border-radius:14px;border:none;font-family:'DM Sans',sans-serif;font-size:14px;font-weight:600;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:9px;letter-spacing:.02em;transition:all .2s;background:linear-gradient(110deg,var(--purple) 0%,var(--saffron) 130%);color:#fff;box-shadow:0 4px 24px rgba(124,92,252,0.3);}
+.share-btn:hover{box-shadow:0 6px 32px rgba(124,92,252,0.45);transform:translateY(-1px);}
+.share-btn:active{transform:translateY(0);}
+.share-btn svg{width:17px;height:17px;flex-shrink:0;}
+</style>
+</head>
+<body>
+<div class="stage">
+  <div class="preview-label">Story card preview — tap category to switch</div>
+
+  <div class="tabs" id="tabs">
+    <div class="tab active-general" onclick="setCategory('general',this)">General</div>
+    <div class="tab" onclick="setCategory('conflict',this)">Conflict</div>
+    <div class="tab" onclick="setCategory('econ',this)">Economy</div>
+    <div class="tab" onclick="setCategory('govt',this)">Government</div>
+  </div>
+
+  <div class="card" id="card">
+    <div class="card-topline topline-general" id="topline"></div>
+    <div class="card-mesh mesh-general" id="mesh"></div>
+
+    <div class="card-head">
+      <div class="card-meta">
+        <span class="cat-pill pill-general" id="cat-pill">General</span>
+        <div class="dot"></div>
+        <span class="card-source" id="card-source">The Hindu</span>
+        <div class="dot"></div>
+        <span class="card-time">1m ago</span>
+      </div>
+    </div>
+
+    <div class="card-title" id="card-title">Audio-enabled VVPAT system sought for visually impaired voters</div>
+
+    <div class="card-section" id="card-section">
+      <div class="cs-label">
+        <div class="cs-dot dot-general" id="cs-dot"></div>
+        <span class="cs-lbl-text lbl-general" id="cs-lbl">WHAT HAPPENED</span>
+      </div>
+      <div class="cs-body" id="happened-text">The Election Commission of India is considering introducing an audio-enabled VVPAT system to help visually impaired voters cast their ballots. This would allow voters to hear candidate names through audio output, making voting more accessible.</div>
+    </div>
+
+    <div class="card-divider"></div>
+
+    <div class="card-footer">
+      <div class="brand">
+        <div class="brand-icon">
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+            <ellipse cx="9" cy="9" rx="7.5" ry="5" stroke="url(#lg1)" stroke-width="1.3" fill="none"/>
+            <circle cx="9" cy="9" r="2.8" stroke="url(#lg1)" stroke-width="1.1" fill="none"/>
+            <circle cx="9" cy="9" r="1.1" fill="#ff9a3c"/>
+            <path d="M9 3.5 L9 2" stroke="#7c5cfc" stroke-width="1.2" stroke-linecap="round"/>
+            <path d="M6 4.5 L5.3 3.2" stroke="#7c5cfc" stroke-width="1" stroke-linecap="round" opacity=".6"/>
+            <path d="M12 4.5 L12.7 3.2" stroke="#7c5cfc" stroke-width="1" stroke-linecap="round" opacity=".6"/>
+            <defs>
+              <linearGradient id="lg1" x1="1.5" y1="4" x2="16.5" y2="14" gradientUnits="userSpaceOnUse">
+                <stop offset="0%" stop-color="#7c5cfc"/>
+                <stop offset="100%" stop-color="#ff9a3c"/>
+              </linearGradient>
+            </defs>
+          </svg>
+        </div>
+        <div>
+          <div class="brand-name">SachNetra</div>
+          <div class="brand-sub">सच्चनेत्र · See clearly</div>
+        </div>
+      </div>
+      <div class="brand-url">sachnetra.com</div>
+    </div>
+  </div>
+
+  <div class="share-wrap">
+    <button class="share-btn" onclick="handleShare()">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+      Share on WhatsApp
+    </button>
+  </div>
+</div>
+
+<script>
+var stories = {
+  general:{pillClass:'pill-general',pillLabel:'General',accentCls:'topline-general',meshCls:'mesh-general',sectionCls:'',dotCls:'dot-general',lblCls:'lbl-general',tabActive:'active-general',source:'The Hindu',title:'Audio-enabled VVPAT system sought for visually impaired voters',happened:'The Election Commission of India is considering introducing an audio-enabled VVPAT system to help visually impaired voters cast their ballots. This would allow voters to hear candidate names through audio output, making voting more accessible.'},
+  conflict:{pillClass:'pill-conflict',pillLabel:'Conflict',accentCls:'topline-conflict',meshCls:'mesh-conflict',sectionCls:'card-section-conflict',dotCls:'dot-conflict',lblCls:'lbl-conflict',tabActive:'active-conflict',source:'India Today',title:'Trump threatens to destroy all Iran bridges and power plants if no deal reached',happened:'Former US President Trump publicly threatened to destroy Iranian infrastructure — including bridges and power plants — within four hours unless a diplomatic deal is reached. Multiple outlets are tracking this story live.'},
+  econ:{pillClass:'pill-econ',pillLabel:'Economy',accentCls:'topline-econ',meshCls:'mesh-econ',sectionCls:'card-section-econ',dotCls:'dot-econ',lblCls:'lbl-econ',tabActive:'active-econ',source:'Economic Times',title:"RBI warns of upside risks to India's current account deficit amid West Asia tensions",happened:"The Reserve Bank of India has flagged that rising oil prices from the Iran-Israel conflict could significantly widen India's current account deficit. Brent crude has already risen 2.3% in response."},
+  govt:{pillClass:'pill-govt',pillLabel:'Government',accentCls:'topline-govt',meshCls:'mesh-govt',sectionCls:'card-section-govt',dotCls:'dot-govt',lblCls:'lbl-govt',tabActive:'active-govt',source:'The Hindu',title:"Cabinet clears draft amendment Bill to implement women's quota in legislatures",happened:'The Union Cabinet has cleared a draft amendment to implement the long-pending women\'s reservation bill, which mandates 33% seats for women in Parliament and state assemblies.'}
+};
+
+function setCategory(cat,el){
+  var s=stories[cat];
+  document.getElementById('topline').className='card-topline '+s.accentCls;
+  document.getElementById('mesh').className='card-mesh '+s.meshCls;
+  var pill=document.getElementById('cat-pill');pill.className='cat-pill '+s.pillClass;pill.textContent=s.pillLabel;
+  document.getElementById('card-section').className='card-section '+s.sectionCls;
+  document.getElementById('cs-dot').className='cs-dot '+s.dotCls;
+  var lbl=document.getElementById('cs-lbl');lbl.className='cs-lbl-text '+s.lblCls;
+  document.getElementById('card-source').textContent=s.source;
+  document.getElementById('card-title').textContent=s.title;
+  document.getElementById('happened-text').textContent=s.happened;
+  document.querySelectorAll('.tab').forEach(function(b){b.className='tab';});
+  el.className='tab '+s.tabActive;
+}
+
+function handleShare(){
+  var title=document.getElementById('card-title').textContent;
+  var text=encodeURIComponent('📰 '+title+'\n\nRead more on SachNetra — sachnetra.com\n\nसच्चनेत्र · See clearly');
+  window.open('https://wa.me/?text='+text,'_blank');
+}
+</script>
+</body>
+</html>
