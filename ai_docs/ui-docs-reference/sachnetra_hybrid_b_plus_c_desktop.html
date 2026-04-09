@@ -1,0 +1,352 @@
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+.root{font-family:var(--font-sans);background:#09080f;border-radius:12px;overflow:hidden;min-height:700px;}
+
+.topbar{background:#0d0b1c;border-bottom:0.5px solid #1e1c35;padding:9px 16px;display:flex;align-items:center;gap:10px;}
+.logo-row{display:flex;align-items:center;gap:7px;margin-right:10px;flex-shrink:0;}
+.logo-box{width:22px;height:22px;border-radius:6px;background:#1a1040;display:flex;align-items:center;justify-content:center;}
+.logo-name{font-size:14px;font-weight:500;color:#fff;}
+.page-tag{font-size:11px;color:#3a3860;margin-left:2px;}
+.chips{display:flex;gap:5px;flex:1;overflow-x:auto;}
+.chips::-webkit-scrollbar{display:none;}
+.chip{padding:4px 11px;border-radius:14px;font-size:11px;cursor:pointer;border:0.5px solid;white-space:nowrap;transition:opacity .15s;}
+.ca{border-color:#5050a0;color:#a0a0e0;background:#14122a;}
+.cc{border-color:#bb3333;color:#ff8888;background:#280e0e;}
+.ce{border-color:#4a9020;color:#90d060;background:#162510;}
+.ct{border-color:#2088aa;color:#55aacc;background:#101e2a;}
+.cg{border-color:#aa7020;color:#ddaa44;background:#241808;}
+.cn{border-color:#208870;color:#55ccaa;background:#102820;}
+.chip.off{opacity:.3;}
+.defcon-pill{display:flex;align-items:center;gap:5px;padding:4px 10px;border-radius:10px;background:#1a1030;border:0.5px solid #3a2a60;font-size:11px;color:#8888cc;flex-shrink:0;}
+.defcon-dot{width:6px;height:6px;border-radius:50%;background:#5555aa;}
+.live-dot{width:6px;height:6px;border-radius:50%;background:#44aa44;}
+
+.body{display:grid;grid-template-columns:minmax(0,1fr) 230px;}
+
+/* river */
+.river{border-right:0.5px solid #1a1830;}
+.tdiv{display:flex;align-items:center;gap:8px;padding:10px 16px 4px;}
+.tline{flex:1;height:0.5px;background:#1a1830;}
+.tlabel{font-size:10px;color:#3a3860;letter-spacing:.08em;white-space:nowrap;}
+
+.scard{padding:11px 16px;border-bottom:0.5px solid #120f1e;cursor:pointer;}
+.scard:hover{background:#0f0c1e;}
+.scard.alert-card{border-left:2px solid #cc3333;padding-left:14px;}
+.scard.diplomatic-card{border-left:2px solid #2299bb;padding-left:14px;}
+.smeta{display:flex;align-items:center;gap:5px;margin-bottom:4px;flex-wrap:wrap;}
+.ssrc{font-size:10px;color:#4a4878;}
+.spill{font-size:10px;padding:1px 6px;border-radius:8px;}
+.p-conflict{background:#280e0e;color:#ff7070;}
+.p-econ{background:#122010;color:#80cc40;}
+.p-tech{background:#0a1820;color:#50aacc;}
+.p-govt{background:#201408;color:#ddaa44;}
+.p-env{background:#081a18;color:#44ccaa;}
+.p-general{background:#141228;color:#8080bb;}
+.p-diplomatic{background:#0a1a28;color:#5599cc;}
+.abadge{font-size:10px;padding:1px 6px;border-radius:8px;background:#2a0808;color:#ff5050;border:.5px solid #440808;}
+.cbadge{font-size:10px;padding:1px 6px;border-radius:8px;background:#181630;color:#6060a0;}
+.card-row{display:flex;align-items:flex-start;gap:9px;}
+.sdot{width:7px;height:7px;border-radius:50%;flex-shrink:0;margin-top:5px;}
+.d-conflict{background:#cc3333;}.d-econ{background:#55aa22;}.d-tech{background:#2299bb;}
+.d-govt{background:#bb8820;}.d-env{background:#22aa88;}.d-general{background:#5050a0;}.d-diplo{background:#2299bb;}
+.stitle{font-size:13px;color:#d0cce8;line-height:1.4;font-weight:400;}
+.smeta2{display:flex;align-items:center;gap:8px;margin-top:4px;}
+.sage{font-size:10px;color:#383660;}
+.sregion{font-size:10px;color:#303060;}
+
+.ai-teaser{margin:7px 0 0 16px;background:#0f0d20;border-left:2px solid #2a2460;border-radius:0 6px 6px 0;padding:7px 10px;}
+.ai-label{font-size:9px;color:#3a3880;letter-spacing:.08em;margin-bottom:3px;}
+.ai-text{font-size:11px;color:#7070a0;line-height:1.5;}
+.teaser-toggle{font-size:10px;color:#3a3880;cursor:pointer;margin-top:5px;display:inline-block;}
+.teaser-toggle:hover{color:#6060a0;}
+.teaser-hidden{display:none;}
+
+/* sidebar */
+.sidebar{display:flex;flex-direction:column;}
+.sb-sec{border-bottom:.5px solid #131128;padding:12px 14px;}
+.sb-lbl{font-size:9px;color:#333060;letter-spacing:.09em;margin-bottom:8px;}
+.defcon-row{display:flex;align-items:center;gap:10px;}
+.defcon-num{font-size:26px;font-weight:500;color:#6060b0;line-height:1;}
+.defcon-info{display:flex;flex-direction:column;gap:2px;}
+.defcon-status{font-size:12px;color:#8080c0;}
+.defcon-sub{font-size:10px;color:#3a3860;}
+.alert-item{display:flex;align-items:flex-start;gap:7px;padding:5px 0;border-bottom:.5px solid #0f0d1e;}
+.alert-item:last-child{border-bottom:none;}
+.adot{width:6px;height:6px;border-radius:50%;flex-shrink:0;margin-top:4px;}
+.atext{font-size:11px;color:#b0acd8;line-height:1.3;}
+.atime{font-size:10px;color:#2a2860;margin-top:1px;}
+.mrow{display:flex;justify-content:space-between;align-items:center;padding:4px 0;}
+.mname{font-size:11px;color:#4a4880;}
+.mval{font-size:11px;color:#c0bce0;}
+.mchg{font-size:10px;}
+.up{color:#55aa33;}.dn{color:#cc4444;}
+.brief-text{font-size:11px;color:#7070a0;line-height:1.55;}
+.toggle-row{display:flex;align-items:center;justify-content:space-between;padding:8px 16px;border-bottom:.5px solid #120f1e;}
+.toggle-label{font-size:11px;color:#4a4880;}
+.toggle-btn{padding:3px 10px;border-radius:10px;border:.5px solid #2a2460;background:#141228;font-size:10px;color:#6060a0;cursor:pointer;}
+.toggle-btn.active{border-color:#5555a0;color:#9090c0;background:#1c1a38;}
+</style>
+
+<div class="root">
+
+<div class="topbar">
+  <div class="logo-row">
+    <div class="logo-box"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="5" r="3.5" stroke="#7b7bff" stroke-width="1.1" fill="none"/><circle cx="7" cy="5" r="1.3" fill="#FF9933"/><line x1="7" y1="8.5" x2="7" y2="12" stroke="#FF9933" stroke-width="1.1" stroke-linecap="round"/></svg></div>
+    <span class="logo-name">SachNetra</span><span class="page-tag">Timeline</span>
+  </div>
+  <div class="chips">
+    <div class="chip ca" id="chip-all" onclick="filterChip('all')">All</div>
+    <div class="chip cc" id="chip-conflict" onclick="filterChip('conflict')">Conflict</div>
+    <div class="chip ce" id="chip-econ" onclick="filterChip('econ')">Economy</div>
+    <div class="chip ct" id="chip-tech" onclick="filterChip('tech')">Technology</div>
+    <div class="chip cg" id="chip-govt" onclick="filterChip('govt')">Government</div>
+    <div class="chip cn" id="chip-env" onclick="filterChip('env')">Environment</div>
+  </div>
+  <div class="defcon-pill"><div class="live-dot"></div><div class="defcon-dot" style="background:#5555aa;margin-left:4px;"></div>DEFCON 5 · 4%</div>
+</div>
+
+<div class="toggle-row">
+  <span class="toggle-label">AI context</span>
+  <div style="display:flex;gap:6px;">
+    <div class="toggle-btn active" id="tb-alerts" onclick="setTeaserMode('alerts',this)">Alerts only</div>
+    <div class="toggle-btn" id="tb-all" onclick="setTeaserMode('all',this)">Show all</div>
+    <div class="toggle-btn" id="tb-none" onclick="setTeaserMode('none',this)">Hide all</div>
+  </div>
+</div>
+
+<div class="body">
+
+  <div class="river" id="river">
+
+    <div class="tdiv"><div class="tline"></div><span class="tlabel">JUST NOW</span><div class="tline"></div></div>
+
+    <div class="scard alert-card" data-cat="conflict" data-alert="true">
+      <div class="smeta"><span class="ssrc">The Hindu</span><span class="spill p-conflict">conflict</span><span class="abadge">ALERT</span><span class="cbadge">3 sources</span></div>
+      <div class="card-row">
+        <div class="sdot d-conflict"></div>
+        <div style="flex:1;">
+          <div class="stitle">Iran-Israel war LIVE: Trump threatens to destroy all Iran bridges and power plants in four hours if no deal reached</div>
+          <div class="smeta2"><span class="sage">6 min ago</span><span class="sregion">· World</span></div>
+        </div>
+      </div>
+      <div class="ai-teaser" data-teaser>
+        <div class="ai-label">AI CONTEXT</div>
+        <div class="ai-text">Multiple outlets tracking live. Trump's statement marks the first direct infrastructure threat of the conflict — a significant escalation from previous rhetoric. Oil futures up 2.3% in response.</div>
+      </div>
+    </div>
+
+    <div class="scard diplomatic-card" data-cat="diplomatic">
+      <div class="smeta"><span class="ssrc">The Hindu</span><span class="spill p-diplomatic">diplomatic</span></div>
+      <div class="card-row">
+        <div class="sdot d-diplo"></div>
+        <div style="flex:1;">
+          <div class="stitle">Cabinet clears draft amendment Bill to implement women's quota in legislatures</div>
+          <div class="smeta2"><span class="sage">2 min ago</span><span class="sregion">· India</span></div>
+        </div>
+      </div>
+      <div class="ai-teaser teaser-hidden" data-teaser>
+        <div class="ai-label">AI CONTEXT</div>
+        <div class="ai-text">Long-pending women's reservation bill moves forward. Implementation timeline and state-level rollout remain unclear pending floor vote.</div>
+      </div>
+    </div>
+
+    <div class="scard" data-cat="general">
+      <div class="smeta"><span class="ssrc">Telangana Today</span><span class="spill p-general">general</span></div>
+      <div class="card-row">
+        <div class="sdot d-general"></div>
+        <div style="flex:1;">
+          <div class="stitle">Opinion: Telangana Senior Secondary education reforms need a rethink, not a rush</div>
+          <div class="smeta2"><span class="sage">1 min ago</span><span class="sregion">· Telangana</span></div>
+        </div>
+      </div>
+      <div class="ai-teaser teaser-hidden" data-teaser>
+        <div class="ai-label">AI CONTEXT</div>
+        <div class="ai-text">Educators and academics push back on pace of curriculum overhaul ahead of board exams. Second opinion piece this week on the same topic.</div>
+      </div>
+    </div>
+
+    <div class="scard" data-cat="general">
+      <div class="smeta"><span class="ssrc">Business Today</span><span class="spill p-general">general</span></div>
+      <div class="card-row">
+        <div class="sdot d-general"></div>
+        <div style="flex:1;">
+          <div class="stitle">How Arun Alagappan has turned Coromandel International into an integrated force</div>
+          <div class="smeta2"><span class="sage">Just now</span><span class="sregion">· Business</span></div>
+        </div>
+      </div>
+      <div class="ai-teaser teaser-hidden" data-teaser>
+        <div class="ai-label">AI CONTEXT</div>
+        <div class="ai-text">Profile of Coromandel International's leadership strategy — agri-inputs company with strong Q4 performance. Relevant for markets watchers.</div>
+      </div>
+    </div>
+
+    <div class="tdiv"><div class="tline"></div><span class="tlabel">1–3 HOURS AGO</span><div class="tline"></div></div>
+
+    <div class="scard alert-card" data-cat="econ" data-alert="true">
+      <div class="smeta"><span class="ssrc">The Ken · Hindu Business Line</span><span class="spill p-econ">economy</span><span class="abadge">ALERT</span></div>
+      <div class="card-row">
+        <div class="sdot d-econ"></div>
+        <div style="flex:1;">
+          <div class="stitle">West Asia war: RBI warns of upside risks to India's current account deficit as oil prices climb</div>
+          <div class="smeta2"><span class="sage">2 hr ago</span><span class="sregion">· Economy</span></div>
+        </div>
+      </div>
+      <div class="ai-teaser" data-teaser>
+        <div class="ai-label">AI CONTEXT</div>
+        <div class="ai-text">Rising oil prices from the Iran-Israel conflict risk widening India's trade gap. Brent already up 2.3%. The RBI flagged this in an internal note — not yet a formal policy statement.</div>
+      </div>
+    </div>
+
+    <div class="scard" data-cat="conflict">
+      <div class="smeta"><span class="ssrc">DD News</span><span class="spill p-conflict">conflict</span><span class="cbadge">2 sources</span></div>
+      <div class="card-row">
+        <div class="sdot d-conflict"></div>
+        <div style="flex:1;">
+          <div class="stitle">Saudi Arabia intercepts missiles targeting Al Jubail industrial complex — no damage reported</div>
+          <div class="smeta2"><span class="sage">2 days ago</span><span class="sregion">· World</span></div>
+        </div>
+      </div>
+      <div class="ai-teaser teaser-hidden" data-teaser>
+        <div class="ai-label">AI CONTEXT</div>
+        <div class="ai-text">Al Jubail is one of the world's largest petrochemical hubs. A successful strike there would severely disrupt global oil supply — market significance is high even without damage.</div>
+      </div>
+    </div>
+
+    <div class="scard" data-cat="diplomatic">
+      <div class="smeta"><span class="ssrc">NDTV India</span><span class="spill p-diplomatic">diplomatic</span></div>
+      <div class="card-row">
+        <div class="sdot d-diplo"></div>
+        <div style="flex:1;">
+          <div class="stitle">Congress candidate from Assam's Udalguri quits party a day before election</div>
+          <div class="smeta2"><span class="sage">2 hr ago</span><span class="sregion">· Politics</span></div>
+        </div>
+      </div>
+      <div class="ai-teaser teaser-hidden" data-teaser>
+        <div class="ai-label">AI CONTEXT</div>
+        <div class="ai-text">Last-minute defection in Udalguri raises questions about Congress's northeast India organisational health heading into polling day.</div>
+      </div>
+    </div>
+
+    <div class="tdiv"><div class="tline"></div><span class="tlabel">EARLIER TODAY</span><div class="tline"></div></div>
+
+    <div class="scard" data-cat="tech">
+      <div class="smeta"><span class="ssrc">LiveMint</span><span class="spill p-tech">technology</span></div>
+      <div class="card-row">
+        <div class="sdot d-tech"></div>
+        <div style="flex:1;">
+          <div class="stitle">Zuckerberg's Meta reportedly pauses work with Mercor after $10 billion deal scrutiny</div>
+          <div class="smeta2"><span class="sage">14 hr ago</span><span class="sregion">· Tech</span></div>
+        </div>
+      </div>
+      <div class="ai-teaser teaser-hidden" data-teaser>
+        <div class="ai-label">AI CONTEXT</div>
+        <div class="ai-text">Meta's pause on Mercor raises questions about AI hiring platform valuations. Compliance concerns cited internally — no public statement yet.</div>
+      </div>
+    </div>
+
+    <div class="scard" data-cat="conflict">
+      <div class="smeta"><span class="ssrc">Forbes India Startups</span><span class="spill p-conflict">conflict</span><span class="abadge">ALERT</span></div>
+      <div class="card-row">
+        <div class="sdot d-conflict"></div>
+        <div style="flex:1;">
+          <div class="stitle">How the West Asia war panned out: A timeline — Forbes India</div>
+          <div class="smeta2"><span class="sage">4 hr ago</span><span class="sregion">· World</span></div>
+        </div>
+      </div>
+      <div class="ai-teaser teaser-hidden" data-teaser>
+        <div class="ai-label">AI CONTEXT</div>
+        <div class="ai-text">Comprehensive Forbes India reconstruction of the conflict timeline — useful background for understanding the current escalation arc.</div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="sidebar">
+    <div class="sb-sec">
+      <div class="sb-lbl">SITUATION</div>
+      <div class="defcon-row">
+        <div class="defcon-num">5</div>
+        <div class="defcon-info">
+          <span class="defcon-status">Normal readiness</span>
+          <span class="defcon-sub">4% threat score · Global</span>
+          <span class="defcon-sub" style="margin-top:3px;color:#2a5020;">India: Elevated watch</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="sb-sec">
+      <div class="sb-lbl">LIVE ALERTS</div>
+      <div class="alert-item"><div class="adot" style="background:#cc3333;"></div><div><div class="atext">Iran-Israel — infrastructure threat issued</div><div class="atime">6 min ago</div></div></div>
+      <div class="alert-item"><div class="adot" style="background:#bb8820;"></div><div><div class="atext">RBI flags CAD risk from oil spike</div><div class="atime">2 hr ago</div></div></div>
+      <div class="alert-item"><div class="adot" style="background:#cc3333;"></div><div><div class="atext">Saudi Arabia — missile intercept, Al Jubail</div><div class="atime">2 days ago</div></div></div>
+    </div>
+
+    <div class="sb-sec">
+      <div class="sb-lbl">MARKETS</div>
+      <div class="mrow"><span class="mname">Sensex</span><span class="mval">73,847</span><span class="mchg up">+1.2%</span></div>
+      <div class="mrow"><span class="mname">Nifty 50</span><span class="mval">22,419</span><span class="mchg up">+0.9%</span></div>
+      <div class="mrow"><span class="mname">USD/INR</span><span class="mval">83.47</span><span class="mchg dn">−0.1%</span></div>
+      <div class="mrow"><span class="mname">Brent</span><span class="mval">$91.2</span><span class="mchg up">+2.3%</span></div>
+    </div>
+
+    <div class="sb-sec">
+      <div class="sb-lbl">TODAY'S BRIEF</div>
+      <div class="brief-text">Iran-Israel tensions escalate sharply — first direct infrastructure threat. RBI flags current account risk as oil climbs. Women's quota bill cleared by cabinet. Assam election sees last-minute defection.</div>
+    </div>
+  </div>
+
+</div>
+</div>
+
+<script>
+var teaserMode = 'alerts';
+var activeFilters = {all:true,conflict:true,econ:true,tech:true,govt:true,env:true,diplomatic:true,general:true};
+
+function setTeaserMode(mode, el) {
+  teaserMode = mode;
+  document.querySelectorAll('.toggle-btn').forEach(function(b){b.classList.remove('active');});
+  el.classList.add('active');
+  applyTeasers();
+}
+
+function applyTeasers() {
+  document.querySelectorAll('.scard').forEach(function(card) {
+    var teaser = card.querySelector('[data-teaser]');
+    if (!teaser) return;
+    var isAlert = card.dataset.alert === 'true';
+    if (teaserMode === 'all') teaser.classList.remove('teaser-hidden');
+    else if (teaserMode === 'none') teaser.classList.add('teaser-hidden');
+    else teaser.classList.toggle('teaser-hidden', !isAlert);
+  });
+}
+
+function filterChip(cat) {
+  var allChip = document.getElementById('chip-all');
+  if (cat === 'all') {
+    Object.keys(activeFilters).forEach(function(k){activeFilters[k]=true;});
+    document.querySelectorAll('.chip').forEach(function(c){c.classList.remove('off');});
+    document.querySelectorAll('.scard').forEach(function(c){c.style.display='';});
+    return;
+  }
+  allChip.classList.add('off');
+  var chip = document.getElementById('chip-'+cat);
+  if (!chip) return;
+  activeFilters[cat] = !activeFilters[cat];
+  chip.classList.toggle('off', !activeFilters[cat]);
+  var anyOn = ['conflict','econ','tech','govt','env'].some(function(k){return activeFilters[k];});
+  if (!anyOn) {
+    Object.keys(activeFilters).forEach(function(k){activeFilters[k]=true;});
+    document.querySelectorAll('.chip').forEach(function(c){c.classList.remove('off');});
+    document.querySelectorAll('.scard').forEach(function(c){c.style.display='';});
+    return;
+  }
+  document.querySelectorAll('.scard').forEach(function(card) {
+    var dc = card.dataset.cat;
+    var show = activeFilters[dc] || dc === 'general' || dc === 'diplomatic';
+    card.style.display = show ? '' : 'none';
+  });
+}
+
+applyTeasers();
+</script>

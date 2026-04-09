@@ -58,6 +58,8 @@ import { t } from '@/services/i18n';
 import { getCurrentTheme } from '@/utils';
 import { trackCriticalBannerAction } from '@/services/analytics';
 import { getSecretState } from '@/services/runtime-config';
+import { getRecentSignals, type CorrelationSignal } from '@/services/correlation';
+import { getRecentAlerts, type UnifiedAlert } from '@/services/cross-module-integration';
 import { STATE_SLUG_TO_CODE } from '@/config/variants/india';
 
 export interface PanelLayoutCallbacks {
@@ -511,6 +513,8 @@ export class PanelLayoutManager implements AppModule {
       if (SITE_VARIANT === 'india') {
         this.setupMobileIndiaLayout();
       }
+    } else if (SITE_VARIANT === 'india') {
+      this.setupDesktopIndiaLayout();
     }
   }
 
@@ -713,6 +717,227 @@ export class PanelLayoutManager implements AppModule {
 
     // --- Timeline chip filtering (Task 013) ---
     this.setupTimelineChips();
+  }
+
+  /**
+   * Desktop layout for SachNetra india variant (Task 015).
+   * Un-hides the timeline tab, builds the two-column DOM wrapper (river + brief sidebar),
+   * wires chip filtering, and triggers initial timeline render.
+   * CSS for this layout lives in the @media (min-width: 769px) block in main.css.
+   */
+  private setupDesktopIndiaLayout(): void {
+    // Wire timeline chip filtering — reuses same logic as mobile
+    this.setupTimelineChips();
+
+    const timelineTab = document.getElementById('snTimelineTab');
+    if (!timelineTab) return;
+
+    // CSS already makes this display:flex via @media (min-width: 769px), but set
+    // inline too so it works immediately before first paint if CSS loads slowly
+    timelineTab.style.display = 'flex';
+
+    const riverEl = timelineTab.querySelector('.sn-tl-river');
+    if (!riverEl) return;
+
+    // Create two-column wrapper: river col (flex:1) + 260px brief sidebar
+    const wrap = document.createElement('div');
+    wrap.className = 'sn-tl-desktop-wrap';
+
+    const riverCol = document.createElement('div');
+    riverCol.style.cssText = 'display:flex;flex-direction:column;min-height:0;overflow:hidden;';
+    riverCol.appendChild(riverEl);
+
+    // Sidebar — Today's Brief at top; id used by data-loader to sync brief text
+    const sidebar = document.createElement('div');
+    sidebar.className = 'sn-desktop-sidebar';
+    sidebar.id = 'snDesktopSidebar';
+    sidebar.innerHTML = `
+      <div class="sn-sidebar-brief">
+        <div class="sn-sidebar-brief-label">
+          <span class="sn-sidebar-brief-dot"></span>
+          <span>TODAY'S BRIEF</span>
+        </div>
+        <p class="sn-sidebar-brief-text" id="snDesktopBriefText">Loading brief…</p>
+      </div>
+      <div class="sn-sidebar-findings">
+        <div class="sn-sidebar-findings-label">
+          <div class="sn-sidebar-findings-label-left">
+            <span class="sn-sidebar-findings-dot"></span>
+            <span>INTELLIGENCE FINDINGS</span>
+          </div>
+          <span class="sn-sidebar-findings-count" id="snSidebarFindingsCount">0</span>
+        </div>
+        <div class="sn-sidebar-findings-list" id="snSidebarFindingsList">
+          <div class="sn-sidebar-findings-empty">Scanning…</div>
+        </div>
+      </div>
+    `;
+
+    wrap.appendChild(riverCol);
+    wrap.appendChild(sidebar);
+    timelineTab.appendChild(wrap);
+
+    // --- Populate sidebar Intelligence Findings (Task 016) ---
+    const FINDING_ICONS: Record<string, string> = {
+      breaking_surge: '🔥', silent_divergence: '🔇', flow_price_divergence: '📊',
+      explained_market_move: '💡', prediction_leads_news: '🔮', geo_convergence: '🌍',
+      hotspot_escalation: '⚠️', news_leads_markets: '📰', velocity_spike: '📈',
+      keyword_spike: '📊', convergence: '🔀', triangulation: '🔺',
+      flow_drop: '⬇️', sector_cascade: '🌊', cii_spike: '🔴',
+      cascade: '⚡', composite: '🔗',
+    };
+
+    const formatTimeAgo = (date: Date): string => {
+      const ms = Date.now() - date.getTime();
+      if (ms < 60000) return 'just now';
+      if (ms < 3600000) return `${Math.floor(ms / 60000)}m ago`;
+      if (ms < 86400000) return `${Math.floor(ms / 3600000)}h ago`;
+      return `${Math.floor(ms / 86400000)}d ago`;
+    };
+
+    const priorityScore = (p: string): number => {
+      const m: Record<string, number> = { critical: 4, high: 3, medium: 2, low: 1 };
+      return m[p] ?? 0;
+    };
+
+    // AI summarizer returns JSON in 3+ different schemas — extract readable text from all of them.
+    // Pattern A: { summaryN: { summary: "string" } }             (india ✅ already worked)
+    // Pattern B: { summary: "string", meaning: "string" } x2    (kerala: two objects concatenated)
+    // Pattern C: { summary: { "1": { event: "string" } }, ... }  (crore: nested numbered events)
+    const cleanDescription = (desc: string): string => {
+      const trimmed = desc.trim();
+      if (!trimmed.includes('{')) return desc;
+
+      // Recursively extract human-readable strings from any JSON structure.
+      // Prioritises 'summary' and 'event' keys. Falls back to all string leaf values.
+      const extractText = (obj: unknown, depth = 0): string[] => {
+        if (depth > 6) return []; // guard against pathological nesting
+        if (typeof obj === 'string') return obj.trim() ? [obj.trim()] : [];
+        if (Array.isArray(obj)) return obj.flatMap(v => extractText(v, depth + 1));
+        if (obj && typeof obj === 'object') {
+          const rec = obj as Record<string, unknown>;
+          // Try priority keys for direct string values first
+          for (const key of ['summary', 'event']) {
+            const val = rec[key];
+            if (typeof val === 'string' && val.trim()) return [val.trim()];
+          }
+          // Try priority keys for nested objects (Pattern C: summary → { "1": { event } })
+          for (const key of ['summary', 'event']) {
+            const val = rec[key];
+            if (val && typeof val === 'object') {
+              const nested = extractText(val, depth + 1);
+              if (nested.length > 0) return nested;
+            }
+          }
+          // Fallback: recurse into all values
+          const results: string[] = [];
+          for (const val of Object.values(rec)) {
+            results.push(...extractText(val, depth + 1));
+          }
+          return results;
+        }
+        return [];
+      };
+
+      // Try as a single valid JSON document first
+      try {
+        const parsed: unknown = JSON.parse(trimmed);
+        const rawTexts = extractText(parsed);
+        // Deduplicate (AI sometimes returns same summary twice across blocks)
+        const texts = [...new Set(rawTexts)];
+        if (texts.length > 0) return texts.join('\n');
+      } catch {
+        // Pattern B: multiple JSON objects concatenated — extract each block independently
+        const blockRegex = /\{(?:[^{}]|\{[^{}]*\})*\}/g;
+        const rawTexts: string[] = [];
+        let match: RegExpExecArray | null;
+        while ((match = blockRegex.exec(trimmed)) !== null) {
+          try {
+            const parsed: unknown = JSON.parse(match[0]);
+            rawTexts.push(...extractText(parsed));
+          } catch { /* skip invalid block */ }
+        }
+        // Deduplicate across blocks
+        const texts = [...new Set(rawTexts)];
+        if (texts.length > 0) return texts.join('\n');
+      }
+
+      return desc; // plain text fallthrough
+    };
+
+    const updateSidebarFindings = () => {
+      const listEl = document.getElementById('snSidebarFindingsList');
+      const countEl = document.getElementById('snSidebarFindingsCount');
+      if (!listEl) return;
+
+      // Merge signals + alerts into a unified list (mirrors IntelligenceFindingsBadge logic)
+      const signals = getRecentSignals();
+      const alerts = getRecentAlerts(6);
+
+      interface SidebarFinding {
+        id: string;
+        title: string;
+        description: string;
+        priority: string;
+        timestamp: Date;
+        icon: string;
+      }
+
+      const findings: SidebarFinding[] = [
+        ...signals.map((s: CorrelationSignal) => ({
+          id: `signal-${s.id}`,
+          title: s.title,
+          description: s.description,
+          priority: s.confidence >= 0.7 ? 'high' : s.confidence >= 0.5 ? 'medium' : 'low',
+          timestamp: s.timestamp,
+          icon: FINDING_ICONS[s.type] || '📌',
+        })),
+        ...alerts.map((a: UnifiedAlert) => ({
+          id: `alert-${a.id}`,
+          title: a.title,
+          description: a.summary,
+          priority: a.priority,
+          timestamp: a.timestamp,
+          icon: FINDING_ICONS[a.type] || '📌',
+        })),
+      ].sort((a, b) => {
+        const timeDiff = b.timestamp.getTime() - a.timestamp.getTime();
+        if (Math.abs(timeDiff) < 60000) {
+          return priorityScore(b.priority) - priorityScore(a.priority);
+        }
+        return timeDiff;
+      });
+
+      if (countEl) countEl.textContent = String(findings.length);
+
+      if (findings.length === 0) {
+        listEl.innerHTML = '<div class="sn-sidebar-findings-empty">📡 Scanning…</div>';
+        return;
+      }
+
+      listEl.innerHTML = findings.slice(0, 15).map(f => `
+        <div class="sn-sidebar-finding">
+          <div class="sn-sidebar-finding-header">
+            <span class="sn-sidebar-finding-title">${f.icon} ${escapeHtml(f.title)}</span>
+            <span class="sn-sidebar-finding-priority ${escapeHtml(f.priority)}">${escapeHtml(f.priority)}</span>
+          </div>
+          <div class="sn-sidebar-finding-desc">${cleanDescription(f.description).split('\n').map(l => escapeHtml(l)).join('<br>')}</div>
+          <div class="sn-sidebar-finding-time">${formatTimeAgo(f.timestamp)}</div>
+        </div>
+      `).join('');
+
+      // Click-to-expand: toggle .expanded on finding to show full description
+      listEl.querySelectorAll('.sn-sidebar-finding').forEach(el => {
+        el.addEventListener('click', () => el.classList.toggle('expanded'));
+      });
+    };
+
+    // Listen for data updates + run initial populate
+    document.addEventListener('wm:intelligence-updated', updateSidebarFindings);
+    updateSidebarFindings();
+
+    // Trigger timeline render — data may already be loaded if this runs after populate
+    this.callbacks.renderTimeline?.();
   }
 
   /**

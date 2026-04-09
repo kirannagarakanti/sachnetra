@@ -97,7 +97,7 @@ import { fetchSecurityAdvisories } from '@/services/security-advisories';
 import { fetchTelegramFeed } from '@/services/telegram-intel';
 import { fetchOrefAlerts, startOrefPolling, stopOrefPolling, onOrefAlertsUpdate } from '@/services/oref-alerts';
 import { enrichEventsWithExposure } from '@/services/population-exposure';
-import { debounce, getCircuitBreakerCooldownInfo } from '@/utils';
+import { debounce, getCircuitBreakerCooldownInfo, isMobileDevice } from '@/utils';
 import { getSecretState, isFeatureAvailable, isFeatureEnabled } from '@/services/runtime-config';
 import { isDesktopRuntime, toApiUrl } from '@/services/runtime';
 import { getAiFlowSettings } from '@/services/ai-flow-settings';
@@ -318,6 +318,17 @@ function openStoryDetail(item: NewsItem, cluster?: ClusteredEvent): void {
 
   document.body.appendChild(overlay);
 
+  // Desktop: wrap content in a 640px centered modal; backdrop click dismisses it.
+  // closeOverlay is declared below and referenced here via a shared flag approach—
+  // we attach the backdrop listener after closeOverlay is defined.
+  const isDesktop = !isMobileDevice();
+  if (isDesktop) {
+    const modal = document.createElement('div');
+    modal.className = 'sn-detail-modal';
+    while (overlay.firstChild) modal.appendChild(overlay.firstChild);
+    overlay.appendChild(modal);
+  }
+
   // --- Close handlers ---
   const closeOverlay = () => {
     overlay.remove();
@@ -325,6 +336,13 @@ function openStoryDetail(item: NewsItem, cluster?: ClusteredEvent): void {
   };
 
   document.getElementById('snDetailBack')?.addEventListener('click', closeOverlay);
+
+  // Desktop: click on the backdrop (outside the modal) dismisses the detail
+  if (isDesktop) {
+    overlay.addEventListener('click', (e) => {
+      if (e.target === overlay) closeOverlay();
+    });
+  }
 
   // Android back button / swipe-back via popstate
   const onPopState = () => closeOverlay();
@@ -1340,6 +1358,10 @@ export class DataLoaderManager implements AppModule {
     // India variant: populate mobile Today's Brief card + story feed
     if (SITE_VARIANT === 'india') {
       this.populateIndiaBrief(collectedNews);
+      // Trigger correlation analysis directly — India has no polymarket panel,
+      // so loadPredictions() (the normal caller) never runs. Without this,
+      // keyword spikes, CII alerts, and geo convergence signals stay empty.
+      void this.runCorrelationAnalysis();
     }
   }
 
@@ -1399,6 +1421,10 @@ export class DataLoaderManager implements AppModule {
       console.warn('[IndiaBrief] Failed to generate daily brief:', error);
       briefEl.textContent = 'Brief unavailable.';
     }
+
+    // Sync to desktop sidebar brief (populated by setupDesktopIndiaLayout)
+    const desktopBriefEl = document.getElementById('snDesktopBriefText');
+    if (desktopBriefEl) desktopBriefEl.textContent = briefEl.textContent;
   }
 
   /**

@@ -1,0 +1,291 @@
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+.root{font-family:var(--font-sans);background:#09080f;border-radius:12px;overflow:hidden;}
+.option-tabs{display:flex;background:#0d0b1c;border-bottom:0.5px solid #1e1c35;padding:0 16px;}
+.otab{padding:10px 18px;font-size:12px;color:#4a4870;cursor:pointer;border-bottom:2px solid transparent;letter-spacing:0.04em;}
+.otab.active{color:#a0a0f0;border-bottom-color:#7b7bff;}
+.opt{display:none;}
+.opt.show{display:block;}
+
+/* shared topbar */
+.topbar{background:#0d0b1c;border-bottom:0.5px solid #1e1c35;padding:9px 16px;display:flex;align-items:center;gap:10px;}
+.logo-row{display:flex;align-items:center;gap:7px;margin-right:12px;}
+.logo-box{width:22px;height:22px;border-radius:6px;background:#1a1040;display:flex;align-items:center;justify-content:center;}
+.logo-name{font-size:14px;font-weight:500;color:#fff;}
+.page-tag{font-size:11px;color:#3a3860;margin-left:2px;}
+.chips{display:flex;gap:5px;flex:1;overflow-x:auto;}
+.chips::-webkit-scrollbar{display:none;}
+.chip{padding:4px 11px;border-radius:14px;font-size:11px;cursor:pointer;border:0.5px solid;white-space:nowrap;}
+.c-all{border-color:#4a4870;color:#9090c0;background:#14122a;}
+.c-all.on{border-color:#7070b0;color:#c0c0e8;background:#1c1a38;}
+.c-conflict{border-color:#6a2020;color:#dd6060;background:#1a0c0c;}
+.c-conflict.on{border-color:#bb3333;color:#ff8888;background:#280e0e;}
+.c-econ{border-color:#2a5010;color:#70bb30;background:#0e180a;}
+.c-econ.on{border-color:#4a9020;color:#90d060;background:#162510;}
+.c-tech{border-color:#183850;color:#4088aa;background:#0a1420;}
+.c-tech.on{border-color:#2088aa;color:#55aacc;background:#101e2a;}
+.c-govt{border-color:#503810;color:#bb8020;background:#180e08;}
+.c-govt.on{border-color:#aa7020;color:#ddaa44;background:#241808;}
+.c-env{border-color:#184840;color:#40aa88;background:#081818;}
+.c-env.on{border-color:#208870;color:#55ccaa;background:#102820;}
+.defcon{display:flex;align-items:center;gap:5px;padding:3px 10px;border-radius:10px;background:#1a1030;border:0.5px solid #3a2a60;font-size:11px;color:#8888cc;margin-left:auto;}
+.defcon-dot{width:6px;height:6px;border-radius:50%;background:#5555aa;}
+.live-dot{width:6px;height:6px;border-radius:50%;background:#44aa44;margin-right:2px;}
+
+/* time divider */
+.tdiv{display:flex;align-items:center;gap:8px;padding:8px 16px 4px;}
+.tline{flex:1;height:0.5px;background:#1a1830;}
+.tlabel{font-size:10px;color:#3a3860;letter-spacing:0.07em;white-space:nowrap;}
+
+/* story row */
+.srow{display:flex;align-items:flex-start;gap:9px;padding:8px 16px;border-bottom:0.5px solid #120f1e;cursor:pointer;}
+.srow:hover{background:#110e1e;}
+.srow.alert{border-left:2px solid #cc3333;padding-left:14px;}
+.sdot{width:7px;height:7px;border-radius:50%;flex-shrink:0;margin-top:5px;}
+.d-conflict{background:#cc3333;}.d-econ{background:#55aa22;}.d-tech{background:#2299bb;}
+.d-govt{background:#bb8820;}.d-env{background:#22aa88;}.d-general{background:#5050a0;}
+.smeta{display:flex;align-items:center;gap:4px;margin-bottom:3px;flex-wrap:wrap;}
+.ssrc{font-size:10px;color:#4a4878;}
+.spill{font-size:10px;padding:1px 6px;border-radius:8px;}
+.p-conflict{background:#280e0e;color:#ff7070;}
+.p-econ{background:#122010;color:#80cc40;}
+.p-tech{background:#0a1820;color:#50aacc;}
+.p-govt{background:#201408;color:#ddaa44;}
+.p-env{background:#081a18;color:#44ccaa;}
+.p-general{background:#141228;color:#8080bb;}
+.p-diplomatic{background:#0a1a28;color:#5599cc;}
+.abadge{font-size:10px;padding:1px 6px;border-radius:8px;background:#2a0808;color:#ff5050;border:0.5px solid #440808;}
+.cbadge{font-size:10px;padding:1px 6px;border-radius:8px;background:#181630;color:#6060a0;}
+.stitle{font-size:12px;color:#ccc8e8;line-height:1.4;}
+.sage{font-size:10px;color:#383660;margin-top:3px;}
+
+/* sidebar elements */
+.sidebar{width:240px;flex-shrink:0;border-left:0.5px solid #1a1830;display:flex;flex-direction:column;gap:0;}
+.sb-section{border-bottom:0.5px solid #1a1830;padding:12px 14px;}
+.sb-label{font-size:10px;color:#3a3860;letter-spacing:0.07em;margin-bottom:8px;}
+.sb-brief{font-size:11px;color:#8080a8;line-height:1.5;}
+.alert-item{display:flex;align-items:flex-start;gap:7px;padding:6px 0;border-bottom:0.5px solid #140f1e;}
+.alert-item:last-child{border-bottom:none;}
+.alert-dot{width:6px;height:6px;border-radius:50%;flex-shrink:0;margin-top:4px;}
+.alert-text{font-size:11px;color:#c0bcd8;line-height:1.3;}
+.alert-time{font-size:10px;color:#383660;}
+.ticker-row{display:flex;justify-content:space-between;align-items:center;padding:4px 0;}
+.ticker-name{font-size:11px;color:#6060a0;}
+.ticker-val{font-size:11px;color:#e0daf0;}
+.ticker-chg.up{font-size:10px;color:#55aa33;}
+.ticker-chg.dn{font-size:10px;color:#cc4444;}
+.defcon-big{display:flex;align-items:center;gap:8px;}
+.defcon-num{font-size:20px;font-weight:500;color:#7070c0;}
+.defcon-desc{font-size:11px;color:#5050a0;line-height:1.4;}
+
+/* card grid for option A */
+.two-col{display:grid;grid-template-columns:minmax(0,1fr) 240px;gap:0;}
+.brief-card{margin:10px 12px;background:#110e22;border:0.5px solid #1e1c35;border-radius:10px;padding:12px;}
+.brief-title{font-size:11px;color:#5050a0;letter-spacing:0.07em;margin-bottom:6px;}
+.brief-text{font-size:12px;color:#9090c0;line-height:1.5;}
+.trending{margin:0 12px 10px;}
+.trend-item{padding:6px 0;border-bottom:0.5px solid #140f1e;display:flex;align-items:center;gap:8px;}
+.trend-item:last-child{border-bottom:none;}
+.trend-n{font-size:10px;color:#3a3860;width:14px;}
+.trend-text{font-size:12px;color:#b0add0;}
+
+/* option C wide cards */
+.wide-river{padding:0 24px;}
+.wrow{display:flex;align-items:flex-start;gap:12px;padding:10px 0;border-bottom:0.5px solid #140f1e;cursor:pointer;}
+.wrow:hover{background:#0f0d1e;}
+.wrow.alert{border-left:2px solid #cc3333;padding-left:10px;margin-left:-10px;}
+.wdot{width:8px;height:8px;border-radius:50%;flex-shrink:0;margin-top:6px;}
+.wcontent{flex:1;min-width:0;display:grid;grid-template-columns:minmax(0,1fr) 180px;gap:12px;align-items:start;}
+.wtitle{font-size:14px;color:#d0cce8;line-height:1.4;font-weight:400;}
+.wmeta{display:flex;align-items:center;gap:5px;margin-top:5px;flex-wrap:wrap;}
+.wteaser{font-size:12px;color:#5050a0;line-height:1.5;padding-top:2px;}
+.wage{font-size:11px;color:#383660;margin-top:6px;}
+.wcnt{text-align:right;}
+</style>
+
+<div class="root">
+
+<div class="option-tabs">
+  <div class="otab active" onclick="showOpt('a',this)">Option A — River + brief</div>
+  <div class="otab" onclick="showOpt('b',this)">Option B — River + sidebar</div>
+  <div class="otab" onclick="showOpt('c',this)">Option C — Full-width cards</div>
+</div>
+
+<div class="opt show" id="opt-a">
+  <div class="topbar">
+    <div class="logo-row">
+      <div class="logo-box"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="5" r="3.5" stroke="#7b7bff" stroke-width="1.1" fill="none"/><circle cx="7" cy="5" r="1.3" fill="#FF9933"/><line x1="7" y1="8.5" x2="7" y2="12" stroke="#FF9933" stroke-width="1.1" stroke-linecap="round"/></svg></div>
+      <span class="logo-name">SachNetra</span><span class="page-tag">Timeline</span>
+    </div>
+    <div class="chips">
+      <div class="chip c-all on">All</div>
+      <div class="chip c-conflict on">Conflict</div>
+      <div class="chip c-econ on">Economy</div>
+      <div class="chip c-tech on">Technology</div>
+      <div class="chip c-govt on">Government</div>
+      <div class="chip c-env on">Environment</div>
+    </div>
+    <div class="defcon"><div class="defcon-dot"></div>DEFCON 5 · 4%</div>
+  </div>
+  <div class="two-col">
+    <div>
+      <div class="tdiv"><div class="tline"></div><span class="tlabel">JUST NOW</span><div class="tline"></div></div>
+      <div class="srow alert"><div class="sdot d-conflict"></div><div style="flex:1"><div class="smeta"><span class="ssrc">The Hindu</span><span class="spill p-conflict">conflict</span><span class="abadge">ALERT</span><span class="cbadge">3 sources</span></div><div class="stitle">Iran-Israel war LIVE: Trump threatens to destroy all Iran bridges and power plants in four hours if no deal</div><div class="sage">6 min ago</div></div></div>
+      <div class="srow"><div class="sdot d-general"></div><div style="flex:1"><div class="smeta"><span class="ssrc">Telangana Today</span><span class="spill p-general">general</span></div><div class="stitle">Opinion: Telangana Senior Secondary education reforms need a rethink, not a rush</div><div class="sage">1 min ago</div></div></div>
+      <div class="srow"><div class="sdot d-diplomatic" style="background:#2299bb"></div><div style="flex:1"><div class="smeta"><span class="ssrc">The Hindu</span><span class="spill p-diplomatic">diplomatic</span></div><div class="stitle">Cabinet clears draft amendment Bill to implement women's quota</div><div class="sage">2 min ago</div></div></div>
+      <div class="srow"><div class="sdot d-general"></div><div style="flex:1"><div class="smeta"><span class="ssrc">Business Today</span><span class="spill p-general">general</span></div><div class="stitle">How Arun Alagappan has turned Coromandel International into an integrated force</div><div class="sage">Just now</div></div></div>
+      <div class="tdiv"><div class="tline"></div><span class="tlabel">1–3 HOURS AGO</span><div class="tline"></div></div>
+      <div class="srow"><div class="sdot d-econ"></div><div style="flex:1"><div class="smeta"><span class="ssrc">Economic Times</span><span class="spill p-econ">economy</span><span class="abadge">ALERT</span></div><div class="stitle">West Asia war: RBI warns of upside risks to current account deficit</div><div class="sage">2 hr ago</div></div></div>
+      <div class="srow"><div class="sdot d-conflict"></div><div style="flex:1"><div class="smeta"><span class="ssrc">DD News</span><span class="spill p-conflict">conflict</span><span class="cbadge">2 sources</span></div><div class="stitle">Saudi Arabia intercepts missiles at Al Jubail — DD News</div><div class="sage">2 days ago</div></div></div>
+      <div class="srow"><div class="sdot d-govt"></div><div style="flex:1"><div class="smeta"><span class="ssrc">NDTV India</span><span class="spill p-diplomatic">diplomatic</span></div><div class="stitle">Congress Candidate From Assam's Udalguri Quits Party A Day Before Election</div><div class="sage">2 hr ago</div></div></div>
+      <div class="srow"><div class="sdot d-econ"></div><div style="flex:1"><div class="smeta"><span class="ssrc">The Ken</span><span class="spill p-econ">economy</span><span class="abadge">ALERT</span></div><div class="stitle">The retirement shield against Trump's war and market meltdowns</div><div class="sage">12 hr ago</div></div></div>
+    </div>
+    <div style="border-left:0.5px solid #1a1830;padding-top:10px;">
+      <div class="brief-card">
+        <div class="brief-title">TODAY'S BRIEF</div>
+        <div class="brief-text">Iran-Israel tensions escalate as Trump threatens infrastructure strikes. Markets on edge — RBI warns on CAD. Domestic news: women's quota bill cleared, Telangana education debate resurfaces.</div>
+      </div>
+      <div style="padding:10px 12px 4px;font-size:10px;color:#3a3860;letter-spacing:0.07em;">TRENDING</div>
+      <div class="trending">
+        <div class="trend-item"><span class="trend-n">1</span><span class="trend-text">Iran-Israel war</span></div>
+        <div class="trend-item"><span class="trend-n">2</span><span class="trend-text">Women's quota bill</span></div>
+        <div class="trend-item"><span class="trend-n">3</span><span class="trend-text">RBI current account</span></div>
+        <div class="trend-item"><span class="trend-n">4</span><span class="trend-text">Udalguri election</span></div>
+        <div class="trend-item"><span class="trend-n">5</span><span class="trend-text">Telangana education</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="opt" id="opt-b">
+  <div class="topbar">
+    <div class="logo-row">
+      <div class="logo-box"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="5" r="3.5" stroke="#7b7bff" stroke-width="1.1" fill="none"/><circle cx="7" cy="5" r="1.3" fill="#FF9933"/><line x1="7" y1="8.5" x2="7" y2="12" stroke="#FF9933" stroke-width="1.1" stroke-linecap="round"/></svg></div>
+      <span class="logo-name">SachNetra</span><span class="page-tag">Timeline</span>
+    </div>
+    <div class="chips">
+      <div class="chip c-all on">All</div>
+      <div class="chip c-conflict on">Conflict</div>
+      <div class="chip c-econ on">Economy</div>
+      <div class="chip c-tech on">Technology</div>
+      <div class="chip c-govt on">Government</div>
+      <div class="chip c-env on">Environment</div>
+    </div>
+    <div class="defcon"><div class="defcon-dot"></div>DEFCON 5 · 4%</div>
+  </div>
+  <div style="display:flex;">
+    <div style="flex:1;min-width:0;">
+      <div class="tdiv"><div class="tline"></div><span class="tlabel">JUST NOW</span><div class="tline"></div></div>
+      <div class="srow alert"><div class="sdot d-conflict"></div><div style="flex:1"><div class="smeta"><span class="ssrc">The Hindu</span><span class="spill p-conflict">conflict</span><span class="abadge">ALERT</span><span class="cbadge">3 sources</span></div><div class="stitle">Iran-Israel war LIVE: Trump threatens to destroy all Iran bridges and power plants in four hours if no deal</div><div class="sage">6 min ago</div></div></div>
+      <div class="srow"><div class="sdot d-general"></div><div style="flex:1"><div class="smeta"><span class="ssrc">Telangana Today</span><span class="spill p-general">general</span></div><div class="stitle">Opinion: Telangana Senior Secondary education reforms need a rethink, not a rush</div><div class="sage">1 min ago</div></div></div>
+      <div class="srow"><div class="sdot" style="background:#2299bb"></div><div style="flex:1"><div class="smeta"><span class="ssrc">The Hindu</span><span class="spill p-diplomatic">diplomatic</span></div><div class="stitle">Cabinet clears draft amendment Bill to implement women's quota</div><div class="sage">2 min ago</div></div></div>
+      <div class="srow"><div class="sdot d-general"></div><div style="flex:1"><div class="smeta"><span class="ssrc">Business Today</span><span class="spill p-general">general</span></div><div class="stitle">How Arun Alagappan has turned Coromandel International into an integrated force</div><div class="sage">Just now</div></div></div>
+      <div class="tdiv"><div class="tline"></div><span class="tlabel">1–3 HOURS AGO</span><div class="tline"></div></div>
+      <div class="srow"><div class="sdot d-econ"></div><div style="flex:1"><div class="smeta"><span class="ssrc">Economic Times</span><span class="spill p-econ">economy</span><span class="abadge">ALERT</span></div><div class="stitle">West Asia war: RBI warns of upside risks to current account deficit</div><div class="sage">2 hr ago</div></div></div>
+      <div class="srow"><div class="sdot d-conflict"></div><div style="flex:1"><div class="smeta"><span class="ssrc">DD News</span><span class="spill p-conflict">conflict</span><span class="cbadge">2 sources</span></div><div class="stitle">Saudi Arabia intercepts missiles at Al Jubail</div><div class="sage">2 days ago</div></div></div>
+      <div class="srow"><div class="sdot d-govt"></div><div style="flex:1"><div class="smeta"><span class="ssrc">NDTV India</span><span class="spill p-diplomatic">diplomatic</span></div><div class="stitle">Congress Candidate from Assam's Udalguri Quits Party A Day Before Election</div><div class="sage">2 hr ago</div></div></div>
+    </div>
+    <div class="sidebar">
+      <div class="sb-section">
+        <div class="sb-label">SITUATION</div>
+        <div class="defcon-big">
+          <div class="defcon-num">5</div>
+          <div class="defcon-desc">Normal readiness<br><span style="color:#3a3860;">4% threat score</span></div>
+        </div>
+      </div>
+      <div class="sb-section">
+        <div class="sb-label">LIVE ALERTS</div>
+        <div class="alert-item"><div class="alert-dot" style="background:#cc3333;"></div><div><div class="alert-text">Iran-Israel escalation — infrastructure threat</div><div class="alert-time">6 min ago</div></div></div>
+        <div class="alert-item"><div class="alert-dot" style="background:#cc8820;"></div><div><div class="alert-text">RBI flags CAD risk from West Asia war</div><div class="alert-time">2 hr ago</div></div></div>
+        <div class="alert-item"><div class="alert-dot" style="background:#cc3333;"></div><div><div class="alert-text">Saudi Arabia — missile intercept at Al Jubail</div><div class="alert-time">2 days ago</div></div></div>
+      </div>
+      <div class="sb-section">
+        <div class="sb-label">MARKETS</div>
+        <div class="ticker-row"><span class="ticker-name">Sensex</span><span class="ticker-val">73,847</span><span class="ticker-chg up">+1.2%</span></div>
+        <div class="ticker-row"><span class="ticker-name">Nifty 50</span><span class="ticker-val">22,419</span><span class="ticker-chg up">+0.9%</span></div>
+        <div class="ticker-row"><span class="ticker-name">USD/INR</span><span class="ticker-val">83.47</span><span class="ticker-chg dn">−0.1%</span></div>
+        <div class="ticker-row"><span class="ticker-name">Brent</span><span class="ticker-val">$91.2</span><span class="ticker-chg up">+2.3%</span></div>
+      </div>
+      <div class="sb-section">
+        <div class="sb-label">TODAY'S BRIEF</div>
+        <div class="sb-brief">Iran-Israel tensions escalate. RBI warns on CAD. Women's quota bill cleared in cabinet. Markets up on domestic cues.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="opt" id="opt-c">
+  <div class="topbar">
+    <div class="logo-row">
+      <div class="logo-box"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="5" r="3.5" stroke="#7b7bff" stroke-width="1.1" fill="none"/><circle cx="7" cy="5" r="1.3" fill="#FF9933"/><line x1="7" y1="8.5" x2="7" y2="12" stroke="#FF9933" stroke-width="1.1" stroke-linecap="round"/></svg></div>
+      <span class="logo-name">SachNetra</span><span class="page-tag">Timeline</span>
+    </div>
+    <div class="chips">
+      <div class="chip c-all on">All</div>
+      <div class="chip c-conflict on">Conflict</div>
+      <div class="chip c-econ on">Economy</div>
+      <div class="chip c-tech on">Technology</div>
+      <div class="chip c-govt on">Government</div>
+      <div class="chip c-env on">Environment</div>
+    </div>
+    <div class="defcon"><div class="defcon-dot"></div>DEFCON 5 · 4%</div>
+  </div>
+  <div class="wide-river">
+    <div class="tdiv" style="padding-left:0;padding-right:0;"><div class="tline"></div><span class="tlabel">JUST NOW</span><div class="tline"></div></div>
+    <div class="wrow alert">
+      <div class="wdot d-conflict"></div>
+      <div class="wcontent">
+        <div><div class="smeta" style="margin-bottom:5px;"><span class="ssrc">The Hindu</span><span class="spill p-conflict">conflict</span><span class="abadge">ALERT</span><span class="cbadge">3 sources</span></div><div class="wtitle">Iran-Israel war LIVE: Trump threatens to destroy all Iran bridges and power plants in four hours if no deal reached</div><div class="wmeta"><span class="sage" style="margin:0;">6 min ago · World</span></div></div>
+        <div class="wcnt"><div class="wteaser">Multiple outlets tracking live. Trump's statement marks a sharp escalation — first direct infrastructure threat of the conflict.</div></div>
+      </div>
+    </div>
+    <div class="wrow">
+      <div class="wdot" style="background:#2299bb;"></div>
+      <div class="wcontent">
+        <div><div class="smeta" style="margin-bottom:5px;"><span class="ssrc">The Hindu</span><span class="spill p-diplomatic">diplomatic</span></div><div class="wtitle">Cabinet clears draft amendment Bill to implement women's quota in legislatures</div><div class="wmeta"><span class="sage" style="margin:0;">2 min ago · India</span></div></div>
+        <div class="wcnt"><div class="wteaser">Long-pending women's reservation bill moves forward. Implementation timeline and state-level impact still unclear.</div></div>
+      </div>
+    </div>
+    <div class="wrow">
+      <div class="wdot d-general"></div>
+      <div class="wcontent">
+        <div><div class="smeta" style="margin-bottom:5px;"><span class="ssrc">Telangana Today</span><span class="spill p-general">general</span></div><div class="wtitle">Opinion: Telangana Senior Secondary education reforms need a rethink, not a rush</div><div class="wmeta"><span class="sage" style="margin:0;">1 min ago · Telangana</span></div></div>
+        <div class="wcnt"><div class="wteaser">Educators and academics push back on the pace of curriculum changes ahead of board exams.</div></div>
+      </div>
+    </div>
+    <div class="tdiv" style="padding-left:0;padding-right:0;"><div class="tline"></div><span class="tlabel">1–3 HOURS AGO</span><div class="tline"></div></div>
+    <div class="wrow">
+      <div class="wdot d-econ"></div>
+      <div class="wcontent">
+        <div><div class="smeta" style="margin-bottom:5px;"><span class="ssrc">Economic Times</span><span class="spill p-econ">economy</span><span class="abadge">ALERT</span></div><div class="wtitle">West Asia war: RBI warns of upside risks to India's current account deficit</div><div class="wmeta"><span class="sage" style="margin:0;">2 hr ago · Economy</span></div></div>
+        <div class="wcnt"><div class="wteaser">Rising oil prices from the conflict could widen India's trade gap — RBI flags concern in internal assessment.</div></div>
+      </div>
+    </div>
+    <div class="wrow">
+      <div class="wdot d-conflict"></div>
+      <div class="wcontent">
+        <div><div class="smeta" style="margin-bottom:5px;"><span class="ssrc">DD News</span><span class="spill p-conflict">conflict</span><span class="cbadge">2 sources</span></div><div class="wtitle">Saudi Arabia intercepts missiles targeting Al Jubail industrial complex</div><div class="wmeta"><span class="sage" style="margin:0;">2 days ago · World</span></div></div>
+        <div class="wcnt"><div class="wteaser">Houthi-linked missiles intercepted near one of the world's largest petrochemical hubs. No damage reported.</div></div>
+      </div>
+    </div>
+    <div class="wrow">
+      <div class="wdot d-govt"></div>
+      <div class="wcontent">
+        <div><div class="smeta" style="margin-bottom:5px;"><span class="ssrc">NDTV India</span><span class="spill p-diplomatic">diplomatic</span></div><div class="wtitle">Congress candidate from Assam's Udalguri quits party a day before election</div><div class="wmeta"><span class="sage" style="margin:0;">2 hr ago · Politics</span></div></div>
+        <div class="wcnt"><div class="wteaser">Last-minute defection raises questions about Congress's organisational health in northeast India ahead of polling.</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div>
+
+<script>
+function showOpt(id, el) {
+  document.querySelectorAll('.opt').forEach(function(o){o.classList.remove('show');});
+  document.querySelectorAll('.otab').forEach(function(t){t.classList.remove('active');});
+  document.getElementById('opt-'+id).classList.add('show');
+  el.classList.add('active');
+}
+</script>

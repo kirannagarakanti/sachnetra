@@ -18837,6 +18837,535 @@ body.has-breaking-alert .panels-grid {
 }
 
 /* ═══════════════════════════════════════════════════════════════════════════════
+   SachNetra India — Desktop Layout
+   Task 015: timeline river + Today's Brief sidebar + 640px story detail modal
+   Scoped to [data-variant="india"] + min-width: 769px
+   ═══════════════════════════════════════════════════════════════════════════════ */
+
+@media (min-width: 769px) {
+
+  /* --- Hide WorldMonitor desktop chrome, show timeline --- */
+  [data-variant="india"] .panels-grid,
+  [data-variant="india"] .map-section,
+  [data-variant="india"] .site-footer,
+  [data-variant="india"] .sn-bottom-nav,
+  [data-variant="india"] .sn-state-bar,
+  [data-variant="india"] .sn-state-grid,
+  [data-variant="india"] .sn-map-tab,
+  [data-variant="india"] .sn-states-tab,
+  [data-variant="india"] .sn-feed { display: none !important; }
+
+  /* --- Show the timeline tab as the main content --- */
+  [data-variant="india"] .sn-timeline-tab {
+    display: flex !important;
+    flex-direction: column;
+    flex: 1;
+    min-height: 0;
+    width: 100%;
+  }
+
+  /* --- Body + app scroll --- */
+  [data-variant="india"] body {
+    background: var(--sn-dark-bg);
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  }
+  [data-variant="india"] #app {
+    overflow: auto;
+    overflow-x: hidden;
+  }
+  [data-variant="india"] .main-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+    overflow: hidden;
+  }
+
+  /* --- Header tweaks for india desktop --- */
+  [data-variant="india"] .header {
+    background: var(--sn-deep-bg);
+    border-bottom: 0.5px solid var(--sn-border);
+  }
+  [data-variant="india"] .sn-header-icon {
+    width: 32px !important;
+    height: 32px !important;
+  }
+  /* Hide elements not relevant for SachNetra desktop */
+  [data-variant="india"] .variant-switcher,
+  [data-variant="india"] .region-selector,
+  [data-variant="india"] .status-indicator,
+  [data-variant="india"] .search-btn,
+  [data-variant="india"] .copy-link-btn,
+  [data-variant="india"] .fullscreen-btn,
+  [data-variant="india"] .download-wrapper,
+  [data-variant="india"] .credit-link,
+  [data-variant="india"] .github-link,
+  [data-variant="india"] .search-mobile-fab,
+  [data-variant="india"] .version,
+  [data-variant="india"] .pizzint-indicator,
+  [data-variant="india"] .pro-banner,
+  [data-variant="india"] .intel-findings-badge,
+  [data-variant="india"] .community-widget,
+  [data-variant="india"] .mobile-settings-btn,
+  [data-variant="india"] #unifiedSettingsMount,
+  [data-variant="india"] .playback-control,
+  [data-variant="india"] .export-btn,
+  [data-variant="india"] .beta-badge { display: none !important; }
+
+  /* --- Desktop two-column: river + sidebar --- */
+  [data-variant="india"] .sn-tl-desktop-wrap {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 380px;
+    flex: 1;
+    min-height: 0;
+    overflow: hidden;
+  }
+
+  /* --- Chip bar --- */
+  [data-variant="india"] .sn-tl-chips {
+    display: flex;
+    gap: 6px;
+    padding: 10px 20px 8px;
+    overflow-x: auto;
+    scrollbar-width: none;
+    background: var(--sn-deep-bg);
+    border-bottom: 0.5px solid var(--sn-border);
+    flex-shrink: 0;
+  }
+  [data-variant="india"] .sn-tl-chips::-webkit-scrollbar { display: none; }
+
+  [data-variant="india"] .sn-tl-chip {
+    padding: 5px 14px;
+    border-radius: 14px;
+    font-size: 11px;
+    font-weight: 500;
+    cursor: pointer;
+    border: 0.5px solid var(--sn-border);
+    white-space: nowrap;
+    background: transparent;
+    color: var(--sn-text-muted);
+    opacity: 0.35;
+    transition: opacity 0.15s, border-color 0.15s, background 0.15s;
+    font-family: inherit;
+  }
+  /* Active + category chip colors — mirrors mobile values */
+  [data-variant="india"] .sn-tl-chip.sn-tl-chip--active {
+    opacity: 1; border-color: #7070c0; color: #b0b0e0; background: #1e1c3a;
+  }
+  [data-variant="india"] .sn-tl-chip--conflict.sn-tl-chip--active {
+    border-color: #cc4444; color: #ff9090; background: #2a1010;
+  }
+  [data-variant="india"] .sn-tl-chip--economic.sn-tl-chip--active {
+    border-color: #4a9930; color: #90d060; background: #1a2a10;
+  }
+  [data-variant="india"] .sn-tl-chip--tech.sn-tl-chip--active {
+    border-color: #2288aa; color: #66bbdd; background: #102030;
+  }
+  [data-variant="india"] .sn-tl-chip--diplomatic.sn-tl-chip--active {
+    border-color: #aa6820; color: #ffaa44; background: #2a1a08;
+  }
+  [data-variant="india"] .sn-tl-chip--environmental.sn-tl-chip--active {
+    border-color: #208870; color: #55ccaa; background: #102820;
+  }
+  /* Inactive border hints */
+  [data-variant="india"] .sn-tl-chip--conflict     { border-color: #6a2020; color: #ff7070; }
+  [data-variant="india"] .sn-tl-chip--economic      { border-color: #2a5a18; color: #80cc40; }
+  [data-variant="india"] .sn-tl-chip--tech          { border-color: #18405a; color: #50aacc; }
+  [data-variant="india"] .sn-tl-chip--diplomatic    { border-color: #5a3a10; color: #cc8830; }
+  [data-variant="india"] .sn-tl-chip--environmental { border-color: #1a4a40; color: #40aa90; }
+
+  /* --- River body --- */
+  [data-variant="india"] .sn-tl-river {
+    flex: 1;
+    overflow-y: auto;
+    padding-bottom: 24px;
+  }
+  [data-variant="india"] .sn-tl-river::-webkit-scrollbar { width: 3px; }
+  [data-variant="india"] .sn-tl-river::-webkit-scrollbar-thumb { background: #2a2450; border-radius: 2px; }
+
+  /* --- Time dividers --- */
+  [data-variant="india"] .sn-tl-divider {
+    display: flex; align-items: center; gap: 8px; padding: 12px 20px 6px;
+  }
+  [data-variant="india"] .sn-tl-divider-line { flex: 1; height: 0.5px; background: var(--sn-border); }
+  [data-variant="india"] .sn-tl-divider-text {
+    font-size: 10px; color: #3a3860; letter-spacing: 0.08em; white-space: nowrap;
+  }
+
+  /* --- Story rows --- */
+  [data-variant="india"] .sn-tl-row {
+    display: flex; align-items: flex-start; gap: 10px;
+    padding: 10px 20px; border-bottom: 0.5px solid #120f20;
+    cursor: pointer; transition: background 0.1s;
+  }
+  [data-variant="india"] .sn-tl-row:hover { background: #110e20; }
+  [data-variant="india"] .sn-tl-row.hidden { display: none; }
+  [data-variant="india"] .sn-tl-row--alert {
+    border-left: 2px solid #cc3333; padding-left: 18px;
+  }
+
+  /* --- Category dots --- */
+  [data-variant="india"] .sn-tl-dot {
+    width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; margin-top: 5px;
+  }
+  [data-variant="india"] .sn-tl-dot--conflict      { background: #cc3333; }
+  [data-variant="india"] .sn-tl-dot--economic       { background: #66bb33; }
+  [data-variant="india"] .sn-tl-dot--tech           { background: #2299bb; }
+  [data-variant="india"] .sn-tl-dot--diplomatic     { background: #cc8820; }
+  [data-variant="india"] .sn-tl-dot--environmental  { background: #22aa88; }
+  [data-variant="india"] .sn-tl-dot--general        { background: #5050a0; }
+
+  /* --- Row content --- */
+  [data-variant="india"] .sn-tl-content { flex: 1; min-width: 0; }
+  [data-variant="india"] .sn-tl-meta {
+    display: flex; align-items: center; gap: 5px; margin-bottom: 3px; flex-wrap: wrap;
+  }
+  [data-variant="india"] .sn-tl-source { font-size: 10px; color: var(--sn-text-muted); }
+  [data-variant="india"] .sn-tl-title {
+    font-size: 13px; color: #d0cce8; line-height: 1.4; font-weight: 400;
+  }
+  [data-variant="india"] .sn-tl-footer {
+    display: flex; align-items: center; gap: 8px; margin-top: 4px;
+  }
+  [data-variant="india"] .sn-tl-ago { font-size: 10px; color: #3a3860; }
+
+  /* --- Category pills --- */
+  [data-variant="india"] .sn-tl-pill { font-size: 10px; padding: 1px 6px; border-radius: 8px; }
+  [data-variant="india"] .sn-tl-pill--conflict      { background: #2a1010; color: #ff7070; }
+  [data-variant="india"] .sn-tl-pill--economic       { background: #142210; color: #80cc40; }
+  [data-variant="india"] .sn-tl-pill--tech           { background: #0a1a22; color: #55bbdd; }
+  [data-variant="india"] .sn-tl-pill--diplomatic     { background: #221608; color: #ddaa44; }
+  [data-variant="india"] .sn-tl-pill--environmental  { background: #081a18; color: #44ccaa; }
+  [data-variant="india"] .sn-tl-pill--general        { background: #161428; color: #8080bb; }
+
+  /* --- Alert + cluster badges --- */
+  [data-variant="india"] .sn-tl-alert {
+    font-size: 10px; padding: 1px 6px; border-radius: 8px;
+    background: #2a0a0a; color: #ff5050; border: 0.5px solid #441010;
+  }
+  [data-variant="india"] .sn-tl-cluster {
+    font-size: 10px; padding: 1px 6px; border-radius: 8px;
+    background: #1a1830; color: #7070b0;
+  }
+
+  /* --- Empty state --- */
+  [data-variant="india"] .sn-empty {
+    padding: 40px 20px; text-align: center;
+    font-size: 13px; color: var(--sn-text-muted);
+  }
+
+  /* --- Sidebar: Today's Brief (top) + future modules --- */
+  [data-variant="india"] .sn-desktop-sidebar {
+    border-left: 0.5px solid var(--sn-border);
+    background: var(--sn-dark-bg);
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    position: sticky;
+    top: 0;
+    height: calc(100vh - 40px); /* 40px = header height */
+    padding: 16px;
+    gap: 12px;
+  }
+
+  /* Today's Brief card */
+  [data-variant="india"] .sn-sidebar-brief {
+    background: #13112a;
+    border-radius: 10px;
+    padding: 12px 14px;
+    border: 0.5px solid #2a2848;
+  }
+  [data-variant="india"] .sn-sidebar-brief-label {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 8px;
+  }
+  [data-variant="india"] .sn-sidebar-brief-dot {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: var(--sn-purple);
+    flex-shrink: 0;
+  }
+  [data-variant="india"] .sn-sidebar-brief-label span {
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--sn-purple);
+    font-weight: 600;
+  }
+  [data-variant="india"] .sn-sidebar-brief-text {
+    font-size: 12px;
+    color: #c8c0e8;
+    line-height: 1.6;
+  }
+
+  /* Intelligence Findings in sidebar */
+  [data-variant="india"] .sn-sidebar-findings {
+    background: #13112a;
+    border-radius: 10px;
+    padding: 12px 14px;
+    border: 0.5px solid #2a2848;
+    flex: 1;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+  [data-variant="india"] .sn-sidebar-findings-label {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 6px;
+    margin-bottom: 10px;
+    flex-shrink: 0;
+  }
+  [data-variant="india"] .sn-sidebar-findings-label-left {
+    display: flex; align-items: center; gap: 6px;
+  }
+  [data-variant="india"] .sn-sidebar-findings-dot {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: #e08040;
+    flex-shrink: 0;
+  }
+  [data-variant="india"] .sn-sidebar-findings-label span {
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #e08040;
+    font-weight: 600;
+  }
+  [data-variant="india"] .sn-sidebar-findings-count {
+    font-size: 9px;
+    padding: 2px 6px;
+    border-radius: 8px;
+    background: #2a1a08;
+    color: #e08040;
+    font-weight: 600;
+  }
+  [data-variant="india"] .sn-sidebar-findings-list {
+    overflow-y: auto;
+    flex: 1;
+    min-height: 0;
+  }
+  [data-variant="india"] .sn-sidebar-findings-list::-webkit-scrollbar { width: 2px; }
+  [data-variant="india"] .sn-sidebar-findings-list::-webkit-scrollbar-thumb {
+    background: #2a2450; border-radius: 2px;
+  }
+  [data-variant="india"] .sn-sidebar-finding {
+    padding: 8px 0;
+    border-bottom: 0.5px solid #1a1830;
+    cursor: pointer;
+    transition: background 0.1s;
+  }
+  [data-variant="india"] .sn-sidebar-finding:hover {
+    background: #1a1835;
+    margin: 0 -6px;
+    padding-left: 6px;
+    padding-right: 6px;
+    border-radius: 6px;
+  }
+  [data-variant="india"] .sn-sidebar-finding:last-child { border-bottom: none; }
+  [data-variant="india"] .sn-sidebar-finding-header {
+    display: flex; align-items: flex-start; justify-content: space-between; gap: 6px;
+    margin-bottom: 4px;
+  }
+  [data-variant="india"] .sn-sidebar-finding-title {
+    font-size: 13px; color: #d0cce8; line-height: 1.3; font-weight: 500;
+    flex: 1; min-width: 0;
+  }
+  [data-variant="india"] .sn-sidebar-finding-priority {
+    font-size: 8px; padding: 1px 5px; border-radius: 6px;
+    text-transform: uppercase; font-weight: 700; flex-shrink: 0;
+    letter-spacing: 0.05em;
+  }
+  [data-variant="india"] .sn-sidebar-finding-priority.high {
+    background: #2a1010; color: #ff7070;
+  }
+  [data-variant="india"] .sn-sidebar-finding-priority.critical {
+    background: #3a0a0a; color: #ff4040;
+  }
+  [data-variant="india"] .sn-sidebar-finding-priority.medium {
+    background: #2a1a08; color: #ddaa44;
+  }
+  [data-variant="india"] .sn-sidebar-finding-priority.low {
+    background: #141428; color: #8080bb;
+  }
+  [data-variant="india"] .sn-sidebar-finding-desc {
+    font-size: 12px; color: #8880b0; line-height: 1.5;
+    display: -webkit-box; -webkit-line-clamp: 3; line-clamp: 3;
+    -webkit-box-orient: vertical; overflow: hidden;
+    transition: all 0.2s ease;
+  }
+  [data-variant="india"] .sn-sidebar-finding.expanded .sn-sidebar-finding-desc {
+    -webkit-line-clamp: unset; line-clamp: unset;
+    display: block;
+    white-space: pre-line;
+  }
+  [data-variant="india"] .sn-sidebar-finding-time {
+    font-size: 10px; color: #3a3860; margin-top: 3px;
+  }
+  [data-variant="india"] .sn-sidebar-findings-empty {
+    font-size: 11px; color: #3a3860; text-align: center;
+    padding: 16px 0;
+  }
+
+  /* --- Story detail: 640px centered modal with blurred backdrop --- */
+  [data-variant="india"] .sn-detail {
+    position: fixed;
+    inset: 0;
+    z-index: 200;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(4px);
+  }
+  [data-variant="india"] .sn-detail-modal {
+    width: 640px;
+    max-width: 90vw;
+    max-height: 80vh;
+    background: var(--sn-deep-bg);
+    border-radius: 14px;
+    border: 0.5px solid var(--sn-border);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    box-shadow: 0 16px 64px rgba(0, 0, 0, 0.5);
+  }
+  [data-variant="india"] .sn-detail-header {
+    background: linear-gradient(180deg, #0d0a1f, #0a0812);
+    padding: 12px 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 0.5px solid var(--sn-border);
+    flex-shrink: 0;
+  }
+  [data-variant="india"] .sn-detail-header-left {
+    display: flex; align-items: center; gap: 10px;
+  }
+  [data-variant="india"] .sn-detail-back {
+    width: 28px; height: 28px; border-radius: 50%;
+    background: #1a1830; border: none;
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer; color: #c8c0e8;
+  }
+  [data-variant="india"] .sn-detail-back:hover { background: #2a2450; }
+  [data-variant="india"] .sn-detail-back svg { width: 12px; height: 12px; color: #c8c0e8; }
+  [data-variant="india"] .sn-detail-back-label {
+    font-size: 13px; color: var(--sn-text-secondary);
+  }
+  [data-variant="india"] .sn-detail-body {
+    flex: 1; overflow-y: auto; padding: 20px;
+  }
+  [data-variant="india"] .sn-detail-meta {
+    display: flex; align-items: center; gap: 8px; margin-bottom: 12px; flex-wrap: wrap;
+  }
+  [data-variant="india"] .sn-detail-badge {
+    font-size: 10px; background: var(--sn-border);
+    color: var(--sn-text-secondary); padding: 2px 7px; border-radius: 4px;
+  }
+  [data-variant="india"] .sn-detail-info { font-size: 11px; color: var(--sn-text-muted); }
+  [data-variant="india"] .sn-detail-source-count { font-size: 11px; color: var(--sn-text-muted); }
+  [data-variant="india"] .sn-detail-title {
+    font-size: 16px; font-weight: 500; color: var(--sn-text-primary); line-height: 1.4;
+    margin-bottom: 12px;
+  }
+  [data-variant="india"] .sn-detail-sep {
+    height: 0.5px; background: var(--sn-border); margin: 8px 0 12px;
+  }
+  /* What happened card */
+  [data-variant="india"] .sn-detail-what-happened {
+    background: #13112a; border-radius: 10px; padding: 14px;
+    border: 0.5px solid #2a2848; margin-bottom: 10px;
+  }
+  /* What this means card */
+  [data-variant="india"] .sn-detail-what-means {
+    background: #0f1a0f; border-radius: 10px; padding: 14px;
+    border: 0.5px solid #1a2e1a; margin-bottom: 10px;
+  }
+  [data-variant="india"] .sn-detail-card-label {
+    display: flex; align-items: center; gap: 6px; margin-bottom: 8px;
+  }
+  [data-variant="india"] .sn-detail-card-dot {
+    width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0;
+  }
+  [data-variant="india"] .sn-detail-what-happened .sn-detail-card-dot { background: var(--sn-purple); }
+  [data-variant="india"] .sn-detail-what-means .sn-detail-card-dot { background: var(--sn-green); }
+  [data-variant="india"] .sn-detail-what-happened .sn-detail-card-label span {
+    font-size: 10px; text-transform: uppercase; letter-spacing: 0.08em;
+    color: var(--sn-purple); font-weight: 600;
+  }
+  [data-variant="india"] .sn-detail-what-means .sn-detail-card-label span {
+    font-size: 10px; text-transform: uppercase; letter-spacing: 0.08em;
+    color: var(--sn-green); font-weight: 600;
+  }
+  [data-variant="india"] .sn-detail-card-text {
+    font-size: 13px; line-height: 1.7; color: #c8c0e8;
+  }
+  [data-variant="india"] .sn-detail-what-means .sn-detail-card-text { color: #a8c8a8; }
+  /* Sources list */
+  [data-variant="india"] .sn-detail-sources { margin-top: 12px; }
+  [data-variant="india"] .sn-detail-sources-label {
+    font-size: 10px; text-transform: uppercase; letter-spacing: 0.08em;
+    color: var(--sn-text-muted); font-weight: 600; margin-bottom: 8px;
+  }
+  [data-variant="india"] .sn-detail-source-row {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 6px 0; border-bottom: 0.5px solid #1a1830;
+  }
+  [data-variant="india"] .sn-detail-source-left { display: flex; align-items: center; gap: 6px; }
+  [data-variant="india"] .sn-detail-source-dot {
+    width: 4px; height: 4px; border-radius: 50%; background: var(--sn-text-muted);
+  }
+  [data-variant="india"] .sn-detail-source-link {
+    font-size: 12px; color: var(--sn-purple); text-decoration: none;
+  }
+  [data-variant="india"] .sn-detail-source-link:hover { text-decoration: underline; }
+  [data-variant="india"] .sn-detail-source-name { font-size: 12px; color: var(--sn-text-secondary); }
+  [data-variant="india"] .sn-detail-source-time { font-size: 10px; color: var(--sn-text-muted); }
+  /* WhatsApp share bar */
+  [data-variant="india"] .sn-detail-share {
+    padding: 10px 16px; border-top: 0.5px solid var(--sn-border); flex-shrink: 0;
+  }
+  [data-variant="india"] .sn-detail-whatsapp {
+    width: 100%; padding: 10px; border-radius: 10px;
+    background: linear-gradient(90deg, #25a244, #1da035);
+    border: none; color: white; font-size: 13px; font-weight: 500;
+    cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px;
+  }
+  [data-variant="india"] .sn-detail-whatsapp:hover { filter: brightness(1.1); }
+  /* Shimmer loading animation */
+  [data-variant="india"] .sn-detail-shimmer--card {
+    background: #13112a; border-radius: 10px; padding: 12px;
+    display: flex; flex-direction: column; gap: 6px;
+  }
+  [data-variant="india"] .sn-detail-shimmer--bar {
+    height: 12px; border-radius: 3px; background: var(--sn-border);
+    animation: sn-desktop-shimmer 1.5s ease-in-out infinite;
+  }
+  [data-variant="india"] .sn-detail-shimmer--badge {
+    height: 20px; width: 60px; border-radius: 4px; background: var(--sn-border);
+    animation: sn-desktop-shimmer 1.5s ease-in-out infinite;
+  }
+  @keyframes sn-desktop-shimmer {
+    0%, 100% { opacity: 0.4; }
+    50% { opacity: 0.8; }
+  }
+
+  /* --- Sidebar hidden on narrower desktops (769px–1024px: single column) --- */
+  @media (max-width: 1024px) {
+    [data-variant="india"] .sn-tl-desktop-wrap {
+      grid-template-columns: 1fr;
+    }
+    [data-variant="india"] .sn-desktop-sidebar {
+      display: none;
+    }
+  }
+
+} /* end @media (min-width: 769px) — SachNetra India Desktop */
+
+/* ═══════════════════════════════════════════════════════════════════════════════
    SachNetra India — Mobile Layout
    Phase 1: Foundation (body scroll, hide desktop, mobile header)
    Scoped to [data-variant="india"] + max-width: 768px
