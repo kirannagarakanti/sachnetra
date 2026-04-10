@@ -616,7 +616,7 @@ export async function shareStoryCard(data: ShareCardData): Promise<void> {
   if (navigator.share && navigator.canShare?.({ files: [file] })) {
     try {
       const payload: ShareData = { files: [file] };
-      if (data.storyUrl) payload.url = data.storyUrl;
+      payload.url = 'https://sachnetra.com/'; // primary domain
       await navigator.share(payload);
       return;
     } catch { /* user cancelled — fall through */ }
