@@ -725,13 +725,16 @@ export class PanelLayoutManager implements AppModule {
     // --- Initial URL path (Task 017) ---
     // If the user landed on /timeline, /map, or /states, activate that tab immediately.
     // If they landed on / or /home (or anything else), ensure URL shows /home.
+    // IMPORTANT: Do NOT overwrite the URL when pathname is /story — handleDeepLinks()
+    // in App.ts needs the original /story?id=<slug> to be intact when it reads it.
     const initialPath = window.location.pathname.replace(/^\//, '') || 'home';
+    const isStoryDeepLink = initialPath === 'story';
     const validTabs = ['home', 'timeline', 'map', 'states'];
     const startTab = validTabs.includes(initialPath) ? initialPath : 'home';
     if (startTab !== 'home') {
       activateTab(startTab);
-    } else {
-      // Normalise root / → /home
+    } else if (!isStoryDeepLink) {
+      // Normalise root / → /home (but skip if this is a /story deep-link)
       try { history.replaceState(null, '', '/home'); } catch { /* ignore */ }
     }
   }
@@ -747,7 +750,10 @@ export class PanelLayoutManager implements AppModule {
     this.setupTimelineChips();
 
     // Desktop India is a single-page timeline view (no tabs). Set URL once on load (Task 017).
-    try { history.replaceState(null, '', '/timeline'); } catch { /* ignore */ }
+    // Do NOT overwrite when pathname is /story — handleDeepLinks() needs the original URL.
+    if (window.location.pathname !== '/story') {
+      try { history.replaceState(null, '', '/timeline'); } catch { /* ignore */ }
+    }
 
     const timelineTab = document.getElementById('snTimelineTab');
     if (!timelineTab) return;

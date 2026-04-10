@@ -564,6 +564,7 @@ export class App {
 
     // Phase 1: Layout (creates map + panels — they'll find hydrated data)
     this.panelLayout.init();
+    this.dataLoader.init();
     showProBanner(this.state.container);
 
     const mobileGeoCoords = await geoCoordsPromise;
@@ -770,28 +771,46 @@ export class App {
    * Attempt to auto-open the story detail overlay after landing on a /story?id= deep-link.
    * Decodes the base64 slug, searches loaded clusters for a matching item, and dispatches
    * an event that data-loader.ts handles by calling openStoryDetail() (Task 017).
+   *
+   * Uses a polling retry loop because news data may not be loaded yet when this first runs.
+   * Retries every 2s for up to 15s before giving up (story may have rotated out of feed).
    */
-  private tryOpenStoryFromSlug(): void {
+  private tryOpenStoryFromSlug(retriesLeft = 7): void {
     const slug = this.pendingDeepLinkStorySlug;
-    this.pendingDeepLinkStorySlug = null;
     if (!slug) return;
 
     // Decode slug — same algorithm as decodeStorySlug() in data-loader.ts
     let title: string | null = null;
     try {
       const base64 = slug.replace(/-/g, '+').replace(/_/g, '/');
-      const padded = base64 + '=='.slice((base64.length % 4) || 4);
+      // Restore stripped padding: pad to the next multiple of 4
+      const padLen = (4 - (base64.length % 4)) % 4;
+      const padded = base64 + '='.repeat(padLen);
       title = decodeURIComponent(atob(padded));
     } catch { /* malformed slug — stay on /home */ }
-    if (!title) return;
+    if (!title) {
+      this.pendingDeepLinkStorySlug = null;
+      return;
+    }
 
     // Search already-loaded clusters for a matching item
     const matchTitle = title;
     const cluster = this.state.latestClusters.find(
       c => c.allItems.some(i => i.title === matchTitle)
     );
-    if (!cluster) return; // story has rotated out of the feed — user stays on /home
 
+    if (!cluster) {
+      // Data may not be loaded yet — retry after 2s
+      if (retriesLeft > 0) {
+        setTimeout(() => this.tryOpenStoryFromSlug(retriesLeft - 1), 2000);
+        return;
+      }
+      // Give up — story has rotated out of the feed, user stays on /home
+      this.pendingDeepLinkStorySlug = null;
+      return;
+    }
+
+    this.pendingDeepLinkStorySlug = null;
     const item = cluster.allItems.find(i => i.title === matchTitle) ?? cluster.allItems[0];
     if (!item) return;
 
