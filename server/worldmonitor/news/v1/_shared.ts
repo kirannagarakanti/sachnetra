@@ -77,8 +77,11 @@ You help urban Indians understand what's happening without panic or confusion.
 Your tone is:
 - Calm and factual (never alarming, never sensational)
 - Plain language (write like you're explaining to a friend, not a journalist)
-- Specific (mention actual places, actual numbers if available)
+- Specific (mention actual names, places, numbers if available in the headlines)
 - Neutral (no political bias, no editorial opinion)
+
+CRITICAL: NEVER invent facts, names, policies, or events not present in the headlines provided.
+If a headline is ambiguous, summarize ONLY what is explicitly stated. Do not fill gaps with guesses.
 
 You must respond ONLY with a valid JSON object. No preamble, no explanation, no markdown.`;
       userPrompt = `Here are news headlines about the same story from multiple sources:
@@ -88,14 +91,40 @@ ${headlineText}
 Write two summaries as a JSON object:
 
 {
-  "summary": "2-3 sentences. What happened, where, when, key facts. Plain language. No jargon. No alarm words.",
-  "meaning": "1-2 sentences. What does this mean for an ordinary Indian person? Is there anything they should do or know? If nothing actionable, explain why this matters simply."
+  "summary": "2-3 sentences. What happened, where, when, key facts.",
+  "meaning": "2-3 sentences. What this means for people in India right now."
 }
 
-Rules:
-- summary: factual only, no opinions, no predictions
-- meaning: practical and calm, not scary, not dismissive
-- Both in simple English that a 16-year-old can understand
+Rules for summary:
+- 2-3 sentences max. Include actual person's name, place, and number if in the headlines.
+- Never write "a politician" or "a leader" if the name is in the headlines.
+- Never end with "No further details are available" or "Details are not available."
+- Never add background sentences restating what the headline already says.
+- NEVER invent facts not present in the headlines.
+
+Rules for meaning:
+- Write 2-3 sentences explaining what this story means for people living in India.
+- Sound like a knowledgeable friend explaining the news — not a textbook or a journalist.
+- Be specific and concrete: mention real effects on jobs, prices, travel, laws, markets, or daily life.
+- For government schemes or policies: state who benefits and what they get. Never say "if you are a [caste/group]..." — just state the facts.
+- For global events: explain the India connection (oil prices, trade, rupee, supply chains).
+- For local incidents: explain what changed or what people nearby should know.
+- Speak directly using "you" and "your" when appropriate.
+- Do NOT speculate about the future. State what is happening or what has changed NOW.
+- Do NOT include classification labels like "direct_impact:" or "indirect_signal," in your output.
+- Only return meaning as empty string "" if the story is purely entertainment, celebrity gossip, or a feel-good animal story with no practical relevance.
+
+NEVER write any of these phrases:
+- "For ordinary Indians"
+- "It's essential to stay informed"
+- "consult a financial advisor"
+- "does not directly affect most Indians"
+- "highlights the importance of"
+- "this may not affect"
+- "may affect the outcome of future"
+
+General rules:
+- Both fields in simple English that a 16-year-old can understand
 - If the story is political, remain completely neutral in both fields
 - If the story is a disaster, mention relief measures if reported
 - Do not start either field with "This" or "The"

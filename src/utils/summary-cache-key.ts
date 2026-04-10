@@ -4,7 +4,7 @@
 // or client/server cache keys will silently diverge.
 import { hashString } from './hash';
 
-export const CACHE_VERSION = 'v6'; // Bumped for SachNetra two-summary format
+export const CACHE_VERSION = 'v8'; // Fix meaning tone + mandatory meaning (Task 018.5)
 
 const MAX_HEADLINE_LEN = 500;
 const MAX_HEADLINES_FOR_KEY = 5;

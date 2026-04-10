@@ -117,7 +117,7 @@ export async function summarizeArticle(
             ],
             // India variant needs temperature 0 for reliable output
             temperature: (variant === 'india' && (mode === 'brief' || mode === 'daily-brief')) ? 0 : 0.3,
-            max_tokens: mode === 'daily-brief' ? 200 : (variant === 'india' && mode === 'brief') ? 400 : 100,
+            max_tokens: mode === 'daily-brief' ? 200 : (variant === 'india' && mode === 'brief') ? 500 : 100,
             top_p: 0.9,
             ...extraBody,
           }),
