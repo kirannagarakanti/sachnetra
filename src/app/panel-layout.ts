@@ -75,9 +75,9 @@ export interface PanelLayoutCallbacks {
 /** Returns a human-readable time-of-day label for the news feed time divider. */
 function getTimeDividerLabel(): string {
   const hour = new Date().getHours();
-  if (hour >= 5 && hour < 11) return 'Yesterday';
-  if (hour >= 11 && hour < 17) return 'This morning';
-  if (hour >= 17 && hour < 22) return 'This afternoon';
+  if (hour >= 5 && hour < 12)  return 'This morning';
+  if (hour >= 12 && hour < 17) return 'This afternoon';
+  if (hour >= 17 && hour < 22) return 'This evening';
   return 'Today';
 }
 

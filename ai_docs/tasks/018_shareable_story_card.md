@@ -228,5 +228,151 @@ public/sachnetra-logo.svg              — logo asset
 - [x] Phase 2 complete — Web Share API — 2026-04-10
 - [x] Phase 3 complete — Wire into story detail — 2026-04-10
 - [x] Phase 4 complete — CSS update — 2026-04-10
-- [ ] Phase 5 complete — Verified
-- [ ] **TASK 018 COMPLETE** ✅
+- [x] Phase 5 complete — Verified — 2026-04-10
+- [x] **TASK 018 COMPLETE** ✅
+
+---
+
+## Post-Implementation: Bugs & Resolutions
+
+> Documented for future canvas renderer work. Every issue here was encountered during implementation and testing of `sachnetra-share-card.ts`.
+
+---
+
+### BUG 1 — Fixed canvas height leaves massive whitespace below content
+
+**Symptom**: The generated card had a huge empty gap between the "WHAT HAPPENED" section and the footer. On short summaries the footer appeared tiny at the bottom of a very tall card.
+
+**Root cause**: Canvas height was hardcoded as `H = 1350` (a fixed 1080×1350 portrait size). Short summaries never filled it.
+
+**Fix**: Rewrite the renderer with **dynamic canvas height**. Measure all text blocks first using an offscreen canvas, sum the heights, then create the real canvas at exactly that height. No padding goes to waste.
+
+```typescript
+// Do a measurement pass first
+const measureCanvas = document.createElement('canvas');
+const mc = measureCanvas.getContext('2d')!;
+// ... measure title lines, body lines ...
+const CARD_H = TOPLINE_H + HEAD_PAD_TOP + metaRowH + titleBlockH + sectionBlockH + dividerH + footerBlockH;
+
+// Then create the real canvas at that exact height
+canvas.width = CARD_W;
+canvas.height = CARD_H;
+```
+
+**Lesson**: For content-driven cards, always use dynamic height. Never use a fixed canvas size unless every card is guaranteed to have the same content density.
+
+---
+
+### BUG 2 — "WHAT HAPPENED" label and body text overlapping
+
+**Symptom**: The "WHAT HAPPENED" label text and the first line of body text were drawn on top of each other.
+
+**Root cause**: The original layout used `labelRowH / 2` to position the dot vertically — placing it in the *middle* of the label row. The body text then started at `y + SEC_PAD_Y + labelRowH + 4px`. The problem was that both the label drawing position (`dotSy + FS_LABEL * 0.4`) and the body start position referenced `labelRowH` differently, and `FS_LABEL * 0.4` was ~10px which wasn't enough to push the baseline above the body.
+
+**Fix**: Stop using `labelRowH / 2` math entirely. Switch to **explicit absolute Y positions**:
+
+```typescript
+// Explicit baseline for the label text
+const labelBaselineY = y + SEC_PAD_Y + Math.round(FS_LABEL * 1.0);
+
+// Body starts at a FIXED constant gap below the label baseline
+const LABEL_BODY_GAP = Math.round(16 * SCALE);
+const bodyStartY = labelBaselineY + LABEL_BODY_GAP + Math.round(FS_BODY * 0.85);
+
+// Dot is vertically centred on the label cap-height
+const dotSy = labelBaselineY - Math.round(FS_LABEL * 0.3);
+```
+
+**Lesson**: When laying out text in Canvas 2D, avoid calculating relative positions from midpoints. Use explicit baseline Y values and fixed gaps. Canvas uses baseline-anchored text — always account for cap-height vs baseline vs line-height separately.
+
+---
+
+### BUG 3 — Footer (SachNetra logo) completely missing from card
+
+**Symptom**: After fixing the label/body overlap, the entire footer (logo, brand name, sachnetra.com) disappeared from the generated card.
+
+**Root cause**: `SEC_H = bodyEndY + SEC_PAD_Y` — `bodyEndY` was an **absolute canvas Y coordinate**, not a height relative to the section's top. This made `SEC_H` enormous (e.g. 650px when the section was only 200px tall). After `y += SEC_H + SEC_MARGIN`, `y` jumped far below `CARD_H`, so the footer was drawn outside the canvas bounds and clipped away.
+
+**Fix**: One character change — subtract `y` to make SEC_H relative:
+
+```typescript
+// WRONG — bodyEndY is absolute canvas Y
+const SEC_H = bodyEndY + SEC_PAD_Y;
+
+// CORRECT — make it relative to section top
+const SEC_H = (bodyEndY - y) + SEC_PAD_Y;
+```
+
+**Lesson**: When computing a box height from absolute coordinates, always subtract the box's top Y. This is a common off-by-one class of error when mixing absolute and relative units in canvas layout.
+
+---
+
+### BUG 4 — SachNetra logo not loading (external SVG)
+
+**Symptom**: The brand icon box in the footer was empty — the eye logo didn't render.
+
+**Root cause**: The initial implementation used `loadImage('/sachnetra-logo.svg')` which loads SVG as an `HTMLImageElement`. This can fail silently if the SVG has `width`/`height` attributes missing or if the file path resolves differently in Vite's dev server vs production.
+
+**Fix**: Draw the logo **inline via Canvas 2D API** — replicate the SVG paths from the HTML reference directly in code. This is always reliable, never has loading failures, and looks identical.
+
+```typescript
+function drawLogo(ctx: CanvasRenderingContext2D, cx: number, cy: number, s: number): void {
+  const r = s / 18; // ratio: 1 HTML SVG px = r canvas px
+  // Gradient stroke for ellipse + inner circle
+  const lg = ctx.createLinearGradient(...);
+  ctx.ellipse(9*r, 9*r, 7.5*r, 5*r, 0, 0, Math.PI * 2); // outer eye
+  ctx.arc(9*r, 9*r, 2.8*r, 0, Math.PI * 2);               // iris
+  ctx.arc(9*r, 9*r, 1.1*r, 0, Math.PI * 2);               // pupil dot (#ff9a3c)
+  // tick marks at top, left, right
+}
+```
+
+**Lesson**: For logos used in canvas rendering, prefer inline SVG-to-canvas path replication over loading external images. External images are async, can fail silently, may have CORS issues, and add complexity. If the logo is small and geometric, redraw it directly.
+
+---
+
+### BUG 5 — WhatsApp link appearing as separate text message above the card
+
+**Symptom**: When sharing, WhatsApp showed two separate bubbles — a text bubble with the URL above, then the card image below.
+
+**Root cause**: Passing the URL in the `text` field of `navigator.share()` causes WhatsApp to render it as a standalone text message, which is sent before the image.
+
+**Fix**: Move the URL to the `url` field instead of `text`. WhatsApp treats the `url` field as an attachment link below the image.
+
+```typescript
+// WRONG — renders as separate text bubble above the image
+await navigator.share({ files: [file], text: `🔗 ${storyUrl}` });
+
+// CORRECT — attaches link below the image
+const payload: ShareData = { files: [file] };
+if (data.storyUrl) payload.url = data.storyUrl;
+await navigator.share(payload);
+```
+
+**Lesson**: The `text` and `url` fields in `navigator.share()` behave differently in WhatsApp. `text` → separate text message. `url` → link preview attached to the shared file. Always use `url` when sharing a link alongside an image.
+
+---
+
+### BUG 6 — Body text too dim, hard to read
+
+**Symptom**: The summary text in the WHAT HAPPENED section was barely readable — it used `#9085c0` which has low contrast against the dark section background.
+
+**Fix**: Brightened body text colour from `#9085c0` to `#d0c8f0`. This keeps it in the same purple-tinted palette but with significantly higher luminance, matching the readable tone in the HTML reference.
+
+**Lesson**: Canvas 2D rendering tends to look darker than the same colour in the browser DOM. The reference HTML uses `color: #9085c0` (`--text-mid`) which looks fine in the browser with subpixel rendering, but on a rasterised canvas PNG it reads as too dim, especially on mobile screens. The body text in a share card should be at minimum `#c0b8e8` for legibility.
+
+---
+
+### Design Decisions Made During Implementation
+
+| Decision | Choice | Reason |
+|---|---|---|
+| Canvas size | Dynamic height (not fixed 1350px) | Content length varies; fixed height wastes space |
+| Logo rendering | Inline Canvas paths | No async load, no failure modes, always matches |
+| Scale factor | 2.7× (400px HTML → 1080px canvas) | Reference HTML card is max-width 400px |
+| Body text colour | `#d0c8f0` | `#9085c0` too dim when rasterised to PNG |
+| Body font size | 15px (HTML) × 2.7 = ~40px canvas | 12.5px (HTML original) was too small to read |
+| WhatsApp share field | `url` not `text` | `text` creates separate message; `url` attaches below image |
+| Summary fallback | Skip section, show headline only | Better than showing "Loading…" in a static image |
+| Font loading | On-demand via `FontFace` API | Avoid impacting initial page load for all users |
+
