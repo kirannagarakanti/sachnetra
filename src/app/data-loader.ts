@@ -150,6 +150,7 @@ import {
 import { fetchCachedRiskScores } from '@/services/cached-risk-scores';
 import { generateSummary, generateDailyBrief } from '@/services/summarization';
 import { escapeHtml } from '@/utils/sanitize';
+import { shareStoryCard } from '@/services/sachnetra-share-card';
 import { filterClustersByState } from '@/services/rss';
 import { INDIA_STATE_KEYWORDS, INDIA_STATES } from '@/config/variants/india';
 import type { ThreatLevel as ClientThreatLevel } from '@/types';
@@ -241,12 +242,16 @@ function getCategoryIcon(category: string): string {
   return icon.replace('<svg ', `<svg style="color:${c}" `);
 }
 
-function shareToWhatsApp(title: string, storyUrl?: string): void {
-  const url = storyUrl ?? 'https://sachnetra.com';
-  const text = encodeURIComponent(
-    `📰 *${title}*\n\n_Via SachNetra_ — India's clarity app\n🔗 ${url}`
-  );
-  window.open(`https://wa.me/?text=${text}`, '_blank');
+/** Share a story as a branded card image via Web Share API (Task 018). */
+function shareStoryAsCard(item: NewsItem, timeAgo: string, summary?: string, storyUrl?: string): void {
+  shareStoryCard({
+    title: item.title,
+    category: item.threat?.category ?? 'general',
+    source: item.source,
+    timeAgo,
+    summary: summary || undefined,
+    storyUrl,
+  });
 }
 
 /**
@@ -334,9 +339,9 @@ function openStoryDetail(item: NewsItem, cluster?: ClusteredEvent): void {
     </div>
 
     <div class="sn-detail-share">
-      <button class="sn-detail-whatsapp" id="snDetailWhatsApp">
-        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M13.5 2.5C12.3 1.3 10.7 0.5 8.9 0.5C5.2 0.5 2.2 3.5 2.2 7.2C2.2 8.4 2.5 9.6 3.1 10.6L2 14L5.5 12.9C6.5 13.4 7.7 13.7 8.9 13.7C12.6 13.7 15.5 10.7 15.5 7C15.5 5.2 14.7 3.6 13.5 2.5Z" fill="white"/></svg>
-        <span>Share on WhatsApp</span>
+      <button class="sn-detail-share-btn" id="snDetailShareCard">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none"><path d="M4 12v8a2 2 0 002 2h12a2 2 0 002-2v-8M16 6l-4-4-4 4M12 2v13" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span>Share Story</span>
       </button>
     </div>
   `;
@@ -388,12 +393,15 @@ function openStoryDetail(item: NewsItem, cluster?: ClusteredEvent): void {
   history.pushState({ storyId: slug }, '', storyUrl);
   window.addEventListener('popstate', onPopState);
 
-  // Share buttons — both now pass the full story URL (Task 017)
+  // Closure variable to capture the AI summary when it loads (Task 018)
+  let currentSummary = '';
+
+  // Share buttons — both generate a branded card image via Web Share API (Task 018)
   document.getElementById('snDetailShareHeader')?.addEventListener('click', () => {
-    shareToWhatsApp(item.title, storyUrl);
+    shareStoryAsCard(item, timeAgo, currentSummary, storyUrl);
   });
-  document.getElementById('snDetailWhatsApp')?.addEventListener('click', () => {
-    shareToWhatsApp(item.title, storyUrl);
+  document.getElementById('snDetailShareCard')?.addEventListener('click', () => {
+    shareStoryAsCard(item, timeAgo, currentSummary, storyUrl);
   });
 
   // --- Fetch AI summary asynchronously ---
@@ -412,6 +420,9 @@ function openStoryDetail(item: NewsItem, cluster?: ClusteredEvent): void {
 
       let summaryText = result?.summary ?? '';
       let meaningText = result?.meaning ?? '';
+
+      // Store summary for the share card (Task 018)
+      if (summaryText) currentSummary = summaryText;
 
       // If meaning is empty, try parsing JSON from summary
       if (!meaningText && summaryText.includes('"summary"')) {
@@ -1560,7 +1571,7 @@ export class DataLoaderManager implements AppModule {
         e.stopPropagation();
         const idx = parseInt(btn.dataset.storyIdx ?? '0', 10);
         const cluster = sorted[idx];
-        if (cluster) shareToWhatsApp(cluster.primaryTitle);
+        if (cluster) shareStoryAsCard(cluster.allItems[0]!, '—');
       });
     });
   }
