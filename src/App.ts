@@ -41,7 +41,7 @@ import { RefreshScheduler } from '@/app/refresh-scheduler';
 import { PanelLayoutManager } from '@/app/panel-layout';
 import { DataLoaderManager } from '@/app/data-loader';
 import { EventHandlerManager } from '@/app/event-handlers';
-import { resolveUserRegion, resolvePreciseUserCoordinates, type PreciseCoordinates } from '@/utils/user-location';
+import { resolveUserRegion, type PreciseCoordinates } from '@/utils/user-location';
 import { showProBanner } from '@/components/ProBanner';
 import {
   CorrelationEngine,
@@ -554,10 +554,8 @@ export class App {
     // Hydrate in-memory cache from bootstrap endpoint (before panels construct and fetch)
     await fetchBootstrapData();
 
-    const geoCoordsPromise: Promise<PreciseCoordinates | null> =
-      this.state.isMobile && this.state.initialUrlState?.lat === undefined && this.state.initialUrlState?.lon === undefined
-        ? resolvePreciseUserCoordinates(5000)
-        : Promise.resolve(null);
+    // v1: skip GPS prompt — map centers via timezone (Intl.DateTimeFormat) instead
+    const geoCoordsPromise: Promise<PreciseCoordinates | null> = Promise.resolve(null);
 
     const resolvedRegion = await resolveUserRegion();
     this.state.resolvedLocation = resolvedRegion;
