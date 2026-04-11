@@ -636,7 +636,7 @@ export default defineConfig({
         description: activeMeta.description,
         start_url: '/',
         scope: '/',
-        display: 'standalone',
+        display: 'browser',
         orientation: 'any',
         theme_color: '#0a0f0a',
         background_color: '#0a0f0a',
