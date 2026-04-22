@@ -492,7 +492,6 @@ export class DeckGLMap {
     });
 
     this.createControls();
-    this.createTimeSlider();
     this.createLayerToggles();
     this.createLegend();
 
@@ -3909,38 +3908,7 @@ export class DeckGLMap {
     });
   }
 
-  private createTimeSlider(): void {
-    const slider = document.createElement('div');
-    slider.className = 'time-slider deckgl-time-slider';
-    slider.innerHTML = `
-      <div class="time-options">
-        <button class="time-btn ${this.state.timeRange === '1h' ? 'active' : ''}" data-range="1h">1h</button>
-        <button class="time-btn ${this.state.timeRange === '6h' ? 'active' : ''}" data-range="6h">6h</button>
-        <button class="time-btn ${this.state.timeRange === '24h' ? 'active' : ''}" data-range="24h">24h</button>
-        <button class="time-btn ${this.state.timeRange === '48h' ? 'active' : ''}" data-range="48h">48h</button>
-        <button class="time-btn ${this.state.timeRange === '7d' ? 'active' : ''}" data-range="7d">7d</button>
-        <button class="time-btn ${this.state.timeRange === 'all' ? 'active' : ''}" data-range="all">${t('components.deckgl.timeAll')}</button>
-      </div>
-    `;
 
-    this.container.appendChild(slider);
-
-    slider.querySelectorAll('.time-btn').forEach(btn => {
-      btn.addEventListener('click', () => {
-        const range = (btn as HTMLElement).dataset.range as TimeRange;
-        this.setTimeRange(range);
-      });
-    });
-  }
-
-  private updateTimeSliderButtons(): void {
-    const slider = this.container.querySelector('.deckgl-time-slider');
-    if (!slider) return;
-    slider.querySelectorAll('.time-btn').forEach((btn) => {
-      const range = (btn as HTMLElement).dataset.range as TimeRange | undefined;
-      btn.classList.toggle('active', range === this.state.timeRange);
-    });
-  }
 
   private createLayerToggles(): void {
     const toggles = document.createElement('div');
@@ -4395,7 +4363,6 @@ export class DeckGLMap {
     this.state.timeRange = range;
     this.rebuildProtestSupercluster();
     this.onTimeRangeChange?.(range);
-    this.updateTimeSliderButtons();
     this.render(); // Debounced
   }
 
