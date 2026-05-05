@@ -1,0 +1,212 @@
+{
+  "main": {
+    "id": "193b991b21ad114c",
+    "type": "split",
+    "children": [
+      {
+        "id": "afdfd07b7f9b9af8",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "8ed9289fe98aa790",
+            "type": "leaf",
+            "state": {
+              "type": "graph",
+              "state": {},
+              "icon": "lucide-git-fork",
+              "title": "Graph view"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "255e0262a68f50f5",
+    "type": "split",
+    "children": [
+      {
+        "id": "72c6db98965ab171",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "36b1c0a67527805c",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical",
+                "autoReveal": false
+              },
+              "icon": "lucide-folder-closed",
+              "title": "Files"
+            }
+          },
+          {
+            "id": "8041ce03dd656f11",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "Search"
+            }
+          },
+          {
+            "id": "97fe5ea6a63becf5",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "Bookmarks"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "92f1e0cca2976934",
+    "type": "split",
+    "children": [
+      {
+        "id": "daae9a59b8e6c6e1",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "88725736938cb76a",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "3_Resources/world_monitor/internal/youtube-desktop.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "Backlinks for youtube-desktop"
+            }
+          },
+          {
+            "id": "b7625430941c3d82",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "3_Resources/world_monitor/internal/youtube-desktop.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "Outgoing links from youtube-desktop"
+            }
+          },
+          {
+            "id": "66368eb853813efa",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-tags",
+              "title": "Tags"
+            }
+          },
+          {
+            "id": "33896ab8598dd437",
+            "type": "leaf",
+            "state": {
+              "type": "all-properties",
+              "state": {
+                "sortOrder": "frequency",
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-archive",
+              "title": "All properties"
+            }
+          },
+          {
+            "id": "1a2ed59973dc3a88",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "3_Resources/world_monitor/internal/youtube-desktop.md",
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "Outline of youtube-desktop"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:Open quick switcher": false,
+      "graph:Open graph view": false,
+      "canvas:Create new canvas": false,
+      "daily-notes:Open today's daily note": false,
+      "templates:Insert template": false,
+      "command-palette:Open command palette": false,
+      "bases:Create new base": false
+    }
+  },
+  "active": "8ed9289fe98aa790",
+  "lastOpenFiles": [
+    "sachnetra v2/wiki/log.md",
+    "sachnetra v2/wiki/index.md",
+    "sachnetra v2/wiki/playbooks/personal_investing.md",
+    "sachnetra v2/wiki/playbooks",
+    "sachnetra v2/wiki/mindsets/background_brain.md",
+    "sachnetra v2/wiki/mindsets",
+    "sachnetra v2/wiki/syntheses/sachnetra_quant_pivot.md",
+    "sachnetra v2/wiki/syntheses/sachnetra_quant_pivot.md.tmp.192.1777973539323",
+    "sachnetra v2/wiki/syntheses",
+    "sachnetra v2/wiki/entities/reserve_bank_of_india.md",
+    "sachnetra v2/wiki/entities/world_quant.md",
+    "sachnetra v2/wiki/entities",
+    "sachnetra v2/wiki/concepts/quant_finance.md",
+    "sachnetra v2/wiki/concepts/bonds_and_yields.md",
+    "sachnetra v2/wiki/concepts/inflation.md",
+    "sachnetra v2/wiki/concepts/interest_rates.md",
+    "sachnetra v2/wiki/concepts/compounding.md",
+    "sachnetra v2/wiki/concepts",
+    "sachnetra v2/wiki/WIKI_SCHEMA.md",
+    "sachnetra v2/llm_wiki_architecture.md",
+    "sachnetra v2/wiki",
+    "sachnetra v2",
+    "llm_wiki_architecture.md",
+    "tasks/DOC-001_LLM_Wiki_Implementation.md",
+    "conversation.md",
+    "conversation",
+    "3_Resources/world_monitor/internal/youtube-desktop.md"
+  ]
+}
