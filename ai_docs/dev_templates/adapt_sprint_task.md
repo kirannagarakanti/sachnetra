@@ -5,30 +5,75 @@
 
 ## How To Use This
 
-James tells the agent which task he wants:
+Lijo tells the agent which task he wants:
 
 ```
-"Generate the task file for Task 002 — Indian RSS Feeds"
+"Generate the task file for Task V2-002 — GoOut Hyderabad Panel"
 ```
 
-The agent reads only what is needed for that task,
-studies the relevant codebase files,
-and generates a detailed task file.
-James reviews and approves it.
-Then James executes it.
+The agent runs Steps 0–4 to analyse, check, and generate the task file.
+Lijo reviews and approves it (Step 5).
+Then Lijo says "proceed" and the agent executes (Steps 6–7).
+
+---
+
+## Step 0 — Strategic Analysis Gate
+
+Before reading any files, answer this first:
+
+> **Does this task have more than one viable implementation approach?**
+
+If YES — stop. Do NOT write the task file yet.
+
+Show Lijo this format:
+
+```
+Task [N] — [Name]
+
+I see [N] ways to implement this. Before I write the task file, which approach do you want?
+
+Option A: [Name]
+  Approach: [one sentence]
+  Pros: [2–3 bullets]
+  Cons: [2–3 bullets]
+  Complexity: Low / Medium / High
+  Risk: Low / Medium / High
+
+Option B: [Name]
+  Approach: [one sentence]
+  Pros: [2–3 bullets]
+  Cons: [2–3 bullets]
+  Complexity: Low / Medium / High
+  Risk: Low / Medium / High
+
+Option C: [Name] (if applicable)
+  ...
+
+My recommendation: Option [X] because [one sentence reason].
+
+Reply with A, B, or C (or describe a different approach).
+```
+
+Wait for Lijo to choose before proceeding to Step 1.
+
+If NO — continue to Step 1 silently.
 
 ---
 
 ## Step 1 — Identify The Task
 
-Read `ai_docs/prep/07_roadmap.md`.
-Find the specific task James requested.
+Read the appropriate roadmap file:
+- **V1 tasks** → `ai_docs/prep/07_roadmap.md`
+- **V2 tasks** → `ai_docs/SACHNETRA_BUILD_GUIDE.md` (V2-001 through V2-010)
+
+Find the specific task Lijo requested.
 Note:
 - Task number and name
 - Files to touch (listed in roadmap)
 - Prep docs relevant to this task
 - Depends on (which previous task must be done first)
 - Estimated time
+- Whether this is V1 or V2
 
 ---
 
@@ -103,6 +148,44 @@ Codebase:     src/app/app-context.ts
               src/config/variants/india.ts (current state after Task 006)
 ```
 
+### V2-001 — Landing Page (sachnetra.in root)
+```
+Prep docs:    ai_docs/SACHNETRA_BUILD_GUIDE.md (V2-001 section)
+Codebase:     index.html (current — app entry point, will become /app)
+              vercel.json (routing rules)
+              src/main.ts (current app bootstrap)
+              public/ (favicon, og image)
+```
+⚠️ The app moves to `/app`. Landing page must NOT bundle Vite JS.
+Plain HTML/CSS/JS only in `landing/index.html`.
+
+### V2-002 — GoOut Hyderabad Panel
+```
+Prep docs:    ai_docs/SACHNETRA_BUILD_GUIDE.md (V2-002 section)
+Codebase:     src/config/variants/india.ts
+              src/config/panels.ts (INDIA_PANELS ternary)
+              src/config/feeds.ts
+              shared/rss-allowed-domains.json
+              api/_rss-allowed-domains.js
+```
+
+### V2-003 — RSSHub Self-Hosted
+```
+Prep docs:    ai_docs/SACHNETRA_BUILD_GUIDE.md (V2-003 section)
+Codebase:     vercel.json
+              api/rss-proxy.js
+              shared/rss-allowed-domains.json
+              api/_rss-allowed-domains.js
+```
+⚠️ RSSHub was explicitly out of V1 scope. This is its first appearance. Read V2-003 notes carefully.
+
+### V2-006 — WhatsApp Daily Brief
+```
+Prep docs:    ai_docs/SACHNETRA_BUILD_GUIDE.md (V2-006 section)
+Codebase:     api/groq-summarize.js (summary format reference)
+              api/ (existing edge function patterns)
+```
+
 ---
 
 ## Step 2.5 — Rules Check
@@ -116,7 +199,7 @@ Continue to Step 3 silently. No action needed.
 **If you find anything wrong, missing, or outdated:**
 STOP. Do not change anything yet.
 
-Show James this exact format:
+Show Lijo this exact format:
 
 ```
 Rules check found [N] issue(s):
@@ -135,13 +218,13 @@ Do you want me to update these rules before proceeding?
 Reply "yes update rules" or "skip, proceed as is".
 ```
 
-Wait for James to reply before touching any rule file.
+Wait for Lijo to reply before touching any rule file.
 
-**If James says "yes update rules":**
+**If Lijo says "yes update rules":**
 Make only the specific changes listed above.
 Then continue to Step 3.
 
-**If James says "skip":**
+**If Lijo says "skip":**
 Note the discrepancy in the completion log.
 Continue to Step 3 using the codebase reality, not the outdated rule.
 
@@ -160,7 +243,7 @@ SACRED — Never write to these files:
   src/config/variants/finance.ts
 ```
 
-If a task ever seems to require modifying these files — stop immediately and tell James.
+If a task ever seems to require modifying these files — stop immediately and tell Lijo.
 Something is wrong with the task, not the rule.
 
 ---
@@ -210,9 +293,54 @@ If any wiring is missing, add it to the Implementation phases.
 
 ---
 
+## Step 3.8 — Second-Order Impact Check
+
+Before writing the task file, run this checklist.
+This step catches cascading failures that aren't obvious from the task description.
+
+For each file this task will modify, ask:
+
+```
+□ Breaking changes?
+    Does this change the shape of an exported type, function signature,
+    or API response that other files depend on?
+
+□ Ripple effects?
+    What else imports this file? Run a quick search:
+    grep -r "from.*[filename]" src/ api/
+    List every consumer. Does this change break any of them?
+
+□ Performance impact?
+    Does this add a new API call, database query, or compute step per request?
+    Is it cached? What's the worst-case latency?
+
+□ Security surface?
+    Does this expose a new endpoint? Accept new user input?
+    Is input validated? Is the new route behind auth (if needed)?
+
+□ Variant bleed?
+    Does this change affect full.ts / tech.ts / finance.ts behaviour?
+    (Changes to shared infrastructure can break other variants silently.)
+```
+
+**RED flag** (stop, tell Lijo):
+- The change breaks a type used in 3+ files
+- The change adds an unauthenticated endpoint that accepts raw user data
+- The change modifies shared infrastructure used by all variants
+
+**YELLOW flag** (note it in the task file, discuss before executing):
+- A performance cost with no cache
+- A breaking change isolated to 1–2 files you can fix in the same task
+- A new env variable needed
+
+If any RED flag is found — stop. Show Lijo what you found and why it's a blocker.
+Wait for guidance before proceeding.
+
+---
+
 ## Step 4 — Generate The Task File
 
-Save to: `ai_docs/tasks/00[N]_[task_name].md`
+Save to: `ai_docs/tasks/[V1: 00N | V2: V2-00N]_[task_name].md`
 
 Use this exact structure:
 
@@ -225,6 +353,7 @@ Use this exact structure:
 **Depends on**: Task [previous] must be complete
 **Estimated time**: [from roadmap]
 **Prep doc**: [which prep doc has the decisions]
+**V1 or V2**: [V1 / V2]
 
 ---
 
@@ -241,6 +370,31 @@ Example: "src/config/variants/india.ts exists with empty FEEDS array.
 Example:
   "Adds 20 Indian RSS feeds to india.ts FEEDS array."
   "Adds 19 Indian domains to api/rss-proxy.js allowlist."]
+
+---
+
+## Success Criteria
+
+This task is complete when ALL of the following are true:
+
+- [ ] [Specific, observable outcome 1]
+- [ ] [Specific, observable outcome 2]
+- [ ] `npm run typecheck` shows 0 errors
+- [ ] `npx biome check .` shows 0 errors
+- [ ] No console errors in browser at VITE_VARIANT=india
+
+[Add task-specific criteria — things visible in the browser, API responses, etc.]
+
+---
+
+## Second-Order Impact
+
+[Filled in from Step 3.8. List any YELLOW flags here.]
+
+- Affected consumers: [list files that import changed files]
+- Performance: [cache hit/miss impact, if any]
+- Variant bleed risk: [none / [description]]
+- New env vars needed: [none / VAR_NAME=value — add to .env.local and Vercel dashboard]
 
 ---
 
@@ -293,13 +447,36 @@ Follow this exact structure. Do not invent new fields.
 
 **Before** (`[file]`):
 \`\`\`typescript
-[current code]
+[current code — copied directly from Step 3 codebase read]
 \`\`\`
 
 **After**:
 \`\`\`typescript
 [code after this task]
 \`\`\`
+
+---
+
+## Error Scenarios
+
+[What can go wrong? What does it look like? How to fix it?]
+
+| Symptom | Likely cause | Fix |
+|---------|-------------|-----|
+| 403 from RSS feed | Domain not in allowlist | Add to both allowlist files (3-file rule) |
+| Panel not showing | Wiring missing in panels.ts | Trace import chain from Step 3.5 |
+| `[example error]` | `[cause]` | `[fix]` |
+
+---
+
+## Environment Variables
+
+[List any env vars this task introduces or depends on.]
+
+| Variable | Where set | Purpose |
+|----------|----------|---------|
+| `VITE_VARIANT=india` | `.env.local` | Required to test india variant |
+| `[NEW_VAR]` | `.env.local` + Vercel dashboard | [purpose] |
 
 ---
 
@@ -324,11 +501,12 @@ Follow this exact structure. Do not invent new fields.
 ## Verify
 
 \`\`\`bash
-npm run typecheck   # Must show: 0 errors
+npm run typecheck     # Must show: 0 errors
+npx biome check .     # Must show: 0 errors
 \`\`\`
 
 In browser (npm run dev with VITE_VARIANT=india):
-- [ ] [What to look for]
+- [ ] [What to look for — specific and observable]
 - [ ] [What to look for]
 - [ ] [What to look for]
 
@@ -349,7 +527,7 @@ Follow this sequence — it catches 90% of variant bugs:
 - `india.ts` `DEFAULT_PANELS` export — dead code, not wired to panel-layout
 
 ⚠️ **After ANY change to panel definitions in `panels.ts`:**
-Always tell James to run `localStorage.clear()` + hard refresh.
+Always tell Lijo to run `localStorage.clear()` + hard refresh.
 Panel settings are cached in localStorage and won't update without clearing.
 
 Do not move to the next task until all checks pass.
@@ -361,19 +539,45 @@ Do not move to the next task until all checks pass.
 - [ ] Phase 1 complete — [timestamp]
 - [ ] Phase 2 complete — [timestamp]
 - [ ] Typecheck: 0 errors — [timestamp]
+- [ ] Biome: 0 errors — [timestamp]
 - [ ] Browser verified — [timestamp]
+- [ ] Success Criteria: all checked — [timestamp]
 - [ ] **TASK [N] COMPLETE** ✅
 ```
 
 ---
 
+## Step 4.5 — Code Changes Preview
+
+Before presenting for approval, show Lijo the actual diffs.
+
+Do NOT generate hypothetical code. Read the actual files now.
+
+For each file this task will modify:
+
+```
+File: [exact/path/file.ts]
+
+CURRENT (lines [X]–[Y]):
+  [quote the actual code you just read]
+
+PROPOSED CHANGE:
+  [exact code you will write]
+
+Reason: [one sentence]
+```
+
+Only after showing real before/after for every file — proceed to Step 5.
+
+---
+
 ## Step 5 — Present For Approval
 
-Show James:
+Show Lijo:
 
 ```
 Task [N] — [Name]
-Saved: ai_docs/tasks/00[N]_[name].md
+Saved: ai_docs/tasks/[filename].md
 
 Files changing:
   • [file1] — [what changes]
@@ -385,21 +589,36 @@ Phases:
 
 Time estimate: [X hours]
 
-Say "proceed" to execute.
+Second-order impacts: [none / brief note]
+
+Options:
+  A) Show full code preview for each file
+  B) Proceed to execute
+  C) Give feedback to revise the task file
+
+Reply A, B, or C.
 ```
 
-Wait for "proceed" before touching any code.
+**Approval vocabulary:**
+- `"proceed"` or `"B"` → execute the task
+- `"A"` → show Step 4.5 preview first, then wait again
+- `"C"` or any feedback → revise and re-present
+- `"stop"` → abandon current task, do not touch any files
+
+Wait for explicit approval before touching any code.
 
 ---
 
 ## Step 6 — Execute
 
+Get the current timestamp first (use the system date, not a hardcoded guess).
+
 Work phase by phase. Complete Phase 1 fully before Phase 2.
-Mark each checkbox [x] with timestamp as you go.
+Mark each checkbox [x] with real timestamp as you go.
 
 After each phase:
 ```
-✅ Phase [N] complete
+✅ Phase [N] complete — [HH:MM]
   • [file] (+X lines) — [description]
 Proceeding to Phase [N+1]...
 ```
@@ -413,9 +632,57 @@ Modified:
   • [file2] (+Y lines): [description]
 
 Typecheck: ✅ 0 errors
-Browser: ✅ [check passed]
+Biome:     ✅ 0 errors
+Browser:   ✅ [check passed]
 
-Ready for Task [N+1].
+Proceeding to Step 7 — Code Review...
+```
+
+---
+
+## Step 7 — Comprehensive Code Review
+
+This step is mandatory. Run it after all phases are complete, before declaring the task done.
+
+### 7.1 — Re-read every modified file
+
+Read each file that was changed in Step 6.
+Do not rely on memory. Actually call the Read tool again.
+
+### 7.2 — Run checks
+
+```bash
+npm run typecheck     # Must be 0 errors
+npx biome check .     # Must be 0 errors
+```
+
+### 7.3 — Check Success Criteria
+
+Go through each item in the task file's Success Criteria section.
+Mark each one ✅ or ❌ with evidence (what you saw, what line, what output).
+
+### 7.4 — Variant bleed check
+
+Open `src/config/variants/full.ts` and `src/config/variants/tech.ts`.
+Confirm nothing changed in these files. (Read → compare to before state.)
+
+### 7.5 — Confidence rating
+
+```
+Code Review Summary:
+  Files re-read:      [list]
+  Typecheck:          ✅ / ❌
+  Biome:              ✅ / ❌
+  Success criteria:   [N/N passed]
+  Variant bleed:      ✅ none / ❌ [what]
+
+Confidence: [High / Medium / Low]
+Reason: [one sentence]
+
+[If confidence is Medium or Low — explain what you're uncertain about
+ and what Lijo should double-check manually.]
+
+TASK [N] COMPLETE ✅
 ```
 
 ---
@@ -429,7 +696,7 @@ Ready for Task [N+1].
 - No commented-out code — delete completely
 - Mobile-first CSS — 375px base
 - Touch targets minimum 44px
-- Use --sn-* CSS variables, never hardcoded hex
+- Use `--sn-*` CSS variables, never hardcoded hex
 - Conditional branding via `[data-variant="india"]` CSS selectors, not JS class toggling
 - Hide irrelevant navigation for variant-specific brands — don't adapt, hide
 - SVG favicon preferred over PNG renders (modern browser target)
@@ -438,12 +705,13 @@ Ready for Task [N+1].
 **Forbidden:**
 ```
 npm run build   ❌
-npm run dev     ❌  (James runs this himself)
+npm run dev     ❌  (Lijo runs this himself)
 ```
 
 **Allowed:**
 ```
 npm run typecheck   ✅
+npx biome check .   ✅
 Reading files       ✅
 ```
 
@@ -476,22 +744,42 @@ These traps have been hit in previous tasks. Check before each task:
 7. **localStorage caches panel settings** — After changing `panels.ts`, always clear localStorage
    and hard refresh. Stale cached settings will hide new panels.
 
+8. **CACHE_VERSION controls Redis TTL** — Current version is `v8`. Bumping this invalidates all
+   cached AI summaries. Only bump when prompt format changes. Key pattern: `india:summary:v8:[slug]`.
+
+9. **`middleware.ts` / `vercel.json` rewrites affect ALL variants** — Changes to routing rules or
+   middleware are global. Always check what other variants' routes look like before modifying.
+
+10. **Vercel Edge Functions are plain JS, not TypeScript** — Files in `api/` use `.js` extension
+    and CommonJS or ESM patterns, NOT TypeScript. Do not add type annotations or `import type`.
+
 ---
 
-## V1 Scope Guard
+## V2 Scope Guard
 
-If any step pulls toward these — stop and tell James:
+V1 is complete. V2 tasks are defined in `ai_docs/SACHNETRA_BUILD_GUIDE.md`.
 
+If any step pulls toward something NOT in V2-001 through V2-010 — stop and tell Lijo.
+
+**In scope for V2:**
 ```
-❌ RSSHub, Firecrawl, scraping
+✅ V2-001 — Landing page (sachnetra.in root)
+✅ V2-002 — GoOut Hyderabad local events panel
+✅ V2-003 — RSSHub self-hosted feeds
+✅ V2-004 — Convex user accounts + auth
+✅ V2-005 — Brief subscriptions (saved stories)
+✅ V2-006 — WhatsApp daily brief
+✅ V2-007 — Hyderabad city dashboard
+✅ V2-008 — State liveability scoring
+✅ V2-009 — Hindi / regional language toggle
+✅ V2-010 — Push notifications
+```
+
+**Still out of scope (V3 or later):**
+```
 ❌ Graph database, knowledge graph
-❌ State scoring / liveability index
 ❌ LAC/LOC or LWE map layers
 ❌ Indian military bases
 ❌ Election monitor
-❌ Hindi / regional language
-❌ User accounts or auth
-❌ Push notifications
+❌ Scraping (non-RSSHub)
 ```
-
-These are V2/V3. Not now.
