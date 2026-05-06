@@ -39,3 +39,20 @@ if (import.meta.env.VITE_VARIANT === 'india') return 'india';
 ```bash
 VITE_VARIANT=india npm run dev
 ```
+
+---
+
+## V2 Mission
+
+V1 shipped a working India news aggregator. V2 transforms it into a **data collection engine** — every digest run permanently records signal data, independent of user activity. The news app remains the public face. The Railway PostgreSQL database accumulates the asset.
+
+**The sentence:** SachNetra is the collection engine. The database is the asset. The quant system is the proof of value.
+
+India's bilingual entity-aware sentiment data for Indian markets does not exist at production quality. SachNetra builds it as a byproduct of running the news app. The B2B quant product (IndiaSignal) is V3. V2 only starts the data collection.
+
+## V2 Entry Points
+
+- Intelligence pipeline: `scripts/seed-india-signals.mjs` — NEW Railway cron, reads Redis
+- Data store: `india_news_signals` table on Railway PostgreSQL
+- Hook point: reads `news:digest:v1:india:en` from Upstash Redis (already populated by digest)
+- New sacred: `scripts/seed-insights.mjs` — never modify for V2 intelligence work; create a sibling instead

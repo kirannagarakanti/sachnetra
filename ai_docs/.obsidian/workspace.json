@@ -4,11 +4,11 @@
     "type": "split",
     "children": [
       {
-        "id": "afdfd07b7f9b9af8",
+        "id": "d20f2cb47243cc61",
         "type": "tabs",
         "children": [
           {
-            "id": "8ed9289fe98aa790",
+            "id": "8c23d5359bb6b80b",
             "type": "leaf",
             "state": {
               "type": "graph",
@@ -179,8 +179,15 @@
       "bases:Create new base": false
     }
   },
-  "active": "8ed9289fe98aa790",
+  "active": "8c23d5359bb6b80b",
   "lastOpenFiles": [
+    "tasks/V2-000_bootstrap_rules_update.md",
+    "sachnetra v2/V2_roadmap.md",
+    "sachnetra v2/wiki/concepts/quant_finance.md",
+    "tasks/V2-001_intelligence_pipeline_foundation.md",
+    "sachnetra v2/wiki/syntheses/sachnetra_sentiment_architecture.md",
+    "sachnetra v2/wiki/syntheses/sachnetra_schema_analysis.md",
+    "sachnetra v2/wiki/syntheses/sachnetra_db_schema.md",
     "sachnetra v2/wiki/log.md",
     "sachnetra v2/wiki/index.md",
     "sachnetra v2/wiki/playbooks/personal_investing.md",
@@ -193,7 +200,6 @@
     "sachnetra v2/wiki/entities/reserve_bank_of_india.md",
     "sachnetra v2/wiki/entities/world_quant.md",
     "sachnetra v2/wiki/entities",
-    "sachnetra v2/wiki/concepts/quant_finance.md",
     "sachnetra v2/wiki/concepts/bonds_and_yields.md",
     "sachnetra v2/wiki/concepts/inflation.md",
     "sachnetra v2/wiki/concepts/interest_rates.md",

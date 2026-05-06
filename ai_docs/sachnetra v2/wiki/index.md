@@ -30,6 +30,9 @@ Master catalog of all pages. Updated on every ingest.
 | Page | Summary |
 |---|---|
 | [[sachnetra_quant_pivot]] | Full roadmap: two-app architecture, V2 priority order, intelligence pipeline, data schema, revenue timeline, and the five unique market gaps SachNetra fills |
+| [[sachnetra_db_schema]] | Comprehensive database schema design for entity-aware sentiment analysis, event-driven categorization, geographic mapping, and AI clustering |
+| [[sachnetra_schema_analysis]] | Academic validation of the schema, NLP model strategy, Convex/Redis adaptation, and a 4-phase implementation plan |
+| [[sachnetra_sentiment_architecture]] | Architecture decisions for FinBERT sentiment data collection, the missed data problem, and the V2-001 intelligence pipeline scope |
 
 ---
 

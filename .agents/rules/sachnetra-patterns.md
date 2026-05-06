@@ -100,3 +100,64 @@ Never combine two tasks into one session. Complete Phase 1 fully before Phase 2.
 - No commented-out code — delete completely
 - Mobile-first CSS — 375px base width
 - Touch targets minimum 44px height
+
+---
+
+## Railway Cron Pattern (V2)
+
+V2 introduces Railway cron scripts that run independently of user activity.
+The V2 intelligence entry point is `scripts/seed-india-signals.mjs`.
+
+### runSeed() Shape — Follow Exactly
+
+Every seed script in `scripts/` uses this shape. Model after `scripts/seed-insights.mjs` (line 326):
+
+```javascript
+#!/usr/bin/env node
+import { loadEnvFile, getRedisCredentials, runSeed } from './_seed-utils.mjs';
+loadEnvFile(import.meta.url);   // MUST be first — loads .env.local
+
+const CANONICAL_KEY = 'news:signals:v1:india';   // Redis status key written by runSeed
+const CACHE_TTL = 1800;                            // 30 min
+
+async function fetchSignals() {
+  // All business logic lives here:
+  // 1. Read news:digest:v1:india:en from Redis via getRedisCredentials()
+  // 2. Filter is_market_moving via keyword match
+  // 3. scoreWithFinBERT() → POST HuggingFace API
+  // 4. extractCompanies() + detectSectors() via keyword rules
+  // 5. INSERT to PostgreSQL (ON CONFLICT DO NOTHING)
+  // 6. Return summary object — runSeed writes this to CANONICAL_KEY in Redis
+}
+
+function validate(data) {
+  return typeof data === 'object' && data !== null;
+}
+
+runSeed('india', 'signals', CANONICAL_KEY, fetchSignals, {
+  validateFn: validate,
+  ttlSeconds: CACHE_TTL,
+  sourceVersion: 'finbert-v1',
+}).catch((err) => {
+  console.error('FATAL:', err.message || err);
+  process.exit(0);   // Railway cron must always exit 0
+});
+```
+
+### runSeed() contract (from `scripts/_seed-utils.mjs`):
+- Acquires a distributed lock (`seed-lock:india:signals`) — prevents overlapping cron runs
+- Calls `fetchFn()` with retry (3 attempts, exponential backoff)
+- Atomically publishes return value to Redis at `CANONICAL_KEY`
+- Writes `seed-meta:india:signals` freshness metadata (health monitoring)
+- Releases lock and exits
+- On fetch failure: extends existing Redis key TTL (graceful degradation), exits 0
+
+### Redis key conventions for India signals:
+```
+news:digest:v1:india:en    ← READ (already populated by server digest every 15 min)
+news:signals:v1:india      ← WRITE (status/summary written by runSeed)
+seed-meta:india:signals    ← WRITE (freshness metadata, auto-written by runSeed)
+```
+
+### Never modify `scripts/seed-insights.mjs` for V2 work.
+`seed-insights.mjs` is sacred. Create `scripts/seed-india-signals.mjs` as a sibling.

@@ -45,74 +45,100 @@ Phase 3: EXECUTE (Tasks 001–018.5 — V1 complete)
 
 ## V2 Build Plan
 
-V1 shipped the core product. V2 is about growth, monetisation, and depth.
+V1 shipped the core product. V2 is the data collection layer — every digest run permanently records
+market signals to Railway PostgreSQL, independent of user activity.
 
-### V2 Feature Priority (in build order)
+**The sentence:** SachNetra is the collection engine. The database is the asset. The quant system is the proof of value.
+
+**Source of truth**: `ai_docs/sachnetra v2/V2_roadmap.md`
+
+### V2 Task List (dependency order)
 
 ```
-V2-001  Landing Page
-        → Marketing page at sachnetra.com/
-        → App moves to sachnetra.com/app
-        → Hyderabad/India positioning, event discovery angle
-        → Template: ai_docs/dev_templates/generate_landing_page.md
+V2-000  Bootstrap & Rules Update
+        → Update .agents/rules/ and CLAUDE.md before any V2 code runs
+        → No code changes — documentation only
 
-V2-002  GoOut Hyd Integration — Pearl String UI
-        → Event-forward positioning for Hyderabad
-        → Pearl String horizontal scroll event cards
-        → "What's On" tab in the bottom nav
+V2-001  Railway Setup + Data Foundation
+        → Railway PostgreSQL + india_news_signals table
+        → scripts/seed-india-signals.mjs — new Railway cron (reads Redis, writes PostgreSQL)
+        → Runs every 10 min, independent of user activity
+        → HuggingFace FinBERT for sentiment scoring
 
-V2-003  RSSHub on Railway
+V2-002  Enrich Summary with Intelligence Signals
+        → Groq prompt returns 4 new fields: sentiment, score, companies, event_type
+        → Fire-and-forget PostgreSQL UPDATE on user click (never delays summary)
+        → Depends on: V2-001
+
+V2-003  Related Stories on Story Detail
+        → 2–3 related headlines via Jaccard keyword overlap (no ML)
+        → Pure client-side, uses already-loaded digest items
+        → Depends on: V2-000
+
+V2-004  Feedback Buttons (👍👎)
+        → Thumbs up/down on story cards → PostgreSQL article_feedback table
+        → localStorage prevents re-voting; no auth required
+        → Depends on: V2-001
+
+V2-005  RSSHub on Railway (Government Sources)
         → PIB, MEA, MHA, NDMA press releases as RSS
-        → Docker container on Railway, connectors to server digest
-        → No scraping — only official feeds
+        → RSSHub Docker on Railway (same project as PostgreSQL)
+        → Depends on: V2-001
 
-V2-004  Related Stories on Story Detail
-        → Similarity by keyword overlap (no ML needed in V2)
-        → 2–3 related headlines below What This Means
-
-V2-005  Mini Map on Story Detail
-        → Show the state/city where the story is happening
-        → Reuse existing MapLibre instance (no second map)
-
-V2-006  WhatsApp Brief Delivery
-        → Automated 7am brief via WhatsApp Business API
-        → Opt-in via phone number (no account required)
-        → Infrastructure: Convex scheduled function + Twilio/WABA
+V2-006  New Stories Pill on Timeline
+        → Green "N new stories" pill when background refresh finds new clusters
+        → sessionStorage diff, no backend needed
+        → Depends on: V2-000
 
 V2-007  Hindi Language Support
-        → Add hi.json locale file
-        → UI labels in Hindi, headlines remain in English
-        → Toggle in settings
+        → i18next locale file (hi.json) — UI labels only, headlines stay English
+        → Toggle in settings, persisted to localStorage
+        → Depends on: V2-000
 
-V2-008  "New Stories" Pill on Timeline
-        → Green "N new" pill when background refresh finds new clusters
-        → Track seen story IDs in sessionStorage
+V2-008  WhatsApp Daily Brief
+        → Automated 7am IST digest via Twilio WhatsApp API
+        → Opt-in by phone number (no account required)
+        → Railway cron + PostgreSQL whatsapp_subscribers table
+        → Depends on: V2-001
 
 V2-009  State Liveability Score
-        → 4 components: Safety · Governance · Infrastructure · Economy
-        → Data: NCRB annual, Cloudflare outages, startup signals
-        → Architect (James) must define weights before building
-        → NO single reductive number — 4 bars per state
+        → 4-bar score: Safety · Governance · Infrastructure · Economy
+        → BLOCKED — Daniel must define data sources + weights before task file is generated
 
-V2-010  Tender & Scheme Alerts (paid feature)
-        → GeM tenders filtered by sector/state
-        → Government scheme tracking for researchers
-        → ₹199–499/month subscription
-        → Requires: GeM API + MyScheme API + notification system
-        → Convex for data storage, Stripe for billing
+V2-010  Landing Page
+        → Plain HTML/CSS/JS at sachnetra.in/; app moves to /app
+        → BLOCKED — build only after 30 days of real V2 usage numbers
 ```
+
+### V2 Architecture Decisions (locked)
+
+| Decision | Answer |
+|----------|--------|
+| Database | Railway PostgreSQL (not Convex) |
+| Intelligence entry point | `scripts/seed-india-signals.mjs` (Railway cron) |
+| Hook point | Reads `news:digest:v1:india:en` from Upstash Redis |
+| Sentiment model | HuggingFace FinBERT (`HF_API_TOKEN`) — free tier first |
+| Summaries | On-demand per user click, Redis-cached after first hit |
+| GoOut Hyderabad | Removed from V2 |
+| Landing page | Last — after 30 days of real usage numbers |
+| Convex | Not in V2 — Railway PostgreSQL only |
 
 ### V2 Scope Guard
 
-Stop and tell James if any task pulls toward these:
+Stop and tell James + Daniel if any task pulls toward these:
 
 ```
+❌ Graph database, knowledge graph (V3)
+❌ IndiaSignal B2B API product (V3 — build data first, productise later)
 ❌ LAC/LOC or LWE map layers (legal review required first)
-❌ Communal incident tracker (human review pipeline required)
-❌ Firecrawl scraping (V3 only)
-❌ Knowledge graph / Graphiti (V3 only)
 ❌ Indian military bases on map
-❌ Modifying src/config/variants/full.ts, tech.ts, or finance.ts
+❌ Communal incident tracker (human review pipeline required)
+❌ Firecrawl scraping
+❌ Election monitor
+❌ GoOut Hyderabad (removed from V2)
+❌ Convex (not in V2 — Railway PostgreSQL only)
+❌ Modifying src/config/variants/full.ts, tech.ts, or finance.ts (sacred, always)
+❌ Modifying scripts/seed-insights.mjs for V2 intelligence work (sacred)
 ```
 
 ---

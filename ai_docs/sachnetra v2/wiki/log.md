@@ -31,3 +31,32 @@ Chronological append-only ledger of all ingest and update operations.
 **Pages from Phase 1** (created prior, not modified this session):
 - `WIKI_SCHEMA.md`
 - `../llm_wiki_architecture.md`
+
+## [2026-05-05] ingest | user_schema_report
+
+**Operation**: Ingest SachNetra DB Schema Report
+**Source**: User Request / Schema Design Report
+**Agent**: Antigravity
+
+**Pages created**:
+- `syntheses/sachnetra_db_schema.md`
+
+**Pages modified**:
+- `index.md`
+
+**Coverage**: Added comprehensive database schema covering quantitative finance data, news categorization, geographic mapping, AI clustering, and performance optimization for SachNetra V2.
+
+## [2026-05-05] ingest | conversation_schema_analysis
+
+**Operation**: Ingest SachNetra Schema Analysis & Implementation Plan
+**Source**: User Request / conversation.md
+**Agent**: Antigravity
+
+**Pages created**:
+- `syntheses/sachnetra_schema_analysis.md`
+
+**Pages modified**:
+- `index.md`
+
+**Coverage**: Extracted academic validations, model pipeline strategy, Convex/Redis mapping, and a 4-phase implementation plan for the SachNetra DB schema.
+

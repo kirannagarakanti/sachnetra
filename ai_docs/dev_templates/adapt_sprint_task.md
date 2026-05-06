@@ -680,10 +680,26 @@ Confidence: [High / Medium / Low]
 Reason: [one sentence]
 
 [If confidence is Medium or Low — explain what you're uncertain about
- and what Lijo should double-check manually.]
+ and what Lijo/James should double-check manually.]
 
 TASK [N] COMPLETE ✅
 ```
+
+### 7.6 — Update CLAUDE.md task status (mandatory)
+
+After every task completion, update the V2 Task Status table in `CLAUDE.md`:
+
+Change the completed task line from:
+```
+V2-00N  [Task Name]   [ ] not started
+```
+To:
+```
+V2-00N  [Task Name]   [COMPLETE ✅ — YYYY-MM-DD]
+```
+
+This keeps `CLAUDE.md` as a live dashboard that Claude Code reads at the start of every session.
+Do not skip this step — it is how future sessions know what has been built.
 
 ---
 

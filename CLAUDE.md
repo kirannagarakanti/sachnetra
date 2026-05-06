@@ -1,0 +1,115 @@
+# SachNetra — Claude Code Context
+
+**Project**: SachNetra — India's news clarity tool ("See clearly" | सच्चनेत्र)
+**Stack**: TypeScript · Vite · Preact · Vercel Edge Functions · Railway PostgreSQL · Upstash Redis
+**Live**: sachnetra.com
+**Base**: WorldMonitor fork (AGPL v3)
+**Operators**: Lijo (founder/product) + James (engineering partner)
+
+---
+
+## V2 Mission
+
+SachNetra is the collection engine. The database is the asset. The quant system is the proof of value.
+
+V1 shipped the news aggregator (complete). V2 adds a background intelligence pipeline — every digest
+run permanently records India market signals to Railway PostgreSQL, independent of user activity.
+
+---
+
+## Sacred Files — NEVER Write To
+
+```
+src/config/variants/full.ts      ← WorldMonitor live variant — DO NOT TOUCH
+src/config/variants/tech.ts      ← WorldMonitor tech variant — DO NOT TOUCH
+src/config/variants/finance.ts   ← WorldMonitor finance variant — DO NOT TOUCH
+scripts/seed-insights.mjs        ← Live news insights cron — DO NOT TOUCH for V2 work
+```
+
+If a task seems to require touching these — stop immediately and tell Lijo + James.
+Something is wrong with the task, not these rules.
+
+---
+
+## Architecture
+
+```
+User request
+  → Vercel Edge Functions (api/)
+  → server/ RPC handlers
+  → Upstash Redis cache (news:digest:v1:india:en)
+  → Client SPA (Preact, src/config/variants/india.ts)
+
+Railway cron (every 10 min, independent of users)
+  → scripts/seed-india-signals.mjs          [V2-001 NEW]
+  → reads news:digest:v1:india:en from Redis
+  → scores FinBERT (HuggingFace API)
+  → writes india_news_signals (Railway PostgreSQL)
+```
+
+**Key files:**
+- SachNetra variant config: `src/config/variants/india.ts`
+- Server-side feeds: `server/worldmonitor/news/v1/_feeds.ts`
+- V2 intelligence entry point: `scripts/seed-india-signals.mjs` (NEW in V2-001)
+- V2 database: Railway PostgreSQL — `india_news_signals` table only (V2-001)
+
+---
+
+## Key Constraints
+
+- Intelligence pipeline is **fire-and-forget** — must never delay digest response to users
+- `seed-india-signals.mjs` reads Redis; it does NOT modify `list-feed-digest.ts`
+- Railway cron runs every 10 minutes, independent of user activity
+- Three-file RSS allowlist: `shared/rss-allowed-domains.json` is source of truth;
+  `api/_rss-allowed-domains.js` is the ESM copy — always update both, never edit `rss-proxy.js`
+- Vercel Edge Functions (`api/*.js`) are plain JS only — no TypeScript, no imports from `src/`
+- CSS branding: `--sn-*` variables only, never hardcoded hex; selectors via `[data-variant="india"]`
+
+---
+
+## Agent Rules (Read Before Every Coding Task)
+
+```
+.agents/rules/sachnetra-context.md      — project identity, V2 mission
+.agents/rules/sachnetra-patterns.md    — runSeed() shape, Railway cron, CSS variables
+.agents/rules/sachnetra-boundaries.md  — sacred files, V2 scope guard
+.agents/rules/india-variant.md         — brand colors, map config, AI format, V2 env vars
+```
+
+---
+
+## Allowed Commands
+
+```bash
+npm run typecheck   ✅   # Must stay at 0 errors after every change
+npm run lint        ✅   # Biome — must pass
+git status          ✅
+git diff            ✅
+node scripts/seed-india-signals.mjs   ✅  (V2-001 and later)
+```
+
+```bash
+npm run build   ❌   # James runs this
+npm run dev     ❌   # Lijo/James run this
+```
+
+---
+
+## V2 Task Status
+
+Full roadmap: `ai_docs/sachnetra v2/V2_roadmap.md`
+Task files: `ai_docs/tasks/`
+
+```
+V2-000  Bootstrap & Rules Update          [COMPLETE ✅ — 2026-05-06]
+V2-001  Railway Setup + Data Foundation   [ ] not started
+V2-002  Enrich Summary with Intelligence  [ ] not started
+V2-003  Related Stories                   [ ] not started
+V2-004  Feedback Buttons                  [ ] not started
+V2-005  RSSHub on Railway                 [ ] not started
+V2-006  New Stories Pill                  [ ] not started
+V2-007  Hindi Language                    [ ] not started
+V2-008  WhatsApp Daily Brief              [ ] not started
+V2-009  State Liveability Score           [BLOCKED — architect gate]
+V2-010  Landing Page                      [BLOCKED — needs 30 days usage data]
+```

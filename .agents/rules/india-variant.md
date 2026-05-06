@@ -95,3 +95,34 @@ export const INDIA_BOUNDARY_OVERLAY = 'https://maps.sachnetra.com/india-states-o
 ```
 
 Do NOT use OSM/OpenFreeMap default boundaries alone for India.
+
+---
+
+## V2 Environment Variables
+
+New variables introduced in V2-001. Add to `.env.local` and Railway dashboard:
+
+| Variable | Purpose | Where |
+|----------|---------|-------|
+| `DATABASE_URL` | Railway PostgreSQL connection string (with `?sslmode=require`) | Railway + `.env.local` |
+| `HF_API_TOKEN` | HuggingFace Inference API key (FinBERT sentiment scoring) | Railway + `.env.local` |
+| `UPSTASH_REDIS_REST_URL` | Already exists — copy from Vercel env to Railway | Already configured |
+| `UPSTASH_REDIS_REST_TOKEN` | Already exists — copy from Vercel env to Railway | Already configured |
+
+`DATABASE_URL` format for Railway PostgreSQL:
+```
+postgresql://postgres:<password>@<host>.railway.app:5432/railway?sslmode=require
+```
+
+FinBERT endpoint (HuggingFace free tier):
+```
+POST https://api-inference.huggingface.co/models/ProsusAI/finbert
+Authorization: Bearer <HF_API_TOKEN>
+Body: { "inputs": "<headline text>" }
+Response: [{ "label": "positive"|"negative"|"neutral", "score": 0.0–1.0 }]
+```
+
+Sentiment score conversion:
+- `positive` → `+score`
+- `negative` → `-score`
+- `neutral` → `0.0`
