@@ -29,8 +29,8 @@ V1 shipped a working India news aggregator. V2 transforms it into a data collect
 ## Task Overview
 
 ```
-Task V2-000 — V2 Bootstrap & Rules Update               [ ] Not started
-Task V2-001 — Railway Setup + Data Foundation           [ ] Not started
+Task V2-000 — V2 Bootstrap & Rules Update               [✅] Complete — 2026-05-06
+Task V2-001 — Railway Setup + Data Foundation           [✅] Complete — 2026-05-07
 Task V2-002 — Enrich Summary with Intelligence Signals  [ ] Not started
 Task V2-003 — Related Stories on Story Detail           [ ] Not started
 Task V2-004 — Feedback Buttons (👍👎)                   [ ] Not started
@@ -106,29 +106,42 @@ ai_docs/sachnetra v2/wiki/syntheses/sachnetra_sentiment_architecture.md
 
 ## Task V2-001 — Railway Setup + Data Foundation
 
+**Status:** ✅ COMPLETE — 2026-05-07
 **Goal:** Create the permanent data collection pipeline — a Railway cron script that reads every India digest from Redis, scores market-moving headlines with FinBERT, and writes signals to PostgreSQL. Runs every 10 minutes, independent of user activity.
 
 **Depends on:** Task V2-000
 **Estimated time:** 4–6 hours
 **V2**
 
-### What this task does:
-- Creates Railway project with PostgreSQL service
-- Creates `india_news_signals` table (DDL below)
-- Writes `scripts/seed-india-signals.mjs` following exact `runSeed()` pattern from `seed-insights.mjs`
-- Script reads `news:digest:v1:india:en` from Upstash Redis (already populated by digest)
-- Filters for `is_market_moving` headlines via keyword matching
-- Calls HuggingFace FinBERT API to score sentiment
-- Extracts Nifty 50 company names via keyword match
-- Detects sector via keyword rules
-- INSERTs to PostgreSQL (fire-and-forget, never blocks digest)
-- Configures Railway cron to match 10-minute digest interval
+### What was built:
+- `shared/market-taxonomy.json` — keyword registry (34 market keywords, 47 Nifty 50 entities, 7 sectors, 6 event types, systemic keywords)
+- `scripts/_india-market-keywords.mjs` — extraction helpers: `isMarketMoving`, `extractCompanies`, `extractSectors`, `detectEventType`, `detectRelevanceClassFromTitle`
+- `scripts/_sentiment-chain.mjs` — three-level fallback: HuggingFace FinBERT → Xenova FinBERT → Groq → DLQ (zero data loss)
+- `scripts/seed-india-signals.mjs` — main Railway cron pipeline following exact `runSeed()` pattern
+- `scripts/migrate-india-signals.mjs` — idempotent DDL runner for Railway PostgreSQL
+- `server/worldmonitor/news/v1/list-feed-digest.ts` — added `scrapedAt: number` field (2 lines only)
+- Railway PostgreSQL provisioned with `india_news_signals` table + 3 indexes
 
-### Files to touch:
+### Files created:
 ```
-scripts/seed-india-signals.mjs         — NEW FILE (Railway cron script)
-scripts/_india-market-keywords.mjs     — NEW FILE (market keyword lists, Nifty 50 registry)
+shared/market-taxonomy.json            — NEW (keyword/entity registry)
+scripts/_india-market-keywords.mjs     — NEW (extraction helpers)
+scripts/_sentiment-chain.mjs           — NEW (3-level sentiment fallback)
+scripts/seed-india-signals.mjs         — NEW (Railway cron pipeline)
+scripts/migrate-india-signals.mjs      — NEW (idempotent DDL runner)
 ```
+
+### Files modified:
+```
+server/worldmonitor/news/v1/list-feed-digest.ts  — +2 lines (scrapedAt field only)
+package.json                                      — pg ^8.20.0, @xenova/transformers ^2.17.2
+```
+
+### Key implementation notes:
+- HuggingFace endpoint: `router.huggingface.co/hf-inference/` (not `api-inference.huggingface.co` — moved for fine-grained tokens)
+- Local dev uses `DATABASE_PUBLIC_URL`; Railway cron uses internal `DATABASE_URL` — both handled via `DATABASE_PUBLIC_URL || DATABASE_URL`
+- First run: 8 rows inserted; second run: 0 inserted (ON CONFLICT DO NOTHING confirmed)
+- Sentiment model breakdown: finbert-hf (Level 1) active after token fix; groq-llama (Level 3) as fallback
 
 ### Files to READ (reference only, never write):
 ```

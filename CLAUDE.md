@@ -50,8 +50,12 @@ Railway cron (every 10 min, independent of users)
 **Key files:**
 - SachNetra variant config: `src/config/variants/india.ts`
 - Server-side feeds: `server/worldmonitor/news/v1/_feeds.ts`
-- V2 intelligence entry point: `scripts/seed-india-signals.mjs` (NEW in V2-001)
-- V2 database: Railway PostgreSQL — `india_news_signals` table only (V2-001)
+- V2 intelligence entry point: `scripts/seed-india-signals.mjs` ✅ live
+- V2 keyword/entity registry: `shared/market-taxonomy.json` ✅ live
+- V2 extraction helpers: `scripts/_india-market-keywords.mjs` ✅ live
+- V2 sentiment fallback chain: `scripts/_sentiment-chain.mjs` ✅ live
+- V2 DDL runner: `scripts/migrate-india-signals.mjs` ✅ live
+- V2 database: Railway PostgreSQL — `india_news_signals` table ✅ provisioned
 
 ---
 
@@ -102,7 +106,7 @@ Task files: `ai_docs/tasks/`
 
 ```
 V2-000  Bootstrap & Rules Update          [COMPLETE ✅ — 2026-05-06]
-V2-001  Railway Setup + Data Foundation   [ ] not started
+V2-001  Railway Setup + Data Foundation   [COMPLETE ✅ — 2026-05-07]
 V2-002  Enrich Summary with Intelligence  [ ] not started
 V2-003  Related Stories                   [ ] not started
 V2-004  Feedback Buttons                  [ ] not started
