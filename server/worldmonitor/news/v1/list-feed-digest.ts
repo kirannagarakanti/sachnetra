@@ -54,6 +54,7 @@ interface ParsedItem {
   title: string;
   link: string;
   publishedAt: number;
+  scrapedAt: number;
   isAlert: boolean;
   level: ThreatLevel;
   category: string;
@@ -183,6 +184,7 @@ function parseRssXml(xml: string, feed: ServerFeed, variant: string): ParsedItem
       title,
       link,
       publishedAt,
+      scrapedAt: Date.now(),
       isAlert,
       level: threat.level,
       category: threat.category,
