@@ -62,8 +62,8 @@ V2-000
   └─► V2-007 (no DB dependency — locale file only)
   └─► V2-010 (no DB dependency — static HTML)
 
-V2-001
-  └─► V2-005 (Railway already running; add RSSHub to same project)
+V2-000
+  └─► V2-005 (no DB, no Docker — feeds file + allowlist only)
 
 V2-009 — BLOCKED on architect weight definition (Daniel must decide)
 ```
@@ -364,37 +364,57 @@ No auth required. No user accounts. Votes are anonymous. localStorage prevents r
 
 ---
 
-## Task V2-005 — RSSHub on Railway (Government Sources)
+## Task V2-005 — Government Sources + News Additions
 
-**Goal:** Deploy RSSHub on Railway to expose PIB, MEA, MHA, and NDMA press releases as RSS feeds; wire them into the India digest.
+**Goal:** Add 4 Indian government ministry feeds and 2 missing news outlets to the India digest.
+No Docker, no new Railway services — use the public rsshub.app instance (already in allowlist)
+for govt sites that lack native RSS; use native RSS for PIB which has one.
 
-**Depends on:** Task V2-001 (Railway project already exists — add RSSHub to same project)
-**Estimated time:** 4–6 hours
+**Depends on:** Task V2-000
+**Estimated time:** 1–2 hours
 **V2**
 
+### Architecture decision (revised 2026-05-09):
+Original spec called for a self-hosted RSSHub Docker container on Railway. Dropped — the public
+`rsshub.app` instance is already in `shared/rss-allowed-domains.json` and handles low-traffic
+govt feeds with zero infra cost. Self-hosting can be revisited in V3 if reliability becomes
+an issue at scale.
+
 ### What this task does:
-- Deploys RSSHub Docker container as a new Railway service in existing project
-- Adds 4 government source feeds to `server/worldmonitor/news/v1/_feeds.ts` India section
-- Adds government domains to `shared/rss-allowed-domains.json` AND `api/_rss-allowed-domains.js`
-- Configures Railway service URL as `RSSHUB_BASE_URL` env var
+- Upgrades `government` category in `_feeds.ts` India section:
+  - PIB: replace gnIn Google search with native RSS feed (faster, more direct)
+  - MEA, MHA, NDMA: add via rsshub.app routes
+- Adds Times Now and Deccan Chronicle to `politics` category
+- Adds any new domains to `shared/rss-allowed-domains.json` AND `api/_rss-allowed-domains.js`
+- No new environment variables, no Railway changes, no Docker
 
 ### Files to touch:
 ```
-server/worldmonitor/news/v1/_feeds.ts          — add PIB, MEA, MHA, NDMA feed entries
-shared/rss-allowed-domains.json                — add government domains
-api/_rss-allowed-domains.js                   — sync copy (ESM)
+server/worldmonitor/news/v1/_feeds.ts          — update government + politics sections
+shared/rss-allowed-domains.json                — add any new domains (mea.gov.in, mha.gov.in, ndma.gov.in, timesnownews.com, deccanchronicle.com)
+api/_rss-allowed-domains.js                   — sync copy (ESM), must match allowlist exactly
 ```
 
 ### Government feeds to add:
 ```
-PIB (Press Information Bureau)  — pib.gov.in
-MEA (Ministry of External Affairs) — mea.gov.in
-MHA (Ministry of Home Affairs)  — mha.gov.in
-NDMA (National Disaster Management) — ndma.gov.in
+PIB (Press Information Bureau)       — native RSS: https://pib.gov.in/RssMain.aspx?ModId=6&Lang=1&Regid=3
+MEA (Ministry of External Affairs)  — via rsshub.app
+MHA (Ministry of Home Affairs)      — via rsshub.app
+NDMA (National Disaster Management) — via rsshub.app
 ```
 
-### Key constraint:
-Three-file allowlist rule applies. `shared/rss-allowed-domains.json` is source of truth. `api/_rss-allowed-domains.js` is the ESM copy. Never edit `rss-proxy.js` or `ais-relay.cjs` directly for allowlist changes.
+### News sources to add (politics category):
+```
+Times Now      — https://www.timesnownews.com/feeds/gns-en-latest.xml  (already in indian_rss_feeds.json)
+Deccan Chronicle — https://www.deccanchronicle.com/rss_feed
+```
+
+### Key constraints:
+- Three-file allowlist rule applies. `shared/rss-allowed-domains.json` is source of truth.
+  `api/_rss-allowed-domains.js` is the ESM copy. Never edit `rss-proxy.js` or `ais-relay.cjs`
+  directly for allowlist changes.
+- Verify each rsshub.app route works before adding (fetch the URL, confirm valid XML).
+- No new env vars. No Railway service changes.
 
 ---
 
@@ -561,7 +581,7 @@ Landing page must NOT import the Vite JS bundle. Plain HTML/CSS/JS only. No Prea
 | V2-002 Enrich Summary | 2–3 h | Intelligence |
 | V2-003 Related Stories | 3–4 h | Feature |
 | V2-004 Feedback Buttons | 3–5 h | Feature |
-| V2-005 RSSHub Government Sources | 4–6 h | Infrastructure |
+| V2-005 Government Sources + News Additions | 1–2 h | Infrastructure |
 | V2-006 New Stories Pill | 2–3 h | Feature |
 | V2-007 Hindi Language | 3–4 h | Feature |
 | V2-008 WhatsApp Brief | 5–8 h | Feature |
