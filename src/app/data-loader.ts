@@ -615,6 +615,7 @@ export class DataLoaderManager implements AppModule {
   private readonly perFeedFallbackIntelFeedLimit = 6;
   private readonly perFeedFallbackBatchSize = 2;
   private lastGoodDigest: ListFeedDigestResponse | null = null;
+  private newStoriesPillTimer: ReturnType<typeof setTimeout> | null = null;
 
   constructor(ctx: AppContext, callbacks: DataLoaderCallbacks) {
     this.ctx = ctx;
@@ -1638,6 +1639,59 @@ export class DataLoaderManager implements AppModule {
     });
   }
 
+  private updateNewStoriesPill(currentIds: string[]): void {
+    // Don't snapshot an empty baseline — clusters haven't loaded yet
+    if (currentIds.length === 0) return;
+
+    const SEEN_KEY = 'sn:tl-seen-ids';
+
+    let pill = document.getElementById('snTlNewPill');
+    if (!pill) {
+      pill = document.createElement('div');
+      pill.id = 'snTlNewPill';
+      pill.className = 'sn-tl-new-pill';
+      pill.setAttribute('role', 'button');
+      pill.setAttribute('tabindex', '0');
+      pill.setAttribute('aria-live', 'polite');
+      // Fixed-position toast — append to body so parent transforms don't clip it
+      document.body.appendChild(pill);
+    }
+
+    const seenRaw = sessionStorage.getItem(SEEN_KEY);
+    if (seenRaw === null) {
+      try { sessionStorage.setItem(SEEN_KEY, JSON.stringify(currentIds)); } catch { /* private browsing */ }
+      return;
+    }
+
+    const seenIds = new Set<string>(JSON.parse(seenRaw) as string[]);
+    const newCount = currentIds.filter(id => !seenIds.has(id)).length;
+
+    if (newCount <= 0) {
+      pill.classList.remove('visible');
+      return;
+    }
+
+    const label = `↑ ${newCount} new ${newCount === 1 ? 'story' : 'stories'}`;
+    pill.innerHTML = `${label} <span class="sn-tl-new-pill-refresh">Refresh</span>`;
+    pill.classList.add('visible');
+
+    if (this.newStoriesPillTimer !== null) clearTimeout(this.newStoriesPillTimer);
+
+    const dismiss = () => {
+      if (this.newStoriesPillTimer !== null) { clearTimeout(this.newStoriesPillTimer); this.newStoriesPillTimer = null; }
+      try { sessionStorage.setItem(SEEN_KEY, JSON.stringify(currentIds)); } catch { /* private browsing */ }
+      pill!.classList.remove('visible');
+      document.getElementById('snTlRiver')?.scrollTo({ top: 0, behavior: 'smooth' });
+    };
+    pill.onclick = dismiss;
+    pill.onkeydown = (e: KeyboardEvent) => {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); dismiss(); }
+    };
+
+    // Auto-dismiss after 5 seconds if user ignores it
+    this.newStoriesPillTimer = setTimeout(dismiss, 5000);
+  }
+
   /**
    * Render the Timeline tab river — chronological list of all stories from the
    * last 24 hours, bucketed into time groups, with category filtering via chips.
@@ -1656,6 +1710,8 @@ export class DataLoaderManager implements AppModule {
     const clusters = this.ctx.latestClusters
       .filter(c => (now - c.lastUpdated.getTime()) < MAX_AGE_MS)
       .sort((a, b) => b.lastUpdated.getTime() - a.lastUpdated.getTime());
+
+    this.updateNewStoriesPill(clusters.map(c => c.id));
 
     if (clusters.length === 0) {
       riverEl.innerHTML = '<div class="sn-empty">No stories in the last 24 hours.</div>';

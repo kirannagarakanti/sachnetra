@@ -19134,6 +19134,47 @@ body.has-breaking-alert .panels-grid {
     background: #1a1830; color: #7070b0;
   }
 
+  /* --- New stories toast --- */
+  [data-variant="india"] .sn-tl-new-pill {
+    position: fixed;
+    top: 70px;
+    left: 50%;
+    transform: translateX(-50%) translateY(-16px);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 14px 8px 16px;
+    background: #1e1c3a;
+    border: 0.5px solid var(--sn-purple, #7b7bff);
+    border-radius: 24px;
+    color: var(--sn-text-primary, #e8e0ff);
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    z-index: 150;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+    white-space: nowrap;
+    user-select: none;
+    visibility: hidden;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.25s ease, transform 0.25s ease;
+  }
+  [data-variant="india"] .sn-tl-new-pill.visible {
+    visibility: visible;
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateX(-50%) translateY(0);
+  }
+  [data-variant="india"] .sn-tl-new-pill-refresh {
+    background: var(--sn-green, #22c55e);
+    color: #0a0812;
+    border-radius: 12px;
+    padding: 3px 10px;
+    font-size: 12px;
+    font-weight: 600;
+  }
+
   /* --- Empty state --- */
   [data-variant="india"] .sn-empty {
     padding: 40px 20px; text-align: center;
@@ -20790,6 +20831,47 @@ body.has-breaking-alert .panels-grid {
     border-radius: 8px;
     background: #1a1830;
     color: #7070b0;
+  }
+
+  /* ── New stories toast ── */
+  [data-variant="india"] .sn-tl-new-pill {
+    position: fixed;
+    top: 60px;
+    left: 50%;
+    transform: translateX(-50%) translateY(-16px);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 14px 8px 16px;
+    background: #1e1c3a;
+    border: 0.5px solid var(--sn-purple, #7b7bff);
+    border-radius: 24px;
+    color: var(--sn-text-primary, #e8e0ff);
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    z-index: 150;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+    white-space: nowrap;
+    user-select: none;
+    visibility: hidden;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.25s ease, transform 0.25s ease;
+  }
+  [data-variant="india"] .sn-tl-new-pill.visible {
+    visibility: visible;
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateX(-50%) translateY(0);
+  }
+  [data-variant="india"] .sn-tl-new-pill-refresh {
+    background: var(--sn-green, #22c55e);
+    color: #0a0812;
+    border-radius: 12px;
+    padding: 3px 10px;
+    font-size: 12px;
+    font-weight: 600;
   }
 
 } /* end @media (max-width: 768px) */
