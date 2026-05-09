@@ -441,7 +441,9 @@ export const VARIANT_FEEDS: Record<string, Record<string, ServerFeed[]>> = {
       { name: 'NENews Online', url: 'https://nenow.in/feed' },
       { name: 'Daily Excelsior', url: 'https://www.dailyexcelsior.com/feed/' },
       { name: 'Greater Kashmir', url: 'https://prod-qt-images.s3.amazonaws.com/production/greaterkashmir/feed.xml' },
-      { name: 'Amarujala', url: 'https://www.amarujala.com/rss/breaking-news.xml' },
+      { name: 'Amarujala',         url: 'https://www.amarujala.com/rss/breaking-news.xml' },
+      { name: 'Times Now',        url: 'https://www.timesnownews.com/feeds/gns-en-latest.xml' },
+      { name: 'Deccan Chronicle', url: 'https://www.deccanchronicle.com/rss_feed' },
     ],
     disaster: [
       { name: 'NDTV India', url: 'https://feeds.feedburner.com/ndtvnews-india-news' },
@@ -478,7 +480,10 @@ export const VARIANT_FEEDS: Record<string, Record<string, ServerFeed[]>> = {
     ],
     government: [
       { name: 'DD News', url: gnIn('site:ddnews.gov.in') },
-      { name: 'PIB', url: gnIn('site:pib.gov.in') },
+      { name: 'PIB',     url: 'https://www.pib.gov.in/ViewRss.aspx?reg=1&lang=1' },
+      { name: 'MEA',     url: gnIn('site:mea.gov.in') },
+      { name: 'MHA',     url: gnIn('site:mha.gov.in') },
+      { name: 'NDMA',    url: gnIn('site:ndma.gov.in') },
     ],
   },
 };
