@@ -110,7 +110,7 @@ Task files: `ai_docs/tasks/`
 V2-000  Bootstrap & Rules Update          [COMPLETE ✅ — 2026-05-06]
 V2-001  Railway Setup + Data Foundation   [COMPLETE ✅ — 2026-05-07]
 V2-002  Enrich Summary with Intelligence  [COMPLETE ✅ — 2026-05-09]
-V2-003  Related Stories                   [ ] not started
+V2-003  Related Stories                   [COMPLETE ✅ — 2026-05-09]
 V2-004  Feedback Buttons                  [ ] not started
 V2-005  RSSHub on Railway                 [ ] not started
 V2-006  New Stories Pill                  [ ] not started

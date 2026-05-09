@@ -16,6 +16,7 @@ import {
 } from '@/config';
 import { INTEL_HOTSPOTS, CONFLICT_ZONES } from '@/config/geo';
 import { tokenizeForMatch, matchKeyword } from '@/utils/keyword-match';
+import { tokenize, jaccardSimilarity } from '@/utils/analysis-constants';
 import {
   fetchCategoryFeeds,
   getFeedFailures,
@@ -278,6 +279,37 @@ export function decodeStorySlug(slug: string): string | null {
   } catch { return null; }
 }
 
+// Caches the most recent digest clusters so openStoryDetail() can compute
+// related stories without needing them passed through every call site.
+let _latestClusters: ClusteredEvent[] = [];
+
+interface RelatedStory {
+  title: string;
+  link: string;
+}
+
+const RELATED_THRESHOLD = 0.2;
+const RELATED_MAX = 3;
+
+function computeRelatedStories(
+  current: ClusteredEvent,
+  all: ClusteredEvent[],
+): RelatedStory[] {
+  if (all.length === 0) return [];
+  const tokenMap = new Map(all.map(c => [c.id, tokenize(c.primaryTitle)]));
+  const tokensA = tokenMap.get(current.id) ?? tokenize(current.primaryTitle);
+  return all
+    .filter(other => other.id !== current.id)
+    .map(other => ({
+      story: { title: other.primaryTitle, link: other.primaryLink },
+      score: jaccardSimilarity(tokensA, tokenMap.get(other.id) ?? tokenize(other.primaryTitle)),
+    }))
+    .filter(r => r.score >= RELATED_THRESHOLD)
+    .sort((a, b) => b.score - a.score)
+    .slice(0, RELATED_MAX)
+    .map(r => r.story);
+}
+
 /** Open the story detail overlay for a news item. */
 function openStoryDetail(item: NewsItem, cluster?: ClusteredEvent): void {
   // Remove any existing detail overlay
@@ -505,7 +537,34 @@ function openStoryDetail(item: NewsItem, cluster?: ClusteredEvent): void {
         </div>
       `;
 
+      const related = cluster ? computeRelatedStories(cluster, _latestClusters) : [];
+      if (related.length > 0) {
+        html += `
+          <div class="related-stories">
+            <p class="related-stories-header">Related stories</p>
+            <div class="related-stories-list">
+              ${related.map(s => `
+                <button class="sn-detail-related-card" data-related-link="${escapeHtml(s.link)}">
+                  <p class="sn-detail-related-title">${escapeHtml(s.title)}</p>
+                  <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
+                    <path d="M3 2L7 5L3 8" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+                  </svg>
+                </button>
+              `).join('')}
+            </div>
+          </div>
+        `;
+      }
+
       cardsContainer.innerHTML = html;
+
+      cardsContainer.querySelectorAll<HTMLElement>('.sn-detail-related-card[data-related-link]').forEach(card => {
+        card.addEventListener('click', () => {
+          const link = card.dataset.relatedLink;
+          const target = _latestClusters.find(c => c.primaryLink === link);
+          if (target?.allItems[0]) openStoryDetail(target.allItems[0], target);
+        });
+      });
     })
     .catch(() => {
       if (!document.getElementById('snDetailOverlay')) return;
@@ -1389,6 +1448,8 @@ export class DataLoaderManager implements AppModule {
       this.ctx.latestClusters = mlWorker.isAvailable
         ? await clusterNewsHybrid(this.ctx.allNews)
         : await analysisWorker.clusterNews(this.ctx.allNews);
+
+      _latestClusters = this.ctx.latestClusters;
 
       const insightsPanel = this.ctx.panels['insights'] as InsightsPanel | undefined;
       insightsPanel?.updateInsights(this.ctx.latestClusters);
