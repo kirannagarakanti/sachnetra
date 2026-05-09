@@ -12,6 +12,7 @@ import {
   getProviderCredentials,
   getCacheKey,
   parseTwoSummaryResponse,
+  type TwoSummaryResult,
 } from './_shared';
 import { CHROME_UA } from '../../../_shared/constants';
 import { isProviderAvailable } from '../../../_shared/llm-health';
@@ -26,6 +27,37 @@ export const PROMPT_ECHO = /^(summarize the top story|summarize the key|rules:|h
 export function hasReasoningPreamble(text: string): boolean {
   const trimmed = text.trim();
   return TASK_NARRATION.test(trimmed) || PROMPT_ECHO.test(trimmed);
+}
+
+// ======================================================================
+// Enrichment queue — fire-and-forget RPUSH to Redis for cron to UPDATE PostgreSQL
+// ======================================================================
+
+async function pushEnrichmentQueue(parsed: TwoSummaryResult, firstHeadline: string): Promise<void> {
+  const redisUrl = process.env.UPSTASH_REDIS_REST_URL;
+  const redisToken = process.env.UPSTASH_REDIS_REST_TOKEN;
+  if (!redisUrl || !redisToken || !firstHeadline || !parsed.sentiment) return;
+
+  const data = new TextEncoder().encode(firstHeadline.trim());
+  const buf = await crypto.subtle.digest('SHA-256', data);
+  const headlineHash = Array.from(new Uint8Array(buf))
+    .map(b => b.toString(16).padStart(2, '0'))
+    .join('');
+
+  const payload = JSON.stringify({
+    headline_hash: headlineHash,
+    sentiment_label: parsed.sentiment,
+    sentiment_score: parsed.sentimentScore,
+    companies: parsed.companiesMentioned,
+    event_type: parsed.eventType,
+  });
+
+  await ((...args: Parameters<typeof fetch>) => globalThis.fetch(...args))(redisUrl, {
+    method: 'POST',
+    headers: { Authorization: `Bearer ${redisToken}`, 'Content-Type': 'application/json' },
+    body: JSON.stringify(['RPUSH', 'news:enrich-queue:v1', payload]),
+    signal: AbortSignal.timeout(3_000),
+  });
 }
 
 // ======================================================================
@@ -117,7 +149,7 @@ export async function summarizeArticle(
             ],
             // India variant needs temperature 0 for reliable output
             temperature: (variant === 'india' && (mode === 'brief' || mode === 'daily-brief')) ? 0 : 0.3,
-            max_tokens: mode === 'daily-brief' ? 200 : (variant === 'india' && mode === 'brief') ? 500 : 100,
+            max_tokens: mode === 'daily-brief' ? 200 : (variant === 'india' && mode === 'brief') ? 600 : 100,
             top_p: 0.9,
             ...extraBody,
           }),
@@ -162,6 +194,15 @@ export async function summarizeArticle(
           return null;
         }
 
+        // India brief must return non-empty meaning — reject and don't cache if missing
+        if (variant === 'india' && mode === 'brief') {
+          const testParsed = parseTwoSummaryResponse(rawContent);
+          if (!testParsed.meaning) {
+            console.warn(`[SummarizeArticle:${provider}] India brief returned empty meaning, rejecting`);
+            return null;
+          }
+        }
+
         return rawContent ? { summary: rawContent, model, tokens } : null;
       },
     );
@@ -170,13 +211,21 @@ export async function summarizeArticle(
       const isCached = source === 'cache';
 
       // For India variant brief mode: parse the two-summary JSON and re-encode
-      // so the frontend receives `{ summary, meaning }` as a JSON string in
+      // so the frontend receives all intelligence fields as a JSON string in
       // the proto's single `summary` field.
       // daily-brief mode returns plain text — no JSON encoding needed.
       let finalSummary = result.summary;
       if (variant === 'india' && mode === 'brief' && !isCached) {
         const parsed = parseTwoSummaryResponse(result.summary);
-        finalSummary = JSON.stringify({ summary: parsed.summary, meaning: parsed.meaning });
+        finalSummary = JSON.stringify({
+          summary: parsed.summary,
+          meaning: parsed.meaning,
+          sentiment: parsed.sentiment,
+          sentiment_score: parsed.sentimentScore,
+          companies_mentioned: parsed.companiesMentioned,
+          event_type: parsed.eventType,
+        });
+        pushEnrichmentQueue(parsed, headlines[0] ?? '').catch(() => {});
       }
 
       return {

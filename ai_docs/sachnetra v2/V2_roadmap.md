@@ -31,7 +31,7 @@ V1 shipped a working India news aggregator. V2 transforms it into a data collect
 ```
 Task V2-000 — V2 Bootstrap & Rules Update               [✅] Complete — 2026-05-06
 Task V2-001 — Railway Setup + Data Foundation           [✅] Complete — 2026-05-07
-Task V2-002 — Enrich Summary with Intelligence Signals  [ ] Not started
+Task V2-002 — Enrich Summary with Intelligence Signals  [✅] Complete — 2026-05-08
 Task V2-003 — Related Stories on Story Detail           [ ] Not started
 Task V2-004 — Feedback Buttons (👍👎)                   [ ] Not started
 Task V2-005 — RSSHub on Railway (Government Sources)    [ ] Not started
@@ -241,46 +241,64 @@ node scripts/seed-india-signals.mjs   # Run manually
 
 ## Task V2-002 — Enrich Summary with Intelligence Signals
 
-**Goal:** When a user clicks ✨ on a story, the Groq response now includes sentiment, companies, and event_type — and if the headline exists in PostgreSQL, the record is updated with richer data.
+**Goal:** Extend the existing India ✨ click (single Groq call) to return 6 intelligence fields
+instead of 2. Fire-and-forget push to Redis enrich queue; Railway cron drains queue and UPDATEs
+PostgreSQL rows with Groq's richer extraction — upgrading FinBERT-only scored rows.
 
 **Depends on:** Task V2-001 (PostgreSQL must exist)
 **Estimated time:** 2–3 hours
+**Task file:** `ai_docs/tasks/V2-002_enrich_summary_intelligence.md`
 **V2**
 
+### Architecture decision (2026-05-08):
+Original spec described a separate "What It Means →" button that fetched full article HTML.
+Revised: extend the EXISTING ✨ Groq call to return all 6 fields in ONE API call — no second
+button, no article scraping, no extra latency. The `meaning` field already answers "what it means."
+
+`api/news/v1/[rpc].ts` sets `runtime: 'edge'` — pg (Node.js) is unavailable in the edge handler.
+Fire-and-forget uses Upstash REST HTTP (RPUSH to queue). Railway cron processes the queue.
+
 ### What this task does:
-- Extends the Groq prompt in `server/worldmonitor/news/v1/_shared.ts` to return 4 new JSON fields
-- Updates `parseTwoSummaryResponse()` to extract and return new fields
-- Updates `SummarizeArticleResponse` proto/type if needed
-- Adds a fire-and-forget `UPDATE india_news_signals SET ... WHERE headline_hash = ?`
-  when the enriched response is returned (richer data than FinBERT alone)
+- Extends India `brief` Groq prompt to return 6 fields: `summary`, `meaning`, `sentiment`,
+  `sentiment_score`, `companies_mentioned`, `event_type`
+- Updates `TwoSummaryResult` interface and `parseTwoSummaryResponse()` in `_shared.ts`
+- `summarize-article.ts`: encodes all 6 fields in response JSON; fire-and-forget RPUSH to
+  `news:enrich-queue:v1` via Upstash REST (edge-runtime compatible)
+- `seed-india-signals.mjs`: drains `news:enrich-queue:v1` at cron start; PostgreSQL UPDATE
+  sets `sentiment_model = 'groq-v2'` on enriched rows
 
 ### Files to touch:
 ```
-server/worldmonitor/news/v1/_shared.ts       — extend prompt + parseTwoSummaryResponse
-server/worldmonitor/news/v1/summarize-article.ts  — add PostgreSQL UPDATE (fire-and-forget)
-proto/worldmonitor/news/v1/summarize_article.proto — add new response fields (if needed)
+server/worldmonitor/news/v1/_shared.ts            — extend prompt + TwoSummaryResult + parser
+server/worldmonitor/news/v1/summarize-article.ts  — pushEnrichmentQueue (fire-and-forget)
+scripts/seed-india-signals.mjs                    — drainEnrichQueue at top of fetchSignals()
 ```
 
-### New Groq prompt fields:
+### Groq response shape (6 fields, same call as existing ✨):
 ```json
 {
-  "what_happened": "2–3 sentences",
-  "what_it_means": "2–3 sentences",
+  "summary": "2–3 sentences. What happened, where, when.",
+  "meaning": "2–3 sentences. What this means for people in India right now.",
   "sentiment": "positive | negative | neutral",
-  "sentiment_score": -1.0,
+  "sentiment_score": -0.72,
   "companies_mentioned": ["HDFC Bank", "Reliance"],
-  "event_type": "earnings | regulation | policy | merger | macro | other"
+  "event_type": "earnings | regulation | policy | merger | macro | management | other"
 }
 ```
 
-### Key constraint:
-The UPDATE to PostgreSQL is fire-and-forget. It must never delay the summary response to the user. If the PostgreSQL UPDATE fails, the summary is still returned successfully.
+### Key constraints:
+- `api/news/v1/[rpc].ts` is `runtime: 'edge'` — never use `pg` or Node.js built-ins in server handlers
+- `pushEnrichmentQueue` must be fire-and-forget (`.catch(() => {})`) — never blocks user response
+- SHA-256 in edge runtime: use `crypto.subtle.digest` (Web Crypto API), not `node:crypto`
+- `fetch` in edge runtime: `(...args) => globalThis.fetch(...args)` pattern (already in codebase)
+- PostgreSQL UPDATE is `WHERE headline_hash = $5` — no-op if row absent (celebrity stories)
+- Proto extension NOT needed — all fields carried in existing `summary` JSON string
 
 ---
 
 ## Task V2-003 — Related Stories on Story Detail
 
-**Goal:** Show 2–3 related story headlines below "What It Means" in the story detail panel, using keyword overlap (Jaccard similarity, no ML).
+**Goal:** Show 2–3 related story headlines below the story summary in the story detail panel, using keyword overlap (Jaccard similarity, no ML).
 
 **Depends on:** Task V2-000
 **Estimated time:** 3–4 hours

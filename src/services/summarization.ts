@@ -230,7 +230,7 @@ export async function generateSummary(
       return result;
     },
     null,
-    { cacheKey, shouldCache: (result) => result !== null },
+    { cacheKey, shouldCache: (result) => result !== null && (SITE_VARIANT !== 'india' || Boolean(result.meaning)) },
   );
 }
 

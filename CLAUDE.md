@@ -67,6 +67,8 @@ Railway cron (every 10 min, independent of users)
 - Three-file RSS allowlist: `shared/rss-allowed-domains.json` is source of truth;
   `api/_rss-allowed-domains.js` is the ESM copy — always update both, never edit `rss-proxy.js`
 - Vercel Edge Functions (`api/*.js`) are plain JS only — no TypeScript, no imports from `src/`
+- **`server/` handlers also run in edge runtime** (`api/news/v1/[rpc].ts` sets `runtime: 'edge'`):
+  `pg` (Node.js) is unavailable in `summarize-article.ts` — use Upstash REST HTTP for side effects
 - CSS branding: `--sn-*` variables only, never hardcoded hex; selectors via `[data-variant="india"]`
 
 ---
@@ -107,7 +109,7 @@ Task files: `ai_docs/tasks/`
 ```
 V2-000  Bootstrap & Rules Update          [COMPLETE ✅ — 2026-05-06]
 V2-001  Railway Setup + Data Foundation   [COMPLETE ✅ — 2026-05-07]
-V2-002  Enrich Summary with Intelligence  [ ] not started
+V2-002  Enrich Summary with Intelligence  [COMPLETE ✅ — 2026-05-09]
 V2-003  Related Stories                   [ ] not started
 V2-004  Feedback Buttons                  [ ] not started
 V2-005  RSSHub on Railway                 [ ] not started

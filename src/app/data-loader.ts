@@ -447,19 +447,18 @@ function openStoryDetail(item: NewsItem, cluster?: ClusteredEvent): void {
         `;
       }
 
-      // WHAT THIS MEANS card: temporarily disabled (Task 018.5 — model not ready)
-      // Uncomment when upgrading to a stronger LLM that can write insightful meanings.
-      // if (meaningText) {
-      //   html += `
-      //     <div class="sn-detail-what-means">
-      //       <div class="sn-detail-card-label">
-      //         <span class="sn-detail-card-dot"></span>
-      //         <span>WHAT THIS MEANS</span>
-      //       </div>
-      //       <p class="sn-detail-card-text">${escapeHtml(meaningText)}</p>
-      //     </div>
-      //   `;
-      // }
+      // WHAT THIS MEANS card — enabled in V2-002 (prompt now always returns non-empty meaning)
+      if (meaningText) {
+        html += `
+          <div class="sn-detail-what-means">
+            <div class="sn-detail-card-label">
+              <span class="sn-detail-card-dot green"></span>
+              <span>WHAT THIS MEANS</span>
+            </div>
+            <p class="sn-detail-card-text">${escapeHtml(meaningText)}</p>
+          </div>
+        `;
+      }
 
       if (!html) {
         html = `<p class="sn-detail-card-text" style="color:var(--sn-text-muted)">AI summary unavailable for this story.</p>`;

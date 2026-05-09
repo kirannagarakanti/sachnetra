@@ -87,7 +87,69 @@ async function persistSignals(rows) {
   }
 }
 
+async function drainEnrichQueue() {
+  const { url, token } = getRedisCredentials();
+
+  let items = [];
+  try {
+    const resp = await fetch(url, {
+      method: 'POST',
+      headers: { Authorization: `Bearer ${token}`, 'Content-Type': 'application/json' },
+      body: JSON.stringify(['LRANGE', 'news:enrich-queue:v1', 0, -1]),
+      signal: AbortSignal.timeout(5_000),
+    });
+    if (!resp.ok) return;
+    const data = await resp.json();
+    items = Array.isArray(data.result) ? data.result : [];
+  } catch (err) {
+    console.warn(`  [enrich] Queue read failed (non-fatal): ${err.message}`);
+    return;
+  }
+
+  if (items.length === 0) return;
+  console.log(`  [enrich] Draining ${items.length} items from queue`);
+
+  const pool = new Pool({
+    connectionString: process.env.DATABASE_PUBLIC_URL || process.env.DATABASE_URL,
+    ssl: { rejectUnauthorized: false },
+  });
+
+  let updated = 0;
+  try {
+    for (const raw of items) {
+      try {
+        const item = JSON.parse(raw);
+        if (!item.headline_hash) continue;
+        const result = await pool.query(
+          `UPDATE india_news_signals
+           SET sentiment_label = $1, sentiment_score = $2, companies = $3,
+               event_type = $4, sentiment_model = 'groq-v2'
+           WHERE headline_hash = $5`,
+          [item.sentiment_label, item.sentiment_score, item.companies ?? [], item.event_type, item.headline_hash]
+        );
+        if ((result.rowCount ?? 0) > 0) updated++;
+      } catch { /* skip malformed or no-op item */ }
+    }
+  } finally {
+    await pool.end().catch(() => {});
+  }
+
+  // UPDATE is a no-op for non-matching rows — safe to clear even on partial success
+  try {
+    await fetch(url, {
+      method: 'POST',
+      headers: { Authorization: `Bearer ${token}`, 'Content-Type': 'application/json' },
+      body: JSON.stringify(['DEL', 'news:enrich-queue:v1']),
+      signal: AbortSignal.timeout(3_000),
+    });
+  } catch { /* non-fatal — items retry next run */ }
+
+  console.log(`  [enrich] Updated ${updated}/${items.length} PostgreSQL rows (groq-v2)`);
+}
+
 async function fetchSignals() {
+  await drainEnrichQueue();
+
   const digest = await readDigestFromRedis();
   if (!digest) throw new Error('India digest not found in Redis');
 
