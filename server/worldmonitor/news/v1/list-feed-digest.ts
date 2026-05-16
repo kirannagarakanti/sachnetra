@@ -6,7 +6,7 @@ import type {
   NewsItem as ProtoNewsItem,
   ThreatLevel as ProtoThreatLevel,
 } from '../../../../src/generated/server/worldmonitor/news/v1/service_server';
-import { cachedFetchJson, getCachedJsonBatch } from '../../../_shared/redis';
+import { cachedFetchJson, getCachedJson, getCachedJsonBatch } from '../../../_shared/redis';
 import { sha256Hex } from '../../../_shared/hash';
 import { CHROME_UA } from '../../../_shared/constants';
 import { VARIANT_FEEDS, INTEL_SOURCES, type ServerFeed } from './_feeds';
@@ -286,6 +286,35 @@ export async function listFeedDigest(
   const digestCacheKey = `news:digest:v1:${variant}:${lang}`;
 
   const fallbackKey = `${variant}:${lang}`;
+
+  // India variant: the Railway worker (seed-india-signals.mjs) is the SOLE writer
+  // of news:digest:v1:india:en. Vercel must NEVER rebuild it. cachedFetchJson is
+  // unusable here — on a null builder it caches a negative sentinel into the SAME
+  // key, clobbering the Railway-written digest and starving the live site. So read
+  // Redis directly. Serve order: fresh Redis → stale in-memory → empty.
+  if (variant === 'india') {
+    try {
+      const fresh = await getCachedJson(digestCacheKey);
+      if (fresh && typeof fresh === 'object' && 'categories' in fresh) {
+        const data = fresh as ListFeedDigestResponse;
+        if (fallbackDigestCache.size > 50) fallbackDigestCache.clear();
+        fallbackDigestCache.set(fallbackKey, { data, ts: Date.now() });
+        return data;
+      }
+    } catch {
+      // fall through to stale
+    }
+    const stale = fallbackDigestCache.get(fallbackKey);
+    if (stale) {
+      const ageMs = Date.now() - stale.ts;
+      console.warn(`[digest] India: Redis miss — serving stale in-memory (${Math.round(ageMs / 1000)}s old)`);
+      return stale.data;
+    }
+    console.warn('[digest] India: Redis miss and no in-memory stale — returning empty digest');
+    return { categories: {}, feedStatuses: {}, generatedAt: new Date().toISOString() };
+  }
+  // Non-india variants — original code path below, unchanged.
+
   try {
     const cached = await cachedFetchJson<ListFeedDigestResponse>(digestCacheKey, 600, async () => {
       return buildDigest(variant, lang);

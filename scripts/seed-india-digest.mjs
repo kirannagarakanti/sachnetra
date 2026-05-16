@@ -1,5 +1,10 @@
 #!/usr/bin/env node
 
+// RETIRED — V2-012 (2026-05-15)
+// seed-india-signals.mjs now fetches RSS directly and writes to Redis every 10 min
+// via runSeed extraKeys. This warmup script is redundant. Do not deploy. Do not delete —
+// kept for reference. To re-enable, remove this comment and re-add the Railway cron service.
+
 import { loadEnvFile, CHROME_UA, getRedisCredentials } from './_seed-utils.mjs';
 
 loadEnvFile(import.meta.url);
