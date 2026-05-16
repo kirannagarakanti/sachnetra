@@ -1,9 +1,39 @@
 ---
 tags: [synthesis, sachnetra, roadmap, quant-finance, data-infrastructure, alpha]
 source: [[conversation.md]]
-last_updated: 2026-05-05
+last_updated: 2026-05-15
 ---
 # SachNetra Quant Pivot
+*Strategy layer — the "why" and the business model. For execution sequencing, load `[[sachnetra_quant_roadmap]]`. For the data-model refinement (cluster → thread → entity), load `[[cluster_story_entity_architecture]]`.*
+
+> ## Current State Snapshot (2026-05-15)
+>
+> This doc was written 2026-05-05 as the founding strategy. Below is what has happened since.
+>
+> **Foundation built (V2-001 → V2-011, all complete):**
+> - `india_news_signals` PostgreSQL table — schema matches this doc almost exactly
+> - Jaccard clustering live in `scripts/_clustering.mjs`
+> - FinBERT sentiment fallback chain in `scripts/_sentiment-chain.mjs`
+> - Nifty 50 entity registry in `shared/market-taxonomy.json`
+> - Market-moving gate, relevance class A/B, sector + event-type extraction
+> - Auto-enrichment queue between Vercel (✨ button) and Railway cron
+>
+> **Production bug discovered 2026-05-14**: V2-011's `seed-india-signals.mjs` depended on user activity to populate Redis. Zero rows that day. Triggered the V2-012 rebuild.
+>
+> **In flight (V2-012)**: Autonomous Railway-side RSS pipeline. Railway now owns the digest writing end-to-end. Adds 5 new columns including `cluster_hash`, `feed_bucket`, `thread_id` (reserved for V2-013).
+>
+> **Architecture refinement since this doc was written**:
+> The original schema here is flat (one row per headline). The current model is layered:
+> `headline → cluster (V2-012) → thread (V2-013) → entity (V2-014)`.
+> Full detail in `[[cluster_story_entity_architecture]]`. The flat schema below is preserved
+> as historical context but is superseded by the layered design.
+>
+> **Roadmap status**: Several items from this doc's original plan are *not yet tasks*:
+> - **Product A (Corporate Filings Intelligence)** — flagged here as the highest-alpha source. Should become V2-015.
+> - **Hindi (V2-007)** — flagged here as the unique moat. Currently sequenced behind less-strategic features; consider reprioritizing.
+> - **Feedback / source credibility (V2-004)** — flagged here as a five-unique-advantages item. Currently labeled as UI feedback only; should be reframed as "Source Credibility Scoring" since the original plan ties it to monetization.
+> - **B2B API surface (Product B)** — schema is ready; the API isn't a task yet.
+> See `[[sachnetra_quant_roadmap]]` for the full sequencing with effort estimates.
 
 **TL;DR:** SachNetra is not a news app — it is India's data infrastructure with a news app as its public face; the quant pivot transforms article sentiment into entity-level Alpha signals for institutional sale.
 

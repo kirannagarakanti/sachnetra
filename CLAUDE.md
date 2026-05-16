@@ -8,6 +8,14 @@
 
 ---
 
+## Starting Any Task
+
+Open the task file in `ai_docs/tasks/`. If it has a **Context Manifest** section, load every doc in its "Load" list before touching code, and skip everything in its "Don't load" list. Tasks without a manifest yet (older V1 tasks `00*_*.md`) are archived — for new and active V2 tasks, the manifest is the source of truth for what context to load.
+
+**Slash commands** (`/bugfix`, `/task`, `/git`, `/update-template`, etc.) are backed by files in `ai_docs/dev_templates/`. See `ai_docs/dev_templates/README.md` for the mapping and source-of-truth rules.
+
+---
+
 ## V2 Mission
 
 SachNetra is the collection engine. The database is the asset. The quant system is the proof of value.
