@@ -29,12 +29,30 @@ CREATE TABLE IF NOT EXISTS india_news_signals (
   relevance_class  TEXT,
   event_type       TEXT,
   entity_sentiment JSONB,
+  ai_summary       TEXT DEFAULT NULL,
+  ai_meaning       TEXT DEFAULT NULL,
+  cluster_hash     TEXT DEFAULT NULL,
+  feed_bucket      TEXT DEFAULT NULL,
+  thread_id        UUID DEFAULT NULL,
   created_at       TIMESTAMPTZ DEFAULT NOW()
 );
+
+-- Idempotent column adds: CREATE TABLE IF NOT EXISTS is a no-op on the existing
+-- populated table, so the five V2-012 columns must be added explicitly. Safe on
+-- both fresh installs (no-op, columns already in CREATE) and existing tables.
+ALTER TABLE india_news_signals ADD COLUMN IF NOT EXISTS ai_summary   TEXT DEFAULT NULL;
+ALTER TABLE india_news_signals ADD COLUMN IF NOT EXISTS ai_meaning   TEXT DEFAULT NULL;
+ALTER TABLE india_news_signals ADD COLUMN IF NOT EXISTS cluster_hash TEXT DEFAULT NULL;
+ALTER TABLE india_news_signals ADD COLUMN IF NOT EXISTS feed_bucket  TEXT DEFAULT NULL;
+ALTER TABLE india_news_signals ADD COLUMN IF NOT EXISTS thread_id    UUID DEFAULT NULL;
 
 CREATE UNIQUE INDEX IF NOT EXISTS idx_signals_hash   ON india_news_signals (headline_hash);
 CREATE INDEX        IF NOT EXISTS idx_signals_scraped ON india_news_signals (scraped_at DESC);
 CREATE INDEX        IF NOT EXISTS idx_signals_market  ON india_news_signals (is_market_moving, scraped_at DESC);
+
+CREATE INDEX IF NOT EXISTS idx_signals_cluster
+  ON india_news_signals (cluster_hash, scraped_at DESC)
+  WHERE cluster_hash IS NOT NULL;
 `;
 
 async function migrate() {
