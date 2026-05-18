@@ -53,6 +53,32 @@ CREATE INDEX        IF NOT EXISTS idx_signals_market  ON india_news_signals (is_
 CREATE INDEX IF NOT EXISTS idx_signals_cluster
   ON india_news_signals (cluster_hash, scraped_at DESC)
   WHERE cluster_hash IS NOT NULL;
+
+CREATE TABLE IF NOT EXISTS story_threads (
+  thread_id            UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  thread_title         TEXT NOT NULL,
+  thread_summary       TEXT,
+  first_seen           TIMESTAMPTZ NOT NULL,
+  last_seen            TIMESTAMPTZ NOT NULL,
+  last_summary_at      TIMESTAMPTZ,
+  status               TEXT NOT NULL,
+  event_count          INT NOT NULL DEFAULT 0,
+  dominant_event_type  TEXT,
+  entities             JSONB,
+  created_by           TEXT NOT NULL DEFAULT 'auto',
+  created_at           TIMESTAMPTZ DEFAULT NOW()
+);
+CREATE INDEX IF NOT EXISTS idx_threads_status_last_seen ON story_threads (status, last_seen DESC);
+CREATE INDEX IF NOT EXISTS idx_threads_last_seen        ON story_threads (last_seen DESC);
+CREATE INDEX IF NOT EXISTS idx_threads_event_type       ON story_threads (dominant_event_type, status);
+
+DO $$ BEGIN
+  IF NOT EXISTS (SELECT 1 FROM pg_constraint WHERE conname = 'fk_signals_thread') THEN
+    ALTER TABLE india_news_signals
+      ADD CONSTRAINT fk_signals_thread
+      FOREIGN KEY (thread_id) REFERENCES story_threads(thread_id);
+  END IF;
+END $$;
 `;
 
 async function migrate() {
@@ -77,6 +103,11 @@ async function migrate() {
     console.log('✓ Index created: idx_signals_hash');
     console.log('✓ Index created: idx_signals_scraped');
     console.log('✓ Index created: idx_signals_market');
+    console.log('✓ Table created: story_threads');
+    console.log('✓ Index created: idx_threads_status_last_seen');
+    console.log('✓ Index created: idx_threads_last_seen');
+    console.log('✓ Index created: idx_threads_event_type');
+    console.log('✓ FK guard: fk_signals_thread (skipped if already exists)');
 
     // Confirm the table exists and show column count
     const { rows } = await pool.query(`

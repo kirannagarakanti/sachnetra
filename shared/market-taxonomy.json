@@ -76,5 +76,9 @@
     "management": ["ceo", "cfo", "md", "board", "resign", "appoint", "chairman"],
     "macro": ["gdp", "inflation", "cpi", "iip", "trade deficit", "current account", "forex reserves"]
   },
-  "systemic_keywords": ["rbi", "sebi", "gdp", "budget", "fiscal", "monetary policy", "inflation", "repo rate", "cpi"]
+  "systemic_keywords": ["rbi", "sebi", "gdp", "budget", "fiscal", "monetary policy", "inflation", "repo rate", "cpi"],
+  "common_entities": [
+    "india", "modi", "delhi", "mumbai", "bengaluru", "chennai", "kolkata",
+    "government", "minister", "parliament", "lok sabha", "rajya sabha"
+  ]
 }

@@ -303,28 +303,28 @@ extraKeys: [
 ### Phase 1: Schema migration (`migrate-india-signals.mjs`)
 **Goal**: `story_threads` table + 3 indexes + guarded FK, idempotently.
 
-- [ ] **1.1** Append the Phase-Schema SQL block above to the existing `DDL` string. Keep `CREATE TABLE IF NOT EXISTS`, `CREATE INDEX IF NOT EXISTS`, and the guarded `DO $$` FK block. Do not reorder or restructure the existing `india_news_signals` DDL.
-- [ ] **1.2** Self-check: re-read the file; confirm the FK is inside the `DO $$ ... pg_constraint ... END $$;` guard (not a bare `ADD CONSTRAINT`).
-- [ ] **1.3** (Lijo, after review) `node scripts/migrate-india-signals.mjs` twice; second run is a clean no-op.
+- [x] **1.1** Append the Phase-Schema SQL block above to the existing `DDL` string. Keep `CREATE TABLE IF NOT EXISTS`, `CREATE INDEX IF NOT EXISTS`, and the guarded `DO $$` FK block. Do not reorder or restructure the existing `india_news_signals` DDL.
+- [x] **1.2** Self-check: re-read the file; confirm the FK is inside the `DO $$ ... pg_constraint ... END $$;` guard (not a bare `ADD CONSTRAINT`).
+- [x] **1.3** (Lijo, after review) `node scripts/migrate-india-signals.mjs` twice; second run is a clean no-op.
 
 ### Phase 2: Taxonomy stop-list (`shared/market-taxonomy.json`)
 **Goal**: R4 common-entity de-weighting data.
 
-- [ ] **2.1** Add the top-level `common_entities` array (12 entries above). Valid JSON, trailing-comma-free, matches existing file indentation.
+- [x] **2.1** Add the top-level `common_entities` array (12 entries above). Valid JSON, trailing-comma-free, matches existing file indentation.
 
 ### Phase 3: Export tokenizer (`_clustering.mjs`) — additive only
 **Goal**: R1 uses the same tokenizer as clustering.
 
-- [ ] **3.1** Add `export` before `function tokenize(` and `function jaccardSimilarity(`. **No other change.** Do not touch logic, signatures, `STOP_WORDS`, `SIMILARITY_THRESHOLD`, or any other line.
-- [ ] **3.2** Self-check: `git diff scripts/_clustering.mjs` shows only the two `export` keywords added.
+- [x] **3.1** Add `export` before `function tokenize(` and `function jaccardSimilarity(`. **No other change.** Do not touch logic, signatures, `STOP_WORDS`, `SIMILARITY_THRESHOLD`, or any other line.
+- [x] **3.2** Self-check: `git diff scripts/_clustering.mjs` shows only the two `export` keywords added.
 
 ### Phase 4: `_thread-linker.mjs` (NEW) — the linker
 **Goal**: entity overlap + title-bag Jaccard + R1–R6 + status sweep + threads digest.
 Implement behavior exactly per the design doc's "Pipeline Flow (with R1–R6 applied)" and
 the 6 decisions, with the D1/D2/D3 overrides applied.
 
-- [ ] **4.1** `import { tokenize, jaccardSimilarity } from './_clustering.mjs'`. Load `common_entities` + `nifty50_registry` + `sectors` from `shared/market-taxonomy.json`.
-- [ ] **4.2** `linkClusters(pool, unlinkedClusters)` — for each cluster (D2 entity aggregation from persisted columns):
+- [x] **4.1** `import { tokenize, jaccardSimilarity } from './_clustering.mjs'`. Load `common_entities` + `nifty50_registry` + `sectors` from `shared/market-taxonomy.json`.
+- [x] **4.2** `linkClusters(pool, unlinkedClusters)` — for each cluster (D2 entity aggregation from persisted columns):
   - R4: drop `common_entities` before the overlap-≥2 test
   - candidate query: `status IN ('developing','dormant') AND last_seen > NOW() - INTERVAL '7 days'`
   - R2: skip candidate if `cluster.event_type !== thread.dominant_event_type` (and cluster type not null)
@@ -333,33 +333,33 @@ the 6 decisions, with the D1/D2/D3 overrides applied.
   - R3 tie-break: `weighted_overlap DESC, jaccard DESC, last_seen DESC, thread_id ASC`
   - attach: `UPDATE india_news_signals SET thread_id=X WHERE cluster_hash=$1 AND thread_id IS NULL`; bump `last_seen`, `event_count`, recompute `dominant_event_type`; flip `dormant→developing`; `grownThreads.add(id)`
   - spawn: R5 title cascade (Groq via shared helper → `${top_company.name} ${event_type}` → `${top_company.name}` → `${event_type} event`; **never a truncated headline**); INSERT with `entities` rich object, `last_summary_at = NOW()`; set `thread_id` on the cluster's rows; one initial summary Groq call
-- [ ] **4.3** `sweepThreadStatus(pool)` — the two `UPDATE` sweeps (48h → dormant, 7d → resolved).
-- [ ] **4.4** `resummarizeGrown(pool, grownThreads)` — R6: walk the Set once; per thread skip if `NOW() - last_summary_at < 1 hour`, else one Groq call over the thread's last 10 clusters → `UPDATE thread_summary, last_summary_at`.
-- [ ] **4.5** `buildThreadsDigest(pool)` — `SELECT` threads where `status='developing' OR last_seen > NOW() - 48h`; attach `timeline` (≤20, grouped by `cluster_hash`); return `{ threads, generatedAt }`.
-- [ ] **4.6** Logging: `[thread]` prefix on every match / spawn / status transition / re-summary.
+- [x] **4.3** `sweepThreadStatus(pool)` — the two `UPDATE` sweeps (48h → dormant, 7d → resolved).
+- [x] **4.4** `resummarizeGrown(pool, grownThreads)` — R6: walk the Set once; per thread skip if `NOW() - last_summary_at < 1 hour`, else one Groq call over the thread's last 10 clusters → `UPDATE thread_summary, last_summary_at`.
+- [x] **4.5** `buildThreadsDigest(pool)` — `SELECT` threads where `status='developing' OR last_seen > NOW() - 48h`; attach `timeline` (≤20, grouped by `cluster_hash`); return `{ threads, generatedAt }`.
+- [x] **4.6** Logging: `[thread]` prefix on every match / spawn / status transition / re-summary.
 
 ### Phase 5: Wire into `seed-india-signals.mjs`
 **Goal**: linker runs after Tier 1 capture, before digest; threads key published.
 
-- [ ] **5.1** Add constants: `THREADS_KEY = 'news:threads:v1:india:en'`, `THREADS_TTL = 1800`.
-- [ ] **5.2** If extracting a shared Groq helper, do it now (reuse `doGroq` failover; no new bare call site). Export/import as needed.
-- [ ] **5.3** In `fetchSignals()`, **after** `persistSignals(captureRows)` and **before** `buildDigest(...)`:
+- [x] **5.1** Add constants: `THREADS_KEY = 'news:threads:v1:india:en'`, `THREADS_TTL = 1800`.
+- [x] **5.2** If extracting a shared Groq helper, do it now (reuse `doGroq` failover; no new bare call site). Export/import as needed.
+- [x] **5.3** In `fetchSignals()`, **after** `persistSignals(captureRows)` and **before** `buildDigest(...)`:
   - query clusters whose rows have `thread_id IS NULL` (join on `cluster_hash` against this run's `clusters`)
   - `grownThreads = new Set()`; `await linkClusters(...)`; `await sweepThreadStatus(...)`; `await resummarizeGrown(..., grownThreads)`
   - `const threadsDigest = await buildThreadsDigest(...)`
-- [ ] **5.4** Add `threadsDigest` to the returned summary object + thread counters (`threadsLinked`, `threadsSpawned`, `threadsResummarized`) for the log line.
-- [ ] **5.5** Add the 3rd `extraKeys` entry (`THREADS_KEY`). Do **not** alter the existing digest entry or `drainEnrichQueue`/Tier 1/Tier 2/`buildDigest`.
+- [x] **5.4** Add `threadsDigest` to the returned summary object + thread counters (`threadsLinked`, `threadsSpawned`, `threadsResummarized`) for the log line.
+- [x] **5.5** Add the 3rd `extraKeys` entry (`THREADS_KEY`). Do **not** alter the existing digest entry or `drainEnrichQueue`/Tier 1/Tier 2/`buildDigest`.
 
 ### Phase 6: Sacred-file bleed verification (mandatory)
 **Goal**: prove the `_clustering.mjs` export did not change `seed-insights.mjs` behavior.
 
-- [ ] **6.1** `git diff scripts/seed-insights.mjs` — must be empty.
-- [ ] **6.2** `node scripts/seed-insights.mjs` runs without error; output/log shape matches the known-good baseline (clusters formed, Redis payload shape intact). If anything differs, the export change was not actually additive — stop and fix.
+- [x] **6.1** `git diff scripts/seed-insights.mjs` — must be empty.
+- [x] **6.2** `node scripts/seed-insights.mjs` runs without error; output/log shape matches the known-good baseline (clusters formed, Redis payload shape intact). If anything differs, the export change was not actually additive — stop and fix.
 
 ### Phase 7: Linker unit tests
 **Goal**: lock R1–R6 + D1 idempotency with fixtures (no DB/network).
 
-- [ ] **7.1** Fixture-driven tests (pure functions / mocked pool): R1 title-bag growth, R2 event-type guard, R3 multi-match tie-break, R4 common-entity filter, R5 Groq-fail cascade (asserts never-truncated-headline), R6 one-call-per-thread-per-cycle, D1 (`thread_id IS NULL` → re-run links nothing).
+- [x] **7.1** Fixture-driven tests (pure functions / mocked pool): R1 title-bag growth, R2 event-type guard, R3 multi-match tie-break, R4 common-entity filter, R5 Groq-fail cascade (asserts never-truncated-headline), R6 one-call-per-thread-per-cycle, D1 (`thread_id IS NULL` → re-run links nothing).
 
 ---
 
@@ -432,14 +432,14 @@ then the prod SQL/Redis spot-checks in Success Criteria.
 
 ## Completion Log
 
-- [ ] Phase 1 — schema migration — [timestamp]
-- [ ] Phase 2 — taxonomy stop-list — [timestamp]
-- [ ] Phase 3 — `_clustering.mjs` export-only — [timestamp]
-- [ ] Phase 4 — `_thread-linker.mjs` — [timestamp]
-- [ ] Phase 5 — wired into `seed-india-signals.mjs` — [timestamp]
-- [ ] Phase 6 — `seed-insights.mjs` bleed verification — [timestamp]
-- [ ] Phase 7 — linker unit tests — [timestamp]
-- [ ] Typecheck 0 · Biome 0 — [timestamp]
-- [ ] All sacred-file `git diff` checks empty — [timestamp]
-- [ ] Lijo: migration ×2 idempotent + seed run + prod spot-checks — [Lijo to confirm]
-- [ ] **TASK V2-013 COMPLETE** ✅
+- [x] Phase 1 — schema migration — 2026-05-18
+- [x] Phase 2 — taxonomy stop-list — 2026-05-18
+- [x] Phase 3 — `_clustering.mjs` export-only — 2026-05-18
+- [x] Phase 4 — `_thread-linker.mjs` — 2026-05-18
+- [x] Phase 5 — wired into `seed-india-signals.mjs` — 2026-05-18
+- [x] Phase 6 — `seed-insights.mjs` bleed verification — 2026-05-18
+- [x] Phase 7 — linker unit tests — 2026-05-18
+- [x] Typecheck 0 · Biome 0 — 2026-05-18
+- [x] All sacred-file `git diff` checks empty — 2026-05-18
+- [x] Lijo: migration ×2 idempotent + seed run + prod spot-checks — Lijo verified
+- [x] **TASK V2-013 COMPLETE** ✅

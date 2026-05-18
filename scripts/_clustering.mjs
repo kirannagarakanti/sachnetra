@@ -51,7 +51,7 @@ export const DEFAULT_DEMOTE_KEYWORDS = [
   'quarterly', 'profit', 'investor', 'ipo', 'funding', 'valuation',
 ];
 
-function tokenize(text) {
+export function tokenize(text) {
   const words = text
     .toLowerCase()
     .replace(/[^a-z0-9\s]/g, ' ')
@@ -60,7 +60,7 @@ function tokenize(text) {
   return new Set(words);
 }
 
-function jaccardSimilarity(a, b) {
+export function jaccardSimilarity(a, b) {
   if (a.size === 0 && b.size === 0) return 0;
   let intersection = 0;
   for (const x of a) {

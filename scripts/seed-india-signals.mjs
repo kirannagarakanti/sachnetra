@@ -14,6 +14,7 @@ import {
   detectRelevanceClassFromTitle,
 } from './_india-market-keywords.mjs';
 import { scoreWithFallbackChain } from './_sentiment-chain.mjs';
+import { linkClusters, sweepThreadStatus, resummarizeGrown, buildThreadsDigest } from './_thread-linker.mjs';
 import pg from 'pg';
 
 loadEnvFile(import.meta.url);
@@ -25,6 +26,8 @@ const GROQ_URL = 'https://api.groq.com/openai/v1/chat/completions';
 const CACHE_TTL = 1800;
 const MAX_DRAIN_BATCH = 10;
 const DIGEST_TTL = 1800;            // 30 min — survives 2 missed crons, stale-while-revalidate
+const THREADS_KEY = 'news:threads:v1:india:en';
+const THREADS_TTL = 1800;
 const FEED_TIMEOUT_MS = 8_000;
 const ITEMS_PER_FEED = 5;
 const SKIP_WINDOW_HOURS = 48;
@@ -580,6 +583,38 @@ async function fetchSignals() {
   );
   console.log(`  [postgres] enriched (updated) ${e.updated} rows`);
 
+  // THREAD LINKING — after Tier 1 capture, before digest (D1)
+  const grownThreads = new Set();
+  let threadsLinked = 0;
+  let threadsSpawned = 0;
+  let threadsResummarized = 0;
+  let threadsDigest = { threads: [], generatedAt: new Date().toISOString() };
+  const threadPool = pgPool();
+  try {
+    const clusterHashes = clusters.map(c => c.clusterHash);
+    const { rows: unlinkedRows } = await threadPool.query(
+      `SELECT DISTINCT cluster_hash FROM india_news_signals
+       WHERE cluster_hash = ANY($1) AND thread_id IS NULL`,
+      [clusterHashes]
+    );
+    const unlinkedHashSet = new Set(unlinkedRows.map(r => r.cluster_hash));
+    const unlinkedClusters = clusters.filter(c => unlinkedHashSet.has(c.clusterHash));
+
+    const linkResult = await linkClusters(threadPool, unlinkedClusters, grownThreads);
+    threadsLinked = linkResult.linked;
+    threadsSpawned = linkResult.spawned;
+
+    await sweepThreadStatus(threadPool);
+    threadsResummarized = await resummarizeGrown(threadPool, grownThreads);
+    threadsDigest = await buildThreadsDigest(threadPool);
+
+    console.log(
+      `  [thread] linked ${threadsLinked} | spawned ${threadsSpawned} | re-summarized ${threadsResummarized}`
+    );
+  } finally {
+    await threadPool.end().catch(() => {});
+  }
+
   const digest = buildDigest(clusters, feedStatuses);
 
   return {
@@ -592,6 +627,10 @@ async function fetchSignals() {
     skipped: enrichedHashes.size,
     errors: e.sentErrors,
     digest,
+    threadsDigest,
+    threadsLinked,
+    threadsSpawned,
+    threadsResummarized,
   };
 }
 
@@ -604,7 +643,10 @@ runSeed('india', 'signals', CANONICAL_KEY, fetchSignals, {
   ttlSeconds: CACHE_TTL,
   sourceVersion: 'autonomous-v1',
   recordCount: data => data.inserted,
-  extraKeys: [{ key: DIGEST_KEY, ttl: DIGEST_TTL, transform: data => data.digest }],
+  extraKeys: [
+    { key: DIGEST_KEY,   ttl: DIGEST_TTL,   transform: data => data.digest },
+    { key: THREADS_KEY,  ttl: THREADS_TTL,  transform: data => data.threadsDigest },
+  ],
 }).catch(err => {
   console.error('FATAL:', err.message || err);
   process.exit(0); // Railway cron must always exit 0
