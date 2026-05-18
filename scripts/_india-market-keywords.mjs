@@ -50,6 +50,18 @@ export function detectEventType(title) {
   return 'other';
 }
 
+export function extractThemes(title) {
+  const found = [];
+  for (const [themeId, theme] of Object.entries(taxonomy.themes)) {
+    const re = new RegExp(
+      `\\b(${theme.keywords.map(k => k.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).join('|')})\\b`,
+      'i'
+    );
+    if (re.test(title)) found.push(themeId);
+  }
+  return found;
+}
+
 export function detectRelevanceClassFromTitle(title, sectors, companies) {
   const systemicRegex = new RegExp(
     `\\b(${taxonomy.systemic_keywords.map(k => k.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).join('|')})\\b`,

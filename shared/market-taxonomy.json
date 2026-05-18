@@ -76,6 +76,14 @@
     "management": ["ceo", "cfo", "md", "board", "resign", "appoint", "chairman"],
     "macro": ["gdp", "inflation", "cpi", "iip", "trade deficit", "current account", "forex reserves"]
   },
+  "themes": {
+    "monsoon":        { "name": "Monsoon",                "keywords": ["monsoon", "imd", "rainfall", "deficient rainfall", "kharif", "rabi"],                                              "default_sectors": ["agri", "fmcg"] },
+    "INDIA-PAKISTAN": { "name": "India-Pakistan tensions", "keywords": ["pakistan", "islamabad", "loc", "line of control", "kashmir", "pok"],                                               "default_sectors": ["defense"] },
+    "RBI-policy":     { "name": "RBI policy",              "keywords": ["rbi policy", "monetary policy committee", "mpc", "repo rate", "reverse repo", "crr", "slr"],                      "default_sectors": ["banking"] },
+    "crude-shock":    { "name": "Crude oil shock",         "keywords": ["brent", "wti", "opec", "crude oil", "oil price"],                                                                  "default_sectors": ["energy"] },
+    "SEBI-action":    { "name": "SEBI enforcement",        "keywords": ["sebi", "securities and exchange board", "market regulator"],                                                        "default_sectors": [] },
+    "FII-flow":       { "name": "FII flows",               "keywords": ["fii", "foreign institutional investor", "foreign portfolio investor", "fpi"],                                       "default_sectors": [] }
+  },
   "systemic_keywords": ["rbi", "sebi", "gdp", "budget", "fiscal", "monetary policy", "inflation", "repo rate", "cpi"],
   "common_entities": [
     "india", "modi", "delhi", "mumbai", "bengaluru", "chennai", "kolkata",

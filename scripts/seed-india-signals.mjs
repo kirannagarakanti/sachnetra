@@ -15,6 +15,7 @@ import {
 } from './_india-market-keywords.mjs';
 import { scoreWithFallbackChain } from './_sentiment-chain.mjs';
 import { linkClusters, sweepThreadStatus, resummarizeGrown, buildThreadsDigest } from './_thread-linker.mjs';
+import { fanOutEntities } from './_entity-fan-out.mjs';
 import pg from 'pg';
 
 loadEnvFile(import.meta.url);
@@ -611,6 +612,8 @@ async function fetchSignals() {
     console.log(
       `  [thread] linked ${threadsLinked} | spawned ${threadsSpawned} | re-summarized ${threadsResummarized}`
     );
+
+    await fanOutEntities(threadPool, clusterHashes);
   } finally {
     await threadPool.end().catch(() => {});
   }

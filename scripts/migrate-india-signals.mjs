@@ -79,6 +79,25 @@ DO $$ BEGIN
       FOREIGN KEY (thread_id) REFERENCES story_threads(thread_id);
   END IF;
 END $$;
+
+CREATE TABLE IF NOT EXISTS entity_timeline (
+  entity_id        TEXT NOT NULL,
+  entity_type      TEXT NOT NULL,
+  entity_name      TEXT NOT NULL,
+  cluster_hash     TEXT NOT NULL,
+  thread_id        UUID REFERENCES story_threads(thread_id),
+  observed_at      TIMESTAMPTZ NOT NULL,
+  sentiment        DECIMAL(5,4),
+  sentiment_source TEXT NOT NULL,
+  source_count     INT NOT NULL,
+  cluster_size     INT NOT NULL,
+  created_at       TIMESTAMPTZ DEFAULT NOW(),
+  PRIMARY KEY (entity_id, entity_type, cluster_hash)
+);
+
+CREATE INDEX IF NOT EXISTS idx_entity_observed      ON entity_timeline (entity_id, observed_at DESC);
+CREATE INDEX IF NOT EXISTS idx_entity_thread        ON entity_timeline (thread_id) WHERE thread_id IS NOT NULL;
+CREATE INDEX IF NOT EXISTS idx_entity_type_observed ON entity_timeline (entity_type, observed_at DESC);
 `;
 
 async function migrate() {
@@ -108,6 +127,10 @@ async function migrate() {
     console.log('✓ Index created: idx_threads_last_seen');
     console.log('✓ Index created: idx_threads_event_type');
     console.log('✓ FK guard: fk_signals_thread (skipped if already exists)');
+    console.log('✓ Table created: entity_timeline');
+    console.log('✓ Index created: idx_entity_observed');
+    console.log('✓ Index created: idx_entity_thread');
+    console.log('✓ Index created: idx_entity_type_observed');
 
     // Confirm the table exists and show column count
     const { rows } = await pool.query(`
