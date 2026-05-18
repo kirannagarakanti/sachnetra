@@ -16,6 +16,7 @@ import {
 } from '@/config';
 import { INTEL_HOTSPOTS, CONFLICT_ZONES } from '@/config/geo';
 import { tokenizeForMatch, matchKeyword } from '@/utils/keyword-match';
+import { tokenize, jaccardSimilarity } from '@/utils/analysis-constants';
 import {
   fetchCategoryFeeds,
   getFeedFailures,
@@ -278,6 +279,37 @@ export function decodeStorySlug(slug: string): string | null {
   } catch { return null; }
 }
 
+// Caches the most recent digest clusters so openStoryDetail() can compute
+// related stories without needing them passed through every call site.
+let _latestClusters: ClusteredEvent[] = [];
+
+interface RelatedStory {
+  title: string;
+  link: string;
+}
+
+const RELATED_THRESHOLD = 0.2;
+const RELATED_MAX = 3;
+
+function computeRelatedStories(
+  current: ClusteredEvent,
+  all: ClusteredEvent[],
+): RelatedStory[] {
+  if (all.length === 0) return [];
+  const tokenMap = new Map(all.map(c => [c.id, tokenize(c.primaryTitle)]));
+  const tokensA = tokenMap.get(current.id) ?? tokenize(current.primaryTitle);
+  return all
+    .filter(other => other.id !== current.id)
+    .map(other => ({
+      story: { title: other.primaryTitle, link: other.primaryLink },
+      score: jaccardSimilarity(tokensA, tokenMap.get(other.id) ?? tokenize(other.primaryTitle)),
+    }))
+    .filter(r => r.score >= RELATED_THRESHOLD)
+    .sort((a, b) => b.score - a.score)
+    .slice(0, RELATED_MAX)
+    .map(r => r.story);
+}
+
 /** Open the story detail overlay for a news item. */
 function openStoryDetail(item: NewsItem, cluster?: ClusteredEvent): void {
   // Remove any existing detail overlay
@@ -447,19 +479,18 @@ function openStoryDetail(item: NewsItem, cluster?: ClusteredEvent): void {
         `;
       }
 
-      // WHAT THIS MEANS card: temporarily disabled (Task 018.5 — model not ready)
-      // Uncomment when upgrading to a stronger LLM that can write insightful meanings.
-      // if (meaningText) {
-      //   html += `
-      //     <div class="sn-detail-what-means">
-      //       <div class="sn-detail-card-label">
-      //         <span class="sn-detail-card-dot"></span>
-      //         <span>WHAT THIS MEANS</span>
-      //       </div>
-      //       <p class="sn-detail-card-text">${escapeHtml(meaningText)}</p>
-      //     </div>
-      //   `;
-      // }
+      // WHAT THIS MEANS card — enabled in V2-002 (prompt now always returns non-empty meaning)
+      if (meaningText) {
+        html += `
+          <div class="sn-detail-what-means">
+            <div class="sn-detail-card-label">
+              <span class="sn-detail-card-dot green"></span>
+              <span>WHAT THIS MEANS</span>
+            </div>
+            <p class="sn-detail-card-text">${escapeHtml(meaningText)}</p>
+          </div>
+        `;
+      }
 
       if (!html) {
         html = `<p class="sn-detail-card-text" style="color:var(--sn-text-muted)">AI summary unavailable for this story.</p>`;
@@ -506,7 +537,34 @@ function openStoryDetail(item: NewsItem, cluster?: ClusteredEvent): void {
         </div>
       `;
 
+      const related = cluster ? computeRelatedStories(cluster, _latestClusters) : [];
+      if (related.length > 0) {
+        html += `
+          <div class="related-stories">
+            <p class="related-stories-header">Related stories</p>
+            <div class="related-stories-list">
+              ${related.map(s => `
+                <button class="sn-detail-related-card" data-related-link="${escapeHtml(s.link)}">
+                  <p class="sn-detail-related-title">${escapeHtml(s.title)}</p>
+                  <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
+                    <path d="M3 2L7 5L3 8" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+                  </svg>
+                </button>
+              `).join('')}
+            </div>
+          </div>
+        `;
+      }
+
       cardsContainer.innerHTML = html;
+
+      cardsContainer.querySelectorAll<HTMLElement>('.sn-detail-related-card[data-related-link]').forEach(card => {
+        card.addEventListener('click', () => {
+          const link = card.dataset.relatedLink;
+          const target = _latestClusters.find(c => c.primaryLink === link);
+          if (target?.allItems[0]) openStoryDetail(target.allItems[0], target);
+        });
+      });
     })
     .catch(() => {
       if (!document.getElementById('snDetailOverlay')) return;
@@ -557,6 +615,7 @@ export class DataLoaderManager implements AppModule {
   private readonly perFeedFallbackIntelFeedLimit = 6;
   private readonly perFeedFallbackBatchSize = 2;
   private lastGoodDigest: ListFeedDigestResponse | null = null;
+  private newStoriesPillTimer: ReturnType<typeof setTimeout> | null = null;
 
   constructor(ctx: AppContext, callbacks: DataLoaderCallbacks) {
     this.ctx = ctx;
@@ -1391,6 +1450,8 @@ export class DataLoaderManager implements AppModule {
         ? await clusterNewsHybrid(this.ctx.allNews)
         : await analysisWorker.clusterNews(this.ctx.allNews);
 
+      _latestClusters = this.ctx.latestClusters;
+
       const insightsPanel = this.ctx.panels['insights'] as InsightsPanel | undefined;
       insightsPanel?.updateInsights(this.ctx.latestClusters);
 
@@ -1578,6 +1639,59 @@ export class DataLoaderManager implements AppModule {
     });
   }
 
+  private updateNewStoriesPill(currentIds: string[]): void {
+    // Don't snapshot an empty baseline — clusters haven't loaded yet
+    if (currentIds.length === 0) return;
+
+    const SEEN_KEY = 'sn:tl-seen-ids';
+
+    let pill = document.getElementById('snTlNewPill');
+    if (!pill) {
+      pill = document.createElement('div');
+      pill.id = 'snTlNewPill';
+      pill.className = 'sn-tl-new-pill';
+      pill.setAttribute('role', 'button');
+      pill.setAttribute('tabindex', '0');
+      pill.setAttribute('aria-live', 'polite');
+      // Fixed-position toast — append to body so parent transforms don't clip it
+      document.body.appendChild(pill);
+    }
+
+    const seenRaw = sessionStorage.getItem(SEEN_KEY);
+    if (seenRaw === null) {
+      try { sessionStorage.setItem(SEEN_KEY, JSON.stringify(currentIds)); } catch { /* private browsing */ }
+      return;
+    }
+
+    const seenIds = new Set<string>(JSON.parse(seenRaw) as string[]);
+    const newCount = currentIds.filter(id => !seenIds.has(id)).length;
+
+    if (newCount <= 0) {
+      pill.classList.remove('visible');
+      return;
+    }
+
+    const label = `↑ ${newCount} new ${newCount === 1 ? 'story' : 'stories'}`;
+    pill.innerHTML = `${label} <span class="sn-tl-new-pill-refresh">Refresh</span>`;
+    pill.classList.add('visible');
+
+    if (this.newStoriesPillTimer !== null) clearTimeout(this.newStoriesPillTimer);
+
+    const dismiss = () => {
+      if (this.newStoriesPillTimer !== null) { clearTimeout(this.newStoriesPillTimer); this.newStoriesPillTimer = null; }
+      try { sessionStorage.setItem(SEEN_KEY, JSON.stringify(currentIds)); } catch { /* private browsing */ }
+      pill!.classList.remove('visible');
+      document.getElementById('snTlRiver')?.scrollTo({ top: 0, behavior: 'smooth' });
+    };
+    pill.onclick = dismiss;
+    pill.onkeydown = (e: KeyboardEvent) => {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); dismiss(); }
+    };
+
+    // Auto-dismiss after 5 seconds if user ignores it
+    this.newStoriesPillTimer = setTimeout(dismiss, 5000);
+  }
+
   /**
    * Render the Timeline tab river — chronological list of all stories from the
    * last 24 hours, bucketed into time groups, with category filtering via chips.
@@ -1596,6 +1710,8 @@ export class DataLoaderManager implements AppModule {
     const clusters = this.ctx.latestClusters
       .filter(c => (now - c.lastUpdated.getTime()) < MAX_AGE_MS)
       .sort((a, b) => b.lastUpdated.getTime() - a.lastUpdated.getTime());
+
+    this.updateNewStoriesPill(clusters.map(c => c.id));
 
     if (clusters.length === 0) {
       riverEl.innerHTML = '<div class="sn-empty">No stories in the last 24 hours.</div>';

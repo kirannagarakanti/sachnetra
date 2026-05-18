@@ -1,4 +1,13 @@
 # Adapt Sprint Bootstrap
+
+> **⚠️ [RETIRED — 2026-05-15]**
+>
+> This is a one-shot bootstrap script. It was run ONCE before Task 001 to seed
+> `.agents/rules/` and CLAUDE.md. Both already exist. Do not run again unless
+> rebuilding the workspace from a fresh clone of the repo.
+>
+> See `ai_docs/dev_templates/README.md` for the current dev_templates mapping.
+
 *Run this ONCE before starting any build task.*
 *Purpose: Configure your IDE with permanent SachNetra context.*
 

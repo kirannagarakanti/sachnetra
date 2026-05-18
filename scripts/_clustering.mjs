@@ -1,5 +1,7 @@
 #!/usr/bin/env node
 
+import { createHash } from 'node:crypto';
+
 const SIMILARITY_THRESHOLD = 0.5;
 
 const STOP_WORDS = new Set([
@@ -32,7 +34,7 @@ const UNREST_KEYWORDS = [
   'coup', 'martial law', 'curfew', 'shutdown', 'blackout',
 ];
 
-const FLASHPOINT_KEYWORDS = [
+export const DEFAULT_FLASHPOINT_KEYWORDS = [
   'iran', 'tehran', 'russia', 'moscow', 'china', 'beijing', 'taiwan', 'ukraine', 'kyiv',
   'north korea', 'pyongyang', 'israel', 'gaza', 'west bank', 'syria', 'damascus',
   'yemen', 'hezbollah', 'hamas', 'kremlin', 'pentagon', 'nato', 'wagner',
@@ -44,7 +46,7 @@ const CRISIS_KEYWORDS = [
   'breaking', 'urgent', 'developing', 'exclusive',
 ];
 
-const DEMOTE_KEYWORDS = [
+export const DEFAULT_DEMOTE_KEYWORDS = [
   'ceo', 'earnings', 'stock', 'startup', 'data center', 'datacenter', 'revenue',
   'quarterly', 'profit', 'investor', 'ipo', 'funding', 'valuation',
 ];
@@ -68,7 +70,22 @@ function jaccardSimilarity(a, b) {
   return intersection / union;
 }
 
-export function clusterItems(items) {
+function normalizeTitle(title) {
+  return (title || '')
+    .toLowerCase()
+    .replace(/[^a-z0-9\s]/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim();
+}
+
+function computeClusterHash(primaryTitle) {
+  return createHash('sha256')
+    .update(normalizeTitle(primaryTitle))
+    .digest('hex')
+    .slice(0, 16);
+}
+
+export function clusterItems(items, opts = {}) {
   if (items.length === 0) return [];
 
   const tokenList = items.map(item => tokenize(item.title || ''));
@@ -120,7 +137,7 @@ export function clusterItems(items) {
     });
 
     const primary = sorted[0];
-    return {
+    const base = {
       primaryTitle: primary.title,
       primarySource: primary.source,
       primaryLink: primary.link,
@@ -128,6 +145,12 @@ export function clusterItems(items) {
       sourceCount: group.length,
       isAlert: group.some(i => i.isAlert),
     };
+    if (opts.includeClusterHash) {
+      base.clusterHash = computeClusterHash(primary.title);
+      base.allTitles = group.map(i => i.title || '');
+      base.allItems = group;
+    }
+    return base;
   });
 }
 
@@ -135,7 +158,10 @@ function countMatches(text, keywords) {
   return keywords.filter(kw => text.includes(kw)).length;
 }
 
-export function scoreImportance(cluster) {
+export function scoreImportance(cluster, opts = {}) {
+  const demoteKeywords = opts.demoteKeywords ?? DEFAULT_DEMOTE_KEYWORDS;
+  const flashpointKeywords = opts.flashpointKeywords ?? DEFAULT_FLASHPOINT_KEYWORDS;
+
   let score = 0;
   const titleLower = (cluster.primaryTitle || '').toLowerCase();
 
@@ -150,7 +176,7 @@ export function scoreImportance(cluster) {
   const unrestN = countMatches(titleLower, UNREST_KEYWORDS);
   if (unrestN > 0) score += 70 + unrestN * 18;
 
-  const flashpointN = countMatches(titleLower, FLASHPOINT_KEYWORDS);
+  const flashpointN = countMatches(titleLower, flashpointKeywords);
   if (flashpointN > 0) score += 60 + flashpointN * 15;
 
   if ((violenceN > 0 || unrestN > 0) && flashpointN > 0) {
@@ -160,7 +186,7 @@ export function scoreImportance(cluster) {
   const crisisN = countMatches(titleLower, CRISIS_KEYWORDS);
   if (crisisN > 0) score += 30 + crisisN * 10;
 
-  const demoteN = countMatches(titleLower, DEMOTE_KEYWORDS);
+  const demoteN = countMatches(titleLower, demoteKeywords);
   if (demoteN > 0) score *= 0.3;
 
   if (cluster.isAlert) score += 50;
@@ -170,9 +196,9 @@ export function scoreImportance(cluster) {
 
 // Note: velocity filter omitted (vs frontend selectTopStories) because digest
 // items lack velocity data. Phase B may add velocity when RPC provides it.
-export function selectTopStories(clusters, maxCount = 8) {
+export function selectTopStories(clusters, maxCount = 8, opts = {}) {
   const scored = clusters
-    .map(c => ({ cluster: c, score: scoreImportance(c) }))
+    .map(c => ({ cluster: c, score: scoreImportance(c, opts) }))
     .filter(({ cluster: c, score }) =>
       (c.sourceCount || 1) >= 2 ||
       c.isAlert ||

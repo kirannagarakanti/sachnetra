@@ -3692,6 +3692,92 @@ body.live-news-fullscreen-active .panels-grid > *:not(.live-news-fullscreen) {
   box-shadow: 0 0 10px rgba(0, 255, 170, 0.2);
 }
 
+.related-stories {
+  margin-top: 8px;
+  padding: 8px;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+}
+
+.related-stories-header {
+  font-size: 9px;
+  color: var(--text-dim);
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  margin-bottom: 6px;
+}
+
+.related-story {
+  display: block;
+  padding: 5px 0;
+  border-bottom: 1px solid var(--border);
+  text-decoration: none;
+  color: inherit;
+}
+
+.related-story:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.related-story:hover .related-story-title {
+  color: var(--accent);
+}
+
+.related-story-source {
+  display: block;
+  font-size: 9px;
+  color: var(--text-dim);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 2px;
+}
+
+.related-story-title {
+  display: block;
+  font-size: 11px;
+  color: var(--text);
+  line-height: 1.4;
+}
+
+.related-stories-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.sn-detail-related-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  background: var(--sn-card-bg, #100e24);
+  border: 0.5px solid var(--sn-border, #1e1c3a);
+  border-radius: 10px;
+  padding: 10px 12px;
+  cursor: pointer;
+  width: 100%;
+  text-align: left;
+  color: inherit;
+}
+
+.sn-detail-related-card:hover {
+  border-color: var(--sn-purple, #7b7bff);
+}
+
+.sn-detail-related-title {
+  font-size: 12px;
+  color: var(--sn-text-primary, #e8e0ff);
+  margin: 0;
+  line-height: 1.4;
+  flex: 1;
+}
+
+.sn-detail-related-card svg {
+  flex-shrink: 0;
+  color: var(--sn-text-muted, #4a4870);
+}
+
 .related-asset-type {
   font-size: 8px;
   text-transform: uppercase;
@@ -19048,6 +19134,47 @@ body.has-breaking-alert .panels-grid {
     background: #1a1830; color: #7070b0;
   }
 
+  /* --- New stories toast --- */
+  [data-variant="india"] .sn-tl-new-pill {
+    position: fixed;
+    top: 70px;
+    left: 50%;
+    transform: translateX(-50%) translateY(-16px);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 14px 8px 16px;
+    background: #1e1c3a;
+    border: 0.5px solid var(--sn-purple, #7b7bff);
+    border-radius: 24px;
+    color: var(--sn-text-primary, #e8e0ff);
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    z-index: 150;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+    white-space: nowrap;
+    user-select: none;
+    visibility: hidden;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.25s ease, transform 0.25s ease;
+  }
+  [data-variant="india"] .sn-tl-new-pill.visible {
+    visibility: visible;
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateX(-50%) translateY(0);
+  }
+  [data-variant="india"] .sn-tl-new-pill-refresh {
+    background: var(--sn-green, #22c55e);
+    color: #0a0812;
+    border-radius: 12px;
+    padding: 3px 10px;
+    font-size: 12px;
+    font-weight: 600;
+  }
+
   /* --- Empty state --- */
   [data-variant="india"] .sn-empty {
     padding: 40px 20px; text-align: center;
@@ -20704,6 +20831,47 @@ body.has-breaking-alert .panels-grid {
     border-radius: 8px;
     background: #1a1830;
     color: #7070b0;
+  }
+
+  /* ── New stories toast ── */
+  [data-variant="india"] .sn-tl-new-pill {
+    position: fixed;
+    top: 60px;
+    left: 50%;
+    transform: translateX(-50%) translateY(-16px);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 14px 8px 16px;
+    background: #1e1c3a;
+    border: 0.5px solid var(--sn-purple, #7b7bff);
+    border-radius: 24px;
+    color: var(--sn-text-primary, #e8e0ff);
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    z-index: 150;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+    white-space: nowrap;
+    user-select: none;
+    visibility: hidden;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.25s ease, transform 0.25s ease;
+  }
+  [data-variant="india"] .sn-tl-new-pill.visible {
+    visibility: visible;
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateX(-50%) translateY(0);
+  }
+  [data-variant="india"] .sn-tl-new-pill-refresh {
+    background: var(--sn-green, #22c55e);
+    color: #0a0812;
+    border-radius: 12px;
+    padding: 3px 10px;
+    font-size: 12px;
+    font-weight: 600;
   }
 
 } /* end @media (max-width: 768px) */

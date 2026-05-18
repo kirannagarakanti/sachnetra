@@ -29,9 +29,9 @@ V1 shipped a working India news aggregator. V2 transforms it into a data collect
 ## Task Overview
 
 ```
-Task V2-000 — V2 Bootstrap & Rules Update               [ ] Not started
-Task V2-001 — Railway Setup + Data Foundation           [ ] Not started
-Task V2-002 — Enrich Summary with Intelligence Signals  [ ] Not started
+Task V2-000 — V2 Bootstrap & Rules Update               [✅] Complete — 2026-05-06
+Task V2-001 — Railway Setup + Data Foundation           [✅] Complete — 2026-05-07
+Task V2-002 — Enrich Summary with Intelligence Signals  [✅] Complete — 2026-05-08
 Task V2-003 — Related Stories on Story Detail           [ ] Not started
 Task V2-004 — Feedback Buttons (👍👎)                   [ ] Not started
 Task V2-005 — RSSHub on Railway (Government Sources)    [ ] Not started
@@ -62,8 +62,8 @@ V2-000
   └─► V2-007 (no DB dependency — locale file only)
   └─► V2-010 (no DB dependency — static HTML)
 
-V2-001
-  └─► V2-005 (Railway already running; add RSSHub to same project)
+V2-000
+  └─► V2-005 (no DB, no Docker — feeds file + allowlist only)
 
 V2-009 — BLOCKED on architect weight definition (Daniel must decide)
 ```
@@ -106,29 +106,42 @@ ai_docs/sachnetra v2/wiki/syntheses/sachnetra_sentiment_architecture.md
 
 ## Task V2-001 — Railway Setup + Data Foundation
 
+**Status:** ✅ COMPLETE — 2026-05-07
 **Goal:** Create the permanent data collection pipeline — a Railway cron script that reads every India digest from Redis, scores market-moving headlines with FinBERT, and writes signals to PostgreSQL. Runs every 10 minutes, independent of user activity.
 
 **Depends on:** Task V2-000
 **Estimated time:** 4–6 hours
 **V2**
 
-### What this task does:
-- Creates Railway project with PostgreSQL service
-- Creates `india_news_signals` table (DDL below)
-- Writes `scripts/seed-india-signals.mjs` following exact `runSeed()` pattern from `seed-insights.mjs`
-- Script reads `news:digest:v1:india:en` from Upstash Redis (already populated by digest)
-- Filters for `is_market_moving` headlines via keyword matching
-- Calls HuggingFace FinBERT API to score sentiment
-- Extracts Nifty 50 company names via keyword match
-- Detects sector via keyword rules
-- INSERTs to PostgreSQL (fire-and-forget, never blocks digest)
-- Configures Railway cron to match 10-minute digest interval
+### What was built:
+- `shared/market-taxonomy.json` — keyword registry (34 market keywords, 47 Nifty 50 entities, 7 sectors, 6 event types, systemic keywords)
+- `scripts/_india-market-keywords.mjs` — extraction helpers: `isMarketMoving`, `extractCompanies`, `extractSectors`, `detectEventType`, `detectRelevanceClassFromTitle`
+- `scripts/_sentiment-chain.mjs` — three-level fallback: HuggingFace FinBERT → Xenova FinBERT → Groq → DLQ (zero data loss)
+- `scripts/seed-india-signals.mjs` — main Railway cron pipeline following exact `runSeed()` pattern
+- `scripts/migrate-india-signals.mjs` — idempotent DDL runner for Railway PostgreSQL
+- `server/worldmonitor/news/v1/list-feed-digest.ts` — added `scrapedAt: number` field (2 lines only)
+- Railway PostgreSQL provisioned with `india_news_signals` table + 3 indexes
 
-### Files to touch:
+### Files created:
 ```
-scripts/seed-india-signals.mjs         — NEW FILE (Railway cron script)
-scripts/_india-market-keywords.mjs     — NEW FILE (market keyword lists, Nifty 50 registry)
+shared/market-taxonomy.json            — NEW (keyword/entity registry)
+scripts/_india-market-keywords.mjs     — NEW (extraction helpers)
+scripts/_sentiment-chain.mjs           — NEW (3-level sentiment fallback)
+scripts/seed-india-signals.mjs         — NEW (Railway cron pipeline)
+scripts/migrate-india-signals.mjs      — NEW (idempotent DDL runner)
 ```
+
+### Files modified:
+```
+server/worldmonitor/news/v1/list-feed-digest.ts  — +2 lines (scrapedAt field only)
+package.json                                      — pg ^8.20.0, @xenova/transformers ^2.17.2
+```
+
+### Key implementation notes:
+- HuggingFace endpoint: `router.huggingface.co/hf-inference/` (not `api-inference.huggingface.co` — moved for fine-grained tokens)
+- Local dev uses `DATABASE_PUBLIC_URL`; Railway cron uses internal `DATABASE_URL` — both handled via `DATABASE_PUBLIC_URL || DATABASE_URL`
+- First run: 8 rows inserted; second run: 0 inserted (ON CONFLICT DO NOTHING confirmed)
+- Sentiment model breakdown: finbert-hf (Level 1) active after token fix; groq-llama (Level 3) as fallback
 
 ### Files to READ (reference only, never write):
 ```
@@ -228,46 +241,64 @@ node scripts/seed-india-signals.mjs   # Run manually
 
 ## Task V2-002 — Enrich Summary with Intelligence Signals
 
-**Goal:** When a user clicks ✨ on a story, the Groq response now includes sentiment, companies, and event_type — and if the headline exists in PostgreSQL, the record is updated with richer data.
+**Goal:** Extend the existing India ✨ click (single Groq call) to return 6 intelligence fields
+instead of 2. Fire-and-forget push to Redis enrich queue; Railway cron drains queue and UPDATEs
+PostgreSQL rows with Groq's richer extraction — upgrading FinBERT-only scored rows.
 
 **Depends on:** Task V2-001 (PostgreSQL must exist)
 **Estimated time:** 2–3 hours
+**Task file:** `ai_docs/tasks/V2-002_enrich_summary_intelligence.md`
 **V2**
 
+### Architecture decision (2026-05-08):
+Original spec described a separate "What It Means →" button that fetched full article HTML.
+Revised: extend the EXISTING ✨ Groq call to return all 6 fields in ONE API call — no second
+button, no article scraping, no extra latency. The `meaning` field already answers "what it means."
+
+`api/news/v1/[rpc].ts` sets `runtime: 'edge'` — pg (Node.js) is unavailable in the edge handler.
+Fire-and-forget uses Upstash REST HTTP (RPUSH to queue). Railway cron processes the queue.
+
 ### What this task does:
-- Extends the Groq prompt in `server/worldmonitor/news/v1/_shared.ts` to return 4 new JSON fields
-- Updates `parseTwoSummaryResponse()` to extract and return new fields
-- Updates `SummarizeArticleResponse` proto/type if needed
-- Adds a fire-and-forget `UPDATE india_news_signals SET ... WHERE headline_hash = ?`
-  when the enriched response is returned (richer data than FinBERT alone)
+- Extends India `brief` Groq prompt to return 6 fields: `summary`, `meaning`, `sentiment`,
+  `sentiment_score`, `companies_mentioned`, `event_type`
+- Updates `TwoSummaryResult` interface and `parseTwoSummaryResponse()` in `_shared.ts`
+- `summarize-article.ts`: encodes all 6 fields in response JSON; fire-and-forget RPUSH to
+  `news:enrich-queue:v1` via Upstash REST (edge-runtime compatible)
+- `seed-india-signals.mjs`: drains `news:enrich-queue:v1` at cron start; PostgreSQL UPDATE
+  sets `sentiment_model = 'groq-v2'` on enriched rows
 
 ### Files to touch:
 ```
-server/worldmonitor/news/v1/_shared.ts       — extend prompt + parseTwoSummaryResponse
-server/worldmonitor/news/v1/summarize-article.ts  — add PostgreSQL UPDATE (fire-and-forget)
-proto/worldmonitor/news/v1/summarize_article.proto — add new response fields (if needed)
+server/worldmonitor/news/v1/_shared.ts            — extend prompt + TwoSummaryResult + parser
+server/worldmonitor/news/v1/summarize-article.ts  — pushEnrichmentQueue (fire-and-forget)
+scripts/seed-india-signals.mjs                    — drainEnrichQueue at top of fetchSignals()
 ```
 
-### New Groq prompt fields:
+### Groq response shape (6 fields, same call as existing ✨):
 ```json
 {
-  "what_happened": "2–3 sentences",
-  "what_it_means": "2–3 sentences",
+  "summary": "2–3 sentences. What happened, where, when.",
+  "meaning": "2–3 sentences. What this means for people in India right now.",
   "sentiment": "positive | negative | neutral",
-  "sentiment_score": -1.0,
+  "sentiment_score": -0.72,
   "companies_mentioned": ["HDFC Bank", "Reliance"],
-  "event_type": "earnings | regulation | policy | merger | macro | other"
+  "event_type": "earnings | regulation | policy | merger | macro | management | other"
 }
 ```
 
-### Key constraint:
-The UPDATE to PostgreSQL is fire-and-forget. It must never delay the summary response to the user. If the PostgreSQL UPDATE fails, the summary is still returned successfully.
+### Key constraints:
+- `api/news/v1/[rpc].ts` is `runtime: 'edge'` — never use `pg` or Node.js built-ins in server handlers
+- `pushEnrichmentQueue` must be fire-and-forget (`.catch(() => {})`) — never blocks user response
+- SHA-256 in edge runtime: use `crypto.subtle.digest` (Web Crypto API), not `node:crypto`
+- `fetch` in edge runtime: `(...args) => globalThis.fetch(...args)` pattern (already in codebase)
+- PostgreSQL UPDATE is `WHERE headline_hash = $5` — no-op if row absent (celebrity stories)
+- Proto extension NOT needed — all fields carried in existing `summary` JSON string
 
 ---
 
 ## Task V2-003 — Related Stories on Story Detail
 
-**Goal:** Show 2–3 related story headlines below "What It Means" in the story detail panel, using keyword overlap (Jaccard similarity, no ML).
+**Goal:** Show 2–3 related story headlines below the story summary in the story detail panel, using keyword overlap (Jaccard similarity, no ML).
 
 **Depends on:** Task V2-000
 **Estimated time:** 3–4 hours
@@ -333,37 +364,57 @@ No auth required. No user accounts. Votes are anonymous. localStorage prevents r
 
 ---
 
-## Task V2-005 — RSSHub on Railway (Government Sources)
+## Task V2-005 — Government Sources + News Additions
 
-**Goal:** Deploy RSSHub on Railway to expose PIB, MEA, MHA, and NDMA press releases as RSS feeds; wire them into the India digest.
+**Goal:** Add 4 Indian government ministry feeds and 2 missing news outlets to the India digest.
+No Docker, no new Railway services — use the public rsshub.app instance (already in allowlist)
+for govt sites that lack native RSS; use native RSS for PIB which has one.
 
-**Depends on:** Task V2-001 (Railway project already exists — add RSSHub to same project)
-**Estimated time:** 4–6 hours
+**Depends on:** Task V2-000
+**Estimated time:** 1–2 hours
 **V2**
 
+### Architecture decision (revised 2026-05-09):
+Original spec called for a self-hosted RSSHub Docker container on Railway. Dropped — the public
+`rsshub.app` instance is already in `shared/rss-allowed-domains.json` and handles low-traffic
+govt feeds with zero infra cost. Self-hosting can be revisited in V3 if reliability becomes
+an issue at scale.
+
 ### What this task does:
-- Deploys RSSHub Docker container as a new Railway service in existing project
-- Adds 4 government source feeds to `server/worldmonitor/news/v1/_feeds.ts` India section
-- Adds government domains to `shared/rss-allowed-domains.json` AND `api/_rss-allowed-domains.js`
-- Configures Railway service URL as `RSSHUB_BASE_URL` env var
+- Upgrades `government` category in `_feeds.ts` India section:
+  - PIB: replace gnIn Google search with native RSS feed (faster, more direct)
+  - MEA, MHA, NDMA: add via rsshub.app routes
+- Adds Times Now and Deccan Chronicle to `politics` category
+- Adds any new domains to `shared/rss-allowed-domains.json` AND `api/_rss-allowed-domains.js`
+- No new environment variables, no Railway changes, no Docker
 
 ### Files to touch:
 ```
-server/worldmonitor/news/v1/_feeds.ts          — add PIB, MEA, MHA, NDMA feed entries
-shared/rss-allowed-domains.json                — add government domains
-api/_rss-allowed-domains.js                   — sync copy (ESM)
+server/worldmonitor/news/v1/_feeds.ts          — update government + politics sections
+shared/rss-allowed-domains.json                — add any new domains (mea.gov.in, mha.gov.in, ndma.gov.in, timesnownews.com, deccanchronicle.com)
+api/_rss-allowed-domains.js                   — sync copy (ESM), must match allowlist exactly
 ```
 
 ### Government feeds to add:
 ```
-PIB (Press Information Bureau)  — pib.gov.in
-MEA (Ministry of External Affairs) — mea.gov.in
-MHA (Ministry of Home Affairs)  — mha.gov.in
-NDMA (National Disaster Management) — ndma.gov.in
+PIB (Press Information Bureau)       — native RSS: https://pib.gov.in/RssMain.aspx?ModId=6&Lang=1&Regid=3
+MEA (Ministry of External Affairs)  — via rsshub.app
+MHA (Ministry of Home Affairs)      — via rsshub.app
+NDMA (National Disaster Management) — via rsshub.app
 ```
 
-### Key constraint:
-Three-file allowlist rule applies. `shared/rss-allowed-domains.json` is source of truth. `api/_rss-allowed-domains.js` is the ESM copy. Never edit `rss-proxy.js` or `ais-relay.cjs` directly for allowlist changes.
+### News sources to add (politics category):
+```
+Times Now      — https://www.timesnownews.com/feeds/gns-en-latest.xml  (already in indian_rss_feeds.json)
+Deccan Chronicle — https://www.deccanchronicle.com/rss_feed
+```
+
+### Key constraints:
+- Three-file allowlist rule applies. `shared/rss-allowed-domains.json` is source of truth.
+  `api/_rss-allowed-domains.js` is the ESM copy. Never edit `rss-proxy.js` or `ais-relay.cjs`
+  directly for allowlist changes.
+- Verify each rsshub.app route works before adding (fetch the URL, confirm valid XML).
+- No new env vars. No Railway service changes.
 
 ---
 
@@ -530,7 +581,7 @@ Landing page must NOT import the Vite JS bundle. Plain HTML/CSS/JS only. No Prea
 | V2-002 Enrich Summary | 2–3 h | Intelligence |
 | V2-003 Related Stories | 3–4 h | Feature |
 | V2-004 Feedback Buttons | 3–5 h | Feature |
-| V2-005 RSSHub Government Sources | 4–6 h | Infrastructure |
+| V2-005 Government Sources + News Additions | 1–2 h | Infrastructure |
 | V2-006 New Stories Pill | 2–3 h | Feature |
 | V2-007 Hindi Language | 3–4 h | Feature |
 | V2-008 WhatsApp Brief | 5–8 h | Feature |

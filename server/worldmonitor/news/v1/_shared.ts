@@ -88,11 +88,15 @@ You must respond ONLY with a valid JSON object. No preamble, no explanation, no 
 
 ${headlineText}
 
-Write two summaries as a JSON object:
+Respond with this exact JSON object:
 
 {
   "summary": "2-3 sentences. What happened, where, when, key facts.",
-  "meaning": "2-3 sentences. What this means for people in India right now."
+  "meaning": "REQUIRED. 2-3 sentences. What this means for people in India right now. Never empty.",
+  "sentiment": "positive | negative | neutral",
+  "sentiment_score": 0.0,
+  "companies_mentioned": ["Company Name"],
+  "event_type": "earnings | regulation | policy | merger | macro | management | other"
 }
 
 Rules for summary:
@@ -102,17 +106,19 @@ Rules for summary:
 - Never add background sentences restating what the headline already says.
 - NEVER invent facts not present in the headlines.
 
-Rules for meaning:
-- Write 2-3 sentences explaining what this story means for people living in India.
+Rules for meaning (REQUIRED — never null, never empty string):
+- Every story has an impact. Write 2-3 sentences no matter what.
 - Sound like a knowledgeable friend explaining the news — not a textbook or a journalist.
 - Be specific and concrete: mention real effects on jobs, prices, travel, laws, markets, or daily life.
 - For government schemes or policies: state who benefits and what they get. Never say "if you are a [caste/group]..." — just state the facts.
 - For global events: explain the India connection (oil prices, trade, rupee, supply chains).
-- For local incidents: explain what changed or what people nearby should know.
+- For local/city stories: explain what residents of that city should know or do differently.
 - Speak directly using "you" and "your" when appropriate.
 - Do NOT speculate about the future. State what is happening or what has changed NOW.
 - Do NOT include classification labels like "direct_impact:" or "indirect_signal," in your output.
-- Only return meaning as empty string "" if the story is purely entertainment, celebrity gossip, or a feel-good animal story with no practical relevance.
+- For entertainment or celebrity stories: explain why this person or event matters to Indian audiences — their cultural reach, industry influence, or what fans should know.
+
+Intelligence fields: sentiment is positive/negative/neutral; sentiment_score +1.0 to -1.0; companies_mentioned is [] if none named; event_type pick one value else "other".
 
 NEVER write any of these phrases:
 - "For ordinary Indians"
@@ -201,6 +207,10 @@ Rules:
 export interface TwoSummaryResult {
   summary: string;
   meaning: string;
+  sentiment: string;
+  sentimentScore: number | null;
+  companiesMentioned: string[];
+  eventType: string;
 }
 
 /** Parse LLM response expecting { summary, meaning } JSON. Falls back to raw text. */
@@ -221,12 +231,22 @@ export function parseTwoSummaryResponse(rawResponse: string): TwoSummaryResult {
     return {
       summary: parsed.summary.trim(),
       meaning: parsed.meaning.trim(),
+      sentiment: typeof parsed.sentiment === 'string' ? parsed.sentiment : '',
+      sentimentScore: typeof parsed.sentiment_score === 'number' ? parsed.sentiment_score : null,
+      companiesMentioned: Array.isArray(parsed.companies_mentioned)
+        ? (parsed.companies_mentioned as string[]).filter(c => typeof c === 'string')
+        : [],
+      eventType: typeof parsed.event_type === 'string' ? parsed.event_type : 'other',
     };
   } catch {
     // Fallback: if JSON parsing fails, use raw as summary (should rarely happen with temperature 0)
     return {
       summary: rawResponse.trim(),
       meaning: '',
+      sentiment: '',
+      sentimentScore: null,
+      companiesMentioned: [],
+      eventType: 'other',
     };
   }
 }

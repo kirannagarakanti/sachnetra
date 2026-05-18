@@ -301,5 +301,8 @@ export default [
   "www.mining-technology.com",
   "www.australianmining.com.au",
   "news.goldseek.com",
-  "news.silverseek.com"
+  "news.silverseek.com",
+  // SachNetra V2-005 — additional India news sources
+  "www.timesnownews.com",
+  "www.deccanchronicle.com"
 ];
