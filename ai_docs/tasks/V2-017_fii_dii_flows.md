@@ -111,14 +111,20 @@ cost — the `source` column + `ON CONFLICT DO UPDATE` upsert (Decision 4) lets
 V2-017b retro-load any historical archive later with **no schema change**, just
 `source='<archive-name>'`. Build V2-017 now; nothing for Product C is lost.
 
-#### V2-017b — Deep FII/DII History (parallel research track, NOT this task)
-- **Status**: research-first; build gated on finding a real deep archive.
-  Runs in parallel (Gemini agent recon) while V2-017 is built/running.
-- **Goal**: locate a true historical FII/DII source (NSDL FPI archive, NSE
-  archives, NSDL/CDSL CSV dumps, SEBI bulletins, or a vendor) → one-time
-  retro-load into `india_institutional_flows` via the existing upsert.
-- **Not started here.** Task-file V2-017b only once the archive source is
-  confirmed by recon (per the "task-filed = reality, not aspiration" rule).
+#### V2-017b — Deep FII History (separate task — recon COMPLETE, source CONFIRMED 2026-05-19)
+- **Status**: source confirmed → V2-017b is now task-fileable (own design + task file).
+- **Source**: **NSDL FPI Monitor** `fpi.nsdl.co.in/web/Reports/Archive.aspx`
+  — **daily FPI flows since 1 Jan 1999** (~27 yrs). Month-end query returns
+  the whole month's daily rows → full archive in **~330 requests**. Access:
+  ASP.NET session handshake (`__VIEWSTATE`/`__EVENTVALIDATION` + WAF cookies),
+  then dated `POST`. Public depository data — **redistributable** (resolves
+  the Product C lineage flag below for the historical dataset).
+- **Scope caveat**: NSDL FPI Monitor is **FPI/foreign-only — no DII**. V2-017b
+  closes deep **FII** history; deep **DII** history remains a residual gap
+  (DII is an exchange concept, not a depository one).
+- **Retro-load target**: same `india_institutional_flows` table + same upsert,
+  `source='nsdl'` (highest trust — supersedes `moneycontrol`; see Decision 4).
+- **Not built here.** Separate V2-017b task file once design forks are locked.
 
 ### Decision 4 — Provenance: **`source` column + `ON CONFLICT DO UPDATE`**
 Every row stores `source TEXT NOT NULL` (`'moneycontrol' | 'nse' | 'bse'`). Primary
@@ -130,9 +136,11 @@ later, more-authoritative source (NSE/BSE) can **supersede** a Moneycontrol row 
 can down-weight aggregator rows; the Product C export can filter to exchange-sourced
 rows; the upgrade path is non-breaking.
 
-**Implementation hint**: Only supersede *upward* in trust (`moneycontrol` →
-`nse`/`bse`), never downgrade. V1 only ever writes `moneycontrol`, so the guard is
-a no-op in V1 but the column + upsert shape must exist now.
+**Implementation hint**: Trust order (low→high): `moneycontrol` < `nse`/`bse`
+< `nsdl` (depository-authoritative, V2-017b). Only supersede *upward*, never
+downgrade. V1 only ever writes `moneycontrol`, so the guard is a no-op in V1 —
+but the column + upsert shape must exist now so V2-017b's `nsdl` retro-load
+overwrites the overlapping 30-day Moneycontrol window with zero schema change.
 
 ### Decision 5 — Holiday / no-publish days: **write nothing, log one line, never error**
 Market holidays and pre-publish runs return no new row. The script logs a single
@@ -152,13 +160,15 @@ or migration against prod, does NOT create/run `scratch/` probes (Gemini agent's
 
 ## Parking Lot — flag for Lijo + James (not a blocker)
 
-**Product C dataset-licensing lineage is Moneycontrol-derived in V1.** Exchange
-provisional figures are public regulatory data (defensible to redistribute);
-Moneycontrol's ToS prohibits scraping/redistribution. This does NOT block building
-the pipeline, but **before any dataset is licensed** (Product C / Neudata), the
-lineage must be upgraded to exchange-sourced (the NSE/BSE superseding path, Decision
-4) or legally cleared. Tracked here so it is not silently baked in. This is a
-cross-cutting decision item in the same class as the roadmap's V2-023 legal gate.
+**Product C dataset-licensing lineage is Moneycontrol-derived in V1's 30-day
+window only.** Moneycontrol's ToS prohibits scraping/redistribution. **Largely
+resolved by V2-017b**: NSDL FPI Monitor (public depository data, redistributable)
+becomes the licensable historical bulk via the `nsdl`-supersedes-`moneycontrol`
+upsert (Decision 4) — so the licensed dataset's deep history is clean-lineage.
+Residual: (a) the rolling ~30-day forward edge stays Moneycontrol-sourced until
+NSE/BSE superseding ships; (b) deep **DII** history has no clean source yet
+(NSDL is FPI-only). Not a blocker; tracked so it is not silently baked in —
+same class as the roadmap's V2-023 legal gate.
 
 ---
 
@@ -433,15 +443,15 @@ read-only `git diff` + typecheck + biome only.
 
 ## Completion Log
 
-- [ ] Rules reconciled (boundaries.md + context.md) — 2026-05-19
-- [ ] Research Appendix runtime cells filled from Gemini agent output — [timestamp]
-- [ ] Phase 1 (schema DDL) complete — [timestamp]
-- [ ] Phase 2 (source adapter) complete — [timestamp]
-- [ ] Phase 3 (daily collector) complete — [timestamp]
-- [ ] Phase 4 (backfill) complete — [timestamp]
-- [ ] Typecheck 0 / Biome 0 — [timestamp]
-- [ ] Sacred-file diffs empty — [timestamp]
-- [ ] Handoff to Lijo: migration + daily seed + backfill + Railway cron schedule — [timestamp]
-- [ ] CLAUDE.md V2 Task Status: V2-017 → COMPLETE — [timestamp]
-- [ ] **TASK V2-017 COMPLETE** ✅
+- [x] Rules reconciled (boundaries.md + context.md) — 2026-05-19
+- [x] Research Appendix runtime cells filled from Gemini agent output — 2026-05-19
+- [x] Phase 1 (schema DDL) complete — 2026-05-19
+- [x] Phase 2 (source adapter) complete — 2026-05-19
+- [x] Phase 3 (daily collector) complete — 2026-05-19
+- [x] Phase 4 (backfill) complete — 2026-05-19
+- [x] Typecheck 0 / Biome 0 (new files clean; 14 pre-existing warnings in unrelated scripts, out of scope) — 2026-05-19
+- [x] Sacred-file diffs empty (seed-insights.mjs, seed-india-signals.mjs, variants/*) — 2026-05-19
+- [ ] Handoff to Lijo: migration + daily seed + backfill + Railway cron schedule (daily ≈14:00 UTC) — pending Lijo
+- [x] CLAUDE.md V2 Task Status: V2-017 → COMPLETE — 2026-05-19
+- [ ] **TASK V2-017 COMPLETE** ✅ — pending Lijo's prod run
 ```

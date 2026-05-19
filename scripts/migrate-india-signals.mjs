@@ -98,6 +98,25 @@ CREATE TABLE IF NOT EXISTS entity_timeline (
 CREATE INDEX IF NOT EXISTS idx_entity_observed      ON entity_timeline (entity_id, observed_at DESC);
 CREATE INDEX IF NOT EXISTS idx_entity_thread        ON entity_timeline (thread_id) WHERE thread_id IS NOT NULL;
 CREATE INDEX IF NOT EXISTS idx_entity_type_observed ON entity_timeline (entity_type, observed_at DESC);
+
+-- V2-017 FII/DII daily institutional flows. Independent non-news source: no FK
+-- to india_news_signals/story_threads. PK (flow_date, investor_type, segment)
+-- + source column power the Decision 4 ON CONFLICT DO UPDATE supersede path.
+CREATE TABLE IF NOT EXISTS india_institutional_flows (
+  flow_date      DATE NOT NULL,
+  investor_type  TEXT NOT NULL,            -- 'FII' | 'DII'
+  segment        TEXT NOT NULL DEFAULT 'cash',
+  gross_buy      DECIMAL(14,2),            -- ₹ crore
+  gross_sell     DECIMAL(14,2),            -- ₹ crore
+  net            DECIMAL(14,2) NOT NULL,   -- ₹ crore (buy − sell)
+  source         TEXT NOT NULL,            -- 'moneycontrol' | 'nse' | 'bse'  (provenance)
+  is_provisional BOOLEAN NOT NULL DEFAULT TRUE,
+  created_at     TIMESTAMPTZ DEFAULT NOW(),
+  updated_at     TIMESTAMPTZ DEFAULT NOW(),
+  PRIMARY KEY (flow_date, investor_type, segment)
+);
+CREATE INDEX IF NOT EXISTS idx_flows_date        ON india_institutional_flows (flow_date DESC);
+CREATE INDEX IF NOT EXISTS idx_flows_type_date   ON india_institutional_flows (investor_type, flow_date DESC);
 `;
 
 async function migrate() {
@@ -131,6 +150,9 @@ async function migrate() {
     console.log('✓ Index created: idx_entity_observed');
     console.log('✓ Index created: idx_entity_thread');
     console.log('✓ Index created: idx_entity_type_observed');
+    console.log('✓ Table created: india_institutional_flows');
+    console.log('✓ Index created: idx_flows_date');
+    console.log('✓ Index created: idx_flows_type_date');
 
     // Confirm the table exists and show column count
     const { rows } = await pool.query(`

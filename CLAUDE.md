@@ -130,7 +130,8 @@ V2-011  Headline Storage + Sentiment      [COMPLETE ✅ — 2026-05-15]
 V2-012  Autonomous Pipeline               [COMPLETE ✅ — 2026-05-16]
 V2-013  Story Threads                     [COMPLETE ✅ — 2026-05-18]
 V2-014  Entity Timeline                   [COMPLETE ✅ — 2026-05-18]
-V2-017  FII/DII Daily Flows               [ ] next — task file pending
+V2-017  FII/DII Daily Flows               [CODE COMPLETE ✅ — 2026-05-19 · awaiting Lijo prod run]
+V2-017b Deep FII History (NSDL FPI)       [TASK-FILED — depends on V2-017]
 ```
 
 Roadmap V2-015–V2-029 (Tier 2+ alpha sources) live in

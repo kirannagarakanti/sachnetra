@@ -5,16 +5,27 @@ const CHROME_UA = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 
 async function testNsdlPost() {
   try {
     const url = 'https://www.fpi.nsdl.co.in/web/Reports/Archive.aspx';
+    
+    // 1. Initial GET request
     const initResp = await fetch(url, {
       headers: { 'User-Agent': CHROME_UA }
     });
-    
-    const setCookie = initResp.headers.get('set-cookie');
     const initHtml = await initResp.text();
+    const setCookies = initResp.headers.getSetCookie();
     
-    // Extract hidden inputs using regex that matches name/id and value in any order
+    const parsedCookies = [];
+    for (const cookieStr of setCookies) {
+      const parts = cookieStr.split(';');
+      if (parts.length > 0) {
+        const nv = parts[0].trim();
+        if (nv && !nv.endsWith('=')) {
+          parsedCookies.push(nv);
+        }
+      }
+    }
+    const formattedCookies = parsedCookies.join('; ');
+
     const extractHiddenVal = (html, name) => {
-      // Find value="..." inside input tag containing name="..."
       const inputRegex = /<input[^>]*>/gi;
       let m;
       while ((m = inputRegex.exec(html)) !== null) {
@@ -31,11 +42,8 @@ async function testNsdlPost() {
     const viewStateGen = extractHiddenVal(initHtml, '__VIEWSTATEGENERATOR');
     const eventValidation = extractHiddenVal(initHtml, '__EVENTVALIDATION');
 
-    console.log(`__VIEWSTATE size: ${viewState.length}`);
-    console.log(`__VIEWSTATEGENERATOR: ${viewStateGen}`);
-    console.log(`__EVENTVALIDATION size: ${eventValidation.length}`);
-
-    const targetDate = '15-May-2026';
+    // Query 15-May-1997
+    const targetDate = '15-May-1997';
     
     const bodyParams = new URLSearchParams();
     bodyParams.append('__EVENTTARGET', 'btnSubmit1');
@@ -51,37 +59,50 @@ async function testNsdlPost() {
       method: 'POST',
       headers: {
         'User-Agent': CHROME_UA,
+        'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
+        'Accept-Language': 'en-US,en;q=0.5',
         'Referer': url,
+        'Origin': 'https://www.fpi.nsdl.co.in',
         'Content-Type': 'application/x-www-form-urlencoded',
-        'Cookie': setCookie || '',
+        'Cookie': formattedCookies,
       },
       body: bodyParams.toString()
     });
 
     const postHtml = await postResp.text();
-    fs.writeFileSync('scratch/nsdl_post_response.html', postHtml);
-    console.log('Saved response to scratch/nsdl_post_response.html');
-    
-    // Check if there is an alert or script block or table
-    console.log(`Contains 'dvArchiveData': ${postHtml.includes('dvArchiveData')}`);
-    console.log(`Contains 'rpt': ${postHtml.includes('rpt')}`);
-    console.log(`Contains 'alert': ${postHtml.includes('alert(')}`);
-    
-    // Search for script tags in postHtml
-    const scripts = [];
-    const scriptRegex = /<script[^>]*>([\s\S]*?)<\/script>/gi;
-    let sm;
-    while ((sm = scriptRegex.exec(postHtml)) !== null) {
-      scripts.push(sm[1].trim());
-    }
-    console.log(`Found ${scripts.length} scripts`);
-    // Print short script bodies
-    scripts.forEach((s, i) => {
-      if (s.length < 500 && s.length > 0) {
-        console.log(`Script ${i}: ${s}`);
-      }
-    });
 
+    const tableRegex = /<table[^>]*>([\s\S]*?)<\/table>/gi;
+    let match;
+    let index = 0;
+    let foundTable = false;
+    while ((match = tableRegex.exec(postHtml)) !== null) {
+      if (index === 1) { // Main data table
+        foundTable = true;
+        console.log(`\nFound Table ${index} (Main Data Table) for ${targetDate}:`);
+        const tableContent = match[1];
+        const trRegex = /<tr[^>]*>([\s\S]*?)<\/tr>/gi;
+        let trMatch;
+        let trIndex = 0;
+        while ((trMatch = trRegex.exec(tableContent)) !== null && trIndex < 20) {
+          const trContent = trMatch[1];
+          const cellRegex = /<(td|th)[^>]*>([\s\S]*?)<\/\1>/gi;
+          let cellMatch;
+          const cells = [];
+          while ((cellMatch = cellRegex.exec(trContent)) !== null) {
+            const text = cellMatch[2].replace(/<[^>]*>/g, '').trim().replace(/\s+/g, ' ');
+            cells.push(text);
+          }
+          if (cells.length > 0) {
+            console.log(`  Row ${trIndex}: ${cells.join(' | ')}`);
+          }
+          trIndex++;
+        }
+      }
+      index++;
+    }
+    if (!foundTable) {
+      console.log(`No data table found in POST response for ${targetDate}`);
+    }
   } catch (err) {
     console.error(err);
   }
