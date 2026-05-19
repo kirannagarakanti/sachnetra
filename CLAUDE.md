@@ -121,9 +121,19 @@ V2-002  Enrich Summary with Intelligence  [COMPLETE ✅ — 2026-05-09]
 V2-003  Related Stories                   [COMPLETE ✅ — 2026-05-09]
 V2-004  Feedback Buttons                  [ ] not started
 V2-005  RSSHub on Railway                 [ ] not started
-V2-006  New Stories Pill                  [ ] not started
+V2-006  New Stories Pill                  [COMPLETE ✅ — 2026-05-09]
 V2-007  Hindi Language                    [ ] not started
 V2-008  WhatsApp Daily Brief              [ ] not started
 V2-009  State Liveability Score           [BLOCKED — architect gate]
 V2-010  Landing Page                      [BLOCKED — needs 30 days usage data]
+V2-011  Headline Storage + Sentiment      [COMPLETE ✅ — 2026-05-15]
+V2-012  Autonomous Pipeline               [COMPLETE ✅ — 2026-05-16]
+V2-013  Story Threads                     [COMPLETE ✅ — 2026-05-18]
+V2-014  Entity Timeline                   [COMPLETE ✅ — 2026-05-18]
+V2-017  FII/DII Daily Flows               [ ] next — task file pending
 ```
+
+Roadmap V2-015–V2-029 (Tier 2+ alpha sources) live in
+`ai_docs/sachnetra v2/wiki/syntheses/sachnetra_quant_roadmap.md`. They are
+added to this block only as each one is task-filed (reality, not aspiration).
+Numbers are never reused — V2-009/010 stay blocked in place.

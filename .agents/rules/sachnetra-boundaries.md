@@ -40,7 +40,9 @@ Stop and tell Lijo + James if any task pulls toward these:
 ❌ LAC/LOC or LWE map layers (legal review required first)
 ❌ Indian military bases on map
 ❌ Communal incident tracker (human review pipeline required)
-❌ Firecrawl scraping
+❌ Firecrawl scraping  (plain `fetch()` + JSON/HTML parse of PUBLIC
+   exchange/aggregator endpoints for the V2 data layer is IN scope —
+   e.g. V2-017 Moneycontrol/NSE/BSE. Firecrawl specifically is not.)
 ❌ Election monitor
 ❌ Internet shutdown tracker
 ❌ GoOut Hyderabad (removed from V2)
@@ -64,6 +66,15 @@ Stop and tell Lijo + James if any task pulls toward these:
 ✅ V2-008 — WhatsApp daily brief (Twilio + Railway cron at 7am IST)
 ✅ V2-009 — State liveability score (BLOCKED pending architect gate)
 ✅ V2-010 — Landing page (BLOCKED pending 30 days usage data)
+```
+
+**V2-011 → V2-029 — quant data layer (source of truth: the roadmap, NOT this file):**
+```
+✅ Defined in ai_docs/sachnetra v2/wiki/syntheses/sachnetra_quant_roadmap.md
+   (approved 2026-05-15). V2-012/013/014 SHIPPED. CLAUDE.md V2 Task
+   Status block is the live dashboard; this rule file is not re-listed
+   per-task. A task is in scope if the roadmap lists it and it has a
+   task file in ai_docs/tasks/. Numbers are never reused.
 ```
 
 ---

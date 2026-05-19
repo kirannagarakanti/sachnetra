@@ -52,7 +52,17 @@ India's bilingual entity-aware sentiment data for Indian markets does not exist 
 
 ## V2 Entry Points
 
-- Intelligence pipeline: `scripts/seed-india-signals.mjs` — NEW Railway cron, reads Redis
-- Data store: `india_news_signals` table on Railway PostgreSQL
-- Hook point: reads `news:digest:v1:india:en` from Upstash Redis (already populated by digest)
+The pipeline is now **multi-script**, not a single Redis-reading cron:
+
+- News pipeline: `scripts/seed-india-signals.mjs` (+ `_thread-linker.mjs`,
+  `_entity-fan-out.mjs`) — Railway cron; cluster → thread → entity.
+  V2-012/013/014 SHIPPED.
+- Flows pipeline: `scripts/seed-india-flows.mjs` (V2-017) — a **separate
+  daily** Railway cron. Non-news, **does NOT read Redis** — scrapes
+  public FII/DII endpoints (Moneycontrol/NSE/BSE) → PostgreSQL directly.
+  Failure-isolated from the news cron by design.
+- Data store: Railway PostgreSQL — `india_news_signals`, `story_threads`,
+  `entity_timeline`, `india_institutional_flows` (V2-017).
+- New collectors are independent: do NOT bolt non-news sources onto the
+  news cron. One cron per source family.
 - New sacred: `scripts/seed-insights.mjs` — never modify for V2 intelligence work; create a sibling instead
