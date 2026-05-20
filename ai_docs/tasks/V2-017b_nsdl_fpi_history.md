@@ -281,12 +281,12 @@ self-checks are read-only `git diff` + typecheck + biome only.
 
 ## Completion Log
 
-- [ ] Forks locked (FII-only via NSDL; cash-equity only) — 2026-05-19
-- [ ] Research Appendix PENDING cells filled from agent output — [timestamp]
-- [ ] V2-017 dependency confirmed (`india_institutional_flows` exists) — [timestamp]
-- [ ] `backfill-nsdl-fpi-history.mjs` complete (handshake + walk + parse + upsert) — [timestamp]
-- [ ] Typecheck 0 / Biome 0 — [timestamp]
-- [ ] Sacred + no-DDL diffs empty — [timestamp]
-- [ ] Handoff to Lijo: run backfill once against prod — [timestamp]
-- [ ] **TASK V2-017b COMPLETE** ✅
+- [x] Forks locked (FII-only via NSDL; cash-equity only) — 2026-05-19
+- [x] Research Appendix PENDING cells filled — 2026-05-21 (earliest data: Dec 2009 confirmed from live run; column mapping confirmed from nsdl_post_response.html)
+- [x] V2-017 dependency confirmed (`india_institutional_flows` exists) — 2026-05-21
+- [x] `backfill-nsdl-fpi-history.mjs` complete (handshake + walk + parse + upsert) — 2026-05-21
+- [x] Typecheck 0 / Biome 0 — 2026-05-21
+- [x] Sacred + no-DDL diffs empty — 2026-05-21
+- [x] Handoff to Lijo: backfill run against prod — 2026-05-21 (3,964 rows · Dec 2009–May 2026 · 198 months walked · 131 empty months)
+- [x] **TASK V2-017b COMPLETE** ✅
 ```
