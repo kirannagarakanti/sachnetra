@@ -216,6 +216,40 @@ Each task feeds one of three products from `[[sachnetra_quant_pivot]]`.
 
 Sequenced for maximum revenue-per-build-hour. Each block assumes the prior block is complete.
 
+---
+
+### ⟳ Execution refocus — 2026-05-22 (quant-data-only filter)
+
+Lijo's directive: **build only what feeds the quant data layer; postpone or cut the rest.**
+Current reality overrides the block order below where they conflict.
+
+**Done / filed (free India alpha collectors — the database is the asset):**
+- V2-017 FII/DII ✅ · V2-017b NSDL deep FII ✅
+- V2-018 NSE Announcements · V2-019 RBI WSS · V2-020 BIS India Macro (SDMX) — **task-filed
+  2026-05-22, awaiting James impl** (recon complete, all verified against Gemini scratch).
+
+**V2-015 Corporate Filings (kingpin) — REFRAMED, not cut:** split into capture
+(= V2-018, banks the filing PDFs now) + extraction (OCR/LLM = a **separate, postponed,
+DB-connected application**, NOT a SachNetra-repo task). See `memory/project_v2015_ocr_decision.md`.
+
+**Next quant-useful tasks (build in this order):**
+1. **V2-024 NSE Options Chain + OI** — microstructure (PCR / IV / OI-change); free.
+   ✅ **TASK FILED 2026-05-22** (`ai_docs/tasks/V2-024_nse_options_oi.md`). Recon found the
+   live path is `option-chain-v3` (two-step, per-expiry) warmed on `/option-chain`; storage =
+   **EOD aggregates in PostgreSQL only** (object-storage hybrid rejected as premature infra);
+   live-only → no backfill.
+2. NSE bulk/block deals — daily CSV, ~1–2 h, institutional footprints.
+3. V2-026 POSOCO Electricity / V2-027 FASTag — alt-data demand proxies, ~2–3 h each.
+4. V2-025 Quarterly Fundamentals — factor-model inputs; heavier (16–24 h), do after the cheap wins.
+
+**Postponed / cut through the quant lens (serve product/distribution, not the model):**
+- **Cut from the quant track:** V2-008 WhatsApp, V2-010 Landing (zero quant value).
+- **Postponed:** V2-007 Hindi, V2-016 B2B API (revenue surfaces — revisit when data is rich);
+  V2-021/022/023 Social (Reddit/X/Telegram — "nice-to-have, not load-bearing"; X also costs $/mo);
+  V2-028 Satellite (40 h+); V2-004 Source Credibility (mild quant value, Block-3).
+
+---
+
 **Block 1: Complete the data model (Tier 1)** — ~18–25 hours
 1. V2-012 (in flight)
 2. V2-013 Story Threads
@@ -585,3 +619,4 @@ For LLM session continuity:
 | 2026-05-15 | Initial doc. Synthesizes pivot doc (2026-05-05), architecture doc (2026-05-15), and WorldMonitor codebase inventory. |
 | 2026-05-15 | Added "Data Gaps for Serious India Quant" section — 10-category breakdown of what's missing for India quant, with task mappings, sector-demand signals table, alternative-data inventory, and the honest assessment that WorldMonitor inheritance + free Indian regulatory data gets to ~60% of a fund-grade data layer for under $200/mo. |
 | 2026-05-15 | Converted bulleted lists in data-gaps sections 1, 2, 3, 4, 5, 7, 9, 10 and the feature stack to tables for easier scanning. Tables now carry consistent columns (Signal/Source/Frequency/Cost/Maps to) so future agents can sort and filter by criterion. Alpha quality stars added to Section 3 (corporate actions) to make the kingpin signals visually obvious. |
+| 2026-05-22 | Added "Execution refocus" block to the Priority Queue: quant-data-only filter. V2-018/019/020 task-filed; V2-015 reframed as a separate postponed OCR app (V2-018 banks the data); V2-024 Options Chain is next; Hindi/WhatsApp/Landing/social/satellite postponed-or-cut through the quant lens. |

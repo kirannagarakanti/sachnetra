@@ -130,8 +130,13 @@ V2-011  Headline Storage + Sentiment      [COMPLETE ✅ — 2026-05-15]
 V2-012  Autonomous Pipeline               [COMPLETE ✅ — 2026-05-16]
 V2-013  Story Threads                     [COMPLETE ✅ — 2026-05-18]
 V2-014  Entity Timeline                   [COMPLETE ✅ — 2026-05-18]
+V2-015  Corporate Filings (OCR)          [REFRAMED — separate postponed OCR app; V2-018 banks the PDFs meanwhile]
 V2-017  FII/DII Daily Flows               [CODE COMPLETE ✅ — 2026-05-19 · awaiting Lijo prod run]
 V2-017b Deep FII History (NSDL FPI)       [COMPLETE ✅ — 2026-05-21 · 3,964 rows · Dec 2009–May 2026]
+V2-018  NSE Bourse Announcements          [TASK FILED ✅ — 2026-05-22 · awaiting James impl]
+V2-019  RBI Weekly Statistical Supplement [TASK FILED ✅ — 2026-05-22 · awaiting James impl]
+V2-020  BIS India Macro (SDMX)            [TASK FILED ✅ — 2026-05-22 · awaiting James impl]
+V2-024  NSE Options Chain + OI (EOD)      [TASK FILED ✅ — 2026-05-22 · awaiting James impl]
 ```
 
 Roadmap V2-015–V2-029 (Tier 2+ alpha sources) live in
