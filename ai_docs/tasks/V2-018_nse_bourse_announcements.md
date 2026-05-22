@@ -450,7 +450,7 @@ read-only `git diff` + typecheck + biome only.
 - [x] Phase 4 (backfill) complete
 - [x] Typecheck 0 / Biome 0
 - [x] Sacred-file diffs empty (seed-insights, seed-india-signals, seed-india-flows, variants/*)
-- [ ] Handoff to Lijo: migration + hourly seed + backfill + Railway cron schedule (hourly) — pending Lijo
-- [x] CLAUDE.md V2 Task Status: V2-018 → CODE COMPLETE (full COMPLETE pending Lijo's prod run, per V2-017 convention)
-- [ ] **TASK V2-018 COMPLETE** ✅ — pending Lijo's prod run
+- [x] Handoff to Lijo: migration + first hourly seed + 30-day backfill run against prod (2026-05-22) — verified 17,322 rows, 100% PDF capture, 107 categories, PK-unique. Railway hourly cron schedule still to be created (operational).
+- [x] CLAUDE.md V2 Task Status: V2-018 → COMPLETE
+- [x] **TASK V2-018 COMPLETE** ✅ — 2026-05-22 (Railway hourly cron creation is the one remaining operational step)
 ```
