@@ -117,6 +117,29 @@ CREATE TABLE IF NOT EXISTS india_institutional_flows (
 );
 CREATE INDEX IF NOT EXISTS idx_flows_date        ON india_institutional_flows (flow_date DESC);
 CREATE INDEX IF NOT EXISTS idx_flows_type_date   ON india_institutional_flows (investor_type, flow_date DESC);
+
+-- V2-018 NSE bourse announcements. Independent non-news source: no FK to
+-- india_news_signals/entity_timeline (Decision 6). PK (source, announcement_id)
+-- + append-only ON CONFLICT DO NOTHING — announcements are immutable, distinct
+-- per exchange ID space (Decision 4, diverges from V2-017's supersede model).
+CREATE TABLE IF NOT EXISTS india_bourse_announcements (
+  source          TEXT NOT NULL,            -- 'nse' | 'bse'  (provenance)
+  announcement_id TEXT NOT NULL,            -- NSE seq_id (stable natural key)
+  symbol          TEXT,                     -- NSE trading symbol (e.g. 'RELIANCE')
+  company_name    TEXT,                     -- sm_name
+  isin            TEXT,                     -- sm_isin
+  category        TEXT,                     -- desc (e.g. 'Outcome of Board Meeting')
+  subject         TEXT,                     -- attchmntText (announcement detail)
+  attachment_url  TEXT,                     -- attchmntFile (PDF — the V2-015 hook)
+  industry        TEXT,                     -- smIndustry (nullable)
+  has_xbrl        BOOLEAN,                  -- hasXbrl
+  announced_at    TIMESTAMPTZ NOT NULL,     -- sort_date, IST (+05:30)
+  created_at      TIMESTAMPTZ DEFAULT NOW(),
+  PRIMARY KEY (source, announcement_id)
+);
+CREATE INDEX IF NOT EXISTS idx_ann_announced     ON india_bourse_announcements (announced_at DESC);
+CREATE INDEX IF NOT EXISTS idx_ann_symbol_date   ON india_bourse_announcements (symbol, announced_at DESC);
+CREATE INDEX IF NOT EXISTS idx_ann_category_date ON india_bourse_announcements (category, announced_at DESC);
 `;
 
 async function migrate() {
@@ -153,6 +176,10 @@ async function migrate() {
     console.log('✓ Table created: india_institutional_flows');
     console.log('✓ Index created: idx_flows_date');
     console.log('✓ Index created: idx_flows_type_date');
+    console.log('✓ Table created: india_bourse_announcements');
+    console.log('✓ Index created: idx_ann_announced');
+    console.log('✓ Index created: idx_ann_symbol_date');
+    console.log('✓ Index created: idx_ann_category_date');
 
     // Confirm the table exists and show column count
     const { rows } = await pool.query(`
