@@ -432,13 +432,15 @@ No browser/variant verification (backend-only task). Runtime validation of the s
 
 ## Completion Log
 
-- [ ] Research Appendix transcribed from Gemini agent output — 2026-05-22
-- [ ] Phase 1 (schema DDL) complete
-- [ ] Phase 2 (source adapter) complete
-- [ ] Phase 3 (daily EOD collector) complete
-- [ ] Typecheck 0 / Biome 0
-- [ ] Sacred-file diffs empty (seed-insights, seed-india-signals, variants/*)
-- [ ] Handoff to Lijo: migration + daily EOD seed + Railway cron schedule (daily ≈10:30 UTC) — pending Lijo
+- [x] Research Appendix transcribed from Gemini agent output — 2026-05-22
+- [x] Phase 1 (schema DDL) complete — 2026-05-22
+- [x] Phase 2 (source adapter) complete — 2026-05-22
+- [x] Phase 3 (daily EOD collector) complete — 2026-05-22
+- [x] Typecheck 0 / Biome 0
+- [x] Sacred-file diffs empty (seed-insights, seed-india-signals, variants/*)
+- [x] Migration run by Lijo — `india_options_oi` confirmed live in Railway PostgreSQL — 2026-05-22
+- [ ] First daily EOD seed run verified against prod — pending Railway cron setup
+- [ ] Railway cron schedule added (daily ≈10:30 UTC) — pending Lijo
 - [ ] CLAUDE.md V2 Task Status: add V2-024 → COMPLETE
-- [ ] **TASK V2-024 COMPLETE** ✅ — pending Lijo's prod run
+- [ ] **TASK V2-024 COMPLETE** ✅ — pending first cron run
 ```

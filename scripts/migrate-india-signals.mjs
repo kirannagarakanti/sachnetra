@@ -140,6 +140,86 @@ CREATE TABLE IF NOT EXISTS india_bourse_announcements (
 CREATE INDEX IF NOT EXISTS idx_ann_announced     ON india_bourse_announcements (announced_at DESC);
 CREATE INDEX IF NOT EXISTS idx_ann_symbol_date   ON india_bourse_announcements (symbol, announced_at DESC);
 CREATE INDEX IF NOT EXISTS idx_ann_category_date ON india_bourse_announcements (category, announced_at DESC);
+
+-- V2-019 RBI Weekly Statistical Supplement. Independent non-news macro source: no
+-- FK to other tables. One row per weekly release_date. Per-indicator as-on dates
+-- (forex weekly vs SCB/monetary fortnightly — Decision 4). source + DO UPDATE
+-- supersede because RBI revises aggregates (Decision 7).
+CREATE TABLE IF NOT EXISTS india_rbi_wss (
+  release_date            DATE NOT NULL,            -- WSS publication Friday (PK)
+  -- Scheduled Commercial Banks (T_4, ₹ crore, fortnightly)
+  bank_credit             DECIMAL(16,2),            -- T_4 "7 Bank Credit"
+  aggregate_deposits      DECIMAL(16,2),            -- T_4 "2.1 Aggregate Deposits"
+  scb_as_on               DATE,                     -- "Outstanding as on <date>"
+  -- Monetary aggregates (T_6/T_7, ₹ crore, fortnightly)
+  currency_in_circulation DECIMAL(16,2),            -- T_7 "1.1 Currency in Circulation"
+  reserve_money           DECIMAL(16,2),            -- T_7 "Reserve Money"
+  m3                      DECIMAL(16,2),            -- T_6 "M3"
+  monetary_as_on          DATE,
+  -- Foreign exchange reserves (T_2, weekly)
+  forex_reserves_inr_cr   DECIMAL(16,2),            -- T_2 "1 Total Reserves" (₹ crore)
+  forex_reserves_usd_mn   DECIMAL(16,2),            -- T_2 "1 Total Reserves" (USD mn)
+  forex_as_on             DATE,
+  source                  TEXT NOT NULL,            -- 'rbi_wss'
+  is_provisional          BOOLEAN NOT NULL DEFAULT TRUE,
+  created_at              TIMESTAMPTZ DEFAULT NOW(),
+  updated_at              TIMESTAMPTZ DEFAULT NOW(),
+  PRIMARY KEY (release_date)
+);
+CREATE INDEX IF NOT EXISTS idx_rbiwss_release ON india_rbi_wss (release_date DESC);
+
+-- V2-020 BIS India macro rates. Independent non-news macro source: no FK to other
+-- tables. TALL design (Decision 4): one row per (series_code, time_period). source +
+-- DO UPDATE supersede because BIS revises history (Decision 6). Series identity is the
+-- fully-qualified SDMX key; unit/frequency live in india_macro_series_meta, not here.
+CREATE TABLE IF NOT EXISTS india_macro_rates (
+  series_code  TEXT NOT NULL,            -- '<DATASET>.<full SDMX key>' e.g. 'WS_TC.Q.IN.P.A.M.770.A'
+  time_period  TEXT NOT NULL,            -- BIS-native period: 'YYYY-MM' (M) | 'YYYY-Q#' (Q)
+  obs_value    DECIMAL(18,6) NOT NULL,   -- the observation (NaN/empty skipped at parse)
+  source       TEXT NOT NULL DEFAULT 'bis',
+  created_at   TIMESTAMPTZ DEFAULT NOW(),
+  updated_at   TIMESTAMPTZ DEFAULT NOW(),
+  PRIMARY KEY (series_code, time_period)
+);
+CREATE INDEX IF NOT EXISTS idx_macro_series_period ON india_macro_rates (series_code, time_period DESC);
+
+-- V2-020 series lookup: keeps the opaque BIS codes self-documenting. Refreshed by the
+-- seed from the adapter's SERIES registry (the registry is the source of truth).
+CREATE TABLE IF NOT EXISTS india_macro_series_meta (
+  series_code  TEXT PRIMARY KEY,         -- 'WS_CBPOL.M.IN'
+  dataset      TEXT NOT NULL,            -- 'WS_CBPOL'
+  sdmx_key     TEXT NOT NULL,            -- 'M.IN' (the key after the dataset)
+  label        TEXT NOT NULL,            -- 'RBI policy rate'
+  unit         TEXT NOT NULL,            -- '%' | 'index' | 'INR/USD' | '% GDP' | 'ppt'
+  frequency    VARCHAR(1) NOT NULL,      -- 'M' | 'Q'
+  revises      BOOLEAN NOT NULL,         -- from recon Part E
+  updated_at   TIMESTAMPTZ DEFAULT NOW()
+);
+
+-- V2-024 NSE options chain end-of-day aggregates. Independent non-news microstructure
+-- source: no FK to other tables. One row per (snapshot_date, symbol, expiry_date).
+-- EOD aggregates only — raw per-strike chain is discarded after computing (Decision 3).
+-- Live-only source → no backfill (Decision 6). DO UPDATE supersede for idempotent re-run.
+CREATE TABLE IF NOT EXISTS india_options_oi (
+  snapshot_date   DATE NOT NULL,            -- trading date parsed from records.timestamp (IST)
+  symbol          TEXT NOT NULL,            -- 'NIFTY' | 'BANKNIFTY' | 'FINNIFTY'
+  expiry_date     DATE NOT NULL,            -- option expiry this row aggregates
+  underlying      DECIMAL(12,2),            -- records.underlyingValue (spot)
+  total_ce_oi     BIGINT,                   -- Σ CE openInterest (contracts)
+  total_pe_oi     BIGINT,                   -- Σ PE openInterest (contracts)
+  pcr             DECIMAL(8,4),             -- total_pe_oi / total_ce_oi
+  max_pain        DECIMAL(12,2),            -- strike minimizing option-writer payout
+  atm_strike      DECIMAL(12,2),            -- strike nearest underlying
+  atm_ce_iv       DECIMAL(7,2),             -- CE impliedVolatility at ATM strike
+  atm_pe_iv       DECIMAL(7,2),             -- PE impliedVolatility at ATM strike
+  snapshot_ts     TIMESTAMPTZ,              -- records.timestamp (IST, +05:30)
+  source          TEXT NOT NULL DEFAULT 'nse',
+  created_at      TIMESTAMPTZ DEFAULT NOW(),
+  updated_at      TIMESTAMPTZ DEFAULT NOW(),
+  PRIMARY KEY (snapshot_date, symbol, expiry_date)
+);
+CREATE INDEX IF NOT EXISTS idx_options_symbol_date ON india_options_oi (symbol, snapshot_date DESC);
+CREATE INDEX IF NOT EXISTS idx_options_date        ON india_options_oi (snapshot_date DESC);
 `;
 
 async function migrate() {
@@ -180,6 +260,14 @@ async function migrate() {
     console.log('✓ Index created: idx_ann_announced');
     console.log('✓ Index created: idx_ann_symbol_date');
     console.log('✓ Index created: idx_ann_category_date');
+    console.log('✓ Table created: india_rbi_wss');
+    console.log('✓ Index created: idx_rbiwss_release');
+    console.log('✓ Table created: india_macro_rates');
+    console.log('✓ Index created: idx_macro_series_period');
+    console.log('✓ Table created: india_macro_series_meta');
+    console.log('✓ Table created: india_options_oi');
+    console.log('✓ Index created: idx_options_symbol_date');
+    console.log('✓ Index created: idx_options_date');
 
     // Confirm the table exists and show column count
     const { rows } = await pool.query(`
