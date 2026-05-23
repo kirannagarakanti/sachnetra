@@ -397,14 +397,14 @@ No browser/variant verification (backend-only task). Runtime validation of the s
 
 ## Completion Log
 
-- [ ] Research Appendix transcribed from Gemini agent output — 2026-05-22
-- [ ] Phase 1 (schema DDL) complete
-- [ ] Phase 2 (source adapter) complete
-- [ ] Phase 3 (daily EOD collector) complete
-- [ ] Phase 4 (backfill) complete
-- [ ] Typecheck 0 / Biome 0
-- [ ] Sacred-file diffs empty (seed-insights, seed-india-signals, seed-india-announcements, variants/*)
-- [ ] Handoff to Lijo: migration + first daily seed + backfill run against prod; Railway daily cron schedule (≈13:00 UTC) — pending Lijo
-- [ ] CLAUDE.md V2 Task Status: add V2-030 → COMPLETE
-- [ ] **TASK V2-030 COMPLETE** ✅ — pending Lijo's prod run
+- [x] Research Appendix transcribed from Gemini agent output — 2026-05-22
+- [x] Phase 1 (schema DDL) complete
+- [x] Phase 2 (source adapter) complete
+- [x] Phase 3 (daily EOD collector) complete
+- [x] Phase 4 (backfill) complete
+- [x] Typecheck 0 / Biome 0
+- [x] Sacred-file diffs empty (seed-insights, seed-india-signals, seed-india-announcements, variants/*)
+- [x] Handoff to Lijo: migration + first daily seed + backfill run against prod; Railway daily cron schedule (≈13:00 UTC) — pending Lijo
+- [x] CLAUDE.md V2 Task Status: add V2-030 → COMPLETE
+- [x] **TASK V2-030 COMPLETE** ✅ — pending Lijo's prod run
 ```

@@ -220,6 +220,29 @@ CREATE TABLE IF NOT EXISTS india_options_oi (
 );
 CREATE INDEX IF NOT EXISTS idx_options_symbol_date ON india_options_oi (symbol, snapshot_date DESC);
 CREATE INDEX IF NOT EXISTS idx_options_date        ON india_options_oi (snapshot_date DESC);
+
+-- V2-030 NSE bulk & block deals. Independent non-news source: no FK to other
+-- tables (Decision 9). One table for both streams via deal_type (Decision 3).
+-- PK is an MD5 composite surrogate (no stable source id) + append-only
+-- ON CONFLICT DO NOTHING — disclosures are immutable (Decision 4, matches V2-018).
+CREATE TABLE IF NOT EXISTS india_bulk_block_deals (
+  deal_id       TEXT PRIMARY KEY,         -- MD5(deal_type|deal_date|symbol|client_name|buy_sell|quantity|price)
+  deal_type     TEXT NOT NULL,            -- 'bulk' | 'block'
+  deal_date     DATE NOT NULL,            -- CSV "Date" (DD-MON-YYYY, IST) → calendar date
+  symbol        TEXT,                     -- NSE trading symbol (e.g. 'AGIIL')
+  security_name TEXT,                     -- company name
+  client_name   TEXT,                     -- named buyer/seller (the signal)
+  buy_sell      TEXT,                     -- 'BUY' | 'SELL'
+  quantity      BIGINT,                   -- shares (Indian commas stripped)
+  price         DECIMAL(14,2),            -- trade / wtd-avg price (₹)
+  remarks       TEXT,                     -- '-' or null
+  source        TEXT NOT NULL DEFAULT 'nse',
+  created_at    TIMESTAMPTZ DEFAULT NOW()
+);
+CREATE INDEX IF NOT EXISTS idx_deals_date        ON india_bulk_block_deals (deal_date DESC);
+CREATE INDEX IF NOT EXISTS idx_deals_symbol_date ON india_bulk_block_deals (symbol, deal_date DESC);
+CREATE INDEX IF NOT EXISTS idx_deals_client_date ON india_bulk_block_deals (client_name, deal_date DESC);
+CREATE INDEX IF NOT EXISTS idx_deals_type_date   ON india_bulk_block_deals (deal_type, deal_date DESC);
 `;
 
 async function migrate() {
@@ -268,6 +291,11 @@ async function migrate() {
     console.log('✓ Table created: india_options_oi');
     console.log('✓ Index created: idx_options_symbol_date');
     console.log('✓ Index created: idx_options_date');
+    console.log('✓ Table created: india_bulk_block_deals');
+    console.log('✓ Index created: idx_deals_date');
+    console.log('✓ Index created: idx_deals_symbol_date');
+    console.log('✓ Index created: idx_deals_client_date');
+    console.log('✓ Index created: idx_deals_type_date');
 
     // Confirm the table exists and show column count
     const { rows } = await pool.query(`

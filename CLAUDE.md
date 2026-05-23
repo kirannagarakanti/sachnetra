@@ -137,6 +137,7 @@ V2-018  NSE Bourse Announcements          [COMPLETE ✅ — 2026-05-22 · 17,322
 V2-019  RBI Weekly Statistical Supplement [TASK FILED ✅ — 2026-05-22 · awaiting James impl]
 V2-020  BIS India Macro (SDMX)            [TASK FILED ✅ — 2026-05-22 · awaiting James impl]
 V2-024  NSE Options Chain + OI (EOD)      [TASK FILED ✅ — 2026-05-22 · awaiting James impl]
+V2-030  NSE Bulk & Block Deals            [CODE COMPLETE ✅ — 2026-05-23 · awaiting Lijo prod run + Railway cron]
 ```
 
 Roadmap V2-015–V2-029 (Tier 2+ alpha sources) live in
