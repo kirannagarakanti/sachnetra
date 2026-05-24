@@ -1,0 +1,40 @@
+{
+  "success": true,
+  "message": "Data fetched successfully",
+  "data": [
+    {
+      "ID": 42,
+      "EVENT_DATE": "2026-05-18T00:00:00.000Z",
+      "TITLE": "Celebration of 30 years of Balmer Lawrie & Company Limited being listed on NSE",
+      "CATEGORY_NAME": "Milestone Ceremony",
+      "SLUG_URL": "/celebration-of-30-years-of-balmer-lawrie-company-limited-being-listed-on-nse",
+      "EVENT_START_TIMESTAMP": "2026-05-18T05:36:00.000Z",
+      "EVENT_END_TIMESTAMP": "2026-05-18T05:36:00.000Z",
+      "EVENT_DATE_LABEL": "PAST",
+      "THUMBNAIL_URL": "https://nsearchives.nseindia.com//web/event/2026-05/300x200_20260519110629.jpg"
+    },
+    {
+      "ID": 41,
+      "EVENT_DATE": "2026-05-08T00:00:00.000Z",
+      "TITLE": "Onemi Technology Solutions Limited listing on NSE ",
+      "CATEGORY_NAME": "Listing Ceremony",
+      "SLUG_URL": "/onemi-technology-solutions-limited-listing-on-nse",
+      "EVENT_START_TIMESTAMP": "2026-05-08T07:49:00.000Z",
+      "EVENT_END_TIMESTAMP": "2026-05-08T07:49:00.000Z",
+      "EVENT_DATE_LABEL": "PAST",
+      "THUMBNAIL_URL": "https://nsearchives.nseindia.com//web/event/2026-05/300x200_20260512131921.jpg"
+    },
+    {
+      "ID": 40,
+      "EVENT_DATE": "2026-04-30T00:00:00.000Z",
+      "TITLE": "Adisoft Technologies Limited listing on NSE ",
+      "CATEGORY_NAME": "Listing Ceremony",
+      "SLUG_URL": "/adisoft-technologies-limited-listing-on-nse",
+      "EVENT_START_TIMESTAMP": "2026-04-30T09:53:00.000Z",
+      "EVENT_END_TIMESTAMP": "2026-04-30T09:53:00.000Z",
+      "EVENT_DATE_LABEL": "PAST",
+      "THUMBNAIL_URL": "https://nsearchives.nseindia.com//web/event/2026-05/300x200_20260504152323.jpg"
+    }
+  ],
+  "responseCode": 200
+}

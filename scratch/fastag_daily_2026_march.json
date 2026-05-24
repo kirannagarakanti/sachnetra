@@ -1,0 +1,316 @@
+{
+  "status": 200,
+  "data": {
+    "table_headers": {
+      "id": 121,
+      "main_header_title": null,
+      "headers": [
+        {
+          "order": 1,
+          "id": 641,
+          "header_name": "Day",
+          "isSortable": false,
+          "header_key": "npci_day",
+          "isChildExists": false,
+          "isMergedCells": null,
+          "isNumberFormattingRequired": null,
+          "columnSpan": null,
+          "maxDecimalLimit": null,
+          "isExternalLink": null,
+          "link_key": null,
+          "sub_headers": []
+        },
+        {
+          "order": 2,
+          "id": 642,
+          "header_name": "Volume (In Mn.)",
+          "isSortable": false,
+          "header_key": "netc_volume_mn",
+          "isChildExists": false,
+          "isMergedCells": null,
+          "isNumberFormattingRequired": true,
+          "columnSpan": null,
+          "maxDecimalLimit": null,
+          "isExternalLink": null,
+          "link_key": null,
+          "sub_headers": []
+        },
+        {
+          "order": 3,
+          "id": 763,
+          "header_name": "Value (In Cr.)",
+          "isSortable": false,
+          "header_key": "netc_value_crores",
+          "isChildExists": false,
+          "isMergedCells": null,
+          "isNumberFormattingRequired": true,
+          "columnSpan": null,
+          "maxDecimalLimit": null,
+          "isExternalLink": null,
+          "link_key": null,
+          "sub_headers": []
+        }
+      ]
+    },
+    "totalCount": 32,
+    "results": [
+      {
+        "npci_day": "March 01, 2026",
+        "row_number": 60,
+        "month": "March",
+        "year": "2026",
+        "netc_volume_mn": "12.81",
+        "netc_value_crores": "254.4"
+      },
+      {
+        "npci_day": "March 02, 2026",
+        "row_number": 61,
+        "month": "March",
+        "year": "2026",
+        "netc_volume_mn": "11.07",
+        "netc_value_crores": "215.88"
+      },
+      {
+        "npci_day": "March 03, 2026",
+        "row_number": 62,
+        "month": "March",
+        "year": "2026",
+        "netc_volume_mn": "9.28",
+        "netc_value_crores": "189.68"
+      },
+      {
+        "npci_day": "March 04, 2026",
+        "row_number": 63,
+        "month": "March",
+        "year": "2026",
+        "netc_volume_mn": "8.27",
+        "netc_value_crores": "160.22"
+      },
+      {
+        "npci_day": "March 05, 2026",
+        "row_number": 64,
+        "month": "March",
+        "year": "2026",
+        "netc_volume_mn": "10.19",
+        "netc_value_crores": "185.3"
+      },
+      {
+        "npci_day": "March 06, 2026",
+        "row_number": 65,
+        "month": "March",
+        "year": "2026",
+        "netc_volume_mn": "11.44",
+        "netc_value_crores": "218.44"
+      },
+      {
+        "npci_day": "March 07, 2026",
+        "row_number": 66,
+        "month": "March",
+        "year": "2026",
+        "netc_volume_mn": "12.33",
+        "netc_value_crores": "235.91"
+      },
+      {
+        "npci_day": "March 08, 2026",
+        "row_number": 67,
+        "month": "March",
+        "year": "2026",
+        "netc_volume_mn": "12.55",
+        "netc_value_crores": "243.21"
+      },
+      {
+        "npci_day": "March 09, 2026",
+        "row_number": 68,
+        "month": "March",
+        "year": "2026",
+        "netc_volume_mn": "11.37",
+        "netc_value_crores": "222.35"
+      },
+      {
+        "npci_day": "March 10, 2026",
+        "row_number": 69,
+        "month": "March",
+        "year": "2026",
+        "netc_volume_mn": "11.97",
+        "netc_value_crores": "239.95"
+      },
+      {
+        "npci_day": "March 11, 2026",
+        "row_number": 70,
+        "month": "March",
+        "year": "2026",
+        "netc_volume_mn": "12.02",
+        "netc_value_crores": "242.97"
+      },
+      {
+        "npci_day": "March 12, 2026",
+        "row_number": 71,
+        "month": "March",
+        "year": "2026",
+        "netc_volume_mn": "12.22",
+        "netc_value_crores": "246.47"
+      },
+      {
+        "npci_day": "March 13, 2026",
+        "row_number": 72,
+        "month": "March",
+        "year": "2026",
+        "netc_volume_mn": "12.25",
+        "netc_value_crores": "248.74"
+      },
+      {
+        "npci_day": "March 14, 2026",
+        "row_number": 73,
+        "month": "March",
+        "year": "2026",
+        "netc_volume_mn": "13.01",
+        "netc_value_crores": "257.36"
+      },
+      {
+        "npci_day": "March 15, 2026",
+        "row_number": 74,
+        "month": "March",
+        "year": "2026",
+        "netc_volume_mn": "12.66",
+        "netc_value_crores": "250.38"
+      },
+      {
+        "npci_day": "March 16, 2026",
+        "row_number": 75,
+        "month": "March",
+        "year": "2026",
+        "netc_volume_mn": "11.59",
+        "netc_value_crores": "230.77"
+      },
+      {
+        "npci_day": "March 17, 2026",
+        "row_number": 76,
+        "month": "March",
+        "year": "2026",
+        "netc_volume_mn": "11.7",
+        "netc_value_crores": "238.13"
+      },
+      {
+        "npci_day": "March 18, 2026",
+        "row_number": 77,
+        "month": "March",
+        "year": "2026",
+        "netc_volume_mn": "12.01",
+        "netc_value_crores": "242.84"
+      },
+      {
+        "npci_day": "March 19, 2026",
+        "row_number": 78,
+        "month": "March",
+        "year": "2026",
+        "netc_volume_mn": "11.35",
+        "netc_value_crores": "234.03"
+      },
+      {
+        "npci_day": "March 20, 2026",
+        "row_number": 79,
+        "month": "March",
+        "year": "2026",
+        "netc_volume_mn": "11.39",
+        "netc_value_crores": "222.5"
+      },
+      {
+        "npci_day": "March 21, 2026",
+        "row_number": 80,
+        "month": "March",
+        "year": "2026",
+        "netc_volume_mn": "11.53",
+        "netc_value_crores": "217.64"
+      },
+      {
+        "npci_day": "March 22, 2026",
+        "row_number": 81,
+        "month": "March",
+        "year": "2026",
+        "netc_volume_mn": "12.23",
+        "netc_value_crores": "228.51"
+      },
+      {
+        "npci_day": "March 23, 2026",
+        "row_number": 82,
+        "month": "March",
+        "year": "2026",
+        "netc_volume_mn": "11.74",
+        "netc_value_crores": "224.91"
+      },
+      {
+        "npci_day": "March 24, 2026",
+        "row_number": 83,
+        "month": "March",
+        "year": "2026",
+        "netc_volume_mn": "11.77",
+        "netc_value_crores": "234.82"
+      },
+      {
+        "npci_day": "March 25, 2026",
+        "row_number": 84,
+        "month": "March",
+        "year": "2026",
+        "netc_volume_mn": "12.05",
+        "netc_value_crores": "242.69"
+      },
+      {
+        "npci_day": "March 26, 2026",
+        "row_number": 85,
+        "month": "March",
+        "year": "2026",
+        "netc_volume_mn": "11.92",
+        "netc_value_crores": "246.62"
+      },
+      {
+        "npci_day": "March 27, 2026",
+        "row_number": 86,
+        "month": "March",
+        "year": "2026",
+        "netc_volume_mn": "12.01",
+        "netc_value_crores": "247.1"
+      },
+      {
+        "npci_day": "March 28, 2026",
+        "row_number": 87,
+        "month": "March",
+        "year": "2026",
+        "netc_volume_mn": "12.77",
+        "netc_value_crores": "251.94"
+      },
+      {
+        "npci_day": "March 29, 2026",
+        "row_number": 88,
+        "month": "March",
+        "year": "2026",
+        "netc_volume_mn": "12.76",
+        "netc_value_crores": "250.55"
+      },
+      {
+        "npci_day": "March 30, 2026",
+        "row_number": 89,
+        "month": "March",
+        "year": "2026",
+        "netc_volume_mn": "11.73",
+        "netc_value_crores": "230.94"
+      },
+      {
+        "npci_day": "March 31, 2026",
+        "row_number": 90,
+        "month": "March",
+        "year": "2026",
+        "netc_volume_mn": "11.77",
+        "netc_value_crores": "238"
+      },
+      {
+        "npci_day": "Total",
+        "row_number": null,
+        "month": "March",
+        "year": "2026",
+        "netc_volume_mn": "363.76",
+        "netc_value_crores": "7193.25",
+        "isTotal": true
+      }
+    ]
+  }
+}

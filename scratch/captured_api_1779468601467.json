@@ -1,0 +1,59 @@
+{
+  "data": {
+    "success": true,
+    "message": "Data fetched successfully",
+    "data": {
+      "top_banner": [
+        {
+          "SEQ_NO": 1,
+          "ID": 506,
+          "ALT": "OFFER FOR SALE OF EQUITY SHARES CENTRAL BANK OF INDIA",
+          "DMS_IMG_URL": "https://nsearchives.nseindia.com//web/banner/2026-05/OFS_Banner_1_20260522080651.png",
+          "CTA_URL": "https://www.nseindia.com/market-data/all-upcoming-issues-ofs",
+          "TITLE": "OFFER FOR SALE OF EQUITY SHARES CENTRAL BANK OF INDIA"
+        },
+        {
+          "SEQ_NO": 3,
+          "ID": 505,
+          "ALT": "Market Pulse May Report 2026",
+          "DMS_IMG_URL": "https://nsearchives.nseindia.com//web/banner/2026-05/Web-Banner_636x555_May2025_20260521192903.jpg",
+          "CTA_URL": "https://www.nseindia.com/static/research/publications-reports-nse-market-pulse",
+          "TITLE": "Market Pulse May Report 2026"
+        },
+        {
+          "SEQ_NO": 8,
+          "ID": 503,
+          "ALT": "Trading active in NSE EGR segment",
+          "DMS_IMG_URL": "https://nsearchives.nseindia.com//web/banner/2026-05/NSE_EGR_Web-banner_636x555_15-05-2026_V2_20260518090224.jpg",
+          "CTA_URL": "https://www.nseindia.com/market-data/egr",
+          "TITLE": "Trading active in NSE EGR segment"
+        },
+        {
+          "SEQ_NO": 30,
+          "ID": 467,
+          "ALT": "Inauguration of the Statue of NSE Bull by Hon'ble Governor of Maharashtra, Shri C.P. Radhakrishnan",
+          "DMS_IMG_URL": "https://nsearchives.nseindia.com//web/banner/2026-03/Bull-inauguration_final_20260330171752.jpg",
+          "CTA_URL": null,
+          "TITLE": "Inauguration of the Statue of NSE Bull by Hon'ble Governor of Maharashtra, Shri C.P. Radhakrishnan"
+        },
+        {
+          "SEQ_NO": 31,
+          "ID": 468,
+          "ALT": "Shri Ashishkumar Chauhan, MD & CEO, NSE presented the NSE Bull to the Hon’ble Prime Minister of India, Shri Narendra Modi",
+          "DMS_IMG_URL": "https://nsearchives.nseindia.com//web/banner/2026-03/PM-Modi_NSE-CEO_Web-Banner_final_20260330171846.jpg",
+          "CTA_URL": null,
+          "TITLE": "Shri Ashishkumar Chauhan, MD & CEO, NSE presented the NSE Bull to the Hon’ble Prime Minister of India, Shri Narendra Modi"
+        },
+        {
+          "SEQ_NO": 34,
+          "ID": 464,
+          "ALT": "Fundamentals of electricity derivatives",
+          "DMS_IMG_URL": "https://nsearchives.nseindia.com//web/banner/2026-03/Electricity_Static_-_636x555_2.jpg_20260327160628.jpeg",
+          "CTA_URL": "https://nsefutures.wesence.com/",
+          "TITLE": "Fundamentals of electricity derivatives"
+        }
+      ]
+    },
+    "responseCode": 200
+  }
+}

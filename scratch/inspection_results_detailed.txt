@@ -1,0 +1,246 @@
+Detailed inspection of captured JSON files:
+
+- captured_api_1779468601189.json: empty or no items (top-level keys: data)
+
+------------------------------------
+
+- captured_api_1779468601193.json:
+  Item count: 13
+  First item type: object
+  First item keys: indexName, open, high, low, last, previousClose, percChange, yearHigh, yearLow, timeVal, constituents, indicativeClose, icChange, icPerChange, isConstituents
+  First item JSON: {
+  "indexName": "NIFTY 50",
+  "open": 23671.2,
+  "high": 23835.65,
+  "low": 23671,
+  "last": 23719.3,
+  "previousClose": 23654.7,
+  "percChange": 0.27,
+  "yearHigh": 26373.2,
+  "yearLow": 22182.55,
+  "timeVal": "22-May-2026 15:30",
+  "constituents": null,
+  "indicativeClose": 0,
+  "icChange": 0,
+  
+
+------------------------------------
+
+- captured_api_1779468601197.json: empty or no items (top-level keys: data)
+
+------------------------------------
+
+- captured_api_1779468601201.json: empty or no items (top-level keys: data)
+
+------------------------------------
+
+- captured_api_1779468601228.json: empty or no items (top-level keys: data)
+
+------------------------------------
+
+- captured_api_1779468601285.json:
+  Item count: 13
+  First item type: object
+  First item keys: indexName, open, high, low, last, previousClose, percChange, yearHigh, yearLow, timeVal, constituents, indicativeClose, icChange, icPerChange, isConstituents
+  First item JSON: {
+  "indexName": "NIFTY 50",
+  "open": 23671.2,
+  "high": 23835.65,
+  "low": 23671,
+  "last": 23719.3,
+  "previousClose": 23654.7,
+  "percChange": 0.27,
+  "yearHigh": 26373.2,
+  "yearLow": 22182.55,
+  "timeVal": "22-May-2026 15:30",
+  "constituents": null,
+  "indicativeClose": 0,
+  "icChange": 0,
+  
+
+------------------------------------
+
+- captured_api_1779468601287.json:
+  Item count: 50
+  First item type: object
+  First item keys: symbol, lastTradedPrice, change, perChange
+  First item JSON: {
+  "symbol": "ADANIENT",
+  "lastTradedPrice": 2719.1,
+  "change": 21.5,
+  "perChange": 0.8
+}
+
+------------------------------------
+
+- captured_api_1779468601289.json:
+  Item count: 13
+  First item type: object
+  First item keys: indexName, open, high, low, last, previousClose, percChange, yearHigh, yearLow, timeVal, constituents, indicativeClose, icChange, icPerChange, isConstituents
+  First item JSON: {
+  "indexName": "NIFTY 50",
+  "open": 23671.2,
+  "high": 23835.65,
+  "low": 23671,
+  "last": 23719.3,
+  "previousClose": 23654.7,
+  "percChange": 0.27,
+  "yearHigh": 26373.2,
+  "yearLow": 22182.55,
+  "timeVal": "22-May-2026 15:30",
+  "constituents": null,
+  "indicativeClose": 0,
+  "icChange": 0,
+  
+
+------------------------------------
+
+- captured_api_1779468601305.json: empty or no items (top-level keys: data)
+
+------------------------------------
+
+- captured_api_1779468601308.json:
+  Item count: 13
+  First item type: object
+  First item keys: indexName, open, high, low, last, previousClose, percChange, yearHigh, yearLow, timeVal, constituents, indicativeClose, icChange, icPerChange, isConstituents
+  First item JSON: {
+  "indexName": "NIFTY 50",
+  "open": 23671.2,
+  "high": 23835.65,
+  "low": 23671,
+  "last": 23719.3,
+  "previousClose": 23654.7,
+  "percChange": 0.27,
+  "yearHigh": 26373.2,
+  "yearLow": 22182.55,
+  "timeVal": "22-May-2026 15:30",
+  "constituents": null,
+  "indicativeClose": 0,
+  "icChange": 0,
+  
+
+------------------------------------
+
+- captured_api_1779468601447.json: empty or no items (top-level keys: data)
+
+------------------------------------
+
+- captured_api_1779468601460.json: empty or no items (top-level keys: data)
+
+------------------------------------
+
+- captured_api_1779468601467.json: empty or no items (top-level keys: data)
+
+------------------------------------
+
+- captured_api_1779468601471.json: empty or no items (top-level keys: data)
+
+------------------------------------
+
+- captured_api_1779468601546.json: empty or no items (top-level keys: data)
+
+------------------------------------
+
+- captured_api_1779468601585.json: empty or no items (top-level keys: DESCRIPTION, TITLE)
+
+------------------------------------
+
+- captured_api_1779468601588.json: empty or no items (top-level keys: data)
+
+------------------------------------
+
+- captured_api_1779468601591.json:
+  Item count: 13
+  First item type: object
+  First item keys: indexName, open, high, low, last, previousClose, percChange, yearHigh, yearLow, timeVal, constituents, indicativeClose, icChange, icPerChange, isConstituents
+  First item JSON: {
+  "indexName": "NIFTY 50",
+  "open": 23671.2,
+  "high": 23835.65,
+  "low": 23671,
+  "last": 23719.3,
+  "previousClose": 23654.7,
+  "percChange": 0.27,
+  "yearHigh": 26373.2,
+  "yearLow": 22182.55,
+  "timeVal": "22-May-2026 15:30",
+  "constituents": null,
+  "indicativeClose": 0,
+  "icChange": 0,
+  
+
+------------------------------------
+
+- captured_api_1779468601594.json: empty or no items (top-level keys: data)
+
+------------------------------------
+
+- captured_api_1779468601598.json: empty or no items (top-level keys: data)
+
+------------------------------------
+
+- captured_api_1779468601699.json: empty or no items (top-level keys: data)
+
+------------------------------------
+
+- captured_api_1779468607659.json:
+  Item count: 968
+  First item type: string
+  First item value: HCLTECH
+
+------------------------------------
+
+- captured_api_1779468607814.json: empty or no items (top-level keys: data)
+
+------------------------------------
+
+- captured_api_1779468607819.json:
+  Item count: 1323
+  First item type: string
+  First item value: HINDALCO
+
+------------------------------------
+
+- captured_api_1779468607837.json:
+  Item count: 4043
+  First item type: string
+  First item value: RUSHIL
+
+------------------------------------
+
+- captured_api_1779468607840.json:
+  Item count: 3
+  First item type: object
+  First item keys: ID, EVENT_DATE, TITLE, CATEGORY_NAME, SLUG_URL, EVENT_START_TIMESTAMP, EVENT_END_TIMESTAMP, EVENT_DATE_LABEL, THUMBNAIL_URL
+  First item JSON: {
+  "ID": 42,
+  "EVENT_DATE": "2026-05-18T00:00:00.000Z",
+  "TITLE": "Celebration of 30 years of Balmer Lawrie & Company Limited being listed on NSE",
+  "CATEGORY_NAME": "Milestone Ceremony",
+  "SLUG_URL": "/celebration-of-30-years-of-balmer-lawrie-company-limited-being-listed-on-nse",
+  "EVENT_STAR
+
+------------------------------------
+
+- captured_api_1779468607940.json:
+  Item count: 70
+  First item type: object
+  First item keys: BD_DT_DATE, BD_DT_ORDER, BD_SYMBOL, BD_SCRIP_NAME, BD_CLIENT_NAME, BD_BUY_SELL, BD_QTY_TRD, BD_TP_WATP, BD_REMARKS
+  First item JSON: {
+  "BD_DT_DATE": "15-MAY-2026",
+  "BD_DT_ORDER": "2026-05-14T18:30:00.000+00:00",
+  "BD_SYMBOL": "AGIIL",
+  "BD_SCRIP_NAME": "Agi Infra Limited",
+  "BD_CLIENT_NAME": "ARIHANT CAPITAL MARKETS LIMITED",
+  "BD_BUY_SELL": "SELL",
+  "BD_QTY_TRD": 1051916,
+  "BD_TP_WATP": 406.67,
+  "BD_REMARKS": "-"
+}
+
+------------------------------------
+
+- captured_api_1779468608199.json: empty or no items (top-level keys: h.key, h.d, h.t, h.cr, session_id, site_domain, beacon_url, autorun, strip_query_string, beacon_interval, BW, RT, ResourceTiming, History, CrossDomain, Errors, Continuity, TPAnalytics, PageParams, Akamai, user_ip)
+
+------------------------------------
+

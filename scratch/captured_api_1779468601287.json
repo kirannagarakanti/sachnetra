@@ -1,0 +1,304 @@
+{
+  "data": [
+    {
+      "symbol": "ADANIENT",
+      "lastTradedPrice": 2719.1,
+      "change": 21.5,
+      "perChange": 0.8
+    },
+    {
+      "symbol": "ADANIPORTS",
+      "lastTradedPrice": 1785,
+      "change": -8.3,
+      "perChange": -0.46
+    },
+    {
+      "symbol": "APOLLOHOSP",
+      "lastTradedPrice": 8350,
+      "change": 41.5,
+      "perChange": 0.5
+    },
+    {
+      "symbol": "ASIANPAINT",
+      "lastTradedPrice": 2636.7,
+      "change": 37.9,
+      "perChange": 1.46
+    },
+    {
+      "symbol": "AXISBANK",
+      "lastTradedPrice": 1287,
+      "change": 33.7,
+      "perChange": 2.69
+    },
+    {
+      "symbol": "BAJAJ-AUTO",
+      "lastTradedPrice": 10566,
+      "change": -101,
+      "perChange": -0.95
+    },
+    {
+      "symbol": "BAJAJFINSV",
+      "lastTradedPrice": 1771,
+      "change": 18.8,
+      "perChange": 1.07
+    },
+    {
+      "symbol": "BAJFINANCE",
+      "lastTradedPrice": 916.55,
+      "change": 8.9,
+      "perChange": 0.98
+    },
+    {
+      "symbol": "BEL",
+      "lastTradedPrice": 416.5,
+      "change": -3.9,
+      "perChange": -0.93
+    },
+    {
+      "symbol": "BHARTIARTL",
+      "lastTradedPrice": 1872.7,
+      "change": -12.6,
+      "perChange": -0.67
+    },
+    {
+      "symbol": "CIPLA",
+      "lastTradedPrice": 1392.9,
+      "change": -9,
+      "perChange": -0.64
+    },
+    {
+      "symbol": "COALINDIA",
+      "lastTradedPrice": 456.5,
+      "change": -3.7,
+      "perChange": -0.8
+    },
+    {
+      "symbol": "DRREDDY",
+      "lastTradedPrice": 1310,
+      "change": -8.5,
+      "perChange": -0.64
+    },
+    {
+      "symbol": "EICHERMOT",
+      "lastTradedPrice": 6985,
+      "change": 93,
+      "perChange": 1.35
+    },
+    {
+      "symbol": "ETERNAL",
+      "lastTradedPrice": 242.8,
+      "change": 0.75,
+      "perChange": 0.31
+    },
+    {
+      "symbol": "GRASIM",
+      "lastTradedPrice": 3160,
+      "change": 5.5,
+      "perChange": 0.17
+    },
+    {
+      "symbol": "HCLTECH",
+      "lastTradedPrice": 1167,
+      "change": -1.2,
+      "perChange": -0.1
+    },
+    {
+      "symbol": "HDFCBANK",
+      "lastTradedPrice": 769,
+      "change": 9.85,
+      "perChange": 1.3
+    },
+    {
+      "symbol": "HDFCLIFE",
+      "lastTradedPrice": 615,
+      "change": 0.65,
+      "perChange": 0.11
+    },
+    {
+      "symbol": "HINDALCO",
+      "lastTradedPrice": 1110.1,
+      "change": 10.8,
+      "perChange": 0.98
+    },
+    {
+      "symbol": "HINDUNILVR",
+      "lastTradedPrice": 2205,
+      "change": 26,
+      "perChange": 1.19
+    },
+    {
+      "symbol": "ICICIBANK",
+      "lastTradedPrice": 1267.2,
+      "change": 24.4,
+      "perChange": 1.96
+    },
+    {
+      "symbol": "INDIGO",
+      "lastTradedPrice": 4432,
+      "change": 29,
+      "perChange": 0.66
+    },
+    {
+      "symbol": "INFY",
+      "lastTradedPrice": 1175,
+      "change": -6.2,
+      "perChange": -0.52
+    },
+    {
+      "symbol": "ITC",
+      "lastTradedPrice": 302.05,
+      "change": -6,
+      "perChange": -1.95
+    },
+    {
+      "symbol": "JIOFIN",
+      "lastTradedPrice": 238.89,
+      "change": 3.11,
+      "perChange": 1.32
+    },
+    {
+      "symbol": "JSWSTEEL",
+      "lastTradedPrice": 1287.5,
+      "change": 6.2,
+      "perChange": 0.48
+    },
+    {
+      "symbol": "KOTAKBANK",
+      "lastTradedPrice": 384.6,
+      "change": 3.75,
+      "perChange": 0.98
+    },
+    {
+      "symbol": "LT",
+      "lastTradedPrice": 3933,
+      "change": 42.5,
+      "perChange": 1.09
+    },
+    {
+      "symbol": "M&M",
+      "lastTradedPrice": 3085,
+      "change": -14,
+      "perChange": -0.45
+    },
+    {
+      "symbol": "MARUTI",
+      "lastTradedPrice": 12995,
+      "change": -15,
+      "perChange": -0.12
+    },
+    {
+      "symbol": "MAXHEALTH",
+      "lastTradedPrice": 1023.05,
+      "change": -68.05,
+      "perChange": -6.24
+    },
+    {
+      "symbol": "NESTLEIND",
+      "lastTradedPrice": 1423.8,
+      "change": 17.3,
+      "perChange": 1.23
+    },
+    {
+      "symbol": "NTPC",
+      "lastTradedPrice": 389,
+      "change": 0.2,
+      "perChange": 0.05
+    },
+    {
+      "symbol": "ONGC",
+      "lastTradedPrice": 289.95,
+      "change": -5.9,
+      "perChange": -1.99
+    },
+    {
+      "symbol": "POWERGRID",
+      "lastTradedPrice": 294.15,
+      "change": -5.4,
+      "perChange": -1.8
+    },
+    {
+      "symbol": "RELIANCE",
+      "lastTradedPrice": 1358,
+      "change": 8.4,
+      "perChange": 0.62
+    },
+    {
+      "symbol": "SBILIFE",
+      "lastTradedPrice": 1860.9,
+      "change": 1,
+      "perChange": 0.05
+    },
+    {
+      "symbol": "SBIN",
+      "lastTradedPrice": 949.6,
+      "change": -1.3,
+      "perChange": -0.14
+    },
+    {
+      "symbol": "SHRIRAMFIN",
+      "lastTradedPrice": 942,
+      "change": 27.25,
+      "perChange": 2.98
+    },
+    {
+      "symbol": "SUNPHARMA",
+      "lastTradedPrice": 1840,
+      "change": -51.3,
+      "perChange": -2.71
+    },
+    {
+      "symbol": "TATACONSUM",
+      "lastTradedPrice": 1192,
+      "change": -2.9,
+      "perChange": -0.24
+    },
+    {
+      "symbol": "TATASTEEL",
+      "lastTradedPrice": 209.35,
+      "change": 0.77,
+      "perChange": 0.37
+    },
+    {
+      "symbol": "TCS",
+      "lastTradedPrice": 2317.9,
+      "change": -9.3,
+      "perChange": -0.4
+    },
+    {
+      "symbol": "TECHM",
+      "lastTradedPrice": 1424.2,
+      "change": 4.2,
+      "perChange": 0.3
+    },
+    {
+      "symbol": "TITAN",
+      "lastTradedPrice": 4099,
+      "change": 15.9,
+      "perChange": 0.39
+    },
+    {
+      "symbol": "TMPV",
+      "lastTradedPrice": 363.95,
+      "change": 2.6,
+      "perChange": 0.72
+    },
+    {
+      "symbol": "TRENT",
+      "lastTradedPrice": 4303,
+      "change": 132.6,
+      "perChange": 3.18
+    },
+    {
+      "symbol": "ULTRACEMCO",
+      "lastTradedPrice": 11588,
+      "change": 114,
+      "perChange": 0.99
+    },
+    {
+      "symbol": "WIPRO",
+      "lastTradedPrice": 202.97,
+      "change": 3.23,
+      "perChange": 1.62
+    }
+  ]
+}

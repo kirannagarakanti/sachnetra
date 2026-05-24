@@ -1,0 +1,316 @@
+{
+  "status": 200,
+  "data": {
+    "table_headers": {
+      "id": 121,
+      "main_header_title": null,
+      "headers": [
+        {
+          "order": 1,
+          "id": 641,
+          "header_name": "Day",
+          "isSortable": false,
+          "header_key": "npci_day",
+          "isChildExists": false,
+          "isMergedCells": null,
+          "isNumberFormattingRequired": null,
+          "columnSpan": null,
+          "maxDecimalLimit": null,
+          "isExternalLink": null,
+          "link_key": null,
+          "sub_headers": []
+        },
+        {
+          "order": 2,
+          "id": 642,
+          "header_name": "Volume (In Mn.)",
+          "isSortable": false,
+          "header_key": "netc_volume_mn",
+          "isChildExists": false,
+          "isMergedCells": null,
+          "isNumberFormattingRequired": true,
+          "columnSpan": null,
+          "maxDecimalLimit": null,
+          "isExternalLink": null,
+          "link_key": null,
+          "sub_headers": []
+        },
+        {
+          "order": 3,
+          "id": 763,
+          "header_name": "Value (In Cr.)",
+          "isSortable": false,
+          "header_key": "netc_value_crores",
+          "isChildExists": false,
+          "isMergedCells": null,
+          "isNumberFormattingRequired": true,
+          "columnSpan": null,
+          "maxDecimalLimit": null,
+          "isExternalLink": null,
+          "link_key": null,
+          "sub_headers": []
+        }
+      ]
+    },
+    "totalCount": 32,
+    "results": [
+      {
+        "npci_day": "December 01, 2025",
+        "row_number": 62,
+        "month": "December",
+        "year": "2025",
+        "netc_volume_mn": "12.193",
+        "netc_value_crores": "231.21"
+      },
+      {
+        "npci_day": "December 02, 2025",
+        "row_number": 63,
+        "month": "December",
+        "year": "2025",
+        "netc_volume_mn": "11.74",
+        "netc_value_crores": "230.12"
+      },
+      {
+        "npci_day": "December 03, 2025",
+        "row_number": 64,
+        "month": "December",
+        "year": "2025",
+        "netc_volume_mn": "11.859",
+        "netc_value_crores": "230.96"
+      },
+      {
+        "npci_day": "December 04, 2025",
+        "row_number": 65,
+        "month": "December",
+        "year": "2025",
+        "netc_volume_mn": "12.522",
+        "netc_value_crores": "240.82"
+      },
+      {
+        "npci_day": "December 05, 2025",
+        "row_number": 66,
+        "month": "December",
+        "year": "2025",
+        "netc_volume_mn": "12.718",
+        "netc_value_crores": "240.77"
+      },
+      {
+        "npci_day": "December 06, 2025",
+        "row_number": 67,
+        "month": "December",
+        "year": "2025",
+        "netc_volume_mn": "13.164",
+        "netc_value_crores": "245.49"
+      },
+      {
+        "npci_day": "December 07, 2025",
+        "row_number": 68,
+        "month": "December",
+        "year": "2025",
+        "netc_volume_mn": "13.155",
+        "netc_value_crores": "244.9"
+      },
+      {
+        "npci_day": "December 08, 2025",
+        "row_number": 69,
+        "month": "December",
+        "year": "2025",
+        "netc_volume_mn": "11.641",
+        "netc_value_crores": "220.15"
+      },
+      {
+        "npci_day": "December 09, 2025",
+        "row_number": 70,
+        "month": "December",
+        "year": "2025",
+        "netc_volume_mn": "11.758",
+        "netc_value_crores": "230.86"
+      },
+      {
+        "npci_day": "December 10, 2025",
+        "row_number": 71,
+        "month": "December",
+        "year": "2025",
+        "netc_volume_mn": "12.005",
+        "netc_value_crores": "234.21"
+      },
+      {
+        "npci_day": "December 11, 2025",
+        "row_number": 72,
+        "month": "December",
+        "year": "2025",
+        "netc_volume_mn": "12.092",
+        "netc_value_crores": "237.91"
+      },
+      {
+        "npci_day": "December 12, 2025",
+        "row_number": 73,
+        "month": "December",
+        "year": "2025",
+        "netc_volume_mn": "12.443",
+        "netc_value_crores": "243.36"
+      },
+      {
+        "npci_day": "December 13, 2025",
+        "row_number": 74,
+        "month": "December",
+        "year": "2025",
+        "netc_volume_mn": "13.124",
+        "netc_value_crores": "249.34"
+      },
+      {
+        "npci_day": "December 14, 2025",
+        "row_number": 75,
+        "month": "December",
+        "year": "2025",
+        "netc_volume_mn": "12.966",
+        "netc_value_crores": "243.6"
+      },
+      {
+        "npci_day": "December 15, 2025",
+        "row_number": 76,
+        "month": "December",
+        "year": "2025",
+        "netc_volume_mn": "11.5",
+        "netc_value_crores": "219.96"
+      },
+      {
+        "npci_day": "December 16, 2025",
+        "row_number": 77,
+        "month": "December",
+        "year": "2025",
+        "netc_volume_mn": "11.493",
+        "netc_value_crores": "227.36"
+      },
+      {
+        "npci_day": "December 17, 2025",
+        "row_number": 78,
+        "month": "December",
+        "year": "2025",
+        "netc_volume_mn": "11.607",
+        "netc_value_crores": "232.63"
+      },
+      {
+        "npci_day": "December 18, 2025",
+        "row_number": 79,
+        "month": "December",
+        "year": "2025",
+        "netc_volume_mn": "11.648",
+        "netc_value_crores": "236.15"
+      },
+      {
+        "npci_day": "December 19, 2025",
+        "row_number": 80,
+        "month": "December",
+        "year": "2025",
+        "netc_volume_mn": "11.814",
+        "netc_value_crores": "237.73"
+      },
+      {
+        "npci_day": "December 20, 2025",
+        "row_number": 81,
+        "month": "December",
+        "year": "2025",
+        "netc_volume_mn": "12.612",
+        "netc_value_crores": "244.96"
+      },
+      {
+        "npci_day": "December 21, 2025",
+        "row_number": 82,
+        "month": "December",
+        "year": "2025",
+        "netc_volume_mn": "12.573",
+        "netc_value_crores": "243.4"
+      },
+      {
+        "npci_day": "December 22, 2025",
+        "row_number": 83,
+        "month": "December",
+        "year": "2025",
+        "netc_volume_mn": "11.588",
+        "netc_value_crores": "222.22"
+      },
+      {
+        "npci_day": "December 23, 2025",
+        "row_number": 84,
+        "month": "December",
+        "year": "2025",
+        "netc_volume_mn": "11.941",
+        "netc_value_crores": "232.36"
+      },
+      {
+        "npci_day": "December 24, 2025",
+        "row_number": 85,
+        "month": "December",
+        "year": "2025",
+        "netc_volume_mn": "12.843",
+        "netc_value_crores": "245.87"
+      },
+      {
+        "npci_day": "December 25, 2025",
+        "row_number": 86,
+        "month": "December",
+        "year": "2025",
+        "netc_volume_mn": "13.461",
+        "netc_value_crores": "252.17"
+      },
+      {
+        "npci_day": "December 26, 2025",
+        "row_number": 87,
+        "month": "December",
+        "year": "2025",
+        "netc_volume_mn": "12.993",
+        "netc_value_crores": "248.19"
+      },
+      {
+        "npci_day": "December 27, 2025",
+        "row_number": 88,
+        "month": "December",
+        "year": "2025",
+        "netc_volume_mn": "13.607",
+        "netc_value_crores": "255.18"
+      },
+      {
+        "npci_day": "December 28, 2025",
+        "row_number": 89,
+        "month": "December",
+        "year": "2025",
+        "netc_volume_mn": "13.64",
+        "netc_value_crores": "252.92"
+      },
+      {
+        "npci_day": "December 29, 2025",
+        "row_number": 90,
+        "month": "December",
+        "year": "2025",
+        "netc_volume_mn": "12.411",
+        "netc_value_crores": "232.3"
+      },
+      {
+        "npci_day": "December 30, 2025",
+        "row_number": 91,
+        "month": "December",
+        "year": "2025",
+        "netc_volume_mn": "12.366",
+        "netc_value_crores": "238.24"
+      },
+      {
+        "npci_day": "December 31, 2025",
+        "row_number": 92,
+        "month": "December",
+        "year": "2025",
+        "netc_volume_mn": "12.201",
+        "netc_value_crores": "239.7"
+      },
+      {
+        "npci_day": "Total",
+        "row_number": null,
+        "month": "December",
+        "year": "2025",
+        "netc_volume_mn": "383.68",
+        "netc_value_crores": "7385.04",
+        "isTotal": true
+      }
+    ]
+  }
+}

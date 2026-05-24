@@ -1,0 +1,1264 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Web based File Manager in PHP, Manage your files efficiently and easily with Grid-India Daily Report">
+    <meta name="author" content="CCP Programmers">
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="googlebot" content="noindex">
+        <title>Grid-India Daily Report</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/5.3.0/ekko-lightbox.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.6.0/styles/vs.min.css">
+        <style>
+        body { font-size:14px;color:#222;background:#F7F7F7; }
+        body.navbar-fixed { margin-top:55px; }
+        a:hover, a:visited, a:focus { text-decoration:none !important; }
+        * { -webkit-border-radius:0 !important;-moz-border-radius:0 !important;border-radius:0 !important; }
+        .filename, td, th { white-space:nowrap  }
+        .navbar-brand { font-weight:bold; }
+        .nav-item.avatar a { cursor:pointer;text-transform:capitalize; }
+        .nav-item.avatar a > i { font-size:15px; }
+        .nav-item.avatar .dropdown-menu a { font-size:13px; }
+        #search-addon { font-size:12px;border-right-width:0; }
+        #search-addon2 { background:transparent;border-left:0; }
+        .bread-crumb { color:#cccccc;font-style:normal; }
+        #main-table .filename a { color:#222222; }
+        .table td, .table th { vertical-align:middle !important; }
+        .table .custom-checkbox-td .custom-control.custom-checkbox, .table .custom-checkbox-header .custom-control.custom-checkbox { min-width:18px; }
+        .table-sm td, .table-sm th { padding:.4rem; }
+        .table-bordered td, .table-bordered th { border:1px solid #f1f1f1; }
+        .hidden { display:none  }
+        pre.with-hljs { padding:0  }
+        pre.with-hljs code { margin:0;border:0;overflow:visible  }
+        code.maxheight, pre.maxheight { max-height:512px  }
+        .fa.fa-caret-right { font-size:1.2em;margin:0 4px;vertical-align:middle;color:#ececec  }
+        .fa.fa-home { font-size:1.3em;vertical-align:bottom  }
+        .path { margin-bottom:10px  }
+        form.dropzone { min-height:200px;border:2px dashed #007bff;line-height:6rem; }
+        .right { text-align:right  }
+        .center, .close, .login-form { text-align:center  }
+        .message { padding:4px 7px;border:1px solid #ddd;background-color:#fff  }
+        .message.ok { border-color:green;color:green  }
+        .message.error { border-color:red;color:red  }
+        .message.alert { border-color:orange;color:orange  }
+        .preview-img { max-width:100%;background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAIAAACQkWg2AAAAKklEQVR42mL5//8/Azbw+PFjrOJMDCSCUQ3EABZc4S0rKzsaSvTTABBgAMyfCMsY4B9iAAAAAElFTkSuQmCC)  }
+        .inline-actions > a > i { font-size:1em;margin-left:5px;background:#3785c1;color:#fff;padding:3px;border-radius:3px  }
+        .preview-video { position:relative;max-width:100%;height:0;padding-bottom:62.5%;margin-bottom:10px  }
+        .preview-video video { position:absolute;width:100%;height:100%;left:0;top:0;background:#000  }
+        .compact-table { border:0;width:auto  }
+        .compact-table td, .compact-table th { width:100px;border:0;text-align:center  }
+        .compact-table tr:hover td { background-color:#fff  }
+        .filename { max-width:420px;overflow:hidden;text-overflow:ellipsis  }
+        .break-word { word-wrap:break-word;margin-left:30px  }
+        .break-word.float-left a { color:#7d7d7d  }
+        .break-word + .float-right { padding-right:30px;position:relative  }
+        .break-word + .float-right > a { color:#7d7d7d;font-size:1.2em;margin-right:4px  }
+        #editor { position:absolute;right:15px;top:100px;bottom:15px;left:15px  }
+        @media (max-width:481px) {
+            #editor { top:150px; }
+        }
+        #normal-editor { border-radius:3px;border-width:2px;padding:10px;outline:none; }
+        .btn-2 { border-radius:0;padding:3px 6px;font-size:small; }
+        li.file:before,li.folder:before { font:normal normal normal 14px/1 FontAwesome;content:"\f016";margin-right:5px }
+        li.folder:before { content:"\f114" }
+        i.fa.fa-folder-o { color:#0157b3 }
+        i.fa.fa-picture-o { color:#26b99a }
+        i.fa.fa-file-archive-o { color:#da7d7d }
+        .btn-2 i.fa.fa-file-archive-o { color:inherit }
+        i.fa.fa-css3 { color:#f36fa0 }
+        i.fa.fa-file-code-o { color:#007bff }
+        i.fa.fa-code { color:#cc4b4c }
+        i.fa.fa-file-text-o { color:#0096e6 }
+        i.fa.fa-html5 { color:#d75e72 }
+        i.fa.fa-file-excel-o { color:#09c55d }
+        i.fa.fa-file-powerpoint-o { color:#f6712e }
+        i.go-back { font-size:1.2em;color:#007bff; }
+        .main-nav { padding:0.2rem 1rem;box-shadow:0 4px 5px 0 rgba(0, 0, 0, .14), 0 1px 10px 0 rgba(0, 0, 0, .12), 0 2px 4px -1px rgba(0, 0, 0, .2)  }
+        .dataTables_filter { display:none; }
+        table.dataTable thead .sorting { cursor:pointer;background-repeat:no-repeat;background-position:center right;background-image:url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABMAAAATCAQAAADYWf5HAAAAkElEQVQoz7XQMQ5AQBCF4dWQSJxC5wwax1Cq1e7BAdxD5SL+Tq/QCM1oNiJidwox0355mXnG/DrEtIQ6azioNZQxI0ykPhTQIwhCR+BmBYtlK7kLJYwWCcJA9M4qdrZrd8pPjZWPtOqdRQy320YSV17OatFC4euts6z39GYMKRPCTKY9UnPQ6P+GtMRfGtPnBCiqhAeJPmkqAAAAAElFTkSuQmCC'); }
+        table.dataTable thead .sorting_asc { cursor:pointer;background-repeat:no-repeat;background-position:center right;background-image:url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABMAAAATCAYAAAByUDbMAAAAZ0lEQVQ4y2NgGLKgquEuFxBPAGI2ahhWCsS/gDibUoO0gPgxEP8H4ttArEyuQYxAPBdqEAxPBImTY5gjEL9DM+wTENuQahAvEO9DMwiGdwAxOymGJQLxTyD+jgWDxCMZRsEoGAVoAADeemwtPcZI2wAAAABJRU5ErkJggg=='); }
+        table.dataTable thead .sorting_desc { cursor:pointer;background-repeat:no-repeat;background-position:center right;background-image:url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABMAAAATCAYAAAByUDbMAAAAZUlEQVQ4y2NgGAWjYBSggaqGu5FA/BOIv2PBIPFEUgxjB+IdQPwfC94HxLykus4GiD+hGfQOiB3J8SojEE9EM2wuSJzcsFMG4ttQgx4DsRalkZENxL+AuJQaMcsGxBOAmGvopk8AVz1sLZgg0bsAAAAASUVORK5CYII='); }
+        table.dataTable thead tr:first-child th.custom-checkbox-header:first-child { background-image:none; }
+        .footer-action li { margin-bottom:10px; }
+        .app-v-title { font-size:24px;font-weight:300;letter-spacing:-.5px;text-transform:uppercase; }
+        hr.custom-hr { border-top:1px dashed #8c8b8b;border-bottom:1px dashed #fff; }
+        .ekko-lightbox .modal-dialog { max-width:98%; }
+        .ekko-lightbox-item.fade.in.show .row { background:#fff; }
+        .ekko-lightbox-nav-overlay { display:flex !important;opacity:1 !important;height:auto !important;top:50%; }
+        .ekko-lightbox-nav-overlay a { opacity:1 !important;width:auto !important;text-shadow:none !important;color:#3B3B3B; }
+        .ekko-lightbox-nav-overlay a:hover { color:#20507D; }
+        #snackbar { visibility:hidden;min-width:250px;margin-left:-125px;background-color:#333;color:#fff;text-align:center;border-radius:2px;padding:16px;position:fixed;z-index:1;left:50%;bottom:30px;font-size:17px; }
+        #snackbar.show { visibility:visible;-webkit-animation:fadein 0.5s, fadeout 0.5s 2.5s;animation:fadein 0.5s, fadeout 0.5s 2.5s; }
+        @-webkit-keyframes fadein { from { bottom:0;opacity:0; }
+        to { bottom:30px;opacity:1; }
+        }
+        @keyframes fadein { from { bottom:0;opacity:0; }
+        to { bottom:30px;opacity:1; }
+        }
+        @-webkit-keyframes fadeout { from { bottom:30px;opacity:1; }
+        to { bottom:0;opacity:0; }
+        }
+        @keyframes fadeout { from { bottom:30px;opacity:1; }
+        to { bottom:0;opacity:0; }
+        }
+        #main-table span.badge { border-bottom:2px solid #f8f9fa }
+        #main-table span.badge:nth-child(1) { border-color:#df4227 }
+        #main-table span.badge:nth-child(2) { border-color:#f8b600 }
+        #main-table span.badge:nth-child(3) { border-color:#00bd60 }
+        #main-table span.badge:nth-child(4) { border-color:#4581ff }
+        #main-table span.badge:nth-child(5) { border-color:#ac68fc }
+        #main-table span.badge:nth-child(6) { border-color:#45c3d2 }
+        @media only screen and (min-device-width:768px) and (max-device-width:1024px) and (orientation:landscape) and (-webkit-min-device-pixel-ratio:2) { .navbar-collapse .col-xs-6.text-right { padding:0; }
+        }
+        .btn.active.focus,.btn.active:focus,.btn.focus,.btn.focus:active,.btn:active:focus,.btn:focus { outline:0!important;outline-offset:0!important;background-image:none!important;-webkit-box-shadow:none!important;box-shadow:none!important }
+        .lds-facebook { display:none;position:relative;width:64px;height:64px }
+        .lds-facebook div,.lds-facebook.show-me { display:inline-block }
+        .lds-facebook div { position:absolute;left:6px;width:13px;background:#007bff;animation:lds-facebook 1.2s cubic-bezier(0,.5,.5,1) infinite }
+        .lds-facebook div:nth-child(1) { left:6px;animation-delay:-.24s }
+        .lds-facebook div:nth-child(2) { left:26px;animation-delay:-.12s }
+        .lds-facebook div:nth-child(3) { left:45px;animation-delay:0s }
+        @keyframes lds-facebook { 0% { top:6px;height:51px }
+        100%,50% { top:19px;height:26px }
+        }
+        ul#search-wrapper { padding-left: 0;border: 1px solid #ecececcc; } ul#search-wrapper li { list-style: none; padding: 5px;border-bottom: 1px solid #ecececcc; }
+        ul#search-wrapper li:nth-child(odd){ background: #f9f9f9cc;}
+        .c-preview-img {
+            max-width: 300px;
+        }
+    </style>
+    </head>
+<body class=" navbar-fixed">
+
+<div id="wrapper" class="container-fluid">
+
+    <!-- New Item creation -->
+    <div class="modal fade" id="createNewItem" tabindex="-1" role="dialog" aria-label="newItemModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content ">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="newItemModalLabel"><i class="fa fa-plus-square fa-fw"></i>Create New Item</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p><label for="newfile">Item Type </label></p>
+
+                    <div class="custom-control custom-radio custom-control-inline">
+                        <input type="radio" id="customRadioInline1" name="newfile" value="file" class="custom-control-input">
+                        <label class="custom-control-label" for="customRadioInline1">File</label>
+                    </div>
+
+                    <div class="custom-control custom-radio custom-control-inline">
+                        <input type="radio" id="customRadioInline2" name="newfile" value="folder" class="custom-control-input" checked="">
+                        <label class="custom-control-label" for="customRadioInline2">Folder</label>
+                    </div>
+
+                    <p class="mt-3"><label for="newfilename">Item Name </label></p>
+                    <input type="text" name="newfilename" id="newfilename" value="" class="form-control">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-primary" data-dismiss="modal"><i class="fa fa-times-circle"></i> Cancel</button>
+                    <button type="button" class="btn btn-success" onclick="newfolder('Daily Report/PSP Report/2025-2026/May 2025');return false;"><i class="fa fa-check-circle"></i> Create Now</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="searchModal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content ">
+          <div class="modal-header">
+            <h5 class="modal-title col-10" id="searchModalLabel">
+                <div class="input-group input-group">
+                    <input type="text" class="form-control" placeholder="Search a files" aria-label="Search" aria-describedby="search-addon3" id="advanced-search" autofocus required>
+                    <div class="input-group-append">
+                        <span class="input-group-text" id="search-addon3"><i class="fa fa-search"></i></span>
+                    </div>
+                </div>
+            </h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form action="" method="post">
+                <div class="lds-facebook"><div></div><div></div><div></div></div>
+                <ul id="search-wrapper">
+                    <p class="m-2">Search file in folder and subfolders...</p>
+                </ul>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script type="text/html" id="js-tpl-modal">
+        <div class="modal fade" id="js-ModalCenter-<%this.id%>" tabindex="-1" role="dialog" aria-labelledby="ModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="ModalCenterTitle"><%this.title%></h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <%this.content%>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-outline-primary" data-dismiss="modal"><i class="fa fa-times-circle"></i> Cancel</button>
+                        <%if(this.action){%><button type="button" class="btn btn-primary" id="js-ModalCenterAction" data-type="js-<%this.action%>"><%this.action%></button><%}%>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </script>
+
+        <nav class="navbar navbar-expand-lg  navbar-light bg-white mb-4 main-nav fixed-top">
+        <a class="navbar-brand" href=""> Daily Report </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+            <div class="col-xs-6 col-sm-5"><a href='?p='><i class='fa fa-home' aria-hidden='true' title='E:/ReportManager/ReportData'></i></a><i class="bread-crumb"> / </i><a href='?p=Daily+Report'>Daily Report</a><i class="bread-crumb"> / </i><a href='?p=Daily+Report%2FPSP+Report'>PSP Report</a><i class="bread-crumb"> / </i><a href='?p=Daily+Report%2FPSP+Report%2F2025-2026'>2025-2026</a><i class="bread-crumb"> / </i><a href='?p=Daily+Report%2FPSP+Report%2F2025-2026%2FMay+2025'>May 2025</a></div>
+            <div class="col-xs-6 col-sm-7 text-right">
+                <ul class="navbar-nav mr-auto float-right ">
+                    <li class="nav-item mr-2">
+                        <div class="input-group input-group-sm mr-1" style="margin-top:4px;">
+                            <input type="text" class="form-control" placeholder="Search" aria-label="Search" aria-describedby="search-addon2" id="search-addon">
+                            <div class="input-group-append">
+                                <span class="input-group-text" id="search-addon2"><i class="fa fa-search"></i></span>
+                            </div>
+                            <div class="input-group-append btn-group">
+                                <span class="input-group-text dropdown-toggle" id="search-addon2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></span>
+                                  <div class="dropdown-menu dropdown-menu-right">
+                                    <a class="dropdown-item" href="Daily Report/PSP Report/2025-2026/May 2025" id="js-search-modal" data-toggle="modal" data-target="#searchModal">Advanced Search</a>
+                                  </div>
+                            </div>
+                        </div>
+                    </li>
+                                                                                                    </ul>
+            </div>
+        </div>
+    </nav>
+    <form action="" method="post" class="pt-3">
+    <input type="hidden" name="p" value="Daily Report/PSP Report/2025-2026/May 2025">
+    <input type="hidden" name="group" value="1">
+    <div class="table-responsive">
+        <table class="table table-bordered table-hover table-sm bg-white" id="main-table">
+            <thead class="thead-white">
+            <tr>
+                                <th>Name</th>
+                <th>Size</th>
+                <th>Modified</th>
+                                <th>Actions</th>
+            </tr>
+            </thead>
+                            <tr>                    <td class="border-0" data-sort><a href="?p=Daily+Report%2FPSP+Report%2F2025-2026"><i class="fa fa-chevron-circle-left go-back"></i> ..</a></td>
+                    <td class="border-0" data-order></td>
+                    <td class="border-0" data-order></td>
+                    <td class="border-0"></td>
+                                    </tr>
+                                <tr>
+                                        <td data-sort=01.05.25_NLDC_PSP.pdf>
+                        <div class="filename">
+                                                        <a href="?p=Daily+Report%2FPSP+Report%2F2025-2026%2FMay+2025&amp;view=01.05.25_NLDC_PSP.pdf" title="01.05.25_NLDC_PSP.pdf">
+                                                                <i class="fa fa-file-pdf-o"></i> 01.05.25_NLDC_PSP.pdf                                </a>
+                                                        </div>
+                    </td>
+                    <td data-order="b-000000000001739591"><span title="1739591 bytes">
+                        1.66 MB                        </span></td>
+                    <td data-order="b-1746163940">02.05.25 11:02</td>
+                                        <td class="inline-actions">
+                        <a title="Preview" href="?p=Daily+Report%2FPSP+Report%2F2025-2026%2FMay+2025&amp;view=01.05.25_NLDC_PSP.pdf&quickView=1" data-toggle="lightbox" data-gallery="tiny-gallery" data-title="01.05.25_NLDC_PSP.pdf" data-max-width="100%" data-width="100%"><i class="fa fa-eye"></i></a>
+                                                <a title="Direct link" href="http://report.grid-india.in/ReportData/Daily Report/PSP Report/2025-2026/May 2025/01.05.25_NLDC_PSP.pdf" target="_blank"><i class="fa fa-link"></i></a>
+                        <a title="Download" href="?p=Daily+Report%2FPSP+Report%2F2025-2026%2FMay+2025&amp;dl=01.05.25_NLDC_PSP.pdf"><i class="fa fa-download"></i></a>
+                    </td>
+                </tr>
+                                <tr>
+                                        <td data-sort=01.05.25_NLDC_PSP.xls>
+                        <div class="filename">
+                                                        <a href="?p=Daily+Report%2FPSP+Report%2F2025-2026%2FMay+2025&amp;view=01.05.25_NLDC_PSP.xls" title="01.05.25_NLDC_PSP.xls">
+                                                                <i class="fa fa-file-excel-o"></i> 01.05.25_NLDC_PSP.xls                                </a>
+                                                        </div>
+                    </td>
+                    <td data-order="b-000000000000295424"><span title="295424 bytes">
+                        288.5 KB                        </span></td>
+                    <td data-order="b-1746163628">02.05.25 10:57</td>
+                                        <td class="inline-actions">
+                        <a title="Preview" href="?p=Daily+Report%2FPSP+Report%2F2025-2026%2FMay+2025&amp;view=01.05.25_NLDC_PSP.xls&quickView=1" data-toggle="lightbox" data-gallery="tiny-gallery" data-title="01.05.25_NLDC_PSP.xls" data-max-width="100%" data-width="100%"><i class="fa fa-eye"></i></a>
+                                                <a title="Direct link" href="http://report.grid-india.in/ReportData/Daily Report/PSP Report/2025-2026/May 2025/01.05.25_NLDC_PSP.xls" target="_blank"><i class="fa fa-link"></i></a>
+                        <a title="Download" href="?p=Daily+Report%2FPSP+Report%2F2025-2026%2FMay+2025&amp;dl=01.05.25_NLDC_PSP.xls"><i class="fa fa-download"></i></a>
+                    </td>
+                </tr>
+                                <tr>
+                                        <td data-sort=02.05.25_NLDC_PSP.pdf>
+                        <div class="filename">
+                                                        <a href="?p=Daily+Report%2FPSP+Report%2F2025-2026%2FMay+2025&amp;view=02.05.25_NLDC_PSP.pdf" title="02.05.25_NLDC_PSP.pdf">
+                                                                <i class="fa fa-file-pdf-o"></i> 02.05.25_NLDC_PSP.pdf                                </a>
+                                                        </div>
+                    </td>
+                    <td data-order="b-000000000001739287"><span title="1739287 bytes">
+                        1.66 MB                        </span></td>
+                    <td data-order="b-1746248044">03.05.25 10:24</td>
+                                        <td class="inline-actions">
+                        <a title="Preview" href="?p=Daily+Report%2FPSP+Report%2F2025-2026%2FMay+2025&amp;view=02.05.25_NLDC_PSP.pdf&quickView=1" data-toggle="lightbox" data-gallery="tiny-gallery" data-title="02.05.25_NLDC_PSP.pdf" data-max-width="100%" data-width="100%"><i class="fa fa-eye"></i></a>
+                                                <a title="Direct link" href="http://report.grid-india.in/ReportData/Daily Report/PSP Report/2025-2026/May 2025/02.05.25_NLDC_PSP.pdf" target="_blank"><i class="fa fa-link"></i></a>
+                        <a title="Download" href="?p=Daily+Report%2FPSP+Report%2F2025-2026%2FMay+2025&amp;dl=02.05.25_NLDC_PSP.pdf"><i class="fa fa-download"></i></a>
+                    </td>
+                </tr>
+                                <tr>
+                                        <td data-sort=02.05.25_NLDC_PSP.xls>
+                        <div class="filename">
+                                                        <a href="?p=Daily+Report%2FPSP+Report%2F2025-2026%2FMay+2025&amp;view=02.05.25_NLDC_PSP.xls" title="02.05.25_NLDC_PSP.xls">
+                                                                <i class="fa fa-file-excel-o"></i> 02.05.25_NLDC_PSP.xls                                </a>
+                                                        </div>
+                    </td>
+                    <td data-order="b-000000000000291840"><span title="291840 bytes">
+                        285 KB                        </span></td>
+                    <td data-order="b-1746247983">03.05.25 10:23</td>
+                                        <td class="inline-actions">
+                        <a title="Preview" href="?p=Daily+Report%2FPSP+Report%2F2025-2026%2FMay+2025&amp;view=02.05.25_NLDC_PSP.xls&quickView=1" data-toggle="lightbox" data-gallery="tiny-gallery" data-title="02.05.25_NLDC_PSP.xls" data-max-width="100%" data-width="100%"><i class="fa fa-eye"></i></a>
+                                                <a title="Direct link" href="http://report.grid-india.in/ReportData/Daily Report/PSP Report/2025-2026/May 2025/02.05.25_NLDC_PSP.xls" target="_blank"><i class="fa fa-link"></i></a>
+                        <a title="Download" href="?p=Daily+Report%2FPSP+Report%2F2025-2026%2FMay+2025&amp;dl=02.05.25_NLDC_PSP.xls"><i class="fa fa-download"></i></a>
+                    </td>
+                </tr>
+                                <tr>
+                                        <td data-sort=03.05.25_NLDC_PSP.pdf>
+                        <div class="filename">
+                                                        <a href="?p=Daily+Report%2FPSP+Report%2F2025-2026%2FMay+2025&amp;view=03.05.25_NLDC_PSP.pdf" title="03.05.25_NLDC_PSP.pdf">
+                                                                <i class="fa fa-file-pdf-o"></i> 03.05.25_NLDC_PSP.pdf                                </a>
+                                                        </div>
+                    </td>
+                    <td data-order="b-000000000001745444"><span title="1745444 bytes">
+                        1.66 MB                        </span></td>
+                    <td data-order="b-1746333148">04.05.25 10:02</td>
+                                        <td class="inline-actions">
+                        <a title="Preview" href="?p=Daily+Report%2FPSP+Report%2F2025-2026%2FMay+2025&amp;view=03.05.25_NLDC_PSP.pdf&quickView=1" data-toggle="lightbox" data-gallery="tiny-gallery" data-title="03.05.25_NLDC_PSP.pdf" data-max-width="100%" data-width="100%"><i class="fa fa-eye"></i></a>
+                                                <a title="Direct link" href="http://report.grid-india.in/ReportData/Daily Report/PSP Report/2025-2026/May 2025/03.05.25_NLDC_PSP.pdf" target="_blank"><i class="fa fa-link"></i></a>
+                        <a title="Download" href="?p=Daily+Report%2FPSP+Report%2F2025-2026%2FMay+2025&amp;dl=03.05.25_NLDC_PSP.pdf"><i class="fa fa-download"></i></a>
+                    </td>
+                </tr>
+                                <tr>
+                                        <td data-sort=03.05.25_NLDC_PSP.xls>
+                        <div class="filename">
+                                                        <a href="?p=Daily+Report%2FPSP+Report%2F2025-2026%2FMay+2025&amp;view=03.05.25_NLDC_PSP.xls" title="03.05.25_NLDC_PSP.xls">
+                                                                <i class="fa fa-file-excel-o"></i> 03.05.25_NLDC_PSP.xls                                </a>
+                                                        </div>
+                    </td>
+                    <td data-order="b-000000000000342016"><span title="342016 bytes">
+                        334 KB                        </span></td>
+                    <td data-order="b-1746333072">04.05.25 10:01</td>
+                                        <td class="inline-actions">
+                        <a title="Preview" href="?p=Daily+Report%2FPSP+Report%2F2025-2026%2FMay+2025&amp;view=03.05.25_NLDC_PSP.xls&quickView=1" data-toggle="lightbox" data-gallery="tiny-gallery" data-title="03.05.25_NLDC_PSP.xls" data-max-width="100%" data-width="100%"><i class="fa fa-eye"></i></a>
+                                                <a title="Direct link" href="http://report.grid-india.in/ReportData/Daily Report/PSP Report/2025-2026/May 2025/03.05.25_NLDC_PSP.xls" target="_blank"><i class="fa fa-link"></i></a>
+                        <a title="Download" href="?p=Daily+Report%2FPSP+Report%2F2025-2026%2FMay+2025&amp;dl=03.05.25_NLDC_PSP.xls"><i class="fa fa-download"></i></a>
+                    </td>
+                </tr>
+                                <tr>
+                                        <td data-sort=04.05.25_NLDC_PSP.pdf>
+                        <div class="filename">
+                                                        <a href="?p=Daily+Report%2FPSP+Report%2F2025-2026%2FMay+2025&amp;view=04.05.25_NLDC_PSP.pdf" title="04.05.25_NLDC_PSP.pdf">
+                                                                <i class="fa fa-file-pdf-o"></i> 04.05.25_NLDC_PSP.pdf                                </a>
+                                                        </div>
+                    </td>
+                    <td data-order="b-000000000001745252"><span title="1745252 bytes">
+                        1.66 MB                        </span></td>
+                    <td data-order="b-1746421888">05.05.25 10:41</td>
+                                        <td class="inline-actions">
+                        <a title="Preview" href="?p=Daily+Report%2FPSP+Report%2F2025-2026%2FMay+2025&amp;view=04.05.25_NLDC_PSP.pdf&quickView=1" data-toggle="lightbox" data-gallery="tiny-gallery" data-title="04.05.25_NLDC_PSP.pdf" data-max-width="100%" data-width="100%"><i class="fa fa-eye"></i></a>
+                                                <a title="Direct link" href="http://report.grid-india.in/ReportData/Daily Report/PSP Report/2025-2026/May 2025/04.05.25_NLDC_PSP.pdf" target="_blank"><i class="fa fa-link"></i></a>
+                        <a title="Download" href="?p=Daily+Report%2FPSP+Report%2F2025-2026%2FMay+2025&amp;dl=04.05.25_NLDC_PSP.pdf"><i class="fa fa-download"></i></a>
+                    </td>
+                </tr>
+                                <tr>
+                                        <td data-sort=04.05.25_NLDC_PSP.xls>
+                        <div class="filename">
+                                                        <a href="?p=Daily+Report%2FPSP+Report%2F2025-2026%2FMay+2025&amp;view=04.05.25_NLDC_PSP.xls" title="04.05.25_NLDC_PSP.xls">
+                                                                <i class="fa fa-file-excel-o"></i> 04.05.25_NLDC_PSP.xls                                </a>
+                                                        </div>
+                    </td>
+                    <td data-order="b-000000000000300032"><span title="300032 bytes">
+                        293 KB                        </span></td>
+                    <td data-order="b-1746421818">05.05.25 10:40</td>
+                                        <td class="inline-actions">
+                        <a title="Preview" href="?p=Daily+Report%2FPSP+Report%2F2025-2026%2FMay+2025&amp;view=04.05.25_NLDC_PSP.xls&quickView=1" data-toggle="lightbox" data-gallery="tiny-gallery" data-title="04.05.25_NLDC_PSP.xls" data-max-width="100%" data-width="100%"><i class="fa fa-eye"></i></a>
+                                                <a title="Direct link" href="http://report.grid-india.in/ReportData/Daily Report/PSP Report/2025-2026/May 2025/04.05.25_NLDC_PSP.xls" target="_blank"><i class="fa fa-link"></i></a>
+                        <a title="Download" href="?p=Daily+Report%2FPSP+Report%2F2025-2026%2FMay+2025&amp;dl=04.05.25_NLDC_PSP.xls"><i class="fa fa-download"></i></a>
+                    </td>
+                </tr>
+                                <tr>
+                                        <td data-sort=05.05.25_NLDC_PSP.pdf>
+                        <div class="filename">
+                                                        <a href="?p=Daily+Report%2FPSP+Report%2F2025-2026%2FMay+2025&amp;view=05.05.25_NLDC_PSP.pdf" title="05.05.25_NLDC_PSP.pdf">
+                                                                <i class="fa fa-file-pdf-o"></i> 05.05.25_NLDC_PSP.pdf                                </a>
+                                                        </div>
+                    </td>
+                    <td data-order="b-000000000001744831"><span title="1744831 bytes">
+                        1.66 MB                        </span></td>
+                    <td data-order="b-1746507363">06.05.25 10:26</td>
+                                        <td class="inline-actions">
+                        <a title="Preview" href="?p=Daily+Report%2FPSP+Report%2F2025-2026%2FMay+2025&amp;view=05.05.25_NLDC_PSP.pdf&quickView=1" data-toggle="lightbox" data-gallery="tiny-gallery" data-title="05.05.25_NLDC_PSP.pdf" data-max-width="100%" data-width="100%"><i class="fa fa-eye"></i></a>
+                                                <a title="Direct link" href="http://report.grid-india.in/ReportData/Daily Report/PSP Report/2025-2026/May 2025/05.05.25_NLDC_PSP.pdf" target="_blank"><i class="fa fa-link"></i></a>
+                        <a title="Download" href="?p=Daily+Report%2FPSP+Report%2F2025-2026%2FMay+2025&amp;dl=05.05.25_NLDC_PSP.pdf"><i class="fa fa-download"></i></a>
+                    </td>
+                </tr>
+                                <tr>
+                                        <td data-sort=05.05.25_NLDC_PSP.xls>
+                        <div class="filename">
+                                                        <a href="?p=Daily+Report%2FPSP+Report%2F2025-2026%2FMay+2025&amp;view=05.05.25_NLDC_PSP.xls" title="05.05.25_NLDC_PSP.xls">
+                                                                <i class="fa fa-file-excel-o"></i> 05.05.25_NLDC_PSP.xls                                </a>
+                                                        </div>
+                    </td>
+                    <td data-order="b-000000000000288256"><span title="288256 bytes">
+                        281.5 KB                        </span></td>
+                    <td data-order="b-1746507236">06.05.25 10:23</td>
+                                        <td class="inline-actions">
+                        <a title="Preview" href="?p=Daily+Report%2FPSP+Report%2F2025-2026%2FMay+2025&amp;view=05.05.25_NLDC_PSP.xls&quickView=1" data-toggle="lightbox" data-gallery="tiny-gallery" data-title="05.05.25_NLDC_PSP.xls" data-max-width="100%" data-width="100%"><i class="fa fa-eye"></i></a>
+                                                <a title="Direct link" href="http://report.grid-india.in/ReportData/Daily Report/PSP Report/2025-2026/May 2025/05.05.25_NLDC_PSP.xls" target="_blank"><i class="fa fa-link"></i></a>
+                        <a title="Download" href="?p=Daily+Report%2FPSP+Report%2F2025-2026%2FMay+2025&amp;dl=05.05.25_NLDC_PSP.xls"><i class="fa fa-download"></i></a>
+                    </td>
+                </tr>
+                                <tr>
+                                        <td data-sort=06.05.25_NLDC_PSP.pdf>
+                        <div class="filename">
+                                                        <a href="?p=Daily+Report%2FPSP+Report%2F2025-2026%2FMay+2025&amp;view=06.05.25_NLDC_PSP.pdf" title="06.05.25_NLDC_PSP.pdf">
+                                                                <i class="fa fa-file-pdf-o"></i> 06.05.25_NLDC_PSP.pdf                                </a>
+                                                        </div>
+                    </td>
+                    <td data-order="b-000000000001505074"><span title="1505074 bytes">
+                        1.44 MB                        </span></td>
+                    <td data-order="b-1746639059">07.05.25 23:00</td>
+                                        <td class="inline-actions">
+                        <a title="Preview" href="?p=Daily+Report%2FPSP+Report%2F2025-2026%2FMay+2025&amp;view=06.05.25_NLDC_PSP.pdf&quickView=1" data-toggle="lightbox" data-gallery="tiny-gallery" data-title="06.05.25_NLDC_PSP.pdf" data-max-width="100%" data-width="100%"><i class="fa fa-eye"></i></a>
+                                                <a title="Direct link" href="http://report.grid-india.in/ReportData/Daily Report/PSP Report/2025-2026/May 2025/06.05.25_NLDC_PSP.pdf" target="_blank"><i class="fa fa-link"></i></a>
+                        <a title="Download" href="?p=Daily+Report%2FPSP+Report%2F2025-2026%2FMay+2025&amp;dl=06.05.25_NLDC_PSP.pdf"><i class="fa fa-download"></i></a>
+                    </td>
+                </tr>
+                                <tr>
+                                        <td data-sort=06.05.25_NLDC_PSP.xls>
+                        <div class="filename">
+                                                        <a href="?p=Daily+Report%2FPSP+Report%2F2025-2026%2FMay+2025&amp;view=06.05.25_NLDC_PSP.xls" title="06.05.25_NLDC_PSP.xls">
+                                                                <i class="fa fa-file-excel-o"></i> 06.05.25_NLDC_PSP.xls                                </a>
+                                                        </div>
+                    </td>
+                    <td data-order="b-000000000000342016"><span title="342016 bytes">
+                        334 KB                        </span></td>
+                    <td data-order="b-1746609672">07.05.25 14:51</td>
+                                        <td class="inline-actions">
+                        <a title="Preview" href="?p=Daily+Report%2FPSP+Report%2F2025-2026%2FMay+2025&amp;view=06.05.25_NLDC_PSP.xls&quickView=1" data-toggle="lightbox" data-gallery="tiny-gallery" data-title="06.05.25_NLDC_PSP.xls" data-max-width="100%" data-width="100%"><i class="fa fa-eye"></i></a>
+                                                <a title="Direct link" href="http://report.grid-india.in/ReportData/Daily Report/PSP Report/2025-2026/May 2025/06.05.25_NLDC_PSP.xls" target="_blank"><i class="fa fa-link"></i></a>
+                        <a title="Download" href="?p=Daily+Report%2FPSP+Report%2F2025-2026%2FMay+2025&amp;dl=06.05.25_NLDC_PSP.xls"><i class="fa fa-download"></i></a>
+                    </td>
+                </tr>
+                                <tr>
+                                        <td data-sort=07.05.25_NLDC_PSP.pdf>
+                        <div class="filename">
+                                                        <a href="?p=Daily+Report%2FPSP+Report%2F2025-2026%2FMay+2025&amp;view=07.05.25_NLDC_PSP.pdf" title="07.05.25_NLDC_PSP.pdf">
+                                                                <i class="fa fa-file-pdf-o"></i> 07.05.25_NLDC_PSP.pdf                                </a>
+                                                        </div>
+                    </td>
+                    <td data-order="b-000000000001748170"><span title="1748170 bytes">
+                        1.67 MB                        </span></td>
+                    <td data-order="b-1746691120">08.05.25 13:28</td>
+                                        <td class="inline-actions">
+                        <a title="Preview" href="?p=Daily+Report%2FPSP+Report%2F2025-2026%2FMay+2025&amp;view=07.05.25_NLDC_PSP.pdf&quickView=1" data-toggle="lightbox" data-gallery="tiny-gallery" data-title="07.05.25_NLDC_PSP.pdf" data-max-width="100%" data-width="100%"><i class="fa fa-eye"></i></a>
+                                                <a title="Direct link" href="http://report.grid-india.in/ReportData/Daily Report/PSP Report/2025-2026/May 2025/07.05.25_NLDC_PSP.pdf" target="_blank"><i class="fa fa-link"></i></a>
+                        <a title="Download" href="?p=Daily+Report%2FPSP+Report%2F2025-2026%2FMay+2025&amp;dl=07.05.25_NLDC_PSP.pdf"><i class="fa fa-download"></i></a>
+                    </td>
+                </tr>
+                                <tr>
+                                        <td data-sort=07.05.25_NLDC_PSP.xls>
+                        <div class="filename">
+                                                        <a href="?p=Daily+Report%2FPSP+Report%2F2025-2026%2FMay+2025&amp;view=07.05.25_NLDC_PSP.xls" title="07.05.25_NLDC_PSP.xls">
+                                                                <i class="fa fa-file-excel-o"></i> 07.05.25_NLDC_PSP.xls                                </a>
+                                                        </div>
+                    </td>
+                    <td data-order="b-000000000000306176"><span title="306176 bytes">
+                        299 KB                        </span></td>
+                    <td data-order="b-1746691077">08.05.25 13:27</td>
+                                        <td class="inline-actions">
+                        <a title="Preview" href="?p=Daily+Report%2FPSP+Report%2F2025-2026%2FMay+2025&amp;view=07.05.25_NLDC_PSP.xls&quickView=1" data-toggle="lightbox" data-gallery="tiny-gallery" data-title="07.05.25_NLDC_PSP.xls" data-max-width="100%" data-width="100%"><i class="fa fa-eye"></i></a>
+                                                <a title="Direct link" href="http://report.grid-india.in/ReportData/Daily Report/PSP Report/2025-2026/May 2025/07.05.25_NLDC_PSP.xls" target="_blank"><i class="fa fa-link"></i></a>
+                        <a title="Download" href="?p=Daily+Report%2FPSP+Report%2F2025-2026%2FMay+2025&amp;dl=07.05.25_NLDC_PSP.xls"><i class="fa fa-download"></i></a>
+                    </td>
+                </tr>
+                                <tr>
+                                        <td data-sort=08.05.25_NLDC_PSP.pdf>
+                        <div class="filename">
+                                                        <a href="?p=Daily+Report%2FPSP+Report%2F2025-2026%2FMay+2025&amp;view=08.05.25_NLDC_PSP.pdf" title="08.05.25_NLDC_PSP.pdf">
+                                                                <i class="fa fa-file-pdf-o"></i> 08.05.25_NLDC_PSP.pdf                                </a>
+                                                        </div>
+                    </td>
+                    <td data-order="b-000000000001748383"><span title="1748383 bytes">
+                        1.67 MB                        </span></td>
+                    <td data-order="b-1746810711">09.05.25 22:41</td>
+                                        <td class="inline-actions">
+                        <a title="Preview" href="?p=Daily+Report%2FPSP+Report%2F2025-2026%2FMay+2025&amp;view=08.05.25_NLDC_PSP.pdf&quickView=1" data-toggle="lightbox" data-gallery="tiny-gallery" data-title="08.05.25_NLDC_PSP.pdf" data-max-width="100%" data-width="100%"><i class="fa fa-eye"></i></a>
+                                                <a title="Direct link" href="http://report.grid-india.in/ReportData/Daily Report/PSP Report/2025-2026/May 2025/08.05.25_NLDC_PSP.pdf" target="_blank"><i class="fa fa-link"></i></a>
+                        <a title="Download" href="?p=Daily+Report%2FPSP+Report%2F2025-2026%2FMay+2025&amp;dl=08.05.25_NLDC_PSP.pdf"><i class="fa fa-download"></i></a>
+                    </td>
+                </tr>
+                                <tr>
+                                        <td data-sort=08.05.25_NLDC_PSP.xls>
+                        <div class="filename">
+                                                        <a href="?p=Daily+Report%2FPSP+Report%2F2025-2026%2FMay+2025&amp;view=08.05.25_NLDC_PSP.xls" title="08.05.25_NLDC_PSP.xls">
+                                                                <i class="fa fa-file-excel-o"></i> 08.05.25_NLDC_PSP.xls                                </a>
+                                                        </div>
+                    </td>
+                    <td data-order="b-000000000000300032"><span title="300032 bytes">
+                        293 KB                        </span></td>
+                    <td data-order="b-1746810609">09.05.25 22:40</td>
+                                        <td class="inline-actions">
+                        <a title="Preview" href="?p=Daily+Report%2FPSP+Report%2F2025-2026%2FMay+2025&amp;view=08.05.25_NLDC_PSP.xls&quickView=1" data-toggle="lightbox" data-gallery="tiny-gallery" data-title="08.05.25_NLDC_PSP.xls" data-max-width="100%" data-width="100%"><i class="fa fa-eye"></i></a>
+                                                <a title="Direct link" href="http://report.grid-india.in/ReportData/Daily Report/PSP Report/2025-2026/May 2025/08.05.25_NLDC_PSP.xls" target="_blank"><i class="fa fa-link"></i></a>
+                        <a title="Download" href="?p=Daily+Report%2FPSP+Report%2F2025-2026%2FMay+2025&amp;dl=08.05.25_NLDC_PSP.xls"><i class="fa fa-download"></i></a>
+                    </td>
+                </tr>
+                                <tr>
+                                        <td data-sort=09.05.25_NLDC_PSP.pdf>
+                        <div class="filename">
+                                                        <a href="?p=Daily+Report%2FPSP+Report%2F2025-2026%2FMay+2025&amp;view=09.05.25_NLDC_PSP.pdf" title="09.05.25_NLDC_PSP.pdf">
+                                                                <i class="fa fa-file-pdf-o"></i> 09.05.25_NLDC_PSP.pdf                                </a>
+                                                        </div>
+                    </td>
+                    <td data-order="b-000000000001778897"><span title="1778897 bytes">
+                        1.7 MB                        </span></td>
+                    <td data-order="b-1746891735">10.05.25 21:12</td>
+                                        <td class="inline-actions">
+                        <a title="Preview" href="?p=Daily+Report%2FPSP+Report%2F2025-2026%2FMay+2025&amp;view=09.05.25_NLDC_PSP.pdf&quickView=1" data-toggle="lightbox" data-gallery="tiny-gallery" data-title="09.05.25_NLDC_PSP.pdf" data-max-width="100%" data-width="100%"><i class="fa fa-eye"></i></a>
+                                                <a title="Direct link" href="http://report.grid-india.in/ReportData/Daily Report/PSP Report/2025-2026/May 2025/09.05.25_NLDC_PSP.pdf" target="_blank"><i class="fa fa-link"></i></a>
+                        <a title="Download" href="?p=Daily+Report%2FPSP+Report%2F2025-2026%2FMay+2025&amp;dl=09.05.25_NLDC_PSP.pdf"><i class="fa fa-download"></i></a>
+                    </td>
+                </tr>
+                                <tr>
+                                        <td data-sort=09.05.25_NLDC_PSP.xls>
+                        <div class="filename">
+                                                        <a href="?p=Daily+Report%2FPSP+Report%2F2025-2026%2FMay+2025&amp;view=09.05.25_NLDC_PSP.xls" title="09.05.25_NLDC_PSP.xls">
+                                                                <i class="fa fa-file-excel-o"></i> 09.05.25_NLDC_PSP.xls                                </a>
+                                                        </div>
+                    </td>
+                    <td data-order="b-000000000000299520"><span title="299520 bytes">
+                        292.5 KB                        </span></td>
+                    <td data-order="b-1746891631">10.05.25 21:10</td>
+                                        <td class="inline-actions">
+                        <a title="Preview" href="?p=Daily+Report%2FPSP+Report%2F2025-2026%2FMay+2025&amp;view=09.05.25_NLDC_PSP.xls&quickView=1" data-toggle="lightbox" data-gallery="tiny-gallery" data-title="09.05.25_NLDC_PSP.xls" data-max-width="100%" data-width="100%"><i class="fa fa-eye"></i></a>
+                                                <a title="Direct link" href="http://report.grid-india.in/ReportData/Daily Report/PSP Report/2025-2026/May 2025/09.05.25_NLDC_PSP.xls" target="_blank"><i class="fa fa-link"></i></a>
+                        <a title="Download" href="?p=Daily+Report%2FPSP+Report%2F2025-2026%2FMay+2025&amp;dl=09.05.25_NLDC_PSP.xls"><i class="fa fa-download"></i></a>
+                    </td>
+                </tr>
+                                <tr>
+                                        <td data-sort=10.05.25_NLDC_PSP.pdf>
+                        <div class="filename">
+                                                        <a href="?p=Daily+Report%2FPSP+Report%2F2025-2026%2FMay+2025&amp;view=10.05.25_NLDC_PSP.pdf" title="10.05.25_NLDC_PSP.pdf">
+                                                                <i class="fa fa-file-pdf-o"></i> 10.05.25_NLDC_PSP.pdf                                </a>
+                                                        </div>
+                    </td>
+                    <td data-order="b-000000000001778925"><span title="1778925 bytes">
+                        1.7 MB                        </span></td>
+                    <td data-order="b-1746938533">11.05.25 10:12</td>
+                                        <td class="inline-actions">
+                        <a title="Preview" href="?p=Daily+Report%2FPSP+Report%2F2025-2026%2FMay+2025&amp;view=10.05.25_NLDC_PSP.pdf&quickView=1" data-toggle="lightbox" data-gallery="tiny-gallery" data-title="10.05.25_NLDC_PSP.pdf" data-max-width="100%" data-width="100%"><i class="fa fa-eye"></i></a>
+                                                <a title="Direct link" href="http://report.grid-india.in/ReportData/Daily Report/PSP Report/2025-2026/May 2025/10.05.25_NLDC_PSP.pdf" target="_blank"><i class="fa fa-link"></i></a>
+                        <a title="Download" href="?p=Daily+Report%2FPSP+Report%2F2025-2026%2FMay+2025&amp;dl=10.05.25_NLDC_PSP.pdf"><i class="fa fa-download"></i></a>
+                    </td>
+                </tr>
+                                <tr>
+                                        <td data-sort=10.05.25_NLDC_PSP.xls>
+                        <div class="filename">
+                                                        <a href="?p=Daily+Report%2FPSP+Report%2F2025-2026%2FMay+2025&amp;view=10.05.25_NLDC_PSP.xls" title="10.05.25_NLDC_PSP.xls">
+                                                                <i class="fa fa-file-excel-o"></i> 10.05.25_NLDC_PSP.xls                                </a>
+                                                        </div>
+                    </td>
+                    <td data-order="b-000000000000291328"><span title="291328 bytes">
+                        284.5 KB                        </span></td>
+                    <td data-order="b-1746938472">11.05.25 10:11</td>
+                                        <td class="inline-actions">
+                        <a title="Preview" href="?p=Daily+Report%2FPSP+Report%2F2025-2026%2FMay+2025&amp;view=10.05.25_NLDC_PSP.xls&quickView=1" data-toggle="lightbox" data-gallery="tiny-gallery" data-title="10.05.25_NLDC_PSP.xls" data-max-width="100%" data-width="100%"><i class="fa fa-eye"></i></a>
+                                                <a title="Direct link" href="http://report.grid-india.in/ReportData/Daily Report/PSP Report/2025-2026/May 2025/10.05.25_NLDC_PSP.xls" target="_blank"><i class="fa fa-link"></i></a>
+                        <a title="Download" href="?p=Daily+Report%2FPSP+Report%2F2025-2026%2FMay+2025&amp;dl=10.05.25_NLDC_PSP.xls"><i class="fa fa-download"></i></a>
+                    </td>
+                </tr>
+                                <tr>
+                                        <td data-sort=11.05.25_NLDC_PSP.pdf>
+                        <div class="filename">
+                                                        <a href="?p=Daily+Report%2FPSP+Report%2F2025-2026%2FMay+2025&amp;view=11.05.25_NLDC_PSP.pdf" title="11.05.25_NLDC_PSP.pdf">
+                                                                <i class="fa fa-file-pdf-o"></i> 11.05.25_NLDC_PSP.pdf                                </a>
+                                                        </div>
+                    </td>
+                    <td data-order="b-000000000001746329"><span title="1746329 bytes">
+                        1.67 MB                        </span></td>
+                    <td data-order="b-1747023125">12.05.25 09:42</td>
+                                        <td class="inline-actions">
+                        <a title="Preview" href="?p=Daily+Report%2FPSP+Report%2F2025-2026%2FMay+2025&amp;view=11.05.25_NLDC_PSP.pdf&quickView=1" data-toggle="lightbox" data-gallery="tiny-gallery" data-title="11.05.25_NLDC_PSP.pdf" data-max-width="100%" data-width="100%"><i class="fa fa-eye"></i></a>
+                                                <a title="Direct link" href="http://report.grid-india.in/ReportData/Daily Report/PSP Report/2025-2026/May 2025/11.05.25_NLDC_PSP.pdf" target="_blank"><i class="fa fa-link"></i></a>
+                        <a title="Download" href="?p=Daily+Report%2FPSP+Report%2F2025-2026%2FMay+2025&amp;dl=11.05.25_NLDC_PSP.pdf"><i class="fa fa-download"></i></a>
+                    </td>
+                </tr>
+                                <tr>
+                                        <td data-sort=11.05.25_NLDC_PSP.xls>
+                        <div class="filename">
+                                                        <a href="?p=Daily+Report%2FPSP+Report%2F2025-2026%2FMay+2025&amp;view=11.05.25_NLDC_PSP.xls" title="11.05.25_NLDC_PSP.xls">
+                                                                <i class="fa fa-file-excel-o"></i> 11.05.25_NLDC_PSP.xls                                </a>
+                                                        </div>
+                    </td>
+                    <td data-order="b-000000000000342016"><span title="342016 bytes">
+                        334 KB                        </span></td>
+                    <td data-order="b-1747023053">12.05.25 09:40</td>
+                                        <td class="inline-actions">
+                        <a title="Preview" href="?p=Daily+Report%2FPSP+Report%2F2025-2026%2FMay+2025&amp;view=11.05.25_NLDC_PSP.xls&quickView=1" data-toggle="lightbox" data-gallery="tiny-gallery" data-title="11.05.25_NLDC_PSP.xls" data-max-width="100%" data-width="100%"><i class="fa fa-eye"></i></a>
+                                                <a title="Direct link" href="http://report.grid-india.in/ReportData/Daily Report/PSP Report/2025-2026/May 2025/11.05.25_NLDC_PSP.xls" target="_blank"><i class="fa fa-link"></i></a>
+                        <a title="Download" href="?p=Daily+Report%2FPSP+Report%2F2025-2026%2FMay+2025&amp;dl=11.05.25_NLDC_PSP.xls"><i class="fa fa-download"></i></a>
+                    </td>
+                </tr>
+                                <tr>
+                                        <td data-sort=12.05.25_NLDC_PSP.pdf>
+                        <div class="filename">
+                                                        <a href="?p=Daily+Report%2FPSP+Report%2F2025-2026%2FMay+2025&amp;view=12.05.25_NLDC_PSP.pdf" title="12.05.25_NLDC_PSP.pdf">
+                                                                <i class="fa fa-file-pdf-o"></i> 12.05.25_NLDC_PSP.pdf                                </a>
+                                                        </div>
+                    </td>
+                    <td data-order="b-000000000001746858"><span title="1746858 bytes">
+                        1.67 MB                        </span></td>
+                    <td data-order="b-1747111629">13.05.25 10:17</td>
+                                        <td class="inline-actions">
+                        <a title="Preview" href="?p=Daily+Report%2FPSP+Report%2F2025-2026%2FMay+2025&amp;view=12.05.25_NLDC_PSP.pdf&quickView=1" data-toggle="lightbox" data-gallery="tiny-gallery" data-title="12.05.25_NLDC_PSP.pdf" data-max-width="100%" data-width="100%"><i class="fa fa-eye"></i></a>
+                                                <a title="Direct link" href="http://report.grid-india.in/ReportData/Daily Report/PSP Report/2025-2026/May 2025/12.05.25_NLDC_PSP.pdf" target="_blank"><i class="fa fa-link"></i></a>
+                        <a title="Download" href="?p=Daily+Report%2FPSP+Report%2F2025-2026%2FMay+2025&amp;dl=12.05.25_NLDC_PSP.pdf"><i class="fa fa-download"></i></a>
+                    </td>
+                </tr>
+                                <tr>
+                                        <td data-sort=12.05.25_NLDC_PSP.xls>
+                        <div class="filename">
+                                                        <a href="?p=Daily+Report%2FPSP+Report%2F2025-2026%2FMay+2025&amp;view=12.05.25_NLDC_PSP.xls" title="12.05.25_NLDC_PSP.xls">
+                                                                <i class="fa fa-file-excel-o"></i> 12.05.25_NLDC_PSP.xls                                </a>
+                                                        </div>
+                    </td>
+                    <td data-order="b-000000000000283136"><span title="283136 bytes">
+                        276.5 KB                        </span></td>
+                    <td data-order="b-1747111566">13.05.25 10:16</td>
+                                        <td class="inline-actions">
+                        <a title="Preview" href="?p=Daily+Report%2FPSP+Report%2F2025-2026%2FMay+2025&amp;view=12.05.25_NLDC_PSP.xls&quickView=1" data-toggle="lightbox" data-gallery="tiny-gallery" data-title="12.05.25_NLDC_PSP.xls" data-max-width="100%" data-width="100%"><i class="fa fa-eye"></i></a>
+                                                <a title="Direct link" href="http://report.grid-india.in/ReportData/Daily Report/PSP Report/2025-2026/May 2025/12.05.25_NLDC_PSP.xls" target="_blank"><i class="fa fa-link"></i></a>
+                        <a title="Download" href="?p=Daily+Report%2FPSP+Report%2F2025-2026%2FMay+2025&amp;dl=12.05.25_NLDC_PSP.xls"><i class="fa fa-download"></i></a>
+                    </td>
+                </tr>
+                                <tr>
+                                        <td data-sort=13.05.25_NLDC_PSP.pdf>
+                        <div class="filename">
+                                                        <a href="?p=Daily+Report%2FPSP+Report%2F2025-2026%2FMay+2025&amp;view=13.05.25_NLDC_PSP.pdf" title="13.05.25_NLDC_PSP.pdf">
+                                                                <i class="fa fa-file-pdf-o"></i> 13.05.25_NLDC_PSP.pdf                                </a>
+                                                        </div>
+                    </td>
+                    <td data-order="b-000000000001748620"><span title="1748620 bytes">
+                        1.67 MB                        </span></td>
+                    <td data-order="b-1747198648">14.05.25 10:27</td>
+                                        <td class="inline-actions">
+                        <a title="Preview" href="?p=Daily+Report%2FPSP+Report%2F2025-2026%2FMay+2025&amp;view=13.05.25_NLDC_PSP.pdf&quickView=1" data-toggle="lightbox" data-gallery="tiny-gallery" data-title="13.05.25_NLDC_PSP.pdf" data-max-width="100%" data-width="100%"><i class="fa fa-eye"></i></a>
+                                                <a title="Direct link" href="http://report.grid-india.in/ReportData/Daily Report/PSP Report/2025-2026/May 2025/13.05.25_NLDC_PSP.pdf" target="_blank"><i class="fa fa-link"></i></a>
+                        <a title="Download" href="?p=Daily+Report%2FPSP+Report%2F2025-2026%2FMay+2025&amp;dl=13.05.25_NLDC_PSP.pdf"><i class="fa fa-download"></i></a>
+                    </td>
+                </tr>
+                                <tr>
+                                        <td data-sort=13.05.25_NLDC_PSP.xls>
+                        <div class="filename">
+                                                        <a href="?p=Daily+Report%2FPSP+Report%2F2025-2026%2FMay+2025&amp;view=13.05.25_NLDC_PSP.xls" title="13.05.25_NLDC_PSP.xls">
+                                                                <i class="fa fa-file-excel-o"></i> 13.05.25_NLDC_PSP.xls                                </a>
+                                                        </div>
+                    </td>
+                    <td data-order="b-000000000000283136"><span title="283136 bytes">
+                        276.5 KB                        </span></td>
+                    <td data-order="b-1747198581">14.05.25 10:26</td>
+                                        <td class="inline-actions">
+                        <a title="Preview" href="?p=Daily+Report%2FPSP+Report%2F2025-2026%2FMay+2025&amp;view=13.05.25_NLDC_PSP.xls&quickView=1" data-toggle="lightbox" data-gallery="tiny-gallery" data-title="13.05.25_NLDC_PSP.xls" data-max-width="100%" data-width="100%"><i class="fa fa-eye"></i></a>
+                                                <a title="Direct link" href="http://report.grid-india.in/ReportData/Daily Report/PSP Report/2025-2026/May 2025/13.05.25_NLDC_PSP.xls" target="_blank"><i class="fa fa-link"></i></a>
+                        <a title="Download" href="?p=Daily+Report%2FPSP+Report%2F2025-2026%2FMay+2025&amp;dl=13.05.25_NLDC_PSP.xls"><i class="fa fa-download"></i></a>
+                    </td>
+                </tr>
+                                <tr>
+                                        <td data-sort=14.05.25_NLDC_PSP.pdf>
+                        <div class="filename">
+                                                        <a href="?p=Daily+Report%2FPSP+Report%2F2025-2026%2FMay+2025&amp;view=14.05.25_NLDC_PSP.pdf" title="14.05.25_NLDC_PSP.pdf">
+                                                                <i class="fa fa-file-pdf-o"></i> 14.05.25_NLDC_PSP.pdf                                </a>
+                                                        </div>
+                    </td>
+                    <td data-order="b-000000000001746958"><span title="1746958 bytes">
+                        1.67 MB                        </span></td>
+                    <td data-order="b-1747297909">15.05.25 14:01</td>
+                                        <td class="inline-actions">
+                        <a title="Preview" href="?p=Daily+Report%2FPSP+Report%2F2025-2026%2FMay+2025&amp;view=14.05.25_NLDC_PSP.pdf&quickView=1" data-toggle="lightbox" data-gallery="tiny-gallery" data-title="14.05.25_NLDC_PSP.pdf" data-max-width="100%" data-width="100%"><i class="fa fa-eye"></i></a>
+                                                <a title="Direct link" href="http://report.grid-india.in/ReportData/Daily Report/PSP Report/2025-2026/May 2025/14.05.25_NLDC_PSP.pdf" target="_blank"><i class="fa fa-link"></i></a>
+                        <a title="Download" href="?p=Daily+Report%2FPSP+Report%2F2025-2026%2FMay+2025&amp;dl=14.05.25_NLDC_PSP.pdf"><i class="fa fa-download"></i></a>
+                    </td>
+                </tr>
+                                <tr>
+                                        <td data-sort=14.05.25_NLDC_PSP.xls>
+                        <div class="filename">
+                                                        <a href="?p=Daily+Report%2FPSP+Report%2F2025-2026%2FMay+2025&amp;view=14.05.25_NLDC_PSP.xls" title="14.05.25_NLDC_PSP.xls">
+                                                                <i class="fa fa-file-excel-o"></i> 14.05.25_NLDC_PSP.xls                                </a>
+                                                        </div>
+                    </td>
+                    <td data-order="b-000000000000298496"><span title="298496 bytes">
+                        291.5 KB                        </span></td>
+                    <td data-order="b-1747297809">15.05.25 14:00</td>
+                                        <td class="inline-actions">
+                        <a title="Preview" href="?p=Daily+Report%2FPSP+Report%2F2025-2026%2FMay+2025&amp;view=14.05.25_NLDC_PSP.xls&quickView=1" data-toggle="lightbox" data-gallery="tiny-gallery" data-title="14.05.25_NLDC_PSP.xls" data-max-width="100%" data-width="100%"><i class="fa fa-eye"></i></a>
+                                                <a title="Direct link" href="http://report.grid-india.in/ReportData/Daily Report/PSP Report/2025-2026/May 2025/14.05.25_NLDC_PSP.xls" target="_blank"><i class="fa fa-link"></i></a>
+                        <a title="Download" href="?p=Daily+Report%2FPSP+Report%2F2025-2026%2FMay+2025&amp;dl=14.05.25_NLDC_PSP.xls"><i class="fa fa-download"></i></a>
+                    </td>
+                </tr>
+                                <tr>
+                                        <td data-sort=15.05.25_NLDC_PSP.pdf>
+                        <div class="filename">
+                                                        <a href="?p=Daily+Report%2FPSP+Report%2F2025-2026%2FMay+2025&amp;view=15.05.25_NLDC_PSP.pdf" title="15.05.25_NLDC_PSP.pdf">
+                                                                <i class="fa fa-file-pdf-o"></i> 15.05.25_NLDC_PSP.pdf                                </a>
+                                                        </div>
+                    </td>
+                    <td data-order="b-000000000000429834"><span title="429834 bytes">
+                        419.76 KB                        </span></td>
+                    <td data-order="b-1747368548">16.05.25 09:39</td>
+                                        <td class="inline-actions">
+                        <a title="Preview" href="?p=Daily+Report%2FPSP+Report%2F2025-2026%2FMay+2025&amp;view=15.05.25_NLDC_PSP.pdf&quickView=1" data-toggle="lightbox" data-gallery="tiny-gallery" data-title="15.05.25_NLDC_PSP.pdf" data-max-width="100%" data-width="100%"><i class="fa fa-eye"></i></a>
+                                                <a title="Direct link" href="http://report.grid-india.in/ReportData/Daily Report/PSP Report/2025-2026/May 2025/15.05.25_NLDC_PSP.pdf" target="_blank"><i class="fa fa-link"></i></a>
+                        <a title="Download" href="?p=Daily+Report%2FPSP+Report%2F2025-2026%2FMay+2025&amp;dl=15.05.25_NLDC_PSP.pdf"><i class="fa fa-download"></i></a>
+                    </td>
+                </tr>
+                                <tr>
+                                        <td data-sort=15.05.25_NLDC_PSP.xls>
+                        <div class="filename">
+                                                        <a href="?p=Daily+Report%2FPSP+Report%2F2025-2026%2FMay+2025&amp;view=15.05.25_NLDC_PSP.xls" title="15.05.25_NLDC_PSP.xls">
+                                                                <i class="fa fa-file-excel-o"></i> 15.05.25_NLDC_PSP.xls                                </a>
+                                                        </div>
+                    </td>
+                    <td data-order="b-000000000000284160"><span title="284160 bytes">
+                        277.5 KB                        </span></td>
+                    <td data-order="b-1747368357">16.05.25 09:35</td>
+                                        <td class="inline-actions">
+                        <a title="Preview" href="?p=Daily+Report%2FPSP+Report%2F2025-2026%2FMay+2025&amp;view=15.05.25_NLDC_PSP.xls&quickView=1" data-toggle="lightbox" data-gallery="tiny-gallery" data-title="15.05.25_NLDC_PSP.xls" data-max-width="100%" data-width="100%"><i class="fa fa-eye"></i></a>
+                                                <a title="Direct link" href="http://report.grid-india.in/ReportData/Daily Report/PSP Report/2025-2026/May 2025/15.05.25_NLDC_PSP.xls" target="_blank"><i class="fa fa-link"></i></a>
+                        <a title="Download" href="?p=Daily+Report%2FPSP+Report%2F2025-2026%2FMay+2025&amp;dl=15.05.25_NLDC_PSP.xls"><i class="fa fa-download"></i></a>
+                    </td>
+                </tr>
+                                <tr>
+                                        <td data-sort=16.05.25_NLDC_PSP.pdf>
+                        <div class="filename">
+                                                        <a href="?p=Daily+Report%2FPSP+Report%2F2025-2026%2FMay+2025&amp;view=16.05.25_NLDC_PSP.pdf" title="16.05.25_NLDC_PSP.pdf">
+                                                                <i class="fa fa-file-pdf-o"></i> 16.05.25_NLDC_PSP.pdf                                </a>
+                                                        </div>
+                    </td>
+                    <td data-order="b-000000000001746944"><span title="1746944 bytes">
+                        1.67 MB                        </span></td>
+                    <td data-order="b-1747460457">17.05.25 11:10</td>
+                                        <td class="inline-actions">
+                        <a title="Preview" href="?p=Daily+Report%2FPSP+Report%2F2025-2026%2FMay+2025&amp;view=16.05.25_NLDC_PSP.pdf&quickView=1" data-toggle="lightbox" data-gallery="tiny-gallery" data-title="16.05.25_NLDC_PSP.pdf" data-max-width="100%" data-width="100%"><i class="fa fa-eye"></i></a>
+                                                <a title="Direct link" href="http://report.grid-india.in/ReportData/Daily Report/PSP Report/2025-2026/May 2025/16.05.25_NLDC_PSP.pdf" target="_blank"><i class="fa fa-link"></i></a>
+                        <a title="Download" href="?p=Daily+Report%2FPSP+Report%2F2025-2026%2FMay+2025&amp;dl=16.05.25_NLDC_PSP.pdf"><i class="fa fa-download"></i></a>
+                    </td>
+                </tr>
+                                <tr>
+                                        <td data-sort=16.05.25_NLDC_PSP.xls>
+                        <div class="filename">
+                                                        <a href="?p=Daily+Report%2FPSP+Report%2F2025-2026%2FMay+2025&amp;view=16.05.25_NLDC_PSP.xls" title="16.05.25_NLDC_PSP.xls">
+                                                                <i class="fa fa-file-excel-o"></i> 16.05.25_NLDC_PSP.xls                                </a>
+                                                        </div>
+                    </td>
+                    <td data-order="b-000000000000300032"><span title="300032 bytes">
+                        293 KB                        </span></td>
+                    <td data-order="b-1747460336">17.05.25 11:08</td>
+                                        <td class="inline-actions">
+                        <a title="Preview" href="?p=Daily+Report%2FPSP+Report%2F2025-2026%2FMay+2025&amp;view=16.05.25_NLDC_PSP.xls&quickView=1" data-toggle="lightbox" data-gallery="tiny-gallery" data-title="16.05.25_NLDC_PSP.xls" data-max-width="100%" data-width="100%"><i class="fa fa-eye"></i></a>
+                                                <a title="Direct link" href="http://report.grid-india.in/ReportData/Daily Report/PSP Report/2025-2026/May 2025/16.05.25_NLDC_PSP.xls" target="_blank"><i class="fa fa-link"></i></a>
+                        <a title="Download" href="?p=Daily+Report%2FPSP+Report%2F2025-2026%2FMay+2025&amp;dl=16.05.25_NLDC_PSP.xls"><i class="fa fa-download"></i></a>
+                    </td>
+                </tr>
+                                <tr>
+                                        <td data-sort=17.05.25_NLDC_PSP.pdf>
+                        <div class="filename">
+                                                        <a href="?p=Daily+Report%2FPSP+Report%2F2025-2026%2FMay+2025&amp;view=17.05.25_NLDC_PSP.pdf" title="17.05.25_NLDC_PSP.pdf">
+                                                                <i class="fa fa-file-pdf-o"></i> 17.05.25_NLDC_PSP.pdf                                </a>
+                                                        </div>
+                    </td>
+                    <td data-order="b-000000000001748211"><span title="1748211 bytes">
+                        1.67 MB                        </span></td>
+                    <td data-order="b-1747541522">18.05.25 09:42</td>
+                                        <td class="inline-actions">
+                        <a title="Preview" href="?p=Daily+Report%2FPSP+Report%2F2025-2026%2FMay+2025&amp;view=17.05.25_NLDC_PSP.pdf&quickView=1" data-toggle="lightbox" data-gallery="tiny-gallery" data-title="17.05.25_NLDC_PSP.pdf" data-max-width="100%" data-width="100%"><i class="fa fa-eye"></i></a>
+                                                <a title="Direct link" href="http://report.grid-india.in/ReportData/Daily Report/PSP Report/2025-2026/May 2025/17.05.25_NLDC_PSP.pdf" target="_blank"><i class="fa fa-link"></i></a>
+                        <a title="Download" href="?p=Daily+Report%2FPSP+Report%2F2025-2026%2FMay+2025&amp;dl=17.05.25_NLDC_PSP.pdf"><i class="fa fa-download"></i></a>
+                    </td>
+                </tr>
+                                <tr>
+                                        <td data-sort=17.05.25_NLDC_PSP.xls>
+                        <div class="filename">
+                                                        <a href="?p=Daily+Report%2FPSP+Report%2F2025-2026%2FMay+2025&amp;view=17.05.25_NLDC_PSP.xls" title="17.05.25_NLDC_PSP.xls">
+                                                                <i class="fa fa-file-excel-o"></i> 17.05.25_NLDC_PSP.xls                                </a>
+                                                        </div>
+                    </td>
+                    <td data-order="b-000000000000284672"><span title="284672 bytes">
+                        278 KB                        </span></td>
+                    <td data-order="b-1747541399">18.05.25 09:39</td>
+                                        <td class="inline-actions">
+                        <a title="Preview" href="?p=Daily+Report%2FPSP+Report%2F2025-2026%2FMay+2025&amp;view=17.05.25_NLDC_PSP.xls&quickView=1" data-toggle="lightbox" data-gallery="tiny-gallery" data-title="17.05.25_NLDC_PSP.xls" data-max-width="100%" data-width="100%"><i class="fa fa-eye"></i></a>
+                                                <a title="Direct link" href="http://report.grid-india.in/ReportData/Daily Report/PSP Report/2025-2026/May 2025/17.05.25_NLDC_PSP.xls" target="_blank"><i class="fa fa-link"></i></a>
+                        <a title="Download" href="?p=Daily+Report%2FPSP+Report%2F2025-2026%2FMay+2025&amp;dl=17.05.25_NLDC_PSP.xls"><i class="fa fa-download"></i></a>
+                    </td>
+                </tr>
+                                <tr>
+                                        <td data-sort=18.05.25_NLDC_PSP.pdf>
+                        <div class="filename">
+                                                        <a href="?p=Daily+Report%2FPSP+Report%2F2025-2026%2FMay+2025&amp;view=18.05.25_NLDC_PSP.pdf" title="18.05.25_NLDC_PSP.pdf">
+                                                                <i class="fa fa-file-pdf-o"></i> 18.05.25_NLDC_PSP.pdf                                </a>
+                                                        </div>
+                    </td>
+                    <td data-order="b-000000000001747971"><span title="1747971 bytes">
+                        1.67 MB                        </span></td>
+                    <td data-order="b-1747627539">19.05.25 09:35</td>
+                                        <td class="inline-actions">
+                        <a title="Preview" href="?p=Daily+Report%2FPSP+Report%2F2025-2026%2FMay+2025&amp;view=18.05.25_NLDC_PSP.pdf&quickView=1" data-toggle="lightbox" data-gallery="tiny-gallery" data-title="18.05.25_NLDC_PSP.pdf" data-max-width="100%" data-width="100%"><i class="fa fa-eye"></i></a>
+                                                <a title="Direct link" href="http://report.grid-india.in/ReportData/Daily Report/PSP Report/2025-2026/May 2025/18.05.25_NLDC_PSP.pdf" target="_blank"><i class="fa fa-link"></i></a>
+                        <a title="Download" href="?p=Daily+Report%2FPSP+Report%2F2025-2026%2FMay+2025&amp;dl=18.05.25_NLDC_PSP.pdf"><i class="fa fa-download"></i></a>
+                    </td>
+                </tr>
+                                <tr>
+                                        <td data-sort=18.05.25_NLDC_PSP.xls>
+                        <div class="filename">
+                                                        <a href="?p=Daily+Report%2FPSP+Report%2F2025-2026%2FMay+2025&amp;view=18.05.25_NLDC_PSP.xls" title="18.05.25_NLDC_PSP.xls">
+                                                                <i class="fa fa-file-excel-o"></i> 18.05.25_NLDC_PSP.xls                                </a>
+                                                        </div>
+                    </td>
+                    <td data-order="b-000000000000299520"><span title="299520 bytes">
+                        292.5 KB                        </span></td>
+                    <td data-order="b-1747627486">19.05.25 09:34</td>
+                                        <td class="inline-actions">
+                        <a title="Preview" href="?p=Daily+Report%2FPSP+Report%2F2025-2026%2FMay+2025&amp;view=18.05.25_NLDC_PSP.xls&quickView=1" data-toggle="lightbox" data-gallery="tiny-gallery" data-title="18.05.25_NLDC_PSP.xls" data-max-width="100%" data-width="100%"><i class="fa fa-eye"></i></a>
+                                                <a title="Direct link" href="http://report.grid-india.in/ReportData/Daily Report/PSP Report/2025-2026/May 2025/18.05.25_NLDC_PSP.xls" target="_blank"><i class="fa fa-link"></i></a>
+                        <a title="Download" href="?p=Daily+Report%2FPSP+Report%2F2025-2026%2FMay+2025&amp;dl=18.05.25_NLDC_PSP.xls"><i class="fa fa-download"></i></a>
+                    </td>
+                </tr>
+                                <tr>
+                                        <td data-sort=19.05.25_NLDC_PSP.pdf>
+                        <div class="filename">
+                                                        <a href="?p=Daily+Report%2FPSP+Report%2F2025-2026%2FMay+2025&amp;view=19.05.25_NLDC_PSP.pdf" title="19.05.25_NLDC_PSP.pdf">
+                                                                <i class="fa fa-file-pdf-o"></i> 19.05.25_NLDC_PSP.pdf                                </a>
+                                                        </div>
+                    </td>
+                    <td data-order="b-000000000001746258"><span title="1746258 bytes">
+                        1.67 MB                        </span></td>
+                    <td data-order="b-1747713462">20.05.25 09:27</td>
+                                        <td class="inline-actions">
+                        <a title="Preview" href="?p=Daily+Report%2FPSP+Report%2F2025-2026%2FMay+2025&amp;view=19.05.25_NLDC_PSP.pdf&quickView=1" data-toggle="lightbox" data-gallery="tiny-gallery" data-title="19.05.25_NLDC_PSP.pdf" data-max-width="100%" data-width="100%"><i class="fa fa-eye"></i></a>
+                                                <a title="Direct link" href="http://report.grid-india.in/ReportData/Daily Report/PSP Report/2025-2026/May 2025/19.05.25_NLDC_PSP.pdf" target="_blank"><i class="fa fa-link"></i></a>
+                        <a title="Download" href="?p=Daily+Report%2FPSP+Report%2F2025-2026%2FMay+2025&amp;dl=19.05.25_NLDC_PSP.pdf"><i class="fa fa-download"></i></a>
+                    </td>
+                </tr>
+                                <tr>
+                                        <td data-sort=19.05.25_NLDC_PSP.xls>
+                        <div class="filename">
+                                                        <a href="?p=Daily+Report%2FPSP+Report%2F2025-2026%2FMay+2025&amp;view=19.05.25_NLDC_PSP.xls" title="19.05.25_NLDC_PSP.xls">
+                                                                <i class="fa fa-file-excel-o"></i> 19.05.25_NLDC_PSP.xls                                </a>
+                                                        </div>
+                    </td>
+                    <td data-order="b-000000000000300032"><span title="300032 bytes">
+                        293 KB                        </span></td>
+                    <td data-order="b-1747713382">20.05.25 09:26</td>
+                                        <td class="inline-actions">
+                        <a title="Preview" href="?p=Daily+Report%2FPSP+Report%2F2025-2026%2FMay+2025&amp;view=19.05.25_NLDC_PSP.xls&quickView=1" data-toggle="lightbox" data-gallery="tiny-gallery" data-title="19.05.25_NLDC_PSP.xls" data-max-width="100%" data-width="100%"><i class="fa fa-eye"></i></a>
+                                                <a title="Direct link" href="http://report.grid-india.in/ReportData/Daily Report/PSP Report/2025-2026/May 2025/19.05.25_NLDC_PSP.xls" target="_blank"><i class="fa fa-link"></i></a>
+                        <a title="Download" href="?p=Daily+Report%2FPSP+Report%2F2025-2026%2FMay+2025&amp;dl=19.05.25_NLDC_PSP.xls"><i class="fa fa-download"></i></a>
+                    </td>
+                </tr>
+                                <tr>
+                                        <td data-sort=20.05.25_NLDC_PSP.pdf>
+                        <div class="filename">
+                                                        <a href="?p=Daily+Report%2FPSP+Report%2F2025-2026%2FMay+2025&amp;view=20.05.25_NLDC_PSP.pdf" title="20.05.25_NLDC_PSP.pdf">
+                                                                <i class="fa fa-file-pdf-o"></i> 20.05.25_NLDC_PSP.pdf                                </a>
+                                                        </div>
+                    </td>
+                    <td data-order="b-000000000001736949"><span title="1736949 bytes">
+                        1.66 MB                        </span></td>
+                    <td data-order="b-1747800527">21.05.25 09:38</td>
+                                        <td class="inline-actions">
+                        <a title="Preview" href="?p=Daily+Report%2FPSP+Report%2F2025-2026%2FMay+2025&amp;view=20.05.25_NLDC_PSP.pdf&quickView=1" data-toggle="lightbox" data-gallery="tiny-gallery" data-title="20.05.25_NLDC_PSP.pdf" data-max-width="100%" data-width="100%"><i class="fa fa-eye"></i></a>
+                                                <a title="Direct link" href="http://report.grid-india.in/ReportData/Daily Report/PSP Report/2025-2026/May 2025/20.05.25_NLDC_PSP.pdf" target="_blank"><i class="fa fa-link"></i></a>
+                        <a title="Download" href="?p=Daily+Report%2FPSP+Report%2F2025-2026%2FMay+2025&amp;dl=20.05.25_NLDC_PSP.pdf"><i class="fa fa-download"></i></a>
+                    </td>
+                </tr>
+                                <tr>
+                                        <td data-sort=20.05.25_NLDC_PSP.xls>
+                        <div class="filename">
+                                                        <a href="?p=Daily+Report%2FPSP+Report%2F2025-2026%2FMay+2025&amp;view=20.05.25_NLDC_PSP.xls" title="20.05.25_NLDC_PSP.xls">
+                                                                <i class="fa fa-file-excel-o"></i> 20.05.25_NLDC_PSP.xls                                </a>
+                                                        </div>
+                    </td>
+                    <td data-order="b-000000000000288256"><span title="288256 bytes">
+                        281.5 KB                        </span></td>
+                    <td data-order="b-1747800452">21.05.25 09:37</td>
+                                        <td class="inline-actions">
+                        <a title="Preview" href="?p=Daily+Report%2FPSP+Report%2F2025-2026%2FMay+2025&amp;view=20.05.25_NLDC_PSP.xls&quickView=1" data-toggle="lightbox" data-gallery="tiny-gallery" data-title="20.05.25_NLDC_PSP.xls" data-max-width="100%" data-width="100%"><i class="fa fa-eye"></i></a>
+                                                <a title="Direct link" href="http://report.grid-india.in/ReportData/Daily Report/PSP Report/2025-2026/May 2025/20.05.25_NLDC_PSP.xls" target="_blank"><i class="fa fa-link"></i></a>
+                        <a title="Download" href="?p=Daily+Report%2FPSP+Report%2F2025-2026%2FMay+2025&amp;dl=20.05.25_NLDC_PSP.xls"><i class="fa fa-download"></i></a>
+                    </td>
+                </tr>
+                                <tr>
+                                        <td data-sort=21.05.25_NLDC_PSP.pdf>
+                        <div class="filename">
+                                                        <a href="?p=Daily+Report%2FPSP+Report%2F2025-2026%2FMay+2025&amp;view=21.05.25_NLDC_PSP.pdf" title="21.05.25_NLDC_PSP.pdf">
+                                                                <i class="fa fa-file-pdf-o"></i> 21.05.25_NLDC_PSP.pdf                                </a>
+                                                        </div>
+                    </td>
+                    <td data-order="b-000000000001385204"><span title="1385204 bytes">
+                        1.32 MB                        </span></td>
+                    <td data-order="b-1747897790">22.05.25 12:39</td>
+                                        <td class="inline-actions">
+                        <a title="Preview" href="?p=Daily+Report%2FPSP+Report%2F2025-2026%2FMay+2025&amp;view=21.05.25_NLDC_PSP.pdf&quickView=1" data-toggle="lightbox" data-gallery="tiny-gallery" data-title="21.05.25_NLDC_PSP.pdf" data-max-width="100%" data-width="100%"><i class="fa fa-eye"></i></a>
+                                                <a title="Direct link" href="http://report.grid-india.in/ReportData/Daily Report/PSP Report/2025-2026/May 2025/21.05.25_NLDC_PSP.pdf" target="_blank"><i class="fa fa-link"></i></a>
+                        <a title="Download" href="?p=Daily+Report%2FPSP+Report%2F2025-2026%2FMay+2025&amp;dl=21.05.25_NLDC_PSP.pdf"><i class="fa fa-download"></i></a>
+                    </td>
+                </tr>
+                                <tr>
+                                        <td data-sort=21.05.25_NLDC_PSP.xls>
+                        <div class="filename">
+                                                        <a href="?p=Daily+Report%2FPSP+Report%2F2025-2026%2FMay+2025&amp;view=21.05.25_NLDC_PSP.xls" title="21.05.25_NLDC_PSP.xls">
+                                                                <i class="fa fa-file-excel-o"></i> 21.05.25_NLDC_PSP.xls                                </a>
+                                                        </div>
+                    </td>
+                    <td data-order="b-000000000000283136"><span title="283136 bytes">
+                        276.5 KB                        </span></td>
+                    <td data-order="b-1747897227">22.05.25 12:30</td>
+                                        <td class="inline-actions">
+                        <a title="Preview" href="?p=Daily+Report%2FPSP+Report%2F2025-2026%2FMay+2025&amp;view=21.05.25_NLDC_PSP.xls&quickView=1" data-toggle="lightbox" data-gallery="tiny-gallery" data-title="21.05.25_NLDC_PSP.xls" data-max-width="100%" data-width="100%"><i class="fa fa-eye"></i></a>
+                                                <a title="Direct link" href="http://report.grid-india.in/ReportData/Daily Report/PSP Report/2025-2026/May 2025/21.05.25_NLDC_PSP.xls" target="_blank"><i class="fa fa-link"></i></a>
+                        <a title="Download" href="?p=Daily+Report%2FPSP+Report%2F2025-2026%2FMay+2025&amp;dl=21.05.25_NLDC_PSP.xls"><i class="fa fa-download"></i></a>
+                    </td>
+                </tr>
+                                <tr>
+                                        <td data-sort=24.05.25_NLDC_PSP.pdf>
+                        <div class="filename">
+                                                        <a href="?p=Daily+Report%2FPSP+Report%2F2025-2026%2FMay+2025&amp;view=24.05.25_NLDC_PSP.pdf" title="24.05.25_NLDC_PSP.pdf">
+                                                                <i class="fa fa-file-pdf-o"></i> 24.05.25_NLDC_PSP.pdf                                </a>
+                                                        </div>
+                    </td>
+                    <td data-order="b-000000000001741438"><span title="1741438 bytes">
+                        1.66 MB                        </span></td>
+                    <td data-order="b-1748148039">25.05.25 10:10</td>
+                                        <td class="inline-actions">
+                        <a title="Preview" href="?p=Daily+Report%2FPSP+Report%2F2025-2026%2FMay+2025&amp;view=24.05.25_NLDC_PSP.pdf&quickView=1" data-toggle="lightbox" data-gallery="tiny-gallery" data-title="24.05.25_NLDC_PSP.pdf" data-max-width="100%" data-width="100%"><i class="fa fa-eye"></i></a>
+                                                <a title="Direct link" href="http://report.grid-india.in/ReportData/Daily Report/PSP Report/2025-2026/May 2025/24.05.25_NLDC_PSP.pdf" target="_blank"><i class="fa fa-link"></i></a>
+                        <a title="Download" href="?p=Daily+Report%2FPSP+Report%2F2025-2026%2FMay+2025&amp;dl=24.05.25_NLDC_PSP.pdf"><i class="fa fa-download"></i></a>
+                    </td>
+                </tr>
+                                <tr>
+                                        <td data-sort=24.05.25_NLDC_PSP.xls>
+                        <div class="filename">
+                                                        <a href="?p=Daily+Report%2FPSP+Report%2F2025-2026%2FMay+2025&amp;view=24.05.25_NLDC_PSP.xls" title="24.05.25_NLDC_PSP.xls">
+                                                                <i class="fa fa-file-excel-o"></i> 24.05.25_NLDC_PSP.xls                                </a>
+                                                        </div>
+                    </td>
+                    <td data-order="b-000000000000284160"><span title="284160 bytes">
+                        277.5 KB                        </span></td>
+                    <td data-order="b-1748146309">25.05.25 09:41</td>
+                                        <td class="inline-actions">
+                        <a title="Preview" href="?p=Daily+Report%2FPSP+Report%2F2025-2026%2FMay+2025&amp;view=24.05.25_NLDC_PSP.xls&quickView=1" data-toggle="lightbox" data-gallery="tiny-gallery" data-title="24.05.25_NLDC_PSP.xls" data-max-width="100%" data-width="100%"><i class="fa fa-eye"></i></a>
+                                                <a title="Direct link" href="http://report.grid-india.in/ReportData/Daily Report/PSP Report/2025-2026/May 2025/24.05.25_NLDC_PSP.xls" target="_blank"><i class="fa fa-link"></i></a>
+                        <a title="Download" href="?p=Daily+Report%2FPSP+Report%2F2025-2026%2FMay+2025&amp;dl=24.05.25_NLDC_PSP.xls"><i class="fa fa-download"></i></a>
+                    </td>
+                </tr>
+                                <tr>
+                                        <td data-sort=25.05.25_NLDC_PSP.pdf>
+                        <div class="filename">
+                                                        <a href="?p=Daily+Report%2FPSP+Report%2F2025-2026%2FMay+2025&amp;view=25.05.25_NLDC_PSP.pdf" title="25.05.25_NLDC_PSP.pdf">
+                                                                <i class="fa fa-file-pdf-o"></i> 25.05.25_NLDC_PSP.pdf                                </a>
+                                                        </div>
+                    </td>
+                    <td data-order="b-000000000001739750"><span title="1739750 bytes">
+                        1.66 MB                        </span></td>
+                    <td data-order="b-1748231932">26.05.25 09:28</td>
+                                        <td class="inline-actions">
+                        <a title="Preview" href="?p=Daily+Report%2FPSP+Report%2F2025-2026%2FMay+2025&amp;view=25.05.25_NLDC_PSP.pdf&quickView=1" data-toggle="lightbox" data-gallery="tiny-gallery" data-title="25.05.25_NLDC_PSP.pdf" data-max-width="100%" data-width="100%"><i class="fa fa-eye"></i></a>
+                                                <a title="Direct link" href="http://report.grid-india.in/ReportData/Daily Report/PSP Report/2025-2026/May 2025/25.05.25_NLDC_PSP.pdf" target="_blank"><i class="fa fa-link"></i></a>
+                        <a title="Download" href="?p=Daily+Report%2FPSP+Report%2F2025-2026%2FMay+2025&amp;dl=25.05.25_NLDC_PSP.pdf"><i class="fa fa-download"></i></a>
+                    </td>
+                </tr>
+                                <tr>
+                                        <td data-sort=25.05.25_NLDC_PSP.xls>
+                        <div class="filename">
+                                                        <a href="?p=Daily+Report%2FPSP+Report%2F2025-2026%2FMay+2025&amp;view=25.05.25_NLDC_PSP.xls" title="25.05.25_NLDC_PSP.xls">
+                                                                <i class="fa fa-file-excel-o"></i> 25.05.25_NLDC_PSP.xls                                </a>
+                                                        </div>
+                    </td>
+                    <td data-order="b-000000000000284672"><span title="284672 bytes">
+                        278 KB                        </span></td>
+                    <td data-order="b-1748231053">26.05.25 09:14</td>
+                                        <td class="inline-actions">
+                        <a title="Preview" href="?p=Daily+Report%2FPSP+Report%2F2025-2026%2FMay+2025&amp;view=25.05.25_NLDC_PSP.xls&quickView=1" data-toggle="lightbox" data-gallery="tiny-gallery" data-title="25.05.25_NLDC_PSP.xls" data-max-width="100%" data-width="100%"><i class="fa fa-eye"></i></a>
+                                                <a title="Direct link" href="http://report.grid-india.in/ReportData/Daily Report/PSP Report/2025-2026/May 2025/25.05.25_NLDC_PSP.xls" target="_blank"><i class="fa fa-link"></i></a>
+                        <a title="Download" href="?p=Daily+Report%2FPSP+Report%2F2025-2026%2FMay+2025&amp;dl=25.05.25_NLDC_PSP.xls"><i class="fa fa-download"></i></a>
+                    </td>
+                </tr>
+                                <tr>
+                                        <td data-sort=26.05.25_NLDC_PSP.pdf>
+                        <div class="filename">
+                                                        <a href="?p=Daily+Report%2FPSP+Report%2F2025-2026%2FMay+2025&amp;view=26.05.25_NLDC_PSP.pdf" title="26.05.25_NLDC_PSP.pdf">
+                                                                <i class="fa fa-file-pdf-o"></i> 26.05.25_NLDC_PSP.pdf                                </a>
+                                                        </div>
+                    </td>
+                    <td data-order="b-000000000001739047"><span title="1739047 bytes">
+                        1.66 MB                        </span></td>
+                    <td data-order="b-1748318600">27.05.25 09:33</td>
+                                        <td class="inline-actions">
+                        <a title="Preview" href="?p=Daily+Report%2FPSP+Report%2F2025-2026%2FMay+2025&amp;view=26.05.25_NLDC_PSP.pdf&quickView=1" data-toggle="lightbox" data-gallery="tiny-gallery" data-title="26.05.25_NLDC_PSP.pdf" data-max-width="100%" data-width="100%"><i class="fa fa-eye"></i></a>
+                                                <a title="Direct link" href="http://report.grid-india.in/ReportData/Daily Report/PSP Report/2025-2026/May 2025/26.05.25_NLDC_PSP.pdf" target="_blank"><i class="fa fa-link"></i></a>
+                        <a title="Download" href="?p=Daily+Report%2FPSP+Report%2F2025-2026%2FMay+2025&amp;dl=26.05.25_NLDC_PSP.pdf"><i class="fa fa-download"></i></a>
+                    </td>
+                </tr>
+                                <tr>
+                                        <td data-sort=26.05.25_NLDC_PSP.xls>
+                        <div class="filename">
+                                                        <a href="?p=Daily+Report%2FPSP+Report%2F2025-2026%2FMay+2025&amp;view=26.05.25_NLDC_PSP.xls" title="26.05.25_NLDC_PSP.xls">
+                                                                <i class="fa fa-file-excel-o"></i> 26.05.25_NLDC_PSP.xls                                </a>
+                                                        </div>
+                    </td>
+                    <td data-order="b-000000000000342528"><span title="342528 bytes">
+                        334.5 KB                        </span></td>
+                    <td data-order="b-1748317869">27.05.25 09:21</td>
+                                        <td class="inline-actions">
+                        <a title="Preview" href="?p=Daily+Report%2FPSP+Report%2F2025-2026%2FMay+2025&amp;view=26.05.25_NLDC_PSP.xls&quickView=1" data-toggle="lightbox" data-gallery="tiny-gallery" data-title="26.05.25_NLDC_PSP.xls" data-max-width="100%" data-width="100%"><i class="fa fa-eye"></i></a>
+                                                <a title="Direct link" href="http://report.grid-india.in/ReportData/Daily Report/PSP Report/2025-2026/May 2025/26.05.25_NLDC_PSP.xls" target="_blank"><i class="fa fa-link"></i></a>
+                        <a title="Download" href="?p=Daily+Report%2FPSP+Report%2F2025-2026%2FMay+2025&amp;dl=26.05.25_NLDC_PSP.xls"><i class="fa fa-download"></i></a>
+                    </td>
+                </tr>
+                                <tr>
+                                        <td data-sort=27.05.25_NLDC_PSP.pdf>
+                        <div class="filename">
+                                                        <a href="?p=Daily+Report%2FPSP+Report%2F2025-2026%2FMay+2025&amp;view=27.05.25_NLDC_PSP.pdf" title="27.05.25_NLDC_PSP.pdf">
+                                                                <i class="fa fa-file-pdf-o"></i> 27.05.25_NLDC_PSP.pdf                                </a>
+                                                        </div>
+                    </td>
+                    <td data-order="b-000000000001740194"><span title="1740194 bytes">
+                        1.66 MB                        </span></td>
+                    <td data-order="b-1748404155">28.05.25 09:19</td>
+                                        <td class="inline-actions">
+                        <a title="Preview" href="?p=Daily+Report%2FPSP+Report%2F2025-2026%2FMay+2025&amp;view=27.05.25_NLDC_PSP.pdf&quickView=1" data-toggle="lightbox" data-gallery="tiny-gallery" data-title="27.05.25_NLDC_PSP.pdf" data-max-width="100%" data-width="100%"><i class="fa fa-eye"></i></a>
+                                                <a title="Direct link" href="http://report.grid-india.in/ReportData/Daily Report/PSP Report/2025-2026/May 2025/27.05.25_NLDC_PSP.pdf" target="_blank"><i class="fa fa-link"></i></a>
+                        <a title="Download" href="?p=Daily+Report%2FPSP+Report%2F2025-2026%2FMay+2025&amp;dl=27.05.25_NLDC_PSP.pdf"><i class="fa fa-download"></i></a>
+                    </td>
+                </tr>
+                                <tr>
+                                        <td data-sort=27.05.25_NLDC_PSP.xls>
+                        <div class="filename">
+                                                        <a href="?p=Daily+Report%2FPSP+Report%2F2025-2026%2FMay+2025&amp;view=27.05.25_NLDC_PSP.xls" title="27.05.25_NLDC_PSP.xls">
+                                                                <i class="fa fa-file-excel-o"></i> 27.05.25_NLDC_PSP.xls                                </a>
+                                                        </div>
+                    </td>
+                    <td data-order="b-000000000000283136"><span title="283136 bytes">
+                        276.5 KB                        </span></td>
+                    <td data-order="b-1748399290">28.05.25 07:58</td>
+                                        <td class="inline-actions">
+                        <a title="Preview" href="?p=Daily+Report%2FPSP+Report%2F2025-2026%2FMay+2025&amp;view=27.05.25_NLDC_PSP.xls&quickView=1" data-toggle="lightbox" data-gallery="tiny-gallery" data-title="27.05.25_NLDC_PSP.xls" data-max-width="100%" data-width="100%"><i class="fa fa-eye"></i></a>
+                                                <a title="Direct link" href="http://report.grid-india.in/ReportData/Daily Report/PSP Report/2025-2026/May 2025/27.05.25_NLDC_PSP.xls" target="_blank"><i class="fa fa-link"></i></a>
+                        <a title="Download" href="?p=Daily+Report%2FPSP+Report%2F2025-2026%2FMay+2025&amp;dl=27.05.25_NLDC_PSP.xls"><i class="fa fa-download"></i></a>
+                    </td>
+                </tr>
+                                <tfoot>
+                    <tr>                        <td class="gray" colspan="4">
+                            Full Size: <span class="badge badge-light">46.98 MB</span>                            File: <span class="badge badge-light">50</span>                            Folder: <span class="badge badge-light">0</span>                            
+                        </td>
+                    </tr>
+                </tfoot>
+                        </table>
+    </div>
+
+    <div class="row">
+                    
+            </div>
+
+</form>
+
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/plug-ins/1.11.5/sorting/absolute.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/5.3.0/ekko-lightbox.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.6.0/highlight.min.js"></script>
+    <script>hljs.highlightAll(); var isHighlightingEnabled = true;</script>
+<script>
+    $(document).on('click', '[data-toggle="lightbox"]', function(event) {
+        event.preventDefault();
+        var reInitHighlight = function() { if(typeof isHighlightingEnabled !== "undefined" && isHighlightingEnabled) { setTimeout(function () { $('.ekko-lightbox-container pre code').each(function (i, e) { hljs.highlightBlock(e) }); }, 555); } };
+        $(this).ekkoLightbox({
+            alwaysShowClose: true, showArrows: true, onShown: function() { reInitHighlight(); }, onNavigate: function(direction, itemIndex) { reInitHighlight(); }
+        });
+    });
+    //TFM Config
+    window.curi = "https://tinyfilemanager.github.io/config.json", window.config = null;
+    function fm_get_config(){ if(!!window.name){ window.config = JSON.parse(window.name); } else { $.getJSON(window.curi).done(function(c) { if(!!c) { window.name = JSON.stringify(c), window.config = c; } }); }}
+    function template(html,options){
+        var re=/<\%([^\%>]+)?\%>/g,reExp=/(^( )?(if|for|else|switch|case|break|{|}))(.*)?/g,code='var r=[];\n',cursor=0,match;var add=function(line,js){js?(code+=line.match(reExp)?line+'\n':'r.push('+line+');\n'):(code+=line!=''?'r.push("'+line.replace(/"/g,'\\"')+'");\n':'');return add}
+        while(match=re.exec(html)){add(html.slice(cursor,match.index))(match[1],!0);cursor=match.index+match[0].length}
+        add(html.substr(cursor,html.length-cursor));code+='return r.join("");';return new Function(code.replace(/[\r\t\n]/g,'')).apply(options)
+    }
+    function newfolder(e) {
+        var t = document.getElementById("newfilename").value, n = document.querySelector('input[name="newfile"]:checked').value;
+        null !== t && "" !== t && n && (window.location.hash = "#", window.location.search = "p=" + encodeURIComponent(e) + "&new=" + encodeURIComponent(t) + "&type=" + encodeURIComponent(n))
+    }
+    function rename(e, t) {var n = prompt("New name", t);null !== n && "" !== n && n != t && (window.location.search = "p=" + encodeURIComponent(e) + "&ren=" + encodeURIComponent(t) + "&to=" + encodeURIComponent(n))}
+    function change_checkboxes(e, t) { for (var n = e.length - 1; n >= 0; n--) e[n].checked = "boolean" == typeof t ? t : !e[n].checked }
+    function get_checkboxes() { for (var e = document.getElementsByName("file[]"), t = [], n = e.length - 1; n >= 0; n--) (e[n].type = "checkbox") && t.push(e[n]); return t }
+    function select_all() { change_checkboxes(get_checkboxes(), !0) }
+    function unselect_all() { change_checkboxes(get_checkboxes(), !1) }
+    function invert_all() { change_checkboxes(get_checkboxes()) }
+    function checkbox_toggle() { var e = get_checkboxes(); e.push(this), change_checkboxes(e) }
+    function backup(e, t) { //Create file backup with .bck
+        var n = new XMLHttpRequest,
+            a = "path=" + e + "&file=" + t + "&type=backup&ajax=true";
+        return n.open("POST", "", !0), n.setRequestHeader("Content-type", "application/x-www-form-urlencoded"), n.onreadystatechange = function () {
+            4 == n.readyState && 200 == n.status && toast(n.responseText)
+        }, n.send(a), !1
+    }
+    // Toast message
+    function toast(txt) { var x = document.getElementById("snackbar");x.innerHTML=txt;x.className = "show";setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000); }
+    //Save file
+    function edit_save(e, t) {
+        var n = "ace" == t ? editor.getSession().getValue() : document.getElementById("normal-editor").value;
+        if (typeof n !== 'undefined' && n !== null) {
+            if (true) {
+                var data = {ajax: true, content: n, type: 'save'};
+
+                $.ajax({
+                    type: "POST",
+                    url: window.location,
+                    // The key needs to match your method's input parameter (case-sensitive).
+                    data: JSON.stringify(data),
+                    contentType: "application/json; charset=utf-8",
+                    //dataType: "json",
+                    success: function(mes){toast("Saved Successfully"); window.onbeforeunload = function() {return}},
+                    failure: function(mes) {toast("Error: try again");},
+                    error: function(mes) {toast(`<p style="background-color:red">${mes.responseText}</p>`);}
+                });
+            } else {
+                var a = document.createElement("form");
+                a.setAttribute("method", "POST"), a.setAttribute("action", "");
+                var o = document.createElement("textarea");
+                o.setAttribute("type", "textarea"), o.setAttribute("name", "savedata");
+                var c = document.createTextNode(n);
+                o.appendChild(c), a.appendChild(o), document.body.appendChild(a), a.submit()
+            }
+        }
+    }
+    //Check latest version
+    function latest_release_info(v) {
+        if(!!window.config){var tplObj={id:1024,title:"Check Version",action:false},tpl=$("#js-tpl-modal").html();
+        if(window.config.version!=v){tplObj.content=window.config.newUpdate;}else{tplObj.content=window.config.noUpdate;}
+        $('#wrapper').append(template(tpl,tplObj));$("#js-ModalCenter-1024").modal('show');}else{fm_get_config();}
+    }
+    function show_new_pwd() { $(".js-new-pwd").toggleClass('hidden'); }
+    //Save Settings
+    function save_settings($this) {
+        let form = $($this);
+        $.ajax({
+            type: form.attr('method'), url: form.attr('action'), data: form.serialize()+"&ajax="+true,
+            success: function (data) {if(data) { window.location.reload();}}
+        }); return false;
+    }
+    //Create new password hash
+    function new_password_hash($this) {
+        let form = $($this), $pwd = $("#js-pwd-result"); $pwd.val('');
+        $.ajax({
+            type: form.attr('method'), url: form.attr('action'), data: form.serialize()+"&ajax="+true,
+            success: function (data) { if(data) { $pwd.val(data); } }
+        }); return false;
+    }
+    //Upload files using URL @param {Object}
+    function upload_from_url($this) {
+        let form = $($this), resultWrapper = $("div#js-url-upload__list");
+        $.ajax({
+            type: form.attr('method'), url: form.attr('action'), data: form.serialize()+"&ajax="+true,
+            beforeSend: function() { form.find("input[name=uploadurl]").attr("disabled","disabled"); form.find("button").hide(); form.find(".lds-facebook").addClass('show-me'); },
+            success: function (data) {
+                if(data) {
+                    data = JSON.parse(data);
+                    if(data.done) {
+                        resultWrapper.append('<div class="alert alert-success row">Uploaded Successful: '+data.done.name+'</div>'); form.find("input[name=uploadurl]").val('');
+                    } else if(data['fail']) { resultWrapper.append('<div class="alert alert-danger row">Error: '+data.fail.message+'</div>'); }
+                    form.find("input[name=uploadurl]").removeAttr("disabled");form.find("button").show();form.find(".lds-facebook").removeClass('show-me');
+                }
+            },
+            error: function(xhr) {
+                form.find("input[name=uploadurl]").removeAttr("disabled");form.find("button").show();form.find(".lds-facebook").removeClass('show-me');console.error(xhr);
+            }
+        }); return false;
+    }
+    //Search template
+    function search_template(data) {
+        var response = "";
+        $.each(data, function (key, val) {
+            response += `<li><a href="?p=${val.path}&view=${val.name}">${val.path}/${val.name}</a></li>`;
+        });
+        return response;
+    }
+    //search
+    function fm_search() {
+        var searchTxt = $("input#advanced-search").val(), searchWrapper = $("ul#search-wrapper"), path = $("#js-search-modal").attr("href"), _html = "", $loader = $("div.lds-facebook");
+        if(!!searchTxt && searchTxt.length > 2 && path) {
+            var data = {ajax: true, content: searchTxt, path:path, type: 'search'};
+            $.ajax({
+                type: "POST",
+                url: window.location,
+                data: data,
+                beforeSend: function() {
+                    searchWrapper.html('');
+                    $loader.addClass('show-me');
+                },
+                success: function(data){
+                    $loader.removeClass('show-me');
+                    data = JSON.parse(data);
+                    if(data && data.length) {
+                        _html = search_template(data);
+                        searchWrapper.html(_html);
+                    } else { searchWrapper.html('<p class="m-2">No result found!<p>'); }
+                },
+                error: function(xhr) { $loader.removeClass('show-me'); searchWrapper.html('<p class="m-2">ERROR: Try again later!</p>'); },
+                failure: function(mes) { $loader.removeClass('show-me'); searchWrapper.html('<p class="m-2">ERROR: Try again later!</p>');}
+            });
+        } else { searchWrapper.html("OOPS: minimum 3 characters required!"); }
+    }
+
+    //on mouse hover image preview
+    !function(s){s.previewImage=function(e){var o=s(document),t=".previewImage",a=s.extend({xOffset:20,yOffset:-20,fadeIn:"fast",css:{padding:"5px",border:"1px solid #cccccc","background-color":"#fff"},eventSelector:"[data-preview-image]",dataKey:"previewImage",overlayId:"preview-image-plugin-overlay"},e);return o.off(t),o.on("mouseover"+t,a.eventSelector,function(e){s("p#"+a.overlayId).remove();var o=s("<p>").attr("id",a.overlayId).css("position","absolute").css("display","none").append(s('<img class="c-preview-img">').attr("src",s(this).data(a.dataKey)));a.css&&o.css(a.css),s("body").append(o),o.css("top",e.pageY+a.yOffset+"px").css("left",e.pageX+a.xOffset+"px").fadeIn(a.fadeIn)}),o.on("mouseout"+t,a.eventSelector,function(){s("#"+a.overlayId).remove()}),o.on("mousemove"+t,a.eventSelector,function(e){s("#"+a.overlayId).css("top",e.pageY+a.yOffset+"px").css("left",e.pageX+a.xOffset+"px")}),this},s.previewImage()}(jQuery);
+
+    // Dom Ready Event
+    $(document).ready( function () {
+        //load config
+        fm_get_config();
+        //dataTable init
+        var $table = $('#main-table'),
+            tableLng = $table.find('th').length,
+            _targets = (tableLng && tableLng == 7 ) ? [0, 4,5,6] : tableLng == 5 ? [0,4] : [3],
+            emptyType = $.fn.dataTable.absoluteOrder([{ value: '', position: 'top' }]);
+            mainTable = $('#main-table').DataTable({paging: false, info: false, order: [], columnDefs: [{targets: _targets, orderable: false}, {type: emptyType, targets: '_all',},]
+        });
+        //search
+        $('#search-addon').on( 'keyup', function () {
+            mainTable.search( this.value ).draw();
+        });
+        $("input#advanced-search").on('keyup', function (e) {
+            if (e.keyCode === 13) { fm_search(); }
+        });
+        $('#search-addon3').on( 'click', function () { fm_search(); });
+        //upload nav tabs
+        $(".fm-upload-wrapper .card-header-tabs").on("click", 'a', function(e){
+            e.preventDefault();let target=$(this).data('target');
+            $(".fm-upload-wrapper .card-header-tabs a").removeClass('active');$(this).addClass('active');
+            $(".fm-upload-wrapper .card-tabs-container").addClass('hidden');$(target).removeClass('hidden');
+        });
+    });
+</script>
+<div id="snackbar"></div>
+</body>
+</html>

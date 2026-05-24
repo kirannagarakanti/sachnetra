@@ -1,0 +1,160 @@
+{
+  "status": 200,
+  "data": {
+    "table_headers": {
+      "id": 114,
+      "main_header_title": null,
+      "headers": [
+        {
+          "order": 1,
+          "id": 611,
+          "header_name": "Month",
+          "isSortable": false,
+          "header_key": "month",
+          "isChildExists": false,
+          "isMergedCells": null,
+          "isNumberFormattingRequired": null,
+          "columnSpan": null,
+          "maxDecimalLimit": null,
+          "isExternalLink": null,
+          "link_key": null,
+          "sub_headers": []
+        },
+        {
+          "order": 2,
+          "id": 612,
+          "header_name": "No. of Banks Live on NETC\t",
+          "isSortable": false,
+          "header_key": "no_of_banks_live_on_netc",
+          "isChildExists": false,
+          "isMergedCells": null,
+          "isNumberFormattingRequired": null,
+          "columnSpan": null,
+          "maxDecimalLimit": null,
+          "isExternalLink": null,
+          "link_key": null,
+          "sub_headers": []
+        },
+        {
+          "order": 3,
+          "id": 613,
+          "header_name": "Tag Issuance (In Nos.)\t",
+          "isSortable": false,
+          "header_key": "tag_issuance_in_nos",
+          "isChildExists": false,
+          "isMergedCells": null,
+          "isNumberFormattingRequired": null,
+          "columnSpan": null,
+          "maxDecimalLimit": null,
+          "isExternalLink": null,
+          "link_key": null,
+          "sub_headers": []
+        },
+        {
+          "order": 4,
+          "id": 614,
+          "header_name": "Volume (In Mn.)",
+          "isSortable": false,
+          "header_key": "volume_in_mn",
+          "isChildExists": false,
+          "isMergedCells": null,
+          "isNumberFormattingRequired": true,
+          "columnSpan": null,
+          "maxDecimalLimit": null,
+          "isExternalLink": null,
+          "link_key": null,
+          "sub_headers": []
+        },
+        {
+          "order": 5,
+          "id": 615,
+          "header_name": "Amount (In Cr.)",
+          "isSortable": false,
+          "header_key": "amount_in_cr",
+          "isChildExists": false,
+          "isMergedCells": null,
+          "isNumberFormattingRequired": true,
+          "columnSpan": null,
+          "maxDecimalLimit": null,
+          "isExternalLink": null,
+          "link_key": null,
+          "sub_headers": []
+        }
+      ]
+    },
+    "downtime_headers": null,
+    "totalCount": 5,
+    "results": [
+      {
+        "id": 474,
+        "tab_name": "netc-fas-tag-statistics",
+        "product_name": "netc",
+        "no_of_banks_live_on_netc": "6",
+        "tag_issuance_in_nos": "4,12,497",
+        "volume_in_mn": "7.5",
+        "amount_in_cr": "209.39",
+        "createdAt": "2024-12-03T17:22:57.770Z",
+        "updatedAt": "2025-03-18T09:45:04.747Z",
+        "publishedAt": "2024-12-11T04:18:18.290Z",
+        "month": "March-2017",
+        "locale": "en"
+      },
+      {
+        "id": 475,
+        "tab_name": "netc-fas-tag-statistics",
+        "product_name": "netc",
+        "no_of_banks_live_on_netc": "6",
+        "tag_issuance_in_nos": "3,42,960",
+        "volume_in_mn": "6.55",
+        "amount_in_cr": "184.21",
+        "createdAt": "2024-12-03T17:22:57.770Z",
+        "updatedAt": "2025-03-18T09:45:04.825Z",
+        "publishedAt": "2024-12-11T04:18:18.290Z",
+        "month": "February-2017",
+        "locale": "en"
+      },
+      {
+        "id": 476,
+        "tab_name": "netc-fas-tag-statistics",
+        "product_name": "netc",
+        "no_of_banks_live_on_netc": "5",
+        "tag_issuance_in_nos": "2,89,033",
+        "volume_in_mn": "6.41",
+        "amount_in_cr": "178.95",
+        "createdAt": "2024-12-03T17:22:57.770Z",
+        "updatedAt": "2025-03-18T09:45:04.899Z",
+        "publishedAt": "2024-12-11T04:18:18.290Z",
+        "month": "January-2017",
+        "locale": "en"
+      },
+      {
+        "id": 477,
+        "tab_name": "netc-fas-tag-statistics",
+        "product_name": "netc",
+        "no_of_banks_live_on_netc": "4",
+        "tag_issuance_in_nos": "2,08,761",
+        "volume_in_mn": "3.19",
+        "amount_in_cr": "88.12",
+        "createdAt": "2024-12-03T17:22:57.770Z",
+        "updatedAt": "2025-03-18T09:45:04.975Z",
+        "publishedAt": "2024-12-11T04:18:18.290Z",
+        "month": "December-2016",
+        "locale": "en"
+      },
+      {
+        "id": 478,
+        "tab_name": "netc-fas-tag-statistics",
+        "product_name": "netc",
+        "no_of_banks_live_on_netc": "3",
+        "tag_issuance_in_nos": "1,07,801",
+        "volume_in_mn": "NA",
+        "amount_in_cr": "NA",
+        "createdAt": "2024-12-03T17:22:57.770Z",
+        "updatedAt": "2025-03-18T09:45:05.050Z",
+        "publishedAt": "2024-12-11T04:18:18.290Z",
+        "month": "November-2016",
+        "locale": "en"
+      }
+    ]
+  }
+}

@@ -1,0 +1,484 @@
+{
+  "h.key": "RF6LV-Y7HBS-S5S4P-HB5LE-V8XXL",
+  "h.d": "nseindia.com",
+  "h.t": 1779468607846,
+  "h.cr": "2a4b63c1c749e9be15e967c440ae2dd7d03f515a-6c74dbe4-732e05c3",
+  "session_id": "33de7968-621b-48c1-bf09-52ea7bbfc827",
+  "site_domain": "nseindia.com",
+  "beacon_url": "//684d0d47.akstat.io/",
+  "autorun": false,
+  "strip_query_string": true,
+  "beacon_interval": 60,
+  "BW": {
+    "enabled": false
+  },
+  "RT": {
+    "session_exp": 300
+  },
+  "ResourceTiming": {
+    "enabled": true,
+    "splitAtPath": true
+  },
+  "History": {
+    "enabled": true,
+    "auto": true
+  },
+  "CrossDomain": {
+    "sending": false,
+    "cross_domain_url": ""
+  },
+  "Errors": {
+    "enabled": true,
+    "monitorTimeout": false,
+    "monitorEvents": false,
+    "maxErrors": 25,
+    "sendInterval": 250
+  },
+  "Continuity": {
+    "enabled": true
+  },
+  "TPAnalytics": {
+    "enabled": true
+  },
+  "PageParams": {
+    "xhr": "none",
+    "pageGroups": [
+      {
+        "type": "Regexp",
+        "parameter1": "/corporates/corporateHome.html",
+        "parameter2": "Corporates",
+        "on": [
+          "navigation"
+        ]
+      },
+      {
+        "type": "Custom",
+        "parameter1": "page[0]",
+        "on": [
+          "navigation"
+        ]
+      },
+      {
+        "type": "Regexp",
+        "parameter1": "\\/market-data\\/pre-open-market-cm-and-emerge-market",
+        "parameter2": "PreOpen",
+        "on": [
+          "navigation"
+        ]
+      },
+      {
+        "type": "Regexp",
+        "parameter1": "\\/market-data\\/live-equity-market",
+        "parameter2": "LiveMarketEQ",
+        "on": [
+          "navigation"
+        ]
+      },
+      {
+        "type": "Regexp",
+        "parameter1": "\\/market-data\\/sme-market",
+        "parameter2": "LiveMarketSME",
+        "on": [
+          "navigation"
+        ]
+      },
+      {
+        "type": "Regexp",
+        "parameter1": "\\/market-data\\/sovereign-gold-bond",
+        "parameter2": "LiveMarketSGB",
+        "on": [
+          "navigation"
+        ]
+      },
+      {
+        "type": "Regexp",
+        "parameter1": "\\/market-data\\/exchange-traded-funds-etf",
+        "parameter2": "LiveMarketETF",
+        "on": [
+          "navigation"
+        ]
+      },
+      {
+        "type": "Regexp",
+        "parameter1": "\\/market-data\\/block-deal-watch",
+        "parameter2": "LiveMarketBLK",
+        "on": [
+          "navigation"
+        ]
+      },
+      {
+        "type": "Regexp",
+        "parameter1": "\\/market-data\\/equity-derivatives-watch",
+        "parameter2": "LiveMarketFO",
+        "on": [
+          "navigation"
+        ]
+      },
+      {
+        "type": "Regexp",
+        "parameter1": "\\/market-data\\/currency-derivatives",
+        "parameter2": "LiveMarketCUR",
+        "on": [
+          "navigation"
+        ]
+      },
+      {
+        "type": "Regexp",
+        "parameter1": "\\/market-data\\/commodity-derivatives",
+        "parameter2": "LiveMarketCOM",
+        "on": [
+          "navigation"
+        ]
+      },
+      {
+        "type": "Regexp",
+        "parameter1": "\\/market-data\\/bond-market-futures",
+        "parameter2": "LiveMarketIRD",
+        "on": [
+          "navigation"
+        ]
+      },
+      {
+        "type": "Regexp",
+        "parameter1": "\\/market-data\\/live-market-indices",
+        "parameter2": "LiveMarketIDX",
+        "on": [
+          "navigation"
+        ]
+      },
+      {
+        "type": "Regexp",
+        "parameter1": "\\/market-data\\/bonds-traded-in-capital-market",
+        "parameter2": "LiveMarketBCM",
+        "on": [
+          "navigation"
+        ]
+      },
+      {
+        "type": "Regexp",
+        "parameter1": "\\/market-data\\/stocks-in-call-auction",
+        "parameter2": "LiveMarketCA",
+        "on": [
+          "navigation"
+        ]
+      },
+      {
+        "type": "Regexp",
+        "parameter1": "\\/market-data\\/securities-lending-and-borrowing",
+        "parameter2": "LiveMarketSLB",
+        "on": [
+          "navigation"
+        ]
+      },
+      {
+        "type": "Regexp",
+        "parameter1": "\\/market-data\\/analysis-and-tools-capital-market-snapshot",
+        "parameter2": "LiveMarketMSNAP",
+        "on": [
+          "navigation"
+        ]
+      },
+      {
+        "type": "Regexp",
+        "parameter1": "\\/market-data\\/analysis-and-tools-derivatives-market-snapshot",
+        "parameter2": "LiveMarketDerMS",
+        "on": [
+          "navigation"
+        ]
+      },
+      {
+        "type": "Regexp",
+        "parameter1": "\\/option-chain",
+        "parameter2": "OptionChain",
+        "on": [
+          "navigation"
+        ]
+      },
+      {
+        "type": "Regexp",
+        "parameter1": ".*\\/market-data\\/.*",
+        "parameter2": "MarketData - Others",
+        "on": [
+          "navigation"
+        ]
+      },
+      {
+        "type": "Regexp",
+        "parameter1": ".*\\/invest\\/.*",
+        "parameter2": "Invest",
+        "on": [
+          "navigation"
+        ]
+      },
+      {
+        "type": "Regexp",
+        "parameter1": "\\/companies-listing\\/corporate-filings-application",
+        "parameter2": "CorporatesDashboard",
+        "on": [
+          "navigation"
+        ]
+      },
+      {
+        "type": "Regexp",
+        "parameter1": "\\/companies-listing\\/corporate-filings-announcements",
+        "parameter2": "CorporatesAnn",
+        "on": [
+          "navigation"
+        ]
+      },
+      {
+        "type": "Regexp",
+        "parameter1": "\\/companies-listing\\/corporate-filings-annual-reports",
+        "parameter2": "CorporatesAR",
+        "on": [
+          "navigation"
+        ]
+      },
+      {
+        "type": "Regexp",
+        "parameter1": "\\/companies-listing\\/corporate-filings-board-meetings",
+        "parameter2": "CorporatesBM",
+        "on": [
+          "navigation"
+        ]
+      },
+      {
+        "type": "Regexp",
+        "parameter1": "\\/companies-listing\\/corporate-filings-actions",
+        "parameter2": "CorporatesCA",
+        "on": [
+          "navigation"
+        ]
+      },
+      {
+        "type": "Regexp",
+        "parameter1": "\\/companies-listing\\/corporate-filings-directory",
+        "parameter2": "CorporatesDir",
+        "on": [
+          "navigation"
+        ]
+      },
+      {
+        "type": "Regexp",
+        "parameter1": "\\/companies-listing\\/corporate-filings-governance",
+        "parameter2": "CorporatesCG",
+        "on": [
+          "navigation"
+        ]
+      },
+      {
+        "type": "Regexp",
+        "parameter1": "\\/companies-listing\\/corporate-filings-daily-buy-back",
+        "parameter2": "CorporatesDBB",
+        "on": [
+          "navigation"
+        ]
+      },
+      {
+        "type": "Regexp",
+        "parameter1": "\\/companies-listing\\/corporate-filings-event-calendar",
+        "parameter2": "CorporatesEC",
+        "on": [
+          "navigation"
+        ]
+      },
+      {
+        "type": "Regexp",
+        "parameter1": "\\/companies-listing\\/corporate-filings-financial-results-comparision",
+        "parameter2": "CorporatesREC",
+        "on": [
+          "navigation"
+        ]
+      },
+      {
+        "type": "Regexp",
+        "parameter1": "\\/companies-listing\\/corporate-filings-financial-results",
+        "parameter2": "CorporatesRE",
+        "on": [
+          "navigation"
+        ]
+      },
+      {
+        "type": "Regexp",
+        "parameter1": "\\/companies-listing\\/corporate-filings-insider-trading",
+        "parameter2": "CorporatesInT",
+        "on": [
+          "navigation"
+        ]
+      },
+      {
+        "type": "Regexp",
+        "parameter1": "\\/companies-listing\\/corporate-filings-investor-complaints",
+        "parameter2": "CorporatesInC",
+        "on": [
+          "navigation"
+        ]
+      },
+      {
+        "type": "Regexp",
+        "parameter1": "\\/companies-listing\\/corporate-filings-postal-ballot",
+        "parameter2": "CorporatesPB",
+        "on": [
+          "navigation"
+        ]
+      },
+      {
+        "type": "Regexp",
+        "parameter1": "\\/companies-listing\\/corporate-filings-shareholding-pattern",
+        "parameter2": "CorporatesSHP",
+        "on": [
+          "navigation"
+        ]
+      },
+      {
+        "type": "Regexp",
+        "parameter1": "\\/companies-listing\\/corporate-filings-voting-results",
+        "parameter2": "CorporatesVR",
+        "on": [
+          "navigation"
+        ]
+      },
+      {
+        "type": "Regexp",
+        "parameter1": ".*\\/companies-listing\\/corporate-filings.*",
+        "parameter2": "Corporates-Others",
+        "on": [
+          "navigation"
+        ]
+      },
+      {
+        "type": "Regexp",
+        "parameter1": ".*\\/companies-listing\\/.*",
+        "parameter2": "List",
+        "on": [
+          "navigation"
+        ]
+      },
+      {
+        "type": "Regexp",
+        "parameter1": ".*\\/trade\\/.*",
+        "parameter2": "Trade",
+        "on": [
+          "navigation"
+        ]
+      },
+      {
+        "type": "Regexp",
+        "parameter1": ".*\\/regulations\\/.*",
+        "parameter2": "Regulation",
+        "on": [
+          "navigation"
+        ]
+      },
+      {
+        "type": "Regexp",
+        "parameter1": ".*\\/learn\\/.*",
+        "parameter2": "Learn",
+        "on": [
+          "navigation"
+        ]
+      },
+      {
+        "type": "Regexp",
+        "parameter1": ".*\\/resources\\/.*",
+        "parameter2": "Resources",
+        "on": [
+          "navigation"
+        ]
+      },
+      {
+        "type": "Regexp",
+        "parameter1": ".*\\/get-quotes\\/equity.*",
+        "parameter2": "GetQuoteEQ",
+        "on": [
+          "navigation"
+        ]
+      },
+      {
+        "type": "Regexp",
+        "parameter1": ".*\\/get-quotes\\/derivatives.*",
+        "parameter2": "GetQuoteFO",
+        "on": [
+          "navigation"
+        ]
+      },
+      {
+        "type": "Regexp",
+        "parameter1": ".*\\/get-quotes\\/slb.*",
+        "parameter2": "GetQuoteSLB",
+        "on": [
+          "navigation"
+        ]
+      },
+      {
+        "type": "Regexp",
+        "parameter1": ".*\\/currency-getquote.*",
+        "parameter2": "GetQuoteCD",
+        "on": [
+          "navigation"
+        ]
+      },
+      {
+        "type": "Regexp",
+        "parameter1": "\\/(\\?.*)?",
+        "parameter2": "homenew",
+        "on": [
+          "navigation"
+        ]
+      }
+    ],
+    "customMetrics": [
+      {
+        "name": "Revenue",
+        "index": 0,
+        "type": "Custom",
+        "label": "cmet.Revenue",
+        "dataType": "Number",
+        "xhr_ok": true,
+        "parameter1": "BOOMR.version[1].length"
+      }
+    ],
+    "customTimers": [
+      {
+        "name": "TTFB",
+        "index": 0,
+        "type": "NavigationTiming",
+        "label": "custom0",
+        "xhr_ok": true,
+        "start": "requestStart",
+        "end": "responseStart"
+      }
+    ],
+    "customDimensions": [
+      {
+        "name": "SubDomain",
+        "index": 0,
+        "type": "URLRegex",
+        "label": "cdim.SubDomain",
+        "dataType": "Text",
+        "xhr_ok": true,
+        "regex": "(www|beta|www1)\\.nseindia\\.com",
+        "replacement": "$1"
+      },
+      {
+        "name": "domain",
+        "index": 1,
+        "type": "JavaScriptVar",
+        "label": "cdim.domain",
+        "dataType": "Text",
+        "xhr_ok": true,
+        "varName": "document.domain"
+      }
+    ],
+    "urlPatterns": [],
+    "params": true
+  },
+  "Akamai": {
+    "enabled": true,
+    "mapping_xhr_base_url": "akamaihd.net",
+    "mapping_xhr_url_path": "/eum/getdns.txt",
+    "mapping_xhr_url_v4_prefix": "trial-eum-clientnsv4-s",
+    "mapping_xhr_url_v6_prefix": "trial-eum-clienttons-s"
+  },
+  "user_ip": "130d5c5fd"
+}

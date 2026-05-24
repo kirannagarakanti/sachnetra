@@ -1,0 +1,29 @@
+{
+  "data": {
+    "marketCapitalization": {
+      "tlMKtCapTri": 4.827393244886276,
+      "tlMKtCapLacCr": 463.23086290739326,
+      "timestamp": "22-May-2026"
+    },
+    "usdInr": {
+      "symbol": "USDINR",
+      "updated_time": "22-May-2026 17:00",
+      "ltp": "99.28",
+      "instrument_type": "FUTCUR",
+      "expiry_dt": "22-May-2026"
+    },
+    "giftNifty": {
+      "instrumenttype": "FUTIDX",
+      "symbol": "NIFTY",
+      "expirydate": "26-May-2026",
+      "optiontype": "-",
+      "strikeprice": 0,
+      "lastprice": 23813.5,
+      "daychange": 48.5,
+      "perchange": 0.2,
+      "contractstraded": 117767,
+      "timestmp": "22-May-2026 22:16",
+      "id": "1/NIFTYFUTIDX26-May-2026--"
+    }
+  }
+}

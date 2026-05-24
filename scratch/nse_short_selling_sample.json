@@ -1,0 +1,494 @@
+{
+  "data": [
+    {
+      "SS_DATE": "15-MAY-2026",
+      "SS_DATE_ORDER": "2026-05-14T18:30:00.000+00:00",
+      "SS_SYMBOL": "AARTIIND",
+      "SS_NAME": "AARTI INDUSTRIES LTD",
+      "SS_QTY": 93
+    },
+    {
+      "SS_DATE": "15-MAY-2026",
+      "SS_DATE_ORDER": "2026-05-14T18:30:00.000+00:00",
+      "SS_SYMBOL": "ADANIENT",
+      "SS_NAME": "ADANI ENTERPRISES LIMITED",
+      "SS_QTY": 49
+    },
+    {
+      "SS_DATE": "15-MAY-2026",
+      "SS_DATE_ORDER": "2026-05-14T18:30:00.000+00:00",
+      "SS_SYMBOL": "ADANIPOWER",
+      "SS_NAME": "ADANI POWER LTD",
+      "SS_QTY": 2
+    },
+    {
+      "SS_DATE": "15-MAY-2026",
+      "SS_DATE_ORDER": "2026-05-14T18:30:00.000+00:00",
+      "SS_SYMBOL": "AFFLE",
+      "SS_NAME": "AFFLE (INDIA) LIMITED",
+      "SS_QTY": 20
+    },
+    {
+      "SS_DATE": "15-MAY-2026",
+      "SS_DATE_ORDER": "2026-05-14T18:30:00.000+00:00",
+      "SS_SYMBOL": "AMBER",
+      "SS_NAME": "AMBER ENTERPRISES (I) LTD",
+      "SS_QTY": 17
+    },
+    {
+      "SS_DATE": "15-MAY-2026",
+      "SS_DATE_ORDER": "2026-05-14T18:30:00.000+00:00",
+      "SS_SYMBOL": "APOLLO",
+      "SS_NAME": "APOLLO MICRO SYSTEMS LTD",
+      "SS_QTY": 1600
+    },
+    {
+      "SS_DATE": "15-MAY-2026",
+      "SS_DATE_ORDER": "2026-05-14T18:30:00.000+00:00",
+      "SS_SYMBOL": "ASIANPAINT",
+      "SS_NAME": "ASIAN PAINTS LIMITED",
+      "SS_QTY": 3656
+    },
+    {
+      "SS_DATE": "15-MAY-2026",
+      "SS_DATE_ORDER": "2026-05-14T18:30:00.000+00:00",
+      "SS_SYMBOL": "AUBANK",
+      "SS_NAME": "AU SMALL FINANCE BANK LIMITED",
+      "SS_QTY": 12
+    },
+    {
+      "SS_DATE": "15-MAY-2026",
+      "SS_DATE_ORDER": "2026-05-14T18:30:00.000+00:00",
+      "SS_SYMBOL": "BAJAJHLDNG",
+      "SS_NAME": "BAJAJ HOLDINGS & INVS LTD",
+      "SS_QTY": 15
+    },
+    {
+      "SS_DATE": "15-MAY-2026",
+      "SS_DATE_ORDER": "2026-05-14T18:30:00.000+00:00",
+      "SS_SYMBOL": "BALAMINES",
+      "SS_NAME": "BALAJI AMINIES LIMITED",
+      "SS_QTY": 155
+    },
+    {
+      "SS_DATE": "15-MAY-2026",
+      "SS_DATE_ORDER": "2026-05-14T18:30:00.000+00:00",
+      "SS_SYMBOL": "BANKINDIA",
+      "SS_NAME": "BANK OF INDIA",
+      "SS_QTY": 600
+    },
+    {
+      "SS_DATE": "15-MAY-2026",
+      "SS_DATE_ORDER": "2026-05-14T18:30:00.000+00:00",
+      "SS_SYMBOL": "BELRISE",
+      "SS_NAME": "BELRISE INDUSTRIES LTD",
+      "SS_QTY": 1082
+    },
+    {
+      "SS_DATE": "15-MAY-2026",
+      "SS_DATE_ORDER": "2026-05-14T18:30:00.000+00:00",
+      "SS_SYMBOL": "BHEL",
+      "SS_NAME": "BHEL",
+      "SS_QTY": 200
+    },
+    {
+      "SS_DATE": "15-MAY-2026",
+      "SS_DATE_ORDER": "2026-05-14T18:30:00.000+00:00",
+      "SS_SYMBOL": "BIOCON",
+      "SS_NAME": "BIOCON LIMITED.",
+      "SS_QTY": 30
+    },
+    {
+      "SS_DATE": "15-MAY-2026",
+      "SS_DATE_ORDER": "2026-05-14T18:30:00.000+00:00",
+      "SS_SYMBOL": "CIPLA",
+      "SS_NAME": "CIPLA LTD",
+      "SS_QTY": 1
+    },
+    {
+      "SS_DATE": "15-MAY-2026",
+      "SS_DATE_ORDER": "2026-05-14T18:30:00.000+00:00",
+      "SS_SYMBOL": "CROMPTON",
+      "SS_NAME": "CROMPT GREA CON ELEC LTD  ",
+      "SS_QTY": 57
+    },
+    {
+      "SS_DATE": "15-MAY-2026",
+      "SS_DATE_ORDER": "2026-05-14T18:30:00.000+00:00",
+      "SS_SYMBOL": "DIVISLAB",
+      "SS_NAME": "DIVI'S LABORATORIES LTD",
+      "SS_QTY": 5
+    },
+    {
+      "SS_DATE": "15-MAY-2026",
+      "SS_DATE_ORDER": "2026-05-14T18:30:00.000+00:00",
+      "SS_SYMBOL": "FSL",
+      "SS_NAME": "FIRSTSOURCE SOLU. LTD.",
+      "SS_QTY": 8000
+    },
+    {
+      "SS_DATE": "15-MAY-2026",
+      "SS_DATE_ORDER": "2026-05-14T18:30:00.000+00:00",
+      "SS_SYMBOL": "GRAPHITE",
+      "SS_NAME": "GRAPHITE INDIA LIMITED",
+      "SS_QTY": 785
+    },
+    {
+      "SS_DATE": "15-MAY-2026",
+      "SS_DATE_ORDER": "2026-05-14T18:30:00.000+00:00",
+      "SS_SYMBOL": "HAL",
+      "SS_NAME": "HINDUSTAN AERONAUTICS LTD",
+      "SS_QTY": 1
+    },
+    {
+      "SS_DATE": "15-MAY-2026",
+      "SS_DATE_ORDER": "2026-05-14T18:30:00.000+00:00",
+      "SS_SYMBOL": "HCLTECH",
+      "SS_NAME": "HCL TECHNOLOGIES LTD",
+      "SS_QTY": 1750
+    },
+    {
+      "SS_DATE": "15-MAY-2026",
+      "SS_DATE_ORDER": "2026-05-14T18:30:00.000+00:00",
+      "SS_SYMBOL": "HDFCBANK",
+      "SS_NAME": "HDFC BANK LTD",
+      "SS_QTY": 165
+    },
+    {
+      "SS_DATE": "15-MAY-2026",
+      "SS_DATE_ORDER": "2026-05-14T18:30:00.000+00:00",
+      "SS_SYMBOL": "HDFCLIFE",
+      "SS_NAME": "HDFC STANDARD LIFE INSURANCE COMPANY LIMITED",
+      "SS_QTY": 2
+    },
+    {
+      "SS_DATE": "15-MAY-2026",
+      "SS_DATE_ORDER": "2026-05-14T18:30:00.000+00:00",
+      "SS_SYMBOL": "HEG",
+      "SS_NAME": "HEG LIMITED",
+      "SS_QTY": 900
+    },
+    {
+      "SS_DATE": "15-MAY-2026",
+      "SS_DATE_ORDER": "2026-05-14T18:30:00.000+00:00",
+      "SS_SYMBOL": "HFCL",
+      "SS_NAME": "HIMACHAL FUTURISTIC COMMUNICATIONS LIMITED",
+      "SS_QTY": 2
+    },
+    {
+      "SS_DATE": "15-MAY-2026",
+      "SS_DATE_ORDER": "2026-05-14T18:30:00.000+00:00",
+      "SS_SYMBOL": "HINDCOPPER",
+      "SS_NAME": "HINDUSTAN COPPER LIMITED",
+      "SS_QTY": 693
+    },
+    {
+      "SS_DATE": "15-MAY-2026",
+      "SS_DATE_ORDER": "2026-05-14T18:30:00.000+00:00",
+      "SS_SYMBOL": "HINDUNILVR",
+      "SS_NAME": "HINDUSTAN UNILEVER LTD.",
+      "SS_QTY": 50
+    },
+    {
+      "SS_DATE": "15-MAY-2026",
+      "SS_DATE_ORDER": "2026-05-14T18:30:00.000+00:00",
+      "SS_SYMBOL": "HONASA",
+      "SS_NAME": "HONASA CONSUMER LIMITED",
+      "SS_QTY": 435
+    },
+    {
+      "SS_DATE": "15-MAY-2026",
+      "SS_DATE_ORDER": "2026-05-14T18:30:00.000+00:00",
+      "SS_SYMBOL": "IDEAFORGE",
+      "SS_NAME": "IDEAFORGE TECHNO LTD",
+      "SS_QTY": 25
+    },
+    {
+      "SS_DATE": "15-MAY-2026",
+      "SS_DATE_ORDER": "2026-05-14T18:30:00.000+00:00",
+      "SS_SYMBOL": "IDFCFIRSTB",
+      "SS_NAME": "IDFC FIRST BANK LIMI",
+      "SS_QTY": 3100
+    },
+    {
+      "SS_DATE": "15-MAY-2026",
+      "SS_DATE_ORDER": "2026-05-14T18:30:00.000+00:00",
+      "SS_SYMBOL": "IGL",
+      "SS_NAME": "INDRAPRASTHA GAS LTD",
+      "SS_QTY": 78
+    },
+    {
+      "SS_DATE": "15-MAY-2026",
+      "SS_DATE_ORDER": "2026-05-14T18:30:00.000+00:00",
+      "SS_SYMBOL": "INFY",
+      "SS_NAME": "INFOSYS TECHNOLOGIES LTD",
+      "SS_QTY": 82800
+    },
+    {
+      "SS_DATE": "15-MAY-2026",
+      "SS_DATE_ORDER": "2026-05-14T18:30:00.000+00:00",
+      "SS_SYMBOL": "IOB",
+      "SS_NAME": "INDIAN OVERSEAS BANK",
+      "SS_QTY": 1000
+    },
+    {
+      "SS_DATE": "15-MAY-2026",
+      "SS_DATE_ORDER": "2026-05-14T18:30:00.000+00:00",
+      "SS_SYMBOL": "JINDALSAW",
+      "SS_NAME": "JINDAL SAW LIMITED",
+      "SS_QTY": 206
+    },
+    {
+      "SS_DATE": "15-MAY-2026",
+      "SS_DATE_ORDER": "2026-05-14T18:30:00.000+00:00",
+      "SS_SYMBOL": "JPPOWER",
+      "SS_NAME": "JAIPRAKASH POWER VEN. LTD",
+      "SS_QTY": 4
+    },
+    {
+      "SS_DATE": "15-MAY-2026",
+      "SS_DATE_ORDER": "2026-05-14T18:30:00.000+00:00",
+      "SS_SYMBOL": "JSWINFRA",
+      "SS_NAME": "JSW INFRASTRUCTURE LTD",
+      "SS_QTY": 145
+    },
+    {
+      "SS_DATE": "15-MAY-2026",
+      "SS_DATE_ORDER": "2026-05-14T18:30:00.000+00:00",
+      "SS_SYMBOL": "KARURVYSYA",
+      "SS_NAME": "KARUR VYSYA BANK LIMITED",
+      "SS_QTY": 1210
+    },
+    {
+      "SS_DATE": "15-MAY-2026",
+      "SS_DATE_ORDER": "2026-05-14T18:30:00.000+00:00",
+      "SS_SYMBOL": "KAYNES",
+      "SS_NAME": "KAYNES TECHNOLOGY IND LTD",
+      "SS_QTY": 402
+    },
+    {
+      "SS_DATE": "15-MAY-2026",
+      "SS_DATE_ORDER": "2026-05-14T18:30:00.000+00:00",
+      "SS_SYMBOL": "LICHSGFIN",
+      "SS_NAME": "LIC HOUSING FINANCE LTD",
+      "SS_QTY": 150
+    },
+    {
+      "SS_DATE": "15-MAY-2026",
+      "SS_DATE_ORDER": "2026-05-14T18:30:00.000+00:00",
+      "SS_SYMBOL": "LT",
+      "SS_NAME": "LARSEN & TOUBRO LTD.",
+      "SS_QTY": 12775
+    },
+    {
+      "SS_DATE": "15-MAY-2026",
+      "SS_DATE_ORDER": "2026-05-14T18:30:00.000+00:00",
+      "SS_SYMBOL": "M&M",
+      "SS_NAME": "MAHINDRA & MAHINDRA LTD",
+      "SS_QTY": 400
+    },
+    {
+      "SS_DATE": "15-MAY-2026",
+      "SS_DATE_ORDER": "2026-05-14T18:30:00.000+00:00",
+      "SS_SYMBOL": "MASPTOP50",
+      "SS_NAME": "MIRAEAMC - MASPTOP50",
+      "SS_QTY": 91
+    },
+    {
+      "SS_DATE": "15-MAY-2026",
+      "SS_DATE_ORDER": "2026-05-14T18:30:00.000+00:00",
+      "SS_SYMBOL": "MCX",
+      "SS_NAME": "MULTI COMMODITY EXCHANGE OF INDIA LIMITED",
+      "SS_QTY": 33
+    },
+    {
+      "SS_DATE": "15-MAY-2026",
+      "SS_DATE_ORDER": "2026-05-14T18:30:00.000+00:00",
+      "SS_SYMBOL": "OIL",
+      "SS_NAME": "OIL INDIA LTD",
+      "SS_QTY": 230
+    },
+    {
+      "SS_DATE": "15-MAY-2026",
+      "SS_DATE_ORDER": "2026-05-14T18:30:00.000+00:00",
+      "SS_SYMBOL": "ONGC",
+      "SS_NAME": "OIL AND NATURAL GAS CORP.",
+      "SS_QTY": 2250
+    },
+    {
+      "SS_DATE": "15-MAY-2026",
+      "SS_DATE_ORDER": "2026-05-14T18:30:00.000+00:00",
+      "SS_SYMBOL": "PGIL",
+      "SS_NAME": "PEARL GLOBAL IND LIMITED",
+      "SS_QTY": 20
+    },
+    {
+      "SS_DATE": "15-MAY-2026",
+      "SS_DATE_ORDER": "2026-05-14T18:30:00.000+00:00",
+      "SS_SYMBOL": "PIIND",
+      "SS_NAME": "PI INDUSTRIES LTD        ",
+      "SS_QTY": 10
+    },
+    {
+      "SS_DATE": "15-MAY-2026",
+      "SS_DATE_ORDER": "2026-05-14T18:30:00.000+00:00",
+      "SS_SYMBOL": "PINELABS",
+      "SS_NAME": "PINE LABS LIMITED",
+      "SS_QTY": 1
+    },
+    {
+      "SS_DATE": "15-MAY-2026",
+      "SS_DATE_ORDER": "2026-05-14T18:30:00.000+00:00",
+      "SS_SYMBOL": "PRICOLLTD",
+      "SS_NAME": "PRICOL LIMITED",
+      "SS_QTY": 400
+    },
+    {
+      "SS_DATE": "15-MAY-2026",
+      "SS_DATE_ORDER": "2026-05-14T18:30:00.000+00:00",
+      "SS_SYMBOL": "PTCIL",
+      "SS_NAME": "PTC INDUSTRIES LIMITED",
+      "SS_QTY": 1
+    },
+    {
+      "SS_DATE": "15-MAY-2026",
+      "SS_DATE_ORDER": "2026-05-14T18:30:00.000+00:00",
+      "SS_SYMBOL": "REFEX",
+      "SS_NAME": "REFEX INDUSTRIES LIMITED",
+      "SS_QTY": 278
+    },
+    {
+      "SS_DATE": "15-MAY-2026",
+      "SS_DATE_ORDER": "2026-05-14T18:30:00.000+00:00",
+      "SS_SYMBOL": "RELIANCE",
+      "SS_NAME": "RELIANCE INDUSTRIES LTD",
+      "SS_QTY": 1604
+    },
+    {
+      "SS_DATE": "15-MAY-2026",
+      "SS_DATE_ORDER": "2026-05-14T18:30:00.000+00:00",
+      "SS_SYMBOL": "SAPPHIRE",
+      "SS_NAME": "SAPPHIRE FOODS INDIA LTD",
+      "SS_QTY": 5000
+    },
+    {
+      "SS_DATE": "15-MAY-2026",
+      "SS_DATE_ORDER": "2026-05-14T18:30:00.000+00:00",
+      "SS_SYMBOL": "SAREGAMA",
+      "SS_NAME": "SAREGAMA INDIA LIMITED",
+      "SS_QTY": 10200
+    },
+    {
+      "SS_DATE": "15-MAY-2026",
+      "SS_DATE_ORDER": "2026-05-14T18:30:00.000+00:00",
+      "SS_SYMBOL": "SHILPAMED",
+      "SS_NAME": "SHILPA MEDICARE LTD",
+      "SS_QTY": 250
+    },
+    {
+      "SS_DATE": "15-MAY-2026",
+      "SS_DATE_ORDER": "2026-05-14T18:30:00.000+00:00",
+      "SS_SYMBOL": "SOLARINDS",
+      "SS_NAME": "SOLAR INDUSTRIES (I) LTD",
+      "SS_QTY": 50
+    },
+    {
+      "SS_DATE": "15-MAY-2026",
+      "SS_DATE_ORDER": "2026-05-14T18:30:00.000+00:00",
+      "SS_SYMBOL": "SOUTHBANK",
+      "SS_NAME": "THE SOUTH INDIAN BANK LTD",
+      "SS_QTY": 1
+    },
+    {
+      "SS_DATE": "15-MAY-2026",
+      "SS_DATE_ORDER": "2026-05-14T18:30:00.000+00:00",
+      "SS_SYMBOL": "STLTECH",
+      "SS_NAME": "STERLITE TECHNOLOGIES",
+      "SS_QTY": 6275
+    },
+    {
+      "SS_DATE": "15-MAY-2026",
+      "SS_DATE_ORDER": "2026-05-14T18:30:00.000+00:00",
+      "SS_SYMBOL": "TATAELXSI",
+      "SS_NAME": "TATA ELXSI LIMITED       ",
+      "SS_QTY": 2
+    },
+    {
+      "SS_DATE": "15-MAY-2026",
+      "SS_DATE_ORDER": "2026-05-14T18:30:00.000+00:00",
+      "SS_SYMBOL": "THANGAMAYL",
+      "SS_NAME": "THANGAMAYIL JEWELLERY LTD",
+      "SS_QTY": 50
+    },
+    {
+      "SS_DATE": "15-MAY-2026",
+      "SS_DATE_ORDER": "2026-05-14T18:30:00.000+00:00",
+      "SS_SYMBOL": "TIINDIA",
+      "SS_NAME": "TUBE INVEST OF INDIA LTD",
+      "SS_QTY": 50
+    },
+    {
+      "SS_DATE": "15-MAY-2026",
+      "SS_DATE_ORDER": "2026-05-14T18:30:00.000+00:00",
+      "SS_SYMBOL": "TIPSMUSIC",
+      "SS_NAME": "TIPS MUSIC LIMITED",
+      "SS_QTY": 8
+    },
+    {
+      "SS_DATE": "15-MAY-2026",
+      "SS_DATE_ORDER": "2026-05-14T18:30:00.000+00:00",
+      "SS_SYMBOL": "TMPV",
+      "SS_NAME": "TATA MOTORS PASS VEH LTD",
+      "SS_QTY": 51
+    },
+    {
+      "SS_DATE": "15-MAY-2026",
+      "SS_DATE_ORDER": "2026-05-14T18:30:00.000+00:00",
+      "SS_SYMBOL": "URBANCO",
+      "SS_NAME": "URBAN COMPANY LIMITED",
+      "SS_QTY": 17
+    },
+    {
+      "SS_DATE": "15-MAY-2026",
+      "SS_DATE_ORDER": "2026-05-14T18:30:00.000+00:00",
+      "SS_SYMBOL": "VEDL",
+      "SS_NAME": "VEDANTA LIMITED",
+      "SS_QTY": 3
+    },
+    {
+      "SS_DATE": "15-MAY-2026",
+      "SS_DATE_ORDER": "2026-05-14T18:30:00.000+00:00",
+      "SS_SYMBOL": "VIJAYA",
+      "SS_NAME": "VIJAYA DIAGNOSTIC CEN LTD",
+      "SS_QTY": 100
+    },
+    {
+      "SS_DATE": "15-MAY-2026",
+      "SS_DATE_ORDER": "2026-05-14T18:30:00.000+00:00",
+      "SS_SYMBOL": "WELSPUNLIV",
+      "SS_NAME": "WELSPUN LIVING LIMITED",
+      "SS_QTY": 18
+    },
+    {
+      "SS_DATE": "15-MAY-2026",
+      "SS_DATE_ORDER": "2026-05-14T18:30:00.000+00:00",
+      "SS_SYMBOL": "WIPRO",
+      "SS_NAME": "WIPRO LTD",
+      "SS_QTY": 510000
+    },
+    {
+      "SS_DATE": "15-MAY-2026",
+      "SS_DATE_ORDER": "2026-05-14T18:30:00.000+00:00",
+      "SS_SYMBOL": "YESBANK",
+      "SS_NAME": "YES BANK LIMITED",
+      "SS_QTY": 180
+    },
+    {
+      "SS_DATE": "18-MAY-2026",
+      "SS_DATE_ORDER": "2026-05-17T18:30:00.000+00:00",
+      "SS_SYMBOL": "ABB",
+      "SS_NAME": "ABB LTD.",
+      "SS_QTY": 2875
+    }
+  ]
+}

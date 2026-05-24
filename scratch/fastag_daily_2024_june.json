@@ -1,0 +1,308 @@
+{
+  "status": 200,
+  "data": {
+    "table_headers": {
+      "id": 121,
+      "main_header_title": null,
+      "headers": [
+        {
+          "order": 1,
+          "id": 641,
+          "header_name": "Day",
+          "isSortable": false,
+          "header_key": "npci_day",
+          "isChildExists": false,
+          "isMergedCells": null,
+          "isNumberFormattingRequired": null,
+          "columnSpan": null,
+          "maxDecimalLimit": null,
+          "isExternalLink": null,
+          "link_key": null,
+          "sub_headers": []
+        },
+        {
+          "order": 2,
+          "id": 642,
+          "header_name": "Volume (In Mn.)",
+          "isSortable": false,
+          "header_key": "netc_volume_mn",
+          "isChildExists": false,
+          "isMergedCells": null,
+          "isNumberFormattingRequired": true,
+          "columnSpan": null,
+          "maxDecimalLimit": null,
+          "isExternalLink": null,
+          "link_key": null,
+          "sub_headers": []
+        },
+        {
+          "order": 3,
+          "id": 763,
+          "header_name": "Value (In Cr.)",
+          "isSortable": false,
+          "header_key": "netc_value_crores",
+          "isChildExists": false,
+          "isMergedCells": null,
+          "isNumberFormattingRequired": true,
+          "columnSpan": null,
+          "maxDecimalLimit": null,
+          "isExternalLink": null,
+          "link_key": null,
+          "sub_headers": []
+        }
+      ]
+    },
+    "totalCount": 31,
+    "results": [
+      {
+        "npci_day": "June 01, 2024",
+        "row_number": 1128,
+        "month": "June",
+        "year": "2024",
+        "netc_volume_mn": "11.898",
+        "netc_value_crores": "204.63"
+      },
+      {
+        "npci_day": "June 02, 2024",
+        "row_number": 1129,
+        "month": "June",
+        "year": "2024",
+        "netc_volume_mn": "11.884",
+        "netc_value_crores": "196.87"
+      },
+      {
+        "npci_day": "June 03, 2024",
+        "row_number": 1130,
+        "month": "June",
+        "year": "2024",
+        "netc_volume_mn": "10.906",
+        "netc_value_crores": "187.25"
+      },
+      {
+        "npci_day": "June 04, 2024",
+        "row_number": 1131,
+        "month": "June",
+        "year": "2024",
+        "netc_volume_mn": "9.554",
+        "netc_value_crores": "176.62"
+      },
+      {
+        "npci_day": "June 05, 2024",
+        "row_number": 1132,
+        "month": "June",
+        "year": "2024",
+        "netc_volume_mn": "10.45",
+        "netc_value_crores": "187.81"
+      },
+      {
+        "npci_day": "June 06, 2024",
+        "row_number": 1133,
+        "month": "June",
+        "year": "2024",
+        "netc_volume_mn": "10.656",
+        "netc_value_crores": "191.34"
+      },
+      {
+        "npci_day": "June 07, 2024",
+        "row_number": 1134,
+        "month": "June",
+        "year": "2024",
+        "netc_volume_mn": "11.169",
+        "netc_value_crores": "196.5"
+      },
+      {
+        "npci_day": "June 08, 2024",
+        "row_number": 1135,
+        "month": "June",
+        "year": "2024",
+        "netc_volume_mn": "12.427",
+        "netc_value_crores": "210.07"
+      },
+      {
+        "npci_day": "June 09, 2024",
+        "row_number": 1136,
+        "month": "June",
+        "year": "2024",
+        "netc_volume_mn": "12.259",
+        "netc_value_crores": "203.11"
+      },
+      {
+        "npci_day": "June 10, 2024",
+        "row_number": 1137,
+        "month": "June",
+        "year": "2024",
+        "netc_volume_mn": "11.033",
+        "netc_value_crores": "186.09"
+      },
+      {
+        "npci_day": "June 11, 2024",
+        "row_number": 1138,
+        "month": "June",
+        "year": "2024",
+        "netc_volume_mn": "10.745",
+        "netc_value_crores": "188.17"
+      },
+      {
+        "npci_day": "June 12, 2024",
+        "row_number": 1139,
+        "month": "June",
+        "year": "2024",
+        "netc_volume_mn": "10.998",
+        "netc_value_crores": "192.5"
+      },
+      {
+        "npci_day": "June 13, 2024",
+        "row_number": 1140,
+        "month": "June",
+        "year": "2024",
+        "netc_volume_mn": "10.966",
+        "netc_value_crores": "197.18"
+      },
+      {
+        "npci_day": "June 14, 2024",
+        "row_number": 1141,
+        "month": "June",
+        "year": "2024",
+        "netc_volume_mn": "11.256",
+        "netc_value_crores": "199.49"
+      },
+      {
+        "npci_day": "June 15, 2024",
+        "row_number": 1142,
+        "month": "June",
+        "year": "2024",
+        "netc_volume_mn": "12.175",
+        "netc_value_crores": "205.23"
+      },
+      {
+        "npci_day": "June 16, 2024",
+        "row_number": 1143,
+        "month": "June",
+        "year": "2024",
+        "netc_volume_mn": "12.115",
+        "netc_value_crores": "197.04"
+      },
+      {
+        "npci_day": "June 17, 2024",
+        "row_number": 1144,
+        "month": "June",
+        "year": "2024",
+        "netc_volume_mn": "10.789",
+        "netc_value_crores": "172.09"
+      },
+      {
+        "npci_day": "June 18, 2024",
+        "row_number": 1145,
+        "month": "June",
+        "year": "2024",
+        "netc_volume_mn": "10.182",
+        "netc_value_crores": "171.45"
+      },
+      {
+        "npci_day": "June 19, 2024",
+        "row_number": 1146,
+        "month": "June",
+        "year": "2024",
+        "netc_volume_mn": "10.585",
+        "netc_value_crores": "181.37"
+      },
+      {
+        "npci_day": "June 20, 2024",
+        "row_number": 1147,
+        "month": "June",
+        "year": "2024",
+        "netc_volume_mn": "10.64",
+        "netc_value_crores": "187.67"
+      },
+      {
+        "npci_day": "June 21, 2024",
+        "row_number": 1148,
+        "month": "June",
+        "year": "2024",
+        "netc_volume_mn": "11.061",
+        "netc_value_crores": "193.88"
+      },
+      {
+        "npci_day": "June 22, 2024",
+        "row_number": 1149,
+        "month": "June",
+        "year": "2024",
+        "netc_volume_mn": "11.986",
+        "netc_value_crores": "204.68"
+      },
+      {
+        "npci_day": "June 23, 2024",
+        "row_number": 1150,
+        "month": "June",
+        "year": "2024",
+        "netc_volume_mn": "11.69",
+        "netc_value_crores": "197.92"
+      },
+      {
+        "npci_day": "June 24, 2024",
+        "row_number": 1151,
+        "month": "June",
+        "year": "2024",
+        "netc_volume_mn": "10.723",
+        "netc_value_crores": "182.68"
+      },
+      {
+        "npci_day": "June 25, 2024",
+        "row_number": 1152,
+        "month": "June",
+        "year": "2024",
+        "netc_volume_mn": "10.519",
+        "netc_value_crores": "184.96"
+      },
+      {
+        "npci_day": "June 26, 2024",
+        "row_number": 1153,
+        "month": "June",
+        "year": "2024",
+        "netc_volume_mn": "10.699",
+        "netc_value_crores": "189.89"
+      },
+      {
+        "npci_day": "June 27, 2024",
+        "row_number": 1154,
+        "month": "June",
+        "year": "2024",
+        "netc_volume_mn": "10.756",
+        "netc_value_crores": "194.29"
+      },
+      {
+        "npci_day": "June 28, 2024",
+        "row_number": 1155,
+        "month": "June",
+        "year": "2024",
+        "netc_volume_mn": "10.879",
+        "netc_value_crores": "193.96"
+      },
+      {
+        "npci_day": "June 29, 2024",
+        "row_number": 1156,
+        "month": "June",
+        "year": "2024",
+        "netc_volume_mn": "11.537",
+        "netc_value_crores": "203.71"
+      },
+      {
+        "npci_day": "June 30, 2024",
+        "row_number": 1157,
+        "month": "June",
+        "year": "2024",
+        "netc_volume_mn": "11.868",
+        "netc_value_crores": "201.39"
+      },
+      {
+        "npci_day": "Total",
+        "row_number": null,
+        "month": "June",
+        "year": "2024",
+        "netc_volume_mn": "334.41",
+        "netc_value_crores": "5779.84",
+        "isTotal": true
+      }
+    ]
+  }
+}

@@ -1,0 +1,308 @@
+{
+  "status": 200,
+  "data": {
+    "table_headers": {
+      "id": 121,
+      "main_header_title": null,
+      "headers": [
+        {
+          "order": 1,
+          "id": 641,
+          "header_name": "Day",
+          "isSortable": false,
+          "header_key": "npci_day",
+          "isChildExists": false,
+          "isMergedCells": null,
+          "isNumberFormattingRequired": null,
+          "columnSpan": null,
+          "maxDecimalLimit": null,
+          "isExternalLink": null,
+          "link_key": null,
+          "sub_headers": []
+        },
+        {
+          "order": 2,
+          "id": 642,
+          "header_name": "Volume (In Mn.)",
+          "isSortable": false,
+          "header_key": "netc_volume_mn",
+          "isChildExists": false,
+          "isMergedCells": null,
+          "isNumberFormattingRequired": true,
+          "columnSpan": null,
+          "maxDecimalLimit": null,
+          "isExternalLink": null,
+          "link_key": null,
+          "sub_headers": []
+        },
+        {
+          "order": 3,
+          "id": 763,
+          "header_name": "Value (In Cr.)",
+          "isSortable": false,
+          "header_key": "netc_value_crores",
+          "isChildExists": false,
+          "isMergedCells": null,
+          "isNumberFormattingRequired": true,
+          "columnSpan": null,
+          "maxDecimalLimit": null,
+          "isExternalLink": null,
+          "link_key": null,
+          "sub_headers": []
+        }
+      ]
+    },
+    "totalCount": 31,
+    "results": [
+      {
+        "npci_day": "June 01, 2021",
+        "row_number": 32,
+        "month": "June",
+        "year": "2021",
+        "netc_volume_mn": "4.16",
+        "netc_value_crores": "73.99"
+      },
+      {
+        "npci_day": "June 02, 2021",
+        "row_number": 33,
+        "month": "June",
+        "year": "2021",
+        "netc_volume_mn": "4.32",
+        "netc_value_crores": "75.52"
+      },
+      {
+        "npci_day": "June 03, 2021",
+        "row_number": 34,
+        "month": "June",
+        "year": "2021",
+        "netc_volume_mn": "4.39",
+        "netc_value_crores": "77.2"
+      },
+      {
+        "npci_day": "June 04, 2021",
+        "row_number": 35,
+        "month": "June",
+        "year": "2021",
+        "netc_volume_mn": "4.6",
+        "netc_value_crores": "79.86"
+      },
+      {
+        "npci_day": "June 05, 2021",
+        "row_number": 36,
+        "month": "June",
+        "year": "2021",
+        "netc_volume_mn": "4.59",
+        "netc_value_crores": "79.46"
+      },
+      {
+        "npci_day": "June 06, 2021",
+        "row_number": 37,
+        "month": "June",
+        "year": "2021",
+        "netc_volume_mn": "4.36",
+        "netc_value_crores": "77.89"
+      },
+      {
+        "npci_day": "June 07, 2021",
+        "row_number": 38,
+        "month": "June",
+        "year": "2021",
+        "netc_volume_mn": "4.61",
+        "netc_value_crores": "75.36"
+      },
+      {
+        "npci_day": "June 08, 2021",
+        "row_number": 39,
+        "month": "June",
+        "year": "2021",
+        "netc_volume_mn": "4.73",
+        "netc_value_crores": "79.41"
+      },
+      {
+        "npci_day": "June 09, 2021",
+        "row_number": 40,
+        "month": "June",
+        "year": "2021",
+        "netc_volume_mn": "4.76",
+        "netc_value_crores": "80.61"
+      },
+      {
+        "npci_day": "June 10, 2021",
+        "row_number": 41,
+        "month": "June",
+        "year": "2021",
+        "netc_volume_mn": "4.89",
+        "netc_value_crores": "85.03"
+      },
+      {
+        "npci_day": "June 11, 2021",
+        "row_number": 42,
+        "month": "June",
+        "year": "2021",
+        "netc_volume_mn": "5.13",
+        "netc_value_crores": "85.59"
+      },
+      {
+        "npci_day": "June 12, 2021",
+        "row_number": 43,
+        "month": "June",
+        "year": "2021",
+        "netc_volume_mn": "5.48",
+        "netc_value_crores": "90.61"
+      },
+      {
+        "npci_day": "June 13, 2021",
+        "row_number": 44,
+        "month": "June",
+        "year": "2021",
+        "netc_volume_mn": "5.05",
+        "netc_value_crores": "85.16"
+      },
+      {
+        "npci_day": "June 14, 2021",
+        "row_number": 45,
+        "month": "June",
+        "year": "2021",
+        "netc_volume_mn": "5.18",
+        "netc_value_crores": "80.37"
+      },
+      {
+        "npci_day": "June 15, 2021",
+        "row_number": 46,
+        "month": "June",
+        "year": "2021",
+        "netc_volume_mn": "5.14",
+        "netc_value_crores": "82.71"
+      },
+      {
+        "npci_day": "June 16, 2021",
+        "row_number": 47,
+        "month": "June",
+        "year": "2021",
+        "netc_volume_mn": "5.3",
+        "netc_value_crores": "84.22"
+      },
+      {
+        "npci_day": "June 17, 2021",
+        "row_number": 48,
+        "month": "June",
+        "year": "2021",
+        "netc_volume_mn": "5.41",
+        "netc_value_crores": "87.74"
+      },
+      {
+        "npci_day": "June 18, 2021",
+        "row_number": 49,
+        "month": "June",
+        "year": "2021",
+        "netc_volume_mn": "5.66",
+        "netc_value_crores": "90.99"
+      },
+      {
+        "npci_day": "June 19, 2021",
+        "row_number": 50,
+        "month": "June",
+        "year": "2021",
+        "netc_volume_mn": "5.67",
+        "netc_value_crores": "90.76"
+      },
+      {
+        "npci_day": "June 20, 2021",
+        "row_number": 51,
+        "month": "June",
+        "year": "2021",
+        "netc_volume_mn": "5.51",
+        "netc_value_crores": "88.43"
+      },
+      {
+        "npci_day": "June 21, 2021",
+        "row_number": 52,
+        "month": "June",
+        "year": "2021",
+        "netc_volume_mn": "5.6",
+        "netc_value_crores": "84.02"
+      },
+      {
+        "npci_day": "June 22, 2021",
+        "row_number": 53,
+        "month": "June",
+        "year": "2021",
+        "netc_volume_mn": "5.6",
+        "netc_value_crores": "88.04"
+      },
+      {
+        "npci_day": "June 23, 2021",
+        "row_number": 54,
+        "month": "June",
+        "year": "2021",
+        "netc_volume_mn": "5.85",
+        "netc_value_crores": "91.51"
+      },
+      {
+        "npci_day": "June 24, 2021",
+        "row_number": 55,
+        "month": "June",
+        "year": "2021",
+        "netc_volume_mn": "5.81",
+        "netc_value_crores": "93.36"
+      },
+      {
+        "npci_day": "June 25, 2021",
+        "row_number": 56,
+        "month": "June",
+        "year": "2021",
+        "netc_volume_mn": "6.06",
+        "netc_value_crores": "95.61"
+      },
+      {
+        "npci_day": "June 26, 2021",
+        "row_number": 57,
+        "month": "June",
+        "year": "2021",
+        "netc_volume_mn": "6.17",
+        "netc_value_crores": "97.63"
+      },
+      {
+        "npci_day": "June 27, 2021",
+        "row_number": 58,
+        "month": "June",
+        "year": "2021",
+        "netc_volume_mn": "6.1",
+        "netc_value_crores": "96.58"
+      },
+      {
+        "npci_day": "June 28, 2021",
+        "row_number": 59,
+        "month": "June",
+        "year": "2021",
+        "netc_volume_mn": "5.95",
+        "netc_value_crores": "89.68"
+      },
+      {
+        "npci_day": "June 29, 2021",
+        "row_number": 60,
+        "month": "June",
+        "year": "2021",
+        "netc_volume_mn": "5.79",
+        "netc_value_crores": "92.65"
+      },
+      {
+        "npci_day": "June 30, 2021",
+        "row_number": 61,
+        "month": "June",
+        "year": "2021",
+        "netc_volume_mn": "5.98",
+        "netc_value_crores": "96.27"
+      },
+      {
+        "npci_day": "Total",
+        "row_number": null,
+        "month": "June",
+        "year": "2021",
+        "netc_volume_mn": "157.85",
+        "netc_value_crores": "2576.26",
+        "isTotal": true
+      }
+    ]
+  }
+}
