@@ -243,6 +243,51 @@ CREATE INDEX IF NOT EXISTS idx_deals_date        ON india_bulk_block_deals (deal
 CREATE INDEX IF NOT EXISTS idx_deals_symbol_date ON india_bulk_block_deals (symbol, deal_date DESC);
 CREATE INDEX IF NOT EXISTS idx_deals_client_date ON india_bulk_block_deals (client_name, deal_date DESC);
 CREATE INDEX IF NOT EXISTS idx_deals_type_date   ON india_bulk_block_deals (deal_type, deal_date DESC);
+
+-- V2-026 POSOCO / GRID-INDIA daily electricity demand. Independent non-news source:
+-- no FK to other tables (Decision 11). One table for both regional aggregates and
+-- state leaves via row_type (Decision 4). Natural composite PK — no surrogate hash
+-- (Decision 5). Append-only ON CONFLICT DO NOTHING — disclosures are immutable.
+CREATE TABLE IF NOT EXISTS india_electricity_demand (
+  target_date              DATE NOT NULL,        -- reporting_date - 1 day (Decision 7)
+  row_type                 TEXT NOT NULL,        -- 'state' | 'region_total' | 'national_total'
+  entity_name              TEXT NOT NULL,        -- state/entity (e.g. 'Punjab') or 'All India' / 'NR' / ...
+  region                   TEXT,                 -- 'NR'|'WR'|'SR'|'ER'|'NER'|'All India'
+  max_demand_met_mw        NUMERIC,              -- peak load actually served (MW)
+  peak_demand_met_mw       NUMERIC,              -- evening-peak demand met (MW); Section A only
+  peak_demand_shortage_mw  NUMERIC,              -- shortfall at max demand (MW)
+  energy_met_mu            NUMERIC,              -- total energy delivered (MU = GWh)
+  energy_shortage_mu       NUMERIC,              -- energy shortfall (MU, positive)
+  drawal_schedule_mu       NUMERIC,              -- scheduled drawal (MU); Section C only
+  od_ud_mu                 NUMERIC,              -- drawal OD(+)/UD(-) (MU); Section C only
+  max_od_mw                NUMERIC,              -- max over-drawal (MW); Section C only (Decision 9)
+  max_ud_mw                NUMERIC,              -- max under-drawal (MW, signed); Section C only (Decision 9)
+  source                   TEXT NOT NULL DEFAULT 'grid-india',
+  created_at               TIMESTAMPTZ DEFAULT NOW(),
+  PRIMARY KEY (target_date, row_type, entity_name)
+);
+CREATE INDEX IF NOT EXISTS idx_elec_date          ON india_electricity_demand (target_date DESC);
+CREATE INDEX IF NOT EXISTS idx_elec_entity_date   ON india_electricity_demand (entity_name, target_date DESC);
+CREATE INDEX IF NOT EXISTS idx_elec_row_type_date ON india_electricity_demand (row_type, target_date DESC);
+
+-- V2-027 NPCI / NETC FASTag national toll volumes (daily + monthly). Independent
+-- non-news source: no FK to other tables (Decision 11). One table for both
+-- cadences via row_type (Decision 4). Natural composite PK — no surrogate hash
+-- (Decision 5). Append-only ON CONFLICT DO NOTHING — NPCI reports are
+-- immutable in practice; incremental daily updates only add new days.
+CREATE TABLE IF NOT EXISTS india_fastag_toll_volumes (
+  target_date            DATE NOT NULL,        -- daily: the day; monthly: 1st of month (Decision 5)
+  row_type               TEXT NOT NULL,        -- 'daily_national' | 'monthly_national'
+  transaction_count      BIGINT,               -- raw count = volume_in_mn × 1e6 (Decision 8)
+  transaction_value_inr  NUMERIC,              -- raw ₹ = amount_in_cr × 1e7 (Decision 8)
+  active_tags            BIGINT,               -- monthly only; tag_issuance_in_nos cleaned (Decision 7)
+  live_banks             INTEGER,              -- monthly only; no_of_banks_live_on_netc
+  source                 TEXT NOT NULL DEFAULT 'npci',
+  created_at             TIMESTAMPTZ DEFAULT NOW(),
+  PRIMARY KEY (target_date, row_type)
+);
+CREATE INDEX IF NOT EXISTS idx_fastag_date          ON india_fastag_toll_volumes (target_date DESC);
+CREATE INDEX IF NOT EXISTS idx_fastag_row_type_date ON india_fastag_toll_volumes (row_type, target_date DESC);
 `;
 
 async function migrate() {
@@ -296,6 +341,13 @@ async function migrate() {
     console.log('✓ Index created: idx_deals_symbol_date');
     console.log('✓ Index created: idx_deals_client_date');
     console.log('✓ Index created: idx_deals_type_date');
+    console.log('✓ Table created: india_electricity_demand');
+    console.log('✓ Index created: idx_elec_date');
+    console.log('✓ Index created: idx_elec_entity_date');
+    console.log('✓ Index created: idx_elec_row_type_date');
+    console.log('✓ Table created: india_fastag_toll_volumes');
+    console.log('✓ Index created: idx_fastag_date');
+    console.log('✓ Index created: idx_fastag_row_type_date');
 
     // Confirm the table exists and show column count
     const { rows } = await pool.query(`
