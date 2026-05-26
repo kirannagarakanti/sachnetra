@@ -140,6 +140,7 @@ V2-024  NSE Options Chain + OI (EOD)      [TASK FILED ✅ — 2026-05-22 · awai
 V2-030  NSE Bulk & Block Deals            [CODE COMPLETE ✅ — 2026-05-23 · awaiting Lijo prod run + Railway cron]
 V2-026  POSOCO Electricity Daily          [TASK FILED ✅ — 2026-05-24 · awaiting James impl]
 V2-027  NPCI/NETC FASTag Daily+Monthly    [TASK FILED ✅ — 2026-05-24 · awaiting James impl]
+V2-031  G1+G2 News Ticker Tagging         [CODE COMPLETE ✅ — 2026-05-26 · awaiting Lijo prod run (migration → 48h gate → backfill → cutover)]
 ```
 
 Roadmap V2-015–V2-029 (Tier 2+ alpha sources) live in
