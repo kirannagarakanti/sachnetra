@@ -545,11 +545,11 @@ No browser/variant verification (backend-only task). Runtime validation against 
 
 - [x] Recon transcribed from Gemini external + Claude codebase findings — 2026-05-26
 - [ ] Phase 1 (shadow column DDL) complete
-- [ ] Phase 2 (build equity master) complete — JSON row count: ___
-- [ ] Phase 3 (rewrite tagger) complete
-- [ ] Phase 4 (backfill script) complete
-- [ ] Phase 5 (self-check on 100-row prod sample) complete — dry-run coverage: ___%
-- [ ] Typecheck 0 / Biome 0
+- [x] Phase 2 (build equity master) complete — JSON row count: **2,386 tickers, 7,570 aliases, 260 collisions filtered**
+- [x] Phase 3 (rewrite tagger) complete — 17/17 inline smoke-test cases pass
+- [x] Phase 4 (backfill script) complete
+- [x] Phase 5 (self-check on 100-row prod sample) complete — dry-run coverage: **33.00% (33/100)**, per-headline avg: **2.45 ms** (well below the 50 ms perf gate)
+- [x] Typecheck 0 / Biome 0
 - [ ] Sacred-file diffs empty (seed-insights, seed-india-signals, seed-india-announcements, variants/*)
 - [ ] Handoff to Lijo: migration (shadow column ADD), 48h forward-tagger observation window, gate query, backfill, sample verification, cutover SQL — all pending Lijo
 - [ ] CLAUDE.md V2 Task Status: V2-031 → COMPLETE (after Lijo's cutover, not at James' code merge)
