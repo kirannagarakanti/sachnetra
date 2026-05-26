@@ -288,6 +288,16 @@ CREATE TABLE IF NOT EXISTS india_fastag_toll_volumes (
 );
 CREATE INDEX IF NOT EXISTS idx_fastag_date          ON india_fastag_toll_volumes (target_date DESC);
 CREATE INDEX IF NOT EXISTS idx_fastag_row_type_date ON india_fastag_toll_volumes (row_type, target_date DESC);
+
+-- V2-031 G1+G2 news ticker tagging. Adds a shadow column for the one-time
+-- backfill (Decision 8) — reads stay on nse_tickers throughout the verification
+-- window; the cutover (UPDATE + DROP COLUMN) is Lijo's manual step after sampling.
+-- Idempotent: ADD COLUMN IF NOT EXISTS, safe to re-run.
+ALTER TABLE india_news_signals
+  ADD COLUMN IF NOT EXISTS nse_tickers_v2 TEXT[] DEFAULT NULL;
+CREATE INDEX IF NOT EXISTS idx_signals_v2_tagged
+  ON india_news_signals ((array_length(nse_tickers_v2, 1)))
+  WHERE nse_tickers_v2 IS NOT NULL;
 `;
 
 async function migrate() {
@@ -348,6 +358,8 @@ async function migrate() {
     console.log('✓ Table created: india_fastag_toll_volumes');
     console.log('✓ Index created: idx_fastag_date');
     console.log('✓ Index created: idx_fastag_row_type_date');
+    console.log('✓ Column added: india_news_signals.nse_tickers_v2');
+    console.log('✓ Index created: idx_signals_v2_tagged');
 
     // Confirm the table exists and show column count
     const { rows } = await pool.query(`
