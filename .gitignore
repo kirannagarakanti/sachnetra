@@ -4,6 +4,8 @@ dist/
 public/blog/
 .DS_Store
 *.log
+# V2-031 Decision 6(a) audit trail — tracked for PR-reviewable collision diffs.
+!shared/nse-equity-master.collisions.log
 .env
 .env.local
 .playwright-mcp/

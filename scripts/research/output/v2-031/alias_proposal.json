@@ -1,0 +1,321 @@
+[
+  {
+    "ticker": "RELIANCE",
+    "name": "Reliance Industries Limited",
+    "aliases": ["Reliance", "RIL", "Reliance Industries", "Mukesh Ambani's company"],
+    "notes": "Group name — also watch for Reliance Retail, Reliance Jio (separate listed/unlisted entities). Default to RELIANCE (group parent) unless specific subsidiary mentioned."
+  },
+  {
+    "ticker": "TCS",
+    "name": "Tata Consultancy Services Limited",
+    "aliases": ["TCS", "Tata Consultancy", "Tata Consultancy Services"],
+    "notes": "Safe — no common English collision"
+  },
+  {
+    "ticker": "HDFCBANK",
+    "name": "HDFC Bank Limited",
+    "aliases": ["HDFC Bank", "HDFCBANK", "HDFC"],
+    "notes": "HDFC alone can be ambiguous (was HDFC Ltd the parent; now merged). Post-merger: HDFC alone → HDFCBANK."
+  },
+  {
+    "ticker": "INFY",
+    "name": "Infosys Limited",
+    "aliases": ["Infosys", "Infy", "INFY"],
+    "notes": "Safe — no collision"
+  },
+  {
+    "ticker": "ICICIBANK",
+    "name": "ICICI Bank Limited",
+    "aliases": ["ICICI Bank", "ICICIBANK", "ICICI"],
+    "notes": "ICICI alone could mean ICICI Securities, ICICI Lombard — require 'Bank' or full name for ICICIBANK specifically"
+  },
+  {
+    "ticker": "HINDUNILVR",
+    "name": "Hindustan Unilever Limited",
+    "aliases": ["Hindustan Unilever", "HUL", "Hindustan Lever", "Unilever India"],
+    "notes": "Brand aliases: Surf Excel, Dove, Lux, Lifebuoy (all HUL brands). Also acquired Horlicks (from GSK Consumer, delisted 2020)."
+  },
+  {
+    "ticker": "HINDUNILVR",
+    "name": "Horlicks brand (now HUL)",
+    "aliases": ["Horlicks"],
+    "notes": "Horlicks brand acquired from GSK Consumer Healthcare (GSKCONS — delisted Apr 2020). Any Horlicks article post-2020 → HINDUNILVR"
+  },
+  {
+    "ticker": "ITC",
+    "name": "ITC Limited",
+    "aliases": ["ITC"],
+    "notes": "Safe in Indian financial context — no collision. ITC is a standalone abbreviation."
+  },
+  {
+    "ticker": "SBIN",
+    "name": "State Bank of India",
+    "aliases": ["SBI", "State Bank", "State Bank of India"],
+    "notes": "SBI alone is unambiguous in Indian finance context"
+  },
+  {
+    "ticker": "BAJFINANCE",
+    "name": "Bajaj Finance Limited",
+    "aliases": ["Bajaj Finance", "BAJFINANCE"],
+    "notes": "Distinguish from Bajaj Auto (BAJAJ-AUTO) and Bajaj Finserv (BAJAJFINSV)"
+  },
+  {
+    "ticker": "BAJAJ-AUTO",
+    "name": "Bajaj Auto Limited",
+    "aliases": ["Bajaj Auto", "Bajaj Motorcycles"],
+    "notes": "Disambiguate from Bajaj Finance — require 'auto', 'motorcycle', 'bike', 'two-wheeler', 'Pulsar', 'Chetak'"
+  },
+  {
+    "ticker": "BHARTIARTL",
+    "name": "Bharti Airtel Limited",
+    "aliases": ["Bharti Airtel", "Airtel"],
+    "notes": "Airtel alone is sufficient in India context"
+  },
+  {
+    "ticker": "WIPRO",
+    "name": "Wipro Limited",
+    "aliases": ["Wipro"],
+    "notes": "Safe — no collision in financial context"
+  },
+  {
+    "ticker": "MARUTI",
+    "name": "Maruti Suzuki India Limited",
+    "aliases": ["Maruti", "Maruti Suzuki", "MSIL"],
+    "notes": "Safe — unique brand in Indian auto context"
+  },
+  {
+    "ticker": "HCLTECH",
+    "name": "HCL Technologies Limited",
+    "aliases": ["HCL Tech", "HCL Technologies", "HCLTECH", "HCL"],
+    "notes": "HCL alone can also mean HCL Corporation (private, US). Prefer 'HCL Tech' or 'HCL Technologies' for safer tagging."
+  },
+  {
+    "ticker": "TATAMOTORS",
+    "name": "Tata Motors Limited",
+    "aliases": ["Tata Motors", "TATAMOTORS", "Jaguar Land Rover"],
+    "notes": "JLR articles → TATAMOTORS (JLR is owned by Tata Motors). Post-demerger: TATAMOTORS and TATAMTRDVR. Watch Yahoo ticker rename."
+  },
+  {
+    "ticker": "TATASTEEL",
+    "name": "Tata Steel Limited",
+    "aliases": ["Tata Steel", "TATASTEEL"],
+    "notes": "Distinguish from Tata Motors, TCS — require 'steel' qualifier or TATASTEEL symbol"
+  },
+  {
+    "ticker": "KOTAKBANK",
+    "name": "Kotak Mahindra Bank Limited",
+    "aliases": ["Kotak Mahindra", "Kotak Bank", "KOTAKBANK", "Kotak"],
+    "notes": "Kotak alone is sufficient in financial context. Distinct from Mahindra (auto)."
+  },
+  {
+    "ticker": "AXISBANK",
+    "name": "Axis Bank Limited",
+    "aliases": ["Axis Bank", "AXISBANK", "Axis"],
+    "notes": "Axis alone is ambiguous (axis the noun). Require 'Bank' or 'Axis Bank'."
+  },
+  {
+    "ticker": "ULTRACEMCO",
+    "name": "UltraTech Cement Limited",
+    "aliases": ["UltraTech Cement", "UltraTech", "ULTRACEMCO"],
+    "notes": "Safe — distinctive brand name"
+  },
+  {
+    "ticker": "SUNPHARMA",
+    "name": "Sun Pharmaceutical Industries Limited",
+    "aliases": ["Sun Pharma", "Sun Pharmaceutical", "SUNPHARMA"],
+    "notes": "Safe — distinctive in pharma context"
+  },
+  {
+    "ticker": "ASIANPAINT",
+    "name": "Asian Paints Limited",
+    "aliases": ["Asian Paints", "ASIANPAINT"],
+    "notes": "HAZARD: 'Asian' and 'Paints' alone are ambiguous. Require full phrase 'Asian Paints' together.",
+    "disambiguation_rule": "Require both words together as a phrase: 'Asian Paints'"
+  },
+  {
+    "ticker": "NESTLEIND",
+    "name": "Nestle India Limited",
+    "aliases": ["Nestle India", "NESTLEIND", "Nestle", "Maggi", "KitKat India", "Nescafe India"],
+    "notes": "Brand aliases: Maggi (flagship brand), KitKat, Nescafe, Munch — all Nestle India products. 'Nestle' alone (without 'India') may refer to global Nestle — flag if article is about Indian ops."
+  },
+  {
+    "ticker": "POWERGRID",
+    "name": "Power Grid Corporation of India Limited",
+    "aliases": ["Power Grid", "POWERGRID", "PGCIL"],
+    "notes": "Safe in Indian infrastructure context"
+  },
+  {
+    "ticker": "NTPC",
+    "name": "NTPC Limited",
+    "aliases": ["NTPC"],
+    "notes": "Safe — unique acronym in Indian power sector"
+  },
+  {
+    "ticker": "ONGC",
+    "name": "Oil and Natural Gas Corporation Limited",
+    "aliases": ["ONGC", "Oil and Natural Gas"],
+    "notes": "Safe — unique acronym"
+  },
+  {
+    "ticker": "DIVISLAB",
+    "name": "Divi's Laboratories Limited",
+    "aliases": ["Divis Lab", "Divi's Laboratories", "Divis Laboratories", "DIVISLAB"],
+    "notes": "Safe — distinctive name"
+  },
+  {
+    "ticker": "CIPLA",
+    "name": "Cipla Limited",
+    "aliases": ["Cipla"],
+    "notes": "Safe — unique brand in pharma context"
+  },
+  {
+    "ticker": "EICHERMOT",
+    "name": "Eicher Motors Limited",
+    "aliases": ["Eicher Motors", "EICHERMOT", "Royal Enfield"],
+    "notes": "Royal Enfield is a brand of Eicher Motors. Articles about Royal Enfield → EICHERMOT."
+  },
+  {
+    "ticker": "GRASIM",
+    "name": "Grasim Industries Limited",
+    "aliases": ["Grasim", "GRASIM", "Liva"],
+    "notes": "Liva is a brand of Birla Cellulose, a business unit of Grasim Industries (not separately listed). Aditya Birla Fashion (ABFRL) is a separate listing."
+  },
+  {
+    "ticker": "HEROMOTOCO",
+    "name": "Hero MotoCorp Limited",
+    "aliases": ["Hero MotoCorp", "Hero Honda", "HEROMOTOCO", "Hero Moto"],
+    "notes": "Hero alone is ambiguous. Require 'MotoCorp' or 'Hero Honda' or two-wheeler context."
+  },
+  {
+    "ticker": "HINDALCO",
+    "name": "Hindalco Industries Limited",
+    "aliases": ["Hindalco", "HINDALCO", "Hindalco Industries", "Novelis"],
+    "notes": "Novelis (US subsidiary) articles → HINDALCO. Hindalco is part of Aditya Birla Group."
+  },
+  {
+    "ticker": "INDUSINDBK",
+    "name": "IndusInd Bank Limited",
+    "aliases": ["IndusInd Bank", "INDUSINDBK", "IndusInd"],
+    "notes": "Safe — distinctive bank name"
+  },
+  {
+    "ticker": "JSWSTEEL",
+    "name": "JSW Steel Limited",
+    "aliases": ["JSW Steel", "JSWSTEEL", "JSW"],
+    "notes": "JSW alone may refer to JSW Energy (JSWENERGY) — require 'Steel' for this ticker"
+  },
+  {
+    "ticker": "LT",
+    "name": "Larsen & Toubro Limited",
+    "aliases": ["L&T", "Larsen & Toubro", "Larsen and Toubro", "LT"],
+    "notes": "L&T is the dominant short form in Indian finance. Ambiguity: L&T Finance (L&TFH), L&T Tech (LTTS) are separate listings."
+  },
+  {
+    "ticker": "M&M",
+    "name": "Mahindra & Mahindra Limited",
+    "aliases": ["M&M", "Mahindra & Mahindra", "Mahindra", "MM"],
+    "notes": "HAZARD: 'Mahindra' alone can mean Mahindra Lifespace (MAHLIFE), Mahindra Finance (M&MFIN), Tech Mahindra (TECHM). Default M&M (auto parent) for generic 'Mahindra' unless context says otherwise."
+  },
+  {
+    "ticker": "TECHM",
+    "name": "Tech Mahindra Limited",
+    "aliases": ["Tech Mahindra", "TECHM"],
+    "notes": "Always require 'Tech' to distinguish from M&M parent"
+  },
+  {
+    "ticker": "TITAN",
+    "name": "Titan Company Limited",
+    "aliases": ["Titan", "TITAN", "Tanishq", "Fastrack", "Sonata"],
+    "notes": "HAZARD: 'Titan' is a common English word. Require financial context (NSE, results, shares) or brand alias. Tanishq/Fastrack/Sonata are Titan brands.",
+    "disambiguation_rule": "Require at least one of: 'Company', 'NSE', 'shares', 'results', OR a brand alias in context"
+  },
+  {
+    "ticker": "UPL",
+    "name": "UPL Limited",
+    "aliases": ["UPL", "United Phosphorus"],
+    "notes": "Safe — UPL is distinct in Indian agrochemical context"
+  },
+  {
+    "ticker": "ADANIPORTS",
+    "name": "Adani Ports and Special Economic Zone Limited",
+    "aliases": ["Adani Ports", "ADANIPORTS", "APSEZ"],
+    "notes": "HAZARD: 'Adani' alone is group-level. Adani Ports, Adani Green (ADANIGREEN), Adani Power (ADANIPOWER), Adani Total Gas (ATGL), Adani Enterprises (ADANIENT) are all separate. Default: if 'Adani' + 'port'/'SEZ' → ADANIPORTS."
+  },
+  {
+    "ticker": "ADANIENT",
+    "name": "Adani Enterprises Limited",
+    "aliases": ["Adani Enterprises", "ADANIENT"],
+    "notes": "The Adani group flagship. 'Adani' alone without a specific subsidiary → ADANIENT as default."
+  },
+  {
+    "ticker": "DRREDDY",
+    "name": "Dr. Reddy's Laboratories Limited",
+    "aliases": ["Dr Reddy", "Dr. Reddy's", "DRREDDY", "Dr Reddy's Labs"],
+    "notes": "Safe — distinctive pharma name. Watch apostrophe variants."
+  },
+  {
+    "ticker": "BAJAJFINSV",
+    "name": "Bajaj Finserv Limited",
+    "aliases": ["Bajaj Finserv", "BAJAJFINSV"],
+    "notes": "Distinct from Bajaj Finance (BAJFINANCE) and Bajaj Auto (BAJAJ-AUTO)"
+  },
+  {
+    "ticker": "BRITANNIA",
+    "name": "Britannia Industries Limited",
+    "aliases": ["Britannia", "BRITANNIA"],
+    "notes": "HAZARD: 'Britannia' is also a historical/cultural word (refers to Britain). Require financial context or Indian market context.",
+    "disambiguation_rule": "Require adjacent: 'Industries', 'NSE', 'results', 'biscuit', 'cracker', 'Good Day', 'Marie'"
+  },
+  {
+    "ticker": "COALINDIA",
+    "name": "Coal India Limited",
+    "aliases": ["Coal India", "COALINDIA", "CIL"],
+    "notes": "Safe — unique state-owned coal company"
+  },
+  {
+    "ticker": "SBILIFE",
+    "name": "SBI Life Insurance Company Limited",
+    "aliases": ["SBI Life", "SBILIFE"],
+    "notes": "Distinct from SBI (SBIN) — require 'Life' or 'Insurance' qualifier"
+  },
+  {
+    "ticker": "HDFCLIFE",
+    "name": "HDFC Life Insurance Company Limited",
+    "aliases": ["HDFC Life", "HDFCLIFE"],
+    "notes": "Distinct from HDFCBANK — require 'Life' or 'Insurance' qualifier"
+  },
+  {
+    "ticker": "APOLLOHOSP",
+    "name": "Apollo Hospitals Enterprise Limited",
+    "aliases": ["Apollo Hospitals", "APOLLOHOSP", "Apollo Health"],
+    "notes": "HAZARD: Apollo Tyres (APOLLOTYRE) and Apollo Micro Systems (APOLLOMICRO) are separate listings. Require 'Hospitals' or 'health' context for APOLLOHOSP."
+  },
+  {
+    "ticker": "PAGEIND",
+    "name": "Page Industries Limited",
+    "aliases": ["Page Industries", "Jockey India", "Jockey", "PAGEIND"],
+    "notes": "Jockey is the brand; Page Industries is the licensee listed on NSE. 'Jockey' in Indian financial articles → PAGEIND.",
+    "brand_divergence": true
+  },
+  {
+    "ticker": "JUBLFOOD",
+    "name": "Jubilant FoodWorks Limited",
+    "aliases": ["Jubilant FoodWorks", "Jubilant Food", "JUBLFOOD", "Dominos India", "Domino's India"],
+    "notes": "Domino's India franchise is operated by Jubilant FoodWorks. Also operates Popeyes and Dunkin' in India.",
+    "brand_divergence": true
+  },
+  {
+    "ticker": "BOSCHLTD",
+    "name": "Bosch Limited",
+    "aliases": ["Bosch India", "Bosch Limited", "BOSCHLTD"],
+    "notes": "NSE-listed Indian subsidiary of Robert Bosch GmbH. 'Bosch India' in articles → BOSCHLTD.",
+    "brand_divergence": true
+  },
+  {
+    "ticker": "3MINDIA",
+    "name": "3M India Limited",
+    "aliases": ["3M India", "3MINDIA"],
+    "notes": "NSE-listed. '3M India' in articles → 3MINDIA. Plain '3M' alone likely refers to global 3M, not Indian subsidiary.",
+    "brand_divergence": true
+  }
+]
