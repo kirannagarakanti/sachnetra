@@ -1,0 +1,394 @@
+symbol,company_name,classification,recommended_action,notes
+ABAN,Aban Offshore Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+ABB,ABB India Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+ABDL,Allied Blenders and Distillers Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+ACC,ACC Limited,symbol_stoplist,drop_bare_symbol_alias,Common English word 'acc' triggers case-insensitive false matches in news
+ACE,Action Construction Equipment Limited,symbol_stoplist,drop_bare_symbol_alias,Common English word 'ace' triggers case-insensitive false matches in news
+ACI,Archean Chemical Industries Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+ACL,Andhra Cements Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+ADL,Archidply Decor Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+ADOR,Ador Welding Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+ADSL,Allied Digital Services Limited,symbol_stoplist,drop_bare_symbol_alias,Common English word 'adsl' triggers case-insensitive false matches in news
+AEPL,Artemis Electricals and Projects Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+AFIL,Akme Fintrade (India) Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+AFSL,Abans Financial Services Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+AGI,AGI Greenpac Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+AHCL,Anlon Healthcare Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+AIIL,Authum Investment & Infrastructure Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+AKG,Akg Exim Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+AKI,AKI India Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+ALPA,Alpa Laboratories Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+ANUP,The Anup Engineering Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+APCL,Anjani Portland Cement Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+APEX,Apex Frozen Foods Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+ARIS,Arisinfra Solutions Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+ASAL,Automotive Stampings and Assemblies Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+ASMS,Bartronics India Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+ATAM,Atam Valves Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+ATGL,Adani Total Gas Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+ATL,Allcargo Terminals Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+ATUL,Atul Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+AVG,AVG Logistics Limited,symbol_stoplist,drop_bare_symbol_alias,Common English word 'avg' triggers case-insensitive false matches in news
+AVL,Aditya Vision Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+AWL,AWL Agri Business Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+AYE,Aye Finance Limited,symbol_stoplist,drop_bare_symbol_alias,Common English word 'aye' triggers case-insensitive false matches in news
+AZAD,Azad Engineering Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+BANG,Bang Overseas Limited,symbol_stoplist,drop_bare_symbol_alias,Common English word 'bang' triggers case-insensitive false matches in news
+BASF,BASF India Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+BBL,Bharat Bijlee Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+BBOX,Black Box Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+BBTC,The Bombay Burmah Trading Corporation Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+BCG,Brightcom Group Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+BCPL,BCPL Railway Infrastructure Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+BDL,Bharat Dynamics Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+BEL,Bharat Electronics Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+BEML,BEML Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+BEPL,Bhansali Engineering Polymers Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+BETA,Beta Drugs Limited,symbol_stoplist,drop_bare_symbol_alias,Common English word 'beta' triggers case-insensitive false matches in news
+BHEL,Bharat Heavy Electricals Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+BI,Bilcare Limited,symbol_stoplist,drop_bare_symbol_alias,Common English word 'bi' triggers case-insensitive false matches in news
+BIL,Bhartiya International Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+BLAL,BEML Land Assets Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+BLIL,Balmer Lawrie Investments Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+BLS,BLS International Services Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+BLSE,BLS E-Services Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+BPCL,Bharat Petroleum Corporation Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+BPL,BPL Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+BRNL,Bharat Road Network Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+BSE,BSE Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+BSL,BSL Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+BTML,Bodhi Tree Multimedia Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+BTTL,Bhilwara Technical Textiles Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+BVCL,Barak Valley Cements Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+BYKE,The Byke Hospitality Ltd,keep,keep,Low ambiguity corporate name or ticker symbol
+CAMS,Computer Age Management Services Limited,symbol_stoplist,drop_bare_symbol_alias,Common English word 'cams' triggers case-insensitive false matches in news
+CCCL,Consolidated Construction Consortium Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+CCL,CCL Products (India) Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+CDSL,Central Depository Services (India) Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+CERA,Cera Sanitaryware Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+CESC,CESC Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+CGCL,Capri Global Capital Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+CIFL,Capital India Finance Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+CNL,Creative Newtech Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+CTE,Cambridge Technology Enterprises Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+CUB,City Union Bank Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+DBL,Dilip Buildcon Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+DBOL,Dhampur Bio Organics Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+DCAL,Dishman Carbogen Amcis Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+DCI,Dc Infotech And Communication Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+DCM,DCM  Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+DCW,DCW Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+DEN,Den Networks Limited,symbol_stoplist,drop_bare_symbol_alias,Common English word 'den' triggers case-insensitive false matches in news
+DEVX,Dev Accelerator Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+DIL,Debock Industries Limited,symbol_stoplist,drop_bare_symbol_alias,Common Indian proper noun meaning heart (Dil); frequently appears in entertainment/song headlines
+DJML,DJ Mediaprint & Logistics Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+DLF,DLF Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+DMCC,DMCC SPECIALITY CHEMICALS LIMITED,keep,keep,Low ambiguity corporate name or ticker symbol
+DOMS,DOMS Industries Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+DSSL,Dynacons Systems & Solutions Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+DTIL,Dhunseri Tea & Industries Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+DVL,Dhunseri Ventures Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+DYCL,Dynamic Cables Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+E2E,E2E Networks Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+EIEL,Enviro Infra Engineers Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+EKC,Everest Kanto Cylinder Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+ELIN,Elin Electronics Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+EMIL,Electronics Mart India Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+ENIL,Entertainment Network (India) Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+EPL,EPL Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+ERIS,Eris Lifesciences Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+FACT,Fertilizers and Chemicals Travancore Limited,symbol_stoplist,drop_bare_symbol_alias,Common English word 'fact' triggers case-insensitive false matches in news
+FCL,Fineotex Chemical Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+FDC,FDC Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+FEL,Future Enterprises Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+FLFL,Future Lifestyle Fashions Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+FMNL,Future Market Networks Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+FSL,Firstsource Solutions Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+GAEL,Gujarat Ambuja Exports Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+GAIL,GAIL (India) Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+GCSL,Gretex Corporate Services Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+GHCL,GHCL Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+GICL,Globe International Carriers Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+GKSL,Gujarat Kidney And Super Speciality Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+GLFL,Gujarat Lease Financing Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+GNA,GNA Axles Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+GNFC,Gujarat Narmada Valley Fertilizers and Chemicals Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+GNRL,Gujarat Natural Resources Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+GPIL,Godawari Power And Ispat limited,keep,keep,Low ambiguity corporate name or ticker symbol
+GPPL,Gujarat Pipavav Port Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+GRSE,Garden Reach Shipbuilders & Engineers Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+GSFC,Gujarat State Fertilizers & Chemicals Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+GSS,GSS Infotech Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+GTL,GTL Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+GTPL,GTPL Hathway Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+HAL,Hindustan Aeronautics Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+HBSL,HB Stockholdings Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+HCC,Hindustan Construction Company Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+HCG,Healthcare Global Enterprises Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+HDIL,Housing Development and Infrastructure Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+HEG,HEG Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+HEXT,Hexaware Technologies Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+HFCL,HFCL Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+HGM,HandsOn Global Management (HGM) Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+HGS,Hinduja Global Solutions Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+HMT,HMT Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+HMVL,Hindustan Media Ventures Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+HPAL,HP Adhesives Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+HPIL,Hindprakash Industries Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+HPL,HPL Electric & Power Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+HSCL,Himadri Speciality Chemical Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+ICIL,Indo Count Industries Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+ICRA,ICRA Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+IDBI,IDBI Bank Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+IDEA,Vodafone Idea Limited,symbol_stoplist,drop_bare_symbol_alias,Common English word 'idea' triggers false positives in strategic planning; start-up reviews; or analytical opinion pieces
+IEX,Indian Energy Exchange Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+IFCI,IFCI Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+IGCL,Indogulf Cropsciences Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+IGIL,International Gemological Institute Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+IGL,Indraprastha Gas Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+IGPL,IG Petrochemicals Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+IIFL,IIFL Finance Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+IITL,Industrial Investment Trust Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+IKIO,IKIO Technologies Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+IKS,Inventurus Knowledge Solutions Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+IMFA,Indian Metals & Ferro Alloys Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+INA,Insolation Energy Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+INFY,Infosys Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+IOB,Indian Overseas Bank,keep,keep,Low ambiguity corporate name or ticker symbol
+IOC,Indian Oil Corporation Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+IPL,India Pesticides Limited,symbol_stoplist,drop_bare_symbol_alias,Bare IPL alias matches Indian Premier League in 92/7d prod headlines
+IRB,IRB Infrastructure Developers Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+IRFC,Indian Railway Finance Corporation Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+IRIS,IRIS RegTech Solutions Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+ISFT,Intrasoft Technologies Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+ITC,ITC Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+ITDC,India Tourism Development Corporation Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+ITI,ITI Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+IVC,IL&FS Investment Managers Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+IVP,IVP Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+IWP,The Indian Wood Products Company Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+IZMO,IZMO Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+JARO,Jaro Institute of Technology Management and Research Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+JASH,Jash Engineering Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+JBMA,JBM Auto Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+JHS,JHS Svendgaard Laboratories Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+JKIL,J.Kumar Infraprojects Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+JLHL,Jupiter Life Line Hospitals Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+JMA,Jullundur Motor Agency (Delhi) Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+JSFB,Jana Small Finance Bank Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+JSL,Jindal Stainless Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+JSLL,Jeena Sikho Lifecare Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+JWL,Jupiter Wagons Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+KAYA,Kaya Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+KCP,KCP Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+KDDL,KDDL Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+KEC,KEC International Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+KECL,Kirloskar Electric Company Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+KEI,KEI Industries Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+KICL,Kalyani Investment Company Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+KIMS,Krishna Institute of Medical Sciences Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+KKCL,Kewal Kiran Clothing Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+KMEW,Knowledge Marine & Engineering Works Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+KPEL,K.P. Energy Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+KPIL,Kalpataru Projects International Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+KPL,Kwality Pharmaceuticals Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+KRBL,KRBL Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+KRN,KRN Heat Exchanger and Refrigeration Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+KSB,Ksb Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+KSCL,Kaveri Seed Company Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+KSL,Kalyani Steels Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+KSR,KSR Footwear Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+KWIL,Kwality Wall's (India) Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+LAL,Lorenzini Apparels Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+LASA,Lasa Supergenerics Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+LFIC,Lakshmi Finance & Industrial Corporation Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+LGHL,Laxmi Goldorna House Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+LICI,Life Insurance Corporation Of India,keep,keep,Low ambiguity corporate name or ticker symbol
+LINC,Linc Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+LMW,LMW Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+LPDC,Landmark Property Development Company Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+LT,Larsen & Toubro Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+LTF,L&T Finance Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+LTM,LTM Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+LTTS,L&T Technology Services Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+M&M,Mahindra & Mahindra Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+MBEL,M & B Engineering Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+MCL,Madhav Copper Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+MCX,Multi Commodity Exchange of India Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+MEIL,Mangal Electrical Industries Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+MEP,MEP Infrastructure Developers Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+MFML,Mahalaxmi Fabric Mills Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+MFSL,Max Financial Services Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+MGEL,Mangalam Global Enterprise Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+MGL,Mahanagar Gas Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+MKPL,M K Proteins Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+MMFL,MM Forgings Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+MMP,MMP Industries Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+MMTC,MMTC Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+MMWL,Media Matrix Worldwide Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+MOIL,MOIL Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+MOL,Meghmani Organics Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+MRF,MRF Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+MRPL,Mangalore Refinery and Petrochemicals Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+MSPL,MSP Steel & Power Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+MTNL,Mahanagar Telephone Nigam Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+MWL,Mangalam Worldwide Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+NAVA,NAVA LIMITED,keep,keep,Low ambiguity corporate name or ticker symbol
+NBCC,NBCC (India) Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+NCC,NCC Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+NDGL,Naga Dhunseri Group Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+NDL,Nandan Denim Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+NDTV,New Delhi Television Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+NFL,National Fertilizers Limited,symbol_stoplist,drop_bare_symbol_alias,Common English word 'nfl' triggers case-insensitive false matches in news
+NGIL,Nakoda Group of Industries Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+NH,Narayana Hrudayalaya Ltd.,keep,keep,Low ambiguity corporate name or ticker symbol
+NHPC,NHPC Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+NIBE,NIBE Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+NIBL,NRB Industrial Bearings Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+NILE,Nile Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+NMDC,NMDC Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+NPST,Network People Services Technologies Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+NRL,Nupur Recyclers Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+NSIL,Nalwa Sons Investments Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+NTPC,NTPC Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+OAL,Oriental Aromatics Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+OBCL,Orissa Bengal Carrier Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+OFSS,Oracle Financial Services Software Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+OIL,Oil India Limited,symbol_stoplist,drop_bare_symbol_alias,Common English word 'oil' triggers case-insensitive false matches in news
+OMNI,Omnitech Engineering Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+ONGC,Oil & Natural Gas Corporation Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+PAR,Par Drugs And Chemicals Limited,symbol_stoplist,drop_bare_symbol_alias,Common English word 'par' triggers case-insensitive false matches in news
+PCBL,PCBL Chemical Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+PDSL,PDS Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+PFC,Power Finance Corporation Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+PFS,PTC India Financial Services Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+PGEL,PG Electroplast Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+PGHH,Procter & Gamble Hygiene and Health Care Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+PGHL,Procter & Gamble Health Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+PGIL,Pearl Global Industries Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+PIGL,Power & Instrumentation (Gujarat) Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+PML,Paul Merchants Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+PNB,Punjab National Bank,keep,keep,Low ambiguity corporate name or ticker symbol
+PNC,Pritish Nandy Communications Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+POCL,Pondy Oxides & Chemicals Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+PPAP,PPAP Automotive Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+PPL,Prakash Pipes Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+PSB,Punjab & Sind Bank,keep,keep,Low ambiguity corporate name or ticker symbol
+PTC,PTC India Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+PTL,PTL Enterprises Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+PVP,PVP Ventures Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+PVSL,Popular Vehicles and Services Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+PWL,Physicswallah Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+RACE,Race Eco Chain Limited,symbol_stoplist,drop_bare_symbol_alias,Common English word 'race' (competition/ethnicity/speed) triggers matches in political news or sports coverage
+RAIN,Rain Industries Limited,symbol_stoplist,drop_bare_symbol_alias,Common English word 'rain' (weather) triggers false positives in weather and agricultural news
+RBA,Restaurant Brands Asia Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+RCF,Rashtriya Chemicals and Fertilizers Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+RCOM,Reliance Communications Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+REPL,Rudrabhishek Enterprises Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+RGL,Renaissance Global Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+RHFL,Reliance Home Finance Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+RHIM,RHI MAGNESITA INDIA LIMITED,keep,keep,Low ambiguity corporate name or ticker symbol
+RHL,Robust Hotels Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+RIIL,Reliance Industrial Infrastructure Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+RKDL,Ravi Kumar Distilleries Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+RKEC,RKEC Projects Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+RMC,RMC Switchgears Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+RML,Rane (Madras) Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+ROML,Raj Oil Mills Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+ROTO,Roto Pumps Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+RPEL,Raghav Productivity Enhancers Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+RPPL,Rajshree Polypack Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+RRIL,RRIL Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+RSL,Rajputana Stainless Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+RSWM,RSWM Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+RUPA,Rupa & Company Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+RVHL,Ravinder Heights Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+RVNL,Rail Vikas Nigam Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+RVTH,Revathi Equipment India Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+SAIL,Steel Authority of India Limited,symbol_stoplist,drop_bare_symbol_alias,Common English word 'sail' triggers case-insensitive false matches in news
+SBC,SBC Exports Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+SBCL,Shivalik Bimetal Controls Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+SBFC,SBFC Finance Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+SBIN,State Bank of India,keep,keep,Low ambiguity corporate name or ticker symbol
+SCI,Shipping Corporation Of India Limited,symbol_stoplist,drop_bare_symbol_alias,Common English word 'sci' triggers case-insensitive false matches in news
+SCPL,Sheetal Cool Products Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+SDBL,Som Distilleries & Breweries Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+SEIL,Shanti Educational Initiatives Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+SEPC,SEPC Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+SETL,Standard Engineering Technology Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+SFL,Sheela Foam Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+SGIL,Synergy Green Industries Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+SGL,STL Global Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+SHAH,Shah Metacorp Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+SHK,S H Kelkar and Company Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+SIKA,Sika Interplant Systems Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+SIL,Standard Industries Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+SIS,SIS LIMITED,keep,keep,Low ambiguity corporate name or ticker symbol
+SJS,S.J.S. Enterprises Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+SJVN,SJVN Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+SKIL,SKIL Infrastructure Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+SMLT,Sarthak Metals Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+SOTL,Savita Oil Technologies Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+SPAL,S. P. Apparels Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+SPIC,Southern Petrochemicals Industries Corporation  Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+SRD,Shankar Lal Rampal Dye-Chem Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+SRF,SRF Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+SRM,SRM Contractors Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+SRPL,Shree Ram Proteins Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+SRTL,Shree Ram Twistex Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+SSDL,Saraswati Saree Depot Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+SSWL,Steel Strips Wheels Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+STAR,Strides Pharma Science Limited,symbol_stoplist,drop_bare_symbol_alias,Common English word 'star' (astronomical body/celebrity) triggers matches in sports; entertainment; or review ratings
+STEL,Stel Holdings Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+STYL,Seshaasai Technologies Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+SULA,Sula Vineyards Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+SVLL,Shree Vasu Logistics Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+TAKE,Take Solutions Limited,symbol_stoplist,drop_bare_symbol_alias,Common English verb 'take' triggers case-insensitive false matches in daily commentary
+TARC,TARC Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+TBZ,Tribhovandas Bhimji Zaveri Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+TCC,TCC Concept Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+TCI,Transport Corporation of India Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+TCS,Tata Consultancy Services Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+TEGA,Tega Industries Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+TFL,Transwarranty Finance Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+TI,Tilaknagar Industries Limited,symbol_stoplist,drop_bare_symbol_alias,Common English word 'ti' triggers case-insensitive false matches in news
+TICL,Twamev Construction and Infrastructure Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+TIIL,Technocraft Industries (India) Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+TIL,TIL Limited,symbol_stoplist,drop_bare_symbol_alias,Common English word 'til' triggers case-insensitive false matches in news
+TMB,Tamilnad Mercantile Bank Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+TMCV,Tata Motors Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+TMPV,Tata Motors Passenger Vehicles Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+TNPL,Tamil Nadu Newsprint & Papers Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+TPHQ,Teamo Productions HQ Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+TREL,Transindia Real Estate Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+TRF,TRF Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+TRU,TruCap Finance Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+TTL,T T Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+TTML,Tata Teleservices (Maharashtra) Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+UBL,United Breweries Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+UCAL,UCAL LIMITED,keep,keep,Low ambiguity corporate name or ticker symbol
+UDS,Updater Services Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+UEL,Ujaas Energy Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+UFBL,United Foodbrands Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+UFO,UFO Moviez India Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+UPL,UPL Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+URJA,Urja Global Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+USK,Udayshivakumar Infra Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+VBL,Varun Beverages Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+VCL,Vaxtex Cotfab Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+VEDL,Vedanta Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+VETO,Veto Switchgears And Cables Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+VGL,VARVEE GLOBAL LIMITED,keep,keep,Low ambiguity corporate name or ticker symbol
+VHL,Vardhman Holdings Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+VMM,Vishal Mega Mart Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+VRAJ,Vraj Iron and Steel Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+VSSL,Vardhman Special Steels Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+VSTL,Vibhor Steel Tubes Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+VTL,Vardhman Textiles Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+WCIL,Western Carriers (India) Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+WEL,Wonder Electricals Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+WIPL,The Western India Plywoods Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+WPIL,WPIL Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+WSI,W S Industries (I) Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+ZEEL,Zee Entertainment Enterprises Limited,keep,keep,Low ambiguity corporate name or ticker symbol
+ZOTA,Zota Health Care LImited,keep,keep,Low ambiguity corporate name or ticker symbol

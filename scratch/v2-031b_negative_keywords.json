@@ -1,0 +1,851 @@
+{
+  "version": "2026-05-27-v2",
+  "source_of_truth": "shared/nse-equity-master.json",
+  "validated_against_master": true,
+  "phantom_symbol_count": 0,
+  "actions": [
+    {
+      "symbol": "IPL",
+      "company": "India Pesticides Limited",
+      "action_type": "drop_bare_symbol_alias",
+      "category": "sports_acronym_collision",
+      "reason": "Bare IPL alias matches Indian Premier League in 92/7d prod headlines",
+      "prod_evidence": "scripts/research/output/exp11/coverage_check.md §11.2 rank 1, §11.3 rows 1,14,26,27",
+      "disambiguation_rule": "Allow only if 'India Pesticides' or 'pesticide' in headline",
+      "evidence_urls": [
+        "https://www.nseindia.com/get-quotes/equity?symbol=IPL",
+        "https://raw.githubusercontent.com/first20hours/google-10000-english/master/google-10000-english-usa-no-swears-medium.txt"
+      ]
+    },
+    {
+      "symbol": "TAKE",
+      "company": "Take Solutions Limited",
+      "action_type": "drop_bare_symbol_alias",
+      "category": "common_english_word",
+      "reason": "Common English verb 'take' triggers case-insensitive false matches in daily commentary",
+      "prod_evidence": "scripts/research/output/exp11/coverage_check.md §11.2 rank 7",
+      "disambiguation_rule": "Allow only if 'Take Solutions' appears in the same headline",
+      "evidence_urls": [
+        "https://www.nseindia.com/get-quotes/equity?symbol=TAKE"
+      ]
+    },
+    {
+      "symbol": "RAIN",
+      "company": "Rain Industries Limited",
+      "action_type": "drop_bare_symbol_alias",
+      "category": "weather_word",
+      "reason": "Common English word 'rain' (weather) triggers false positives in weather and agricultural news",
+      "prod_evidence": "scripts/research/output/exp11/coverage_check.md §11.2 rank 17, §11.3 row 8",
+      "disambiguation_rule": "Allow only if 'Rain Industries' appears in the same headline",
+      "evidence_urls": [
+        "https://www.nseindia.com/get-quotes/equity?symbol=RAIN"
+      ]
+    },
+    {
+      "symbol": "FOCUS",
+      "company": "Focus Lighting and Fixtures Limited",
+      "action_type": "drop_bare_symbol_alias",
+      "category": "common_english_word",
+      "reason": "Common English word 'focus' (noun/verb) triggers false positives in generic diplomatic or security news",
+      "prod_evidence": "scripts/research/output/exp11/coverage_check.md §11.2 rank 15, §11.3 row 10",
+      "disambiguation_rule": "Allow only if 'Focus Lighting' or 'fixtures' appears in the headline",
+      "evidence_urls": [
+        "https://www.nseindia.com/get-quotes/equity?symbol=FOCUS"
+      ]
+    },
+    {
+      "symbol": "MAMATA",
+      "company": "Mamata Machinery Limited",
+      "action_type": "drop_bare_symbol_alias",
+      "category": "indian_proper_noun",
+      "reason": "Common Indian proper noun matching politician Mamata Banerjee (West Bengal Chief Minister)",
+      "prod_evidence": "scripts/research/output/exp11/coverage_check.md §11.2 rank 22, §11.3 row 25",
+      "disambiguation_rule": "Allow only if 'Mamata Machinery' or 'packaging' appears in the headline",
+      "evidence_urls": [
+        "https://www.nseindia.com/get-quotes/equity?symbol=MAMATA"
+      ]
+    },
+    {
+      "symbol": "RETAIL",
+      "company": "JHS Svendgaard Retail Ventures Limited",
+      "action_type": "drop_bare_symbol_alias",
+      "category": "generic_noun",
+      "reason": "Common English word 'retail' triggers matches in generic economic news (e.g. 'retail inflation')",
+      "prod_evidence": "scripts/research/output/exp11/coverage_check.md §11.2 rank 23",
+      "disambiguation_rule": "Allow only if 'JHS Svendgaard' or 'Retail Ventures' appears in the headline",
+      "evidence_urls": [
+        "https://www.nseindia.com/get-quotes/equity?symbol=RETAIL"
+      ]
+    },
+    {
+      "symbol": "MARATHON",
+      "company": "Marathon Nextgen Realty Limited",
+      "action_type": "drop_bare_symbol_alias",
+      "category": "event_word",
+      "reason": "Common English word 'marathon' triggers matches for corporate events, hackathons, or legal marathons",
+      "prod_evidence": "scripts/research/output/exp11/coverage_check.md §11.3 row 7",
+      "disambiguation_rule": "Allow only if 'Marathon Nextgen' or 'realty' appears in the headline",
+      "evidence_urls": [
+        "https://www.nseindia.com/get-quotes/equity?symbol=MARATHON"
+      ]
+    },
+    {
+      "symbol": "ROUTE",
+      "company": "ROUTE MOBILE LIMITED",
+      "action_type": "drop_bare_symbol_alias",
+      "category": "transport_noun",
+      "reason": "Common English word 'route' (noun/verb) triggers matches in transport or railway connectivity news",
+      "prod_evidence": "scripts/research/output/exp11/coverage_check.md §11.2 rank 47, §11.3 row 24",
+      "disambiguation_rule": "Allow only if 'Route Mobile' or 'telecom' appears in the headline",
+      "evidence_urls": [
+        "https://www.nseindia.com/get-quotes/equity?symbol=ROUTE"
+      ]
+    },
+    {
+      "symbol": "TOTAL",
+      "company": "Total Transport Systems Limited",
+      "action_type": "drop_bare_symbol_alias",
+      "category": "common_english_word",
+      "reason": "Common English word 'total' triggers matches in generic mathematical or financial summaries (e.g. 'total profit')",
+      "prod_evidence": "scripts/research/output/exp11/coverage_check.md §11.2 rank 49",
+      "disambiguation_rule": "Allow only if 'Total Transport' or 'logistics' appears in the headline",
+      "evidence_urls": [
+        "https://www.nseindia.com/get-quotes/equity?symbol=TOTAL"
+      ]
+    },
+    {
+      "symbol": "ENGINERSIN",
+      "company": "Engineers India Limited",
+      "action_type": "drop_alias",
+      "alias_to_drop": "Engineers",
+      "category": "alias_collision",
+      "reason": "Single-word Engineers matches generic tech/hiring headlines (e.g. Microsoft redirecting engineers)",
+      "prod_evidence": "scripts/research/output/exp11/coverage_check.md §11.2 rank 40, §11.3 row 19",
+      "evidence_urls": [
+        "https://www.nseindia.com/get-quotes/equity?symbol=ENGINERSIN"
+      ]
+    },
+    {
+      "symbol": "DOLLAR",
+      "company": "Dollar Industries Limited",
+      "action_type": "drop_bare_symbol_alias",
+      "category": "currency_word",
+      "reason": "Common English word 'dollar' triggers matches in currency exchange or export news",
+      "prod_evidence": "scripts/research/output/exp11/coverage_check.md §11.2 rank 25",
+      "disambiguation_rule": "Allow only if 'Dollar Industries' or 'hosiery' appears in the headline",
+      "evidence_urls": [
+        "https://www.nseindia.com/get-quotes/equity?symbol=DOLLAR"
+      ]
+    },
+    {
+      "symbol": "MOREPENLAB",
+      "company": "Morepen Laboratories Limited",
+      "action_type": "drop_alias",
+      "alias_to_drop": "More",
+      "category": "common_english_word",
+      "reason": "Common English word 'more' would trigger massive false positives if registered as bare alias",
+      "prod_evidence": "No prod observed FP (bare alias 'More' is not present in master, included as preventive verification)",
+      "evidence_urls": [
+        "https://www.nseindia.com/get-quotes/equity?symbol=MOREPENLAB"
+      ]
+    },
+    {
+      "symbol": "AARON",
+      "company": "Aaron Industries Limited",
+      "action_type": "drop_bare_symbol_alias",
+      "category": "common_english_word",
+      "reason": "Common English word 'aaron' triggers case-insensitive false matches in news",
+      "prod_evidence": "Preventive hardening pass for high-risk symbol AARON"
+    },
+    {
+      "symbol": "ACC",
+      "company": "ACC Limited",
+      "action_type": "drop_bare_symbol_alias",
+      "category": "common_english_word",
+      "reason": "Common English word 'acc' triggers case-insensitive false matches in news",
+      "prod_evidence": "Preventive hardening pass for high-risk symbol ACC"
+    },
+    {
+      "symbol": "ACCURACY",
+      "company": "Accuracy Shipping Limited",
+      "action_type": "drop_bare_symbol_alias",
+      "category": "common_english_word",
+      "reason": "Common English word 'accuracy' triggers case-insensitive false matches in news",
+      "prod_evidence": "Preventive hardening pass for high-risk symbol ACCURACY"
+    },
+    {
+      "symbol": "ACE",
+      "company": "Action Construction Equipment Limited",
+      "action_type": "drop_bare_symbol_alias",
+      "category": "common_english_word",
+      "reason": "Common English word 'ace' triggers case-insensitive false matches in news",
+      "prod_evidence": "Preventive hardening pass for high-risk symbol ACE"
+    },
+    {
+      "symbol": "ADSL",
+      "company": "Allied Digital Services Limited",
+      "action_type": "drop_bare_symbol_alias",
+      "category": "common_english_word",
+      "reason": "Common English word 'adsl' triggers case-insensitive false matches in news",
+      "prod_evidence": "Preventive hardening pass for high-risk symbol ADSL"
+    },
+    {
+      "symbol": "ADVANCE",
+      "company": "Advance Agrolife Limited",
+      "action_type": "drop_bare_symbol_alias",
+      "category": "common_english_word",
+      "reason": "Common English word 'advance' triggers case-insensitive false matches in news",
+      "prod_evidence": "Preventive hardening pass for high-risk symbol ADVANCE"
+    },
+    {
+      "symbol": "AFFORDABLE",
+      "company": "Affordable Robotic & Automation Limited",
+      "action_type": "drop_bare_symbol_alias",
+      "category": "common_english_word",
+      "reason": "Common English word 'affordable' triggers case-insensitive false matches in news",
+      "prod_evidence": "Preventive hardening pass for high-risk symbol AFFORDABLE"
+    },
+    {
+      "symbol": "AMBER",
+      "company": "Amber Enterprises India Limited",
+      "action_type": "drop_bare_symbol_alias",
+      "category": "common_english_word",
+      "reason": "Common English word 'amber' triggers case-insensitive false matches in news",
+      "prod_evidence": "Preventive hardening pass for high-risk symbol AMBER"
+    },
+    {
+      "symbol": "AMDIND",
+      "company": "AMD Industries Limited",
+      "action_type": "drop_bare_symbol_alias",
+      "category": "common_english_word",
+      "reason": "Common English word 'amdind' triggers case-insensitive false matches in news",
+      "prod_evidence": "Preventive hardening pass for high-risk symbol AMDIND"
+    },
+    {
+      "symbol": "ANTGRAPHIC",
+      "company": "Antarctica Limited",
+      "action_type": "drop_bare_symbol_alias",
+      "category": "common_english_word",
+      "reason": "Common English word 'antgraphic' triggers case-insensitive false matches in news",
+      "prod_evidence": "Preventive hardening pass for high-risk symbol ANTGRAPHIC"
+    },
+    {
+      "symbol": "APOLLO",
+      "company": "Apollo Micro Systems Limited",
+      "action_type": "drop_bare_symbol_alias",
+      "category": "common_english_word",
+      "reason": "Common name matching Greek god, space missions, and multiple distinct listed entities",
+      "prod_evidence": "Preventive hardening pass for high-risk symbol APOLLO"
+    },
+    {
+      "symbol": "AVG",
+      "company": "AVG Logistics Limited",
+      "action_type": "drop_bare_symbol_alias",
+      "category": "common_english_word",
+      "reason": "Common English word 'avg' triggers case-insensitive false matches in news",
+      "prod_evidence": "Preventive hardening pass for high-risk symbol AVG"
+    },
+    {
+      "symbol": "AXISBANK",
+      "company": "Axis Bank Limited",
+      "action_type": "drop_bare_symbol_alias",
+      "category": "common_english_word",
+      "reason": "Common English word 'axisbank' triggers case-insensitive false matches in news",
+      "prod_evidence": "Preventive hardening pass for high-risk symbol AXISBANK"
+    },
+    {
+      "symbol": "AYE",
+      "company": "Aye Finance Limited",
+      "action_type": "drop_bare_symbol_alias",
+      "category": "common_english_word",
+      "reason": "Common English word 'aye' triggers case-insensitive false matches in news",
+      "prod_evidence": "Preventive hardening pass for high-risk symbol AYE"
+    },
+    {
+      "symbol": "BANG",
+      "company": "Bang Overseas Limited",
+      "action_type": "drop_bare_symbol_alias",
+      "category": "common_english_word",
+      "reason": "Common English word 'bang' triggers case-insensitive false matches in news",
+      "prod_evidence": "Preventive hardening pass for high-risk symbol BANG"
+    },
+    {
+      "symbol": "BETA",
+      "company": "Beta Drugs Limited",
+      "action_type": "drop_bare_symbol_alias",
+      "category": "common_english_word",
+      "reason": "Common English word 'beta' triggers case-insensitive false matches in news",
+      "prod_evidence": "Preventive hardening pass for high-risk symbol BETA"
+    },
+    {
+      "symbol": "BI",
+      "company": "Bilcare Limited",
+      "action_type": "drop_bare_symbol_alias",
+      "category": "common_english_word",
+      "reason": "Common English word 'bi' triggers case-insensitive false matches in news",
+      "prod_evidence": "Preventive hardening pass for high-risk symbol BI"
+    },
+    {
+      "symbol": "BROOKS",
+      "company": "Brooks Laboratories Limited",
+      "action_type": "drop_bare_symbol_alias",
+      "category": "common_english_word",
+      "reason": "Common English word 'brooks' triggers case-insensitive false matches in news",
+      "prod_evidence": "Preventive hardening pass for high-risk symbol BROOKS"
+    },
+    {
+      "symbol": "BUTTERFLY",
+      "company": "Butterfly Gandhimathi Appliances Limited",
+      "action_type": "drop_bare_symbol_alias",
+      "category": "common_english_word",
+      "reason": "Common English word 'butterfly' triggers case-insensitive false matches in news",
+      "prod_evidence": "Preventive hardening pass for high-risk symbol BUTTERFLY"
+    },
+    {
+      "symbol": "CAMPUS",
+      "company": "Campus Activewear Limited",
+      "action_type": "drop_bare_symbol_alias",
+      "category": "common_english_word",
+      "reason": "Common English word 'campus' triggers case-insensitive false matches in news",
+      "prod_evidence": "Preventive hardening pass for high-risk symbol CAMPUS"
+    },
+    {
+      "symbol": "CAMS",
+      "company": "Computer Age Management Services Limited",
+      "action_type": "drop_bare_symbol_alias",
+      "category": "common_english_word",
+      "reason": "Common English word 'cams' triggers case-insensitive false matches in news",
+      "prod_evidence": "Preventive hardening pass for high-risk symbol CAMS"
+    },
+    {
+      "symbol": "CELEBRITY",
+      "company": "Celebrity Fashions Limited",
+      "action_type": "drop_bare_symbol_alias",
+      "category": "common_english_word",
+      "reason": "Common English word 'celebrity' triggers case-insensitive false matches in news",
+      "prod_evidence": "Preventive hardening pass for high-risk symbol CELEBRITY"
+    },
+    {
+      "symbol": "CHOICEIN",
+      "company": "Choice International Limited",
+      "action_type": "drop_bare_symbol_alias",
+      "category": "common_english_word",
+      "reason": "Common English word 'choicein' triggers case-insensitive false matches in news",
+      "prod_evidence": "Preventive hardening pass for high-risk symbol CHOICEIN"
+    },
+    {
+      "symbol": "CLEAN",
+      "company": "Clean Science and Technology Limited",
+      "action_type": "drop_bare_symbol_alias",
+      "category": "common_english_word",
+      "reason": "Common English word 'clean' triggers case-insensitive false matches in news",
+      "prod_evidence": "Preventive hardening pass for high-risk symbol CLEAN"
+    },
+    {
+      "symbol": "COASTCORP",
+      "company": "Coastal Corporation Limited",
+      "action_type": "drop_bare_symbol_alias",
+      "category": "common_english_word",
+      "reason": "Common English word 'coastcorp' triggers case-insensitive false matches in news",
+      "prod_evidence": "Preventive hardening pass for high-risk symbol COASTCORP"
+    },
+    {
+      "symbol": "CREST",
+      "company": "Crest Ventures Limited",
+      "action_type": "drop_bare_symbol_alias",
+      "category": "common_english_word",
+      "reason": "Common English word 'crest' triggers case-insensitive false matches in news",
+      "prod_evidence": "Preventive hardening pass for high-risk symbol CREST"
+    },
+    {
+      "symbol": "CROWN",
+      "company": "Crown Lifters Limited",
+      "action_type": "drop_bare_symbol_alias",
+      "category": "common_english_word",
+      "reason": "Common English word 'crown' (monarchy/dental/top) triggers matches in news about royalty, legal disputes, or awards",
+      "prod_evidence": "Preventive hardening pass for high-risk symbol CROWN"
+    },
+    {
+      "symbol": "DEEPINDS",
+      "company": "Deep Industries Limited",
+      "action_type": "drop_bare_symbol_alias",
+      "category": "common_english_word",
+      "reason": "Common English word 'deepinds' triggers case-insensitive false matches in news",
+      "prod_evidence": "Preventive hardening pass for high-risk symbol DEEPINDS"
+    },
+    {
+      "symbol": "DEN",
+      "company": "Den Networks Limited",
+      "action_type": "drop_bare_symbol_alias",
+      "category": "common_english_word",
+      "reason": "Common English word 'den' triggers case-insensitive false matches in news",
+      "prod_evidence": "Preventive hardening pass for high-risk symbol DEN"
+    },
+    {
+      "symbol": "DIL",
+      "company": "Debock Industries Limited",
+      "action_type": "drop_bare_symbol_alias",
+      "category": "indian_proper_noun",
+      "reason": "Common Indian proper noun meaning heart (Dil); frequently appears in entertainment/song headlines",
+      "prod_evidence": "Preventive hardening pass for high-risk symbol DIL"
+    },
+    {
+      "symbol": "ELLEN",
+      "company": "Ellenbarrie Industrial Gases Limited",
+      "action_type": "drop_bare_symbol_alias",
+      "category": "common_english_word",
+      "reason": "Common English word 'ellen' triggers case-insensitive false matches in news",
+      "prod_evidence": "Preventive hardening pass for high-risk symbol ELLEN"
+    },
+    {
+      "symbol": "ESCORTS",
+      "company": "Escorts Kubota Limited",
+      "action_type": "drop_bare_symbol_alias",
+      "category": "common_english_word",
+      "reason": "Common English word 'escorts' triggers case-insensitive false matches in news",
+      "prod_evidence": "Preventive hardening pass for high-risk symbol ESCORTS"
+    },
+    {
+      "symbol": "ETERNAL",
+      "company": "ETERNAL LIMITED",
+      "action_type": "drop_bare_symbol_alias",
+      "category": "common_english_word",
+      "reason": "Common English word 'eternal' triggers case-insensitive false matches in news",
+      "prod_evidence": "Preventive hardening pass for high-risk symbol ETERNAL"
+    },
+    {
+      "symbol": "EXCELINDUS",
+      "company": "Excel Industries Limited",
+      "action_type": "drop_bare_symbol_alias",
+      "category": "common_english_word",
+      "reason": "Common English word 'excelindus' triggers case-insensitive false matches in news",
+      "prod_evidence": "Preventive hardening pass for high-risk symbol EXCELINDUS"
+    },
+    {
+      "symbol": "FACT",
+      "company": "Fertilizers and Chemicals Travancore Limited",
+      "action_type": "drop_bare_symbol_alias",
+      "category": "common_english_word",
+      "reason": "Common English word 'fact' triggers case-insensitive false matches in news",
+      "prod_evidence": "Preventive hardening pass for high-risk symbol FACT"
+    },
+    {
+      "symbol": "FUSION",
+      "company": "Fusion Finance Limited",
+      "action_type": "drop_bare_symbol_alias",
+      "category": "common_english_word",
+      "reason": "Common English word 'fusion' triggers case-insensitive false matches in news",
+      "prod_evidence": "Preventive hardening pass for high-risk symbol FUSION"
+    },
+    {
+      "symbol": "GABRIEL",
+      "company": "Gabriel India Limited",
+      "action_type": "drop_bare_symbol_alias",
+      "category": "common_english_word",
+      "reason": "Common English word 'gabriel' triggers case-insensitive false matches in news",
+      "prod_evidence": "Preventive hardening pass for high-risk symbol GABRIEL"
+    },
+    {
+      "symbol": "GATEWAY",
+      "company": "Gateway Distriparks Limited",
+      "action_type": "drop_bare_symbol_alias",
+      "category": "common_english_word",
+      "reason": "Common English word 'gateway' triggers case-insensitive false matches in news",
+      "prod_evidence": "Preventive hardening pass for high-risk symbol GATEWAY"
+    },
+    {
+      "symbol": "GLOBAL",
+      "company": "Global Education Limited",
+      "action_type": "drop_bare_symbol_alias",
+      "category": "common_english_word",
+      "reason": "Common English word 'global' triggers case-insensitive false matches in news",
+      "prod_evidence": "Preventive hardening pass for high-risk symbol GLOBAL"
+    },
+    {
+      "symbol": "GLOBE",
+      "company": "GLOBE ENTERPRISES (INDIA) LIMITED",
+      "action_type": "drop_bare_symbol_alias",
+      "category": "common_english_word",
+      "reason": "Common English word 'globe' triggers case-insensitive false matches in news",
+      "prod_evidence": "Preventive hardening pass for high-risk symbol GLOBE"
+    },
+    {
+      "symbol": "GOPAL",
+      "company": "Gopal Snacks Limited",
+      "action_type": "drop_bare_symbol_alias",
+      "category": "indian_proper_noun",
+      "reason": "Common Indian proper name/noun 'gopal' triggers matches in general news",
+      "prod_evidence": "Preventive hardening pass for high-risk symbol GOPAL"
+    },
+    {
+      "symbol": "HILTON",
+      "company": "Hilton Metal Forging Limited",
+      "action_type": "drop_bare_symbol_alias",
+      "category": "common_english_word",
+      "reason": "Common English word 'hilton' triggers case-insensitive false matches in news",
+      "prod_evidence": "Preventive hardening pass for high-risk symbol HILTON"
+    },
+    {
+      "symbol": "HYUNDAI",
+      "company": "Hyundai Motor India Limited",
+      "action_type": "drop_bare_symbol_alias",
+      "category": "common_english_word",
+      "reason": "Common English word 'hyundai' triggers case-insensitive false matches in news",
+      "prod_evidence": "Preventive hardening pass for high-risk symbol HYUNDAI"
+    },
+    {
+      "symbol": "IDEA",
+      "company": "Vodafone Idea Limited",
+      "action_type": "drop_bare_symbol_alias",
+      "category": "common_english_word",
+      "reason": "Common English word 'idea' triggers false positives in strategic planning, start-up reviews, or analytical opinion pieces",
+      "prod_evidence": "Preventive hardening pass for high-risk symbol IDEA"
+    },
+    {
+      "symbol": "INCREDIBLE",
+      "company": "INCREDIBLE INDUSTRIES LIMITED",
+      "action_type": "drop_bare_symbol_alias",
+      "category": "common_english_word",
+      "reason": "Common English word 'incredible' triggers case-insensitive false matches in news",
+      "prod_evidence": "Preventive hardening pass for high-risk symbol INCREDIBLE"
+    },
+    {
+      "symbol": "LEXUS",
+      "company": "Lexus Granito (India) Limited",
+      "action_type": "drop_bare_symbol_alias",
+      "category": "common_english_word",
+      "reason": "Common English word 'lexus' triggers case-insensitive false matches in news",
+      "prod_evidence": "Preventive hardening pass for high-risk symbol LEXUS"
+    },
+    {
+      "symbol": "LINCOLN",
+      "company": "Lincoln Pharmaceuticals Limited",
+      "action_type": "drop_bare_symbol_alias",
+      "category": "common_english_word",
+      "reason": "Common English word 'lincoln' triggers case-insensitive false matches in news",
+      "prod_evidence": "Preventive hardening pass for high-risk symbol LINCOLN"
+    },
+    {
+      "symbol": "MARINE",
+      "company": "Marine Electricals (India) Limited",
+      "action_type": "drop_bare_symbol_alias",
+      "category": "common_english_word",
+      "reason": "Common English word 'marine' triggers case-insensitive false matches in news",
+      "prod_evidence": "Preventive hardening pass for high-risk symbol MARINE"
+    },
+    {
+      "symbol": "MAZDA",
+      "company": "Mazda Limited",
+      "action_type": "drop_bare_symbol_alias",
+      "category": "common_english_word",
+      "reason": "Common English word 'mazda' triggers case-insensitive false matches in news",
+      "prod_evidence": "Preventive hardening pass for high-risk symbol MAZDA"
+    },
+    {
+      "symbol": "MIDWESTLTD",
+      "company": "Midwest Limited",
+      "action_type": "drop_bare_symbol_alias",
+      "category": "common_english_word",
+      "reason": "Common English word 'midwestltd' triggers case-insensitive false matches in news",
+      "prod_evidence": "Preventive hardening pass for high-risk symbol MIDWESTLTD"
+    },
+    {
+      "symbol": "NFL",
+      "company": "National Fertilizers Limited",
+      "action_type": "drop_bare_symbol_alias",
+      "category": "common_english_word",
+      "reason": "Common English word 'nfl' triggers case-insensitive false matches in news",
+      "prod_evidence": "Preventive hardening pass for high-risk symbol NFL"
+    },
+    {
+      "symbol": "OIL",
+      "company": "Oil India Limited",
+      "action_type": "drop_bare_symbol_alias",
+      "category": "common_english_word",
+      "reason": "Common English word 'oil' triggers case-insensitive false matches in news",
+      "prod_evidence": "Preventive hardening pass for high-risk symbol OIL"
+    },
+    {
+      "symbol": "PAGEIND",
+      "company": "Page Industries Limited",
+      "action_type": "drop_alias",
+      "alias_to_drop": "Page",
+      "category": "common_english_word",
+      "reason": "Common English word 'pageind' triggers case-insensitive false matches in news",
+      "prod_evidence": "Preventive hardening pass for high-risk symbol PAGEIND"
+    },
+    {
+      "symbol": "PAR",
+      "company": "Par Drugs And Chemicals Limited",
+      "action_type": "drop_bare_symbol_alias",
+      "category": "common_english_word",
+      "reason": "Common English word 'par' triggers case-insensitive false matches in news",
+      "prod_evidence": "Preventive hardening pass for high-risk symbol PAR"
+    },
+    {
+      "symbol": "PERSISTENT",
+      "company": "Persistent Systems Limited",
+      "action_type": "drop_bare_symbol_alias",
+      "category": "common_english_word",
+      "reason": "Common English word 'persistent' triggers case-insensitive false matches in news",
+      "prod_evidence": "Preventive hardening pass for high-risk symbol PERSISTENT"
+    },
+    {
+      "symbol": "PLATIND",
+      "company": "Platinum Industries Limited",
+      "action_type": "drop_bare_symbol_alias",
+      "category": "common_english_word",
+      "reason": "Common English word 'platind' triggers case-insensitive false matches in news",
+      "prod_evidence": "Preventive hardening pass for high-risk symbol PLATIND"
+    },
+    {
+      "symbol": "PREMIER",
+      "company": "Premier Limited",
+      "action_type": "drop_bare_symbol_alias",
+      "category": "common_english_word",
+      "reason": "Common English word 'premier' triggers case-insensitive false matches in news",
+      "prod_evidence": "Preventive hardening pass for high-risk symbol PREMIER"
+    },
+    {
+      "symbol": "RACE",
+      "company": "Race Eco Chain Limited",
+      "action_type": "drop_bare_symbol_alias",
+      "category": "common_english_word",
+      "reason": "Common English word 'race' (competition/ethnicity/speed) triggers matches in political news or sports coverage",
+      "prod_evidence": "Preventive hardening pass for high-risk symbol RACE"
+    },
+    {
+      "symbol": "RAINBOW",
+      "company": "Rainbow Childrens Medicare Limited",
+      "action_type": "drop_bare_symbol_alias",
+      "category": "common_english_word",
+      "reason": "Common English word 'rainbow' triggers case-insensitive false matches in news",
+      "prod_evidence": "Preventive hardening pass for high-risk symbol RAINBOW"
+    },
+    {
+      "symbol": "RAYMOND",
+      "company": "Raymond Limited",
+      "action_type": "drop_bare_symbol_alias",
+      "category": "common_english_word",
+      "reason": "Common English word 'raymond' triggers case-insensitive false matches in news",
+      "prod_evidence": "Preventive hardening pass for high-risk symbol RAYMOND"
+    },
+    {
+      "symbol": "RECLTD",
+      "company": "REC Limited",
+      "action_type": "drop_bare_symbol_alias",
+      "category": "common_english_word",
+      "reason": "Common English word 'recltd' triggers case-insensitive false matches in news",
+      "prod_evidence": "Preventive hardening pass for high-risk symbol RECLTD"
+    },
+    {
+      "symbol": "RELIABLE",
+      "company": "Reliable Data Services Limited",
+      "action_type": "drop_bare_symbol_alias",
+      "category": "common_english_word",
+      "reason": "Common English word 'reliable' triggers case-insensitive false matches in news",
+      "prod_evidence": "Preventive hardening pass for high-risk symbol RELIABLE"
+    },
+    {
+      "symbol": "SAFARI",
+      "company": "Safari Industries (India) Limited",
+      "action_type": "drop_bare_symbol_alias",
+      "category": "common_english_word",
+      "reason": "Common English word 'safari' triggers case-insensitive false matches in news",
+      "prod_evidence": "Preventive hardening pass for high-risk symbol SAFARI"
+    },
+    {
+      "symbol": "SAIL",
+      "company": "Steel Authority of India Limited",
+      "action_type": "drop_bare_symbol_alias",
+      "category": "common_english_word",
+      "reason": "Common English word 'sail' triggers case-insensitive false matches in news",
+      "prod_evidence": "Preventive hardening pass for high-risk symbol SAIL"
+    },
+    {
+      "symbol": "SAPPHIRE",
+      "company": "Sapphire Foods India Limited",
+      "action_type": "drop_bare_symbol_alias",
+      "category": "common_english_word",
+      "reason": "Common English word 'sapphire' triggers case-insensitive false matches in news",
+      "prod_evidence": "Preventive hardening pass for high-risk symbol SAPPHIRE"
+    },
+    {
+      "symbol": "SATIN",
+      "company": "Satin Creditcare Network Limited",
+      "action_type": "drop_bare_symbol_alias",
+      "category": "common_english_word",
+      "reason": "Common English word 'satin' triggers case-insensitive false matches in news",
+      "prod_evidence": "Preventive hardening pass for high-risk symbol SATIN"
+    },
+    {
+      "symbol": "SCI",
+      "company": "Shipping Corporation Of India Limited",
+      "action_type": "drop_bare_symbol_alias",
+      "category": "common_english_word",
+      "reason": "Common English word 'sci' triggers case-insensitive false matches in news",
+      "prod_evidence": "Preventive hardening pass for high-risk symbol SCI"
+    },
+    {
+      "symbol": "SHANKARA",
+      "company": "Shankara Building Products Limited",
+      "action_type": "drop_bare_symbol_alias",
+      "category": "indian_proper_noun",
+      "reason": "Common Indian proper noun, philosopher name (Adi Shankara), and Hindu deity (Lord Shiva/Shankara)",
+      "prod_evidence": "Preventive hardening pass for high-risk symbol SHANKARA"
+    },
+    {
+      "symbol": "SIGMA",
+      "company": "Sigma Solve Limited",
+      "action_type": "drop_bare_symbol_alias",
+      "category": "common_english_word",
+      "reason": "Common English word 'sigma' triggers case-insensitive false matches in news",
+      "prod_evidence": "Preventive hardening pass for high-risk symbol SIGMA"
+    },
+    {
+      "symbol": "SIGNATURE",
+      "company": "Signatureglobal (India) Limited",
+      "action_type": "drop_bare_symbol_alias",
+      "category": "common_english_word",
+      "reason": "Common English word 'signature' triggers case-insensitive false matches in news",
+      "prod_evidence": "Preventive hardening pass for high-risk symbol SIGNATURE"
+    },
+    {
+      "symbol": "SINGERIND",
+      "company": "Singer India Limited",
+      "action_type": "drop_alias",
+      "alias_to_drop": "Singer",
+      "category": "common_english_word",
+      "reason": "Common English word 'singerind' triggers case-insensitive false matches in news",
+      "prod_evidence": "Preventive hardening pass for high-risk symbol SINGERIND"
+    },
+    {
+      "symbol": "SOLARINDS",
+      "company": "Solar Industries India Limited",
+      "action_type": "drop_bare_symbol_alias",
+      "category": "common_english_word",
+      "reason": "Common English word 'solarinds' triggers case-insensitive false matches in news",
+      "prod_evidence": "Preventive hardening pass for high-risk symbol SOLARINDS"
+    },
+    {
+      "symbol": "SOUTHWEST",
+      "company": "South West Pinnacle Exploration Limited",
+      "action_type": "drop_bare_symbol_alias",
+      "category": "common_english_word",
+      "reason": "Common English word 'southwest' triggers case-insensitive false matches in news",
+      "prod_evidence": "Preventive hardening pass for high-risk symbol SOUTHWEST"
+    },
+    {
+      "symbol": "SPARC",
+      "company": "Sun Pharma Advanced Research Company Limited",
+      "action_type": "drop_bare_symbol_alias",
+      "category": "common_english_word",
+      "reason": "Common English word 'sparc' triggers case-insensitive false matches in news",
+      "prod_evidence": "Preventive hardening pass for high-risk symbol SPARC"
+    },
+    {
+      "symbol": "SPECTRUM",
+      "company": "Spectrum Electrical Industries Limited",
+      "action_type": "drop_bare_symbol_alias",
+      "category": "common_english_word",
+      "reason": "Common English word 'spectrum' triggers case-insensitive false matches in news",
+      "prod_evidence": "Preventive hardening pass for high-risk symbol SPECTRUM"
+    },
+    {
+      "symbol": "STANLEY",
+      "company": "Stanley Lifestyles Limited",
+      "action_type": "drop_bare_symbol_alias",
+      "category": "common_english_word",
+      "reason": "Common English word 'stanley' triggers case-insensitive false matches in news",
+      "prod_evidence": "Preventive hardening pass for high-risk symbol STANLEY"
+    },
+    {
+      "symbol": "STAR",
+      "company": "Strides Pharma Science Limited",
+      "action_type": "drop_bare_symbol_alias",
+      "category": "common_english_word",
+      "reason": "Common English word 'star' (astronomical body/celebrity) triggers matches in sports, entertainment, or review ratings",
+      "prod_evidence": "Preventive hardening pass for high-risk symbol STAR"
+    },
+    {
+      "symbol": "SUPREME",
+      "company": "Supreme Holdings & Hospitality (India) Limited",
+      "action_type": "drop_bare_symbol_alias",
+      "category": "common_english_word",
+      "reason": "Common English word 'supreme' triggers case-insensitive false matches in news",
+      "prod_evidence": "Preventive hardening pass for high-risk symbol SUPREME"
+    },
+    {
+      "symbol": "SYMPHONY",
+      "company": "Symphony Limited",
+      "action_type": "drop_bare_symbol_alias",
+      "category": "common_english_word",
+      "reason": "Common English word 'symphony' triggers case-insensitive false matches in news",
+      "prod_evidence": "Preventive hardening pass for high-risk symbol SYMPHONY"
+    },
+    {
+      "symbol": "TI",
+      "company": "Tilaknagar Industries Limited",
+      "action_type": "drop_bare_symbol_alias",
+      "category": "common_english_word",
+      "reason": "Common English word 'ti' triggers case-insensitive false matches in news",
+      "prod_evidence": "Preventive hardening pass for high-risk symbol TI"
+    },
+    {
+      "symbol": "TIL",
+      "company": "TIL Limited",
+      "action_type": "drop_bare_symbol_alias",
+      "category": "common_english_word",
+      "reason": "Common English word 'til' triggers case-insensitive false matches in news",
+      "prod_evidence": "Preventive hardening pass for high-risk symbol TIL"
+    },
+    {
+      "symbol": "URBANCO",
+      "company": "Urban Company Limited",
+      "action_type": "drop_bare_symbol_alias",
+      "category": "common_english_word",
+      "reason": "Common English word 'urbanco' triggers case-insensitive false matches in news",
+      "prod_evidence": "Preventive hardening pass for high-risk symbol URBANCO"
+    },
+    {
+      "symbol": "VAISHALI",
+      "company": "Vaishali Pharma Limited",
+      "action_type": "drop_bare_symbol_alias",
+      "category": "indian_proper_noun",
+      "reason": "Common Indian proper female name and historical district name (Vaishali)",
+      "prod_evidence": "Preventive hardening pass for high-risk symbol VAISHALI"
+    },
+    {
+      "symbol": "VIJAYA",
+      "company": "Vijaya Diagnostic Centre Limited",
+      "action_type": "drop_bare_symbol_alias",
+      "category": "indian_proper_noun",
+      "reason": "Common Indian proper name and historical term for victory",
+      "prod_evidence": "Preventive hardening pass for high-risk symbol VIJAYA"
+    },
+    {
+      "symbol": "VITAL",
+      "company": "Vital Chemtech Limited",
+      "action_type": "drop_bare_symbol_alias",
+      "category": "common_english_word",
+      "reason": "Common English word 'vital' triggers case-insensitive false matches in news",
+      "prod_evidence": "Preventive hardening pass for high-risk symbol VITAL"
+    },
+    {
+      "symbol": "WEALTH",
+      "company": "Wealth First Portfolio Managers Limited",
+      "action_type": "drop_bare_symbol_alias",
+      "category": "common_english_word",
+      "reason": "Common English word 'wealth' triggers case-insensitive false matches in news",
+      "prod_evidence": "Preventive hardening pass for high-risk symbol WEALTH"
+    },
+    {
+      "symbol": "WHEELS",
+      "company": "Wheels India Limited",
+      "action_type": "drop_bare_symbol_alias",
+      "category": "common_english_word",
+      "reason": "Common English word 'wheels' triggers case-insensitive false matches in news",
+      "prod_evidence": "Preventive hardening pass for high-risk symbol WHEELS"
+    }
+  ]
+}
