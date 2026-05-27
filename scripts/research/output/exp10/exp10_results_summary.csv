@@ -1,0 +1,15 @@
+section,key,n,mean_AR,t,p,mean_abs_AR,hit_rate,frac_pos
+horizon,t+5min,29,-0.001723,-1.653,0.0984,0.004258,0.2759,
+horizon,t+15min,29,-0.001193,-1.067,0.2858,0.003890,0.3103,
+horizon,t+30min,28,0.000794,0.473,0.6361,0.005811,0.3571,
+horizon,t+60min,26,0.009518,2.443,0.0146,0.016609,0.7308,
+horizon,t+240min,26,0.019966,3.406,0.0007,0.030138,0.8462,
+horizon,EOD_close,29,0.003804,1.832,0.0669,0.008102,0.4483,
+horizon,next_day_close,25,0.015547,2.708,0.0068,0.025197,0.9600,
+category_t60,financial_results,11,0.007849,1.166,0.2436,,0.9091,0.7273
+category_t60,board_meeting,9,,,,,,
+category_t60,dividend,9,,,,,,
+category_t60,acquisition,4,,,,,,
+meta,headline_horizon,t+60min,,,,,,
+meta,headline_n,26,,,,,,
+meta,hit_threshold,0.005,,,,,,
