@@ -1,0 +1,15 @@
+episode_id,episode_name,anchor_date,must_cover,description
+EP01,COVID crash + India lockdown,2020-03-11,WHO declares pandemic; national lockdown announced 2020-03-24,Global market crash; Nifty circuit limit hit; USDINR rises; Brent oil crashes below $25
+EP02,Russia–Ukraine + crude spike,2022-02-24,Russia invasion of Ukraine,Brent spikes above $100; Nifty falls 4.78% in a day; USDINR breaks 75
+EP03,US Fed hiking / EM risk-off,2022-09-21,Fed 75bps hike and hawkish projection,Global liquidity withdrawal; FPI equity selling; Nifty corrects; USDINR rises past 80
+EP04,Adani–Hindenburg,2023-01-24,Hindenburg Research report release,Adani group stocks crash; systemic risk fears in banking sector; Nifty falls below 18k
+EP05,Israel–Hamas / Middle East oil fear,2023-10-07,Hamas attack on Israel,Middle East escalation fears; short-term crude oil spikes; market consolidation
+EP06,Red Sea / shipping stress,2023-12-15,Red Sea shipping suspensions,Houthi attacks; freight rate spikes; impacts on export-oriented sectors
+EP07,India elections / policy shifts,2024-06-04,2024 election results day,Surprise election outcome; BJP loses single-party majority; Nifty falls 5.93% on results day
+EP08,US tariff / trade war rhetoric,2025-11-25,US tariff threat announcements,US protectionist policies; global trade tensions; FPI risk-off outflows
+EP09,West Asia escalation (live May 2026),2026-04-13,Ongoing conflict in Middle East,RBI April minutes cite conflict; USDINR trades at ~95.8; Brent oil spikes
+EP10,Nifty gap >2% - COVID WHO Announcement,2020-03-12,WHO pandemic declaration,Nifty fell 8.30% in a single day
+EP11,Nifty gap >2% - COVID Lockdown Panic,2020-03-23,Lockdown announcement,Nifty fell 12.98% in a single day
+EP12,Nifty gap >2% - Ukraine Tensions,2022-01-24,Russia-Ukraine escalation,Nifty fell 2.66% in a single day
+EP13,Nifty gap >2% - Yen Carry Trade Unwind,2024-08-05,Yen carry trade unwind,Nifty fell 2.68% in a single day
+EP14,Nifty gap >2% - West Asia & Inflation,2026-03-19,Inflation and escalation fear,Nifty fell 3.26% in a single day

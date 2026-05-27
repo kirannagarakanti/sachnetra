@@ -1,0 +1,16 @@
+data_point,source,access_date,confidence,deep_link
+Nifty 50 Close,National Stock Exchange (NSE) India,2026-05-27,confirmed,https://www.nseindia.com/reports-indices-historical-index-data
+USDINR Spot Exchange Rate,Reserve Bank of India (RBI),2026-05-27,confirmed,https://www.rbi.org.in/Scripts/BS_PressReleaseDisplay.aspx
+Brent Crude Oil Futures,Federal Reserve Economic Data (FRED),2026-05-27,confirmed,https://fred.stlouisfed.org/series/DCOILBRENTEU
+India VIX Volatility Index,National Stock Exchange (NSE) India,2026-05-27,confirmed,https://www.nseindia.com/reports-indices-historical-index-data
+FPI Monthly & Daily Flows,National Securities Depository Limited (NSDL) India,2026-05-27,confirmed,https://www.fpi.nsdl.co.in/Reports/Monthly.aspx
+DII Monthly & Daily Flows,NSE Institutional Trading Activity Reports,2026-05-27,confirmed,https://www.nseindia.com/reports/institutional-trading-activity
+COVID-19 Pandemic Declaration,World Health Organization (WHO),2026-05-27,confirmed,https://www.who.int/director-general/speeches/detail/who-director-general-s-opening-remarks-at-the-media-briefing-on-covid-19---11-march-2020
+Adani Hindenburg Short-seller Report,Hindenburg Research,2026-05-27,confirmed,https://hindenburgresearch.com/adani/
+2024 Lok Sabha Election Results,Election Commission of India (ECI),2026-05-27,confirmed,https://results.eci.gov.in/
+RBI MPC April 2026 Minutes,Reserve Bank of India (RBI),2026-05-27,confirmed,https://www.rbi.org.in/Scripts/BS_PressReleaseDisplay.aspx?prid=62515
+Nov 2016 Demonetization Press Release,Reserve Bank of India (RBI),2026-05-27,confirmed,https://www.rbi.org.in/Scripts/BS_PressReleaseDisplay.aspx?prid=38520
+40-currency Trade-Weighted REER Index,Reserve Bank of India (RBI),2026-05-27,confirmed,https://www.rbi.org.in/Scripts/BS_PressReleaseDisplay.aspx?prid=62601
+CPI / WPI Inflation Data,Ministry of Statistics and Programme Implementation (MOSPI),2026-05-27,confirmed,https://www.mospi.gov.in/press-release
+SME IPO GMP Tracker,Chittorgarh IPO Tracker,2026-05-27,anecdote,https://www.chittorgarh.com/report/sme-ipo-gmp-grey-market-premium/21/
+Telegram Advisory Enforcement Actions,Securities and Exchange Board of India (SEBI),2026-05-27,confirmed,https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListingAll=yes&cid=1&sid=1&sstid=1

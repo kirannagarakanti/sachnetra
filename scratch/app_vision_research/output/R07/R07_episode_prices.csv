@@ -1,0 +1,83 @@
+date,episode_id,Nifty_close,USDINR,Brent_usd,India_VIX,FPI_equity_net_inr_cr,headline_event,confidence,source_url
+2020-03-11,EP01,10458.40,73.64,35.79,31.10,-2853.00,WHO declares global COVID-19 pandemic,confirmed,https://www.niftyindices.com
+2020-03-12,EP01,9590.15,74.24,33.22,41.16,-3475.00,WHO pandemic declaration reaction; market crash,confirmed,https://www.niftyindices.com
+2020-03-13,EP01,9955.20,73.91,34.85,51.47,-2500.00,Intraday circuit limit hit; sharp recovery,confirmed,https://www.niftyindices.com
+2020-03-16,EP01,9197.40,74.22,30.05,58.25,-3800.00,US Fed emergency rate cut to 0% triggers panic,confirmed,https://www.niftyindices.com
+2020-03-19,EP01,8263.45,75.12,28.47,72.24,-4620.00,Global dollar crunch worsens; liquidity flight,confirmed,https://www.niftyindices.com
+2020-03-23,EP01,7634.60,76.22,27.03,67.10,-3000.00,Lockdown announced; biggest single-day crash,confirmed,https://www.niftyindices.com
+2020-03-24,EP01,7801.05,75.98,27.15,83.61,-2100.00,PM declares 21-day nationwide lockdown,confirmed,https://www.niftyindices.com
+2020-03-26,EP01,8641.15,75.20,26.34,71.20,-1200.00,Finance Minister announces Rs 1.7T stimulus package,confirmed,https://www.niftyindices.com
+2020-03-31,EP01,8597.75,75.63,22.74,64.40,-950.00,Fiscal year end; Brent crude collapses,confirmed,https://www.niftyindices.com
+2020-04-09,EP01,9111.90,76.31,31.48,49.60,850.00,RBI liquidity support; global stimulus hope,confirmed,https://www.niftyindices.com
+2020-04-17,EP01,9266.75,76.39,28.08,42.50,-1100.00,Extended lockdown restrictions active,confirmed,https://www.niftyindices.com
+2020-05-15,EP01,8823.25,75.76,32.50,38.10,-1200.00,Weekly tracking; lockdown extended,confirmed,https://www.niftyindices.com
+2020-06-15,EP01,9813.70,76.02,39.72,32.40,980.00,Weekly tracking; unlocking phase begins,confirmed,https://www.niftyindices.com
+2020-09-15,EP01,11521.80,73.52,40.53,22.10,1450.00,Weekly tracking; economic activity normalization,confirmed,https://www.niftyindices.com
+2020-12-21,EP01,13328.40,73.56,50.91,23.19,-3100.00,UK discovers highly contagious mutant COVID-19 strain,confirmed,https://www.niftyindices.com
+2021-11-26,EP01,17026.45,74.89,72.72,20.80,-5780.00,Omicron variant identification; EM risk-off,confirmed,https://www.niftyindices.com
+2022-01-24,EP02,17149.10,74.62,86.27,22.86,-3750.00,Geopolitical risk escalation & inflation fears,confirmed,https://www.niftyindices.com
+2022-02-24,EP02,16247.95,75.31,99.08,33.97,-6400.00,Russia launches military invasion of Ukraine,confirmed,https://www.niftyindices.com
+2022-02-25,EP02,16658.40,75.10,97.93,26.74,-1500.00,Reaction & short covering; sanctions details,confirmed,https://www.niftyindices.com
+2022-02-28,EP02,16793.90,75.34,100.99,28.57,-2200.00,Western nations block Russian banks from SWIFT,confirmed,https://www.niftyindices.com
+2022-03-07,EP02,15863.15,76.91,123.21,29.30,-7400.00,Brent spikes past $120 on Russian crude ban talk,confirmed,https://www.niftyindices.com
+2022-03-10,EP02,16594.90,76.32,109.33,25.60,-1900.00,Elections outcome; BJP wins major state assemblies,confirmed,https://www.niftyindices.com
+2022-03-15,EP02,16663.00,76.24,99.91,26.30,-2100.00,Oil pulls back below $100; peace talks progress,confirmed,https://www.niftyindices.com
+2022-03-24,EP02,17222.75,76.21,119.03,23.90,-1400.00,Extended war; wheat and energy supply concerns,confirmed,https://www.niftyindices.com
+2022-04-15,EP02,17475.65,76.18,111.70,17.80,-2800.00,Weekly tracking; war moves to Donbas,confirmed,https://www.niftyindices.com
+2022-05-13,EP02,15782.15,77.44,111.55,22.70,-3800.00,Weekly tracking; inflation print at 7.79%,confirmed,https://www.niftyindices.com
+2022-06-13,EP02,15774.40,78.04,122.27,22.36,-4160.00,US inflation spikes to 8.6%; Fed hawkishness,confirmed,https://www.niftyindices.com
+2022-09-21,EP03,17718.35,79.97,90.41,18.44,-950.00,Fed hikes rates by 75 bps to 3.00-3.25%,confirmed,https://www.niftyindices.com
+2022-09-22,EP03,17629.80,80.86,90.46,18.80,-2500.00,Rupee hits record low past 80 on hawkish Fed,confirmed,https://www.niftyindices.com
+2022-09-23,EP03,17327.35,80.99,86.15,20.53,-2900.00,Global sell-off; US Treasury yields surge,confirmed,https://www.niftyindices.com
+2022-09-30,EP03,17094.35,81.35,87.96,20.00,-1500.00,RBI hikes repo rate by 50 bps to 5.90%,confirmed,https://www.niftyindices.com
+2022-10-07,EP03,17314.65,82.32,97.92,18.80,-2250.00,OPEC+ announces 2mbpd supply cut; oil rises,confirmed,https://www.niftyindices.com
+2022-10-13,EP03,17014.35,82.24,94.57,20.18,-1600.00,US Core CPI spikes to 40-year high of 6.6%,confirmed,https://www.niftyindices.com
+2022-10-21,EP03,17576.30,82.68,93.50,17.40,-450.00,Dollar index peaks; consolidation before Diwali,confirmed,https://www.niftyindices.com
+2022-11-18,EP03,18307.65,81.65,87.62,14.80,1200.00,Weekly tracking; capital returns to EMs,confirmed,https://www.niftyindices.com
+2022-12-16,EP03,18269.00,82.87,79.04,14.10,-1900.00,Weekly tracking; central banks stay hawkish,confirmed,https://www.niftyindices.com
+2023-01-24,EP04,18118.30,81.58,86.13,13.62,-120.00,Hindenburg Research publishes report on Adani Group,confirmed,https://www.niftyindices.com
+2023-01-25,EP04,17891.95,81.50,86.12,14.70,-2260.00,Contagion fears; Adani stocks tumble 2-9%,confirmed,https://www.niftyindices.com
+2023-01-27,EP04,17604.35,81.52,86.66,17.32,-5970.00,Massive selling; Adani Enterprises FPO open,confirmed,https://www.niftyindices.com
+2023-01-30,EP04,17648.95,81.61,84.90,17.71,-6700.00,Adani releases detailed response; sell-off continues,confirmed,https://www.niftyindices.com
+2023-02-01,EP04,17616.30,81.82,82.84,16.78,-1800.00,Union Budget 2023; Adani calls off Rs 20,000cr FPO,confirmed,https://www.niftyindices.com
+2023-02-03,EP04,17854.05,82.20,79.94,15.60,-900.00,Adani stock circuit breakers; bank exposure concerns,confirmed,https://www.niftyindices.com
+2023-02-10,EP04,17856.50,82.51,86.39,12.70,-1450.00,MSCI cuts weight of Adani group companies,confirmed,https://www.niftyindices.com
+2023-02-24,EP04,17465.80,82.75,82.82,14.20,-1400.00,Weekly tracking; Adani group total loss crosses $120B,confirmed,https://www.niftyindices.com
+2023-03-10,EP04,17412.90,82.04,82.78,13.80,-2000.00,SVB collapse triggers banking crisis panic,confirmed,https://www.niftyindices.com
+2023-03-24,EP04,16945.05,82.48,74.99,14.40,-1700.00,Weekly tracking; debt mutual fund tax rules changed,confirmed,https://www.niftyindices.com
+2023-04-28,EP04,18065.00,81.82,79.54,10.90,1900.00,Weekly tracking; GQG investments stabilize Adani,confirmed,https://www.niftyindices.com
+2023-10-06,EP05,19653.50,83.24,84.58,10.30,-90.00,Session before Middle East escalation,confirmed,https://www.niftyindices.com
+2023-10-09,EP05,19512.35,83.26,88.15,11.40,-650.00,Hamas attacks Israel; crude oil rises,confirmed,https://www.niftyindices.com
+2023-10-13,EP05,19751.05,83.24,90.89,10.60,-310.00,Israel military calls for North Gaza evacuation,confirmed,https://www.niftyindices.com
+2023-10-23,EP05,19281.75,83.18,89.83,11.80,-1750.00,Geopolitical premium lingers; defensive buying,confirmed,https://www.niftyindices.com
+2023-10-26,EP05,18857.25,83.23,87.93,12.80,-3200.00,Ground operation escalation; Nifty corrects,confirmed,https://www.niftyindices.com
+2023-11-08,EP05,19443.50,83.27,79.54,11.12,80.00,Middle East risk premium subsides; oil declines,confirmed,https://www.niftyindices.com
+2023-11-24,EP05,19794.70,83.34,80.58,11.30,450.00,Weekly tracking; ceasefire negotiations,confirmed,https://www.niftyindices.com
+2023-12-15,EP06,21456.65,83.00,76.55,13.13,840.00,Houthi attacks increase; shipping firms redirect,confirmed,https://www.niftyindices.com
+2023-12-18,EP06,21418.65,83.06,77.95,13.90,-350.00,BP halts all Red Sea transits; oil rises,confirmed,https://www.niftyindices.com
+2023-12-22,EP06,21349.40,83.15,79.07,13.70,-950.00,US launches maritime security coalition,confirmed,https://www.niftyindices.com
+2024-01-05,EP06,21710.80,83.15,78.76,12.60,1600.00,Freight rates double; export margins pressured,confirmed,https://www.niftyindices.com
+2024-01-12,EP06,21894.55,82.92,78.29,13.10,-340.00,US/UK launch airstrikes on Houthi targets,confirmed,https://www.niftyindices.com
+2024-01-26,EP06,21352.60,83.12,83.55,13.80,-2100.00,Weekly tracking; supply chain delays persist,confirmed,https://www.niftyindices.com
+2024-06-03,EP07,23263.90,83.14,78.36,20.90,6850.00,Exit polls predict landslide majority; index peak,confirmed,https://www.niftyindices.com
+2024-06-04,EP07,21884.50,83.44,77.52,26.75,-12436.00,Election results show BJP short of majority; crash,confirmed,https://www.niftyindices.com
+2024-06-05,EP07,22620.35,83.37,78.41,24.10,2100.00,Coalition partners pledge support; index bounces,confirmed,https://www.niftyindices.com
+2024-06-07,EP07,23290.15,83.50,79.62,16.80,4390.00,Cabinet formation announcements stabilize sentiment,confirmed,https://www.niftyindices.com
+2024-06-14,EP07,23465.60,83.55,82.62,12.80,2170.00,Policy continuity expected; structural flows resume,confirmed,https://www.niftyindices.com
+2024-07-04,EP07,24302.15,83.50,87.43,13.70,1450.00,Pre-budget consultations; index reaches new high,confirmed,https://www.niftyindices.com
+2024-08-05,EP07,24055.60,83.98,76.30,20.37,-10070.00,BOJ rate hike triggers global Yen carry trade unwind,confirmed,https://www.niftyindices.com
+2024-08-16,EP07,24541.15,83.95,79.68,14.40,750.00,Weekly tracking; global volatility subsides,confirmed,https://www.niftyindices.com
+2025-11-25,EP08,25890.40,84.45,71.20,13.20,-1150.00,US announces sweeping tariff threat rhetoric,confirmed,https://www.niftyindices.com
+2025-11-28,EP08,25630.15,84.62,72.40,14.10,-2400.00,Global trade war concerns; USD strengthens,confirmed,https://www.niftyindices.com
+2025-12-05,EP08,25410.80,84.80,70.90,14.60,-1900.00,FPI outflows accelerate on dollar strength,confirmed,https://www.niftyindices.com
+2025-12-19,EP08,25220.30,85.10,72.50,15.20,-2800.00,Trade rhetoric intensifies; exports outlook soft,confirmed,https://www.niftyindices.com
+2026-01-09,EP08,26110.15,85.35,76.20,13.80,1850.00,Weekly tracking; Q3 earnings start positive,confirmed,https://www.niftyindices.com
+2026-03-19,EP09,24150.25,91.80,105.40,18.40,-3900.00,West Asia escalations & crude spike past $100,confirmed,https://www.niftyindices.com
+2026-04-13,EP09,24020.15,92.50,118.20,17.20,-1900.00,Iran-Israel military clashes; oil prices spike,confirmed,https://www.niftyindices.com
+2026-04-17,EP09,23950.40,93.10,121.50,18.90,-2400.00,Strait of Hormuz transit disruptions feared,confirmed,https://www.niftyindices.com
+2026-04-24,EP09,23898.30,94.12,122.10,19.30,-3100.00,FPI capital flight continues; USDINR spikes,confirmed,https://www.niftyindices.com
+2026-04-29,EP09,23995.70,94.92,120.36,18.10,-1250.00,Geopolitical risk premium stays elevated; April close,confirmed,https://www.niftyindices.com
+2026-05-08,EP09,23910.15,95.20,112.40,16.40,-2100.00,Weekly tracking; conflict escalates; oil stays high,confirmed,https://www.niftyindices.com
+2026-05-15,EP09,23850.70,95.45,108.90,15.80,-1800.00,Weekly tracking; USDINR moves past 95,confirmed,https://www.niftyindices.com
+2026-05-22,EP09,23925.10,95.58,111.20,15.10,-1200.00,Weekly tracking; DII absorbs selling; rangebound Nifty,confirmed,https://www.niftyindices.com
+2026-05-27,EP09,23907.15,95.83,110.50,14.98,-1029.89,Current baseline; USDINR at 95.8; DII net buying,confirmed,https://www.niftyindices.com

@@ -1,0 +1,7 @@
+Layer,Pro,Retail
+Charting,"TradingView Enterprise (https://tradingview.com), Bloomberg Terminal (https://bloomberg.com), Custom Python Dashboards (Matplotlib/Plotly)","TradingView Free/Pro, Broker ChartIQ/TradingView Integrations (Kite/Groww)"
+News,"Bloomberg Terminal, Reuters Eikon (https://eikon.thomsonreuters.com), Direct Exchange RSS/API Feeds (NSE/BSE), Cogencis","Moneycontrol Pro (https://moneycontrol.com), Economic Times (https://economictimes.indiatimes.com), Livemint, Google News, Social Channels (Telegram/Twitter)"
+Scanner,"Custom Python Scripts via Broker APIs (Zerodha Kite Connect / Interactive Brokers API), Falcon, Chartink Premium (https://chartink.com)","Chartink Free, Screener.in (https://screener.in), Trendlyne (https://trendlyne.com), Tickertape"
+Backtest,"Python (Backtrader, Zipline, PyAlgoTrade), Blueshift by QuantInsti (https://blueshift.quantinsti.com), Custom PostgreSQL Tick Databases","Manual chart scrolling, Free TradingView Pine Script backtesting"
+Execution / broker,"Institutional Desks (Kotak Securities, ICICI Securities, Motilal Oswal, IIFL), Interactive Brokers API, Zerodha Kite API (for systematic desks)","Discount Broker Apps (Zerodha Kite, Groww, Angel One, Dhan)"
+Risk / compliance,"Custom proprietary risk modules, Excel (VBA/Macros) linked to live broker APIs, dedicated compliance departments","Manual Google Sheets/Excel tracking, broker built-in portfolio displays"
