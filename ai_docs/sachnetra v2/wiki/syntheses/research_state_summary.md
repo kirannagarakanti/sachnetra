@@ -1,7 +1,7 @@
 # Research State Summary — Plain English
 
 **Audience:** Lijo (and anyone who needs to understand what the experiments have actually concluded without reading nine 200-line markdown docs).
-**Last refresh:** 2026-05-23 (after Exp 1–9, including Exp 9's prod run)
+**Last refresh:** 2026-05-24 (after Exp 1–10, including Exp 10's Gemini backfill and re-run)
 **Purpose:** Translate the quant research layer into one document a non-quant operator can read in 15 minutes and walk away knowing the edge thesis.
 
 If you only read 30 seconds of this doc, read §1.
@@ -24,7 +24,7 @@ Everything else (sentiment time series, announcement category effects, tail/EVT 
 
 ## 2. The Story Arc — How We Got Here
 
-We ran nine experiments in two days (2026-05-22 → 23). The agent who ran them organized them as a sequence of falsifiable claims, killing the wrong ones until something survived.
+We ran ten experiments in three days (2026-05-22 → 24). The agent who ran them organized them as a sequence of falsifiable claims, killing the wrong ones until something survived.
 
 **Round 1 — Test the folk wisdom (Exp 1).** Everyone in Indian markets says "FII selling drives the market down." We tested it on 17 years of data. **It is false at any tradable horizon.** FII flow correlates 0.035 with same-day returns — significant only because n≈4000, but only ~0.1% of the variance. FII flow *reacts*, doesn't lead. Direction is coincident.
 
@@ -59,6 +59,7 @@ We ran nine experiments in two days (2026-05-22 → 23). The agent who ran them 
 | **Exp 7** | Does FII flow add value *beyond* a GARCH vol model? | ❌ NULL | No. γ≈0, LR p=0.38, BIC worse. The Exp 6 signal was mostly just the volatility-clustering Exp 6 couldn't control for. **Confirmed by Exp 9 on a validated estimator.** |
 | **Exp 8** | Is the Exp 6 outflow asymmetry just the leverage effect? | 🟡 NO | The outflow-sign asymmetry survives controlling for own returns (t 6.99 → 5.83, shrinks 18%). Holds inside both up- and down-day strata. Real, but doesn't contradict Exp 7 — different control. |
 | **Exp 9** | Re-run Exp 7 with a validated estimator. | ❌ NULL CONFIRMED | Self-test recovers γ cleanly (LR p=4.2e-5). Prod run reproduced Exp 7 to three sig figs: γ=−0.0019, LR=0.77 (p=0.38), BIC worse, OOS Δ negligible. Outflow-only and post-2012 subsamples both reproduce the null. The GARCH-X / flow→variance question is closed for the symmetric-Gaussian GARCH(1,1) class. |
+| **Exp 10** | Do tagged-large-cap NSE filings move the price (intraday)? | ⬜ INCONCLUSIVE + 🚩 SUSPECT | Headline t+60min abnormal return (+95.2 bps, p=0.015, hit=73%) is driven by a single day's multi-filings (GRASIM 2026-05-20). Real distinct-event N is ~8, not 26. Pre-registration rules prevent a false positive. Do NOT trade; fix three method bugs (de-dup, near-close filter, direction extraction) and re-run monthly. Gemini news backfill verified that Q4 results have short wires leads (5-60 min) but small events have infinite leads (no news coverage). |
 
 ---
 
@@ -138,9 +139,10 @@ The data-gaps backlog (`_data_gaps_backlog.md`) has the full list of upstream co
 |--------------|------|
 | The full hypothesis register and method philosophy (canonical verdict ledger, H1–H9 logged) | `sachnetra_research_playbook.md` |
 | The collection-side roadmap (data sources still to build) | `sachnetra_quant_roadmap.md` |
-| Each experiment in full statistical detail | `wiki/experiments/Exp1.md` … `Exp9.md` |
+| Each experiment in full statistical detail | `wiki/experiments/Exp1.md` … `Exp10.md` |
 | The upstream data-gap backlog | `wiki/experiments/_data_gaps_backlog.md` |
 | The positioning decision (be-your-own-first-customer) | `wiki/syntheses/positioning_v2.md` |
+| **The strategic finding from the Exp 10 session — why the latency edge and price impact are inversely related, and which universe pivot escapes the squeeze** | **`wiki/syntheses/latency_vs_value_tradeoff.md`** |
 | Plain-English jargon explanations | `wiki/glossary.md` |
 
 ---
@@ -163,3 +165,4 @@ The point of the doc is to be the *one place* a future Lijo (or future Claude) c
 | 2026-05-23 | Initial creation. Summarises Exp 1–9 in plain English. Surfaces three candidate Gate 2 sentences, with the recommendation to pick Option A as current and Option B as aspirational. Lists the five highest-leverage next-steps. |
 | 2026-05-23 (later) | **Exp 9 prod run executed** at Lijo's explicit ask. Updated §1, §2 round 9, §3 Exp 7/9 rows, §4.2/§4.4, and §6 to reflect ❌ NULL CONFIRMED on a validated estimator. Numbers match Exp 7 to three sig figs. Gate 2 sentence (positioning_v2.md) **unchanged** — Option A's update-rule fired in the "expected" branch, no rewrite needed. |
 | 2026-05-23 (later still) | **H9 row formally logged** in `sachnetra_research_playbook.md`'s Hypothesis Register (the canonical verdict ledger, now H1–H9). Refined §5 Option C's gating note: Exp 9's null kills the *magnitude* arm of its "FII flow context" parenthetical, so Option C now leans only on the *sign* arm (H6-asym + H8) and is gated only on Gap G1 (mid/small-cap tagging). §7 cross-reference updated to note the playbook holds H1–H9. No other content shifts — the doc's plain-English conclusions don't change once the playbook row exists, since the synthesis already reflected the verdict. |
+| 2026-05-24 | **Exp 10 event study run and news backfill completed.** Logged H10 in playbook Hypothesis Register. Verdict is ⬜ inconclusive + 🚩 suspect. Added Exp 10 row to summary table and updated state summary. |
