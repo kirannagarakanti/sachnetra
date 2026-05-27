@@ -1,0 +1,137 @@
+{
+  "version": "2026-05-27-v2",
+  "alias_overlays": {
+    "PWL": {
+      "company": "Physicswallah Limited",
+      "add_aliases": [
+        "PhysicsWallah",
+        "Physicswallah",
+        "Physicswallah Limited"
+      ],
+      "drop_aliases": [
+        "PWL"
+      ],
+      "evidence_urls": [
+        "https://www.nseindia.com/get-quotes/equity?symbol=PWL"
+      ],
+      "notes": "Bare PWL caused wrong tag on PhysicsWallah headline; see coverage_check.md row 17"
+    },
+    "SIEMENS": {
+      "company": "Siemens Limited",
+      "add_aliases": [
+        "Siemens",
+        "Siemens Limited"
+      ],
+      "evidence_urls": [
+        "https://www.nseindia.com/get-quotes/equity?symbol=SIEMENS"
+      ],
+      "notes": "Siemens was dropped preemptively because of ENRIN collision. Restore bare 'Siemens' via explicit overlay."
+    },
+    "JSWSTEEL": {
+      "company": "JSW Steel Limited",
+      "add_aliases": [
+        "JSW Steel",
+        "JSW Steel Limited",
+        "JSW Utkal Steel"
+      ],
+      "evidence_urls": [
+        "https://www.nseindia.com/get-quotes/equity?symbol=JSWSTEEL"
+      ],
+      "notes": "Add JSW Utkal Steel as alias to capture recent project orders."
+    },
+    "LT": {
+      "company": "Larsen & Toubro Limited",
+      "add_aliases": [
+        "L&T",
+        "Larsen & Toubro",
+        "Larsen & Toubro Limited",
+        "Larsen and Toubro"
+      ],
+      "evidence_urls": [
+        "https://www.nseindia.com/get-quotes/equity?symbol=LT"
+      ],
+      "notes": "L&T was dropped preemptively. Restore bare 'L&T' via explicit overlay and map it only to LT."
+    },
+    "SBIN": {
+      "company": "State Bank of India",
+      "add_aliases": [
+        "SBI",
+        "State Bank",
+        "State Bank of India"
+      ],
+      "evidence_urls": [
+        "https://www.nseindia.com/get-quotes/equity?symbol=SBIN"
+      ],
+      "notes": "SBI was dropped preemptively due to SBICARD/SBILIFE. Restore bare 'SBI' for State Bank of India parent."
+    },
+    "HDFCBANK": {
+      "company": "HDFC Bank Limited",
+      "add_aliases": [
+        "HDFC",
+        "HDFC Bank",
+        "HDFC Bank Limited"
+      ],
+      "evidence_urls": [
+        "https://www.nseindia.com/get-quotes/equity?symbol=HDFCBANK"
+      ],
+      "notes": "HDFC was dropped preemptively due to HDFCAMC/HDFCLIFE. Map to HDFCBANK post-merger."
+    },
+    "RELIANCE": {
+      "company": "Reliance Industries Limited",
+      "add_aliases": [
+        "Reliance Industries",
+        "Reliance Industries Limited",
+        "RIL"
+      ],
+      "drop_aliases": [
+        "Mukesh Ambani's company"
+      ],
+      "evidence_urls": [
+        "https://www.nseindia.com/get-quotes/equity?symbol=RELIANCE"
+      ],
+      "notes": "Drop loose person alias 'Mukesh Ambani's company'. Reliance alone is ambiguous and should remain dropped."
+    },
+    "JUBLFOOD": {
+      "company": "Jubilant Foodworks Limited",
+      "add_aliases": [
+        "Domino's",
+        "Dominos"
+      ],
+      "evidence_urls": [
+        "https://www.nseindia.com/get-quotes/equity?symbol=JUBLFOOD"
+      ],
+      "notes": "Domino's is the main consumer brand operated by Jubilant Foodworks in India."
+    },
+    "EICHERMOT": {
+      "company": "Eicher Motors Limited",
+      "add_aliases": [
+        "Royal Enfield"
+      ],
+      "evidence_urls": [
+        "https://www.nseindia.com/get-quotes/equity?symbol=EICHERMOT"
+      ],
+      "notes": "Royal Enfield is the flagship motorcycle brand of Eicher Motors."
+    },
+    "PAGEIND": {
+      "company": "Page Industries Limited",
+      "add_aliases": [
+        "Jockey",
+        "Jockey India"
+      ],
+      "evidence_urls": [
+        "https://www.nseindia.com/get-quotes/equity?symbol=PAGEIND"
+      ],
+      "notes": "Jockey is the licensed brand operated by Page Industries in India."
+    },
+    "CELLO": {
+      "company": "Cello World Limited",
+      "add_aliases": [
+        "Cello"
+      ],
+      "evidence_urls": [
+        "https://www.nseindia.com/get-quotes/equity?symbol=CELLO"
+      ],
+      "notes": "World is not in suffix-strip list, so bare Cello was not generated. Add it."
+    }
+  }
+}

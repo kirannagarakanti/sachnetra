@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// V2-031 Phase 2: build shared/nse-equity-master.json from NSE EQUITY_L.csv.
+// V2-031 / V2-031b: build shared/nse-equity-master.json from NSE EQUITY_L.csv.
 // Re-runnable. Deterministic. Lijo commits the JSON output after smoke-check.
 //
 // Pipeline:
@@ -7,11 +7,14 @@
 //   2. Dedupe by SYMBOL (EQ series wins; BE/GC discarded)
 //   3. Cascade-strip suffixes per Decision 5 → generate per-ticker alias set
 //   4. Overlay alias_proposal.json (50 Nifty + 12 brand divergences)
-//   5. Apply Decision 6(a) collision filter: bare forms shared by 2+ tickers
+//   5. V2-031b: apply hardening actions (drop bare symbols / risky aliases)
+//   6. Apply Decision 6(a) collision filter: bare forms shared by 2+ tickers
 //      are dropped from ALL of them. Multi-word forms survive.
-//   6. Attach Decision 6(b) denylist_context (single-ticker common-noun
+//   7. V2-031b: INTENTIONAL_MULTI_TAG escape hatch (parent aliases + Tata Motors)
+//   8. V2-031b: positive alias overlays (recall fixes from Gemini v2 research)
+//   9. Attach Decision 6(b) denylist_context (single-ticker common-noun
 //      collisions: Lupin, Page, Hero, Britannia, Titan, Asian Paints)
-//   7. Write shared/nse-equity-master.json sorted by ticker
+//  10. Write shared/nse-equity-master.json sorted by ticker
 
 import { readFileSync, writeFileSync } from 'node:fs';
 import { join, dirname } from 'node:path';
@@ -22,7 +25,16 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(__dirname, '..');
 const CSV_PATH = join(ROOT, 'scripts/research/output/v2-031/nse_equity_master.csv');
 const PROPOSAL_PATH = join(ROOT, 'scripts/research/output/v2-031/alias_proposal.json');
+const V2_031B_DIR = join(ROOT, 'scripts/research/output/v2-031b');
+const HARDENING_PATH = join(V2_031B_DIR, 'v2-031b_negative_keywords.json');
+const OVERLAY_PATH = join(V2_031B_DIR, 'v2-031b_positive_aliases.json');
 const OUT_PATH = join(ROOT, 'shared/nse-equity-master.json');
+
+// V2-031b task D5: cascade aliases that prod FPs matched even when bare symbol dropped.
+const SUPPLEMENTAL_ALIAS_DROPS = [
+  { symbol: 'RAIN', alias_to_drop: 'Rain' },
+  { symbol: 'DOLLAR', alias_to_drop: 'Dollar' },
+];
 
 // ── Decision 5: suffix-strip cascade ─────────────────────────────────────────
 // Stripped in order; each intermediate form becomes an alias. Longest first
@@ -79,6 +91,14 @@ const INTENTIONAL_MULTI_TAG = {
   // TMCV (commercial vehicles) + TMPV (passenger vehicles). Historical
   // news data references "Tata Motors" uniformly, so map to both.
   'Tata Motors': ['TMCV', 'TMPV'],
+  // V2-031b: restore collision-filtered parent aliases to dominant listing only.
+  'L&T': ['LT'],
+  'SBI': ['SBIN'],
+  'HDFC': ['HDFCBANK'],
+  // Map bare "Siemens" to SIEMENS only — ENRIN keeps multi-word "Siemens Energy" forms.
+  'Siemens': ['SIEMENS'],
+  // ITC vs ITCHOTELS share first-word "itc" — headlines say "ITC" for the parent FMCG name.
+  'ITC': ['ITC'],
 };
 
 // Tickers in alias_proposal.json whose absence from EQUITY_L is EXPECTED
@@ -190,7 +210,122 @@ function overlayProposal(byTicker) {
   return { merged, added };
 }
 
-// ── Step 5: Decision 6(a) collision filter ───────────────────────────────────
+// ── Step 5 (V2-031b): hardening actions from Gemini v2 research ───────────────
+
+function loadHardeningActions() {
+  const data = JSON.parse(readFileSync(HARDENING_PATH, 'utf8'));
+  const actions = [...data.actions];
+  for (const sup of SUPPLEMENTAL_ALIAS_DROPS) {
+    const exists = actions.some(
+      (a) =>
+        a.symbol === sup.symbol &&
+        a.action_type === 'drop_alias' &&
+        a.alias_to_drop?.toLowerCase() === sup.alias_to_drop.toLowerCase(),
+    );
+    if (!exists) {
+      actions.push({
+        symbol: sup.symbol,
+        action_type: 'drop_alias',
+        alias_to_drop: sup.alias_to_drop,
+        reason: 'V2-031b task D5 supplemental cascade drop',
+      });
+    }
+  }
+  return actions;
+}
+
+function removeAliasIgnoreCase(aliases, target) {
+  const key = target.toLowerCase();
+  for (const alias of [...aliases]) {
+    if (alias.toLowerCase() === key) {
+      aliases.delete(alias);
+      return true;
+    }
+  }
+  return false;
+}
+
+function applyHardeningActions(byTicker, actions) {
+  let bareDropped = 0;
+  let aliasDropped = 0;
+  let skipped = 0;
+  let unknown = 0;
+
+  for (const action of actions) {
+    const entry = byTicker.get(action.symbol);
+    if (!entry) {
+      unknown++;
+      console.error(`[build]   hardening phantom symbol: ${action.symbol}`);
+      continue;
+    }
+
+    if (action.action_type === 'drop_bare_symbol_alias') {
+      if (removeAliasIgnoreCase(entry.aliases, entry.ticker)) {
+        bareDropped++;
+      }
+    } else if (action.action_type === 'drop_alias') {
+      if (removeAliasIgnoreCase(entry.aliases, action.alias_to_drop)) {
+        aliasDropped++;
+      }
+    } else {
+      skipped++;
+      console.warn(`[build]   unknown hardening action_type ${action.action_type} for ${action.symbol}`);
+    }
+  }
+
+  if (unknown > 0) {
+    throw new Error(`[build] ${unknown} hardening action(s) reference unknown tickers — aborting`);
+  }
+
+  return { bareDropped, aliasDropped, skipped, total: actions.length };
+}
+
+function applyIntentionalMultiTag(byTicker) {
+  let attached = 0;
+  for (const [alias, tickers] of Object.entries(INTENTIONAL_MULTI_TAG)) {
+    for (const ticker of tickers) {
+      const entry = byTicker.get(ticker);
+      if (!entry) {
+        console.warn(`[build]   INTENTIONAL_MULTI_TAG ticker ${ticker} not in master — skipping "${alias}"`);
+        continue;
+      }
+      entry.aliases.add(normalizeAlias(alias));
+      attached++;
+    }
+    console.log(`[build]   "${alias}" → ${tickers.join(' + ')}`);
+  }
+  return attached;
+}
+
+function applyPositiveOverlays(byTicker) {
+  const data = JSON.parse(readFileSync(OVERLAY_PATH, 'utf8'));
+  const overlays = data.alias_overlays || {};
+  let added = 0;
+  let dropped = 0;
+
+  for (const [ticker, overlay] of Object.entries(overlays)) {
+    const entry = byTicker.get(ticker);
+    if (!entry) {
+      console.warn(`[build]   overlay ticker ${ticker} not in master — skipping`);
+      continue;
+    }
+    for (const alias of overlay.drop_aliases || []) {
+      if (removeAliasIgnoreCase(entry.aliases, alias)) {
+        dropped++;
+      }
+    }
+    for (const alias of overlay.add_aliases || []) {
+      const norm = normalizeAlias(alias);
+      const before = entry.aliases.size;
+      entry.aliases.add(norm);
+      if (entry.aliases.size > before) added++;
+    }
+  }
+
+  return { added, dropped, tickers: Object.keys(overlays).length };
+}
+
+// ── Step 6: Decision 6(a) collision filter ───────────────────────────────────
 //
 // Two ambiguity signals, OR'd together — alias dropped from ALL entries (including
 // its own symbol-form) if either fires:
@@ -324,6 +459,13 @@ function main() {
   const overlayStats = overlayProposal(byTicker);
   console.log(`[build]   merged into ${overlayStats.merged} existing tickers, ${overlayStats.added} skipped`);
 
+  console.log('[build] applying V2-031b hardening actions');
+  const hardeningActions = loadHardeningActions();
+  const hardeningStats = applyHardeningActions(byTicker, hardeningActions);
+  console.log(
+    `[build]   ${hardeningStats.total} actions: ${hardeningStats.bareDropped} bare-symbol drops, ${hardeningStats.aliasDropped} alias drops, ${hardeningStats.skipped} skipped`,
+  );
+
   console.log('[build] applying Decision 6(a) collision filter');
   const collisions = applyCollisionFilter(byTicker);
   console.log(`[build]   ${collisions.length} aliases dropped (multi-ticker claim OR first-word ambiguity)`);
@@ -353,20 +495,14 @@ function main() {
   }
 
   console.log('[build] applying INTENTIONAL_MULTI_TAG (post-filter escape hatch)');
-  let multiAttached = 0;
-  for (const [alias, tickers] of Object.entries(INTENTIONAL_MULTI_TAG)) {
-    for (const ticker of tickers) {
-      const entry = byTicker.get(ticker);
-      if (!entry) {
-        console.warn(`[build]   INTENTIONAL_MULTI_TAG ticker ${ticker} not in master — skipping "${alias}"`);
-        continue;
-      }
-      entry.aliases.add(alias);
-      multiAttached++;
-    }
-    console.log(`[build]   "${alias}" → ${tickers.join(' + ')}`);
-  }
+  const multiAttached = applyIntentionalMultiTag(byTicker);
   console.log(`[build]   ${multiAttached} alias attachments via multi-tag overlay`);
+
+  console.log('[build] applying V2-031b positive alias overlays');
+  const overlayV2Stats = applyPositiveOverlays(byTicker);
+  console.log(
+    `[build]   ${overlayV2Stats.tickers} tickers: ${overlayV2Stats.added} aliases added, ${overlayV2Stats.dropped} dropped`,
+  );
 
   console.log('[build] attaching Decision 6(b) denylist_context');
   const attached = attachDenylist(byTicker);

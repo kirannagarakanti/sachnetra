@@ -141,6 +141,7 @@ V2-030  NSE Bulk & Block Deals            [CODE COMPLETE ✅ — 2026-05-23 · a
 V2-026  POSOCO Electricity Daily          [TASK FILED ✅ — 2026-05-24 · awaiting James impl]
 V2-027  NPCI/NETC FASTag Daily+Monthly    [TASK FILED ✅ — 2026-05-24 · awaiting James impl]
 V2-031  G1+G2 News Ticker Tagging         [COMPLETE ✅ — 2026-05-26]
+V2-031b News Ticker Tagging Hardening    [CODE COMPLETE ✅ — 2026-05-27 · awaiting Lijo prod deploy + 24h coverage rerun]
 ```
 
 Roadmap V2-015–V2-029 (Tier 2+ alpha sources) live in
