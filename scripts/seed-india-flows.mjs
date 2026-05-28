@@ -34,6 +34,47 @@ ON CONFLICT (flow_date, investor_type, segment) DO UPDATE
      OR EXCLUDED.source = india_institutional_flows.source;
 `;
 
+const MATERIALIZE_SQL = `
+INSERT INTO india_flow_metrics
+  (as_of_date, month_start, mtd_fii_net, mtd_dii_net,
+   absorption_ratio, status, trading_days_mtd, computed_at)
+SELECT
+  as_of_date, month_start, mtd_fii_net, mtd_dii_net,
+  absorption_ratio, status, trading_days_mtd, NOW()
+FROM india_flow_absorption_v1
+WHERE as_of_date IS NOT NULL
+ON CONFLICT (as_of_date) DO UPDATE SET
+  month_start = EXCLUDED.month_start,
+  mtd_fii_net = EXCLUDED.mtd_fii_net,
+  mtd_dii_net = EXCLUDED.mtd_dii_net,
+  absorption_ratio = EXCLUDED.absorption_ratio,
+  status = EXCLUDED.status,
+  trading_days_mtd = EXCLUDED.trading_days_mtd,
+  computed_at = NOW();
+`;
+
+async function materializeFlowMetrics(pool) {
+  await pool.query(MATERIALIZE_SQL);
+
+  // Now query the view to get the materialized metrics to log
+  const { rows } = await pool.query(
+    "SELECT as_of_date::text AS as_of_date, month_start::text AS month_start, mtd_fii_net, mtd_dii_net, absorption_ratio, status FROM india_flow_absorption_v1"
+  );
+
+  if (rows.length > 0 && rows[0].as_of_date) {
+    const row = rows[0];
+    const ratioStr = row.absorption_ratio !== null ? row.absorption_ratio : 'null';
+    console.log(`[flows] materialized metrics for ${row.as_of_date} (ratio=${ratioStr}, status=${row.status})`);
+
+    if (row.mtd_dii_net === null) {
+      const monthStr = row.month_start ? row.month_start.slice(0, 7) : 'unknown';
+      console.log(`[flows] WARN: DII MTD missing for ${monthStr} — ratio will be insufficient_data`);
+    }
+  } else {
+    console.log('[flows] no metrics materialized (no active flows)');
+  }
+}
+
 const today = () => new Date().toISOString().slice(0, 10);
 
 async function fetchFlows() {
@@ -95,7 +136,14 @@ async function fetchFlows() {
     console.log(`[flows] upserted ${written} row(s); latest ${latestDate}`);
     return { written, latest_date: latestDate };
   } finally {
-    await pool.end();
+    if (pool) {
+      try {
+        await materializeFlowMetrics(pool);
+      } catch (err) {
+        console.error('[flows] Failed to materialize flow metrics:', err.message || err);
+      }
+      await pool.end();
+    }
   }
 }
 

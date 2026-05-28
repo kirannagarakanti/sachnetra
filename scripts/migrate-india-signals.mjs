@@ -118,6 +118,73 @@ CREATE TABLE IF NOT EXISTS india_institutional_flows (
 CREATE INDEX IF NOT EXISTS idx_flows_date        ON india_institutional_flows (flow_date DESC);
 CREATE INDEX IF NOT EXISTS idx_flows_type_date   ON india_institutional_flows (investor_type, flow_date DESC);
 
+-- V2-017c FII/DII derived metrics layer: function, view, table, and index.
+-- The function must precede the view because the view references the function.
+CREATE OR REPLACE FUNCTION india_flow_absorption_as_of(p_as_of DATE)
+RETURNS TABLE (
+  as_of_date       DATE,
+  month_start      DATE,
+  mtd_fii_net      DECIMAL(14,2),
+  mtd_dii_net      DECIMAL(14,2),
+  trading_days_mtd SMALLINT,
+  absorption_ratio DECIMAL(8,2),
+  status           TEXT
+)
+LANGUAGE sql STABLE AS $$
+  WITH mtd AS (
+    SELECT
+      i.investor_type,
+      SUM(i.net) AS mtd_net,
+      COUNT(*)::smallint AS trading_days
+    FROM india_institutional_flows i
+    WHERE i.segment = 'cash'
+      AND p_as_of IS NOT NULL
+      AND i.flow_date >= date_trunc('month', p_as_of)::date
+      AND i.flow_date <= p_as_of
+    GROUP BY i.investor_type
+  )
+  SELECT
+    p_as_of AS as_of_date,
+    date_trunc('month', p_as_of)::date AS month_start,
+    fii.mtd_net AS mtd_fii_net,
+    dii.mtd_net AS mtd_dii_net,
+    LEAST(fii.trading_days, dii.trading_days) AS trading_days_mtd,
+    CASE
+      WHEN fii.mtd_net IS NULL OR dii.mtd_net IS NULL THEN NULL
+      WHEN fii.mtd_net >= 0 THEN NULL
+      WHEN dii.mtd_net <= 0 THEN NULL
+      ELSE ROUND(dii.mtd_net / ABS(fii.mtd_net), 2)
+    END AS absorption_ratio,
+    CASE
+      WHEN fii.mtd_net IS NULL OR dii.mtd_net IS NULL THEN 'insufficient_data'
+      WHEN fii.mtd_net >= 0 THEN 'fpi_buying'
+      WHEN dii.mtd_net <= 0 THEN 'no_domestic_support'
+      WHEN dii.mtd_net / ABS(fii.mtd_net) > 1.0 THEN 'absorbing'
+      ELSE 'partial'
+    END AS status
+  FROM (SELECT 1) _base
+  LEFT JOIN mtd fii ON fii.investor_type = 'FII'
+  LEFT JOIN mtd dii ON dii.investor_type = 'DII';
+$$;
+
+CREATE OR REPLACE VIEW india_flow_absorption_v1 AS
+SELECT * FROM india_flow_absorption_as_of(
+  (SELECT MAX(flow_date) FROM india_institutional_flows WHERE segment = 'cash')
+);
+
+CREATE TABLE IF NOT EXISTS india_flow_metrics (
+  as_of_date       DATE PRIMARY KEY,
+  month_start      DATE NOT NULL,
+  mtd_fii_net      DECIMAL(14,2),
+  mtd_dii_net      DECIMAL(14,2),
+  absorption_ratio DECIMAL(8,2),          -- NULL when undefined
+  status           TEXT NOT NULL,         -- enum status
+  trading_days_mtd SMALLINT,
+  computed_at      TIMESTAMPTZ DEFAULT NOW()
+);
+CREATE INDEX IF NOT EXISTS idx_flow_metrics_month
+  ON india_flow_metrics (month_start, as_of_date DESC);
+
 -- V2-018 NSE bourse announcements. Independent non-news source: no FK to
 -- india_news_signals/entity_timeline (Decision 6). PK (source, announcement_id)
 -- + append-only ON CONFLICT DO NOTHING — announcements are immutable, distinct
@@ -334,6 +401,10 @@ async function migrate() {
     console.log('✓ Table created: india_institutional_flows');
     console.log('✓ Index created: idx_flows_date');
     console.log('✓ Index created: idx_flows_type_date');
+    console.log('✓ Function created: india_flow_absorption_as_of');
+    console.log('✓ View created: india_flow_absorption_v1');
+    console.log('✓ Table created: india_flow_metrics');
+    console.log('✓ Index created: idx_flow_metrics_month');
     console.log('✓ Table created: india_bourse_announcements');
     console.log('✓ Index created: idx_ann_announced');
     console.log('✓ Index created: idx_ann_symbol_date');
