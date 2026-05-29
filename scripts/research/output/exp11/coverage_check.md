@@ -1,14 +1,14 @@
 # Exp 11 — V2-031 Coverage Check
 
-*Generated: 2026-05-27T09:01:36.951Z*
+*Generated: 2026-05-28T17:41:21.913Z*
 *Source: `scripts/research/exp11-coverage-check.mjs` (read-only)*
 
 ## 11.1 — Check 1: overall coverage (last 7 days)
 
 ```
-total_rows_7d:   22647
-tagged_rows_7d:  723
-coverage_pct:    3.19%
+total_rows_7d:   22184
+tagged_rows_7d:  979
+coverage_pct:    4.41%
 gate (≥20%):     FAIL
 target (≥30%):   BELOW
 ```
@@ -18,56 +18,56 @@ target (≥30%):   BELOW
 ```
 rank  ticker                 count
 ────  ─────────────────────  ─────
-   1  IPL                       92
-   2  ITC.NS                    38
-   3  RELIANCE.NS               37
-   4  COALINDIA                 22
-   5  INDIGO                    22
+   1  IPL                       96
+   2  COALINDIA                 33
+   3  INDIGO                    30
+   4  RELIANCE.NS               28
+   5  HDFCBANK                  24
    6  SUNPHARMA.NS              22
-   7  TAKE                      21
-   8  EICHERMOT.NS              20
-   9  HINDALCO.NS               20
-  10  SBIN.NS                   19
-  11  NTPC.NS                   18
-  12  BHARTIARTL.NS             16
-  13  MARUTI.NS                 16
-  14  ONGC                      16
-  15  FOCUS                     15
-  16  LT.NS                     15
+   7  TAKE                      22
+   8  ASHOKLEY                  19
+   9  HINDALCO.NS               19
+  10  ONGC                      19
+  11  EICHERMOT.NS              18
+  12  NTPC.NS                   17
+  13  PWL                       17
+  14  URBANCO                   16
+  15  CUMMINSIND                15
+  16  FOCUS                     15
   17  RAIN                      15
-  18  TCS.NS                    13
-  19  HDFCBANK                  12
-  20  ONGC.NS                   12
-  21  GRASIM.NS                 11
-  22  MAMATA                    11
-  23  RETAIL                    10
-  24  APOLLOHOSP.NS              9
-  25  DOLLAR                     9
-  26  IRCTC                      8
-  27  COALINDIA.NS               7
-  28  EIDPARRY                   7
-  29  GILLETTE                   7
-  30  MARKSANS                   7
-  31  PWL                        7
-  32  URBANCO                    7
-  33  M&M.NS                     6
-  34  MPSLTD                     6
-  35  BATAINDIA                  5
-  36  CELLO                      5
-  37  CUMMINSIND                 5
-  38  DIL                        5
-  39  DRREDDY.NS                 5
-  40  ENGINERSIN                 5
-  41  GMRAIRPORT                 5
-  42  HDFCBANK.NS                5
-  43  MOBIKWIK                   5
-  44  PCJEWELLER                 5
-  45  POWERGRID.NS               5
-  46  RACE                       5
-  47  ROUTE                      5
-  48  TATAMOTORS.NS              5
-  49  TOTAL                      5
-  50  YATRA                      5
+  18  SBIN.NS                   14
+  19  ALKEM                     13
+  20  BATAINDIA                 13
+  21  GRAPHITE                  13
+  22  MAMATA                    13
+  23  PDSL                      13
+  24  SOLARINDS                 13
+  25  BDL                       12
+  26  GILLETTE                  12
+  27  ITC.NS                    12
+  28  JSWHL                     12
+  29  LT.NS                     12
+  30  ONGC.NS                   12
+  31  ANIKINDS                  11
+  32  DOLLAR                    11
+  33  FINCABLES                 11
+  34  LEMONTREE                 11
+  35  TCS.NS                    11
+  36  IRCTC                     10
+  37  RETAIL                    10
+  38  ANUP                       8
+  39  BHARTIARTL.NS              8
+  40  GMRAIRPORT                 8
+  41  INFY                       8
+  42  MARUTI.NS                  8
+  43  PCJEWELLER                 8
+  44  YATRA                      8
+  45  APARINDS                   7
+  46  BSE                        7
+  47  COALINDIA.NS               7
+  48  EIDPARRY                   7
+  49  MARKSANS                   7
+  50  MPSLTD                     7
 ```
 
 distinct_non_largecap_tickers_top50: 50
@@ -80,34 +80,34 @@ gate (long tail, ≥3 stories/week):   PASS (rough heuristic)
 
 | # | tickers | headline | source | id |
 |---|---|---|---|---|
-| 1 | `IPL` | RCB or GT: Which Team Will Qualify For IPL 2026 Final If Qualifier 1 Gets Washed Out? | Times Now | 3dd0d609-95f3-422b-a781-53601ba6aef3 |
-| 2 | `BHARTIARTL.NS` | Airtel postpaid customers to automatically get benefit of 'Priority Postpaid' service: Airtel MD | Hindu Business Line | fd9ea7cf-9c86-4a8a-b590-993cb0fe6c61 |
-| 3 | `BHARTIARTL.NS` | Airtel defends 'Priority Postpaid' service before DoT panel, denies net neutrality violations - Deccan Herald | Deccan Herald | 7d76f7f7-5bfc-46d9-b860-bbfba0d2ff40 |
-| 4 | `SBIN.NS` | SBI Strike: एसबीआई कर्मचारियों की देशव्यापी हड़ताल टली, प्रबंधन से सकारात्मक बातचीत के बाद फैसला | Amarujala | 440da367-decf-4d02-9238-89f888cedd47 |
-| 5 | `MANINDS` | Man Industries net down 25 pc on higher cost | Hindu Business Line | f69cea80-5d9c-4339-8b7b-559ff26834a4 |
-| 6 | `JKCEMENT` | Broker’s Call: JK Cement (Buy) | Hindu Business Line | 356ccf24-256f-4622-b15b-2c83183e0a31 |
-| 7 | `MARATHON` | Dhir & Dhir associates launches sixth edition of virtual legal marathon on ESG: A 24-hour live research lab - Zee News | Zee News | 2d6a4bf1-9f14-497d-8d40-8f68db4254cc |
-| 8 | `RAIN` | Rain Disrupts Life In Tirumala, Tirupati; Provides Relief To Devotees | Deccan Chronicle | 2f4f01bd-b6f2-4259-960d-485af662e0e3 |
-| 9 | `KEC` | KEC International secures new orders worth Rs 1,303 cr across businesses - Business Standard | Business Standard | 53340a20-8dc1-4f73-be07-66ac1b3493e4 |
-| 10 | `FOCUS` | Quad strengthens counter-terror focus, condemns April 2025 Pahalgam attack: MEA - The Economic Times | Economic Times | 6c7c4148-2455-4952-9a0d-1492aef9f15a |
-| 11 | `MARUTI` | Maruti Suzuki urges employees towards WFH, carpool amid Modi&#8217;s austerity call | Siasat | 1fdf1e54-ff86-4508-8729-7ddcef3ad19c |
-| 12 | `LT.NS` | L&T's Vyoma ties up with Open Dhi to host its enterprise platforms on sovereign cloud | Hindu Business Line | 4f827f18-f0ff-4215-a7e1-496c0a93488b |
-| 13 | `BBOX` | Black Box Q4 profit grows 7% to ₹65 crore | Hindu Business Line | ab213320-74ef-4e7b-98c1-989b3eed308e |
-| 14 | `IPL` | RCB vs GT Live Score Qualifier 1 IPL 2026: Sai Sudharsan, Shubman Gill Departs Early In 255 Chase | Times Now | 29a3b3d8-5c84-470f-b176-b3ec47ce3982 |
-| 15 | `NH` | Momentum indicators remain strong for Narayana Hrudayalaya after breakout above consolidation range - The Economic Times | Economic Times | 40a049e8-444f-40d1-89a7-a585668e7788 |
-| 16 | `MARUTI.NS` | Maruti Suzuki to hike prices across models by up to ₹30,000 from June - Business Standard | Business Standard | 49b0df2e-eb71-4743-a7fe-a1f651def3ad |
-| 17 | `COALINDIA, IRCTC, ONGC, PWL` | Stocks to Watch today: Coal India, PhysicsWallah, ONGC, Siemens, IRCTC - Business Standard | Business Standard | 98e3aa25-47ba-4cc4-9030-c90fcbf648c4 |
-| 18 | `EICHERMOT` | Royal Enfield Bullet 650 India Launch - The Most Powerful Bullet Ever Is Almost Here | Times Now | eefa425f-286d-45c2-aa15-c7c12328fe9b |
-| 19 | `ENGINERSIN` | AI Cost Crunch: Microsoft Cutting Claude Code Access, Redirecting Engineers To GitHub Copilot CLI - News18 | News18 | 165a5bf6-e17f-4207-9c01-f65bbf5e6b28 |
-| 20 | `SUNPHARMA.NS` | Sun Pharma Q4 profit rises 26% to Rs 2,714 crore, revenue grows 13%, dividend announced - financialexpress.com | Financial Express | c169b36d-cc70-4731-a83d-baf3736b2b31 |
-| 21 | `LT.NS` | L&T wins orders from JSW Utkal Steel, IWAI, others | Hindu Business Line | 82f08cc4-1bd9-4f5f-bd8b-ca3ce5c54eb1 |
-| 22 | `HINDUNILVR, VBL` | ITC, Varun Beverages, HUL, others: Fresh target prices, preferred stocks and more | Business Today | f86a9cf2-e042-4496-891f-6250a6f74f38 |
-| 23 | `TCS.NS` | Nashik Police file first charge sheet in TCS sexual assault case - Business Standard | Business Standard | 2574dd81-3d6e-4bb2-a244-6174b37d6a6b |
-| 24 | `ROUTE` | New Gorakhpur–Lucknow train to boost connectivity across 7 UP districts — Full route here - financialexpress.com | Financial Express | 39cc3bc4-1547-406b-80bb-b58605dca17a |
-| 25 | `MAMATA` | Bengal: FIR against Mamata Banerjee for remarks &#8216;hurting religious sentiments&#8217; | Siasat | 694e5808-b9f6-4dfc-ada4-0942e13cedcc |
-| 26 | `IPL` | RCB and GT Set for IPL Qualifier 1 Blockbuster | Deccan Chronicle | cd5745c1-876e-4d9c-b990-433b6e9315ae |
-| 27 | `IPL` | IPL 2026 \| GT win toss, elect to bowl against RCB in Qualifier 1 - Deccan Herald | Deccan Herald | e1a71ef2-8ff5-407c-ab33-4759e4a6e807 |
-| 28 | `TATAMOTORS.NS` | Stellantis Taps Tata Motors to Build Jeep Vehicles for Global Markets from India | StartupTalky | 41f3ed7f-648e-4c89-b767-aa7a042ca23d |
-| 29 | `HDFCBANK` | HDFC Bank falls on report of payments to attract big deposits | Hindu Business Line | 5a32c993-1974-4a75-b3e5-3aef063245d9 |
-| 30 | `INDIGO` | Passengers evacuated using slides at BLR after smoke on taxiing IndiGo aircraft | Times of India | 8f868885-3c33-4f11-818a-ed26aa66cc99 |
+| 1 | `SBIN` | Banking sector to play transformative role in India’s ‘Viksit Bharat’ journey: SBI Chairman - Zee News | Zee News | ba04ad23-ab75-462c-83b1-d0adf274d6e1 |
+| 2 | `COALINDIA, FOCUS, GPTINFRA, IMFA, TATAELXSI` | Sensex today \| Stock Market Live: Coal India, Zee, IMFA, Tata Elxsi, Saatvik, GPT Infraprojects will remain in focus on Wednesday | Hindu Business Line | e939ec6d-4ed6-41ba-8a60-7efade356544 |
+| 3 | `SUNPHARMA.NS, NTPC.NS, EICHERMOT.NS, HINDALCO.NS` | Q4 Results Today Live: Sun Pharma, Shilpa Medicar, Info Edge, Eicher Motors profit up, Hindalco, Torrent Pharma, Colgate profit down; NTPC Green, Fortis Healthcare to announce Q4 r | Hindu Business Line | 46536010-a044-4814-badc-c99fc766e301 |
+| 4 | `VIPULLTD` | Vipul Amrutlal Shah confirms 7th film with Akshay Kumar, teases alien–predator project after ‘Governor’ - Zee News | Zee News | e549b61c-5f90-4e38-bd53-b77538b67ccd |
+| 5 | `AAKASH, IPL` | Aakash Chopra Impressed By Arjun Tendulkar's Performance In Lone Appearance For LSG In IPL 2026 | Times Now | 49b7a671-5520-4a42-8e94-27c6d1a5c7ec |
+| 6 | `NH` | Villagers block NH-44 demanding underpass in Medak | Telangana Today | da5e6611-0664-407f-8e9f-f1d78eea4cf0 |
+| 7 | `PGHL` | Procter & Gamble Health standalone net profit rises 54.63% in the March 2026 quarter - Business Standard | Business Standard | 7a0f3ba8-82de-495a-93c3-c293f2da6858 |
+| 8 | `COALINDIA, FOCUS` | Sensex today \| Stock Market Live: Nifty set for muted start, focus on US-Iran talks; Coal India draws attention | Hindu Business Line | b401c273-b5dc-476e-99d5-90ffdb63fac3 |
+| 9 | `RELIANCE.NS` | Reliance Power among 17 smallcap stocks not held by mutual funds in March 2026 quarter. Check details - The Economic Times | Economic Times | 39e5e177-3be6-4abb-8260-64efc76120c6 |
+| 10 | `IPL` | IPL 2026: Bengaluru, that’s how the cookie crumbles - Bangalore Mirror | Bangalore Mirror | 08716e9c-b875-4953-9873-ad4cbeaac6d4 |
+| 11 | `COASTCORP, RETAIL` | Fishing community seeks more diesel retail outlets in coastal areas ahead of trawling ban | Hindu Business Line | c5266d21-d5a8-46dd-8b1f-56c27d523c4b |
+| 12 | `IPL` | RCB vs GT Live Score Qualifier 1 IPL 2026: Bengaluru Pacers Wreak Havoc, Titans Lose 7 Wickets | Times Now | b7c67337-8bbc-4a03-8046-5c35f764ca0f |
+| 13 | `URBANCO` | NVS Reddy pushes for Metro, e-bus expansion to tackle urban traffic | The Hindu | 0dba18c3-a17f-4762-b428-20e1d8a16f21 |
+| 14 | `VEDL` | Progress of Vedanta’s Rs 1L-cr projects to be reviewed every 15 days: CM | Orissa Post | f8f9627a-1d2e-43fb-a53e-d4ba2295ede1 |
+| 15 | `REDTAPE` | Redtape consolidated net profit rises 69.53% in the March 2026 quarter - Business Standard | Business Standard | 35985132-959f-4f24-9015-33ac1081f9e6 |
+| 16 | `IPL` | Patidar stands alongside Dhoni and Rohit in historic IPL captaincy record | Times of India | 1ee30a56-27c6-4849-a766-997ada89489c |
+| 17 | `COALINDIA.NS` | Coal India allays coal shortage apprehensions - Business Standard | Business Standard | 85958d39-59f2-49c3-8273-6cc81bc6d926 |
+| 18 | `IPL` | RCB vs GT Live Score Qualifier 1 IPL 2026: Titans Lose Famed Top 3 In Powerplay | Times Now | 7958b9bf-1414-4b6f-8f08-688e4e05f2cd |
+| 19 | `WIPRO` | Wipro expands partnership with ServiceNow - Business Standard | Business Standard | 039fdb11-fa0d-426d-a9e4-f94ca4425719 |
+| 20 | `MAMATA` | FIR against Mamata Banerjee for remarks ‘hurting religious sentiments’ | The Hindu | 09cffc95-1e5d-496f-8b07-f2e4d0ba9eea |
+| 21 | `TIGERLOGS` | Tiger Logistics (India) standalone net profit declines 65.53% in the March 2026 quarter - Business Standard | Business Standard | 3ce747f6-fe51-47de-87b3-1d845c753191 |
+| 22 | `MAMATA` | Advocate Files Complaint Against Mamata Banerjee Over Alleged Anti-Sanatan Remarks | ABP Live | 0bd7239b-bfdf-4600-9d33-4f844c148e61 |
+| 23 | `SWIGGY` | Swiggy CEO vows to stay out of Amazon-Walmart India spending war | Hindu Business Line | 794813b3-5d71-442a-bff2-ede41be54454 |
+| 24 | `SONAMLTD` | Sonam Wangchuk says he is an &#8216;honorary cockroach&#8217;, rejects Ladakh LG’s claims on CJP | Telangana Today | ec39087c-da58-4f7e-ae80-c35e1e1de382 |
+| 25 | `NAVA` | Nava Kerala Sadas assault: CM’s security violated Z+ protocol by attacking protesters after convoy moved, SIT tells court - Onmanorama | Onmanorama | f3faf26a-cb8f-4b3c-9e57-f578b57b18b8 |
+| 26 | `SPECIALITY` | Mother and Child Care Super Speciality Block of Guntur GGH starts operations | The Hindu | 22cb2cf8-acf0-45ba-b371-8170ac1269a6 |
+| 27 | `TAKE` | Deal to end conflict could take a few days: Rubio as US strikes Iranian naval facilities - The Tribune | Tribune India | 05a568ee-b98c-4c86-b69f-27705724412b |
+| 28 | `MANINDS` | Man Industries net down 25% on higher cost | Hindu Business Line | fd6fc746-e9a1-49e4-b3ef-30259d953e5a |
+| 29 | `UCOBANK` | 2026 LiveLaw (SC) 555 \| Dineshchand Surana v. UCO Bank (with connected case) - Live Law | LiveLaw | c2021b08-dc56-4279-99a9-755065b3f8de |
+| 30 | `EICHERMOT.NS` | Eicher Motors surges 5% as record Q4 profit draws bullish street bets | Hindu Business Line | 6df92887-8ba6-46c5-ac1e-5a9d8c42025b |
 

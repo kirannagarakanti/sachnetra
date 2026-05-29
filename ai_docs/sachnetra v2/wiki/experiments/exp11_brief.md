@@ -321,6 +321,27 @@ block each other and they don't tell us anything new about the squeeze.
 (pending Lijo + manual eyeball; for each row record: ticker | headline-snippet | match? Y/N)
 ```
 
+### 11.4 — Forward-tag slice since V2-031b deploy (run 2026-05-28, read-only)
+
+V2-031b is **forward-tag only** (no backfill), so the 7-day window in §11.1–11.2 is
+**contaminated by pre-deploy rows** — it still shows the old false positives (IPL=96, TAKE=22,
+FOCUS, RAIN) because those rows were tagged by V2-031 *base*. The 7-day coverage re-run on
+2026-05-28 17:41 UTC reads 4.41% for the same reason. The honest read is the **post-deploy slice**:
+
+**Precision — FIXED.** May 28 (post-deploy) top tickers by tag count:
+`ALKEM 13, COALINDIA 8, SOLARINDS 7, ASHOKLEY 7, RELIANCE 6, BAJAJFINSV 5, BANKINDIA 5, URBANCO 5,
+INDIGO 5, EICHERMOT 4` — **all real companies; no IPL / TAKE / cricket / common-word junk.**
+IPL tags since May 27 10:00 UTC = **3 / 4,594** (≈0); **zero IPL tags on May 28.** V2-031b's
+stoplist worked.
+
+**Coverage / recall — STILL LOW.** May 28 clean slice: **194 / 2,732 = 7.10%** tagged — well below
+the Exp 11 **≥20% gate**.
+
+**Routing.** V2-031b cleared the **precision** gate (G4) but **not the coverage gate** (G5). Exp 11
+stays **BLOCKED — now on recall, not precision.** Next is **V2-031c** (recall expansion: body-text
+fetch / more aliases, per V2-031 Decision 3 deferral), not another precision pass. The Exp 11
+mid/small-cap universe (§4) cannot be locked until a forward slice clears ≥20% coverage.
+
 ---
 
 ## 12. Cross-references
