@@ -68,12 +68,38 @@ function gridIndiaFetch(url, { method = 'GET', headers = {}, body, timeoutMs = 3
 const GRID_INDIA_API_BASE  = 'https://webapi.grid-india.in/api/v1';
 const GRID_INDIA_CDN_BASE  = 'https://webcdn.grid-india.in';
 const PSP_SHEET            = 'MOP_E';
-const PSP_REPORTING_CELL   = { row: 2, col: 8 }; // Row 3, Col 9 (0-indexed)
+const REPORTING_DATE_LABEL = /Date of Reporting/i; // located by label, not fixed cell
 const SECTION_A_HEADER     = /A\.\s*Power Supply Position/i;
 const SECTION_C_HEADER     = /C\.\s*Power Supply Position in States/i;
 const XLS_FILENAME_REGEX   = /^(\d{2})\.(\d{2})\.(\d{2})_NLDC_PSP_\d+\.xls$/;
 
 const KNOWN_REGIONS = new Set(['NR', 'WR', 'SR', 'ER', 'NER']);
+
+// Section C lists states with the region code (col 0) present on only ONE
+// visually-centered row per region block — it is blank for every other state.
+// So we cannot read the region from the sheet per-row; we map state→region by
+// name instead (ported from scratch/parse_posoco_all_sections.js, the reference
+// the task specified). Entities not in this map store region='UNKNOWN' — the
+// metrics are still captured and the composite PK does not include region, so an
+// unmapped new entity is non-fatal (just flag it for a one-line map update).
+const STATE_REGION_MAP = {
+  // Northern Region (NR)
+  Punjab: 'NR', Haryana: 'NR', Rajasthan: 'NR', Delhi: 'NR', UP: 'NR',
+  Uttarakhand: 'NR', HP: 'NR', 'J&K(UT) & Ladakh(UT)': 'NR', Chandigarh: 'NR',
+  'Railways_NR ISTS': 'NR',
+  // Western Region (WR)
+  Chhattisgarh: 'WR', Gujarat: 'WR', MP: 'WR', Maharashtra: 'WR', Goa: 'WR',
+  DNHDDPDCL: 'WR', AMNSIL: 'WR', BALCO: 'WR', 'RIL JAMNAGAR': 'WR',
+  // Southern Region (SR)
+  'Andhra Pradesh': 'SR', Telangana: 'SR', Karnataka: 'SR', Kerala: 'SR',
+  'Tamil Nadu': 'SR', Puducherry: 'SR',
+  // Eastern Region (ER)
+  Bihar: 'ER', DVC: 'ER', Jharkhand: 'ER', Odisha: 'ER', 'West Bengal': 'ER',
+  Sikkim: 'ER', 'Railways_ER ISTS': 'ER',
+  // North-Eastern Region (NER)
+  'Arunachal Pradesh': 'NER', Assam: 'NER', Manipur: 'NER', Meghalaya: 'NER',
+  Mizoram: 'NER', Nagaland: 'NER', Tripura: 'NER',
+};
 
 // --- Fiscal year ---
 
@@ -112,6 +138,26 @@ function subDays(date, n) {
   const d = new Date(date.getTime());
   d.setUTCDate(d.getUTCDate() - n);
   return d;
+}
+
+// Locate the reporting-date string by scanning the first ~10 rows for the
+// "Date of Reporting:" label, then taking the next non-empty cell on that row.
+// Robust to the cell drifting columns between years (col 7 in 2023, col 8 later).
+function findReportingDate(rows) {
+  for (let r = 0; r < Math.min(rows.length, 10); r++) {
+    const row = rows[r];
+    if (!row) continue;
+    for (let c = 0; c < row.length; c++) {
+      if (typeof row[c] === 'string' && REPORTING_DATE_LABEL.test(row[c])) {
+        for (let nc = c + 1; nc < row.length; nc++) {
+          if (row[nc] != null && String(row[nc]).trim() !== '') {
+            return String(row[nc]).trim();
+          }
+        }
+      }
+    }
+  }
+  return null;
 }
 
 // Decision 9: split the OD/UD column into two numeric columns.
@@ -168,7 +214,10 @@ function parseSectionA(rows, targetDate) {
   );
   if (headerIdx === -1) return [];
 
-  const BASE = headerIdx + 3; // data rows start 3 below the header
+  // Header row is "A. Power Supply Position"; the region-label row (NR/WR/…) is
+  // one below it, and the first metric row ("Demand Met during the day") is two
+  // below it. So data starts at headerIdx+2 (verified against all 4 sample XLS).
+  const BASE = headerIdx + 2;
 
   // Offsets from BASE (verified in scratch/parse_posoco_all_sections.js):
   // BASE+0 : evening-peak demand met (MW)  → peak_demand_met_mw
@@ -213,18 +262,23 @@ function parseSectionC(rows, targetDate) {
   const out = [];
   for (let i = headerIdx + 3; i < rows.length; i++) {
     const row = rows[i] || [];
-    const regionCode = row[0];
-    const entityName = row[1];
+    const col0 = row[0];
 
-    // Terminator: blank row OR next section header ("D." prefix).
-    if (!regionCode || !entityName) break;
-    if (typeof regionCode === 'string' && /^[A-Z]\./.test(regionCode)) break;
+    // Terminator: next section header ("D. …" / "Transnational"). Region codes
+    // (NR/WR/…) in col 0 are NOT section headers, so they don't terminate.
+    if (typeof col0 === 'string' && (/^[A-Z]\.\s/.test(col0) || /Transnational/i.test(col0))) break;
+
+    // States live in col 1 (col 0 is the sparse, centered region label). A blank
+    // entity cell marks the end of the state list.
+    const entityName = row[1];
+    if (entityName == null || String(entityName).trim() === '') break;
+    const name = String(entityName).trim();
 
     out.push({
       target_date:             targetDate,
       row_type:                'state',
-      entity_name:             String(entityName).trim(),
-      region:                  String(regionCode).trim(),
+      entity_name:             name,
+      region:                  STATE_REGION_MAP[name] ?? 'UNKNOWN',
       max_demand_met_mw:       toNumOrNull(row[2]),
       peak_demand_met_mw:      null,              // Section A only
       peak_demand_shortage_mw: toNumOrNull(row[3]),
@@ -252,11 +306,13 @@ export function parseDailyPsp(buf) {
   const sheet = workbook.Sheets[PSP_SHEET];
   const rows  = xlsx.utils.sheet_to_json(sheet, { header: 1, defval: null });
 
-  // Reporting date from fixed cell (Row 3, Col 9 in Excel = row 2, col 8 in 0-indexed).
-  const rawDate = rows[PSP_REPORTING_CELL.row]?.[PSP_REPORTING_CELL.col];
+  // Reporting date located by the "Date of Reporting:" label, NOT a fixed cell:
+  // the date cell drifted columns across years (col 7 in 2023, col 8 in 2024+),
+  // so a hardcoded address silently mis-reads (or crashes on) older files.
+  const rawDate = findReportingDate(rows);
   if (!rawDate) {
     throw new Error(
-      `parseDailyPsp: reporting-date cell (row=${PSP_REPORTING_CELL.row} col=${PSP_REPORTING_CELL.col}) is empty — sheet layout may have shifted`,
+      'parseDailyPsp: "Date of Reporting:" label not found in first rows — sheet layout may have shifted',
     );
   }
 
@@ -267,10 +323,16 @@ export function parseDailyPsp(buf) {
   const sectionA = parseSectionA(rows, targetDate);
   const sectionC = parseSectionC(rows, targetDate);
 
-  // Schema sanity check: first Section C leaf must have a known region code in col 0.
+  // Sanity checks for column-layout drift. Section A must yield rows; if it did
+  // but Section C produced none, the state block moved. The first state
+  // (historically Punjab) must map to a known region — an UNKNOWN there means the
+  // entity column shifted (a genuinely new entity later in the list is fine).
+  if (sectionA.length > 0 && sectionC.length === 0) {
+    throw new Error('parseDailyPsp: Section C produced 0 state rows — column-layout drift suspected');
+  }
   if (sectionC.length > 0 && !KNOWN_REGIONS.has(sectionC[0].region)) {
     throw new Error(
-      `parseDailyPsp: column-layout drift suspected — first state row has region "${sectionC[0].region}" which is not in {NR,WR,SR,ER,NER}`,
+      `parseDailyPsp: first state "${sectionC[0].entity_name}" → region "${sectionC[0].region}" not in {NR,WR,SR,ER,NER}; column-layout drift suspected`,
     );
   }
 
