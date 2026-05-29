@@ -28,6 +28,7 @@ import pg from 'pg';
 import { upsertAnnouncements } from '../_announcements-upsert.mjs';
 import { fetchNSEAnnouncements, warmUpNSE } from '../_nse-announcements-source.mjs';
 import { loadEnvFile, sleep } from '../_seed-utils.mjs';
+import { assertDiskHeadroom } from './_db-guard.mjs';
 
 loadEnvFile(import.meta.url);
 const { Pool } = pg;
@@ -40,7 +41,7 @@ const getFlag = (name, fallback) => {
 };
 const BACKFILL_DAYS = getFlag('days', '730') ? Number(getFlag('days', '730')) : 730;
 const LIMIT_CHUNKS = getFlag('limit-chunks', null) ? Number(getFlag('limit-chunks', null)) : null;
-const DRY_RUN = args.includes('--dry-run');
+const DRY_RUN = !args.includes('--write');
 const CHUNK_DAYS = 7;
 const CHUNK_PAUSE_MS = 1500;
 
@@ -111,18 +112,6 @@ async function fetchChunkWithRewarm(chunk, cookieRef) {
   }
 }
 
-async function checkDatabaseSize(pool) {
-  const dbSize = await pool.query(`SELECT pg_database_size(current_database()) AS bytes, pg_size_pretty(pg_database_size(current_database())) AS size`);
-  const tableSize = await pool.query(`SELECT pg_size_pretty(pg_total_relation_size('india_bourse_announcements')) AS size`);
-  console.log(`[db-space] Database size: ${dbSize.rows[0].size} · india_bourse_announcements size: ${tableSize.rows[0].size}`);
-  
-  // 5GB is ~5.36 Billion bytes. Limit warn at 4.5GB.
-  const bytes = Number(dbSize.rows[0].bytes);
-  if (bytes > 4.5 * 1024 * 1024 * 1024) {
-    console.warn(`[db-space] WARNING: Database size is dangerously high (${dbSize.rows[0].size} / 5 GB). Aborting writes!`);
-    throw new Error('Database volume capacity limit reached (safety abort)');
-  }
-}
 
 async function main() {
   console.log('=== india_bourse_announcements historical backfill (G7) ===');
@@ -139,7 +128,10 @@ async function main() {
   if (!DRY_RUN) {
     pool = new Pool({ connectionString, ssl: { rejectUnauthorized: false } });
     await pool.query('SELECT 1');
-    await checkDatabaseSize(pool);
+    const dbStat = await assertDiskHeadroom(pool, { tableName: 'india_bourse_announcements' });
+    console.log(`\nWRITE PLAN: chunked history fetch → india_bourse_announcements`);
+    console.log(`  current DB: ${dbStat.sizePretty} / 5000 MB`);
+    console.log(`  proceeding because --write was passed.\n`);
   }
 
   console.log('Warming up NSE session...');
@@ -215,7 +207,7 @@ async function main() {
       } catch (dbErr) {
         console.error(`[backfill]   → Database write failed: ${dbErr.message}`);
         // Attempt to check size and abort if it was space issue
-        if (pool) await checkDatabaseSize(pool).catch(() => {});
+        if (pool) await assertDiskHeadroom(pool, { tableName: 'india_bourse_announcements' }).catch(() => {});
         throw dbErr;
       }
     }

@@ -70,10 +70,10 @@ Nifty Smallcap 250 constituents as a JSON array of Yahoo tickers → `shared/nif
 node scripts/research/check-db-space.mjs
 
 # 1. DRY RUN — fetch + parse, writes nothing
-node scripts/research/backfill-midcap-prices.mjs --dry-run --symbols-file=shared/nifty-smallcap250.json
+node scripts/research/backfill-midcap-prices.mjs --symbols-file=shared/nifty-smallcap250.json
 
 # 2. FULL RUN — writes ~250 symbols to research_prices (idempotent upsert)
-node scripts/research/backfill-midcap-prices.mjs --symbols-file=shared/nifty-smallcap250.json
+node scripts/research/backfill-midcap-prices.mjs --symbols-file=shared/nifty-smallcap250.json --write
 ```
 
 **Disk sizing:** ~250 symbols × full history ≈ ~140–160 MB added (extrapolating G4's 150 sym ≈

@@ -35,6 +35,7 @@
 import { loadEnvFile, CHROME_UA, sleep } from '../_seed-utils.mjs';
 import { readFileSync } from 'node:fs';
 import pg from 'pg';
+import { assertDiskHeadroom } from './_db-guard.mjs';
 
 loadEnvFile(import.meta.url);
 const { Pool } = pg;
@@ -49,7 +50,8 @@ const FROM_DATE = getFlag('from', '2009-01-01');
 const ONLY_SYMBOL = getFlag('symbol', null);
 const SYMBOLS_FILE = getFlag('symbols-file', null);
 const LIMIT = getFlag('limit', null) ? Number(getFlag('limit', null)) : null;
-const DRY_RUN = args.includes('--dry-run');
+const DRY_RUN = !args.includes('--write');
+const MAX_SYMBOLS = getFlag('max-symbols', '400') ? Number(getFlag('max-symbols', '400')) : 400;
 const YAHOO_DELAY_MS = 400;
 
 // Official NSE index-constituents CSV. Verify it still resolves; niftyindices sometimes blocks bots.
@@ -239,8 +241,8 @@ async function main() {
     console.error('ERROR: empty symbol universe. Supply --symbols-file=... or check the NSE CSV URL.');
     process.exit(1);
   }
-  if (symbols.length > 400) {
-    console.error(`ERROR: ${symbols.length} symbols looks wrong for "Midcap 150" — aborting to avoid junk. Check the source.`);
+  if (symbols.length > MAX_SYMBOLS) {
+    console.error(`ERROR: ${symbols.length} symbols exceeds the --max-symbols=${MAX_SYMBOLS} limit — aborting to avoid junk. Use --max-symbols=N to allow larger universes.`);
     process.exit(1);
   }
 
@@ -256,6 +258,11 @@ async function main() {
     await pool.query('SELECT 1');
     await pool.query(DDL);
     console.log('  ✓ research_prices table ready');
+    
+    const dbStat = await assertDiskHeadroom(pool, { tableName: 'research_prices' });
+    console.log(`\nWRITE PLAN: ${symbols.length} symbols → research_prices`);
+    console.log(`  current DB: ${dbStat.sizePretty} / 5000 MB`);
+    console.log(`  proceeding because --write was passed.\n`);
   }
 
   let totalRows = 0, hits = 0, misses = 0;

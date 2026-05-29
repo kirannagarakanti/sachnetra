@@ -70,10 +70,10 @@ node scripts/research/backfill-midcap-prices.mjs --dry-run
 node scripts/research/backfill-midcap-prices.mjs --dry-run --symbols-file=shared/nifty-midcap150.json
 
 # 2. Smoke test a single symbol end-to-end (writes 1 symbol):
-node scripts/research/backfill-midcap-prices.mjs --symbol=BHARATFORG.NS --from=2015-01-01
+node scripts/research/backfill-midcap-prices.mjs --symbol=BHARATFORG.NS --from=2015-01-01 --write
 
 # 3. FULL RUN — writes all ~150 symbols to research_prices (idempotent)
-node scripts/research/backfill-midcap-prices.mjs
+node scripts/research/backfill-midcap-prices.mjs --write
 ```
 
 Pace note: ~150 symbols × ~400ms politeness delay ≈ a couple of minutes plus Yahoo response time.
