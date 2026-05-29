@@ -2,10 +2,10 @@
 tags: [experiment, sachnetra, research, quant-finance, event-study, governance, auditor, pledge, product-a, pre-registered]
 source: [[sachnetra_research_playbook]], [[india_proven_strategies_landscape]], [[latency_vs_value_tradeoff]], [[Exp2]], [[Exp10]], [[Exp11]]
 experiment_id: Exp14
-status: RUN — ⬜ BLOCKED (N<10 both governance buckets; re-run monthly as filings accumulate)
+status: RE-RUN (post-G4) — ❌ NULL on secondary bucket; PRIMARY shock test still data-starved (N=0/1)
 authored_date: 2026-05-28
-run_date: 2026-05-28
-verdict: ⬜ BLOCKED
+run_date: 2026-05-29 (re-run; first run 2026-05-28)
+verdict: ❌ NULL (secondary `auditor` bucket, wrong sign) · primary H14a UNTESTED
 audience: Lijo, James, future Claude Code sessions
 ---
 
@@ -226,6 +226,32 @@ one bucket with N≥20.
 
 ## 6. Data reality (filled after Lijo's run)
 
+### Re-run 2 — post-G4 (2026-05-29) ← current
+
+After G4 expanded `research_prices` from 47 → **194 symbols** (Nifty 50 + Nifty Midcap 150,
+474,154 bars added), Exp 14 was re-run unchanged. Window **start → today** · universe =
+**193 priced symbols + ^NSEI** · market control `^NSEI`.
+
+```
+  23,112  total announcements in window
+     725  …classified governance (auditor / pledge regex)
+      49  …on a priced symbol            ← was 9 in Run 1 (G4 lifted this ~5×)
+      42  …after dedupe by (symbol, event day)   (7 duplicates merged)
+      12  …usable (full ±5 trading-day window present)
+
+  excluded: 676 no priced symbol · 24 missing return · 6 incomplete window
+```
+
+**G4 worked on the price gap, but the binding constraint moved.** Priced governance events rose
+**9 → 49** and usable events **2 → 12**. But the events that became usable are overwhelmingly
+**benign `auditor_change` appointments** (N=11), while the **primary shock units stayed starved**:
+`auditor_resignation` **N=0**, `pledge_increase` **N=1**. 676 governance filings (~93%) still sit
+on sub-midcap small-caps with no price; and `india_bourse_announcements` only spans recent months,
+so genuine shocks haven't accumulated. The new bottleneck is **event-history depth + sub-midcap
+coverage**, not prices.
+
+### Run 1 — pre-G4 (2026-05-28)
+
 Run 2026-05-28. Window **2026-04-22 → 2026-05-28** · universe = **46 priced Nifty-50 symbols** ·
 market control `^NSEI`.
 
@@ -248,6 +274,35 @@ governance alpha lives on distressed mid/small-caps that are absent from `resear
 ---
 
 ## 7. Results (filled after Lijo's run)
+
+### Re-run 2 — post-G4 (2026-05-29) ← current
+
+**Primary analysis set (the H14a test) is still effectively empty.** `auditor_resignation`
+N=0; `pledge_increase` N=1 (a single event — no inferential power). Per-bucket aggregates
+(means in **bps**; `exp14_summary.csv`):
+
+| bucket / sub-tag | set | N | PRE | DAY0 | POST | POST t | hit | conc check | H14b |
+|---|---|---|---|---|---|---|---|---|---|
+| auditor_resignation | primary | 0 | — | — | — | — | — | n/a | · |
+| pledge_increase | primary | 1 | −433 | −39 | −132 | — | 100% | can't run | · |
+| auditor | secondary | 11 | +31 | +52 | **+123** | 1.04 | 18% | +132 (survives) | ✗ |
+| auditor_change | secondary | 11 | +31 | +52 | +123 | 1.04 | 18% | +132 | ✗ |
+| promoter_pledge | secondary | 1 | −433 | −39 | −132 | — | 100% | can't run | · |
+| pledge_release | secondary | 0 | — | — | — | — | — | n/a | · |
+
+The only populated bucket with N≥10 is `auditor` (all `auditor_change` — benign appointments):
+POST CAR **+123 bps, t=1.04, p≈0.30** — indistinguishable from zero and the **wrong sign** for
+the hypothesised negative governance drift. The lone `pledge_increase` event drifts −132 bps but
+carries no weight (N=1). Top |POST CAR| events (`exp14_events.csv`) are routine auditor
+appointments on large/mid-caps — APOLLOTYRE −759, TATACOMM +576, VMM +475, CIPLA +423, DRREDDY
++399 bps — i.e. noise, not a coherent shock signal.
+
+**Verdict (script): ❌ NULL** — no governance bucket shows negative drift; the one testable bucket
+(`auditor`) is positive and insignificant. **But the PRIMARY shock test (resignation /
+pledge-increase) remains UNTESTED** (N=0/1) — so this is a NULL on benign auditor *appointments*,
+**not a refutation of H14a**.
+
+### Run 1 — pre-G4 (2026-05-28)
 
 **Primary analysis set (the H14a test) is empty.** `auditor_resignation` N=0,
 `pledge_increase` N=0 — nothing to test.
@@ -282,6 +337,35 @@ H14a targets.
 ---
 
 ## 8. Interpretation (filled after Lijo's run)
+
+### Re-run 2 — post-G4 (2026-05-29) ← current
+
+**Verdict: ❌ NULL on the secondary `auditor` bucket; PRIMARY H14a still UNTESTED.** G4 moved
+the experiment out of ⬜ BLOCKED (the `auditor` bucket now clears N≥10), but only the *benign*
+sub-bucket populated. The honest reading:
+
+- **H14a (negative POST drift):** still **untested** where it matters. `auditor_resignation` N=0,
+  `pledge_increase` N=1. The N=11 `auditor` bucket is all routine appointments — POST +123 bps,
+  p≈0.30 — so the mechanical ❌ NULL describes auditor *appointments*, not auditor *shocks*. **Do
+  not read this as "governance shocks don't move prices."** The shock test has not run.
+- **H14b (tradeability):** N/A — no negative drift to cost-test.
+- **H14c (mid-cap escape):** still not run as a stratified test (the `--universe=midcap150`
+  comparison mode remains gated); midcap prices now exist, but shock events don't yet.
+
+**The constraint moved, it didn't vanish.** Before G4 the wall was *prices* (2 usable events).
+After G4 the wall is **(a) event-history depth** — `india_bourse_announcements` only spans recent
+months, so auditor *resignations* and *pledge increases* haven't accumulated to N≥20 — and **(b)
+sub-midcap coverage** — 676 of 725 governance filings (~93%) are still on small-caps below the
+Midcap 150 with no price series. Nifty/Midcap names rarely file genuine governance shocks; when
+they touch auditors it's appointments.
+
+**Next step (per §5):** this is **not** the ❌-null "pivot away" row — the primary test is unrun,
+so we sit between 🟡/⬜ on the *primary* hypothesis. The real unlock is now **data, again**:
+deepen `india_bourse_announcements` history (older filings) and/or extend `research_prices` past
+the Midcap 150 toward small-caps, so the shock sub-tags reach a testable N. Then re-run. Do **NOT**
+paper-trade (§4 hard rule). Monthly re-run as filings accumulate.
+
+### Run 1 — pre-G4 (2026-05-28)
 
 **Verdict: ⬜ BLOCKED.** Maps to the §5 interpretation-tree "blocked N" row and the §1
 threshold ("N<10 events in both buckets after funnel — not a market verdict"). Both buckets
@@ -377,3 +461,4 @@ which would both raise N and put the test on the names where auditor/pledge alph
 |---|---|
 | 2026-05-28 | Pre-registered from [[india_proven_strategies_landscape]] Top 5 #1. H14a (negative POST drift), H14b (tradeability/cost floor), H14c (midcap magnitude — v2). Reuses Exp 2 bucket regexes + Exp 10 concentration discipline. Script pending. |
 | 2026-05-28 | **Prod run executed; §6–8 + frontmatter filled. Verdict ⬜ BLOCKED.** Funnel 712 governance filings → 9 priced → 2 usable; both primary buckets (auditor_resignation, pledge_increase) N=0; only `auditor` N=2 = benign appointments (DRREDDY, CIPLA), POST +411 bps wrong sign, degenerate t. Data-starved, not a market verdict (§9 Tiny-N trap as pre-registered). Re-run monthly; real unlock = G4 midcap price universe. §1/§5/§9 untouched. H14 logged in playbook register. |
+| 2026-05-29 | **Re-run after G4 landed** (`research_prices` 47→194 symbols). §6–8 + frontmatter updated (Run-1 numbers preserved). Funnel: 725 governance → **49 priced** (was 9) → 12 usable (was 2). G4 fixed the price gap, but primary shock units stayed starved (`auditor_resignation` N=0, `pledge_increase` N=1); only benign `auditor_change` N=11 populated → POST +123 bps, p≈0.30. **Verdict ❌ NULL on secondary bucket; PRIMARY H14a still UNTESTED — not a refutation.** Constraint moved from prices → event-history depth + sub-midcap coverage. Next: deepen `india_bourse_announcements` / extend price universe past Midcap 150. §1/§5/§9 untouched. |
