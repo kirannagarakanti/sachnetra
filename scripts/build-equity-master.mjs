@@ -31,9 +31,17 @@ const OVERLAY_PATH = join(V2_031B_DIR, 'v2-031b_positive_aliases.json');
 const OUT_PATH = join(ROOT, 'shared/nse-equity-master.json');
 
 // V2-031b task D5: cascade aliases that prod FPs matched even when bare symbol dropped.
+// V2-031c (2026-05-29): two residual FPs surfaced by the exp11 24h slice that the
+// 031b bare-symbol drops did NOT cover —
+//   URBANCO already had its bare ticker dropped, but the "Urban" cascade alias still
+//     fired ("Urban Complex", "Flamingo Blue Carbon Urban Complex"); 6 tags/24h.
+//   NAVA had no action; bare "NAVA" matched "Nava Kerala Sadas" etc. "NAVA LIMITED"
+//     survives so genuine references still tag.
 const SUPPLEMENTAL_ALIAS_DROPS = [
   { symbol: 'RAIN', alias_to_drop: 'Rain' },
   { symbol: 'DOLLAR', alias_to_drop: 'Dollar' },
+  { symbol: 'URBANCO', alias_to_drop: 'Urban' },
+  { symbol: 'NAVA', alias_to_drop: 'NAVA' },
 ];
 
 // ── Decision 5: suffix-strip cascade ─────────────────────────────────────────
