@@ -1,0 +1,16 @@
+sector,pair,n,date_from,date_to,adf_leg1_t,adf_leg2_t,beta,eg_resid_adf_t,eg_pass_5pct,approx_p,fdr_survive,half_life_is,half_life_oos,oos_signals,oos_reversion_rate,break_date,break_sigma,known_break,suspect,full_pass
+banking,HDFCBANK.NS/KOTAKBANK.NS,4288,2009-01-02,2026-05-22,-2.41,-2.22,0.9073,-4.968,true,0.0039,false,36.9,57.8,692,0.520,2024-06-10,1.93,HDFC twins merger (HDFC Ltd → HDFCBANK),false,false
+metal,TATASTEEL.NS/HINDALCO.NS,4288,2009-01-02,2026-05-22,-0.77,-0.84,0.7937,-4.407,true,0.0058,false,53.9,32.3,1114,0.503,2021-04-28,1.75,,false,false
+auto,M&M.NS/MARUTI.NS,4288,2009-01-02,2026-05-22,-2.30,-2.06,0.5125,-3.863,true,0.0118,false,145.5,886.0,699,0.505,2024-06-03,2.39,,false,false
+auto,M&M.NS/BAJAJ-AUTO.NS,4288,2009-01-02,2026-05-22,-2.30,-3.26,0.7882,-3.413,true,0.0430,false,77.1,240.4,688,0.535,2024-08-29,2.25,,false,false
+it,INFY.NS/WIPRO.NS,4288,2009-01-02,2026-05-22,-2.07,-2.68,1.2194,-3.219,false,0.0701,false,93.5,116.1,147,0.558,2018-04-25,1.28,,false,false
+banking,HDFCBANK.NS/ICICIBANK.NS,4288,2009-01-02,2026-05-22,-2.41,-1.18,1.5039,-3.198,false,0.0736,false,99.3,282.3,1170,0.495,2024-02-08,2.21,HDFC twins merger (HDFC Ltd → HDFCBANK),false,false
+banking,SBIN.NS/ICICIBANK.NS,4288,2009-01-02,2026-05-22,-0.87,-1.18,0.4547,-3.010,false,0.1096,false,117.0,305.4,739,0.459,2024-02-15,2.14,,false,false
+pharma,CIPLA.NS/DRREDDY.NS,4288,2009-01-02,2026-05-22,-1.48,-2.93,0.6179,-2.934,false,0.1340,false,104.3,112.6,1004,0.513,2024-01-09,1.99,,false,false
+it,TCS.NS/HCLTECH.NS,4288,2009-01-02,2026-05-22,-3.71,-3.11,0.8584,-2.616,false,0.2353,false,96.0,777.1,244,0.414,2024-08-29,1.93,,false,false
+banking,HDFCBANK.NS/AXISBANK.NS,4288,2009-01-02,2026-05-22,-2.41,-1.87,1.2699,-2.522,false,0.2756,false,156.9,229.6,0,,2011-08-08,0.96,HDFC twins merger (HDFC Ltd → HDFCBANK),false,false
+banking,ICICIBANK.NS/AXISBANK.NS,4288,2009-01-02,2026-05-22,-1.18,-1.87,0.8041,-2.360,false,0.3618,false,151.3,126.0,1282,0.483,2024-08-29,2.00,,false,false
+metal,TATASTEEL.NS/JSWSTEEL.NS,4288,2009-01-02,2026-05-22,-0.77,-1.36,0.3742,-2.320,false,0.3831,false,186.3,142.1,1194,0.482,2024-02-01,1.92,,false,false
+it,TCS.NS/INFY.NS,4288,2009-01-02,2026-05-22,-3.71,-2.07,1.5025,-2.231,false,0.4301,false,177.6,69.6,1184,0.466,2020-12-21,1.81,,false,false
+pharma,SUNPHARMA.NS/DRREDDY.NS,4288,2009-01-02,2026-05-22,-1.65,-2.93,1.0411,-2.054,false,0.5193,false,235.3,184.7,0,,2024-08-29,1.24,,false,false
+pharma,SUNPHARMA.NS/CIPLA.NS,4288,2009-01-02,2026-05-22,-1.65,-1.48,1.4755,-1.825,false,0.6145,false,237.0,45.9,34,0.676,2020-04-13,1.36,,false,false

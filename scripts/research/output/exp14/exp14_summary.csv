@@ -1,0 +1,7 @@
+unit,family,primary,n,pre_mean,pre_t,pre_p,day0_mean,day0_t,day0_p,post_mean,post_t,post_p,hit_rate,post_drop_top3ev_mean,drop_ev_t,drop_ev_p,post_drop_top3day_mean,drop_day_t,drop_day_p,top_symbol,top_symbol_frac,gross_bps,h14b_pass,conc_survives
+auditor_resignation,auditor,true,0,,,,,,,,,,,,,,,,,,0.000,,false,false
+pledge_increase,promoter_pledge,true,0,,,,,,,,,,,,,,,,,,0.000,,false,false
+auditor,auditor,false,2,0.001499,0.274,0.7842,0.018131,2.448,0.0144,0.041095,34.882,0.0000,0.000,,,,,,,CIPLA,0.500,410.9,false,false
+promoter_pledge,promoter_pledge,false,0,,,,,,,,,,,,,,,,,,0.000,,false,false
+auditor_change,auditor,false,2,0.001499,0.274,0.7842,0.018131,2.448,0.0144,0.041095,34.882,0.0000,0.000,,,,,,,CIPLA,0.500,410.9,false,false
+pledge_release,promoter_pledge,false,0,,,,,,,,,,,,,,,,,,0.000,,false,false
