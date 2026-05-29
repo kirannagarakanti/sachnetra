@@ -2,10 +2,10 @@
 tags: [experiment, sachnetra, research, quant-finance, event-study, governance, auditor, pledge, product-a, pre-registered]
 source: [[sachnetra_research_playbook]], [[india_proven_strategies_landscape]], [[latency_vs_value_tradeoff]], [[Exp2]], [[Exp10]], [[Exp11]]
 experiment_id: Exp14
-status: RE-RUN (post-G7) — 🟡 PROMISING (pledge_increase −312bps p<.05) but N<20, concentration-sensitive
+status: RE-RUN 4 (post-G7b, Microcap 250) — 🚩 SUSPECT (pledge leg concentration-driven N=13; auditor-resignation leg powered-null N=32)
 authored_date: 2026-05-28
-run_date: 2026-05-29 (re-run 3 post-G7; also 2026-05-29 post-G4; first run 2026-05-28)
-verdict: 🟡 PROMISING — pledge leg shows predicted negative drift (N=9, p<.05); auditor-resignation leg null (N=15); neither cleared N≥20
+run_date: 2026-05-29 (re-run 4 post-G7b microcap; re-run 3 post-G7; re-run 2 post-G4; first run 2026-05-28)
+verdict: 🚩 SUSPECT — auditor_resignation well-powered NULL (N=32); pledge_increase −319bps p<.01 but concentration-driven & N<20
 audience: Lijo, James, future Claude Code sessions
 ---
 
@@ -226,7 +226,30 @@ one bucket with N≥20.
 
 ## 6. Data reality (filled after Lijo's run)
 
-### Re-run 3 — post-G7 (2026-05-29) ← current
+### Re-run 4 — post-G7b (Microcap 250) (2026-05-29) ← current
+
+Extended `research_prices` one tier further — **Nifty Microcap 250** added (444 → **694 symbols**,
+627,366 bars; list sourced from NSE archive `ind_niftymicrocap250_list.csv`, the 1 `DUMMYALCAR`
+placeholder dropped → 250 real). Exp 14 re-run unchanged. Window **start → today** · universe =
+**693 priced symbols + ^NSEI**.
+
+```
+  320,148  total announcements in window
+    4,713  …classified governance (auditor / pledge regex)
+    1,433  …on a priced symbol               ← was 892 (microcap lifted it further)
+    1,218  …after dedupe by (symbol, event day)   (215 duplicates merged)
+    1,054  …usable (full ±5 trading-day window present)   ← was 685
+
+  excluded: 3,280 no priced symbol · 121 missing return · 43 incomplete window
+```
+
+**The data foundation is now genuinely deep — and the proper test downgrades the strategy.**
+`auditor_resignation` finally cleared the N≥20 gate (**N=32**) and came back **null**; the
+`pledge_increase` signal that looked promising in Re-run 3 is now flagged **🚩 SUSPECT**
+(concentration-driven, still N=13). See §7. (3,280 governance filings remain on sub-microcap names
+with no price — the survivorship floor persists.)
+
+### Re-run 3 — post-G7 (2026-05-29)
 
 After G7 landed **both** levers — Smallcap 250 prices (`research_prices` 194 → **444 symbols**)
 and a **2-year** `india_bourse_announcements` backfill (297,033 filings inserted) — Exp 14 was
@@ -296,7 +319,35 @@ governance alpha lives on distressed mid/small-caps that are absent from `resear
 
 ## 7. Results (filled after Lijo's run)
 
-### Re-run 3 — post-G7 (2026-05-29) ← current
+### Re-run 4 — post-G7b (Microcap 250) (2026-05-29) ← current
+
+**More data downgraded the result.** Per-bucket aggregates (means in **bps**; `exp14_summary.csv`):
+
+| bucket / sub-tag | set | N | PRE | DAY0 | POST | POST t | hit | POST−top3 | verdict driver |
+|---|---|---|---|---|---|---|---|---|---|
+| `pledge_increase` | primary | 13 | +73 | +75 | **−319** | **−2.83 (p<.01)** | 77% | **−167** | 🚩 concentration-sensitive |
+| `auditor_resignation` | primary | **32** | −17 | −34 | −22 | −0.25 (ns) | 41% | −60 | well-powered **null** |
+| promoter_pledge | secondary | 17 | +23 | +46 | −143 | −1.14 (ns) | 59% | −121 | ns |
+| auditor | secondary | 1037 | +28 | +21 | +7 | 0.36 (ns) | 41% | +10 | ns (benign) |
+| auditor_change | secondary | 972 | +34 | +22 | +12 | 0.61 (ns) | 40% | +15 | ns (benign) |
+| pledge_release | secondary | 4 | −138 | −48 | +430 | 2.01 | 0% | — | benign/positive (excluded from primary) |
+
+Reading it honestly:
+- **`auditor_resignation` cleared N≥20 (N=32) — and is decisively null** (POST −22 bps, t=−0.25).
+  This is now a *well-powered* test of the auditor-resignation leg, and it shows **no governance
+  drift** on priced names. That leg of H14a does not hold.
+- **`pledge_increase` (N=13, still <20): POST −319 bps, p<0.01 — but 🚩 SUSPECT.** Dropping the top-3
+  events **halves it to −167 bps**, and it leans on a few large single-name moves — **GMMPFAUDLR
+  −9.1%, AIIL −8.4%, IRB −7.7%** (no single symbol >40%, so it's event-concentration, not one ticker).
+  The pre-registered concentration guard (§3.4 / §5) flags this as driven by a handful of events.
+- Top |POST CAR| names are all `auditor_change` (benign appointments: KAYNES −34%, LUMAXTECH +34%,
+  ZAGGLE −30%) — noise, not signal.
+
+**Verdict (script): 🚩 SUSPECT** — `pledge_increase` negative at p<0.01 but concentration-sensitive
+and still N<20; `auditor_resignation` well-powered and null. The Re-run 3 "signal of life" did **not**
+survive more data cleanly.
+
+### Re-run 3 — post-G7 (2026-05-29)
 
 **The primary units finally have data — and one shows the hypothesised drift.** Per-bucket
 aggregates (means in **bps**; `exp14_summary.csv`):
@@ -388,7 +439,37 @@ H14a targets.
 
 ## 8. Interpretation (filled after Lijo's run)
 
-### Re-run 3 — post-G7 (2026-05-29) ← current
+### Re-run 4 — post-G7b (Microcap 250) (2026-05-29) ← current
+
+**Verdict: 🚩 SUSPECT — the proper test, now that one exists, is unkind to the strategy.** Adding
+the Microcap 250 lifted usable events 685 → 1,054 and gave both primary units real samples. The
+honest reading:
+
+- **`auditor_resignation` is now well-powered (N=32) and NULL** (POST −22 bps, t=−0.25). This is the
+  most important line in the experiment: with enough events, auditor resignations show **no**
+  post-filing drift on priced names. The auditor leg of H14a is refuted (on this universe).
+- **`pledge_increase` is 🚩 SUSPECT, not 🟡 PROMISING.** The −319 bps / p<0.01 headline is
+  **concentration-driven** — halves to −167 bps when the top-3 events are dropped, and rides on
+  GMMPFAUDLR/AIIL/IRB. With N=13 it also still misses the N≥20 gate. Re-run 3's apparent signal
+  did not survive more data; this is the §5 concentration guard catching a likely false positive.
+- **H14b (tradeability):** ✗ — concentration check fails; do not size a trade.
+- **H14c:** not run as a stratified test.
+
+**What changed our mind: more data, not less.** The data-foundation thread (G4→G7→G7b: 47→694 priced
+symbols, 12→1,054 usable events) did its job — and the better-powered test **downgraded** the result
+🟡 → 🚩. That is the pre-registration working as designed: the concentration discipline prevented us
+banking a few big single-name moves as alpha.
+
+**Where this leaves the #1 strategy (honest):** on the priceable universe, governance-shock arbitrage
+is looking like **noise, not an edge** — the auditor leg is a powered null, the pledge leg is
+concentration-driven. Two caveats keep it from being a hard ❌: (a) `pledge_increase` is still N=13
+(needs ~7+ more for a powered call), and (b) the **survivorship floor** — 3,280 governance filings
+(the most distressed names, where pledge/auditor alpha is theorised to live) remain unpriceable on
+free Yahoo data and may be exactly the events that would move the result. **Next step:** do NOT
+paper-trade (§4); let `pledge_increase` accrue to N≥20 via monthly re-runs before any
+promote-or-park call; recognise that further universe extension hits the delisting/survivorship wall.
+
+### Re-run 3 — post-G7 (2026-05-29)
 
 **Verdict: 🟡 PROMISING — first signal of life, but not yet decisive.** G7's two backfills
 (Smallcap 250 prices + 2yr filings) lifted usable events 12 → 685 and finally populated the
@@ -539,4 +620,5 @@ which would both raise N and put the test on the names where auditor/pledge alph
 | 2026-05-28 | **Prod run executed; §6–8 + frontmatter filled. Verdict ⬜ BLOCKED.** Funnel 712 governance filings → 9 priced → 2 usable; both primary buckets (auditor_resignation, pledge_increase) N=0; only `auditor` N=2 = benign appointments (DRREDDY, CIPLA), POST +411 bps wrong sign, degenerate t. Data-starved, not a market verdict (§9 Tiny-N trap as pre-registered). Re-run monthly; real unlock = G4 midcap price universe. §1/§5/§9 untouched. H14 logged in playbook register. |
 | 2026-05-29 | **Re-run after G4 landed** (`research_prices` 47→194 symbols). §6–8 + frontmatter updated (Run-1 numbers preserved). Funnel: 725 governance → **49 priced** (was 9) → 12 usable (was 2). G4 fixed the price gap, but primary shock units stayed starved (`auditor_resignation` N=0, `pledge_increase` N=1); only benign `auditor_change` N=11 populated → POST +123 bps, p≈0.30. **Verdict ❌ NULL on secondary bucket; PRIMARY H14a still UNTESTED — not a refutation.** Constraint moved from prices → event-history depth + sub-midcap coverage. Next: deepen `india_bourse_announcements` / extend price universe past Midcap 150. §1/§5/§9 untouched. |
 | 2026-05-29 | **Re-run 3 after G7 landed** (both levers: Smallcap 250 prices → `research_prices` 444 symbols; 2yr filings backfill → 297,033 inserted). Funnel: 4,713 governance → **892 priced** (was 49) → **685 usable** (was 12). Primary units finally populated: `pledge_increase` N=9 POST **−312 bps p<0.05** (predicted sign — first signal of life), `promoter_pledge` N=10 −255 bps p<0.10; but `auditor_resignation` N=15 **null** (−8 bps). **Verdict 🟡 PROMISING** — neither primary unit cleared N≥20, and the pledge signal is concentration-sensitive (−312→−95 bps top-3 dropped). Do NOT paper-trade; monthly re-run + consider extending prices below Smallcap 250. §1/§5/§9 untouched. |
+| 2026-05-29 | **Re-run 4 after G7b** (Microcap 250 prices → `research_prices` **694 symbols**, 627,366 bars). Funnel: 4,713 governance → **1,433 priced** (was 892) → **1,054 usable** (was 685). `auditor_resignation` cleared N≥20 (**N=32**) and came back **NULL** (−22 bps, t=−0.25); `pledge_increase` N=13 POST **−319 bps p<0.01** but **🚩 concentration-driven** (−319→−167 top-3 dropped; rides GMMPFAUDLR/AIIL/IRB) and still N<20. **Verdict 🚩 SUSPECT — downgrade from 🟡.** More data → worse result = pre-registration working. Governance-shock arbitrage looks like noise, not edge, on the priceable (survivorship-limited) universe. Do NOT paper-trade; let pledge_increase accrue to N≥20 before promote/park call. §1/§5/§9 untouched. |
 | 2026-05-29 | **G7 initiated**: Created Smallcap 250 symbol list (`shared/nifty-smallcap250.json`) and ran price universe dry-run. Authored `scripts/research/backfill-announcements-historical.mjs` for a 2-year filings history backfill. Ready for prod write execution by Lijo/James to unblock Exp 14. |
