@@ -2,10 +2,10 @@
 tags: [experiment, sachnetra, research, quant-finance, event-study, governance, auditor, pledge, product-a, pre-registered]
 source: [[sachnetra_research_playbook]], [[india_proven_strategies_landscape]], [[latency_vs_value_tradeoff]], [[Exp2]], [[Exp10]], [[Exp11]]
 experiment_id: Exp14
-status: RE-RUN (post-G4) — ❌ NULL on secondary bucket; PRIMARY shock test still data-starved (N=0/1)
+status: RE-RUN (post-G7) — 🟡 PROMISING (pledge_increase −312bps p<.05) but N<20, concentration-sensitive
 authored_date: 2026-05-28
-run_date: 2026-05-29 (re-run; first run 2026-05-28)
-verdict: ❌ NULL (secondary `auditor` bucket, wrong sign) · primary H14a UNTESTED
+run_date: 2026-05-29 (re-run 3 post-G7; also 2026-05-29 post-G4; first run 2026-05-28)
+verdict: 🟡 PROMISING — pledge leg shows predicted negative drift (N=9, p<.05); auditor-resignation leg null (N=15); neither cleared N≥20
 audience: Lijo, James, future Claude Code sessions
 ---
 
@@ -226,7 +226,28 @@ one bucket with N≥20.
 
 ## 6. Data reality (filled after Lijo's run)
 
-### Re-run 2 — post-G4 (2026-05-29) ← current
+### Re-run 3 — post-G7 (2026-05-29) ← current
+
+After G7 landed **both** levers — Smallcap 250 prices (`research_prices` 194 → **444 symbols**)
+and a **2-year** `india_bourse_announcements` backfill (297,033 filings inserted) — Exp 14 was
+re-run unchanged. Window **start → today** · universe = **443 priced symbols + ^NSEI**.
+
+```
+  320,148  total announcements in window     ← was 23,112 (2yr history backfilled)
+    4,713  …classified governance (auditor / pledge regex)
+      892  …on a priced symbol               ← was 49 (G7 lifted this ~18×)
+      781  …after dedupe by (symbol, event day)   (111 duplicates merged)
+      685  …usable (full ±5 trading-day window present)   ← was 12
+
+  excluded: 3,821 no priced symbol · 75 missing return · 21 incomplete window
+```
+
+**G7 worked — usable events 12 → 685, and the primary shock units finally populated.** But neither
+primary unit cleared the pre-registered **N≥20** SUPPORTED gate: `auditor_resignation` **N=15**,
+`pledge_increase` **N=9**. Still, the first real signal appeared — see §7. (3,821 governance filings
+remain on sub-smallcap micro-caps with no price — the survivorship ceiling, §9.)
+
+### Re-run 2 — post-G4 (2026-05-29)
 
 After G4 expanded `research_prices` from 47 → **194 symbols** (Nifty 50 + Nifty Midcap 150,
 474,154 bars added), Exp 14 was re-run unchanged. Window **start → today** · universe =
@@ -275,7 +296,36 @@ governance alpha lives on distressed mid/small-caps that are absent from `resear
 
 ## 7. Results (filled after Lijo's run)
 
-### Re-run 2 — post-G4 (2026-05-29) ← current
+### Re-run 3 — post-G7 (2026-05-29) ← current
+
+**The primary units finally have data — and one shows the hypothesised drift.** Per-bucket
+aggregates (means in **bps**; `exp14_summary.csv`):
+
+| bucket / sub-tag | set | N | PRE | DAY0 | POST | POST t | hit | POST−top3 | H14b |
+|---|---|---|---|---|---|---|---|---|---|
+| **pledge_increase** | primary | **9** | +188 | +14 | **−312** | **−2.34 (p<.05)** | 78% | −95 | · (N<20) |
+| auditor_resignation | primary | 15 | +95 | −134 | −8 | −0.10 (ns) | 33% | −44 | ✗ |
+| promoter_pledge | secondary | 10 | +137 | −23 | **−255** | −1.93 (p<.10) | 70% | −45 | ✗ |
+| auditor | secondary | 675 | +1 | +12 | −7 | −0.34 (ns) | 39% | −2 | ✗ |
+| auditor_change | secondary | 638 | +3 | +13 | −3 | −0.15 (ns) | 39% | +2 | ✗ |
+| pledge_release | secondary | 1 | −322 | −355 | +256 | — | 0% | — | · |
+
+Reading it honestly:
+- **`pledge_increase` (N=9): POST −312 bps, t=−2.34, p<0.05, hit 78%** — the **correct (negative)
+  sign**, significant, the first time any primary unit has shown the predicted governance-shock
+  drift. The `promoter_pledge` secondary bucket agrees (−255 bps, p<0.10).
+- **BUT it is concentration-sensitive:** dropping the top-3 events shrinks the drift −312 → **−95 bps**
+  (with N=9, dropping 3 is a third of the sample). The signal is real but leans on a few events.
+- **`auditor_resignation` (N=15): POST −8 bps, t=−0.10 — null.** The auditor-resignation leg shows
+  **no** drift; the pledge leg carries the result. A genuine, decision-relevant split.
+- Top |POST CAR| events are large single-name moves (KAYNES −3415, KALYANKJIL +2346, TEJASNET −2323
+  bps) — mostly `auditor_change`, i.e. the noisy benign bucket, not the shock signal.
+
+**Verdict (script): 🟡 PROMISING** — `promoter_pledge`/`pledge_increase` negative POST CAR
+significant at p<0.05–0.10, directionally consistent, but **N<20 (fails the SUPPORTED gate) and
+concentration-sensitive.** Not decisive; not null.
+
+### Re-run 2 — post-G4 (2026-05-29)
 
 **Primary analysis set (the H14a test) is still effectively empty.** `auditor_resignation`
 N=0; `pledge_increase` N=1 (a single event — no inferential power). Per-bucket aggregates
@@ -338,7 +388,33 @@ H14a targets.
 
 ## 8. Interpretation (filled after Lijo's run)
 
-### Re-run 2 — post-G4 (2026-05-29) ← current
+### Re-run 3 — post-G7 (2026-05-29) ← current
+
+**Verdict: 🟡 PROMISING — first signal of life, but not yet decisive.** G7's two backfills
+(Smallcap 250 prices + 2yr filings) lifted usable events 12 → 685 and finally populated the
+primary units. The honest reading:
+
+- **H14a (negative POST drift):** **partially supported, on the pledge leg only.** `pledge_increase`
+  (N=9) shows POST **−312 bps, p<0.05** — the correct sign, significant — and `promoter_pledge`
+  (N=10) agrees at p<0.10. This is the **first time the hypothesised governance-shock drift has
+  appeared.** But `auditor_resignation` (N=15) is **flat (−8 bps, ns)** — the auditor leg does *not*
+  drift. So H14a holds for pledges, not for auditor resignations (on priced names).
+- **Did the primary units clear N≥20?** **No.** `auditor_resignation` N=15, `pledge_increase` N=9 —
+  both short of the pre-registered SUPPORTED gate. So this is 🟡 PROMISING, **not** ✅ SUPPORTED.
+- **H14b (tradeability):** cannot formally pass (N<20), and the pledge signal is
+  **concentration-sensitive** — POST drift −312 → −95 bps when the top-3 events are dropped. Real,
+  but fragile; do not size a trade on it yet.
+- **H14c (mid-cap escape):** not run as a stratified test.
+
+**The constraint, again, is N — but we're close now, not starved.** From N=0/1 → N=15/9 in one
+data push. The remaining gaps: (a) ~3,800 governance filings still on sub-smallcap micro-caps with
+no price (extend universe further, or accept the survivorship ceiling); (b) the pledge unit needs
+~2× more events to clear N≥20 and to de-risk the concentration sensitivity. **Next step per §5
+🟡 row:** monthly re-run as filings accumulate + consider extending prices below Smallcap 250; do
+**NOT** paper-trade yet (§4 hard rule — needs ✅ SUPPORTED). This is the most encouraging Exp 14
+result to date.
+
+### Re-run 2 — post-G4 (2026-05-29)
 
 **Verdict: ❌ NULL on the secondary `auditor` bucket; PRIMARY H14a still UNTESTED.** G4 moved
 the experiment out of ⬜ BLOCKED (the `auditor` bucket now clears N≥10), but only the *benign*
@@ -462,4 +538,5 @@ which would both raise N and put the test on the names where auditor/pledge alph
 | 2026-05-28 | Pre-registered from [[india_proven_strategies_landscape]] Top 5 #1. H14a (negative POST drift), H14b (tradeability/cost floor), H14c (midcap magnitude — v2). Reuses Exp 2 bucket regexes + Exp 10 concentration discipline. Script pending. |
 | 2026-05-28 | **Prod run executed; §6–8 + frontmatter filled. Verdict ⬜ BLOCKED.** Funnel 712 governance filings → 9 priced → 2 usable; both primary buckets (auditor_resignation, pledge_increase) N=0; only `auditor` N=2 = benign appointments (DRREDDY, CIPLA), POST +411 bps wrong sign, degenerate t. Data-starved, not a market verdict (§9 Tiny-N trap as pre-registered). Re-run monthly; real unlock = G4 midcap price universe. §1/§5/§9 untouched. H14 logged in playbook register. |
 | 2026-05-29 | **Re-run after G4 landed** (`research_prices` 47→194 symbols). §6–8 + frontmatter updated (Run-1 numbers preserved). Funnel: 725 governance → **49 priced** (was 9) → 12 usable (was 2). G4 fixed the price gap, but primary shock units stayed starved (`auditor_resignation` N=0, `pledge_increase` N=1); only benign `auditor_change` N=11 populated → POST +123 bps, p≈0.30. **Verdict ❌ NULL on secondary bucket; PRIMARY H14a still UNTESTED — not a refutation.** Constraint moved from prices → event-history depth + sub-midcap coverage. Next: deepen `india_bourse_announcements` / extend price universe past Midcap 150. §1/§5/§9 untouched. |
+| 2026-05-29 | **Re-run 3 after G7 landed** (both levers: Smallcap 250 prices → `research_prices` 444 symbols; 2yr filings backfill → 297,033 inserted). Funnel: 4,713 governance → **892 priced** (was 49) → **685 usable** (was 12). Primary units finally populated: `pledge_increase` N=9 POST **−312 bps p<0.05** (predicted sign — first signal of life), `promoter_pledge` N=10 −255 bps p<0.10; but `auditor_resignation` N=15 **null** (−8 bps). **Verdict 🟡 PROMISING** — neither primary unit cleared N≥20, and the pledge signal is concentration-sensitive (−312→−95 bps top-3 dropped). Do NOT paper-trade; monthly re-run + consider extending prices below Smallcap 250. §1/§5/§9 untouched. |
 | 2026-05-29 | **G7 initiated**: Created Smallcap 250 symbol list (`shared/nifty-smallcap250.json`) and ran price universe dry-run. Authored `scripts/research/backfill-announcements-historical.mjs` for a 2-year filings history backfill. Ready for prod write execution by Lijo/James to unblock Exp 14. |
