@@ -17,11 +17,11 @@
 //   - Runs check-db-space before writing.
 //   - Polite pauses (1500ms) between chunk requests to avoid rate limits / IP bans.
 //
-// USAGE
-//   node scripts/research/backfill-announcements-historical.mjs --dry-run             # fetch+classify, no DB write
-//   node scripts/research/backfill-announcements-historical.mjs --dry-run --days=180   # test 180 days
-//   node scripts/research/backfill-announcements-historical.mjs --days=730             # write 2 years (Lijo/James)
-//   node scripts/research/backfill-announcements-historical.mjs --limit-chunks=5       # write, max 5 chunks
+// USAGE (writes are OPT-IN — default is a dry run that never touches the DB)
+//   node scripts/research/backfill-announcements-historical.mjs                        # DRY RUN — fetch+classify, no DB write
+//   node scripts/research/backfill-announcements-historical.mjs --days=180             # DRY RUN, 180 days
+//   node scripts/research/backfill-announcements-historical.mjs --write --days=730     # WRITE 2 years (Lijo/James, post-review)
+//   node scripts/research/backfill-announcements-historical.mjs --write --limit-chunks=5  # WRITE, max 5 chunks
 //
 
 import pg from 'pg';
@@ -129,8 +129,12 @@ async function main() {
     pool = new Pool({ connectionString, ssl: { rejectUnauthorized: false } });
     await pool.query('SELECT 1');
     const dbStat = await assertDiskHeadroom(pool, { tableName: 'india_bourse_announcements' });
-    console.log(`\nWRITE PLAN: chunked history fetch → india_bourse_announcements`);
-    console.log(`  current DB: ${dbStat.sizePretty} / 5000 MB`);
+    const estChunks = LIMIT_CHUNKS
+      ? Math.min(LIMIT_CHUNKS, Math.ceil(BACKFILL_DAYS / CHUNK_DAYS))
+      : Math.ceil(BACKFILL_DAYS / CHUNK_DAYS);
+    const estRows = estChunks * 5000; // rough: ~5–7k market-wide announcements per 7-day chunk (many dedup on conflict)
+    console.log(`\nWRITE PLAN: ${estChunks} chunk(s) → india_bourse_announcements`);
+    console.log(`  est. rows: ~${estRows.toLocaleString()}   current DB: ${dbStat.sizePretty} / 5 GB (${((dbStat.bytes / dbStat.limitBytes) * 100).toFixed(1)}%)`);
     console.log(`  proceeding because --write was passed.\n`);
   }
 

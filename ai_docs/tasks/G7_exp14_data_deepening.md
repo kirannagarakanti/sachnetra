@@ -69,11 +69,13 @@ Nifty Smallcap 250 constituents as a JSON array of Yahoo tickers → `shared/nif
 # 0. READ-ONLY disk guard first (G4 incident lesson — shared prod volume)
 node scripts/research/check-db-space.mjs
 
-# 1. DRY RUN — fetch + parse, writes nothing
+# 1. DRY RUN (default — no --write) — fetch + parse, writes nothing
 node scripts/research/backfill-midcap-prices.mjs --symbols-file=shared/nifty-smallcap250.json
 
-# 2. FULL RUN — writes ~250 symbols to research_prices (idempotent upsert)
-node scripts/research/backfill-midcap-prices.mjs --symbols-file=shared/nifty-smallcap250.json --write
+# 2. FULL RUN — writes ~250 symbols to research_prices (idempotent upsert).
+#    250 ≤ the 400 default abort guard, but pass --max-symbols=250 to make the
+#    universe size a deliberate, logged choice (aborts if the list is larger).
+node scripts/research/backfill-midcap-prices.mjs --symbols-file=shared/nifty-smallcap250.json --max-symbols=250 --write
 ```
 
 **Disk sizing:** ~250 symbols × full history ≈ ~140–160 MB added (extrapolating G4's 150 sym ≈

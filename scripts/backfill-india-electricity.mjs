@@ -13,6 +13,12 @@
 // .pdf files are skipped. ~200ms sleep between file downloads (politeness).
 //
 // Standalone (no runSeed / no lock): a manual one-shot, not a cron.
+//
+// SAFETY: writes are OPT-IN. Default = DRY RUN (walk months, download, parse,
+// count rows, NO DB connection / NO upsert). Pass --write to upsert to prod,
+// which runs a disk preflight (assertDiskHeadroom) before the first write.
+//   node scripts/backfill-india-electricity.mjs            # DRY RUN — parse + count, no DB write
+//   node scripts/backfill-india-electricity.mjs --write    # WRITE to india_electricity_demand (Lijo, post-review)
 
 import pg from 'pg';
 import { upsertElectricity } from './_electricity-upsert.mjs';
@@ -22,9 +28,13 @@ import {
   listFilesForMonth,
   parseDailyPsp,
 } from './_grid-india-source.mjs';
+import { assertDiskHeadroom } from './research/_db-guard.mjs';
 import { loadEnvFile, sleep } from './_seed-utils.mjs';
 
 loadEnvFile(import.meta.url); // MUST be first
+
+const args    = process.argv.slice(2);
+const DRY_RUN = !args.includes('--write'); // writes are OPT-IN; default = dry run
 
 // XLS boundary: Grid-India started publishing .xls files in January 2023.
 // Pre-2023 is PDF-only (V2-026 Decision 6). Starting at "2022-23" month 1
@@ -84,17 +94,26 @@ async function downloadWithRetry(filePath) {
 }
 
 async function backfill() {
-  const connectionString = process.env.DATABASE_PUBLIC_URL || process.env.DATABASE_URL;
-  if (!connectionString) {
-    console.error('ERROR: DATABASE_URL or DATABASE_PUBLIC_URL is not set. Add it to .env.local first.');
-    process.exit(1);
-  }
+  console.log('=== india_electricity_demand backfill (V2-026) ===');
+  console.log(`[backfill] Mode: ${DRY_RUN ? 'DRY RUN (no DB write)' : 'WRITE'}`);
 
-  const pool = new pg.Pool({ connectionString, ssl: { rejectUnauthorized: false } });
-
-  try {
+  let pool = null;
+  if (!DRY_RUN) {
+    const connectionString = process.env.DATABASE_PUBLIC_URL || process.env.DATABASE_URL;
+    if (!connectionString) {
+      console.error('ERROR: DATABASE_URL or DATABASE_PUBLIC_URL is not set. Add it to .env.local first.');
+      process.exit(1);
+    }
+    pool = new pg.Pool({ connectionString, ssl: { rejectUnauthorized: false } });
     await pool.query('SELECT 1');
     console.log('[backfill] connected to Railway PostgreSQL');
+    const dbStat = await assertDiskHeadroom(pool, { tableName: 'india_electricity_demand' });
+    console.log(`\nWRITE PLAN: monthly XLS walk → india_electricity_demand`);
+    console.log(`  est. rows: ~54,000   current DB: ${dbStat.sizePretty} / 5 GB (${((dbStat.bytes / dbStat.limitBytes) * 100).toFixed(1)}%)`);
+    console.log(`  proceeding because --write was passed.\n`);
+  }
+
+  try {
     console.log(`[backfill] start — floor=${START_PERIOD_YEAR}/0${START_MONTH} (Jan 2023 XLS boundary, V2-026 Decision 6)`);
 
     let grandFetched  = 0;
@@ -148,13 +167,13 @@ async function backfill() {
           continue;
         }
 
-        // Upsert — idempotent, DO NOTHING on conflict.
-        const inserted = await upsertElectricity(pool, rows);
+        // Upsert — idempotent, DO NOTHING on conflict. Dry run never writes.
+        const inserted = DRY_RUN ? 0 : await upsertElectricity(pool, rows);
         const skipped  = rows.length - inserted;
         monthFetched  += rows.length;
         monthInserted += inserted;
         grandFiles    += 1;
-        console.log(`[backfill]   ${name}: parsed=${rows.length} inserted=${inserted} skipped=${skipped}`);
+        console.log(`[backfill]   ${name}: parsed=${rows.length}${DRY_RUN ? ' (not written — dry run)' : ` inserted=${inserted} skipped=${skipped}`}`);
 
         if (fi < xlsFiles.length - 1) await sleep(FILE_PAUSE_MS);
       }
@@ -167,11 +186,15 @@ async function backfill() {
     console.log('\n[backfill] ══ DONE ══');
     console.log(`[backfill] files processed : ${grandFiles}`);
     console.log(`[backfill] rows parsed     : ${grandFetched}`);
-    console.log(`[backfill] rows inserted   : ${grandInserted}`);
-    console.log(`[backfill] rows skipped    : ${grandFetched - grandInserted}  (already present — idempotent)`);
-    console.log('[backfill] safe to re-run; skipped rows are already in india_electricity_demand');
+    if (DRY_RUN) {
+      console.log(`[backfill] rows to write   : ~${grandFetched} (NOT written — dry run; pass --write to upsert)`);
+    } else {
+      console.log(`[backfill] rows inserted   : ${grandInserted}`);
+      console.log(`[backfill] rows skipped    : ${grandFetched - grandInserted}  (already present — idempotent)`);
+      console.log('[backfill] safe to re-run; skipped rows are already in india_electricity_demand');
+    }
   } finally {
-    await pool.end();
+    if (pool) await pool.end();
   }
 }
 

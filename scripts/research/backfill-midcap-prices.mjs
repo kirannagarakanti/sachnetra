@@ -23,12 +23,13 @@
 //   - Writes ONLY to research_prices. Additive, idempotent. Touches no india_* / sacred file.
 //   - Claude authors this; LIJO/JAMES run it. Manual backfill, NOT a cron.
 //
-// USAGE
-//   node scripts/research/backfill-midcap-prices.mjs --dry-run                 # fetch+parse, no DB write
-//   node scripts/research/backfill-midcap-prices.mjs --dry-run --symbols-file=shared/nifty-midcap150.json
-//   node scripts/research/backfill-midcap-prices.mjs --symbol=BHARATFORG.NS    # one-symbol smoke test
-//   node scripts/research/backfill-midcap-prices.mjs --from=2015-01-01         # all, custom start
-//   node scripts/research/backfill-midcap-prices.mjs                           # full backfill
+// USAGE (writes are OPT-IN — default is a dry run that never touches the DB)
+//   node scripts/research/backfill-midcap-prices.mjs                           # DRY RUN — fetch+parse, no DB write
+//   node scripts/research/backfill-midcap-prices.mjs --symbols-file=shared/nifty-midcap150.json   # DRY RUN
+//   node scripts/research/backfill-midcap-prices.mjs --symbol=BHARATFORG.NS    # DRY RUN, one-symbol smoke test
+//   node scripts/research/backfill-midcap-prices.mjs --write                   # WRITE — full backfill (Lijo/James, post-review)
+//   node scripts/research/backfill-midcap-prices.mjs --write --from=2015-01-01 # WRITE, custom start
+//   node scripts/research/backfill-midcap-prices.mjs --write --max-symbols=N   # allow a universe larger than 400
 //
 // Requires DATABASE_URL or DATABASE_PUBLIC_URL in .env.local (same as the other backfills).
 
@@ -260,8 +261,9 @@ async function main() {
     console.log('  ✓ research_prices table ready');
     
     const dbStat = await assertDiskHeadroom(pool, { tableName: 'research_prices' });
+    const estRows = symbols.length * 4000; // rough: ~17y × ~252 trading days
     console.log(`\nWRITE PLAN: ${symbols.length} symbols → research_prices`);
-    console.log(`  current DB: ${dbStat.sizePretty} / 5000 MB`);
+    console.log(`  est. rows: ~${estRows.toLocaleString()}   current DB: ${dbStat.sizePretty} / 5 GB (${((dbStat.bytes / dbStat.limitBytes) * 100).toFixed(1)}%)`);
     console.log(`  proceeding because --write was passed.\n`);
   }
 

@@ -30,11 +30,11 @@
 //   - Claude authors; LIJO runs. Manual one-shot (re-run weekly if you want a
 //     fresh 60-day window). NOT a cron.
 //
-// USAGE
-//   node scripts/research/backfill-intraday-prices.mjs                # all 16 symbols, full 60-day window
-//   node scripts/research/backfill-intraday-prices.mjs --symbol=ITC.NS   # one symbol (smoke test)
-//   node scripts/research/backfill-intraday-prices.mjs --dry-run         # fetch + parse, print counts, NO db write
-//   node scripts/research/backfill-intraday-prices.mjs --limit=3         # first N symbols only
+// USAGE (writes are OPT-IN — default is a dry run that never touches the DB)
+//   node scripts/research/backfill-intraday-prices.mjs                  # DRY RUN — all 16 symbols, fetch + parse, NO db write
+//   node scripts/research/backfill-intraday-prices.mjs --symbol=ITC.NS  # DRY RUN, one symbol (smoke test)
+//   node scripts/research/backfill-intraday-prices.mjs --limit=3        # DRY RUN, first N symbols only
+//   node scripts/research/backfill-intraday-prices.mjs --write          # WRITE — full 60-day window (Lijo/James, post-review)
 //
 // WHAT TO VERIFY AFTER RUNNING
 //   1. Summary should report ~16/16 symbols ok.
@@ -47,6 +47,7 @@
 
 import { loadEnvFile, CHROME_UA, sleep } from '../_seed-utils.mjs';
 import pg from 'pg';
+import { assertDiskHeadroom } from './_db-guard.mjs';
 
 loadEnvFile(import.meta.url);
 const { Pool } = pg;
@@ -59,7 +60,8 @@ const getFlag = (name, fallback) => {
 };
 const ONLY_SYMBOL = getFlag('symbol', null);
 const LIMIT = getFlag('limit', null) ? Number(getFlag('limit', null)) : null;
-const DRY_RUN = args.includes('--dry-run');
+const DRY_RUN = !args.includes('--write'); // writes are OPT-IN; default = dry run
+const MAX_SYMBOLS = Number(getFlag('max-symbols', '20')); // fixed 16-symbol universe + headroom
 const YAHOO_DELAY_MS = 600; // be polite — heavier payload than daily
 
 // ── Symbol universe: the 15 actually-tagged large-caps + ^NSEI ─────────────
@@ -185,6 +187,11 @@ async function main() {
   console.log(`  Symbols: ${SYMBOLS.length}${ONLY_SYMBOL ? ` (${ONLY_SYMBOL})` : ''}${LIMIT ? ` (limited to ${LIMIT})` : ''}`);
   console.log(`  Mode:    ${DRY_RUN ? 'DRY RUN (no DB write)' : 'WRITE'}`);
 
+  if (SYMBOLS.length > MAX_SYMBOLS) {
+    console.error(`ERROR: ${SYMBOLS.length} symbols exceeds --max-symbols=${MAX_SYMBOLS}. Use --max-symbols=N to allow a larger universe.`);
+    process.exit(1);
+  }
+
   const connectionString = process.env.DATABASE_PUBLIC_URL || process.env.DATABASE_URL;
   if (!DRY_RUN && !connectionString) {
     console.error('ERROR: DATABASE_URL or DATABASE_PUBLIC_URL not set in .env.local');
@@ -197,6 +204,12 @@ async function main() {
     await pool.query('SELECT 1');
     await pool.query(DDL);
     console.log('  ✓ research_prices_intraday table ready');
+
+    const dbStat = await assertDiskHeadroom(pool, { tableName: 'research_prices_intraday' });
+    const estRows = SYMBOLS.length * 4000; // rough: ~4k 5-min bars per symbol over the 60-day window
+    console.log(`\nWRITE PLAN: ${SYMBOLS.length} symbols → research_prices_intraday`);
+    console.log(`  est. rows: ~${estRows.toLocaleString()}   current DB: ${dbStat.sizePretty} / 5 GB (${((dbStat.bytes / dbStat.limitBytes) * 100).toFixed(1)}%)`);
+    console.log(`  proceeding because --write was passed.\n`);
   }
 
   let totalRows = 0;

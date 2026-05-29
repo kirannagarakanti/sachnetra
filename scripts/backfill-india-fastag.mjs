@@ -15,6 +15,12 @@
 // ~300ms sleep between calls. 1 retry on transient 5xx; log+skip after 2
 // consecutive fails (never fatal). Idempotent via ON CONFLICT DO NOTHING.
 // Standalone — no runSeed / no distributed lock (manual one-shot, not a cron).
+//
+// SAFETY: writes are OPT-IN. Default = DRY RUN (fetch + parse + count, NO DB
+// connection / NO upsert). Pass --write to upsert to prod, which runs a disk
+// preflight (assertDiskHeadroom) before the first write.
+//   node scripts/backfill-india-fastag.mjs            # DRY RUN — fetch + parse, no DB write
+//   node scripts/backfill-india-fastag.mjs --write    # WRITE to india_fastag_toll_volumes (Lijo, post-review)
 
 import pg from 'pg';
 import { upsertFastag } from './_fastag-upsert.mjs';
@@ -26,10 +32,13 @@ import {
   parseDailyPayload,
   parseMonthlyPayload,
 } from './_npci-source.mjs';
+import { assertDiskHeadroom } from './research/_db-guard.mjs';
 import { loadEnvFile, sleep } from './_seed-utils.mjs';
 
 loadEnvFile(import.meta.url); // MUST be first
 
+const args    = process.argv.slice(2);
+const DRY_RUN = !args.includes('--write'); // writes are OPT-IN; default = dry run
 const CALL_PAUSE_MS = 300;
 
 // Returns a UTC Date whose getUTC* fields represent today's IST wall-clock date.
@@ -72,18 +81,26 @@ async function fetchWithRetry(label, fn) {
 }
 
 async function backfill() {
-  const connectionString = process.env.DATABASE_PUBLIC_URL || process.env.DATABASE_URL;
-  if (!connectionString) {
-    console.error('ERROR: DATABASE_URL or DATABASE_PUBLIC_URL is not set. Add it to .env.local first.');
-    process.exit(1);
-  }
+  console.log('=== india_fastag_toll_volumes backfill (V2-027) ===');
+  console.log(`[backfill] Mode: ${DRY_RUN ? 'DRY RUN (no DB write)' : 'WRITE'}`);
 
-  const pool = new pg.Pool({ connectionString, ssl: { rejectUnauthorized: false } });
-
-  try {
+  let pool = null;
+  if (!DRY_RUN) {
+    const connectionString = process.env.DATABASE_PUBLIC_URL || process.env.DATABASE_URL;
+    if (!connectionString) {
+      console.error('ERROR: DATABASE_URL or DATABASE_PUBLIC_URL is not set. Add it to .env.local first.');
+      process.exit(1);
+    }
+    pool = new pg.Pool({ connectionString, ssl: { rejectUnauthorized: false } });
     await pool.query('SELECT 1');
     console.log('[backfill] connected to Railway PostgreSQL');
+    const dbStat = await assertDiskHeadroom(pool, { tableName: 'india_fastag_toll_volumes' });
+    console.log(`\nWRITE PLAN: monthly + daily axes → india_fastag_toll_volumes`);
+    console.log(`  est. rows: ~2,000   current DB: ${dbStat.sizePretty} / 5 GB (${((dbStat.bytes / dbStat.limitBytes) * 100).toFixed(1)}%)`);
+    console.log(`  proceeding because --write was passed.\n`);
+  }
 
+  try {
     let totalFetched   = 0;
     let totalInserted  = 0;
     let totalCallsFailed = 0;
@@ -108,10 +125,10 @@ async function backfill() {
         continue;
       }
 
-      const inserted = await upsertFastag(pool, rows);
+      const inserted = DRY_RUN ? 0 : await upsertFastag(pool, rows);
       totalFetched  += rows.length;
       totalInserted += inserted;
-      console.log(`[backfill]   ${fyRange} → fetched ${rows.length}, inserted ${inserted}, skipped ${rows.length - inserted}`);
+      console.log(`[backfill]   ${fyRange} → fetched ${rows.length}${DRY_RUN ? ' (not written — dry run)' : `, inserted ${inserted}, skipped ${rows.length - inserted}`}`);
 
       if (i < fyRanges.length - 1) await sleep(CALL_PAUSE_MS);
     }
@@ -140,10 +157,10 @@ async function backfill() {
         continue;
       }
 
-      const inserted = await upsertFastag(pool, rows);
+      const inserted = DRY_RUN ? 0 : await upsertFastag(pool, rows);
       totalFetched  += rows.length;
       totalInserted += inserted;
-      console.log(`[backfill]   ${year}/${monthName} → fetched ${rows.length}, inserted ${inserted}, skipped ${rows.length - inserted}`);
+      console.log(`[backfill]   ${year}/${monthName} → fetched ${rows.length}${DRY_RUN ? ' (not written — dry run)' : `, inserted ${inserted}, skipped ${rows.length - inserted}`}`);
 
       if (i < months.length - 1) await sleep(CALL_PAUSE_MS);
     }
@@ -151,13 +168,17 @@ async function backfill() {
     // ── Grand totals ──────────────────────────────────────────────────────────
     console.log('\n[backfill] done');
     console.log(`[backfill]   fetched  ${totalFetched}`);
-    console.log(`[backfill]   inserted ${totalInserted}`);
-    console.log(`[backfill]   skipped  ${totalFetched - totalInserted} (idempotent DO NOTHING — safe to re-run)`);
+    if (DRY_RUN) {
+      console.log(`[backfill]   to write ~${totalFetched} (NOT written — dry run; pass --write to upsert)`);
+    } else {
+      console.log(`[backfill]   inserted ${totalInserted}`);
+      console.log(`[backfill]   skipped  ${totalFetched - totalInserted} (idempotent DO NOTHING — safe to re-run)`);
+    }
     if (totalCallsFailed > 0) {
       console.log(`[backfill]   failed API calls: ${totalCallsFailed} (re-run to retry)`);
     }
   } finally {
-    await pool.end();
+    if (pool) await pool.end();
   }
 }
 

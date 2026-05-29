@@ -21,17 +21,19 @@
 //     entity_timeline / any sacred file. Read-nothing from prod; this is additive.
 //   - Claude authors this; LIJO runs it. It is a manual backfill, not a cron.
 //
-// USAGE
-//   node scripts/research/backfill-research-prices.mjs                 # full backfill from 2009-01-01
-//   node scripts/research/backfill-research-prices.mjs --from=2015-01-01
-//   node scripts/research/backfill-research-prices.mjs --symbol=^NSEI  # one symbol (smoke test)
-//   node scripts/research/backfill-research-prices.mjs --dry-run       # fetch + parse, print counts, NO db write
-//   node scripts/research/backfill-research-prices.mjs --limit=3       # first N symbols only
+// USAGE (writes are OPT-IN — default is a dry run that never touches the DB)
+//   node scripts/research/backfill-research-prices.mjs                 # DRY RUN — fetch + parse, print counts, NO db write
+//   node scripts/research/backfill-research-prices.mjs --symbol=^NSEI  # DRY RUN, one symbol (smoke test)
+//   node scripts/research/backfill-research-prices.mjs --limit=3       # DRY RUN, first N symbols only
+//   node scripts/research/backfill-research-prices.mjs --write         # WRITE — full backfill from 2009-01-01 (Lijo/James, post-review)
+//   node scripts/research/backfill-research-prices.mjs --write --from=2015-01-01
+//   node scripts/research/backfill-research-prices.mjs --write --max-symbols=N  # allow a universe larger than 60
 //
 // Requires DATABASE_URL or DATABASE_PUBLIC_URL in .env.local (same as migrate-india-signals.mjs).
 
 import { loadEnvFile, loadSharedConfig, CHROME_UA, sleep } from '../_seed-utils.mjs';
 import pg from 'pg';
+import { assertDiskHeadroom } from './_db-guard.mjs';
 
 loadEnvFile(import.meta.url);
 const { Pool } = pg;
@@ -45,7 +47,8 @@ const getFlag = (name, fallback) => {
 const FROM_DATE = getFlag('from', '2009-01-01'); // covers V2-017b FII history (Dec 2009)
 const ONLY_SYMBOL = getFlag('symbol', null);
 const LIMIT = getFlag('limit', null) ? Number(getFlag('limit', null)) : null;
-const DRY_RUN = args.includes('--dry-run');
+const DRY_RUN = !args.includes('--write'); // writes are OPT-IN; default = dry run
+const MAX_SYMBOLS = Number(getFlag('max-symbols', '60')); // ^NSEI + Nifty50 = ~51
 const YAHOO_DELAY_MS = 400; // be polite — full backfill is ~48 calls, no rush
 
 // ── Symbol universe: ^NSEI + Nifty 50 constituents ─────────────────────────
@@ -173,6 +176,11 @@ async function main() {
   console.log(`  Symbols: ${SYMBOLS.length}${ONLY_SYMBOL ? ` (${ONLY_SYMBOL})` : ''}${LIMIT ? ` (limited to ${LIMIT})` : ''}`);
   console.log(`  Mode:    ${DRY_RUN ? 'DRY RUN (no DB write)' : 'WRITE'}`);
 
+  if (SYMBOLS.length > MAX_SYMBOLS) {
+    console.error(`ERROR: ${SYMBOLS.length} symbols exceeds --max-symbols=${MAX_SYMBOLS}. Use --max-symbols=N to allow a larger universe.`);
+    process.exit(1);
+  }
+
   const connectionString = process.env.DATABASE_PUBLIC_URL || process.env.DATABASE_URL;
   if (!DRY_RUN && !connectionString) {
     console.error('ERROR: DATABASE_URL or DATABASE_PUBLIC_URL not set in .env.local');
@@ -185,6 +193,12 @@ async function main() {
     await pool.query('SELECT 1');
     await pool.query(DDL);
     console.log('  ✓ research_prices table ready');
+
+    const dbStat = await assertDiskHeadroom(pool, { tableName: 'research_prices' });
+    const estRows = SYMBOLS.length * 4000; // rough: ~17y × ~252 trading days
+    console.log(`\nWRITE PLAN: ${SYMBOLS.length} symbols → research_prices`);
+    console.log(`  est. rows: ~${estRows.toLocaleString()}   current DB: ${dbStat.sizePretty} / 5 GB (${((dbStat.bytes / dbStat.limitBytes) * 100).toFixed(1)}%)`);
+    console.log(`  proceeding because --write was passed.\n`);
   }
 
   let totalRows = 0;

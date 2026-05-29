@@ -40,7 +40,8 @@ against prod**. It writes **only** to `research_prices` (additive, idempotent up
 `ON CONFLICT (symbol, trade_date)` upsert, same `research_prices` DDL guard). Differences:
 - The **universe** is the Nifty Midcap 150 instead of `nifty50_registry`.
 - Two ways to supply that universe (see below).
-- Same flags: `--from=`, `--dry-run`, `--limit=N`, `--symbol=X`.
+- Same flags: `--from=`, `--limit=N`, `--symbol=X`, plus the OPS-001 safety flags `--write`
+  (writes are opt-in; default is a dry run) and `--max-symbols=N` (abort guard, default 400).
 
 ### Getting the Midcap 150 list — do NOT hand-type tickers
 
@@ -53,8 +54,8 @@ Hallucinated/incorrect ticker symbols silently poison `research_prices`. Use an 
   the current 150 constituents as a JSON array of Yahoo tickers (e.g. `["LICHSGFIN.NS","BHARATFORG.NS",…]`)
   and save to `shared/nifty-midcap150.json`, then run with `--symbols-file=shared/nifty-midcap150.json`.
 
-Either way the script prints the symbol count before fetching, and `--dry-run` writes nothing — so the
-universe can be eyeballed before any prod write.
+Either way the script prints the symbol count before fetching, and the **default run is a dry run**
+(no `--write`) that writes nothing — so the universe can be eyeballed before any prod write.
 
 ---
 
@@ -63,11 +64,11 @@ universe can be eyeballed before any prod write.
 ```bash
 # 0. ensure .env.local has DATABASE_PUBLIC_URL (same as the other backfills)
 
-# 1. DRY RUN — fetches + parses, prints per-symbol bar counts, writes NOTHING
-node scripts/research/backfill-midcap-prices.mjs --dry-run
+# 1. DRY RUN (default — no --write) — fetches + parses, prints per-symbol bar counts, writes NOTHING
+node scripts/research/backfill-midcap-prices.mjs
 
 #    (if the NSE CSV is blocked, supply the list from Gemini/MinMax:)
-node scripts/research/backfill-midcap-prices.mjs --dry-run --symbols-file=shared/nifty-midcap150.json
+node scripts/research/backfill-midcap-prices.mjs --symbols-file=shared/nifty-midcap150.json
 
 # 2. Smoke test a single symbol end-to-end (writes 1 symbol):
 node scripts/research/backfill-midcap-prices.mjs --symbol=BHARATFORG.NS --from=2015-01-01 --write
