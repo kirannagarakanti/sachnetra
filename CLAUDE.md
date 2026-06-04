@@ -16,6 +16,21 @@ Open the task file in `ai_docs/tasks/`. If it has a **Context Manifest** section
 
 ---
 
+## Deep research (Lijo lane)
+
+For **problems or features** (not coding tasks), use **`/research <problem>`** — not `/task`.
+
+| What | Where |
+|------|--------|
+| Slash command | `/research` → `ai_docs/dev_templates/research.md` |
+| Full protocol | `ai_docs/learning/RESEARCH_INSTRUCTIONS.md` |
+| Output notes | `ai_docs/learning/research-notes/YYYY-MM-DD_<slug>.md` |
+| Standing context | `ai_docs/learning/README.md` |
+
+Claude Code is configured to **WebSearch**, **WebFetch**, **write research markdown**, and **clone repos to `scratch/`** without per-step approval. Improvise (pivot sources, update the same note) within the protocol hard rules — no sacred-file edits, no fabricated citations.
+
+---
+
 ## V2 Mission
 
 SachNetra is the collection engine. The database is the asset. The quant system is the proof of value.

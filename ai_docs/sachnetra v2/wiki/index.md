@@ -13,6 +13,13 @@ Master catalog of all pages. Updated on every ingest.
 | [[inflation]] | CPI vs WPI, India's 8.2% food inflation blocking rate cuts, and how monsoon data is a leading indicator |
 | [[bonds_and_yields]] | Price/yield inverse relationship, duration sensitivity, and how G-Sec yield moves trigger banking stock reactions |
 | [[quant_finance]] | IC × √Breadth = IR (Grinold's Law), entity-aware vs article-level sentiment, WorldQuant data registry mapping, and the regression formula to run after 30 days of data |
+| [[dealer_markets]] | Over-the-counter decentralized markets where dealers manage inventory risk under mean-field game competition |
+| [[limit_order_book]] | Electronic record of outstanding buy/sell limit orders, visible queue depths, and hidden liquidity (icebergs) |
+| [[smart_order_routing]] | Algorithmic routing engines scanning multiple venues to locate best price/liquidity and fill hidden orders |
+| [[market_impact]] | Price changes caused by metaorder execution, scaling via the square-root law and cross-asset correlations |
+| [[academic_research_intake]] | Method for capturing alpha by ingesting preprints (SSRN/arXiv) before formal publication lag decays edge |
+| [[backtesting_methodology]] | Quantitative framework including fees, non-linear impact, and regimes to validate strategies |
+| [[portfolio_optimization]] | Allocating capital across assets while co-optimizing cross-impact execution schedules |
 
 ---
 
