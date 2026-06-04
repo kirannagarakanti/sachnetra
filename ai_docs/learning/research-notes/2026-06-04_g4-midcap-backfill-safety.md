@@ -62,14 +62,22 @@ against a possibly-wrong ceiling, on an already-thin shared volume, while the wr
 node scripts/research/check-db-space.mjs
 ```
 This prints total DB size + the 12 largest tables + research_prices row/symbol counts. **Also check the
-Railway dashboard for the actual VOLUME size and % used** — the guard's 4 GB assumption must be replaced
-with the real number. Do not write until you know: (a) real volume size, (b) current free headroom.
+Railway dashboard for the actual VOLUME size and % used** — on **Hobby the cap is 5 GB but the base is
+0.5 GB**, so confirm whether the volume has been resized. Do not write until you know: (a) real volume size,
+(b) current free headroom.
 
-### Step 1 — Grow the volume BEFORE writing (Railway)
-Railway volumes can be resized. Given the shared volume already holds the `india_*` tables, **grow it to
-give comfortable headroom** (target: free space ≥ 3× the estimated backfill size, to absorb WAL/bloat).
-Estimate the backfill size empirically: current `research_prices` is 47 symbols / ~196K rows → measure its
-`pg_total_relation_size`, then a 150-symbol backfill is ~3× that table (plus index + WAL churn).
+### Step 1 — Resize the volume to 5 GB BEFORE writing (Railway Hobby)
+**Verified 2026-06-04**: the **Railway Hobby plan caps volumes at 5 GB**, but the **base allocation is only
+0.5 GB** ([Railway volumes docs](https://docs.railway.com/volumes/reference)). The prior crash was almost
+certainly a **near-full 0.5 GB base** (the `india_*` tables already filled most of it) tipping over on the
+write — **not** big data. **The midcap backfill is tiny**: ~75 symbols × ~2,080 daily bars (from 2018) ≈
+**~20–30 MB** (full 150 ≈ ~50 MB; back to 2009 ≈ ~100 MB) — a rounding error against 5 GB.
+
+So the fix is **self-serve on Hobby, no plan upgrade needed**:
+1. In the Railway dashboard, **resize the volume to the full 5 GB** (from the 0.5 GB base).
+2. Confirm via Step 0 that current usage leaves comfortable headroom (it will — you're adding ~tens of MB).
+3. Run with `--max-db-gb=4` (5 GB × 0.8). **Only** if `check-db-space.mjs` shows the existing tables already
+   approach ~5 GB would you need Pro — unlikely given the data sizes (investigate bloat if so).
 
 ### Step 2 — Shrink the write to what Exp16 actually needs (the highest-leverage safety move)
 The full 150 symbols × 2009→now is the *maximum*, not the requirement:

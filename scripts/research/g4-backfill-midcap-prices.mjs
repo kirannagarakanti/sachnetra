@@ -25,15 +25,17 @@
 // ── STEP 0 (DO THIS FIRST, before --write) ─────────────────────────────────────
 //   a) node scripts/research/check-db-space.mjs        # read-only: see total DB size + largest tables
 //   b) Check the Railway dashboard for the ACTUAL VOLUME size and % used.
-//   c) Grow the volume so free space >= ~3x the estimated backfill (absorbs WAL/bloat during the write).
-//   d) Set --max-db-gb to (real volume size in GB) * 0.8  — NOT the old 4 GB assumption.
+//   c) Railway HOBBY caps volumes at 5 GB but the BASE is only 0.5 GB. RESIZE the volume to 5 GB in the
+//      dashboard first — the prior crash was a near-full 0.5 GB base, NOT big data (this backfill is only
+//      ~20-50 MB). At 5 GB there is ample headroom for the ~tens-of-MB write.
+//   d) Set --max-db-gb to (real volume GB) * 0.8  — i.e. ~4 on a resized 5 GB Hobby volume.
 //
 // USAGE (writes are OPT-IN — default is a dry run that never touches the DB)
 //   node scripts/research/g4-backfill-midcap-prices.mjs                                   # DRY RUN (full midcap150, from 2018)
 //   node scripts/research/g4-backfill-midcap-prices.mjs --symbols-file=shared/nifty-midcap150.json --limit=75   # DRY RUN, first 75
 //   node scripts/research/g4-backfill-midcap-prices.mjs --symbol=BHARATFORG.NS            # DRY RUN, one-symbol smoke test
-//   node scripts/research/g4-backfill-midcap-prices.mjs --write --max-db-gb=0.8           # WRITE (Lijo, post Step 0)
-//   node scripts/research/g4-backfill-midcap-prices.mjs --write --max-db-gb=0.8 --skip-existing   # resume after an abort
+//   node scripts/research/g4-backfill-midcap-prices.mjs --write --max-db-gb=4             # WRITE (Lijo, post Step 0; resized 5 GB Hobby volume)
+//   node scripts/research/g4-backfill-midcap-prices.mjs --write --max-db-gb=4 --skip-existing   # resume after an abort
 //
 // Requires DATABASE_URL or DATABASE_PUBLIC_URL in .env.local (same as the other backfills).
 
@@ -56,7 +58,7 @@ const SYMBOLS_FILE = getFlag('symbols-file', 'shared/nifty-midcap150.json'); // 
 const LIMIT = getFlag('limit', null) ? Number(getFlag('limit', null)) : null;
 const DRY_RUN = !args.includes('--write');
 const SKIP_EXISTING = args.includes('--skip-existing');
-const MAX_DB_GB = Number(getFlag('max-db-gb', '0.8')); // CONSERVATIVE default — OVERRIDE to real volume*0.8
+const MAX_DB_GB = Number(getFlag('max-db-gb', '4')); // 5 GB Hobby cap * 0.8. RESIZE the volume to 5 GB first (base is only 0.5 GB).
 const GUARD_EVERY = Number(getFlag('guard-every', '10')); // re-check disk headroom every N symbols
 const YAHOO_DELAY_MS = Number(getFlag('delay-ms', '400'));
 const MAX_SYMBOLS = Number(getFlag('max-symbols', '400')); // sanity cap against a junk list
