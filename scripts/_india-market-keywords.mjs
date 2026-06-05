@@ -60,9 +60,36 @@ function normalizeQuotes(s) {
     .replace(/[“”]/g, '"');
 }
 
+// G1 (V2-031c recall): decode the HTML entities that appear in copy-edited
+// headlines and silently break ticker matching — chiefly ampersands
+// ("S&#038;P", "M&amp;M") and curly apostrophes ("China&#8217;s"). Decimal +
+// hex numeric general case, then the named ampersand. This is the MATCH-SIDE
+// half of the alias-form fix (the build generates "&"<->"and" forms; this makes
+// a headline's encoded "&" actually present so those forms can match). Asymmetric
+// by design: entities appear in headlines, never in the master JSON.
+function decodeHtmlEntities(s) {
+  return s
+    .replace(/&#x([0-9a-fA-F]+);/g, (m, h) => {
+      const cp = parseInt(h, 16);
+      return cp > 0 && cp <= 0x10ffff ? String.fromCodePoint(cp) : m;
+    })
+    .replace(/&#(\d+);/g, (m, d) => {
+      const cp = Number(d);
+      return cp > 0 && cp <= 0x10ffff ? String.fromCodePoint(cp) : m;
+    })
+    .replace(/&amp;/gi, '&');
+}
+
+// Title preprocessing for ticker matching: decode HTML entities first (so
+// "&#8217;" → U+2019), THEN normalize curly quotes → straight. Word-boundary
+// matching is otherwise untouched; no alias-map / hot-path load change.
+function normalizeTitle(s) {
+  return normalizeQuotes(decodeHtmlEntities(s));
+}
+
 export function extractCompanies(title) {
   if (!title) return [];
-  const normalized = normalizeQuotes(title);
+  const normalized = normalizeTitle(title);
   const lc = normalized.toLowerCase();
   // Dedup BY TICKER (Map<ticker, name>, not Set-of-objects — Set dedups by
   // object identity, which would let two aliases resolving to the same ticker

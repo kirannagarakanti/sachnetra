@@ -148,6 +148,114 @@ function generateCascadeAliases(name) {
   return [...aliases];
 }
 
+// ── G1 (V2-031c recall): deterministic alias-FORM variants ───────────────────
+// Closes form-mismatch recall gaps for names ALREADY in the master, WITHOUT
+// touching precision: spaced/unspaced leading initials, "&" <-> "and",
+// Ltd <-> Limited. No fuzzy match, no NER (V2-031 Decision 2 stands). Applied
+// symmetrically with the match side — HTML-entity decode lives in
+// scripts/_india-market-keywords.mjs. Spec: ai_docs/tasks/G1-alias-form-normalization.md.
+//
+// FP guards baked in here (task §FP-guards): (2) min-length skip for spacing,
+// (3) leading-initials only, (4) per-alias variant cap. Guard (1) — the
+// collision filter — is inherited by Pass-1 variants because they are added
+// BEFORE applyCollisionFilter() in main().
+const FORM_MIN_LEN = 5;        // skip spacing variants for very short aliases (FP guard #2)
+const FORM_VARIANT_CAP = 6;    // max generated variants per source alias (FP guard #4)
+
+// Collapse a LEADING run of >=2 single letters: "A B Cotspin" -> "AB Cotspin".
+// Only fires on genuine initial runs (single letter + space, repeated), so
+// normal words ("Tata Steel") are never touched. This is the proven ABCOTS case.
+function collapseLeadingInitials(alias) {
+  const m = alias.match(/^((?:[A-Za-z]\s+){1,}[A-Za-z])(\s+\S.*)$/);
+  if (!m) return null;
+  const initials = m[1].replace(/\s+/g, ''); // "A B" -> "AB"
+  if (initials.length < 2) return null;
+  return `${initials}${m[2]}`;
+}
+
+// Expand a LEADING all-caps acronym (2-3 letters) into spaced initials:
+// "AB Cotspin" -> "A B Cotspin". All-caps + length<=3 guard so real words
+// ("Sun Pharma") and longer acronyms ("HDFC Bank") are left alone.
+function expandLeadingInitials(alias) {
+  const m = alias.match(/^([A-Z]{2,3})(\s+\S.*)$/);
+  if (!m) return null;
+  return `${m[1].split('').join(' ')}${m[2]}`;
+}
+
+// Given a single alias, return its deterministic form variants (excludes the
+// source form). Used by both passes; the caller decides collision handling.
+function aliasFormVariants(alias) {
+  const a = normalizeAlias(alias);
+  const out = new Set();
+
+  // "&" <-> "and" — spaced forms only, matching real headline conventions.
+  if (a.includes('&')) {
+    out.add(a.replace(/\s*&\s*/g, ' and ')); // "L&T" -> "L and T"
+    out.add(a.replace(/\s*&\s*/g, ' & '));   // "L&T" -> "L & T"
+  }
+  if (/\s+and\s+/i.test(a)) {
+    out.add(a.replace(/\s+and\s+/gi, ' & ')); // "L and T" -> "L & T"
+  }
+
+  // Leading-initials spacing — long-enough aliases only (FP guards #2, #3).
+  if (a.length >= FORM_MIN_LEN) {
+    const collapsed = collapseLeadingInitials(a);
+    if (collapsed) out.add(collapsed);
+    const expanded = expandLeadingInitials(a);
+    if (expanded) out.add(expanded);
+  }
+
+  // Ltd <-> Limited (trailing suffix fold).
+  if (/\bLtd\.?$/i.test(a)) out.add(a.replace(/\bLtd\.?$/i, 'Limited'));
+  else if (/\bLimited$/i.test(a)) out.add(a.replace(/\bLimited$/i, 'Ltd'));
+
+  const norm = new Set([...out].map(normalizeAlias));
+  norm.delete(a); // never re-emit the source form
+  return [...norm].slice(0, FORM_VARIANT_CAP); // variant cap (FP guard #4)
+}
+
+// Pass 1 (pre-collision-filter): generate variants for EVERY alias currently
+// present (cascade + proposal + post-hardening). These enter entry.aliases
+// before applyCollisionFilter(), so they inherit the Decision 6(a) FP guard.
+function applyFormVariantsPass1(byTicker) {
+  let generated = 0;
+  const variantKeys = new Set(); // lowercased, for collision-survival audit
+  for (const entry of byTicker.values()) {
+    for (const alias of [...entry.aliases]) { // snapshot before mutating
+      for (const v of aliasFormVariants(alias)) {
+        const before = entry.aliases.size;
+        entry.aliases.add(v);
+        if (entry.aliases.size > before) {
+          generated++;
+          variantKeys.add(v.toLowerCase());
+        }
+      }
+    }
+  }
+  return { generated, variantKeys };
+}
+
+// Pass 2 (post-overlay): generate variants ONLY for aliases injected AFTER the
+// collision filter (INTENTIONAL_MULTI_TAG + positive overlays), computed as the
+// delta vs `snapshot`. These are deliberately collision-exempt — same as their
+// source aliases — so we do NOT re-run the collision filter over them; the
+// min-length / leading-initials / cap guards inside aliasFormVariants still apply.
+function applyFormVariantsPass2(byTicker, snapshot) {
+  let generated = 0;
+  for (const [ticker, entry] of byTicker) {
+    const prev = snapshot.get(ticker) || new Set();
+    const injected = [...entry.aliases].filter((a) => !prev.has(a));
+    for (const alias of injected) {
+      for (const v of aliasFormVariants(alias)) {
+        const before = entry.aliases.size;
+        entry.aliases.add(v);
+        if (entry.aliases.size > before) generated++;
+      }
+    }
+  }
+  return { generated };
+}
+
 // ── Step 1+2: read CSV, dedupe by SYMBOL ─────────────────────────────────────
 
 function loadEquityMaster() {
@@ -474,9 +582,25 @@ function main() {
     `[build]   ${hardeningStats.total} actions: ${hardeningStats.bareDropped} bare-symbol drops, ${hardeningStats.aliasDropped} alias drops, ${hardeningStats.skipped} skipped`,
   );
 
+  console.log('[build] generating alias-form variants (Pass 1, pre-filter — subject to collision filter)');
+  const pass1 = applyFormVariantsPass1(byTicker);
+  console.log(`[build]   ${pass1.generated} form variants generated (spacing / &<->and / Ltd<->Limited)`);
+
   console.log('[build] applying Decision 6(a) collision filter');
   const collisions = applyCollisionFilter(byTicker);
   console.log(`[build]   ${collisions.length} aliases dropped (multi-ticker claim OR first-word ambiguity)`);
+
+  // Audit: how many Pass-1 form variants survived the collision filter.
+  const survivingVariants = new Set();
+  for (const entry of byTicker.values()) {
+    for (const alias of entry.aliases) {
+      const key = alias.toLowerCase();
+      if (pass1.variantKeys.has(key)) survivingVariants.add(key);
+    }
+  }
+  console.log(
+    `[build]   form-variant survival: ${survivingVariants.size}/${pass1.variantKeys.size} kept, ${pass1.variantKeys.size - survivingVariants.size} dropped by collision filter`,
+  );
   // Log the most-shared collisions (>3 tickers) for audit visibility.
   const bigCollisions = collisions.filter((c) => c.tickers.length >= 3).slice(0, 15);
   if (bigCollisions.length > 0) {
@@ -502,6 +626,10 @@ function main() {
     console.log(`[build]   ✓ all ${EXPECTED_AMBIGUOUS.length} expected ambiguous groups are collision-detected`);
   }
 
+  // Snapshot the post-filter alias state so Pass 2 can generate variants for
+  // ONLY the aliases injected below (which are deliberately collision-exempt).
+  const preInjectionSnapshot = new Map([...byTicker].map(([t, e]) => [t, new Set(e.aliases)]));
+
   console.log('[build] applying INTENTIONAL_MULTI_TAG (post-filter escape hatch)');
   const multiAttached = applyIntentionalMultiTag(byTicker);
   console.log(`[build]   ${multiAttached} alias attachments via multi-tag overlay`);
@@ -511,6 +639,10 @@ function main() {
   console.log(
     `[build]   ${overlayV2Stats.tickers} tickers: ${overlayV2Stats.added} aliases added, ${overlayV2Stats.dropped} dropped`,
   );
+
+  console.log('[build] generating alias-form variants (Pass 2, post-overlay — collision-exempt)');
+  const pass2 = applyFormVariantsPass2(byTicker, preInjectionSnapshot);
+  console.log(`[build]   ${pass2.generated} form variants generated for injected aliases (e.g. "L&T" -> "L and T")`);
 
   console.log('[build] attaching Decision 6(b) denylist_context');
   const attached = attachDenylist(byTicker);
