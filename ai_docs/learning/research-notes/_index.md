@@ -26,12 +26,24 @@ the dossier** — it ties the rest together.
 Companion pre-registration brief: [`../../sachnetra v2/wiki/experiments/exp16_brief.md`](../../sachnetra%20v2/wiki/experiments/exp16_brief.md)
 
 ## The single next action
-**G4 — safely backfill ~75 liquid Midcap-150 names (2018→now) into `research_prices`** (note 6). It unblocks
-Exp16 (note 4), which tells us whether the EAR signal drifts or reverses on our universe. Everything else waits
-on that.
+**Run Exp16** — the long-only EAR-drift-vs-reverse pilot. ✅ **G4 is DONE** (verified 2026-06-05:
+`research_prices` has all 150 Midcap-150 names, 2009→2026 — see `2026-06-05_g4-already-done-correction.md`).
+The old "next action = G4 backfill" is **superseded**; the data is already there. (G1 alias-fix proceeds in
+parallel for Pillar A — the latency edge.)
 
 ## Evidence-quality legend
 Every note tags figures as **page-verified** (a source actually opened) vs **search-summary** (snippet only,
 route to Gemini recon to verify). The PEAD magnitude (Harshita ~6%/64d), the small-cap concentration
 (Quantpedia), 2026 STT, SEBI Aug-2024 F&O criteria, and LODR-XBRL are page-verified. The SLB liquidity
 figures and the Brandt EAR primary are not yet page-verified.
+
+## 2026-06-05 — Exp16 ran; the real bottleneck found
+
+| Note | What it settles | Verdict |
+|------|-----------------|---------|
+| [`2026-06-05_g4-already-done-correction.md`](./2026-06-05_g4-already-done-correction.md) | G4 prices are already deep (150/150 to 2009) — the old "next action = G4" was wrong | superseded |
+| [`2026-06-05_earnings-announcement-data-sourcing.md`](./2026-06-05_earnings-announcement-data-sourcing.md) | Where earnings data comes from (NSE scrape) + dead-cron flag + Layer 0/1/2 reflection | fix feed; SUE = last cheap thread |
+| [`2026-06-05_earnings-history-backfill-source-scoping.md`](./2026-06-05_earnings-history-backfill-source-scoping.md) | **Where pre-2024 results-dates come from** → BSE API (free, historical ranges); recon plan | PARK (conditional on SUE go/no-go) |
+
+**Why Exp16 was capped at 1.9y**: prices are deep (2009→now); `india_bourse_announcements` only starts
+2024-05-30 (NSE live API = rolling window). Deep earnings-event history needs an **archival source = BSE**.
