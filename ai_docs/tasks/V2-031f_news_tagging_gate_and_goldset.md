@@ -55,6 +55,16 @@ labelled yet** — that's the blocker.
 - [x] **D1 drafts** — 120 `suggested_gate` labels (all EMPTY) added to the gold CSV for human review.
 - [x] **Gate fall-through flip** — `_gate.mjs` default SPECIFIC→EMPTY + new `S6_GROUP_EVENT` rule
   (see "Open Decision — RESOLVED" below). D1 gate fp118→fp3; regression 26/26.
+- [x] **`fix(G1)` prod FP audit** (commit `3d93f29c`, 2026-06-10) — read-only audit of `nse_tickers_v2`
+  found common-word bare aliases in the TOP tag-volume ranks: MPSLTD 134 ("MPs"), RISHABH 73 (Pant),
+  YATRA 71 (pilgrimage), SONAMLTD 65 (Wangchuk), NH 59 (NH-44), LT 51 ("Lt."), SKIPPER 47 (cricket —
+  100% FP). Rough estimate: **~16–18% of ALL tagged rows in the shadow column are these FPs.** Fixes:
+  12 more `SUPPLEMENTAL_ALIAS_DROPS`; a **dangling-connector cascade guard** (killed 70 over-broad
+  prefixes like BANKINDIA "Bank of" → matched Bank of Baroda/Japan, SBIN "State Bank of"); 3 new
+  `DENYLIST_CONTEXT` guards (YATRA/TRIDENT/AXISBANK — mixed real/FP, drop would cost recall);
+  `removeAliasIgnoreCase` now removes ALL case-variants (was first-only); taxonomy regexes hoisted to
+  module init (7.5→4.2 ms/headline). Smoke test 15→34 assertions, all green.
+  Audit probe kept at `scratch/_v2031_fp_audit.mjs` (read-only, re-runnable).
 
 ## The Open Decision — RESOLVED 2026-06-10 (flip to EMPTY + Group rule)
 
@@ -157,11 +167,14 @@ node scripts/smoke-test-tagger.mjs                    # tagger assertions after 
 
 ## Deploy reminders (carry forward — do not lose)
 
-1. The regenerated `shared/nse-equity-master.json` (common-word fix) must go **live** for the forward tagger
+1. The regenerated `shared/nse-equity-master.json` (common-word fix + 2026-06-10 FP-audit round: 21 drops
+   total, dangling-connector guard, 3 context guards) must go **live** for the forward tagger
    (James/Lijo deploy — same as the V2-031c URBANCO/NAVA drops).
-2. The `nse_tickers_v2` shadow column was backfilled with the **old** master, so it still contains the
-   Coal/Solar false positives. The backfill resume-guard (`WHERE nse_tickers_v2 IS NULL`) will **not** correct
-   already-tagged rows — cleaning them needs an explicit re-tag, a decision for the V2-031 cutover (Decision 8).
+2. The `nse_tickers_v2` shadow column was backfilled with the **old** master — it still contains ALL the
+   audited FPs (≈16–18% of its tagged rows: Coal/Solar/MPs/Rishabh/Yatra/Sonam/NH/Lt./Skipper/"Bank of"…).
+   The backfill resume-guard (`WHERE nse_tickers_v2 IS NULL`) will **not** correct already-tagged rows —
+   the cutover (Decision 8) should be a **full re-tag with the fixed master**, not a copy of v2 as-is.
+   ⚠️ Any experiment joining on `nse_tickers_v2` before the re-tag inherits the FP pollution.
 
 ---
 
