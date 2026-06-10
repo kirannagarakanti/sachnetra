@@ -87,6 +87,17 @@ export const SPECIFIC_RULES = [
       /\b(shares?|stock)\s+(hit|hits|touch|touches|at|above|below)\s+.*(52-week|all-time|record)\b/i.test(lc) ||
       /\b(shares?|stock)\s+(hit|hits)\s+.*(high|low)\b/i.test(lc),
   },
+  {
+    id: 'S6_GROUP_EVENT',
+    // Group/house-level market event — real company news with NO single ticker
+    // ("Adani Group stocks shed ₹1.5 lakh cr in market cap"). Needs a named
+    // "<word> Group" AND a market-impact word, so it doesn't fire on "working
+    // group" / "group of ministers". This rule is what lets the fall-through
+    // default safely be EMPTY (the rare un-tickered company story is caught here).
+    test: (lc) =>
+      /\b[a-z]+\s+group\b/i.test(lc) &&
+      /\b(stocks?|shares?|market\s*cap|m-?cap|companies|firms|rally|rallies|shed|sheds|tumble|tumbles|surge|surges|crash|crashes|rout|valuation)\b/i.test(lc),
+  },
 ];
 
 // Returns { decision, rule, confidence }. Tie-breaks documented inline.
@@ -113,9 +124,14 @@ export function runGate(headline, companyCount) {
   }
 
   if (companyCount > 0) {
-    return { decision: 'SPECIFIC', rule: 'S6_TICKER_PRESENT', confidence: 'HIGH' };
+    return { decision: 'SPECIFIC', rule: 'S7_TICKER_PRESENT', confidence: 'HIGH' };
   }
-  return { decision: 'SPECIFIC', rule: 'FALLTHROUGH_DEFAULT', confidence: 'LOW' };
+  // Fall-through: no rule fired AND no company tagged. Gold-set D1 evidence
+  // (2026-06-10: 118/120 such headlines were EMPTY non-company news) flipped this
+  // default from SPECIFIC to EMPTY. LOW confidence so a loosely-named small-cap
+  // story isn't silently dropped without review; genuine group events are caught
+  // above by S6_GROUP_EVENT.
+  return { decision: 'EMPTY', rule: 'FALLTHROUGH_DEFAULT', confidence: 'LOW' };
 }
 
 // Full pipeline preview for one headline: gate + tagger.

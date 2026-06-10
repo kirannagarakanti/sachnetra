@@ -52,19 +52,30 @@ labelled yet** — that's the blocker.
   preview) + `build-goldset-sample.mjs` (read-only stratified sampler) + the 948-row `goldset_sample.csv`.
 - [x] **`feat(research)`** (commit `3067f2a6`) — `score-goldset.mjs` (gate P/R/F1 + EMPTY-vs-MISS + tagger P/R)
   + extracted the shared gate into `scripts/research/_gate.mjs` (preview & scorer share one gate, no drift).
+- [x] **D1 drafts** — 120 `suggested_gate` labels (all EMPTY) added to the gold CSV for human review.
+- [x] **Gate fall-through flip** — `_gate.mjs` default SPECIFIC→EMPTY + new `S6_GROUP_EVENT` rule
+  (see "Open Decision — RESOLVED" below). D1 gate fp118→fp3; regression 26/26.
 
-## The Open Decision (data-gated — DO NOT change on a hunch)
+## The Open Decision — RESOLVED 2026-06-10 (flip to EMPTY + Group rule)
 
 Running the gate over the real 948-row sample showed the gate works on macro (D2: 67/80 EMPTY) and tagged
-strata, but **D1 (random untagged news) is 96% fall-through `SPECIFIC ⚠ LOW`** — because the gate's
-`FALLTHROUGH_DEFAULT` biases SPECIFIC (to avoid dropping group-events like "Adani Group stocks shed ₹1.5 lakh
+strata, but **D1 (random untagged news) was 96% fall-through `SPECIFIC ⚠ LOW`** — because the old
+`FALLTHROUGH_DEFAULT` biased SPECIFIC (to avoid dropping group-events like "Adani Group stocks shed ₹1.5 lakh
 cr"), and D1 is full of plain non-financial news (FIFA, crime, court) that should be EMPTY.
 
-**Decision to settle with labelled D1:** should the fall-through default be
-- **SPECIFIC** (current — recall-biased, flags LOW for review), or
-- **EMPTY + a narrow "Group/House" rule** for the rare group case (precision-biased)?
+**Evidence:** Claude drafted all 120 D1 rows (`suggested_gate` column) — every one EMPTY. Provisional scorer
+on those drafts: the OLD gate scored **fp118 / tn2** on D1 (118 false positives).
 
-Do not flip it until labelled D1 confirms the direction.
+**Decision (Lijo, on the provisional D1 evidence):** flip the fall-through default **SPECIFIC → EMPTY**, and
+add a narrow **`S6_GROUP_EVENT`** rule (a named "<word> Group" + a market-impact word) so the rare un-tickered
+group event stays SPECIFIC. Implemented in `scripts/research/_gate.mjs`. The fall-through still emits
+**LOW confidence** so a loosely-named small-cap story is flagged for review, not silently dropped.
+
+**Result:** D1 gate score **fp118/tn2 → fp3/tn117**; regression still 26/26; sample-wide SPECIFIC 86.3% → 68.6%.
+"Adani Group stocks shed…" stays SPECIFIC via S6_GROUP_EVENT; "Working Group meet" correctly stays EMPTY.
+
+> **Still provisional:** the D1 labels are Claude drafts, not human-confirmed. Lijo confirming a D1 sample
+> (and labeling A/B/C for real tagger recall/precision) remains open below.
 
 ---
 
@@ -81,14 +92,14 @@ This task is complete when ALL of the following are true:
 
 - [x] The 9 common-word alias drops are committed and the smoke test passes
 - [x] Gate + sampler + scorer exist, are read-only, and run locally
-- [ ] A 30–50 headline **self-consistency dry-run** done on the gold CSV (label → sleep → re-label → diff);
-  instruction gaps folded into the labeling rules
-- [ ] **D1 stratum fully labelled** (`gate_label` + `ticker_label` where SPECIFIC) — ~120 rows
-- [ ] `node scripts/research/score-goldset.mjs --errors` run on the labelled slice; EMPTY-vs-MISS split for D1
-  recorded in the problem-solving note
-- [ ] Fall-through default **decided** (keep SPECIFIC / flip to EMPTY + Group rule) **with the D1 numbers as
-  evidence**, and the chosen change (if any) made in `scripts/research/_gate.mjs` + re-verified (gate-preview
-  26/26 still passes)
+- [x] Fall-through default **decided** with the D1 numbers as evidence → flipped to EMPTY + `S6_GROUP_EVENT`
+  rule in `scripts/research/_gate.mjs`; re-verified (gate-preview 26/26, D1 fp118→fp3) — 2026-06-10
+- [ ] **D1 drafts confirmed by Lijo** (spot-check `suggested_gate` → copy into `gate_label`; correct the 3
+  flagged borderlines) — turns the provisional flip into a confirmed one
+- [ ] A 30–50 headline **self-consistency dry-run** on a SPECIFIC-heavy slice (A/B/C), instruction gaps folded
+  into the labeling rules
+- [ ] **A/B/C strata labelled** for real tagger precision/recall (the COALINDIA-style FP rate + small-cap MISS
+  rate — the recall question D1 can't answer)
 
 ---
 
@@ -159,7 +170,8 @@ node scripts/smoke-test-tagger.mjs                    # tagger assertions after 
 - [x] Common-word alias fix committed (`14263394`) — 2026-06-10
 - [x] Gate + sampler + scorer committed (`71fc8a7a`, `3067f2a6`) — 2026-06-10
 - [x] Gold-set sample generated (948 rows) — 2026-06-10
-- [ ] D1 dry-run + full labelling — [date]
-- [ ] EMPTY-vs-MISS split recorded — [date]
-- [ ] Fall-through default decided with evidence — [date]
+- [x] D1 drafted (Claude, all EMPTY) + provisional scorer preview — 2026-06-10
+- [x] Fall-through default decided + implemented (flip to EMPTY + S6_GROUP_EVENT) — 2026-06-10
+- [ ] D1 drafts confirmed by Lijo — [date]
+- [ ] A/B/C labelled for real tagger P/R — [date]
 - [ ] **TASK V2-031f COMPLETE** ✅
