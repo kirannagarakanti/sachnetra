@@ -159,7 +159,6 @@
     "ticker": "AARON",
     "name": "Aaron Industries Limited",
     "aliases": [
-      "AARON",
       "Aaron Industries",
       "Aaron Industries Limited",
       "Aaron Industries Ltd"
@@ -1284,7 +1283,6 @@
     "ticker": "AMBER",
     "name": "Amber Enterprises India Limited",
     "aliases": [
-      "AMBER",
       "Amber Enterprises",
       "Amber Enterprises India",
       "Amber Enterprises India Limited",
@@ -1457,8 +1455,6 @@
     "ticker": "ANMOL",
     "name": "Anmol India Limited",
     "aliases": [
-      "ANMOL",
-      "Anmol",
       "Anmol India",
       "Anmol India Limited",
       "Anmol India Ltd"
@@ -1695,8 +1691,6 @@
     "ticker": "ARCHIES",
     "name": "Archies Limited",
     "aliases": [
-      "ARCHIES",
-      "Archies",
       "Archies Limited",
       "Archies Ltd"
     ]
@@ -2109,7 +2103,6 @@
       "ASPINWALL",
       "Aspinwall & Company",
       "Aspinwall & Company Limited",
-      "Aspinwall and",
       "Aspinwall and Company",
       "Aspinwall and Company Limited",
       "Aspinwall and Company Ltd"
@@ -2518,6 +2511,24 @@
       "Axis Bank",
       "Axis Bank Limited",
       "Axis Bank Ltd"
+    ],
+    "denylist_context": [
+      "bank",
+      "shares",
+      "₹",
+      "Q1",
+      "Q2",
+      "Q3",
+      "Q4",
+      "results",
+      "loan",
+      "target",
+      "NSE",
+      "BSE",
+      "dividend",
+      "FD",
+      "credit",
+      "CEO"
     ]
   },
   {
@@ -2792,11 +2803,9 @@
     "name": "Balmer Lawrie & Company Limited",
     "aliases": [
       "BALMLAWRIE",
-      "Balmer Lawrie &",
       "Balmer Lawrie & Company",
       "Balmer Lawrie & Company Limited",
       "Balmer Lawrie & Company Ltd",
-      "Balmer Lawrie and",
       "Balmer Lawrie and Company",
       "Balmer Lawrie and Company Limited"
     ]
@@ -2904,7 +2913,6 @@
     "name": "Bank of India",
     "aliases": [
       "BANKINDIA",
-      "Bank of",
       "Bank of India"
     ]
   },
@@ -3264,11 +3272,9 @@
     "name": "Bhagiradha Chemicals & Industries Limited",
     "aliases": [
       "BHAGCHEM",
-      "Bhagiradha Chemicals &",
       "Bhagiradha Chemicals & Industries",
       "Bhagiradha Chemicals & Industries Limited",
       "Bhagiradha Chemicals & Industries Ltd",
-      "Bhagiradha Chemicals and",
       "Bhagiradha Chemicals and Industries",
       "Bhagiradha Chemicals and Industries Limited"
     ]
@@ -4360,7 +4366,6 @@
     "name": "Central Bank of India",
     "aliases": [
       "CENTRALBK",
-      "Central Bank of",
       "Central Bank of India"
     ]
   },
@@ -4870,7 +4875,6 @@
     "name": "Container Corporation of India Limited",
     "aliases": [
       "CONCOR",
-      "Container Corporation of",
       "Container Corporation of India",
       "Container Corporation of India Limited",
       "Container Corporation of India Ltd"
@@ -4902,11 +4906,9 @@
     "name": "Consolidated Finvest & Holdings Limited",
     "aliases": [
       "CONSOFINVT",
-      "Consolidated Finvest &",
       "Consolidated Finvest & Holdings",
       "Consolidated Finvest & Holdings Limited",
       "Consolidated Finvest & Holdings Ltd",
-      "Consolidated Finvest and",
       "Consolidated Finvest and Holdings",
       "Consolidated Finvest and Holdings Limited"
     ]
@@ -5270,7 +5272,6 @@
       "DALMIASUG",
       "Dalmia Bharat Sugar & Industries",
       "Dalmia Bharat Sugar & Industries Limited",
-      "Dalmia Bharat Sugar and",
       "Dalmia Bharat Sugar and Industries",
       "Dalmia Bharat Sugar and Industries Limited",
       "Dalmia Bharat Sugar and Industries Ltd"
@@ -6146,7 +6147,6 @@
     "name": "Dredging Corporation of India Limited",
     "aliases": [
       "DREDGECORP",
-      "Dredging Corporation of",
       "Dredging Corporation of India",
       "Dredging Corporation of India Limited",
       "Dredging Corporation of India Ltd"
@@ -6194,11 +6194,9 @@
     "name": "Dhunseri Tea & Industries Limited",
     "aliases": [
       "DTIL",
-      "Dhunseri Tea &",
       "Dhunseri Tea & Industries",
       "Dhunseri Tea & Industries Limited",
       "Dhunseri Tea & Industries Ltd",
-      "Dhunseri Tea and",
       "Dhunseri Tea and Industries",
       "Dhunseri Tea and Industries Limited"
     ]
@@ -6479,7 +6477,6 @@
       "ELDEHSG",
       "Eldeco Housing & Industries",
       "Eldeco Housing & Industries Limited",
-      "Eldeco Housing And",
       "Eldeco Housing And Industries",
       "Eldeco Housing And Industries Limited",
       "Eldeco Housing And Industries Ltd"
@@ -6674,7 +6671,6 @@
     "ticker": "EMPOWER",
     "name": "Empower India Limited",
     "aliases": [
-      "EMPOWER",
       "Empower India",
       "Empower India Limited",
       "Empower India Ltd"
@@ -7456,7 +7452,6 @@
     "ticker": "GABRIEL",
     "name": "Gabriel India Limited",
     "aliases": [
-      "GABRIEL",
       "Gabriel India",
       "Gabriel India Limited",
       "Gabriel India Ltd"
@@ -7853,7 +7848,6 @@
     "name": "General Insurance Corporation of India",
     "aliases": [
       "GICRE",
-      "General Insurance Corporation of",
       "General Insurance Corporation of India"
     ]
   },
@@ -7862,11 +7856,9 @@
     "name": "Gillanders Arbuthnot & Company Limited",
     "aliases": [
       "GILLANDERS",
-      "Gillanders Arbuthnot &",
       "Gillanders Arbuthnot & Company",
       "Gillanders Arbuthnot & Company Limited",
       "Gillanders Arbuthnot & Company Ltd",
-      "Gillanders Arbuthnot and",
       "Gillanders Arbuthnot and Company",
       "Gillanders Arbuthnot and Company Limited"
     ]
@@ -8441,7 +8433,6 @@
     "ticker": "GRAPHITE",
     "name": "Graphite India Limited",
     "aliases": [
-      "GRAPHITE",
       "Graphite India",
       "Graphite India Limited",
       "Graphite India Ltd"
@@ -11110,11 +11101,9 @@
     "name": "Jayshree Tea & Industries Limited",
     "aliases": [
       "JAYSREETEA",
-      "Jayshree Tea &",
       "Jayshree Tea & Industries",
       "Jayshree Tea & Industries Limited",
       "Jayshree Tea & Industries Ltd",
-      "Jayshree Tea and",
       "Jayshree Tea and Industries",
       "Jayshree Tea and Industries Limited"
     ]
@@ -11223,7 +11212,6 @@
       "JINDRILL",
       "Jindal Drilling & Industries",
       "Jindal Drilling & Industries Limited",
-      "Jindal Drilling And",
       "Jindal Drilling And Industries",
       "Jindal Drilling And Industries Limited",
       "Jindal Drilling And Industries Ltd"
@@ -11334,14 +11322,11 @@
     "ticker": "JKTYRE",
     "name": "JK Tyre & Industries Limited",
     "aliases": [
-      "J K Tyre &",
       "J K Tyre & Industries",
       "J K Tyre & Industries Limited",
-      "JK Tyre &",
       "JK Tyre & Industries",
       "JK Tyre & Industries Limited",
       "JK Tyre & Industries Ltd",
-      "JK Tyre and",
       "JK Tyre and Industries",
       "JK Tyre and Industries Limited",
       "JKTYRE"
@@ -11687,11 +11672,9 @@
     "name": "Kakatiya Cement Sugar & Industries Limited",
     "aliases": [
       "KAKATCEM",
-      "Kakatiya Cement Sugar &",
       "Kakatiya Cement Sugar & Industries",
       "Kakatiya Cement Sugar & Industries Limited",
       "Kakatiya Cement Sugar & Industries Ltd",
-      "Kakatiya Cement Sugar and",
       "Kakatiya Cement Sugar and Industries",
       "Kakatiya Cement Sugar and Industries Limited"
     ]
@@ -11809,11 +11792,9 @@
     "name": "Kanoria Chemicals & Industries Limited",
     "aliases": [
       "KANORICHEM",
-      "Kanoria Chemicals &",
       "Kanoria Chemicals & Industries",
       "Kanoria Chemicals & Industries Limited",
       "Kanoria Chemicals & Industries Ltd",
-      "Kanoria Chemicals and",
       "Kanoria Chemicals and Industries",
       "Kanoria Chemicals and Industries Limited"
     ]
@@ -11925,14 +11906,12 @@
     "ticker": "KCPSUGIND",
     "name": "KCP Sugar and Industries Corporation Limited",
     "aliases": [
-      "K C P Sugar and",
       "K C P Sugar and Industries",
       "K C P Sugar and Industries Corporation",
       "K C P Sugar and Industries Corporation Limited",
       "KCP Sugar & Industries",
       "KCP Sugar & Industries Corporation",
       "KCP Sugar & Industries Corporation Limited",
-      "KCP Sugar and",
       "KCP Sugar and Industries",
       "KCP Sugar and Industries Corporation",
       "KCP Sugar and Industries Corporation Limited",
@@ -12514,7 +12493,6 @@
       "KREBSBIO",
       "Krebs Biochemicals & Industries",
       "Krebs Biochemicals & Industries Limited",
-      "Krebs Biochemicals and",
       "Krebs Biochemicals and Industries",
       "Krebs Biochemicals and Industries Limited",
       "Krebs Biochemicals and Industries Ltd"
@@ -13069,7 +13047,6 @@
     "name": "Life Insurance Corporation Of India",
     "aliases": [
       "LICI",
-      "Life Insurance Corporation Of",
       "Life Insurance Corporation Of India"
     ]
   },
@@ -13247,7 +13224,6 @@
       "L & T",
       "L and T",
       "L&T",
-      "LT",
       "Larsen & Toubro",
       "Larsen & Toubro Limited",
       "Larsen & Toubro Ltd",
@@ -13673,11 +13649,9 @@
     "name": "Manaksia Coated Metals & Industries Limited",
     "aliases": [
       "MANAKCOAT",
-      "Manaksia Coated Metals &",
       "Manaksia Coated Metals & Industries",
       "Manaksia Coated Metals & Industries Limited",
       "Manaksia Coated Metals & Industries Ltd",
-      "Manaksia Coated Metals and",
       "Manaksia Coated Metals and Industries",
       "Manaksia Coated Metals and Industries Limited"
     ]
@@ -14045,7 +14019,6 @@
     "ticker": "MAZDA",
     "name": "Mazda Limited",
     "aliases": [
-      "MAZDA",
       "Mazda Limited",
       "Mazda Ltd"
     ]
@@ -14141,7 +14114,6 @@
     "name": "Multi Commodity Exchange of India Limited",
     "aliases": [
       "MCX",
-      "Multi Commodity Exchange of",
       "Multi Commodity Exchange of India",
       "Multi Commodity Exchange of India Limited",
       "Multi Commodity Exchange of India Ltd"
@@ -14581,7 +14553,6 @@
     "name": "Mohit Industries Limited",
     "aliases": [
       "MOHITIND",
-      "Mohit",
       "Mohit Industries",
       "Mohit Industries Limited",
       "Mohit Industries Ltd"
@@ -14754,7 +14725,6 @@
     "name": "MPS Limited",
     "aliases": [
       "M P S Limited",
-      "MPS",
       "MPS Limited",
       "MPS Ltd",
       "MPSLTD"
@@ -15481,7 +15451,6 @@
     "name": "Nakoda Group of Industries Limited",
     "aliases": [
       "NGIL",
-      "Nakoda Group of",
       "Nakoda Group of Industries",
       "Nakoda Group of Industries Limited",
       "Nakoda Group of Industries Ltd"
@@ -15503,7 +15472,6 @@
     "ticker": "NH",
     "name": "Narayana Hrudayalaya Ltd.",
     "aliases": [
-      "NH",
       "Narayana Hrudayalaya",
       "Narayana Hrudayalaya Limited",
       "Narayana Hrudayalaya Ltd",
@@ -16307,11 +16275,9 @@
     "name": "Orient Paper & Industries Limited",
     "aliases": [
       "ORIENTPPR",
-      "Orient Paper &",
       "Orient Paper & Industries",
       "Orient Paper & Industries Limited",
       "Orient Paper & Industries Ltd",
-      "Orient Paper and",
       "Orient Paper and Industries",
       "Orient Paper and Industries Limited"
     ]
@@ -16966,7 +16932,6 @@
       "Pilani Investment & Industries",
       "Pilani Investment & Industries Corporation",
       "Pilani Investment & Industries Corporation Limited",
-      "Pilani Investment and",
       "Pilani Investment and Industries",
       "Pilani Investment and Industries Corporation",
       "Pilani Investment and Industries Corporation Limited",
@@ -17277,7 +17242,6 @@
       "PGCIL",
       "POWERGRID",
       "Power Grid",
-      "Power Grid Corporation of",
       "Power Grid Corporation of India",
       "Power Grid Corporation of India Limited",
       "Power Grid Corporation of India Ltd"
@@ -17918,7 +17882,6 @@
     "name": "Railtel Corporation Of India Limited",
     "aliases": [
       "RAILTEL",
-      "Railtel Corporation Of",
       "Railtel Corporation Of India",
       "Railtel Corporation Of India Limited",
       "Railtel Corporation Of India Ltd"
@@ -18549,7 +18512,6 @@
     "ticker": "RISHABH",
     "name": "Rishabh Instruments Limited",
     "aliases": [
-      "RISHABH",
       "Rishabh Instruments",
       "Rishabh Instruments Limited",
       "Rishabh Instruments Ltd"
@@ -18987,11 +18949,9 @@
     "name": "Rupa & Company Limited",
     "aliases": [
       "RUPA",
-      "Rupa &",
       "Rupa & Company",
       "Rupa & Company Limited",
       "Rupa & Company Ltd",
-      "Rupa and",
       "Rupa and Company",
       "Rupa and Company Limited"
     ]
@@ -19118,7 +19078,6 @@
     "ticker": "SAFARI",
     "name": "Safari Industries (India) Limited",
     "aliases": [
-      "SAFARI",
       "Safari Industries",
       "Safari Industries (India)",
       "Safari Industries (India) Limited",
@@ -19179,7 +19138,6 @@
     "ticker": "SAIL",
     "name": "Steel Authority of India Limited",
     "aliases": [
-      "Steel Authority of",
       "Steel Authority of India",
       "Steel Authority of India Limited",
       "Steel Authority of India Ltd"
@@ -19665,7 +19623,6 @@
       "SBI",
       "SBIN",
       "State Bank",
-      "State Bank of",
       "State Bank of India"
     ]
   },
@@ -19696,7 +19653,6 @@
     "aliases": [
       "S Chand & Company",
       "S Chand & Company Limited",
-      "S Chand And",
       "S Chand And Company",
       "S Chand And Company Limited",
       "S Chand And Company Ltd",
@@ -19717,7 +19673,6 @@
     "ticker": "SCI",
     "name": "Shipping Corporation Of India Limited",
     "aliases": [
-      "Shipping Corporation Of",
       "Shipping Corporation Of India",
       "Shipping Corporation Of India Limited",
       "Shipping Corporation Of India Ltd"
@@ -20207,7 +20162,6 @@
     "name": "Sharat Industries Limited",
     "aliases": [
       "SHINDL",
-      "Sharat",
       "Sharat Industries",
       "Sharat Industries Limited",
       "Sharat Industries Ltd"
@@ -20268,11 +20222,9 @@
     "aliases": [
       "S H Kelkar & Company",
       "S H Kelkar & Company Limited",
-      "S H Kelkar and",
       "S H Kelkar and Company",
       "S H Kelkar and Company Limited",
       "S H Kelkar and Company Ltd",
-      "SH Kelkar and",
       "SH Kelkar and Company",
       "SH Kelkar and Company Limited",
       "SHK"
@@ -20779,8 +20731,6 @@
     "ticker": "SKIPPER",
     "name": "Skipper Limited",
     "aliases": [
-      "SKIPPER",
-      "Skipper",
       "Skipper Limited",
       "Skipper Ltd"
     ]
@@ -20965,11 +20915,9 @@
     "name": "Soma Textiles & Industries Limited",
     "aliases": [
       "SOMATEX",
-      "Soma Textiles &",
       "Soma Textiles & Industries",
       "Soma Textiles & Industries Limited",
       "Soma Textiles & Industries Ltd",
-      "Soma Textiles and",
       "Soma Textiles and Industries",
       "Soma Textiles and Industries Limited"
     ]
@@ -21008,7 +20956,6 @@
     "ticker": "SONAMLTD",
     "name": "SONAM LIMITED",
     "aliases": [
-      "SONAM",
       "SONAM LIMITED",
       "SONAM Ltd",
       "SONAMLTD"
@@ -21362,7 +21309,6 @@
     "name": "The State Trading Corporation of India Limited",
     "aliases": [
       "STCINDIA",
-      "The State Trading Corporation of",
       "The State Trading Corporation of India",
       "The State Trading Corporation of India Limited",
       "The State Trading Corporation of India Ltd"
@@ -21582,7 +21528,6 @@
     "name": "Sumeet Industries Limited",
     "aliases": [
       "SUMEETINDS",
-      "Sumeet",
       "Sumeet Industries",
       "Sumeet Industries Limited",
       "Sumeet Industries Ltd"
@@ -21908,7 +21853,6 @@
       "SUTLEJTEX",
       "Sutlej Textiles & Industries",
       "Sutlej Textiles & Industries Limited",
-      "Sutlej Textiles and",
       "Sutlej Textiles and Industries",
       "Sutlej Textiles and Industries Limited",
       "Sutlej Textiles and Industries Ltd"
@@ -22046,7 +21990,6 @@
     "ticker": "SYMPHONY",
     "name": "Symphony Limited",
     "aliases": [
-      "SYMPHONY",
       "Symphony Limited",
       "Symphony Ltd"
     ]
@@ -22380,7 +22323,6 @@
     "ticker": "TCI",
     "name": "Transport Corporation of India Limited",
     "aliases": [
-      "Transport Corporation of",
       "Transport Corporation of India",
       "Transport Corporation of India Limited",
       "Transport Corporation of India Ltd"
@@ -22567,11 +22509,9 @@
     "name": "Texmaco Infrastructure & Holdings Limited",
     "aliases": [
       "TEXINFRA",
-      "Texmaco Infrastructure &",
       "Texmaco Infrastructure & Holdings",
       "Texmaco Infrastructure & Holdings Limited",
       "Texmaco Infrastructure & Holdings Ltd",
-      "Texmaco Infrastructure and",
       "Texmaco Infrastructure and Holdings",
       "Texmaco Infrastructure and Holdings Limited"
     ]
@@ -22605,7 +22545,6 @@
     "name": "Tourism Finance Corporation of India Limited",
     "aliases": [
       "TFCILTD",
-      "Tourism Finance Corporation of",
       "Tourism Finance Corporation of India",
       "Tourism Finance Corporation of India Limited",
       "Tourism Finance Corporation of India Ltd"
@@ -22640,11 +22579,9 @@
     "name": "Thacker & Company Limited",
     "aliases": [
       "THACKER",
-      "Thacker &",
       "Thacker & Company",
       "Thacker & Company Limited",
       "Thacker & Company Ltd",
-      "Thacker and",
       "Thacker and Company",
       "Thacker and Company Limited"
     ]
@@ -22674,7 +22611,6 @@
     "name": "The Investment Trust Of India Limited",
     "aliases": [
       "THEINVEST",
-      "The Investment Trust Of",
       "The Investment Trust Of India",
       "The Investment Trust Of India Limited",
       "The Investment Trust Of India Ltd"
@@ -22804,7 +22740,6 @@
     "name": "Tube Investments of India Limited",
     "aliases": [
       "TIINDIA",
-      "Tube Investments of",
       "Tube Investments of India",
       "Tube Investments of India Limited",
       "Tube Investments of India Ltd"
@@ -23211,6 +23146,22 @@
       "Trident",
       "Trident Limited",
       "Trident Ltd"
+    ],
+    "denylist_context": [
+      "Limited",
+      "textile",
+      "yarn",
+      "paper",
+      "results",
+      "Q1",
+      "Q2",
+      "Q3",
+      "Q4",
+      "shares",
+      "₹",
+      "NSE",
+      "BSE",
+      "stock"
     ]
   },
   {
@@ -23237,11 +23188,9 @@
     "ticker": "TRIVENI",
     "name": "Triveni Engineering & Industries Limited",
     "aliases": [
-      "Triveni Engineering &",
       "Triveni Engineering & Industries",
       "Triveni Engineering & Industries Limited",
       "Triveni Engineering & Industries Ltd",
-      "Triveni Engineering and",
       "Triveni Engineering and Industries",
       "Triveni Engineering and Industries Limited"
     ]
@@ -23643,7 +23592,6 @@
     "name": "Union Bank of India",
     "aliases": [
       "UNIONBANK",
-      "Union Bank of",
       "Union Bank of India"
     ]
   },
@@ -24348,7 +24296,6 @@
     "name": "Vipul Limited",
     "aliases": [
       "VIPULLTD",
-      "Vipul",
       "Vipul Limited",
       "Vipul Ltd"
     ]
@@ -24830,7 +24777,6 @@
     "ticker": "WHEELS",
     "name": "Wheels India Limited",
     "aliases": [
-      "WHEELS",
       "Wheels India",
       "Wheels India Limited",
       "Wheels India Ltd"
@@ -24841,7 +24787,6 @@
     "name": "Whirlpool of India Limited",
     "aliases": [
       "WHIRLPOOL",
-      "Whirlpool of",
       "Whirlpool of India",
       "Whirlpool of India Limited",
       "Whirlpool of India Ltd"
@@ -24852,11 +24797,9 @@
     "name": "Williamson Magor & Company Limited",
     "aliases": [
       "WILLAMAGOR",
-      "Williamson Magor &",
       "Williamson Magor & Company",
       "Williamson Magor & Company Limited",
       "Williamson Magor & Company Ltd",
-      "Williamson Magor and",
       "Williamson Magor and Company",
       "Williamson Magor and Company Limited"
     ]
@@ -25056,6 +24999,23 @@
       "Yatra Online",
       "Yatra Online Limited",
       "Yatra Online Ltd"
+    ],
+    "denylist_context": [
+      "online",
+      "travel",
+      "Q1",
+      "Q2",
+      "Q3",
+      "Q4",
+      "profit",
+      "results",
+      "shares",
+      "₹",
+      "booking",
+      "IPO",
+      "NSE",
+      "BSE",
+      "stock"
     ]
   },
   {
@@ -25136,11 +25096,9 @@
     "name": "Zenith Steel Pipes & Industries Limited",
     "aliases": [
       "ZENITHSTL",
-      "Zenith Steel Pipes &",
       "Zenith Steel Pipes & Industries",
       "Zenith Steel Pipes & Industries Limited",
       "Zenith Steel Pipes & Industries Ltd",
-      "Zenith Steel Pipes and",
       "Zenith Steel Pipes and Industries",
       "Zenith Steel Pipes and Industries Limited"
     ]

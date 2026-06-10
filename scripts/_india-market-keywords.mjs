@@ -111,24 +111,35 @@ export function extractCompanies(title) {
   return [...found].map(([ticker, name]) => ({ name, ticker }));
 }
 
+// Module-init: taxonomy keyword regexes are static — compile once, not per
+// headline (these four run per item in the 10-min cron AND per row in backfills).
+const escapeRe = (k) => k.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+const keywordRegex = (keywords) => new RegExp(`\\b(${keywords.map(escapeRe).join('|')})\\b`, 'i');
+
+const SECTOR_REGEXES = Object.entries(taxonomy.sectors).map(([sector, keywords]) => ({
+  sector,
+  re: keywordRegex(keywords),
+}));
+const EVENT_TYPE_REGEXES = Object.entries(taxonomy.event_types).map(([type, keywords]) => ({
+  type,
+  re: keywordRegex(keywords),
+}));
+const THEME_REGEXES = Object.entries(taxonomy.themes).map(([themeId, theme]) => ({
+  themeId,
+  re: keywordRegex(theme.keywords),
+}));
+const SYSTEMIC_REGEX = keywordRegex(taxonomy.systemic_keywords);
+
 export function extractSectors(title) {
   const found = [];
-  for (const [sector, keywords] of Object.entries(taxonomy.sectors)) {
-    const re = new RegExp(
-      `\\b(${keywords.map(k => k.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).join('|')})\\b`,
-      'i'
-    );
+  for (const { sector, re } of SECTOR_REGEXES) {
     if (re.test(title)) found.push(sector);
   }
   return found;
 }
 
 export function detectEventType(title) {
-  for (const [type, keywords] of Object.entries(taxonomy.event_types)) {
-    const re = new RegExp(
-      `\\b(${keywords.map(k => k.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).join('|')})\\b`,
-      'i'
-    );
+  for (const { type, re } of EVENT_TYPE_REGEXES) {
     if (re.test(title)) return type;
   }
   return 'other';
@@ -136,22 +147,14 @@ export function detectEventType(title) {
 
 export function extractThemes(title) {
   const found = [];
-  for (const [themeId, theme] of Object.entries(taxonomy.themes)) {
-    const re = new RegExp(
-      `\\b(${theme.keywords.map(k => k.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).join('|')})\\b`,
-      'i'
-    );
+  for (const { themeId, re } of THEME_REGEXES) {
     if (re.test(title)) found.push(themeId);
   }
   return found;
 }
 
 export function detectRelevanceClassFromTitle(title, sectors, companies) {
-  const systemicRegex = new RegExp(
-    `\\b(${taxonomy.systemic_keywords.map(k => k.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).join('|')})\\b`,
-    'i'
-  );
-  if (systemicRegex.test(title)) return 'systemic';
+  if (SYSTEMIC_REGEX.test(title)) return 'systemic';
   if (sectors.length > 0 && companies.length > 0) return 'sector';
   if (companies.length > 0) return 'idiosyncratic';
   return 'systemic';
