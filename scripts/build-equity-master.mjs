@@ -42,6 +42,21 @@ const SUPPLEMENTAL_ALIAS_DROPS = [
   { symbol: 'DOLLAR', alias_to_drop: 'Dollar' },
   { symbol: 'URBANCO', alias_to_drop: 'Urban' },
   { symbol: 'NAVA', alias_to_drop: 'NAVA' },
+  // Gold-set audit (2026-06-10): single-word cascade residues that are common
+  // English words and false-positived on general news (COALINDIA's "Coal"
+  // matched "coal mine blast" headlines, etc.). Each company stays findable via
+  // its multi-word form (kept) + symbol — see build comment. Only dropped where
+  // a distinct multi-word alias survives; bare-name-only tickers (Trent,
+  // Trident) intentionally NOT dropped to preserve recall.
+  { symbol: 'COALINDIA', alias_to_drop: 'Coal' },        // → Coal India / CIL
+  { symbol: 'SOLARINDS', alias_to_drop: 'Solar' },       // → Solar Industries
+  { symbol: 'CHOICEIN', alias_to_drop: 'Choice' },       // → Choice International
+  { symbol: 'EXCELINDUS', alias_to_drop: 'Excel' },      // → Excel Industries
+  { symbol: 'EMPOWER', alias_to_drop: 'Empower' },       // → Empower India
+  { symbol: 'DEEPINDS', alias_to_drop: 'Deep' },         // → Deep Industries
+  { symbol: 'PLATIND', alias_to_drop: 'Platinum' },      // → Platinum Industries
+  { symbol: 'GRAPHITE', alias_to_drop: 'Graphite' },     // → Graphite India
+  { symbol: 'CELLO', alias_to_drop: 'Cello' },           // → Cello World
 ];
 
 // ── Decision 5: suffix-strip cascade ─────────────────────────────────────────
