@@ -3,9 +3,10 @@ date: 2026-06-12
 problem: P1d — given the full article body (now obtainable, per P1c), can a Flash-class specialist turn it
   into the structured per-article record the Mind needs (entity, event_type, stance, novelty, surprise,
   confidence, rationale) accurately enough that Lijo trusts it as a building block?
-status: BRIEF — pre-registration. Sample harness + Antigravity run NOT YET DONE. Probe-grade (no Exp ID;
-  Phase-1 gate, per the build blueprint). Mirrors the exp21_brief shape: hypothesis → pre-registered pass
-  reads → locked bucket taxonomy → method (fill-in schema for the external agent) → traps → execution.
+status: RUN 2026-06-12 → ✅ PROVISIONAL PASS (A+B 93%, D 0%); results in 2026-06-12_p1d-results.md, awaiting
+  Lijo's confirm grade on the 5 non-A records. Probe-grade (no Exp ID; Phase-1 gate, per the build blueprint).
+  Mirrors the exp21_brief shape: hypothesis → pre-registered pass reads → locked bucket taxonomy → method
+  (fill-in schema for the external agent) → traps → execution.
 lane: Claude (sample harness + scoring) · Lijo (the 30-record audit — the gate) · Antigravity Gemini 3.5
   Flash (fills the records; mirrors the production specialist tier)
 tags: [probe, p1d, news-brain, specialist-quality, structured-record, pre-registration, fresh-eyes-shape,
