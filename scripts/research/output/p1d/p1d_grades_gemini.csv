@@ -1,0 +1,31 @@
+id,bucket,reason
+p1d-01,C,Tata Sons is an unlisted holding company and should have been classified as none.
+p1d-02,A,All fields are correct and grounded in the text.
+p1d-03,A,All fields are correct and grounded in the text.
+p1d-04,A,All fields are correct and grounded in the text.
+p1d-05,A,All fields are correct and grounded in the text.
+p1d-06,A,All fields are correct and grounded in the text.
+p1d-07,A,All fields are correct and grounded in the text.
+p1d-08,A,All fields are correct and grounded in the text.
+p1d-09,A,All fields are correct and grounded in the text.
+p1d-10,B,Dual-entity format used instead of selecting a single primary ticker.
+p1d-11,A,All fields are correct and grounded in the text.
+p1d-12,A,All fields are correct and grounded in the text.
+p1d-13,A,All fields are correct and grounded in the text.
+p1d-14,A,All fields are correct and grounded in the text.
+p1d-15,A,All fields are correct and grounded in the text.
+p1d-16,A,All fields are correct and grounded in the text.
+p1d-17,A,All fields are correct and grounded in the text.
+p1d-18,A,All fields are correct and grounded in the text.
+p1d-19,A,All fields are correct and grounded in the text.
+p1d-20,C,Meesho is unlisted and should have been classified as none.
+p1d-21,C,Lenskart is unlisted (none) and promoter stake-sale is not mna.
+p1d-22,A,All fields are correct and grounded in the text.
+p1d-23,A,All fields are correct and grounded in the text.
+p1d-24,A,All fields are correct and grounded in the text.
+p1d-25,A,All fields are correct and grounded in the text.
+p1d-26,A,All fields are correct and grounded in the text.
+p1d-27,A,All fields are correct and grounded in the text.
+p1d-28,C,Promoter stake-sale is incorrectly classified as mna.
+p1d-29,A,All fields are correct and grounded in the text.
+p1d-30,A,All fields are correct and grounded in the text.
