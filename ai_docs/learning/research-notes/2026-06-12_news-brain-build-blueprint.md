@@ -192,10 +192,14 @@ question, later. This is "does the brain see anything real."
 2. ~~**P1a script** — the 20-pair drift gate~~ ✅ RUN 2026-06-12 — **GATE: ALIVE at the month horizon**
    (+1.22% t=4.0 vs placebo +0.24%; see p1a results note).
 3. ~~Fresh-eyes review~~ ✅ RUN 2026-06-12 (MiniMax + Kimi, 3 rounds) → **Amendments v0.1 below.**
-4. ~~P1b~~ ✅ (feeds thin → fetch load-bearing) · ~~P1c~~ ✅ 2026-06-12 (**own-fetcher JSON-LD path wins;
-   url_context demoted to paid fallback** — p1c results note). **NEXT:** P1f (small-cap filing SQL —
-   *this week* per Kimi) · P1d (specialist quality on confirmed full text) · P1e (blinded-decoy headline
-   test) · P1a-v2 (unfamous pairs + controls).
+4. ~~P1b~~ ✅ (feeds thin → fetch load-bearing) · ~~P1c~~ ✅ (own-fetcher JSON-LD path wins) · ~~P1f~~ ✅
+   (small-cap filing edge, modest+alive) · ~~P1d~~ ✅ 2026-06-12 (**specialist extraction PASS** — 90%
+   two-grader, 0 hallucinations; two pre-build tickets: `ownership` event_type + nse-master listed gate).
+   **Phase-1 probe gate effectively CLEARED.** Optional remaining: P1e (blinded-decoy) · P1a-v2 (unfamous
+   pairs + controls) — not blockers.
+5. **NEXT: Phase 2 — the reading spine.** Task filed: `ai_docs/tasks/SachManas-P2_reading-spine.md`
+   (C1 own-RSS+JSON-LD reader · C2 firewall router · C9 own DB; gate = 1wk live, ≥95% categorized,
+   router ≥90% on 100-article audit). Phase 3 world-model design goes through the Kimi fresh-eyes gate first.
 5. Then Phase 2 (the spine), under the amended design.
 
 ---
