@@ -166,8 +166,11 @@ question, later. This is "does the brain see anything real."
 
 ## 5. Pre-mortem (what kills this, watched per phase)
 1. **P1a flat** → the ripple premise dies in week one (that's the design working, not failing).
-2. **Feed descriptions too thin** (P1b) → lean harder on url_context; if *that's* blocked (P1c) → scraping
-   becomes a real build item; re-cost.
+2. **Feed descriptions too thin** (P1b) → ~~lean harder on url_context~~ **SETTLED by P1c (2026-06-12):**
+   the fetch spine is OUR OWN deterministic fetcher (HTTP GET → JSON-LD `articleBody`), free + zero LLM
+   quota, covering 4/5 load-bearing sources incl. Moneycontrol (which bot-walls Google's url_context).
+   url_context is a paid fallback only. Hindu BusinessLine (no JSON-LD) needs a small Readability fallback.
+   See `research-notes/2026-06-12_p1c-fetch-probe-results.md`.
 3. **Hallucinated edges** survive the Linker's evidence bar → Phase-5 gate catches it; fix = stricter
    multi-evidence, never "trade anyway."
 4. **Cost runaway** → circuit-breaker (C11) trips at ~$25/day; funnel ratios re-tuned.
@@ -189,8 +192,10 @@ question, later. This is "does the brain see anything real."
 2. ~~**P1a script** — the 20-pair drift gate~~ ✅ RUN 2026-06-12 — **GATE: ALIVE at the month horizon**
    (+1.22% t=4.0 vs placebo +0.24%; see p1a results note).
 3. ~~Fresh-eyes review~~ ✅ RUN 2026-06-12 (MiniMax + Kimi, 3 rounds) → **Amendments v0.1 below.**
-4. **NEXT:** P1f (small-cap filing SQL — *this week* per Kimi) · P1e (blinded-decoy headline test) ·
-   P1b/P1c/P1d probes · P1a-v2 (unfamous pairs + controls).
+4. ~~P1b~~ ✅ (feeds thin → fetch load-bearing) · ~~P1c~~ ✅ 2026-06-12 (**own-fetcher JSON-LD path wins;
+   url_context demoted to paid fallback** — p1c results note). **NEXT:** P1f (small-cap filing SQL —
+   *this week* per Kimi) · P1d (specialist quality on confirmed full text) · P1e (blinded-decoy headline
+   test) · P1a-v2 (unfamous pairs + controls).
 5. Then Phase 2 (the spine), under the amended design.
 
 ---
