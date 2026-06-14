@@ -127,7 +127,6 @@
     "ticker": "AAKASH",
     "name": "Aakash Exploration Services Limited",
     "aliases": [
-      "AAKASH",
       "Aakash Exploration Services",
       "Aakash Exploration Services Limited",
       "Aakash Exploration Services Ltd"
@@ -1329,7 +1328,6 @@
     "aliases": [
       "A M D Industries",
       "A M D Industries Limited",
-      "AMD",
       "AMD Industries",
       "AMD Industries Limited",
       "AMD Industries Ltd"
@@ -1568,7 +1566,6 @@
     "ticker": "APEX",
     "name": "Apex Frozen Foods Limited",
     "aliases": [
-      "APEX",
       "Apex Frozen Foods",
       "Apex Frozen Foods Limited",
       "Apex Frozen Foods Ltd"
@@ -4761,7 +4758,6 @@
     "ticker": "COASTCORP",
     "name": "Coastal Corporation Limited",
     "aliases": [
-      "Coastal",
       "Coastal Corporation",
       "Coastal Corporation Limited",
       "Coastal Corporation Ltd"
@@ -12768,7 +12764,6 @@
     "ticker": "LAL",
     "name": "Lorenzini Apparels Limited",
     "aliases": [
-      "LAL",
       "Lorenzini Apparels",
       "Lorenzini Apparels Limited",
       "Lorenzini Apparels Ltd"
@@ -14426,7 +14421,6 @@
     "ticker": "MITTAL",
     "name": "Mittal Life Style Limited",
     "aliases": [
-      "MITTAL",
       "Mittal Life Style",
       "Mittal Life Style Limited",
       "Mittal Life Style Ltd"
@@ -15276,6 +15270,24 @@
       "New Delhi Television",
       "New Delhi Television Limited",
       "New Delhi Television Ltd"
+    ],
+    "denylist_context": [
+      "profit",
+      "revenue",
+      "share price",
+      "₹",
+      "dividend",
+      "stake",
+      "Q1",
+      "Q2",
+      "Q3",
+      "Q4",
+      "net profit",
+      "stock",
+      "board",
+      "acquisition",
+      "delisting",
+      "AMG Media"
     ]
   },
   {
@@ -21046,7 +21058,6 @@
     "ticker": "SPECIALITY",
     "name": "Speciality Restaurants Limited",
     "aliases": [
-      "SPECIALITY",
       "Speciality Restaurants",
       "Speciality Restaurants Limited",
       "Speciality Restaurants Ltd"

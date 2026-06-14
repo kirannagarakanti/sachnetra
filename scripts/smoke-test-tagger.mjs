@@ -82,6 +82,19 @@ const ASSERTIONS = [
   { name: 'audit: "Axis named best bank" → [AXISBANK]',    headline: 'FE Best Bank Awards: Axis named best digital bank',           expected: ['AXISBANK'] },
   { name: 'audit: Trident Hotels → []',                    headline: '8 reasons business travellers choose Trident Hotels',         expected: [] },
   { name: 'audit: Sumeet Bagadia column → []',             headline: 'Breakout stocks: Sumeet Bagadia recommends five shares',      expected: [] },
+  // Gate-leak audit (2026-06-11): coastal common-word + "to NDTV" channel context
+  { name: 'audit: coastal road project → []',              headline: 'Citizens protest felling of trees for Coastal Road project',  expected: [] },
+  { name: 'audit: "Coastal Corporation Q4" → [COASTCORP]', headline: 'Coastal Corporation Q4 net profit rises on shrimp exports',    expected: ['COASTCORP'] },
+  { name: 'audit: "to NDTV" channel → []',                 headline: '"Public Won\'t Trust Raghav Chadha Again": Bhagwant Mann To NDTV', expected: [] },
+  { name: 'audit: exam results "to NDTV" → []',            headline: 'JEE Advanced Results To Be Synchronised With CBSE: Minister To NDTV', expected: [] },
+  { name: 'audit: "NDTV Q4 profit" → [NDTV]',              headline: 'NDTV Q4 net profit rises 18% on ad revenue',                  expected: ['NDTV'] },
+  // Long-tail audit (2026-06-11): surname/place/common-word/foreign-co collisions
+  { name: 'audit: Sunil Bharti Mittal → []',               headline: 'UK unlikely to allow Sunil Bharti Mittal to raise BT stake',   expected: [] },
+  { name: 'audit: Apex Court → []',                        headline: 'SC Collegium recommends J&K CJ elevation to Apex Court',       expected: [] },
+  { name: 'audit: super speciality hospital → []',         headline: 'Mahabubnagar still awaits super speciality hospital',          expected: [] },
+  { name: 'audit: Aakash Chopra (cricket) → []',           headline: 'CSK vs SRH could be a knockout, says Aakash Chopra',           expected: [] },
+  { name: 'audit: Nvidia and AMD → []',                    headline: 'US tightens export limits on Nvidia and AMD',                  expected: [] },
+  { name: 'audit: "AMD Industries Q4" → [AMDIND]',         headline: 'AMD Industries Q4 net profit rises on packaging demand',       expected: ['AMDIND'] },
 ];
 
 function runAssertions() {

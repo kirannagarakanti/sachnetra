@@ -17,9 +17,27 @@ import { loadEnvFile, sleep } from './_seed-utils.mjs';
 
 loadEnvFile(import.meta.url); // MUST be first
 
-const BACKFILL_DAYS = 30;
+// Window is parametrizable so this one script can fill a cron-stall gap precisely
+// (e.g. --days=10) or a specific historical range (--from/--to), not just a fixed
+// 30 days. Defaults are unchanged: a bare run still backfills the last 30 days.
+//   node scripts/backfill-india-announcements.mjs                 # last 30 days (default)
+//   node scripts/backfill-india-announcements.mjs --days=10       # last 10 days (gap fill)
+//   node scripts/backfill-india-announcements.mjs --from=30-05-2026 --to=05-06-2026
+const args = process.argv.slice(2);
+const flag = (n, d) => { const h = args.find((a) => a.startsWith(`--${n}=`)); return h ? h.slice(n.length + 3) : d; };
+const BACKFILL_DAYS = Number(flag('days', '30'));
+const FROM = flag('from', null); // DD-MM-YYYY (inclusive) — explicit-range override
+const TO = flag('to', null);     // DD-MM-YYYY (inclusive)
 const CHUNK_DAYS = 7;
 const CHUNK_PAUSE_MS = 1000; // polite gap between chunks
+
+const DDMMYYYY_RE = /^(\d{2})-(\d{2})-(\d{4})$/;
+// Parse a DD-MM-YYYY param to a noon-UTC Date (anchor avoids TZ edges; istDateParam reproduces the date).
+function parseDdMmYyyy(s) {
+  const m = DDMMYYYY_RE.exec(String(s).trim());
+  if (!m) throw new Error(`bad date "${s}" — expected DD-MM-YYYY`);
+  return new Date(Date.UTC(Number(m[3]), Number(m[2]) - 1, Number(m[1]), 12, 0, 0));
+}
 
 // IST = UTC+05:30. NSE wants DD-MM-YYYY (recon A1).
 function istDateParam(date) {
@@ -34,18 +52,31 @@ function isCookieWall(err) {
   return /HTTP 40[13]/.test(String(err?.message || ''));
 }
 
-// Build [{from, to}] chunks walking BACKFILL_DAYS back in CHUNK_DAYS windows.
-// Windows are inclusive and adjacent days overlap by one at the seams; the
-// append-only upsert makes that free.
-function buildChunks(now) {
+// Build [{from, to}] chunks of ~CHUNK_DAYS, walking back from `anchorTo` for
+// `totalDays`. Windows are inclusive and adjacent days overlap by one at the
+// seams; the append-only upsert makes that free.
+function buildChunks(anchorTo, totalDays) {
   const chunks = [];
-  for (let offset = 0; offset < BACKFILL_DAYS; offset += CHUNK_DAYS) {
-    const to = new Date(now.getTime() - offset * 24 * 60 * 60 * 1000);
-    const fromOffset = Math.min(offset + CHUNK_DAYS, BACKFILL_DAYS);
-    const from = new Date(now.getTime() - fromOffset * 24 * 60 * 60 * 1000);
+  for (let offset = 0; offset < totalDays; offset += CHUNK_DAYS) {
+    const to = new Date(anchorTo.getTime() - offset * 24 * 60 * 60 * 1000);
+    const fromOffset = Math.min(offset + CHUNK_DAYS, totalDays);
+    const from = new Date(anchorTo.getTime() - fromOffset * 24 * 60 * 60 * 1000);
     chunks.push({ fromDate: istDateParam(from), toDate: istDateParam(to) });
   }
   return chunks;
+}
+
+// Resolve the requested window into (anchorTo, totalDays) for buildChunks.
+// Explicit --from/--to wins; otherwise it's `--days` back from now.
+function resolveWindow(now) {
+  if (FROM || TO) {
+    if (!(FROM && TO)) throw new Error('--from and --to must be given together');
+    const fromD = parseDdMmYyyy(FROM), toD = parseDdMmYyyy(TO);
+    const days = Math.ceil((toD.getTime() - fromD.getTime()) / 864e5) + 1;
+    if (days < 1) throw new Error('--from must be on or before --to');
+    return { anchorTo: toD, totalDays: days, label: `${FROM}→${TO} (${days}d)` };
+  }
+  return { anchorTo: now, totalDays: BACKFILL_DAYS, label: `last ${BACKFILL_DAYS}d` };
 }
 
 async function fetchChunkWithRewarm(chunk, cookieRef) {
@@ -66,8 +97,9 @@ async function backfill() {
     process.exit(1);
   }
 
+  const { anchorTo, totalDays, label } = resolveWindow(new Date());
   const cookieRef = { cookie: await warmUpNSE() };
-  const chunks = buildChunks(new Date());
+  const chunks = buildChunks(anchorTo, totalDays);
 
   const pool = new pg.Pool({
     connectionString,
@@ -76,7 +108,7 @@ async function backfill() {
 
   try {
     await pool.query('SELECT 1');
-    console.log(`[backfill] start — ${BACKFILL_DAYS} days in ${chunks.length} chunk(s) of ~${CHUNK_DAYS}d`);
+    console.log(`[backfill] start — window ${label} in ${chunks.length} chunk(s) of ~${CHUNK_DAYS}d`);
 
     let totalFetched = 0;
     let totalInserted = 0;

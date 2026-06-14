@@ -72,6 +72,19 @@ const SUPPLEMENTAL_ALIAS_DROPS = [
   { symbol: 'SUMEETINDS', alias_to_drop: 'Sumeet' },     // "Sumeet Bagadia recommends" columns → Sumeet Industries
   { symbol: 'SHINDL', alias_to_drop: 'Sharat' },         // first name → Sharat Industries
   { symbol: 'ARCHIES', alias_to_drop: 'Archies' },       // "The Archies" film → Archies Limited
+  // Gold-set gate-leak audit (2026-06-11): bare "Coastal" (← "Coastal Corporation"
+  // minus the Corporation strip) tagged 11/11 sampled "coastal regulation/road/
+  // highway" general-news headlines. Multi-word "Coastal Corporation" survives.
+  { symbol: 'COASTCORP', alias_to_drop: 'Coastal' },     // "coastal road project" etc. → Coastal Corporation
+  // Gold-set long-tail audit (2026-06-11): bare symbol/common-word aliases that
+  // false-positived on surnames, places, generic words or a foreign company.
+  // Each company stays findable via its distinctive multi-word name (kept).
+  { symbol: 'MITTAL', alias_to_drop: 'MITTAL' },         // "Sunil Bharti Mittal" surname → Mittal Life Style
+  { symbol: 'LAL', alias_to_drop: 'LAL' },               // "Shankar Lal" / "Lal Chowk" → Lorenzini Apparels (LAL = symbol only)
+  { symbol: 'APEX', alias_to_drop: 'APEX' },             // "Apex Court" / "Apex Body" → Apex Frozen Foods
+  { symbol: 'SPECIALITY', alias_to_drop: 'SPECIALITY' }, // "super speciality hospital" → Speciality Restaurants
+  { symbol: 'AAKASH', alias_to_drop: 'AAKASH' },         // "Aakash Chopra" (cricket) → Aakash Exploration Services
+  { symbol: 'AMDIND', alias_to_drop: 'AMD' },            // "Nvidia and AMD" (US chipmaker) → AMD Industries
 ];
 
 // ── Decision 5: suffix-strip cascade ─────────────────────────────────────────
@@ -113,6 +126,15 @@ const DENYLIST_CONTEXT = {
   // AXISBANK: bare "Axis" matched "Axis My India" (pollster); real coverage virtually
   // always carries a finance word ("Axis Bank" itself contains 'bank').
   AXISBANK: ['bank', 'shares', '₹', 'Q1', 'Q2', 'Q3', 'Q4', 'results', 'loan', 'target', 'NSE', 'BSE', 'dividend', 'FD', 'credit', 'CEO'],
+  // 2026-06-11 gold-set gate-leak audit: bare "NDTV" tagged 11/11 sampled
+  // "<person> to NDTV" / "NDTV Conclave" headlines — NDTV there is the channel
+  // spoken to, not the listco subject. Real company coverage ("New Delhi
+  // Television Q4 profit", "Adani's NDTV stake") carries a finance word. NB:
+  // bare 'shares'/'results' deliberately excluded — they match education news
+  // ("shares success mantra", "exam results") that says "…to NDTV" (the channel).
+  // 'NSE'/'BSE' also excluded: 'bse' is a substring of "CBSE" (exam board), the
+  // exact education-news context NDTV is polluted by.
+  NDTV: ['profit', 'revenue', 'share price', '₹', 'dividend', 'stake', 'Q1', 'Q2', 'Q3', 'Q4', 'net profit', 'stock', 'board', 'acquisition', 'delisting', 'AMG Media'],
 };
 
 // Aliases that are TOO common as English words even with collision filtering;
