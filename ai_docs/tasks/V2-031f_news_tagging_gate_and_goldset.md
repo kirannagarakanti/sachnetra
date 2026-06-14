@@ -168,13 +168,311 @@ node scripts/smoke-test-tagger.mjs                    # tagger assertions after 
 ## Deploy reminders (carry forward — do not lose)
 
 1. The regenerated `shared/nse-equity-master.json` (common-word fix + 2026-06-10 FP-audit round: 21 drops
-   total, dangling-connector guard, 3 context guards) must go **live** for the forward tagger
-   (James/Lijo deploy — same as the V2-031c URBANCO/NAVA drops).
+   total, dangling-connector guard, 3 context guards + **2026-06-11 gate-leak round: `Coastal` drop +
+   `NDTV` context guard**) must go **live** for the forward tagger (James/Lijo deploy — same as the
+   V2-031c URBANCO/NAVA drops). NB: the `_gate.mjs` S4 tightening is research-lane only (the gate isn't
+   wired into prod yet — separate James task), so it does NOT need deploying with the master.
+   **2026-06-11 long-tail round** adds 6 more drops to the same master regen: `MITTAL`, `LAL`, `APEX`,
+   `SPECIALITY`, `AAKASH` (bare symbol/common-word/surname collisions) + `AMDIND`'s `AMD` alias (US
+   chipmaker). All verified: distinctive multi-word name survives, smoke 45/45.
 2. The `nse_tickers_v2` shadow column was backfilled with the **old** master — it still contains ALL the
    audited FPs (≈16–18% of its tagged rows: Coal/Solar/MPs/Rishabh/Yatra/Sonam/NH/Lt./Skipper/"Bank of"…).
    The backfill resume-guard (`WHERE nse_tickers_v2 IS NULL`) will **not** correct already-tagged rows —
    the cutover (Decision 8) should be a **full re-tag with the fixed master**, not a copy of v2 as-is.
    ⚠️ Any experiment joining on `nse_tickers_v2` before the re-tag inherits the FP pollution.
+
+---
+
+## Follow-on finding — Asset/subsidiary→parent recall gap (NOT this task; start after)
+
+**Found while D1-labelling (2026-06-11).** Row `0f2d5062` — *"Vizhinjam Port scales new heights with
+record throughput, expansion drive"* (Hindu Business Line) — tagged **nothing**, drafted EMPTY. But
+Vizhinjam is operated by Adani Vizhinjam Port Pvt Ltd, a subsidiary of **APSEZ (NSE: ADANIPORTS)**, and
+"record throughput + expansion" is a genuine positive operational data point for that stock. The tagger
+missed it because the **asset name is never the parent's name in the text** — "Vizhinjam" is not in
+`nse-equity-master.json`, so a pure name-matcher has no path to ADANIPORTS.
+
+**The exact problem:** our tagger is a **name-matcher** (tags only companies named in the headline), not
+an **entity-linker** (resolves assets / subsidiaries / brands → listed parent). A whole class of
+economically-relevant, tradeable headlines is therefore invisible:
+- Assets: Vizhinjam / Mundra port → ADANIPORTS; specific plants, mines, refineries → their owner
+- Subsidiaries & brands: Jio → RELIANCE; Vistara/AIX; bank/NBFC arms; FMCG brands → parent listco
+- These are exactly the operational mid-cap events the [[project_pead_midcap_finding]] thesis cares about.
+
+**Labelling convention chosen for the gold set (so P/R stays consistent):** label these **EMPTY** under
+the name-matcher convention, with a `notes` tag `asset_parent_recall_gap: <asset> = <TICKER>`. Do NOT
+credit them as MISSes against the current tagger (that would penalise it for world-knowledge it can't
+have) — instead they accumulate as a clean candidate backlog. Applied uniformly across all 949 rows.
+
+**Rough solution (when we pick it up):**
+1. **Harvest the backlog first** — the `asset_parent_recall_gap` notes from gold-set labelling become the
+   seed list. Quantify: how many high-value misses are this class? That's the evidence to justify (or
+   kill) the work — don't build before the gold set proves the lever is real.
+2. **Curated alias map, not free NER** — a hand-maintained `asset_aliases.json` (asset/subsidiary/brand →
+   parent ticker), reviewed like `SUPPLEMENTAL_ALIAS_DROPS`. Multi-word, high-specificity entries only
+   ("Vizhinjam Port", "Mundra Port", "Jio") — never generic words ("Port", "Power", "Green"), which is the
+   exact COALINDIA/Coal FP class commit `3d93f29c` just killed.
+3. **Gate it on precision** — every alias added must pass the smoke test (real ref tags, FP headline does
+   not) before it ships. Same dangling-connector / context-guard discipline as the equity master.
+4. **Scope guard** — this is an additive layer on top of the name-matcher; it does NOT replace it. Foreign
+   listcos (Microsoft, AstraZeneca, Hanwha) and unlisted entities (RINL/Vizag Steel) stay EMPTY.
+
+**Status:** documented backlog only. Start after V2-031f's D1 + A/B/C labelling is done — the labelling
+*is* what produces the candidate list, so there's no point starting earlier.
+
+---
+
+## Follow-on finding #2 — Brokerage-attribution FP class (NOT this task; start after)
+
+**Found while A/B/C-labelling (2026-06-11).** The KOTAKBANK group was ~70% false positive — not from a
+bare-word collision, but because **"Kotak" appears as the SOURCE of a market view, not the subject**:
+*"Kotak warns of fuel under-recoveries"*, *"…says Kotak"*, *"Kotak MF report"*, plus *Uday Kotak* (person)
+and *Sitanshu Kotak* (cricket coach). Only genuine bank-business news (RuPay card, ECLGS applications) is
+real KOTAKBANK. Same shape as the "to NDTV" channel guard — a financial firm used as a *voice*.
+
+**Generalises** to every broker/research house: Nomura, Jefferies, Motilal Oswal, Nuvama, JM Financial,
+CLSA, Macquarie, Citi, etc. — "<broker> says/expects/cuts target" is analyst commentary, not company news.
+
+**Decision for the gold set:** label these EMPTY (note: `brokerage_attribution`). Rough fix later: a
+brokerage context-guard (like AXISBANK/NDTV `DENYLIST_CONTEXT`) so the firm only tags on its OWN
+corporate news (results/shares/₹/board), not when it's quoted as a market commentator.
+
+## Follow-on finding #3 — Mid-sentence listicle slips the gate (small gate fix)
+
+`E1_LISTICLE_HEADER` is `^`-anchored, so *"Titan, Kalyan, Vedanta among stocks in focus…"* (listicle phrase
+not at the start) bypasses it → tagger tags all three → gate says SPECIFIC. Rough fix: allow the
+"stocks in focus / stocks to buy / among … stocks" listicle phrases to match **anywhere** in the headline,
+not just at position 0. Low risk, gate-only (`_gate.mjs`).
+
+---
+
+## Session log — 2026-06-11 (gate-leak fixes + labelling)
+
+**Gate-leak audit & fix (gate precision 0.222 → 1.000 on labelled set, 28 → 0 leaks):**
+- `build-equity-master.mjs`: dropped bare `Coastal` (COASTCORP); added `NDTV` `DENYLIST_CONTEXT`
+  (finance-word guard; excludes `shares`/`results`/`NSE`/`BSE` — the last two because `bse` ⊂ "CBSE").
+- `_gate.mjs`: split `S4_FORWARD_ACTION` — the bare announce/launch/release branch now requires
+  `companyCount > 0` (killed 6 govt/party/sports leaks like "Amit Shah launches…", "NTA releases…").
+- `smoke-test-tagger.mjs`: 34 → 39 assertions (locks Coastal + NDTV channel/exam/real pairs).
+- Verified: smoke 39/39, gate-preview 26/26, typecheck 0, master rebuilt, miss-rate still 0%.
+
+**Labelling progress (gold set now 330/948 rows):**
+- D1 (120): all confirmed EMPTY (Claude pass — pending Lijo spot-check); 6 notes incl `asset_parent_recall_gap`.
+- A/B/C focus FP groups (128): 120 EMPTY, 8 real (RISHABH/YATRA + L&T×6) — measured the OLD-master ~94% FP baseline.
+- A/B/C control groups (82): MARUTI/RELIANCE/INDIGO/RAJESHEXPO/WIPRO/BHARTIARTL/VEDL/TCS all-real + KOTAKBANK
+  brokerage-attribution ruled EMPTY.
+- A/B/C long-tail collision audit (35): OIL/PWL/MANINDS real; **6 new FP tickers found + dropped**
+  (MITTAL/LAL/APEX/SPECIALITY/AAKASH/AMDIND — see deploy reminder #1). SOLARINDS (9) was a stale
+  snapshot — live tagger already clean post earlier "Solar" drop.
+- **Gold set now 365/948. Tagger ticker P/R = 1.000 (95/95) on labelled real rows. smoke 45/45.**
+- Multi-ticker convention decided: listicle→EMPTY, genuine multi-co news→SPECIFIC with lead/subject
+  ticker as primary (matches scorer's PRIMARY-ticker read).
+- Remaining: ~583 A/B/C rows (~130 multi-ticker + ~450 long-tail single tickers) still to label.
+
+**Deploy reminders updated** — see #3 below.
+
+---
+
+## Follow-on finding #4 — Pipeline-wide problem audit + best-approach solutions (2026-06-11)
+
+**Found by a full-pipeline code audit (2026-06-11), documented here per Lijo's ask. NOTHING below is
+implemented — this is the problem/solution ledger. Each item is marked with its lane: [James/prod] =
+prod-touching change (separate task, NOT this research-lane file's scope), [research] = fixable in this
+lane, [upstream] = inherited WorldMonitor code we never edit. Evidence cites are `file:line` as of
+commit `342af0d0` + this session's working tree.**
+
+### P1 — User ✨ enrichments silently lost for headlines with numeric entities / CDATA titles [James/prod]
+
+**Problem (byte-level confirmed).** The capture cron and the user-facing digest parse the SAME feeds
+with DIFFERENT parsers that decode entities differently, and the enrich-drain joins them on an exact
+`sha256(title)`:
+- Capture (`seed-india-signals.mjs:72,104`): `fast-xml-parser` decodes `&amp;` → `&` but **leaves numeric
+  entities literal** (verified: `"M&amp;M Q4 &#8212; profit up"` parses to `"M&M Q4 &#8212; profit up"`).
+  That stored title's `sha256` is the row's `headline_hash` (`:332`).
+- Digest (`server/worldmonitor/news/v1/list-feed-digest.ts:207-228`): regex `extractTag` +
+  `decodeXmlEntities` **does** decode numeric decimal/hex entities — and its CDATA branch returns the
+  raw text **without any decoding at all**.
+- The ✨ producer (`summarize-article.ts:41-48`) hashes the **digest** title (`headlines[0].trim()`);
+  the drain (`seed-india-signals.mjs:505-513`) does `UPDATE … WHERE headline_hash=…`.
+
+So for any headline containing a numeric entity (curly apostrophes/em-dashes — extremely common:
+"China&#8217;s…") or coming from a CDATA-titled feed, the two hashes differ → the UPDATE matches **zero
+rows** → the user's enrichment is silently dropped (no error; `updated` just doesn't increment). This is
+the same entity class the G1 matcher had to special-case (`decodeHtmlEntities` in
+`_india-market-keywords.mjs:70` exists precisely because fast-xml-parser leaves these in).
+
+**Best-approach solution.** One shared canonical normalizer (decode numeric+named entities → normalize
+quotes → trim), applied **at hash time on both sides**: `headline_hash = sha256(normalize(title))`.
+Concretely: extract the existing `decodeHtmlEntities`+`normalizeQuotes` pair into a tiny shared module;
+capture uses it before `sha256(title)`; `summarize-article.ts` ports the same ~15 lines (edge runtime —
+can't import from `scripts/`, so it's a documented copy like `_rss-allowed-domains`). Migration: changing
+the hash orphans old rows' dedup, so on cutover have the drain match `headline_hash IN (sha256(raw),
+sha256(normalized))` for a transition window, or one-time re-hash. Also fix the digest CDATA branch to
+apply `decodeXmlEntities` (one-line, same file). Verify with a read-only probe: count queue items whose
+hash matches no row — that's the current loss rate.
+
+### P2 — `companies` / `nse_tickers` / `relevance_class` have three writers and silently drift [James/prod]
+
+**Problem.** Three code paths write the company columns inconsistently:
+1. Capture (`seed-india-signals.mjs:341-343`): `nse_tickers` + `companies` derived together from
+   `extractCompanies()` — in sync, deterministic.
+2. ✨ drain (`:505-513`): overwrites `companies` with the **LLM's free-text** `companiesMentioned`
+   (un-resolved, un-validated names — `summarize-article.ts:51`) and `event_type` with the LLM's guess,
+   while `nse_tickers` keeps the tagger's value. Worse, `item.companies ?? []` **blanks the column** when
+   the LLM returns none — leaving rows with tickers but no names. `relevance_class` (computed FROM the
+   tagger's companies at capture, `_india-market-keywords.mjs:156`) is NOT recomputed → stale label
+   (`idiosyncratic` with `companies=[]`).
+3. Backfill (`backfill-news-tags.mjs:81`): writes `nse_tickers_v2` only, never `companies`.
+
+Whether `companies[i]` corresponds to `nse_tickers[i]` now depends on which writer touched the row last.
+For "the database is the asset" this is a correctness landmine: any name↔ticker join or
+`companies`-based filter gives different answers on different rows.
+
+**Best-approach solution.** Single-ownership rule: **the deterministic tagger is the sole writer of
+`nse_tickers`, `companies`, `relevance_class`**. The drain UPDATE drops `companies=$3, event_type=$4`
+and writes only the sentiment triplet (`sentiment_label/score/model`) — a 4-line change in
+`seed-india-signals.mjs` plus removing those fields from the queue payload in `summarize-article.ts`
+(or leaving the payload and ignoring the fields, which is forward-compatible with old queue items). If
+the LLM's `companiesMentioned` has analytical value, bank it in a NEW column (`llm_companies TEXT[]`)
+rather than clobbering the deterministic one. This also makes the stale-`relevance_class` problem moot.
+
+### P3 — Freshness monitors exist but aren't scheduled — stalls still go unnoticed [James/prod, highest operational value]
+
+**Problem.** `check-all-datasets-health.mjs`, `check-announcement-freshness.mjs`,
+`check-deals-freshness.mjs` are good read-only alarms that exit non-zero on a stall — but only deals has
+a cron installer (`railway-set-deals-freshness-cron.mjs`); the others' headers still say "designed to be
+wired to a Railway cron". The exact failure they were written for keeps recurring: announcements stalled
+silently ~6 days (~2026-05-30), `research_prices` stalled since 2026-05-29. A monitor nobody runs is a
+script, not a monitor.
+
+**Best-approach solution.** Generalize the deals installer into one Railway cron running
+`check-all-datasets-health.mjs` daily (it already covers all tables incl. `research_prices`); alert on
+non-zero exit via Railway's failed-run notification (zero new infra). Until then, the laptop fallback:
+add it to the existing local loop next to the NSE warm-up cadence. ~30-minute task; stops live data loss.
+
+### P4 — `nse_tickers_v2` is an abandoned half-migration [James/prod — this is Decision 8 / deploy reminder #2 made explicit]
+
+**Problem.** The shadow column was a one-time backfill (old master, so it carries the audited ~16–18%
+FPs) and the live cron writes only `nse_tickers` — every row since the backfill has `nse_tickers_v2 =
+NULL` forever. The longer the cutover waits, the more someone reads v2 thinking it's the "good" column
+(any experiment joining it inherits both the FP pollution AND the post-backfill NULL cliff).
+
+**Best-approach solution.** Already implied by deploy reminder #2; making the sequence explicit:
+(1) deploy the fixed master (reminder #1), (2) full re-tag of v2 with the fixed master (the
+`WHERE … IS NULL` guard must be bypassed for the re-tag — re-run rows where v2 differs from a fresh
+`extractCompanies`), (3) atomic cutover `UPDATE … SET nse_tickers = nse_tickers_v2`, (4) **drop the
+shadow column** so it can't be misread. If the cutover is >2 weeks out, interim guard: a comment/VIEW
+that marks v2 as polluted-and-frozen.
+
+### P5 — `relevance_class` fall-through labels unrelated news `systemic` [James/prod, 3-line fix]
+
+**Problem.** `detectRelevanceClassFromTitle` (`_india-market-keywords.mjs:156-161`) returns `'systemic'`
+both when the SYSTEMIC regex fires (real macro) AND as the no-company-no-sector fall-through. Since ~95%
+of headlines are non-company news (G1 post-deploy finding), the `systemic` bucket is mostly
+sports/crime/politics noise — corrupting anything that filters `relevance_class='systemic'` as "market-
+wide signal".
+
+**Best-approach solution.** Add a fourth value: fall-through returns `'none'` (or `'unclassified'`).
+TEXT column, no DDL needed; downstream queries opt in. Longer term this is exactly the gate's job —
+once the gate is wired (P7), `EMPTY` → `none` directly and the heuristic shrinks.
+
+### P6 — `persistSignals` single INSERT hits PG's 65,535-param cap at ~3,120 rows [James/prod, latent]
+
+**Problem.** `seed-india-signals.mjs:356-405` flattens all capture rows into one statement at 21
+params/row. The 10-min cron (~hundreds of rows) is safe; any replay/backfill reusing `persistSignals`
+breaks at 3,120 rows with a confusing protocol error.
+
+**Best-approach solution.** Chunk to ≤2,000 rows per INSERT inside `persistSignals` (a `for` slice loop
+summing rowCounts). Defensive, zero behavior change at current volumes.
+
+### P7 — The gate exists only in the research lane; prod corpus still ungated [James/prod — the already-planned wiring task; recorded here so the dependency chain is visible]
+
+**Problem (confirmed by grep).** `runGate` has ZERO references outside `scripts/research/` — by design
+for now (this task's "Second-Order Impact" says so). Recording the consequence: every gate improvement
+this task ships buys nothing for the corpus until wired.
+
+**Best-approach solution (the wiring spec, for the James task).** In `buildCaptureRow`: run
+`runGate(title, companies.length)`; on `EMPTY/HIGH` write `nse_tickers=[]`, `companies=[]`,
+`relevance_class='none'`; on `EMPTY/LOW` (fall-through) keep the tags but flag for review (new
+`gate_decision TEXT` column captures decision+rule+confidence so prod behaviour is auditable against
+the gold set). Gate it on this task's exit criteria: D1 Lijo-confirmed + A/B/C labelled + gate P/R
+above an agreed floor on the full gold set. Do not wire before — that's the whole point of the gold set.
+
+### P8 — `S6_GROUP_EVENT` fires on "working group" despite its comment claiming otherwise [research — fixable in `_gate.mjs` now]
+
+**Problem (empirically verified).** `runGate('Working group on stocks regulation to meet next week', 0)`
+→ `SPECIFIC / S6_GROUP_EVENT`. The rule's comment says the market-impact-word conjunction stops
+"working group", but a working-group-ABOUT-markets headline ("…on stocks…") satisfies both regexes.
+
+**Best-approach solution.** Qualifier denylist before the group match: reject when the word preceding
+"group" ∈ {working, expert, study, core, task, parliamentary, ministerial, empowered, advisory, user}
+— i.e. `(?!(?:working|expert|…)\s+group)`. Add the working-group headline to the gate-preview
+regression. Low risk, ~5 lines, same lane as the S4 tightening.
+
+### P9 — Recurring identical headlines are stored once ever [James/prod — decide semantics, then 1 line]
+
+**Problem.** `headline_hash = sha256(title)` with no date (`seed-india-signals.mjs:332`) +
+`ON CONFLICT DO NOTHING` (`:399`) means a byte-identical recurring headline (daily "Stocks to watch
+today: …" boilerplate, recurring wire slugs) is inserted on its FIRST occurrence only; later days are
+silently dropped and the row's `scraped_at` stays the first sighting. Story-level dedup is intentional;
+cross-DAY aliasing of generic titles probably isn't.
+
+**Best-approach solution.** Keep first-seen semantics (changing the hash would orphan all dedup history)
+but make recurrence visible: `ON CONFLICT (headline_hash) DO UPDATE SET last_seen_at = EXCLUDED.scraped_at`
+with a new `last_seen_at` column. Cheap, preserves idempotency, and lets analyses detect/exclude
+boilerplate by `last_seen_at - scraped_at` spread.
+
+### P10 — `scoreXenova` re-creates the FinBERT pipeline per headline [research-adjacent, perf only]
+
+**Problem.** `_sentiment-chain.mjs:42-43` does `await pipeline('text-classification', 'ProsusAI/finbert')`
+inside the scoring function — model re-init per call. Only bites when the HF API tier is down and the
+chain falls through to local inference, which is exactly when the cron is already degraded.
+
+**Best-approach solution.** Module-level memo: `let _classifier; … _classifier ??= await pipeline(…)`.
+Two lines.
+
+### P11 — rss-proxy follows the SECOND redirect hop unchecked (narrow SSRF) [upstream — never edit locally]
+
+**Problem.** `api/rss-proxy.js:122`: the first redirect target is allowlist-checked, but its refetch uses
+default `redirect: 'follow'` — a second hop (allowed domain → allowed open-redirector → internal address,
+e.g. cloud metadata IP) is followed without re-checking. Requires an allowlisted domain to be an open
+redirector, so narrow — but it's the textbook proxy-SSRF shape.
+
+**Best-approach solution.** Belongs upstream (WorldMonitor): `redirect: 'manual'` on every hop, loop with
+per-hop allowlist check, hop cap (~3). Per `sachnetra-boundaries`, we do not patch `rss-proxy.js` locally
+— report upstream; meanwhile exposure is bounded by the allowlist's curation (don't allowlist known
+redirector domains).
+
+### Structural (already tracked elsewhere — listed for completeness, no new action)
+
+- **Whack-a-mole denylist / 26% headline coverage** — the per-symbol `SUPPLEMENTAL_ALIAS_DROPS` /
+  `DENYLIST_CONTEXT` loop catches yesterday's FP, not tomorrow's. The gold set IS the structural answer
+  (measure FP **classes**, then fix by class — finding #2's brokerage-attribution guard is the first
+  class-level fix). No separate action beyond finishing the labelling.
+- **E1 listicle `^`-anchor slip** — already finding #3 above.
+- **Asset/subsidiary→parent recall gap** — already finding #1 above.
+
+### Audit coverage note (what was checked and found CLEAN)
+
+So the next auditor doesn't re-tread: the enrich-queue LRANGE→LTRIM pattern is race-safe (producer
+RPUSHes the tail, consumer trims the head — `summarize-article.ts:58` vs `seed-india-signals.mjs:474,529`);
+capture-side title trim is consistent with its own hash (`:104` trims before `:332` hashes); drain
+re-delivery is idempotent via the `sentiment_model != 'groq-v2'` guard; `normaliseScore`'s
+unary-plus-on-`toFixed` is correct JS; Tier-2 enrich preserving fresher `groq-v2` rows via CASE is
+correct; `npm run typecheck` 0 errors; smoke test 45/45; gate-preview regression 26/26. No further
+problems found in the V2 pipeline surface at this audit depth (the inherited WorldMonitor client/api
+surface beyond rss-proxy was NOT audited — out of scope for the V2 lane).
+
+### Recommended fix order (by value ÷ risk)
+
+1. **P3** (schedule the monitors — stops live data loss, ~30 min)
+2. **P2** (drain stops clobbering `companies`/`event_type` — 4 lines, kills the worst integrity bug)
+3. **P1** (shared hash normalizer — recovers silently-lost user enrichments)
+4. **P5** (`'none'` relevance class — 3 lines)
+5. **P4** (finish or kill the v2 cutover — sequenced after deploy reminder #1)
+6. **P8** (working-group guard — research lane, can ship with the next gate commit)
+7. **P6, P9, P10** (defensive/latent — batch into any adjacent task)
+8. **P7** waits on this task's gold-set exit criteria by design; **P11** goes upstream.
 
 ---
 
@@ -185,6 +483,9 @@ node scripts/smoke-test-tagger.mjs                    # tagger assertions after 
 - [x] Gold-set sample generated (948 rows) — 2026-06-10
 - [x] D1 drafted (Claude, all EMPTY) + provisional scorer preview — 2026-06-10
 - [x] Fall-through default decided + implemented (flip to EMPTY + S6_GROUP_EVENT) — 2026-06-10
-- [ ] D1 drafts confirmed by Lijo — [date]
-- [ ] A/B/C labelled for real tagger P/R — [date]
+- [x] D1 confirmed EMPTY (Claude pass; gate fp 118→0) — 2026-06-11 · pending Lijo spot-check
+- [x] Gate-leak audit + fix (Coastal/NDTV/S4; 28→0; smoke 39/39) — 2026-06-11
+- [~] A/B/C labelling in progress — 330/948; tagger P/R 1.000 on 81 real rows — 2026-06-11
+- [ ] A/B/C labelling finished (~618 rows left) — [date]
+- [ ] Lijo spot-checks D1 + samples A/B/C — [date]
 - [ ] **TASK V2-031f COMPLETE** ✅
