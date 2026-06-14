@@ -22,6 +22,9 @@ skills/
 ideas/
 docs/internal/
 internal/
+
+# Personal/family venture material — keep local, not in repo history
+ai_docs/ventures/
 test-results/
 src-tauri/sidecar/node/*
 !src-tauri/sidecar/node/.
