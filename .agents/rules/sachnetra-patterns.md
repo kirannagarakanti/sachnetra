@@ -2,26 +2,15 @@
 
 ## Variant Config Pattern
 
-**Model after**: `src/config/variants/tech.ts` — **for its FILE STRUCTURE only**
-**Reference for content inspiration**: `src/config/variants/full.ts` (read only, never write)
+The SachNetra front end is **`src/config/variants/india.ts`** — already built, and the only deployed
+variant. The old WorldMonitor variants (`tech.ts`/`full.ts`/`finance.ts`/`commodity.ts`/`happy.ts`) are
+being removed — Workstream B in
+`ai_docs/update-workflow/2026-06-11_claude-md-refresh-and-worldmonitor-cleanup.md` — so do **not** model new
+work after them.
 
-### Why tech.ts and NOT full.ts?
-
-`full.ts` re-exports the entire WorldMonitor global data infrastructure:
-```typescript
-export * from '../feeds';       // all global feeds
-export * from '../military';    // military bases
-export * from '../irradiators'; // nuclear irradiators
-export * from '../pipelines';   // oil/gas pipelines
-export * from '../ports';       // maritime ports
-export * from '../airports';
-export * from '../entities';
-```
-India variant needs none of this. `full.ts` is too coupled to WorldMonitor's geopolitical layer.
-
-`tech.ts` is **self-contained** — it defines its own `FEEDS` inline, wraps URLs with `rssProxyUrl`, and only imports what a standalone variant needs. That clean structure is what india.ts copies.
-
-**The word "tech" is just a variant name.** Every piece of content (feed URLs, panel names, map layers) gets completely replaced with SachNetra-specific values. Only the file architecture is reused.
+`india.ts` is **self-contained**: it defines its own `FEEDS` inline, wraps URLs with `rssProxyUrl`, and only
+imports what a standalone variant needs (it does NOT re-export WorldMonitor's geopolitical layer — military
+bases, irradiators, pipelines, etc. — the way `full.ts` did).
 
 The india variant file structure:
 ```typescript
@@ -81,7 +70,7 @@ Always use `--sn-*` prefix for SachNetra brand variables. Never hardcode hex val
 npm run typecheck   # Must show: 0 errors ✅
 ```
 
-**Forbidden (James runs these himself)**:
+**Forbidden for Claude (a human — Lijo/James — runs these)**:
 ```bash
 npm run build   ❌
 npm run dev     ❌
@@ -124,7 +113,7 @@ async function fetchSignals() {
   // All business logic lives here:
   // 1. Read news:digest:v1:india:en from Redis via getRedisCredentials()
   // 2. Filter is_market_moving via keyword match
-  // 3. scoreWithFinBERT() → POST HuggingFace API
+  // 3. scoreSentiment() → chain (_sentiment-chain.mjs): HF FinBERT → Xenova FinBERT → Groq llama-3.1-8b-instant
   // 4. extractCompanies() + detectSectors() via keyword rules
   // 5. INSERT to PostgreSQL (ON CONFLICT DO NOTHING)
   // 6. Return summary object — runSeed writes this to CANONICAL_KEY in Redis

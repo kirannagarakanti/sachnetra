@@ -4,7 +4,7 @@
 **Stack**: TypeScript · Vite · Preact · Vercel Edge Functions · Railway PostgreSQL · Upstash Redis
 **Live**: sachnetra.com
 **Base**: WorldMonitor fork (AGPL v3)
-**Operators**: Lijo (founder/product) + James (engineering partner)
+**Operators**: Lijo (founder/product) + James (engineering partner) — both author tasks **and** implement (no rigid handoff; git author "Daniel" = Lijo)
 
 ---
 
@@ -31,25 +31,34 @@ Claude Code is configured to **WebSearch**, **WebFetch**, **write research markd
 
 ---
 
-## V2 Mission
+## What SachNetra Is
 
-SachNetra is the collection engine. The database is the asset. The quant system is the proof of value.
+**Front end:** a news-aggregation platform — sachnetra.com, the `india` variant (the only deployed variant).
+**Behind it:** a collection engine that permanently records India's news *and* the market/alt-data the quant
+system needs to Railway PostgreSQL, independent of user activity.
 
-V1 shipped the news aggregator (complete). V2 adds a background intelligence pipeline — every digest
-run permanently records India market signals to Railway PostgreSQL, independent of user activity.
+**The sentence:** SachNetra is the collection engine. The database is the asset. The quant system is the
+proof of value.
+
+V1 shipped the news aggregator (complete). V2 is the background intelligence pipeline + the quant/research
+layer that proves the data's value.
 
 ---
 
 ## Sacred Files — NEVER Write To
 
 ```
-src/config/variants/full.ts      ← WorldMonitor live variant — DO NOT TOUCH
-src/config/variants/tech.ts      ← WorldMonitor tech variant — DO NOT TOUCH
-src/config/variants/finance.ts   ← WorldMonitor finance variant — DO NOT TOUCH
 scripts/seed-insights.mjs        ← Live news insights cron — DO NOT TOUCH for V2 work
+src/config/variants/full.ts      ← WorldMonitor variant — scheduled for removal*, don't casually edit
+src/config/variants/tech.ts      ← WorldMonitor variant — scheduled for removal*, don't casually edit
+src/config/variants/finance.ts   ← WorldMonitor variant — scheduled for removal*, don't casually edit
 ```
 
-If a task seems to require touching these — stop immediately and tell Lijo + James.
+\* The WorldMonitor variants (full/tech/finance/commodity/happy) are being deleted — only `india` is
+deployed. See `ai_docs/update-workflow/2026-06-11_claude-md-refresh-and-worldmonitor-cleanup.md` (Workstream
+B). Until that lands they are live code: don't edit them ad-hoc, but they're no longer permanently sacred.
+
+If a task seems to require touching `seed-insights.mjs` — stop immediately and tell Lijo + James.
 Something is wrong with the task, not these rules.
 
 ---
@@ -57,28 +66,40 @@ Something is wrong with the task, not these rules.
 ## Architecture
 
 ```
-User request
-  → Vercel Edge Functions (api/)
-  → server/ RPC handlers
-  → Upstash Redis cache (news:digest:v1:india:en)
-  → Client SPA (Preact, src/config/variants/india.ts)
+Public site (sachnetra.com — `india` variant; the only deployed variant)
+  User request
+    → Vercel Edge Functions (api/)
+    → server/ RPC handlers
+    → Upstash Redis cache (news:digest:v1:india:en)
+    → Client SPA (Preact, src/config/variants/india.ts)
 
-Railway cron (every 10 min, independent of users)
-  → scripts/seed-india-signals.mjs          [V2-001 NEW]
-  → reads news:digest:v1:india:en from Redis
-  → scores FinBERT (HuggingFace API)
-  → writes india_news_signals (Railway PostgreSQL)
+Collection engine — independent Railway crons, ONE per source family (never bolt a non-news
+source onto the news cron), all writing Railway PostgreSQL (the asset):
+  → seed-india-signals.mjs        reads Redis digest → sentiment chain → india_news_signals
+                                   (+ _thread-linker, _entity-fan-out → story_threads, entity_timeline)
+  → seed-india-flows.mjs          FII/DII daily flows + absorption metrics (separate daily cron)
+  → seed-india-announcements.mjs  NSE bourse announcements
+  → seed-india-deals.mjs          NSE bulk & block deals
+  → seed-india-electricity.mjs    POSOCO electricity daily
+  → seed-india-fastag.mjs         NPCI/NETC FASTag
+  → seed-india-macro.mjs · -options.mjs · -rbi-wss.mjs   (filed / landing)
 ```
+
+Sentiment chain (`scripts/_sentiment-chain.mjs`): HF FinBERT → Xenova FinBERT (Railway local)
+→ Groq `llama-3.1-8b-instant`. ⚠ uncalibrated, ~88%-positive (G6) — replacing it with a frontier
+reasoning model is a flagged lever (research-notes 2026-06-11).
 
 **Key files:**
 - SachNetra variant config: `src/config/variants/india.ts`
 - Server-side feeds: `server/worldmonitor/news/v1/_feeds.ts`
-- V2 intelligence entry point: `scripts/seed-india-signals.mjs` ✅ live
+- V2 news entry point: `scripts/seed-india-signals.mjs` ✅ live (sole ticker-tag write at `:341`)
 - V2 keyword/entity registry: `shared/market-taxonomy.json` ✅ live
 - V2 extraction helpers: `scripts/_india-market-keywords.mjs` ✅ live
 - V2 sentiment fallback chain: `scripts/_sentiment-chain.mjs` ✅ live
 - V2 DDL runner: `scripts/migrate-india-signals.mjs` ✅ live
-- V2 database: Railway PostgreSQL — `india_news_signals` table ✅ provisioned
+- V2 database: Railway PostgreSQL — many tables (`india_news_signals`, `story_threads`,
+  `entity_timeline`, `india_institutional_flows`, `india_announcements`, `india_bulk_block_deals`,
+  electricity, FASTag, `research_prices`, …) ✅ provisioned
 
 ---
 
@@ -118,7 +139,7 @@ node scripts/seed-india-signals.mjs   ✅  (V2-001 and later)
 ```
 
 ```bash
-npm run build   ❌   # James runs this
+npm run build   ❌   # run by Lijo/James, not Claude
 npm run dev     ❌   # Lijo/James run this
 ```
 
@@ -134,28 +155,30 @@ V2-000  Bootstrap & Rules Update          [COMPLETE ✅ — 2026-05-06]
 V2-001  Railway Setup + Data Foundation   [COMPLETE ✅ — 2026-05-07]
 V2-002  Enrich Summary with Intelligence  [COMPLETE ✅ — 2026-05-09]
 V2-003  Related Stories                   [COMPLETE ✅ — 2026-05-09]
-V2-004  Feedback Buttons                  [ ] not started
-V2-005  RSSHub on Railway                 [ ] not started
+V2-004  Feedback Buttons                  [PARKED — positioning §3.1 (consumer remnant)]
+V2-005  RSSHub on Railway                 [PARKED — not on the quant critical path]
 V2-006  New Stories Pill                  [COMPLETE ✅ — 2026-05-09]
-V2-007  Hindi Language                    [ ] not started
-V2-008  WhatsApp Daily Brief              [ ] not started
-V2-009  State Liveability Score           [BLOCKED — architect gate]
-V2-010  Landing Page                      [BLOCKED — needs 30 days usage data]
+V2-007  Hindi Language                    [PARKED — positioning §3.1 (consumer remnant)]
+V2-008  WhatsApp Daily Brief              [PARKED — positioning §3.1 (consumer remnant)]
+V2-009  State Liveability Score           [PARKED — architect gate; consumer-facing]
+V2-010  Landing Page                      [PARKED — positioning §3.1 (consumer remnant)]
 V2-011  Headline Storage + Sentiment      [COMPLETE ✅ — 2026-05-15]
 V2-012  Autonomous Pipeline               [COMPLETE ✅ — 2026-05-16]
 V2-013  Story Threads                     [COMPLETE ✅ — 2026-05-18]
 V2-014  Entity Timeline                   [COMPLETE ✅ — 2026-05-18]
-V2-015  Corporate Filings (OCR)          [REFRAMED — separate postponed OCR app; V2-018 banks the PDFs meanwhile]
+V2-015  Corporate Filings / Insider     [PRIORITY — alpha kingpin · home of the insider/promoter/pledge
+        collector (SEBI PIT 7(2) + SAST + NSDL); critical path for Exp21 (insider-confirmed microcap
+        momentum), see research-notes 2026-06-11. OCR sub-scope stays a separate postponed app; V2-018 banks PDFs]
 V2-017  FII/DII Daily Flows               [COMPLETE ✅ — prod cron LIVE (14:00 UTC Mon–Fri); FII+DII writing, latest 2026-05-26]
 V2-017b Deep FII History (NSDL FPI)       [COMPLETE ✅ — 2026-05-21 · 3,964 rows · Dec 2009–May 2026]
 V2-017c FII/DII Absorption Metrics        [PROD MIGRATED ✅ — 2026-05-28 · 3,968 metric rows verified (view=table=1.76 absorbing) · awaiting seed-patch deploy for daily auto-refresh + dashboard wiring]
 V2-018  NSE Bourse Announcements          [COMPLETE ✅ — 2026-05-22 · 17,322 rows backfilled, verified]
-V2-019  RBI Weekly Statistical Supplement [TASK FILED ✅ — 2026-05-22 · awaiting James impl]
-V2-020  BIS India Macro (SDMX)            [TASK FILED ✅ — 2026-05-22 · awaiting James impl]
-V2-024  NSE Options Chain + OI (EOD)      [TASK FILED ✅ — 2026-05-22 · awaiting James impl]
+V2-019  RBI Weekly Statistical Supplement [TASK FILED ✅ — 2026-05-22 · awaiting impl (Lijo/James)]
+V2-020  BIS India Macro (SDMX)            [TASK FILED ✅ — 2026-05-22 · awaiting impl (Lijo/James)]
+V2-024  NSE Options Chain + OI (EOD)      [TASK FILED ✅ — 2026-05-22 · awaiting impl (Lijo/James)]
 V2-030  NSE Bulk & Block Deals            [CODE COMPLETE ✅ — 2026-05-23 · awaiting Lijo prod run + Railway cron]
-V2-026  POSOCO Electricity Daily          [TASK FILED ✅ — 2026-05-24 · awaiting James impl]
-V2-027  NPCI/NETC FASTag Daily+Monthly    [TASK FILED ✅ — 2026-05-24 · awaiting James impl]
+V2-026  POSOCO Electricity Daily          [TASK FILED ✅ — 2026-05-24 · awaiting impl (Lijo/James)]
+V2-027  NPCI/NETC FASTag Daily+Monthly    [TASK FILED ✅ — 2026-05-24 · awaiting impl (Lijo/James)]
 V2-031  G1+G2 News Ticker Tagging         [COMPLETE ✅ — 2026-05-26]
 V2-031b News Ticker Tagging Hardening    [CODE COMPLETE ✅ — 2026-05-27 · awaiting Lijo prod deploy + 24h coverage rerun]
 ```
