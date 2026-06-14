@@ -76,9 +76,14 @@ export const SPECIFIC_RULES = [
   },
   {
     id: 'S4_FORWARD_ACTION',
-    test: (lc) =>
+    // First branch (intent + corporate verb) is specific enough to fire on its
+    // own. The bare announce/launch/release branch is too broad — it fired on
+    // govt/party/sports news with NO company ("Amit Shah launches…", "BJP
+    // Launches…Yatra", "NTA releases…slip"). 2026-06-11 gate-leak audit: gate
+    // it on a tagged company so it only catches "<Co> launches/announces …".
+    test: (lc, n) =>
       /\b(to|will|plans?\s+to|may|likely\s+to|expected\s+to|set\s+to)\s+(invest|raise|expand|set\s+up|launch|open|enter|build|hike|cut|acquire|merge|appoint|recruit|hire|file|seek|list)\b/i.test(lc) ||
-      /\b(announces?|unveils?|launches?|introduces?|releases?)\b/i.test(lc),
+      (n > 0 && /\b(announces?|unveils?|launches?|introduces?|releases?)\b/i.test(lc)),
   },
   {
     id: 'S5_PRICE_ACTION',
@@ -120,7 +125,7 @@ export function runGate(headline, companyCount) {
   }
 
   for (const rule of SPECIFIC_RULES) {
-    if (rule.test(lc)) return { decision: 'SPECIFIC', rule: rule.id, confidence: 'HIGH' };
+    if (rule.test(lc, companyCount)) return { decision: 'SPECIFIC', rule: rule.id, confidence: 'HIGH' };
   }
 
   if (companyCount > 0) {

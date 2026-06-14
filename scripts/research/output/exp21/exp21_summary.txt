@@ -1,0 +1,18 @@
+=== Exp21 — Filing→Press latency by cap tier (READ-ONLY) ===
+news window: 2026-05-07 18:16 → now · material tagged events: 6321
+primary clock = scraped_at (10-min cron quantized); published_at = cross-check
+
+tier          n   matched  miss%   pre-cov%   median_lag(min)  95%CI            
+------------  ---  -------  ------  --------   ---------------  -----------------
+large/other   4082      307     92%       3%               459  [299, 836]
+mid           512       81     84%       7%               745  [178, 933]
+small         791       97     88%       7%               271  [163, 676]
+micro         936      110     88%       2%             454.5  [252, 794]
+
+Down-cap shift (Mann–Whitney, lag of B > A?):
+  large/other vs mid: p=0.857 (z=0.18)
+  mid vs small: p=0.583 (z=0.55)
+  small vs micro: p=0.462 (z=-0.73)
+
+H21 reads: (a) median lag should rise large→mid→small→micro; (b) RSS_MISS = our feeds never caught it (Gemini web-sample sorts these into "missed by us" vs "filing-only"); (c) pre_covered = press knew BEFORE the filing (anti-edge — the filing was not the first source).
+Caveats: ~5-week depth (small n per tier); large/other = complement proxy (no Nifty-100 list); first-after-filing may mis-match a different event (Gemini sample is the backstop); does NOT test profitability (Exp22).
