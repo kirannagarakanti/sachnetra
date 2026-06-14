@@ -2,7 +2,7 @@
 tags: [experiment, sachnetra, research, quant-finance, PEAD, event-study, mid-cap, long-only, pre-design-brief]
 source: [[sachnetra_research_playbook]], [[Exp2]], [[Exp4]]
 experiment_id: Exp16
-status: BRIEF — pre-registration design phase · BLOCKED on G4 (midcap prices)
+status: BRIEF — pre-registration design phase · READY TO RUN (G4 verified DONE 2026-06-05: 150/150 Midcap-150 priced; data-quality spot-check PASSED 2026-06-05; extreme-move amendment §5b added pre-stats)
 authored_date: 2026-06-04
 audience: Lijo (founder/operator) + James + future Claude Code sessions
 purpose: Pre-register the long-only mid-cap Post-Earnings-Announcement-Drift (PEAD) pilot so it can fire the moment G4 (midcap price backfill) lands. Built on the page-verified evidence in learning/research-notes/2026-06-04_pead-size-liquidity-resolution.md.
@@ -23,9 +23,11 @@ Two independent SachNetra threads converge on a single tradeable shape:
 This experiment tests whether a **long-only** portfolio that buys mid-cap winners *after* a strong positive
 earnings-day reaction earns drift that survives realistic mid-cap transaction costs.
 
-> **Gating reality**: this CANNOT run today — `research_prices` is Nifty-50-only (47 symbols). Exp16 is
-> **blocked on G4** (backfill Midcap-150 prices; see `research-notes/2026-06-04_g4-*` once written). This
-> brief is the pre-registration so the work is ready to fire when G4 lands.
+> **Data status (corrected 2026-06-05)**: ✅ **G4 is DONE — this CAN run now.** A live check confirmed
+> `research_prices` holds all **150/150 Midcap-150** names (2009→2026, median ~4,291 bars; 112 with history
+> ≤2018). The earlier "blocked on G4 / Nifty-50-only" note was stale — see
+> `research-notes/2026-06-05_g4-already-done-correction.md`. First step before stats: a quick OHLCV/adj-close
+> quality spot-check (survivorship caveat: the list is *today's* index membership).
 
 ---
 
@@ -100,6 +102,35 @@ Instead use the **Earnings-Announcement Return (EAR)** as the surprise proxy:
 5. **Look-ahead**: signal uses T0 close; entry T+1. Never use post-T0 information in selection.
 6. **Cost realism**: 30 bps (Exp15's midcap floor) is optimistic; the verified band is 100–250 bps. Accept
    only on the 250 bps scenario to be conservative.
+
+---
+
+## 5b. Pre-registration AMENDMENT — extreme day-0 move handling (2026-06-05)
+
+> Added **after** the read-only data-quality spot-check (`scripts/research/exp16-quality-spotcheck.mjs`,
+> run 2026-06-05) and **before** any stats are computed. The spot-check confirmed the Midcap-150 series is
+> structurally clean (bad_close/bad_olh/bad_adj = 0; the 388 "weekend" bars are real NSE special sessions —
+> Diwali Muhurat 2019-10-27 & 2020-11-14, Budget-Saturday 2025-02-01 — and are KEPT). The one real issue it
+> surfaced: a handful of **extreme single-day moves driven by split/relisting adj_close gaps**, which would
+> dominate EAR quintile ranking if fed in raw (e.g. PATANJALI/Ruchi-Soya ~1870%, MOTILALOFS ~294%,
+> ABBOTINDIA ~188%, JSL ~156% — none are real one-day earnings reactions).
+
+**Rule (pre-registered here, before stats):**
+- **Primary spec — exclude:** drop any event whose **|day-0 EAR| > 25%** (above NSE's ±20% price-band /
+  circuit limit). A genuine earnings-day reaction cannot exceed the circuit, so anything larger is a data
+  artifact (split/bonus/relisting adjustment hole), not a tradeable surprise. These rows are removed from the
+  event set entirely — they are non-events.
+- **Robustness variant — winsorize:** as a single additional variant, instead of excluding, **winsorize EAR
+  at the 1st/99th percentile** of the event distribution and re-run the headline result.
+- **DSR accounting:** the winsorized variant **counts as one additional trial N** in the Deflated Sharpe
+  Ratio computation (alongside the {5,10,15} horizons × {100,250} bps cost scenarios). It is a robustness
+  check, not a second chance to pass — the acceptance verdict stands on the **primary (exclude) spec**.
+- **Defensive exclusions:** the 2 stray OHLC bars the spot-check flagged (BANKINDIA 2009-07-01, KEI
+  2010-01-27) are pre-window single-day glitches; any event landing on a bar failing the OHLC sanity check is
+  also dropped.
+
+This amendment changes the event-set definition only; it does not alter the hypotheses (§2) or the
+acceptance gates (§4).
 
 ---
 
