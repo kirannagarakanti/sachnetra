@@ -15,10 +15,15 @@ sources_consulted: [
 
 # Research: How to backfill Midcap-150 prices (G4) without re-crashing prod
 
-> G4 is the single blocker on the mid-cap event-arbitrage bet (Exp15 was rejected, Exp16 is designed but
-> can't run). The first backfill **filled the shared Railway volume and took Postgres offline**, then was
-> rolled back. This note diagnoses *why* and specifies a safe re-run. (New note — does not edit the script
-> or run any prod write; that's Lijo/James's lane.)
+> ⚠️ **SUPERSEDED 2026-06-05 — G4 IS ALREADY DONE.** A live check found `research_prices` already holds all
+> 150 Midcap-150 names (full-universe: 2,357 symbols / 6.39M rows, 2009→2026). A successful full backfill ran
+> after the 2026-05-29 rollback this note was based on. **No re-backfill is needed.** This runbook (and
+> `scripts/research/g4-backfill-midcap-prices.mjs`) is retained as **reference for future refresh/extend
+> only**. See `2026-06-05_g4-already-done-correction.md`.
+
+> *(Original framing, now historical:)* G4 was thought to be the single blocker on the mid-cap event-arbitrage
+> bet. The first backfill **filled the shared Railway volume and took Postgres offline**, then was rolled
+> back. This note diagnoses *why* and specifies a safe re-run — still useful if a future refresh is ever run.
 
 ## Problem & current state (with evidence)
 - **Problem**: Backfill ~150 midcap symbols × ~17y (~600K rows) into `research_prices` on a shared Railway

@@ -18,6 +18,11 @@ sources_consulted: [
 > 2026-06-04 PEAD research thread + the prior experiment ledger. New file; supersedes nothing — read
 > alongside `research_state_summary.md`. (Promote to `wiki/syntheses/` if it proves durable.)
 
+> ⚠️ **2026-06-05 CORRECTION — G4 is DONE.** A live read-only check proved `research_prices` is **full-universe
+> (2,357 symbols, 6.39M rows), incl. all 150 Midcap-150 names** (2009→2026). The "Nifty-50-only / gated on G4"
+> statements below are **superseded** — Exp16 can run now. The live next step is **Exp16**, not G4. See
+> `2026-06-05_g4-already-done-correction.md`. (Pillar A's G1 gate is still genuinely open.)
+
 ## 1. The thesis (one paragraph)
 SachNetra's only *proven* edge is **latency** — its NSE-filing pipeline beats Indian newswires by ~13 min
 (Exp 4). But that edge only *pays* where the wire is slow and the price still moves: **mid/small-caps**, not
@@ -25,15 +30,15 @@ large-caps (the "latency-vs-value squeeze," Exp 10). Independently, the academic
 drift is real in India and stronger in smaller, under-covered firms** (resolved 2026-06-04). The bet:
 **combine the latency edge with the mid-cap earnings-drift edge** — be early to under-covered mid-cap
 earnings events and capture the slow repricing. Structure is **long-only** (the SLB short market is dead and
-the long side carries the drift anyway). It is **not** built yet — it is gated on data (G1 tagging, G4 prices)
-and carries one serious open risk (the EAR proxy).
+the long side carries the drift anyway). It is **not** built yet — **G4 prices are DONE (2026-06-05)** so
+Pillar B (Exp16) can run now; Pillar A still needs **G1** tagging. One serious open risk remains: the EAR proxy.
 
 ## 2. The two signal pillars
 
 | Pillar | Status | Evidence | Gate to monetize on mid-caps |
 |---|---|---|---|
 | **A. Latency edge** (bourse leads newswire ~13 min) | 🟡 PROVEN but large-cap-only | Exp 4 (page of record): 60.3% lead, ~13 min median, p≈0.002, n=239 | **G1** — news→ticker tagging coverage (mid/small-caps untagged; the wire is only slow *here*) |
-| **B. Earnings drift** (PEAD, stronger in small/under-covered) | ✅ premise resolved (size axis); ⚠️ EAR-vs-SUE caveat (see §6.1) | Harshita 2018 (India, ~6%/64d, survives controls, SUE×Size sig.); Quantpedia (small-cap concentrated, long side carries it); **Brandt 2008 page-verified** — SUE +5.6% / EAR +6.3% / combined **11.5%** (US 1987–2004) | **G4** — Midcap-150 prices in `research_prices` (96% of filings unpriceable today) |
+| **B. Earnings drift** (PEAD, stronger in small/under-covered) | ✅ premise resolved (size axis); ⚠️ EAR-vs-SUE caveat (see §6.1) | Harshita 2018 (India, ~6%/64d, survives controls, SUE×Size sig.); Quantpedia (small-cap concentrated, long side carries it); **Brandt 2008 page-verified** — SUE +5.6% / EAR +6.3% / combined **11.5%** (US 1987–2004) | ✅ **G4 DONE** (verified 2026-06-05: 150/150 Midcap-150 priced, 2009–2026) → **Exp16 can run now** |
 
 Pillar A says *be early*; Pillar B says *there's drift to be early to*. Neither is tradeable on mid-caps until
 its gate clears.
@@ -95,24 +100,26 @@ its gate clears.
    own data post-G4** (compute the Amihud/size boundaries ourselves), not taken from literature.
 
 ## 7. Build sequence (the critical path)
-1. **G4 (James/Lijo)** — grow Railway volume; narrow-first backfill (≈75 liquid Midcap-150 names, 2018→now)
-   with a periodic disk guard. *Unblocks Exp 16.* ← **the single highest-leverage next action**
-2. **G1 (James)** — raise mid/small-cap news→ticker coverage (master-list gaps + the untaggable-macro reality).
-   *Unblocks Pillar A on mid-caps.* (Independent of G4; can run in parallel.)
-3. **Exp 16 (Lijo)** — run the long-only EAR-proxy PEAD pilot; FIRST test continue-vs-reverse, then the cost/
-   DSR/recency gates. *Decides whether Pillar B is real on our universe.*
+1. ✅ ~~**G4**~~ **DONE** (verified 2026-06-05: 150/150 Midcap-150 in `research_prices`, 2009→2026). No
+   resize/backfill needed. *Pillar B is unblocked.*
+2. **Exp 16 (Lijo) ← the live next action** — quality spot-check the midcap series, then run the long-only
+   EAR-proxy PEAD pilot; FIRST test continue-vs-reverse, then the cost/DSR/recency gates. *Decides whether
+   Pillar B is real on our universe.*
+3. **G1 (James)** — raise mid/small-cap news→ticker coverage (the real gap is **alias-form**, not master
+   size — master is complete at 2,386; see g1-tagging-gap note). *Unblocks Pillar A.* (Independent; parallel.)
 4. **If EAR reverses / is weak** — file the consensus/fundamentals collector to build the SUE leg (Exp 17),
    the leg the replication says actually works.
 5. **Combine** Pillar A (be early) × Pillar B (drift) only once both are individually validated on mid-caps.
 
-## 8. Gate-checked overall verdict
-- **The bet is coherent and the premise is now sourced — but it is PARKED on data (G1 + G4), with one
-  serious method risk (EAR reversal).** It is the right thing to aim at (one strategy, own capital,
-  proprietary-data edge), and the next action is unambiguous: **G4, done safely.**
-- **Gate**: data tier ❌ (G1+G4 not done) · kill list ✅ (proprietary research, not UI/SaaS) · live consumer
-  ✅ (this *is* the live consumer) · right denominator ✅ (net-of-cost CAR + continue-vs-reverse + recency).
-- **One-line**: *Stop reading, start G4 — narrow and safe — then let Exp 16 tell us if the EAR signal drifts
-  or reverses on Indian mid-caps. Everything else waits on that answer.*
+## 8. Gate-checked overall verdict (updated 2026-06-05)
+- **The bet is coherent, the premise is sourced, and the data is READY** — G4 is done (150/150 midcaps
+  priced). Pillar B (Exp16) is **runnable now**; the only remaining gate is **G1** for Pillar A. The one
+  serious method risk is still **EAR reversal** (test it first).
+- **Gate**: data tier ✅ (G4 done — midcap prices present) · kill list ✅ (proprietary research, not UI/SaaS)
+  · live consumer ✅ (this *is* the live consumer) · right denominator ✅ (net-of-cost CAR + continue-vs-reverse
+  + recency).
+- **One-line**: *G4 is done — run **Exp 16** now (continue-vs-reverse first) and let it tell us if the EAR
+  signal drifts or reverses on Indian mid-caps. G1 alias-fix proceeds in parallel for Pillar A.*
 
 ---
 *Living doc. Update as G4/G1 land and Exp 16 reports. Companion notes (all 2026-06-04): pead-mid-small-caps

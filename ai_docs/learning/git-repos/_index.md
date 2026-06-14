@@ -66,6 +66,7 @@ Paste URLs here before Gemini runs. Move to **All repos** when documented.
 # https://github.com/owner/repo — why: backtest leakage patterns for scripts/research/
 https://github.com/marketcalls/openbull — why: Options trading platform with strategy builder and multi-broker support.
 https://github.com/marketcalls/openadvisor — why: Personal ML-based stock recommendation platform.
+https://github.com/jayanthmb14/forthepeople — why: India district-level public-data aggregator (50+ gov portals → dashboards). Review the SCRAPER/source list as a sourcing map for SachManas factor-node feeds (monsoon/IMD, mandi/AGMARKNET crop prices, CWC reservoirs, district capex, elections) — NOT the consumer UI (citizen dashboards = killed consumer lane, positioning_v2). Stack mirrors ours (Next.js+Neon+Upstash+OpenRouter+Railway+gnews RSS). Lead: research-notes/2026-06-15_indian-market-ideas-for-sachmanas.md §2. Its verified GoI source catalogue is vendored at ./forthepeople-india-gov-data-sources.md.
 ```
 
 ---

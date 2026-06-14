@@ -462,7 +462,38 @@ direction rule + circuit-band handling; H: no-filing triggers > +0.8% incrementa
 placebo; kill: no-filing drift negative OR filing-backed > no-filing. Sign-off: *"You followed the data
 where it went, not where you wanted it to go. Close clean. The pre-registration is everything now."*
 
-**FRESH-EYES ROUND 1 COMPLETE (6 rounds, 2 quant reviewers + 1 domain consultant).** Standing queue out of
+### Round 7 — Kimi on the P1b finding (2026-06-12) — THE ARCHITECTURE'S ORGANIZING PRINCIPLE
+
+**The meta-point (keep forever):** *"The periphery gives full text while the core gives headlines — that's
+not a bug, it's the shape of your edge. The core is efficient because everyone reads it. The periphery is
+inefficient because nobody reads it. Exploit the asymmetry; don't 'fix' the core by fetching what everyone
+already has."*
+
+**Adopted — TWO INGESTION PATHS, not one funnel with a fetch bolt-on:**
+- **Core feeds (LiveMint/ET/BS/FE — headline-only):** RSS → keyword pre-filter → cheap classifier →
+  company/category trigger? → **conditional FETCH** (rare, latency-tolerant) → mid-tier model.
+- **Periphery feeds (startup/tech/regional — full text in RSS):** same gate, but on trigger the body is
+  ALREADY THERE → mid-tier model directly. **Deep-read by default; this is where the unwatched companies
+  live (and where our drift results live).**
+
+**Cheap pre-check before any fetch infra (one-day task):** many Indian publishers expose DIRECT RSS feeds
+that Google News aggregates but our roster bypasses (e.g. economictimes…/rssfeeds/*, livemint.com/rss) —
+if those exist with richer descriptions, part of the core problem dissolves without fetch. Also: inspect
+raw gnews XML for media:content/content:encoded blocks our parser may have missed.
+
+**P1c probe additions (its list, all adopted):** blocking DECAY curve (status after N fetches, not binary;
+backoff logic), article-date vs RSS-pubDate staleness (>6h → quarantine; gnews resurfaces old stories),
+**text-hash duplicate rate** (gnews multi-domain dupes may inflate our 2,569/day volume → re-baseline cost
+model), paywall DEPTH (free-articles-before-gate, 10 sequential fetches), extraction failure modes by page
+type (live-blog/slideshow/video), latency P95/P99 not mean.
+
+**The regional-first test (zero cost, designed):** for the 54 no-filing trigger events → first English
+mention timestamp in our archive vs regional-feed mention (company names appear in Roman script even in
+Telugu/Urdu articles) → thesis supported if regional leads >6h on >30% of events. If TRUE: *"your edge is
+not 'we read faster,' it's 'we read where others don't'"* → periphery-first, core-conditional, fetch-as-
+fallback. If FALSE: no-filing drift re-attributes to insider/broker leakage → different auditor design.
+
+**FRESH-EYES ROUND 1 COMPLETE (7 rounds, 2 quant reviewers + 1 domain consultant).** Standing queue out of
 the round: (1) pre-registration draft (Kimi freeze list + its 3 conditions + Reg-30/33 classification +
 band slice), git-committed before the Jun–Nov window accumulates; (2) the pair×filing interaction cut;
 (3) P1b/c/d probes; (4) P1e (Lijo's weekend, blinded-decoy design); (5) regional-feed recon (Sarvam list).
