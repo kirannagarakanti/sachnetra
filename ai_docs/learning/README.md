@@ -30,6 +30,7 @@ If you are an agent reading this README at the start of a session, this is your 
 **Sacred files** — never touch: `src/config/variants/{full,tech,finance}.ts`, `scripts/seed-insights.mjs`. See CLAUDE.md.
 
 **Source-of-truth links**:
+- **Deep research protocol** (problem/feature-driven — when you must go *find* sources): [`RESEARCH_INSTRUCTIONS.md`](./RESEARCH_INSTRUCTIONS.md)
 - Project rules: `/CLAUDE.md`
 - Standing research summary: [`../sachnetra v2/wiki/syntheses/research_state_summary.md`](../sachnetra%20v2/wiki/syntheses/research_state_summary.md)
 - Validation playbook: [`../sachnetra v2/wiki/syntheses/sachnetra_research_playbook.md`](../sachnetra%20v2/wiki/syntheses/sachnetra_research_playbook.md)
@@ -50,8 +51,17 @@ ai_docs/learning/
 │   └── <playlist_slug>/
 │       ├── _index.md      ← series overview, episodes consumed, running synthesis
 │       └── epNN_<slug>.md ← same shape as videos/ entry
-├── articles/              ← same shape as videos/ entry, source_type: article
+├── articles/              ← divided by topic (research vs reference)
+│   ├── TEMPLATE_RESEARCH.md  ← template for papers, strategies, and microstructure
+│   ├── TEMPLATE_REFERENCE.md ← template for books, courses, and resource collections
 │   └── YYYY-MM-DD_<slug>.md
+├── git-repos/             ← quant GitHub reference library + SachNetra comparison
+│   ├── README.md          ← workflow + topic taxonomy
+│   ├── GEMINI_BRIEF.md    ← paste into Gemini first; comparison protocol
+│   ├── FEATURE_RUBRIC.md  ← Poor / Good / Better / Excellent feature tiers
+│   ├── _index.md          ← master catalog of tracked repos
+│   ├── TEMPLATE_REPO.md   ← canonical repo entry template
+│   └── <owner>-<repo>.md  ← one file per repo
 └── transcripts/           ← raw transcript dumps (created on demand)
     └── YYYY-MM-DD_<slug>.txt
 ```
@@ -130,7 +140,7 @@ If yes:
 **Q2 — System-level**: *"Was anything in the template / workflow / README / glossary friction during this distillation? Anything we should change so the next entry is easier?"*
 
 If yes, the agent edits the relevant file:
-- Template friction → edit `videos/TEMPLATE.md`, `articles/TEMPLATE.md`, or `playlists/TEMPLATE_INDEX.md`.
+- Template friction → edit `videos/TEMPLATE.md`, `articles/TEMPLATE_RESEARCH.md`, `articles/TEMPLATE_REFERENCE.md`, or `playlists/TEMPLATE_INDEX.md`.
 - Workflow friction → edit this README (§3 specifically).
 - A term appeared 3+ times across recent entries and isn't in the wiki glossary → add it to [`wiki/glossary.md`](../sachnetra%20v2/wiki/glossary.md) under the right section, bump that file's `Last updated`.
 - Tag taxonomy drift (e.g. `india-macro` vs `indian-macro` appearing in different entries) → reconcile under one tag, list the canonical tag in the README's "Conventions" section.
@@ -183,3 +193,9 @@ A verdict of "interesting!" is not a verdict. Force one of the three.
 | 2026-05-26 | Converted internal `[[wikilinks]]` to relative markdown links | Wikilinks only resolve inside the Obsidian wiki vault; learning/ is outside it. |
 | 2026-05-26 | Added §3 Step 4 "Reflect" + this Changelog | Make the system self-improving — every entry surfaces friction; system updates compound. |
 | 2026-05-26 | Playlist episode format: no raw transcripts stored; lead with ⏱ Worth watching? (WATCH/SKIM/SKIP); ELI12 is the main body; leaner template | Lijo doesn't have time to watch full videos — each note must be a standalone decision tool, not a transcript archive. |
+| 2026-05-30 | Added `git-repos/` — README, GEMINI_BRIEF, _index, TEMPLATE_REPO | Curated GitHub quant/ML repos with Gemini-driven best-practice extraction and SachNetra comparison. |
+| 2026-05-30 | git-repos: FEATURE_RUBRIC — Poor/Good/Better/Excellent + "Best to have in SachNetra" | Agent must rate features and output prioritized build shortlist + kill list. |
+| 2026-06-04 | Split articles/TEMPLATE.md into TEMPLATE_RESEARCH.md and TEMPLATE_REFERENCE.md | Customize distillation formats for research papers vs educational resources to reduce friction. |
+| 2026-06-04 | Added a 3-test "Verdict gate" above Pursue/Park/Kill in both article templates (data tier / kill list / one-strategy focus); default = Park | The 2026-06-04 batch of 11 auto-generated entries tagged 9/11 "Pursue", several contradicting the EOD-only data tier and the kill list. Gate forces the verdict to be checked against reality before "Pursue" is allowed. |
+| 2026-06-04 | Added a 4-test "Verdict gate" to `git-repos/TEMPLATE_REPO.md` (data tier / kill list / live consumer / right denominator) + "verify code claims, dead scratch links ≠ evidence" | The quant-mind repo review rated two items "Pursue P0/P1" anchored to the rejected 20%-coverage denominator and to evidence that contradicted them; one cited a refuted experiment (Exp14) and reused a live Exp ID (Exp15). Gate forces verification + a live consumer before "Pursue". |
+| 2026-06-04 | Created `RESEARCH_INSTRUCTIONS.md` — problem-driven deep-research protocol (frame → search repos/papers/blogs/news → evaluate what works/won't → gate-checked verdict) + problem-research note template | The journal had only source-driven docs (GEMINI_BRIEF, article templates: "here's a source, document it"). Needed the inverse: "here's a problem, go find the sources." Bakes in the session's lessons (verify before trusting, gate, interesting≠actionable). |

@@ -1,0 +1,41 @@
+{
+  "generated": "2026-06-09T05:31:06.523Z",
+  "from": null,
+  "total": 70426,
+  "scored": 2961,
+  "positive_share": 0.3441404930766633,
+  "overall_split": {
+    "positive": 1019,
+    "negative": 810,
+    "neutral": 1132,
+    "other": 0
+  },
+  "per_model": {
+    "finbert-hf": {
+      "positive": 947,
+      "negative": 774,
+      "neutral": 1026,
+      "other": 0
+    },
+    "groq-llama": {
+      "positive": 24,
+      "negative": 11,
+      "neutral": 11,
+      "other": 0
+    },
+    "groq-v2": {
+      "positive": 48,
+      "negative": 25,
+      "neutral": 95,
+      "other": 0
+    }
+  },
+  "tagged_v1": 3204,
+  "tagged_v2": 0,
+  "tagged_scored": 429,
+  "tagged_score": {
+    "n": 429,
+    "mean": 0.014706759906759917,
+    "sd": 0.7591109312295153
+  }
+}

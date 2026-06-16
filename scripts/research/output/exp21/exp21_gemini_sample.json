@@ -1,0 +1,1046 @@
+{
+  "instructions": "For each event, web-search the earliest PUBLIC appearance of this specific news. Fill ONLY web_findings. Every time MUST be backed by earliest_url + a quoted timestamp_evidence from the page; if no explicit timestamp is visible set confidence=low. any_press_found=false => filing-only. Do NOT invent timestamps.",
+  "schema_notes": "times in IST \"YYYY-MM-DD HH:MM\". our_rss_first_catch_ist is when WE ingested it (MISS = our feeds never did). We bucket A/B/C after you return this.",
+  "sample": [
+    {
+      "event_id": "106658630",
+      "company": "Dangee Dums Limited",
+      "ticker": "DANGEE",
+      "tier": "large/other",
+      "subject": "Outcome of Board Meeting — Dangee Dums Limited has informed the Exchange regarding Outcome of Board Meeting held on Jun 09, 2026 for Appointment of Company Secretary a",
+      "filing_time_ist": "2026-06-09 15:01",
+      "our_rss_first_catch_ist": "MISS",
+      "our_rss_source": null,
+      "web_findings": {
+        "any_press_found": null,
+        "earliest_public_appearance_ist": null,
+        "earliest_outlet": null,
+        "earliest_url": null,
+        "timestamp_evidence": null,
+        "confidence": null,
+        "other_early_outlets": [],
+        "notes": null
+      }
+    },
+    {
+      "event_id": "106658592",
+      "company": "Vikran Engineering Limited",
+      "ticker": "VIKRAN",
+      "tier": "large/other",
+      "subject": "Allotment of Securities — Vikran Engineering Limited has informed the Exchange regarding allotment of 40 securities pursuant to Non Convertible Securities at its meet",
+      "filing_time_ist": "2026-06-09 14:20",
+      "our_rss_first_catch_ist": "MISS",
+      "our_rss_source": null,
+      "web_findings": {
+        "any_press_found": null,
+        "earliest_public_appearance_ist": null,
+        "earliest_outlet": null,
+        "earliest_url": null,
+        "timestamp_evidence": null,
+        "confidence": null,
+        "other_early_outlets": [],
+        "notes": null
+      }
+    },
+    {
+      "event_id": "106658555",
+      "company": "Megastar Foods Limited",
+      "ticker": "MEGASTAR",
+      "tier": "large/other",
+      "subject": "Outcome of Board Meeting — Megastar Foods Limited has informed the Exchange regarding Outcome of Board Meeting held on Jun 09, 2026.",
+      "filing_time_ist": "2026-06-09 13:55",
+      "our_rss_first_catch_ist": "MISS",
+      "our_rss_source": null,
+      "web_findings": {
+        "any_press_found": null,
+        "earliest_public_appearance_ist": null,
+        "earliest_outlet": null,
+        "earliest_url": null,
+        "timestamp_evidence": null,
+        "confidence": null,
+        "other_early_outlets": [],
+        "notes": null
+      }
+    },
+    {
+      "event_id": "106658544",
+      "company": "Wanbury Limited",
+      "ticker": "WANBURY",
+      "tier": "large/other",
+      "subject": "Press Release — Wanbury Limited has informed the Exchange regarding a press release dated Jun 09, 2026, titled \"Press Release on Launch of New APIs.\".",
+      "filing_time_ist": "2026-06-09 13:38",
+      "our_rss_first_catch_ist": "MISS",
+      "our_rss_source": null,
+      "web_findings": {
+        "any_press_found": null,
+        "earliest_public_appearance_ist": null,
+        "earliest_outlet": null,
+        "earliest_url": null,
+        "timestamp_evidence": null,
+        "confidence": null,
+        "other_early_outlets": [],
+        "notes": null
+      }
+    },
+    {
+      "event_id": "106658529",
+      "company": "Bajaj Auto Limited",
+      "ticker": "BAJAJ-AUTO",
+      "tier": "large/other",
+      "subject": "Action(s) taken or orders passed — Bajaj Auto Limited has informed the Exchange about Action(s) taken or orders passed",
+      "filing_time_ist": "2026-06-09 13:29",
+      "our_rss_first_catch_ist": "MISS",
+      "our_rss_source": null,
+      "web_findings": {
+        "any_press_found": null,
+        "earliest_public_appearance_ist": null,
+        "earliest_outlet": null,
+        "earliest_url": null,
+        "timestamp_evidence": null,
+        "confidence": null,
+        "other_early_outlets": [],
+        "notes": null
+      }
+    },
+    {
+      "event_id": "106658522",
+      "company": "Mufin Green Finance Limited",
+      "ticker": "MUFIN",
+      "tier": "large/other",
+      "subject": "Allotment of Securities — Mufin Green Finance Limited has informed the Exchange regarding allotment of 100000 non convertible debentures pursuant to Private Placement",
+      "filing_time_ist": "2026-06-09 13:21",
+      "our_rss_first_catch_ist": "MISS",
+      "our_rss_source": null,
+      "web_findings": {
+        "any_press_found": null,
+        "earliest_public_appearance_ist": null,
+        "earliest_outlet": null,
+        "earliest_url": null,
+        "timestamp_evidence": null,
+        "confidence": null,
+        "other_early_outlets": [],
+        "notes": null
+      }
+    },
+    {
+      "event_id": "106658512",
+      "company": "Stanley Lifestyles Limited",
+      "ticker": "STANLEY",
+      "tier": "large/other",
+      "subject": "Outcome of Board Meeting — Stanley Lifestyles Limited has informed the Exchange regarding Outcome of Board Meeting held on June 09, 2026.",
+      "filing_time_ist": "2026-06-09 13:12",
+      "our_rss_first_catch_ist": "MISS",
+      "our_rss_source": null,
+      "web_findings": {
+        "any_press_found": null,
+        "earliest_public_appearance_ist": null,
+        "earliest_outlet": null,
+        "earliest_url": null,
+        "timestamp_evidence": null,
+        "confidence": null,
+        "other_early_outlets": [],
+        "notes": null
+      }
+    },
+    {
+      "event_id": "106658478",
+      "company": "Muthoot Capital Services Limited",
+      "ticker": "MUTHOOTCAP",
+      "tier": "large/other",
+      "subject": "Credit Rating — Muthoot Capital Services Limited has informed the Exchange about Credit Rating",
+      "filing_time_ist": "2026-06-09 12:45",
+      "our_rss_first_catch_ist": "MISS",
+      "our_rss_source": null,
+      "web_findings": {
+        "any_press_found": null,
+        "earliest_public_appearance_ist": null,
+        "earliest_outlet": null,
+        "earliest_url": null,
+        "timestamp_evidence": null,
+        "confidence": null,
+        "other_early_outlets": [],
+        "notes": null
+      }
+    },
+    {
+      "event_id": "106658477",
+      "company": "Muthoot Microfin Limited",
+      "ticker": "MUTHOOTMF",
+      "tier": "large/other",
+      "subject": "Credit Rating — Muthoot Microfin Limited has informed the Exchange about Credit Rating",
+      "filing_time_ist": "2026-06-09 12:45",
+      "our_rss_first_catch_ist": "MISS",
+      "our_rss_source": null,
+      "web_findings": {
+        "any_press_found": null,
+        "earliest_public_appearance_ist": null,
+        "earliest_outlet": null,
+        "earliest_url": null,
+        "timestamp_evidence": null,
+        "confidence": null,
+        "other_early_outlets": [],
+        "notes": null
+      }
+    },
+    {
+      "event_id": "106658441",
+      "company": "PAKKA LIMITED",
+      "ticker": "PAKKA",
+      "tier": "large/other",
+      "subject": "Allotment of Securities — PAKKA LIMITED has informed the Exchange regarding allotment of 2720000 securities pursuant to Preferential Issue at its meeting held on Jun",
+      "filing_time_ist": "2026-06-09 12:34",
+      "our_rss_first_catch_ist": "MISS",
+      "our_rss_source": null,
+      "web_findings": {
+        "any_press_found": null,
+        "earliest_public_appearance_ist": null,
+        "earliest_outlet": null,
+        "earliest_url": null,
+        "timestamp_evidence": null,
+        "confidence": null,
+        "other_early_outlets": [],
+        "notes": null
+      }
+    },
+    {
+      "event_id": "106658421",
+      "company": "Bhageria Industries Limited",
+      "ticker": "BHAGERIA",
+      "tier": "large/other",
+      "subject": "Spurt in Volume — Significant increase in volume has been observed in Bhageria Industries Limited. The Exchange, in order to ensure that investors have latest",
+      "filing_time_ist": "2026-06-09 12:26",
+      "our_rss_first_catch_ist": "MISS",
+      "our_rss_source": null,
+      "web_findings": {
+        "any_press_found": null,
+        "earliest_public_appearance_ist": null,
+        "earliest_outlet": null,
+        "earliest_url": null,
+        "timestamp_evidence": null,
+        "confidence": null,
+        "other_early_outlets": [],
+        "notes": null
+      }
+    },
+    {
+      "event_id": "106658399",
+      "company": "VARVEE GLOBAL LIMITED",
+      "ticker": "VGL",
+      "tier": "large/other",
+      "subject": "Bagging/Receiving of orders/contracts — VARVEE GLOBAL LIMITED has informed the Exchange about Bagging/Receiving of orders/contracts",
+      "filing_time_ist": "2026-06-09 12:10",
+      "our_rss_first_catch_ist": "MISS",
+      "our_rss_source": null,
+      "web_findings": {
+        "any_press_found": null,
+        "earliest_public_appearance_ist": null,
+        "earliest_outlet": null,
+        "earliest_url": null,
+        "timestamp_evidence": null,
+        "confidence": null,
+        "other_early_outlets": [],
+        "notes": null
+      }
+    },
+    {
+      "event_id": "106658382",
+      "company": "VARVEE GLOBAL LIMITED",
+      "ticker": "VGL",
+      "tier": "large/other",
+      "subject": "Press Release — VARVEE GLOBAL LIMITED has informed the Exchange regarding a press release dated Jun 09, 2026, titled \"Press Release\".",
+      "filing_time_ist": "2026-06-09 11:57",
+      "our_rss_first_catch_ist": "MISS",
+      "our_rss_source": null,
+      "web_findings": {
+        "any_press_found": null,
+        "earliest_public_appearance_ist": null,
+        "earliest_outlet": null,
+        "earliest_url": null,
+        "timestamp_evidence": null,
+        "confidence": null,
+        "other_early_outlets": [],
+        "notes": null
+      }
+    },
+    {
+      "event_id": "106658624",
+      "company": "JSW Infrastructure Limited",
+      "ticker": "JSWINFRA",
+      "tier": "mid",
+      "subject": "Bagging/Receiving of orders/contracts — JSW Infrastructure Limited has informed the Exchange about Bagging/Receiving of orders/contracts",
+      "filing_time_ist": "2026-06-09 14:50",
+      "our_rss_first_catch_ist": "MISS",
+      "our_rss_source": null,
+      "web_findings": {
+        "any_press_found": null,
+        "earliest_public_appearance_ist": null,
+        "earliest_outlet": null,
+        "earliest_url": null,
+        "timestamp_evidence": null,
+        "confidence": null,
+        "other_early_outlets": [],
+        "notes": null
+      }
+    },
+    {
+      "event_id": "106658537",
+      "company": "ICICI Prudential Life Insurance Company Limited",
+      "ticker": "ICICIPRULI",
+      "tier": "mid",
+      "subject": "ESOP/ESOS/ESPS — ICICI Prudential Life Insurance Company Limited has informed the Exchange regarding allotment of 35610 shares.",
+      "filing_time_ist": "2026-06-09 13:35",
+      "our_rss_first_catch_ist": "MISS",
+      "our_rss_source": null,
+      "web_findings": {
+        "any_press_found": null,
+        "earliest_public_appearance_ist": null,
+        "earliest_outlet": null,
+        "earliest_url": null,
+        "timestamp_evidence": null,
+        "confidence": null,
+        "other_early_outlets": [],
+        "notes": null
+      }
+    },
+    {
+      "event_id": "106658479",
+      "company": "Godrej Properties Limited",
+      "ticker": "GODREJPROP",
+      "tier": "mid",
+      "subject": "Press Release — Godrej Properties Limited has informed the Exchange regarding a press release dated Jun 09, 2026, titled \"Press Release\".",
+      "filing_time_ist": "2026-06-09 12:45",
+      "our_rss_first_catch_ist": "MISS",
+      "our_rss_source": null,
+      "web_findings": {
+        "any_press_found": null,
+        "earliest_public_appearance_ist": null,
+        "earliest_outlet": null,
+        "earliest_url": null,
+        "timestamp_evidence": null,
+        "confidence": null,
+        "other_early_outlets": [],
+        "notes": null
+      }
+    },
+    {
+      "event_id": "106658437",
+      "company": "Persistent Systems Limited",
+      "ticker": "PERSISTENT",
+      "tier": "mid",
+      "subject": "Press Release — Persistent Systems Limited has informed the Exchange regarding a press release dated Jun 09, 2026, titled \"Persistent Recognized Among India",
+      "filing_time_ist": "2026-06-09 12:30",
+      "our_rss_first_catch_ist": "MISS",
+      "our_rss_source": null,
+      "web_findings": {
+        "any_press_found": null,
+        "earliest_public_appearance_ist": null,
+        "earliest_outlet": null,
+        "earliest_url": null,
+        "timestamp_evidence": null,
+        "confidence": null,
+        "other_early_outlets": [],
+        "notes": null
+      }
+    },
+    {
+      "event_id": "106658416",
+      "company": "Marico Limited",
+      "ticker": "MARICO",
+      "tier": "mid",
+      "subject": "ESOP/ESOS/ESPS — Marico Limited has informed the Exchange regarding Allotment of 54734  Shares.",
+      "filing_time_ist": "2026-06-09 12:23",
+      "our_rss_first_catch_ist": "MISS",
+      "our_rss_source": null,
+      "web_findings": {
+        "any_press_found": null,
+        "earliest_public_appearance_ist": null,
+        "earliest_outlet": null,
+        "earliest_url": null,
+        "timestamp_evidence": null,
+        "confidence": null,
+        "other_early_outlets": [],
+        "notes": null
+      }
+    },
+    {
+      "event_id": "106658363",
+      "company": "Coforge Limited",
+      "ticker": "COFORGE",
+      "tier": "mid",
+      "subject": "Press Release — Coforge Limited has informed the Exchange regarding a press release dated Jun 09, 2026, titled \"Coforge wins Pega Industry Excellence Award",
+      "filing_time_ist": "2026-06-09 11:41",
+      "our_rss_first_catch_ist": "MISS",
+      "our_rss_source": null,
+      "web_findings": {
+        "any_press_found": null,
+        "earliest_public_appearance_ist": null,
+        "earliest_outlet": null,
+        "earliest_url": null,
+        "timestamp_evidence": null,
+        "confidence": null,
+        "other_early_outlets": [],
+        "notes": null
+      }
+    },
+    {
+      "event_id": "106658287",
+      "company": "ICICI Prudential Life Insurance Company Limited",
+      "ticker": "ICICIPRULI",
+      "tier": "mid",
+      "subject": "Investor Presentation — ICICI Prudential Life Insurance Company Limited has informed the Exchange about Investor Presentation",
+      "filing_time_ist": "2026-06-09 11:02",
+      "our_rss_first_catch_ist": "MISS",
+      "our_rss_source": null,
+      "web_findings": {
+        "any_press_found": null,
+        "earliest_public_appearance_ist": null,
+        "earliest_outlet": null,
+        "earliest_url": null,
+        "timestamp_evidence": null,
+        "confidence": null,
+        "other_early_outlets": [],
+        "notes": null
+      }
+    },
+    {
+      "event_id": "106657882",
+      "company": "Persistent Systems Limited",
+      "ticker": "PERSISTENT",
+      "tier": "mid",
+      "subject": "Amalgamation/Merger — Persistent Systems Limited has informed the Exchange about Amalgamation/Merger as a part of internal restructuring",
+      "filing_time_ist": "2026-06-08 20:45",
+      "our_rss_first_catch_ist": "MISS",
+      "our_rss_source": null,
+      "web_findings": {
+        "any_press_found": null,
+        "earliest_public_appearance_ist": null,
+        "earliest_outlet": null,
+        "earliest_url": null,
+        "timestamp_evidence": null,
+        "confidence": null,
+        "other_early_outlets": [],
+        "notes": null
+      }
+    },
+    {
+      "event_id": "106657862",
+      "company": "Persistent Systems Limited",
+      "ticker": "PERSISTENT",
+      "tier": "mid",
+      "subject": "Outcome of Board Meeting — Persistent Systems Limited has informed the Exchange regarding Outcome of Board Meeting held on Jun 08, 2026.",
+      "filing_time_ist": "2026-06-08 20:08",
+      "our_rss_first_catch_ist": "MISS",
+      "our_rss_source": null,
+      "web_findings": {
+        "any_press_found": null,
+        "earliest_public_appearance_ist": null,
+        "earliest_outlet": null,
+        "earliest_url": null,
+        "timestamp_evidence": null,
+        "confidence": null,
+        "other_early_outlets": [],
+        "notes": null
+      }
+    },
+    {
+      "event_id": "106657847",
+      "company": "Info Edge (India) Limited",
+      "ticker": "NAUKRI",
+      "tier": "mid",
+      "subject": "Press Release — Info Edge (India) Limited has informed the Exchange regarding a press release dated Jun 08, 2026, titled \"Info Edge appoints Ms. Radha Rajap",
+      "filing_time_ist": "2026-06-08 19:54",
+      "our_rss_first_catch_ist": "MISS",
+      "our_rss_source": null,
+      "web_findings": {
+        "any_press_found": null,
+        "earliest_public_appearance_ist": null,
+        "earliest_outlet": null,
+        "earliest_url": null,
+        "timestamp_evidence": null,
+        "confidence": null,
+        "other_early_outlets": [],
+        "notes": null
+      }
+    },
+    {
+      "event_id": "106657838",
+      "company": "Info Edge (India) Limited",
+      "ticker": "NAUKRI",
+      "tier": "mid",
+      "subject": "Appointment — Outcome of the Board Meeting - June 8, 2026 - Intimation pursuant to Regulation 30 of the Securities and Exchange Board of India (Listing Ob",
+      "filing_time_ist": "2026-06-08 19:48",
+      "our_rss_first_catch_ist": "MISS",
+      "our_rss_source": null,
+      "web_findings": {
+        "any_press_found": null,
+        "earliest_public_appearance_ist": null,
+        "earliest_outlet": null,
+        "earliest_url": null,
+        "timestamp_evidence": null,
+        "confidence": null,
+        "other_early_outlets": [],
+        "notes": null
+      }
+    },
+    {
+      "event_id": "106657408",
+      "company": "Hitachi Energy India Limited",
+      "ticker": "POWERINDIA",
+      "tier": "mid",
+      "subject": "Investor Presentation — Hitachi Energy India Limited has informed the Exchange about Investor Presentation",
+      "filing_time_ist": "2026-06-08 13:58",
+      "our_rss_first_catch_ist": "MISS",
+      "our_rss_source": null,
+      "web_findings": {
+        "any_press_found": null,
+        "earliest_public_appearance_ist": null,
+        "earliest_outlet": null,
+        "earliest_url": null,
+        "timestamp_evidence": null,
+        "confidence": null,
+        "other_early_outlets": [],
+        "notes": null
+      }
+    },
+    {
+      "event_id": "106657387",
+      "company": "HDB Financial Services Limited",
+      "ticker": "HDBFS",
+      "tier": "mid",
+      "subject": "Allotment of Securities — HDB Financial Services Limited has informed the Exchange regarding allotment of 50500 securities pursuant to Non Convertible Securities at i",
+      "filing_time_ist": "2026-06-08 13:28",
+      "our_rss_first_catch_ist": "MISS",
+      "our_rss_source": null,
+      "web_findings": {
+        "any_press_found": null,
+        "earliest_public_appearance_ist": null,
+        "earliest_outlet": null,
+        "earliest_url": null,
+        "timestamp_evidence": null,
+        "confidence": null,
+        "other_early_outlets": [],
+        "notes": null
+      }
+    },
+    {
+      "event_id": "106658417",
+      "company": "Tata Teleservices (Maharashtra) Limited",
+      "ticker": "TTML",
+      "tier": "small",
+      "subject": "Action(s) taken or orders passed — Tata Teleservices (Maharashtra) Limited has informed the Exchange about Action(s) taken or orders passed",
+      "filing_time_ist": "2026-06-09 12:24",
+      "our_rss_first_catch_ist": "MISS",
+      "our_rss_source": null,
+      "web_findings": {
+        "any_press_found": null,
+        "earliest_public_appearance_ist": null,
+        "earliest_outlet": null,
+        "earliest_url": null,
+        "timestamp_evidence": null,
+        "confidence": null,
+        "other_early_outlets": [],
+        "notes": null
+      }
+    },
+    {
+      "event_id": "106658394",
+      "company": "Kalpataru Projects International Limited",
+      "ticker": "KPIL",
+      "tier": "small",
+      "subject": "Outcome of Board Meeting — Kalpataru Projects International Limited has informed the Exchange regarding Outcome of Board Meeting held on Jun 09, 2026.",
+      "filing_time_ist": "2026-06-09 12:05",
+      "our_rss_first_catch_ist": "MISS",
+      "our_rss_source": null,
+      "web_findings": {
+        "any_press_found": null,
+        "earliest_public_appearance_ist": null,
+        "earliest_outlet": null,
+        "earliest_url": null,
+        "timestamp_evidence": null,
+        "confidence": null,
+        "other_early_outlets": [],
+        "notes": null
+      }
+    },
+    {
+      "event_id": "106658278",
+      "company": "CCL Products (India) Limited",
+      "ticker": "CCL",
+      "tier": "small",
+      "subject": "Spurt in Volume — Significant increase in volume has been observed in CCL Products (India) Limited. The Exchange, in order to ensure that investors have lates",
+      "filing_time_ist": "2026-06-09 10:45",
+      "our_rss_first_catch_ist": "MISS",
+      "our_rss_source": null,
+      "web_findings": {
+        "any_press_found": null,
+        "earliest_public_appearance_ist": null,
+        "earliest_outlet": null,
+        "earliest_url": null,
+        "timestamp_evidence": null,
+        "confidence": null,
+        "other_early_outlets": [],
+        "notes": null
+      }
+    },
+    {
+      "event_id": "106657895",
+      "company": "Kalpataru Projects International Limited",
+      "ticker": "KPIL",
+      "tier": "small",
+      "subject": "Action(s) taken or orders passed — Kalpataru Projects International Limited has informed the Exchange about Action(s) taken or orders passed",
+      "filing_time_ist": "2026-06-08 21:16",
+      "our_rss_first_catch_ist": "MISS",
+      "our_rss_source": null,
+      "web_findings": {
+        "any_press_found": null,
+        "earliest_public_appearance_ist": null,
+        "earliest_outlet": null,
+        "earliest_url": null,
+        "timestamp_evidence": null,
+        "confidence": null,
+        "other_early_outlets": [],
+        "notes": null
+      }
+    },
+    {
+      "event_id": "106657815",
+      "company": "Jubilant Ingrevia Limited",
+      "ticker": "JUBLINGREA",
+      "tier": "small",
+      "subject": "Action(s) taken or orders passed — Jubilant Ingrevia Limited has informed the Exchange about Action(s) taken or orders passed",
+      "filing_time_ist": "2026-06-08 19:25",
+      "our_rss_first_catch_ist": "MISS",
+      "our_rss_source": null,
+      "web_findings": {
+        "any_press_found": null,
+        "earliest_public_appearance_ist": null,
+        "earliest_outlet": null,
+        "earliest_url": null,
+        "timestamp_evidence": null,
+        "confidence": null,
+        "other_early_outlets": [],
+        "notes": null
+      }
+    },
+    {
+      "event_id": "106657787",
+      "company": "Amber Enterprises India Limited",
+      "ticker": "AMBER",
+      "tier": "small",
+      "subject": "Scheme of Arrangement — Pursuant to Regulation 30 of SEBI LODR Regulations, we hereby inform the exchange that the Company has received an Order dated 5th June 2026",
+      "filing_time_ist": "2026-06-08 19:06",
+      "our_rss_first_catch_ist": "MISS",
+      "our_rss_source": null,
+      "web_findings": {
+        "any_press_found": null,
+        "earliest_public_appearance_ist": null,
+        "earliest_outlet": null,
+        "earliest_url": null,
+        "timestamp_evidence": null,
+        "confidence": null,
+        "other_early_outlets": [],
+        "notes": null
+      }
+    },
+    {
+      "event_id": "106657775",
+      "company": "IIFL Finance Limited",
+      "ticker": "IIFL",
+      "tier": "small",
+      "subject": "Credit Rating — IIFL Finance Limited has informed the Exchange about Credit Rating",
+      "filing_time_ist": "2026-06-08 18:53",
+      "our_rss_first_catch_ist": "MISS",
+      "our_rss_source": null,
+      "web_findings": {
+        "any_press_found": null,
+        "earliest_public_appearance_ist": null,
+        "earliest_outlet": null,
+        "earliest_url": null,
+        "timestamp_evidence": null,
+        "confidence": null,
+        "other_early_outlets": [],
+        "notes": null
+      }
+    },
+    {
+      "event_id": "106657755",
+      "company": "Lemon Tree Hotels Limited",
+      "ticker": "LEMONTREE",
+      "tier": "small",
+      "subject": "Press Release — Lemon Tree Hotels Limited has informed the Exchange regarding a press release dated Jun 08, 2026, titled \"The Company has signed a Franchise",
+      "filing_time_ist": "2026-06-08 18:42",
+      "our_rss_first_catch_ist": "MISS",
+      "our_rss_source": null,
+      "web_findings": {
+        "any_press_found": null,
+        "earliest_public_appearance_ist": null,
+        "earliest_outlet": null,
+        "earliest_url": null,
+        "timestamp_evidence": null,
+        "confidence": null,
+        "other_early_outlets": [],
+        "notes": null
+      }
+    },
+    {
+      "event_id": "106657499",
+      "company": "Can Fin Homes Limited",
+      "ticker": "CANFINHOME",
+      "tier": "small",
+      "subject": "ESOP/ESOS/ESPS — Can Fin Homes Limited has informed the Exchange regarding Allotment of 466  Shares.",
+      "filing_time_ist": "2026-06-08 16:17",
+      "our_rss_first_catch_ist": "MISS",
+      "our_rss_source": null,
+      "web_findings": {
+        "any_press_found": null,
+        "earliest_public_appearance_ist": null,
+        "earliest_outlet": null,
+        "earliest_url": null,
+        "timestamp_evidence": null,
+        "confidence": null,
+        "other_early_outlets": [],
+        "notes": null
+      }
+    },
+    {
+      "event_id": "106657466",
+      "company": "Tata Teleservices (Maharashtra) Limited",
+      "ticker": "TTML",
+      "tier": "small",
+      "subject": "Spurt in Volume — Significant increase in volume has been observed in Tata Teleservices (Maharashtra) Limited. The Exchange, in order to ensure that investors",
+      "filing_time_ist": "2026-06-08 15:40",
+      "our_rss_first_catch_ist": "MISS",
+      "our_rss_source": null,
+      "web_findings": {
+        "any_press_found": null,
+        "earliest_public_appearance_ist": null,
+        "earliest_outlet": null,
+        "earliest_url": null,
+        "timestamp_evidence": null,
+        "confidence": null,
+        "other_early_outlets": [],
+        "notes": null
+      }
+    },
+    {
+      "event_id": "106657418",
+      "company": "Can Fin Homes Limited",
+      "ticker": "CANFINHOME",
+      "tier": "small",
+      "subject": "Outcome of Board Meeting — Can Fin Homes Limited has informed the Exchange regarding Outcome of Board Meeting held on Jun 08, 2026.",
+      "filing_time_ist": "2026-06-08 14:50",
+      "our_rss_first_catch_ist": "MISS",
+      "our_rss_source": null,
+      "web_findings": {
+        "any_press_found": null,
+        "earliest_public_appearance_ist": null,
+        "earliest_outlet": null,
+        "earliest_url": null,
+        "timestamp_evidence": null,
+        "confidence": null,
+        "other_early_outlets": [],
+        "notes": null
+      }
+    },
+    {
+      "event_id": "106657147",
+      "company": "RITES Limited",
+      "ticker": "RITES",
+      "tier": "small",
+      "subject": "Spurt in Volume — Significant increase in volume has been observed in RITES Limited. The Exchange, in order to ensure that investors have latest relevant info",
+      "filing_time_ist": "2026-06-08 10:19",
+      "our_rss_first_catch_ist": "MISS",
+      "our_rss_source": null,
+      "web_findings": {
+        "any_press_found": null,
+        "earliest_public_appearance_ist": null,
+        "earliest_outlet": null,
+        "earliest_url": null,
+        "timestamp_evidence": null,
+        "confidence": null,
+        "other_early_outlets": [],
+        "notes": null
+      }
+    },
+    {
+      "event_id": "106657007",
+      "company": "Syrma SGS Technology Limited",
+      "ticker": "SYRMA",
+      "tier": "small",
+      "subject": "Investor Presentation — Syrma Sgs Technology Limited has informed the Exchange about Investor Presentation",
+      "filing_time_ist": "2026-06-07 11:03",
+      "our_rss_first_catch_ist": "MISS",
+      "our_rss_source": null,
+      "web_findings": {
+        "any_press_found": null,
+        "earliest_public_appearance_ist": null,
+        "earliest_outlet": null,
+        "earliest_url": null,
+        "timestamp_evidence": null,
+        "confidence": null,
+        "other_early_outlets": [],
+        "notes": null
+      }
+    },
+    {
+      "event_id": "106658561",
+      "company": "KNR Constructions Limited",
+      "ticker": "KNRCON",
+      "tier": "micro",
+      "subject": "Bagging/Receiving of orders/contracts — KNR Constructions Limited has informed the Exchange about Bagging/Receiving of orders/contracts",
+      "filing_time_ist": "2026-06-09 14:05",
+      "our_rss_first_catch_ist": "MISS",
+      "our_rss_source": null,
+      "web_findings": {
+        "any_press_found": null,
+        "earliest_public_appearance_ist": null,
+        "earliest_outlet": null,
+        "earliest_url": null,
+        "timestamp_evidence": null,
+        "confidence": null,
+        "other_early_outlets": [],
+        "notes": null
+      }
+    },
+    {
+      "event_id": "106658412",
+      "company": "SKY GOLD AND DIAMONDS LIMITED",
+      "ticker": "SKYGOLD",
+      "tier": "micro",
+      "subject": "Outcome of Board Meeting — Pursuant to Regulation 30 of the SEBI (Listing Obligations and Disclosure Requirements) Regulations, 2015, as amended ('Listing Regulations'",
+      "filing_time_ist": "2026-06-09 12:22",
+      "our_rss_first_catch_ist": "MISS",
+      "our_rss_source": null,
+      "web_findings": {
+        "any_press_found": null,
+        "earliest_public_appearance_ist": null,
+        "earliest_outlet": null,
+        "earliest_url": null,
+        "timestamp_evidence": null,
+        "confidence": null,
+        "other_early_outlets": [],
+        "notes": null
+      }
+    },
+    {
+      "event_id": "106658144",
+      "company": "Apollo Micro Systems Limited",
+      "ticker": "APOLLO",
+      "tier": "micro",
+      "subject": "Investor Presentation — Apollo Micro Systems Limited has informed the Exchange about Investor Presentation",
+      "filing_time_ist": "2026-06-09 08:43",
+      "our_rss_first_catch_ist": "MISS",
+      "our_rss_source": null,
+      "web_findings": {
+        "any_press_found": null,
+        "earliest_public_appearance_ist": null,
+        "earliest_outlet": null,
+        "earliest_url": null,
+        "timestamp_evidence": null,
+        "confidence": null,
+        "other_early_outlets": [],
+        "notes": null
+      }
+    },
+    {
+      "event_id": "106658143",
+      "company": "VA Tech Wabag Limited",
+      "ticker": "WABAG",
+      "tier": "micro",
+      "subject": "Bagging/Receiving of orders/contracts — WABAG Consortium secures a \"Large\" Order towards Ajman Sewage Biorefinery Plant, Strengthening GCC presence",
+      "filing_time_ist": "2026-06-09 08:28",
+      "our_rss_first_catch_ist": "MISS",
+      "our_rss_source": null,
+      "web_findings": {
+        "any_press_found": null,
+        "earliest_public_appearance_ist": null,
+        "earliest_outlet": null,
+        "earliest_url": null,
+        "timestamp_evidence": null,
+        "confidence": null,
+        "other_early_outlets": [],
+        "notes": null
+      }
+    },
+    {
+      "event_id": "106657930",
+      "company": "GMR Power and Urban Infra Limited",
+      "ticker": "GMRP&UI",
+      "tier": "micro",
+      "subject": "Sale or disposal — GMR Power And Urban Infra Limited has informed the Exchange about divestment of entire stake  of 26% held by the Company in Portus Ventures",
+      "filing_time_ist": "2026-06-08 22:43",
+      "our_rss_first_catch_ist": "MISS",
+      "our_rss_source": null,
+      "web_findings": {
+        "any_press_found": null,
+        "earliest_public_appearance_ist": null,
+        "earliest_outlet": null,
+        "earliest_url": null,
+        "timestamp_evidence": null,
+        "confidence": null,
+        "other_early_outlets": [],
+        "notes": null
+      }
+    },
+    {
+      "event_id": "106657736",
+      "company": "Oswal Pumps Limited",
+      "ticker": "OSWALPUMPS",
+      "tier": "micro",
+      "subject": "Acquisition — Oswal Pumps Limited has informed the Exchange about Acquisition",
+      "filing_time_ist": "2026-06-08 18:32",
+      "our_rss_first_catch_ist": "MISS",
+      "our_rss_source": null,
+      "web_findings": {
+        "any_press_found": null,
+        "earliest_public_appearance_ist": null,
+        "earliest_outlet": null,
+        "earliest_url": null,
+        "timestamp_evidence": null,
+        "confidence": null,
+        "other_early_outlets": [],
+        "notes": null
+      }
+    },
+    {
+      "event_id": "106657422",
+      "company": "Network18 Media & Investments Limited",
+      "ticker": "NETWORK18",
+      "tier": "micro",
+      "subject": "Spurt in Volume — Significant increase in volume has been observed in Network18 Media & Investments Limited. The Exchange, in order to ensure that investors h",
+      "filing_time_ist": "2026-06-08 14:59",
+      "our_rss_first_catch_ist": "MISS",
+      "our_rss_source": null,
+      "web_findings": {
+        "any_press_found": null,
+        "earliest_public_appearance_ist": null,
+        "earliest_outlet": null,
+        "earliest_url": null,
+        "timestamp_evidence": null,
+        "confidence": null,
+        "other_early_outlets": [],
+        "notes": null
+      }
+    },
+    {
+      "event_id": "106657368",
+      "company": "Waaree Renewable Technologies Limited",
+      "ticker": "WAAREERTL",
+      "tier": "micro",
+      "subject": "Bagging/Receiving of orders/contracts — Waaree Renewable Technologies Limited has informed the Exchange about Bagging/Receiving of orders/contracts",
+      "filing_time_ist": "2026-06-08 12:56",
+      "our_rss_first_catch_ist": "MISS",
+      "our_rss_source": null,
+      "web_findings": {
+        "any_press_found": null,
+        "earliest_public_appearance_ist": null,
+        "earliest_outlet": null,
+        "earliest_url": null,
+        "timestamp_evidence": null,
+        "confidence": null,
+        "other_early_outlets": [],
+        "notes": null
+      }
+    },
+    {
+      "event_id": "106657366",
+      "company": "DCB Bank Limited",
+      "ticker": "DCBBANK",
+      "tier": "micro",
+      "subject": "Allotment of Securities — DCB Bank Limited has informed the Exchange regarding allotment of 24000 securities pursuant to ESOP/ESPS at its meeting held on Jun 08, 2026",
+      "filing_time_ist": "2026-06-08 12:54",
+      "our_rss_first_catch_ist": "MISS",
+      "our_rss_source": null,
+      "web_findings": {
+        "any_press_found": null,
+        "earliest_public_appearance_ist": null,
+        "earliest_outlet": null,
+        "earliest_url": null,
+        "timestamp_evidence": null,
+        "confidence": null,
+        "other_early_outlets": [],
+        "notes": null
+      }
+    },
+    {
+      "event_id": "106657282",
+      "company": "Equitas Small Finance Bank Limited",
+      "ticker": "EQUITASBNK",
+      "tier": "micro",
+      "subject": "ESOP/ESOS/ESPS — Equitas Small Finance Bank Limited has informed the Exchange regarding Allotment of 2148829   Shares pursuant to exercise of ESOP",
+      "filing_time_ist": "2026-06-08 12:10",
+      "our_rss_first_catch_ist": "MISS",
+      "our_rss_source": null,
+      "web_findings": {
+        "any_press_found": null,
+        "earliest_public_appearance_ist": null,
+        "earliest_outlet": null,
+        "earliest_url": null,
+        "timestamp_evidence": null,
+        "confidence": null,
+        "other_early_outlets": [],
+        "notes": null
+      }
+    },
+    {
+      "event_id": "106657050",
+      "company": "Tips Music Limited",
+      "ticker": "TIPSMUSIC",
+      "tier": "micro",
+      "subject": "Spurt in Volume — Significant increase in volume has been observed in Tips Music Limited. The Exchange, in order to ensure that investors have latest relevant",
+      "filing_time_ist": "2026-06-07 19:08",
+      "our_rss_first_catch_ist": "MISS",
+      "our_rss_source": null,
+      "web_findings": {
+        "any_press_found": null,
+        "earliest_public_appearance_ist": null,
+        "earliest_outlet": null,
+        "earliest_url": null,
+        "timestamp_evidence": null,
+        "confidence": null,
+        "other_early_outlets": [],
+        "notes": null
+      }
+    },
+    {
+      "event_id": "106656976",
+      "company": "Advanced Enzyme Technologies Limited",
+      "ticker": "ADVENZYMES",
+      "tier": "micro",
+      "subject": "Acquisition — Further to the intimation letter dated August 02, 2025, we hereby inform that the Companyhas completed an additional investment of &#8377; 2",
+      "filing_time_ist": "2026-06-06 20:43",
+      "our_rss_first_catch_ist": "MISS",
+      "our_rss_source": null,
+      "web_findings": {
+        "any_press_found": null,
+        "earliest_public_appearance_ist": null,
+        "earliest_outlet": null,
+        "earliest_url": null,
+        "timestamp_evidence": null,
+        "confidence": null,
+        "other_early_outlets": [],
+        "notes": null
+      }
+    },
+    {
+      "event_id": "106656943",
+      "company": "The Karnataka Bank Limited",
+      "ticker": "KTKBANK",
+      "tier": "micro",
+      "subject": "Press Release — The Karnataka Bank Limited has informed the Exchange regarding a press release dated Jun 06, 2026, titled \"Karnataka Bank Conducts Third Par",
+      "filing_time_ist": "2026-06-06 18:45",
+      "our_rss_first_catch_ist": "MISS",
+      "our_rss_source": null,
+      "web_findings": {
+        "any_press_found": null,
+        "earliest_public_appearance_ist": null,
+        "earliest_outlet": null,
+        "earliest_url": null,
+        "timestamp_evidence": null,
+        "confidence": null,
+        "other_early_outlets": [],
+        "notes": null
+      }
+    }
+  ]
+}

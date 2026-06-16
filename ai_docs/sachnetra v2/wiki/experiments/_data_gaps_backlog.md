@@ -41,6 +41,7 @@ audience: Lijo, James, future Claude Code sessions
 | **G4** | **`research_prices` is Nifty-50 only** | Exp 2 | Announcements span 2,104 symbols; only 46 Nifty-50 names + ^NSEI priced → **96% (16,617/17,322) of filings unpriceable**. | Research scripts (`backfill-research-prices.mjs`) | **Claude (research lane)** | Med | Category-level Exp 2 (Product A core); any single-stock event study beyond large-caps. Widen to Nifty 200/500. |
 | **G5** | **`TATAMOTORS.NS` missing from prices** | Exp 1 | Yahoo 404 — post-demerger ticker rename. The one missing Nifty-50 name. | Research scripts / `market-taxonomy.json` | **Claude (research lane)** | Low | Tata Motors single-stock work; tidies the price universe. |
 | **G6** | **Sentiment scorer positivity bias** | Exp 3 | 14 of 16 daily-mean sentiment values positive (~88%); series mean +0.21. A scorer positive 88% of the time has weak discriminating power. | Sentiment scorer (`_sentiment-chain.mjs` / FinBERT) | **Research check** (then maybe James) | Low–Med | Trustworthy use of sentiment as a model feature. Needs a calibration spot-check (raw-score distribution + labelled sample) BEFORE sentiment becomes an input. |
+| **G8** | **`india_bulk_block_deals` shallow + cron dead** | Exp 18 §0 probe (2026-06-07) | Was 3 months deep + 16d stale. **(1) BACKFILL DONE 2026-06-07** — `backfill-india-deals.mjs` → **97,990 rows, 4.7y (Oct 2021→Jun 2026)**; freshness gap closed. **(2) CRON STILL DEAD** — V2-030 not scheduled. | V2-030 collector (`seed-india-deals.mjs` cron) | **James / Lijo** (prod infra) | Med (was HIGH — Exp18 ran & is ❌ NULL) | **Remaining action: revive + freshness-alarm the V2-030 cron** (~18:30 IST) so the feed doesn't re-stale (V2-018 lesson). Backfill leg complete; Exp18 done ([[Exp18]]). NSE serves deeper than Oct 2021 — extend the backfill if a future experiment needs it. |
 
 ---
 
@@ -103,3 +104,4 @@ in a James task). G6 is a research check, not a build.
 | Date | Change |
 |---|---|
 | 2026-05-22 | Created after Exp 1–4. Logged gaps G1–G6, the survivorship ceiling, the cross-experiment meta-finding, and the two already-addressed items. Staging ground for the bundled task Lijo will author after Exp 5–~9. |
+| 2026-06-07 | Logged **G8** — Exp18 §0 probe found `india_bulk_block_deals` only 3 months deep (Feb–May 2026) and the V2-030 cron 16d stale. Gates Exp18; fix = deep backfill (NSE date-range API) + cron revival/alarm. (G7/G7a/G7b were the Exp14 price-universe expansions, recorded in [[Exp14]].) |

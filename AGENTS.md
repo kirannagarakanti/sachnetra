@@ -2,6 +2,11 @@
 
 Agent entry point for WorldMonitor. Read this first, then follow links for depth.
 
+> **This repo is deployed as SachNetra** (sachnetra.com) — the `india` variant only. The WorldMonitor
+> multi-variant framing below is the upstream fork's; the other variants are being removed (see `CLAUDE.md`
+> and `ai_docs/update-workflow/2026-06-11_claude-md-refresh-and-worldmonitor-cleanup.md`). For SachNetra's
+> mission, the V2 collection-engine, agent rules, and sacred files, **read `CLAUDE.md` first.**
+
 ## What This Project Is
 
 Real-time global intelligence dashboard. TypeScript SPA (Vite + Preact) with 86 panel components, 60+ Vercel Edge API endpoints, a Tauri desktop app with Node.js sidecar, and a Railway relay service. Aggregates 30+ external data sources (geopolitics, military, finance, climate, cyber, maritime, aviation).
@@ -101,15 +106,14 @@ proto/ definitions -> buf generate -> src/generated/{client,server}/ -> handlers
 
 ## Variant System
 
-The app ships multiple variants with different panel/layer configurations:
+Historically multi-variant; **SachNetra deploys only `india`** (sachnetra.com). The other WorldMonitor
+variants are being removed (Workstream B in the update-workflow task):
 
-- `full` (default): All features
-- `tech`: Technology-focused subset
-- `finance`: Financial markets focus
-- `commodity`: Commodity markets focus
-- `happy`: Positive news only
+- `india`: SachNetra — the only deployed variant. Config: `src/config/variants/india.ts`.
+- ~~`full` / `tech` / `finance` / `commodity` / `happy`~~: WorldMonitor variants — scheduled for deletion.
 
-Variant is set via `VITE_VARIANT` env var. Config lives in `src/config/variants/`.
+Variant is set via `VITE_VARIANT` env var (default being re-pointed `full → india` in Workstream B). Config
+lives in `src/config/variants/`.
 
 ## Key Patterns
 

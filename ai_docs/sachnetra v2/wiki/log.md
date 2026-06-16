@@ -58,5 +58,25 @@ Chronological append-only ledger of all ingest and update operations.
 **Pages modified**:
 - `index.md`
 
-**Coverage**: Extracted academic validations, model pipeline strategy, Convex/Redis mapping, and a 4-phase implementation plan for the SachNetra DB schema.
+**Coverage**: Extracted academic validations, model pipeline strategy, Convex/Redis adaptation, and a 4-phase implementation plan for the SachNetra DB schema.
 
+## [2026-06-04] ingest | learning/articles/SSRN_Distillations
+
+**Operation**: Promote from learning journal
+**Source**: SSRN Articles on dealer markets, hidden liquidity, cross-impact, and eJournal taxonomy
+**Agent**: Antigravity
+
+**Pages created**:
+- `concepts/dealer_markets.md` (Consolidated with Mean-Field Games & Inventory Risk)
+- `concepts/limit_order_book.md` (Consolidated with Hidden Liquidity & Iceberg Orders)
+- `concepts/smart_order_routing.md`
+- `concepts/market_impact.md` (Consolidated with Metaorders, Cross-Impact & Square-Root Law)
+- `concepts/academic_research_intake.md` (Consolidated with SSRN Networks & Preprint Latency)
+- `concepts/backtesting_methodology.md`
+- `concepts/portfolio_optimization.md`
+
+**Pages modified**:
+- `index.md`
+- `log.md`
+
+**Coverage**: Quantitative models of market microstructure (dealer markets, inventory risk, mean-field games, hidden liquidity, iceberg orders, smart order routing, limit order books), transaction cost models (metaorders, cross-impact, square-root law of market impact, portfolio execution optimization), and preprint academic ingestion strategies (SSRN eLibrary, preprint latency, backtesting methodology under Indian market constraints).

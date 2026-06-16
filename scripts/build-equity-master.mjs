@@ -42,6 +42,49 @@ const SUPPLEMENTAL_ALIAS_DROPS = [
   { symbol: 'DOLLAR', alias_to_drop: 'Dollar' },
   { symbol: 'URBANCO', alias_to_drop: 'Urban' },
   { symbol: 'NAVA', alias_to_drop: 'NAVA' },
+  // Gold-set audit (2026-06-10): single-word cascade residues that are common
+  // English words and false-positived on general news (COALINDIA's "Coal"
+  // matched "coal mine blast" headlines, etc.). Each company stays findable via
+  // its multi-word form (kept) + symbol — see build comment. Only dropped where
+  // a distinct multi-word alias survives; bare-name-only tickers (Trent,
+  // Trident) intentionally NOT dropped to preserve recall.
+  { symbol: 'COALINDIA', alias_to_drop: 'Coal' },        // → Coal India / CIL
+  { symbol: 'SOLARINDS', alias_to_drop: 'Solar' },       // → Solar Industries
+  { symbol: 'CHOICEIN', alias_to_drop: 'Choice' },       // → Choice International
+  { symbol: 'EXCELINDUS', alias_to_drop: 'Excel' },      // → Excel Industries
+  { symbol: 'EMPOWER', alias_to_drop: 'Empower' },       // → Empower India
+  { symbol: 'DEEPINDS', alias_to_drop: 'Deep' },         // → Deep Industries
+  { symbol: 'PLATIND', alias_to_drop: 'Platinum' },      // → Platinum Industries
+  { symbol: 'GRAPHITE', alias_to_drop: 'Graphite' },     // → Graphite India
+  { symbol: 'CELLO', alias_to_drop: 'Cello' },           // → Cello World
+  // Prod FP audit (2026-06-10, nse_tickers_v2 71.7K rows): bare symbols /
+  // cascade forms that are common words or Indian first names, each confirmed
+  // false-positiving in prod with measured volume. Multi-word forms survive.
+  { symbol: 'MPSLTD', alias_to_drop: 'MPS' },            // "MPs quit Trinamool" — 134 tags, top-3 by volume
+  { symbol: 'RISHABH', alias_to_drop: 'RISHABH' },       // Rishabh Pant (cricket) — 73 → Rishabh Instruments
+  { symbol: 'SONAMLTD', alias_to_drop: 'SONAM' },        // Sonam Wangchuk / Kapoor — 65 → SONAM LIMITED
+  { symbol: 'NH', alias_to_drop: 'NH' },                 // "NH-44" highways — 59 → Narayana Hrudayalaya
+  { symbol: 'LT', alias_to_drop: 'LT' },                 // "Lt. <name>" military rank — keep L&T family
+  { symbol: 'SKIPPER', alias_to_drop: 'Skipper' },       // cricket/football captain — 47 → Skipper Limited
+  { symbol: 'VIPULLTD', alias_to_drop: 'Vipul' },        // first name (director/diplomat) → Vipul Limited
+  { symbol: 'MOHITIND', alias_to_drop: 'Mohit' },        // first name → Mohit Industries
+  { symbol: 'ANMOL', alias_to_drop: 'Anmol' },           // first name (incl. Anmol Bishnoi) → Anmol India
+  { symbol: 'SUMEETINDS', alias_to_drop: 'Sumeet' },     // "Sumeet Bagadia recommends" columns → Sumeet Industries
+  { symbol: 'SHINDL', alias_to_drop: 'Sharat' },         // first name → Sharat Industries
+  { symbol: 'ARCHIES', alias_to_drop: 'Archies' },       // "The Archies" film → Archies Limited
+  // Gold-set gate-leak audit (2026-06-11): bare "Coastal" (← "Coastal Corporation"
+  // minus the Corporation strip) tagged 11/11 sampled "coastal regulation/road/
+  // highway" general-news headlines. Multi-word "Coastal Corporation" survives.
+  { symbol: 'COASTCORP', alias_to_drop: 'Coastal' },     // "coastal road project" etc. → Coastal Corporation
+  // Gold-set long-tail audit (2026-06-11): bare symbol/common-word aliases that
+  // false-positived on surnames, places, generic words or a foreign company.
+  // Each company stays findable via its distinctive multi-word name (kept).
+  { symbol: 'MITTAL', alias_to_drop: 'MITTAL' },         // "Sunil Bharti Mittal" surname → Mittal Life Style
+  { symbol: 'LAL', alias_to_drop: 'LAL' },               // "Shankar Lal" / "Lal Chowk" → Lorenzini Apparels (LAL = symbol only)
+  { symbol: 'APEX', alias_to_drop: 'APEX' },             // "Apex Court" / "Apex Body" → Apex Frozen Foods
+  { symbol: 'SPECIALITY', alias_to_drop: 'SPECIALITY' }, // "super speciality hospital" → Speciality Restaurants
+  { symbol: 'AAKASH', alias_to_drop: 'AAKASH' },         // "Aakash Chopra" (cricket) → Aakash Exploration Services
+  { symbol: 'AMDIND', alias_to_drop: 'AMD' },            // "Nvidia and AMD" (US chipmaker) → AMD Industries
 ];
 
 // ── Decision 5: suffix-strip cascade ─────────────────────────────────────────
@@ -74,6 +117,24 @@ const DENYLIST_CONTEXT = {
   TITAN: ['Company', 'NSE', 'BSE', 'results', 'shares', 'Tanishq', 'Fastrack', 'Sonata', 'Q1', 'Q2', 'Q3', 'Q4', '₹', 'jewellery', 'watch'],
   BRITANNIA: ['Industries', 'NSE', 'BSE', 'results', 'biscuit', 'cracker', 'Good Day', 'Marie', 'shares', '₹', 'Q1', 'Q2', 'Q3', 'Q4'],
   ASIANPAINT: ['Limited', 'NSE', 'BSE', 'results', 'paint', 'shares', '₹', 'Q1', 'Q2', 'Q3', 'Q4'],
+  // 2026-06-10 prod FP audit — mixed real/FP tickers where a bare drop would
+  // cost real recall (the company is commonly referenced by the bare form):
+  // YATRA: "Yatra Q4 Profit Tanks ₹8.2 Cr" is real; "Amarnath Yatra" (pilgrimage) is not.
+  YATRA: ['online', 'travel', 'Q1', 'Q2', 'Q3', 'Q4', 'profit', 'results', 'shares', '₹', 'booking', 'IPO', 'NSE', 'BSE', 'stock'],
+  // TRIDENT: textile midcap, appears in results listicles; "Trident Hotels" (Oberoi brand) is not it.
+  TRIDENT: ['Limited', 'textile', 'yarn', 'paper', 'results', 'Q1', 'Q2', 'Q3', 'Q4', 'shares', '₹', 'NSE', 'BSE', 'stock'],
+  // AXISBANK: bare "Axis" matched "Axis My India" (pollster); real coverage virtually
+  // always carries a finance word ("Axis Bank" itself contains 'bank').
+  AXISBANK: ['bank', 'shares', '₹', 'Q1', 'Q2', 'Q3', 'Q4', 'results', 'loan', 'target', 'NSE', 'BSE', 'dividend', 'FD', 'credit', 'CEO'],
+  // 2026-06-11 gold-set gate-leak audit: bare "NDTV" tagged 11/11 sampled
+  // "<person> to NDTV" / "NDTV Conclave" headlines — NDTV there is the channel
+  // spoken to, not the listco subject. Real company coverage ("New Delhi
+  // Television Q4 profit", "Adani's NDTV stake") carries a finance word. NB:
+  // bare 'shares'/'results' deliberately excluded — they match education news
+  // ("shares success mantra", "exam results") that says "…to NDTV" (the channel).
+  // 'NSE'/'BSE' also excluded: 'bse' is a substring of "CBSE" (exam board), the
+  // exact education-news context NDTV is polluted by.
+  NDTV: ['profit', 'revenue', 'share price', '₹', 'dividend', 'stake', 'Q1', 'Q2', 'Q3', 'Q4', 'net profit', 'stock', 'board', 'acquisition', 'delisting', 'AMG Media'],
 };
 
 // Aliases that are TOO common as English words even with collision filtering;
@@ -122,6 +183,13 @@ function normalizeAlias(s) {
   return s.trim().replace(/\s+/g, ' ');
 }
 
+// 2026-06-10 prod FP audit: cascade intermediates ending in a connector word are
+// over-broad prefixes, never legitimate references — "Bank of India" minus the
+// "India" strip left BANKINDIA with alias "Bank of", which matched "Bank of
+// Baroda" / "Bank of Japan" in prod. Same class: "State Bank of" (SBIN),
+// "Central Bank of" (CENTRALBK), "Whirlpool of" (WHIRLPOOL) — 70 aliases total.
+const DANGLING_CONNECTOR_RE = /\s(of|and|&|the|for|in|on)$/i;
+
 function generateCascadeAliases(name) {
   // Apply suffix-strip iteratively, accumulating each intermediate form.
   const aliases = new Set();
@@ -139,7 +207,9 @@ function generateCascadeAliases(name) {
       const next = current.replace(re, '').trim().replace(/[,.]+$/, '').trim();
       if (next !== current && next.length > 0) {
         current = normalizeAlias(next);
-        aliases.add(current);
+        // Dangling-connector intermediates are tracked for cascade continuation
+        // but never emitted as aliases.
+        if (!DANGLING_CONNECTOR_RE.test(current)) aliases.add(current);
         changed = true;
         break;
       }
@@ -351,14 +421,18 @@ function loadHardeningActions() {
 }
 
 function removeAliasIgnoreCase(aliases, target) {
+  // Remove ALL case-variants, not just the first: SKIPPER carries both
+  // "SKIPPER" (symbol) and "Skipper" (cascade) — the runtime match is
+  // case-insensitive, so a drop that leaves one variant behind fixes nothing.
   const key = target.toLowerCase();
+  let removed = false;
   for (const alias of [...aliases]) {
     if (alias.toLowerCase() === key) {
       aliases.delete(alias);
-      return true;
+      removed = true;
     }
   }
-  return false;
+  return removed;
 }
 
 function applyHardeningActions(byTicker, actions) {
@@ -548,15 +622,30 @@ function attachDenylist(byTicker) {
 // ── Step 7: serialize ────────────────────────────────────────────────────────
 
 function serialize(byTicker) {
+  // Final safety sweep: drop dangling-connector aliases regardless of which
+  // stage introduced them (proposal overlay / positive overlays bypass the
+  // cascade guard).
+  let danglingDropped = 0;
   const out = [...byTicker.values()]
     .map((entry) => ({
       ticker: entry.ticker,
       name: entry.name,
-      aliases: [...entry.aliases].sort(),
+      aliases: [...entry.aliases]
+        .filter((a) => {
+          if (DANGLING_CONNECTOR_RE.test(a)) {
+            danglingDropped++;
+            return false;
+          }
+          return true;
+        })
+        .sort(),
       ...(entry.denylist_context ? { denylist_context: entry.denylist_context } : {}),
     }))
     .filter((entry) => entry.aliases.length > 0)
     .sort((a, b) => a.ticker.localeCompare(b.ticker));
+  if (danglingDropped > 0) {
+    console.log(`[build]   serialize sweep: ${danglingDropped} dangling-connector aliases dropped`);
+  }
   return out;
 }
 

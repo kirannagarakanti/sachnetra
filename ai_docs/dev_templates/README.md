@@ -21,6 +21,7 @@ to change the slash-command invocation help (examples, one-line summary).
 | `/improve_ui` | `improve_ui.md`               | Polish the SachNetra UI                  |
 | `/landing`    | `generate_landing_page.md`    | Build the SachNetra landing page         |
 | `/pr`              | `pr_review.md`                | Prepare for PR review                    |
+| `/research`        | `research.md`                 | Deep research (repos/papers/blogs/news) to solve a problem or add a feature; defers to `learning/RESEARCH_INSTRUCTIONS.md` |
 | `/task`            | `adapt_sprint_task.md`        | Generate a new task file (with manifest) |
 | `/update-template` | `update_template_workflow.md` | Sync a stale template or rule when codebase drifts |
 

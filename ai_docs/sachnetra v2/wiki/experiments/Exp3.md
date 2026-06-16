@@ -138,6 +138,17 @@ Descriptive: mean **+0.2129**, sd 0.2900, min −0.3791, max +0.9333. **14 of 16
 - May 2026 may simply have been a positive news month.
 **Action:** before sentiment becomes a model input, check whether the scorer is calibrated (e.g. distribution of raw scores, a labelled spot-check). A signal that's positive 88% of the time has little discriminating power as-is.
 
+> **📌 Reconcile addendum (2026-06-08, from [[exp20_brief]] §1.1).** The "88%" here is **14 of 16 daily-mean
+> values being positive** (87.5%) over **16 days in May 2026** — a day-level, tiny-N, single-month statistic.
+> It is **not** a row-level claim that 88% of *headlines* score positive, and it has been **widely mis-cited
+> that way** (incl. the original Exp20 brief premise). The Exp20-A1 read-only diagnosis
+> (`check-sentiment-calibration.mjs`, n=2,784 labelled rows of 65,985) found the **row-level split is pos
+> 35.2% · neu 37.8% · neg 27.0%** — a *mild*, model-driven lean, **not 88%**. The May-2026 daily-mean
+> positivity was real but reflected a positive news month + thin early days, not a scorer that calls 88% of
+> items positive. **Use the row-level figure (≈35% positive) when citing the bias.** The discriminating-power
+> concern still stands but is much smaller than this section implied: A1 found ample score dispersion
+> (sd≈0.77) for a cross-sectional rank.
+
 ---
 
 ## 9. Caveats & limitations
@@ -156,7 +167,7 @@ Descriptive: mean **+0.2129**, sd 0.2900, min −0.3791, max +0.9333. **14 of 16
 | Need | Why | Owner |
 |---|---|---|
 | **Let sentiment accumulate ~2–3 months** | 16 → 60–90 daily points makes ADF/ARIMA/forecast real. Re-run Exp 3 monthly. | time + collector running |
-| **Calibration check on the sentiment scorer** | 88% positive days suggests possible positive bias → weak signal | research spot-check |
+| ~~**Calibration check on the sentiment scorer**~~ ✅ DONE 2026-06-08 ([[exp20_brief]] §1.1) | "88% positive days" was a 16-day daily-mean stat; row-level is ~35% positive, mild, well-dispersed → G6 not the ensemble blocker | Exp20-A1 |
 | **Later: per-ticker sentiment → stock returns** | aggregate index-level test is coarse; entity-level is where alpha would be | future Exp (uses `entity_sentiment`/`nse_tickers`) |
 
 ---
@@ -189,3 +200,4 @@ Deterministic given the DB snapshot; the series **grows daily**, so re-running l
 | Date | Change |
 |---|---|
 | 2026-05-22 | Initial complete write-up. Both runs, full ACF/ADF/Ljung-Box/AR(1)/H3b numbers, the coincident-not-leading cross-experiment theme, the sentiment positivity-bias finding, caveats, action items. Run autonomously. |
+| 2026-06-08 | Added §8 reconcile addendum: the "88% positive" was a 16-day daily-mean stat, not row-level; Exp20-A1 measured the true row-level split (≈35% positive, mild). Closed the §10 calibration-check action item. |

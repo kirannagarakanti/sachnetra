@@ -3,6 +3,15 @@
   "permissions": {
     "allow": [
       "WebSearch",
+      "WebFetch",
+      "WebFetch(domain:arxiv.org)",
+      "WebFetch(domain:en.wikipedia.org)",
+      "WebFetch(domain:file.scirp.org)",
+      "WebFetch(domain:www.nseindia.com)",
+      "WebFetch(domain:ssrn.com)",
+      "WebFetch(domain:papers.ssrn.com)",
+      "WebFetch(domain:github.com)",
+      "WebFetch(domain:raw.githubusercontent.com)",
       "Bash(git status)",
       "Bash(git diff:*)",
       "Bash(git log:*)",
@@ -29,6 +38,11 @@
       "Write(*.css)",
       "Write(*.json)",
       "Write(*.md)",
+      "Write(ai_docs/learning/**)",
+      "Write(scratch/**)",
+      "Bash(mkdir:*)",
+      "Bash(git clone:*)",
+      "Bash(git clone *)",
       "Edit(**/*.tsx)",
       "Edit(**/*.ts)",
       "Edit(**/*.css)",
@@ -47,6 +61,19 @@
     "ask": []
   },
   "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "WebFetch|WebSearch",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "powershell -NoProfile -ExecutionPolicy Bypass -File .claude/hooks/allow-web-tools.ps1",
+            "shell": "powershell",
+            "timeout": 5
+          }
+        ]
+      }
+    ],
     "Stop": [
       {
         "hooks": [

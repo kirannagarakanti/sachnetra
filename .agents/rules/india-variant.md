@@ -105,7 +105,8 @@ New variables introduced in V2-001. Add to `.env.local` and Railway dashboard:
 | Variable | Purpose | Where |
 |----------|---------|-------|
 | `DATABASE_URL` | Railway PostgreSQL connection string (with `?sslmode=require`) | Railway + `.env.local` |
-| `HF_API_TOKEN` | HuggingFace Inference API key (FinBERT sentiment scoring) | Railway + `.env.local` |
+| `HF_API_TOKEN` | HuggingFace Inference API key (FinBERT sentiment scoring — chain level 1) | Railway + `.env.local` |
+| `GROQ_API_KEY` | Groq key — `llama-3.1-8b-instant` (AI summaries + sentiment chain level 3) | Railway + `.env.local` |
 | `UPSTASH_REDIS_REST_URL` | Already exists — copy from Vercel env to Railway | Already configured |
 | `UPSTASH_REDIS_REST_TOKEN` | Already exists — copy from Vercel env to Railway | Already configured |
 
@@ -114,15 +115,18 @@ New variables introduced in V2-001. Add to `.env.local` and Railway dashboard:
 postgresql://postgres:<password>@<host>.railway.app:5432/railway?sslmode=require
 ```
 
-FinBERT endpoint (HuggingFace free tier):
+Sentiment chain (`scripts/_sentiment-chain.mjs`) — 3 levels, fail-forward:
 ```
-POST https://api-inference.huggingface.co/models/ProsusAI/finbert
-Authorization: Bearer <HF_API_TOKEN>
-Body: { "inputs": "<headline text>" }
-Response: [{ "label": "positive"|"negative"|"neutral", "score": 0.0–1.0 }]
+1. HF FinBERT   POST https://router.huggingface.co/hf-inference/models/ProsusAI/finbert
+                Authorization: Bearer <HF_API_TOKEN>   Body: { "inputs": "<headline>" }
+2. Xenova FinBERT  local @xenova/transformers on Railway (no key)
+3. Groq         POST https://api.groq.com/openai/v1/chat/completions
+                Authorization: Bearer <GROQ_API_KEY>   model: llama-3.1-8b-instant
 ```
 
 Sentiment score conversion:
 - `positive` → `+score`
 - `negative` → `-score`
 - `neutral` → `0.0`
+
+⚠ The scorer is **uncalibrated, ~88%-positive (G6)** — flagged for replacement with a frontier reasoning model (research-notes 2026-06-11).

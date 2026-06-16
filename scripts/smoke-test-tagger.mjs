@@ -61,6 +61,40 @@ const ASSERTIONS = [
   { name: 'multi-tag: "Tata Motors Q4" → [TMCV, TMPV]',       headline: 'Tata Motors Q4 profit beats',          expected: ['TMCV', 'TMPV'] },
   // Curly apostrophe normalization — real headlines from copy-edited sources
   { name: 'unicode: curly apostrophe Domino’s → JUBLFOOD', headline: 'Domino’s India launches new menu',  expected: ['JUBLFOOD'] },
+  // 2026-06-10 prod FP audit — common-word / first-name / dangling-connector drops.
+  // Each pair locks: the FP headline no longer tags, the real reference still does.
+  { name: 'audit: coal mine accident → []',                headline: '90 Killed In China Coal Mine Blast',                          expected: [] },
+  { name: 'audit: "Coal India Q4" → [COALINDIA]',          headline: 'Coal India Q4 results beat estimates',                        expected: ['COALINDIA'] },
+  { name: 'audit: cricket skipper → []',                   headline: 'Proud of the boys: skipper Ruturaj Gaikwad after CSK loss',   expected: [] },
+  { name: 'audit: "Skipper Limited order" → [SKIPPER]',    headline: 'Skipper Limited bags transmission tower order',               expected: ['SKIPPER'] },
+  { name: 'audit: Rishabh Pant → []',                      headline: 'Rishabh Pant century seals series win for India',             expected: [] },
+  { name: 'audit: MPs (parliament) → []',                  headline: 'Now MPs are quitting the Trinamool Congress',                 expected: [] },
+  { name: 'audit: "MPS Limited Q4" → [MPSLTD]',            headline: 'MPS Limited Q4 net profit rises 12%',                         expected: ['MPSLTD'] },
+  { name: 'audit: NH-44 highway → []',                     headline: '30 Injured as Private Bus Overturns on NH-44 Near Gooty',     expected: [] },
+  { name: 'audit: Lt. military rank → []',                 headline: 'President Murmu consoles Lt Shashank Tiwari mother',          expected: [] },
+  { name: 'audit: "L&T order" still → [LT]',               headline: 'L&T bags ₹15,000 cr order from Indian Army',                  expected: ['LT'] },
+  { name: 'audit: Amarnath Yatra → []',                    headline: 'Amarnath Yatra: tent fares fixed for pilgrims',               expected: [] },
+  { name: 'audit: "Yatra Q4 profit" → [YATRA]',            headline: 'Yatra Q4 Profit Tanks 46% YoY To ₹8.2 Cr',                    expected: ['YATRA'] },
+  { name: 'audit: Sonam Wangchuk → []',                    headline: 'Sonam Wangchuk detained ahead of Ladakh protest',             expected: [] },
+  { name: 'audit: Bank of Japan → []',                     headline: 'Bank of Japan holds rates steady',                            expected: [] },
+  { name: 'audit: "Bank of India FD" → [BANKINDIA]',       headline: 'Bank of India raises fixed deposit rates',                    expected: ['BANKINDIA'] },
+  { name: 'audit: Axis My India poll → []',                headline: 'BJP dominant for 20 years: Axis My India survey',             expected: [] },
+  { name: 'audit: "Axis named best bank" → [AXISBANK]',    headline: 'FE Best Bank Awards: Axis named best digital bank',           expected: ['AXISBANK'] },
+  { name: 'audit: Trident Hotels → []',                    headline: '8 reasons business travellers choose Trident Hotels',         expected: [] },
+  { name: 'audit: Sumeet Bagadia column → []',             headline: 'Breakout stocks: Sumeet Bagadia recommends five shares',      expected: [] },
+  // Gate-leak audit (2026-06-11): coastal common-word + "to NDTV" channel context
+  { name: 'audit: coastal road project → []',              headline: 'Citizens protest felling of trees for Coastal Road project',  expected: [] },
+  { name: 'audit: "Coastal Corporation Q4" → [COASTCORP]', headline: 'Coastal Corporation Q4 net profit rises on shrimp exports',    expected: ['COASTCORP'] },
+  { name: 'audit: "to NDTV" channel → []',                 headline: '"Public Won\'t Trust Raghav Chadha Again": Bhagwant Mann To NDTV', expected: [] },
+  { name: 'audit: exam results "to NDTV" → []',            headline: 'JEE Advanced Results To Be Synchronised With CBSE: Minister To NDTV', expected: [] },
+  { name: 'audit: "NDTV Q4 profit" → [NDTV]',              headline: 'NDTV Q4 net profit rises 18% on ad revenue',                  expected: ['NDTV'] },
+  // Long-tail audit (2026-06-11): surname/place/common-word/foreign-co collisions
+  { name: 'audit: Sunil Bharti Mittal → []',               headline: 'UK unlikely to allow Sunil Bharti Mittal to raise BT stake',   expected: [] },
+  { name: 'audit: Apex Court → []',                        headline: 'SC Collegium recommends J&K CJ elevation to Apex Court',       expected: [] },
+  { name: 'audit: super speciality hospital → []',         headline: 'Mahabubnagar still awaits super speciality hospital',          expected: [] },
+  { name: 'audit: Aakash Chopra (cricket) → []',           headline: 'CSK vs SRH could be a knockout, says Aakash Chopra',           expected: [] },
+  { name: 'audit: Nvidia and AMD → []',                    headline: 'US tightens export limits on Nvidia and AMD',                  expected: [] },
+  { name: 'audit: "AMD Industries Q4" → [AMDIND]',         headline: 'AMD Industries Q4 net profit rises on packaging demand',       expected: ['AMDIND'] },
 ];
 
 function runAssertions() {

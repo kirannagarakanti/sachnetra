@@ -4,6 +4,8 @@
 
 SachNetra is a **news clarity tool for urban Indians**. Not a geopolitical dashboard. Not an OSINT tool. A calm, factual news aggregator that replaces anxiety-inducing TV news with clear, plain-language summaries.
 
+**Dual identity:** the **front end** is a news-aggregation platform (sachnetra.com); **behind it** is a collection engine that records India's news *and* the market/alt-data the quant system needs to Railway PostgreSQL. The database is the asset; the quant system is the proof of value.
+
 **Tagline**: "See clearly" | सच्चनेत्र  
 **Domain**: sachnetra.com (purchased)
 
@@ -14,17 +16,13 @@ Urban India, English + Hindi, age 18–35:
 - Young professionals with no time to read multiple sources
 - WhatsApp forward verifiers checking whether news is real
 
+> **V2 stance shift (positioning §3.1):** the consumer-growth features (Hindi, WhatsApp brief, landing page, feedback buttons) are **parked**. SachNetra is now *"be your own first customer"* — prove the quant signals by trading them on own capital, not a consumer/B2B product. The audience above is V1 history, not the current build target.
+
 ## Technical Approach
 
-SachNetra is **NOT** a new application. It is a new **variant** inside the WorldMonitor codebase fork.
+SachNetra began as a new **variant** inside the WorldMonitor codebase fork. It is now the **only deployed variant** — the other WorldMonitor variants (`full`/`tech`/`finance`/`commodity`/`happy`) are being removed (see `ai_docs/update-workflow/2026-06-11_claude-md-refresh-and-worldmonitor-cleanup.md`, Workstream B).
 
-**One file controls everything**: `src/config/variants/india.ts`
-
-The variant system already ships: `full`, `tech`, `finance`, `happy`.  
-SachNetra adds: `india` → accessible at `sachnetra.com`
-
-**Pattern to model**: `src/config/variants/tech.ts` (structure to copy)  
-**Content reference**: `src/config/variants/full.ts` (study only, never write)
+**One file controls the front end**: `src/config/variants/india.ts` → served at `sachnetra.com`.
 
 ## Variant Detection
 
@@ -48,7 +46,7 @@ V1 shipped a working India news aggregator. V2 transforms it into a **data colle
 
 **The sentence:** SachNetra is the collection engine. The database is the asset. The quant system is the proof of value.
 
-India's bilingual entity-aware sentiment data for Indian markets does not exist at production quality. SachNetra builds it as a byproduct of running the news app. The B2B quant product (IndiaSignal) is V3. V2 only starts the data collection.
+SachNetra builds a point-in-time, entity-resolved record of India's news + market/alt-data as a byproduct of running the news app. **Positioning (§3.1, "be your own first customer"): prove the signals by trading them on own capital — NOT a B2B/consumer/SaaS product.** A B2B offering (IndiaSignal) is deferred indefinitely; build and validate the data first.
 
 ## V2 Entry Points
 
@@ -61,8 +59,12 @@ The pipeline is now **multi-script**, not a single Redis-reading cron:
   daily** Railway cron. Non-news, **does NOT read Redis** — scrapes
   public FII/DII endpoints (Moneycontrol/NSE/BSE) → PostgreSQL directly.
   Failure-isolated from the news cron by design.
+- More collectors (independent crons, one per source family): `seed-india-announcements`
+  (NSE filings), `seed-india-deals` (bulk/block), `seed-india-electricity` (POSOCO),
+  `seed-india-fastag` (NPCI), plus `seed-india-macro` / `-options` / `-rbi-wss`.
 - Data store: Railway PostgreSQL — `india_news_signals`, `story_threads`,
-  `entity_timeline`, `india_institutional_flows` (V2-017).
+  `entity_timeline`, `india_institutional_flows`, `india_announcements`,
+  `india_bulk_block_deals`, electricity/FASTag tables, `research_prices`, …
 - New collectors are independent: do NOT bolt non-news sources onto the
   news cron. One cron per source family.
 - New sacred: `scripts/seed-insights.mjs` — never modify for V2 intelligence work; create a sibling instead
