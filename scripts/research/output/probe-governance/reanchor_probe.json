@@ -1,0 +1,60 @@
+{
+  "seed": 6119,
+  "data_floor": "2024-05-30",
+  "min_coverage": 0.5,
+  "distress_companies": 49,
+  "cases_adequate": 18,
+  "controls_adequate": 96,
+  "case_rate": 0.778,
+  "ctrl_rate": 0.625,
+  "S": 0.153,
+  "verdict": "NULL (S<0.3) — no specificity; the null is now EARNED, not asserted",
+  "two_by_two": {
+    "case_flag": 14,
+    "case_noflag": 4,
+    "ctrl_flag": 60,
+    "ctrl_noflag": 36
+  },
+  "per_flag": [
+    {
+      "flag": "F1_auditor",
+      "case_rate": 0.722,
+      "ctrl_rate": 0.479
+    },
+    {
+      "flag": "F3_kmp",
+      "case_rate": 0.278,
+      "ctrl_rate": 0.333
+    },
+    {
+      "flag": "F4_director",
+      "case_rate": 0.111,
+      "ctrl_rate": 0
+    },
+    {
+      "flag": "F6_late",
+      "case_rate": 0.056,
+      "ctrl_rate": 0.01
+    }
+  ],
+  "caveats": [
+    "text-matched distress label (audit sample)",
+    "pledge/RPT absent — 4 keyword flags only",
+    "lead-time L window-degenerate",
+    "2024-05-30 floor truncates pre-2026 windows"
+  ],
+  "sample_events": [
+    "MTNL 2026-04-17  General Updates | COMPLIANCE WITH REGULATION 30 OF SEBI (LODR) REGULATIONS, 2015 & SEBI CI",
+    "JPASSOCIAT 2026-04-07  Delay/default in the payment of fines/penalties/dues etc. to authority | Jaiprakash Associ",
+    "JPASSOCIAT 2026-04-07  Delay/default in the payment of fines/penalties/dues etc. to authority | Jaiprakash Associ",
+    "IL&FSENGG 2026-04-04  Defaults on Payment of Interest/Principal | Default in repayment of Principal and Interest",
+    "HMT 2026-02-28  Delay/default in the payment of fines/penalties/dues etc. to authority | HMT Limited has i",
+    "SITINET 2026-01-30  Updates | Siti Networks Limited has informed the Exchange regarding 'Disclosure in complia",
+    "ATUL 2026-01-01  Delay/default in the payment of fines/penalties/dues etc. to authority | Atul Limited has ",
+    "SITINET 2025-12-31  Updates | Siti Networks Limited has informed the Exchange regarding 'Disclosure in complia",
+    "MTNL 2025-12-12  General Updates | COMPLIANCE WITH REGULATION 30 OF SEBI (LODR) REGULATIONS, 2015 & SEBI CI",
+    "SITINET 2025-10-31  Updates | Siti Networks Limited has informed the Exchange regarding 'Disclosure in complia",
+    "IL&FSENGG 2025-10-07  Updates | IL&FS Engineering and Construction Company Limited has informed the Exchange reg",
+    "MADHUCON 2025-10-01  Delay/default in the payment of fines/penalties/dues etc. to authority | Madhucon Projects"
+  ]
+}
