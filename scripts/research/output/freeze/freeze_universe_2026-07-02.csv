@@ -1,0 +1,2285 @@
+rank,symbol,company,industry,score,F1_auditor,F3_kmp,F4_director,F6_late,F1_date,F3_date,F4_date,F6_date,n_filings,flagged_top5pct,flagged_score_ge2
+1,CREATIVEYE,Creative Eye Limited,Media & Entertainment,4,1,1,1,1,2026-06-24,2025-09-05,2026-04-24,2025-12-23,54,1,1
+2,ABMINTLLTD,ABM International Limited,,3,1,1,1,0,2025-09-30,2026-01-06,2026-05-26,,46,1,1
+3,ACC,ACC Limited,Cement And Cement Products,3,1,1,1,0,2025-09-29,2025-11-21,2026-06-30,,93,1,1
+4,ACLGATI,Allcargo Gati Limited,,3,1,1,0,1,2025-08-05,2025-08-05,,2025-11-18,40,1,1
+5,AFSL,Abans Financial Services Limited,,3,1,1,1,0,2025-11-13,2025-09-02,2026-05-21,,78,1,1
+6,AIIL,Authum Investment & Infrastructure Limited,,3,1,1,1,0,2025-08-29,2025-12-16,2026-06-01,,98,1,1
+7,AJAXENGG,Ajax Engineering Limited,,3,1,1,1,0,2025-08-02,2026-06-02,2026-05-18,,66,1,1
+8,AMBUJACEM,Ambuja Cements Limited,Cement And Cement Products,3,1,1,1,0,2025-07-31,2025-11-21,2026-06-30,,122,1,1
+9,ANIKINDS,Anik Industries Limited,Trading,3,1,1,0,1,2026-01-13,2025-08-14,,2026-06-20,58,1,1
+10,ANURAS,Anupam Rasayan India Limited,,3,1,1,1,0,2025-09-01,2026-05-23,2026-05-23,,106,1,1
+11,APLLTD,Alembic Pharmaceuticals Limited,Pharmaceuticals,3,1,1,1,0,2025-08-05,2025-07-07,2026-05-04,,139,1,1
+12,APOLLO,Apollo Micro Systems Limited,,3,1,1,1,0,2026-05-18,2026-06-01,2026-06-01,,158,1,1
+13,AQYLON,Aqylon Nexus Limited,,3,1,1,1,0,2025-08-14,2025-08-14,2026-05-20,,86,1,1
+14,ARIHANTSUP,Arihant Superstructures Limited,,3,1,1,1,0,2025-08-12,2025-08-05,2026-05-07,,100,1,1
+15,ARVSMART,Arvind SmartSpaces Limited,,3,1,1,1,0,2026-05-20,2025-11-03,2026-06-01,,103,1,1
+16,ASHOKAMET,Ashoka Metcast Limited,,3,1,1,1,0,2025-08-30,2026-04-30,2026-04-30,,48,1,1
+17,ASIANHOTNR,Asian Hotels (North) Limited,Hotels,3,1,1,1,0,2025-09-03,2026-04-04,2025-09-12,,84,1,1
+18,ATLANTAA,ATLANTAA LIMITED,,3,1,1,1,0,2026-05-18,2025-12-06,2026-06-30,,52,1,1
+19,AURIGROW,Auri Grow India Limited,,3,1,1,1,0,2025-08-19,2025-08-26,2026-06-12,,83,1,1
+20,AVG,AVG Logistics Limited,,3,1,1,0,1,2025-08-14,2025-11-21,,2026-06-18,74,1,1
+21,BAJAJCON,Bajaj Consumer Care Limited,,3,1,1,1,0,2026-03-18,2026-06-30,2026-07-01,,62,1,1
+22,BAJAJELEC,Bajaj Electricals Limited,Consumer Durables,3,1,1,1,0,2025-08-07,2025-10-31,2026-05-21,,112,1,1
+23,BALAJITELE,Balaji Telefilms Limited,Media & Entertainment,3,1,1,1,0,2025-07-03,2025-08-12,2026-06-10,,107,1,1
+24,BELRISE,Belrise Industries Limited,,3,1,1,1,0,2026-01-07,2026-06-13,2026-06-13,,96,1,1
+25,BHARTIHEXA,Bharti Hexacom Limited,,3,1,1,1,0,2026-03-10,2025-12-18,2026-04-23,,67,1,1
+26,BLACKBUCK,BLACKBUCK LIMITED,,3,1,1,1,0,2025-08-05,2026-05-28,2026-05-28,,86,1,1
+27,BRITANNIA,Britannia Industries Limited,Food And Food Processing,3,1,1,1,0,2025-08-12,2026-02-10,2026-04-23,,107,1,1
+28,BURNPUR,Burnpur Cement Limited,Cement And Cement Products,3,1,1,1,0,2025-09-05,2026-05-18,2026-04-27,,71,1,1
+29,BYKE,The Byke Hospitality Ltd,,3,1,1,1,0,2026-05-20,2025-08-07,2026-05-20,,39,1,1
+30,CAMPUS,Campus Activewear Limited,,3,1,1,1,0,2026-05-25,2026-06-12,2026-06-12,,63,1,1
+31,CARRARO,Carraro India Limited,,3,1,1,1,0,2026-02-11,2025-11-14,2026-06-19,,88,1,1
+32,CEIGALL,Ceigall India Limited,,3,1,1,1,0,2025-08-08,2025-08-12,2026-05-07,,184,1,1
+33,CRAMC,Canara Robeco Asset Management Company Limited,,3,1,1,1,0,2026-04-27,2026-03-11,2026-06-01,,70,1,1
+34,CRIZAC,Crizac Limited,,3,1,1,1,0,2026-05-21,2025-07-09,2025-10-30,,68,1,1
+35,CROMPTON,Crompton Greaves Consumer Electricals Limited,,3,1,1,1,0,2026-05-13,2026-04-22,2026-04-22,,185,1,1
+36,CTE,Cambridge Technology Enterprises Limited,Computers - Software,3,1,1,1,0,2025-08-18,2025-08-12,2026-05-09,,58,1,1
+37,DANGEE,Dangee Dums Limited,,3,1,1,1,0,2025-08-26,2026-06-09,2026-04-30,,38,1,1
+38,DAVANGERE,Davangere Sugar Company Limited,,3,1,1,1,0,2025-12-01,2026-05-15,2026-05-15,,62,1,1
+39,DBEIL,Deepak Builders & Engineers India Limited,,3,1,1,1,0,2025-09-29,2025-09-29,2026-06-03,,60,1,1
+40,DICIND,DIC India Limited,Chemicals - Speciality,3,1,1,1,0,2026-02-24,2025-08-13,2026-06-02,,86,1,1
+41,DIGITIDE,Digitide Solutions Limited,,3,1,1,1,0,2025-08-01,2026-05-29,2026-06-13,,70,1,1
+42,DISHTV,Dish TV India Limited,Media & Entertainment,3,1,1,1,0,2026-05-26,2026-05-26,2026-05-26,,106,1,1
+43,DREDGECORP,Dredging Corporation of India Limited,Shipping,3,1,1,1,0,2025-08-13,2026-04-17,2026-04-20,,71,1,1
+44,DSKULKARNI,DS Kulkarni Developers Limited,Construction,3,1,1,1,0,2025-10-01,2026-06-09,2026-06-09,,34,1,1
+45,DUCON,Ducon Infratechnologies Limited,,3,1,1,1,0,2025-09-02,2025-11-14,2026-03-16,,60,1,1
+46,EASTSILK,Eastern Silk Industries Limited,Textile Products,3,1,1,1,0,2025-08-14,2025-11-11,2026-06-17,,52,1,1
+47,EMAMIPAP,Emami Paper Mills Limited,,3,1,1,1,0,2025-09-05,2026-03-03,2026-05-14,,65,1,1
+48,EMKAY,Emkay Global Financial Services Limited,Finance,3,1,1,1,0,2025-08-11,2025-10-01,2026-05-15,,108,1,1
+49,EPACK,EPACK Durable Limited,,3,1,1,1,0,2026-05-20,2026-03-12,2026-04-23,,108,1,1
+50,FAZE3Q,Faze Three Limited,,3,1,1,1,0,2025-09-06,2025-09-06,2026-06-10,,41,1,1
+51,FILATFASH,Filatex Fashions Limited,,3,1,1,1,0,2025-11-14,2025-10-23,2025-12-03,,74,1,1
+52,FLEXITUFF,Flexituff Ventures International Limited,Packaging,3,1,1,0,1,2025-08-14,2026-03-24,,2025-11-11,48,1,1
+53,FOCUS,Focus Lighting and Fixtures Limited,,3,1,1,1,0,2025-08-05,2026-06-03,2026-06-03,,69,1,1
+54,GANDHAR,Gandhar Oil Refinery (India) Limited,,3,1,1,1,0,2026-05-26,2025-12-08,2026-05-12,,86,1,1
+55,GKSL,Gujarat Kidney And Super Speciality Limited,,3,1,1,0,1,2026-03-19,2026-03-03,,2026-03-13,38,1,1
+56,GLENMARK,Glenmark Pharmaceuticals Limited,Pharmaceuticals,3,1,1,1,0,2025-08-14,2026-05-29,2026-05-29,,95,1,1
+57,GRASIM,Grasim Industries Limited,Cement And Cement Products,3,1,1,1,0,2025-08-28,2025-08-08,2026-06-17,,125,1,1
+58,GRWRHITECH,Garware Hi-Tech Films Limited,,3,1,1,1,0,2025-09-26,2026-05-15,2026-05-15,,112,1,1
+59,GTLINFRA,GTL Infrastructure Limited,Telecommunication - Equipment,3,1,1,1,0,2025-09-03,2025-08-07,2026-05-12,,35,1,1
+60,GULFPETRO,GP Petroleums Limited,,3,1,1,1,0,2026-05-27,2025-09-30,2026-05-27,,60,1,1
+61,GULPOLY,Gulshan Polyols Limited,,3,1,1,1,0,2025-08-07,2026-04-15,2026-05-06,,80,1,1
+62,HARDWYN,Hardwyn India Limited,,3,1,1,1,0,2025-10-15,2026-03-02,2026-06-06,,61,1,1
+63,HCG,Healthcare Global Enterprises Limited,,3,1,1,1,0,2025-08-01,2025-09-02,2026-05-25,,92,1,1
+64,HEG,HEG Limited,Electrodes,3,1,1,1,0,2026-04-29,2025-11-10,2026-06-21,,158,1,1
+65,HGINFRA,H.G. Infra Engineering Limited,,3,1,1,1,0,2026-05-28,2026-05-28,2026-06-18,,111,1,1
+66,HINDWAREAP,Hindware Home Innovation Limited,,3,1,1,1,0,2026-05-19,2026-06-29,2026-06-19,,95,1,1
+67,HINDZINC,Hindustan Zinc Limited,Metals,3,1,1,1,0,2026-04-24,2026-05-04,2026-04-30,,169,1,1
+68,HOMEFIRST,Home First Finance Company India Limited,,3,1,1,1,0,2026-05-06,2025-11-04,2026-06-25,,132,1,1
+69,HONASA,Honasa Consumer Limited,,3,1,1,1,0,2025-09-26,2025-07-17,2026-05-09,,80,1,1
+70,HPIL,Hindprakash Industries Limited,,3,1,1,1,0,2025-09-01,2026-06-30,2026-06-30,,34,1,1
+71,IIFL,IIFL Finance Limited,,3,1,1,1,0,2026-04-29,2026-06-27,2026-06-02,,139,1,1
+72,INDOUS,Indo Us Biotech Limited,,3,1,1,1,0,2025-10-14,2025-10-14,2026-04-22,,60,1,1
+73,INDUSTOWER,Indus Towers Limited,,3,1,1,1,0,2025-07-30,2026-05-22,2026-05-01,,76,1,1
+74,IRCTC,Indian Railway Catering And Tourism Corporation Limited,,3,1,1,1,0,2025-09-01,2026-06-15,2026-06-23,,97,1,1
+75,IRMENERGY,IRM Energy Limited,,3,1,1,1,0,2026-05-08,2025-10-18,2026-05-05,,66,1,1
+76,IVC,IL&FS Investment Managers Limited,Finance,3,1,1,0,1,2025-07-18,2025-08-14,,2025-09-19,56,1,1
+77,JAINREC,Jain Resource Recycling Limited,,3,1,1,1,0,2026-05-18,2026-05-18,2026-05-18,,60,1,1
+78,JBCHEPHARM,JB Chemicals & Pharmaceuticals Limited,Pharmaceuticals,3,1,1,1,0,2025-08-06,2026-01-29,2026-06-12,,111,1,1
+79,JINDALPOLY,Jindal Poly Films Limited,Packaging,3,1,1,0,1,2026-03-11,2025-11-10,,2026-05-30,63,1,1
+80,JIOFIN,Jio Financial Services Limited,,3,1,1,1,0,2025-07-17,2026-06-24,2026-04-20,,94,1,1
+81,JKPAPER,JK Paper Limited,Paper And Paper Products,3,1,1,1,0,2026-05-09,2026-06-26,2026-06-26,,62,1,1
+82,JUNIPER,Juniper Hotels Limited,,3,1,1,1,0,2026-05-21,2026-06-29,2026-06-29,,86,1,1
+83,JUSTDIAL,Just Dial Limited,,3,1,1,1,0,2025-09-02,2026-04-13,2026-05-05,,37,1,1
+84,KAJARIACER,Kajaria Ceramics Limited,Ceramics And Sanitaryware,3,1,1,1,0,2025-09-11,2026-01-30,2026-05-23,,129,1,1
+85,KAYNES,Kaynes Technology India Limited,,3,1,1,1,0,2025-07-30,2026-03-10,2026-05-29,,98,1,1
+86,KRITIKA,Kritika Wires Limited,,3,1,1,1,0,2025-07-30,2026-01-20,2025-07-30,,44,1,1
+87,KTKBANK,The Karnataka Bank Limited,Banks,3,1,1,1,0,2026-06-01,2025-09-12,2026-05-16,,147,1,1
+88,LAXMICOT,Laxmi Cotspin Limited,,3,1,1,1,0,2026-05-26,2026-06-01,2026-06-01,,53,1,1
+89,LICI,Life Insurance Corporation Of India,,3,1,1,1,0,2025-08-28,2025-07-11,2026-06-25,,162,1,1
+90,LUMAXIND,Lumax Industries Limited,Auto Ancillaries,3,1,1,1,0,2026-05-28,2026-05-28,2026-02-10,,70,1,1
+91,MAHLOG,Mahindra Logistics Limited,,3,1,1,1,0,2026-06-30,2025-08-26,2026-05-19,,105,1,1
+92,MCLOUD,Magellanic Cloud Limited,,3,1,1,1,0,2025-08-29,2025-10-15,2026-06-04,,97,1,1
+93,MEIL,Mangal Electrical Industries Limited,,3,1,1,1,0,2026-05-13,2025-08-28,2026-06-04,,53,1,1
+94,MELSTAR,Melstar Information Technologies Limited,Computers - Software,3,1,1,1,0,2025-09-08,2026-02-14,2026-04-22,,44,1,1
+95,MHRIL,Mahindra Holidays & Resorts India Limited,Hotels,3,1,1,1,0,2026-06-30,2025-10-31,2026-05-05,,89,1,1
+96,MIRZAINT,Mirza International Limited,Leather And Leather Products,3,1,1,1,0,2025-07-28,2026-04-27,2026-04-27,,46,1,1
+97,MPSLTD,MPS Limited,Printing And Publishing,3,1,1,1,0,2026-05-15,2026-05-29,2026-05-05,,80,1,1
+98,MSUMI,Motherson Sumi Wiring India Limited,,3,1,1,1,0,2026-07-01,2025-07-02,2026-04-28,,90,1,1
+99,NACLIND,NACL Industries Limited,,3,1,1,1,0,2025-08-08,2025-12-01,2026-05-04,,106,1,1
+100,NAUKRI,Info Edge (India) Limited,Computers - Software,3,1,1,1,0,2026-05-22,2025-08-19,2025-08-19,,180,1,1
+101,NFL,National Fertilizers Limited,Fertilisers,3,1,1,1,0,2025-09-05,2026-03-01,2025-11-05,,75,1,1
+102,NHPC,NHPC Limited,Power,3,1,1,1,0,2025-09-15,2025-11-06,2026-05-29,,107,1,1
+103,NIBE,NIBE Limited,,3,1,1,1,0,2025-08-12,2025-11-12,2026-06-25,,94,1,1
+104,NITCO,Nitco Limited,Ceramics And Sanitaryware,3,1,1,1,0,2025-07-02,2026-01-13,2026-06-11,,72,1,1
+105,NOVAAGRI,Nova Agritech Limited,,3,1,1,1,0,2026-05-30,2025-09-08,2026-05-15,,50,1,1
+106,NRL,Nupur Recyclers Limited,,3,1,1,1,0,2025-08-12,2025-09-04,2026-06-27,,63,1,1
+107,NURECA,Nureca Limited,,3,1,1,1,0,2026-05-30,2025-10-11,2026-05-29,,69,1,1
+108,OMFREIGHT,Om Freight Forwarders Limited,,3,1,1,1,0,2026-05-27,2025-10-09,2026-05-30,,45,1,1
+109,ONELIFECAP,Onelife Capital Advisors Limited,Finance,3,1,1,1,0,2025-09-06,2025-08-07,2026-06-22,,67,1,1
+110,ORBTEXP,Orbit Exports Limited,,3,1,1,1,0,2025-08-28,2026-04-13,2026-06-22,,47,1,1
+111,OSWALAGRO,Oswal Agro Mills Limited,-,3,1,1,1,0,2025-08-07,2025-07-08,2026-05-11,,69,1,1
+112,OSWALGREEN,Oswal Greentech Limited,,3,1,1,1,0,2025-08-07,2025-11-05,2026-05-06,,72,1,1
+113,PFC,Power Finance Corporation Limited,Financial Institution,3,1,1,1,0,2025-09-18,2026-04-30,2026-04-17,,90,1,1
+114,POWERGRID,Power Grid Corporation of India Limited,Power,3,1,1,1,0,2025-09-10,2026-06-10,2026-06-11,,140,1,1
+115,PREMIERENE,Premier Energies Limited,,3,1,1,1,0,2025-08-12,2026-05-15,2026-05-16,,97,1,1
+116,PVP,PVP Ventures Limited,Construction,3,1,1,1,0,2025-08-20,2025-12-08,2025-10-25,,56,0,1
+117,QUESS,Quess Corp Limited,,3,1,1,1,0,2025-08-30,2025-10-10,2026-05-05,,104,0,1
+118,RACE,Race Eco Chain Limited,,3,1,1,1,0,2025-08-12,2026-05-30,2026-05-12,,50,0,1
+119,RAJOOENG,Rajoo Engineers Limited,,3,1,1,1,0,2025-09-28,2025-09-28,2026-04-28,,67,0,1
+120,RAYMONDLSL,Raymond Lifestyle Limited,,3,1,1,1,0,2025-08-04,2025-10-29,2026-05-06,,88,0,1
+121,RESPONIND,Responsive Industries Limited,Plastic And Plastic Products,3,1,1,1,0,2026-05-26,2026-01-13,2026-05-26,,68,0,1
+122,ROLLT,Rollatainers Limited,,3,1,1,1,0,2026-05-28,2026-05-28,2026-07-01,,55,0,1
+123,ROUTE,ROUTE MOBILE LIMITED,,3,1,1,1,0,2026-05-07,2025-07-18,2026-07-01,,117,0,1
+124,RPPINFRA,R.P.P. Infra Projects Limited,Construction,3,1,1,1,0,2025-09-08,2025-12-06,2026-01-14,,82,0,1
+125,RPPL,Rajshree Polypack Limited,,3,1,1,1,0,2025-08-13,2025-11-17,2026-05-31,,88,0,1
+126,SALSTEEL,S.A.L. Steel Limited,Steel And Steel Products,3,1,1,1,0,2026-05-29,2026-02-14,2026-05-16,,96,0,1
+127,SANDHAR,Sandhar Technologies Limited,,3,1,1,1,0,2025-09-19,2025-08-07,2026-06-15,,77,0,1
+128,SAURASHCEM,Saurashtra Cement Limited,,3,1,1,1,0,2025-08-29,2025-07-25,2026-04-23,,61,0,1
+129,SCHNEIDER,Schneider Electric Infrastructure Limited,Electrical Equipment,3,1,1,1,0,2026-05-28,2025-08-28,2026-06-16,,104,0,1
+130,SETCO,Setco Automotive Limited,,3,0,1,1,1,,2026-05-28,2026-05-28,2026-06-01,55,0,1
+131,SHALPAINTS,Shalimar Paints Limited,Paints,3,1,1,1,0,2025-08-11,2026-05-30,2026-05-30,,62,0,1
+132,SHEMAROO,Shemaroo Entertainment Limited,,3,1,1,1,0,2026-01-30,2025-11-05,2026-05-16,,64,0,1
+133,SHRINGARMS,Shringar House of Mangalsutra Limited,,3,1,1,1,0,2025-10-07,2025-09-17,2026-06-11,,60,0,1
+134,SILVERTUC,Silver Touch Technologies Limited,,3,1,1,1,0,2026-04-30,2026-04-30,2026-04-30,,74,0,1
+135,SKFINDIA,SKF India Limited,Bearings,3,1,1,1,0,2025-08-06,2025-09-30,2026-01-12,,112,0,1
+136,SKYGOLD,SKY GOLD AND DIAMONDS LIMITED,,3,1,1,1,0,2025-09-27,2025-09-27,2025-09-27,,107,0,1
+137,SMLMAH,SML Mahindra Limited,,3,1,1,1,0,2025-08-02,2025-08-02,2026-06-13,,137,0,1
+138,SSWL,Steel Strips Wheels Limited,Auto Ancillaries,3,1,1,1,0,2025-08-01,2025-08-01,2026-06-03,,100,0,1
+139,STARHEALTH,Star Health and Allied Insurance Company Limited,,3,1,1,1,0,2026-01-28,2026-02-11,2026-06-26,,139,0,1
+140,STCINDIA,The State Trading Corporation of India Limited,Trading,3,1,1,0,1,2025-10-14,2026-03-10,,2025-07-11,61,0,1
+141,STOVEKRAFT,Stove Kraft Limited,,3,1,1,1,0,2026-05-12,2026-05-12,2026-05-12,,61,0,1
+142,SURAKSHA,Suraksha Diagnostic Limited,,3,1,1,1,0,2026-01-16,2026-03-02,2026-06-09,,57,0,1
+143,SURANASOL,Surana Solar Limited,,3,1,1,1,0,2025-09-03,2025-10-10,2026-05-30,,43,0,1
+144,SWANDEF,Swan Defence and Heavy Industries Limited,,3,1,1,1,0,2026-05-27,2025-12-17,2026-05-27,,74,0,1
+145,SWARAJENG,Swaraj Engines Limited,Diesel Engines,3,1,1,1,0,2025-07-15,2026-04-13,2026-04-13,,56,0,1
+146,TAKE,Take Solutions Limited,Computers - Software,3,1,1,1,0,2025-10-09,2025-12-31,2025-12-31,,65,0,1
+147,TATACOMM,Tata Communications Limited,Telecommunication - Services,3,1,1,1,0,2026-04-22,2026-02-10,2026-06-30,,93,0,1
+148,TI,Tilaknagar Industries Limited,Brew/Distilleries,3,1,1,1,0,2025-08-11,2026-05-29,2026-04-21,,130,0,1
+149,TICL,Twamev Construction and Infrastructure Limited,,3,1,1,1,0,2025-09-26,2025-11-15,2026-07-01,,109,0,1
+150,TREEHOUSE,Tree House Education & Accessories Limited,Miscellaneous,3,1,1,1,0,2025-09-08,2025-11-11,2026-05-06,,39,0,1
+151,TRIDENT,Trident Limited,Textile Products,3,1,1,1,0,2026-05-19,2026-05-25,2026-05-25,,96,0,1
+152,UNITECH,Unitech Limited,Construction,3,1,1,1,0,2025-09-02,2026-02-17,2026-04-24,,35,0,1
+153,VALIANTLAB,Valiant Laboratories Limited,,3,1,1,1,0,2025-08-08,2025-07-09,2026-04-23,,61,0,1
+154,VEEDOL,Veedol Corporation Limited,,3,1,1,1,0,2025-12-06,2025-08-13,2026-05-05,,74,0,1
+155,VIDYAWIRES,Vidya Wires Limited,,3,1,1,1,0,2025-12-24,2026-05-12,2026-05-12,,43,0,1
+156,VIJAYA,Vijaya Diagnostic Centre Limited,,3,1,1,1,0,2025-07-28,2026-02-13,2026-06-09,,95,0,1
+157,VINEETLAB,Vineet Laboratories Limited,,3,1,1,1,0,2025-11-08,2025-11-08,2026-05-30,,66,0,1
+158,VIPIND,VIP Industries Limited,Plastic And Plastic Products,3,1,1,1,0,2026-05-15,2026-03-10,2026-05-04,,89,0,1
+159,VISESHINFO,Visesh Infotecnics Limited,Computers - Hardware,3,1,1,1,0,2025-10-06,2025-10-06,2025-12-31,,30,0,1
+160,VPRPL,Vishnu Prakash R Punglia Limited,,3,1,1,1,0,2026-05-30,2025-10-31,2026-06-30,,63,0,1
+161,WAAREEENER,Waaree Energies Limited,,3,1,1,1,0,2025-07-28,2026-03-20,2026-06-20,,204,0,1
+162,WINDMACHIN,Windsor Machines Limited,Engineering,3,1,1,1,0,2026-05-09,2026-05-09,2026-05-10,,75,0,1
+163,ZAGGLE,Zaggle Prepaid Ocean Services Limited,,3,1,1,1,0,2025-08-14,2026-04-03,2026-05-23,,160,0,1
+164,5PAISA,5Paisa Capital Limited,,2,1,1,0,0,2026-04-30,2025-07-08,,,121,0,1
+165,A2ZINFRA,A2Z Infra Engineering Limited,,2,1,0,0,1,2025-09-29,,,2026-05-28,35,0,1
+166,AAVAS,Aavas Financiers Limited,,2,1,0,1,0,2026-01-15,,2026-04-20,,104,0,1
+167,ABCOTS,A B Cotspin India Limited,,2,1,1,0,0,2025-09-03,2025-07-08,,,57,0,1
+168,ABDL,Allied Blenders and Distillers Limited,,2,0,1,1,0,,2025-09-26,2026-06-18,,137,0,1
+169,ABFRL,Aditya Birla Fashion and Retail Limited,,2,1,1,0,0,2026-05-25,2025-11-04,,,76,0,1
+170,ABREL,Aditya Birla Real Estate Limited,,2,1,1,0,0,2026-05-06,2026-01-28,,,95,0,1
+171,ACCURACY,Accuracy Shipping Limited,,2,1,0,1,0,2025-09-02,,2026-06-12,,41,0,1
+172,ADANIENSOL,Adani Energy Solutions Limited,,2,1,1,0,0,2026-04-24,2026-05-30,,,102,0,1
+173,ADFFOODS,ADF Foods Limited,Food And Food Processing,2,1,1,0,0,2026-05-13,2025-12-10,,,73,0,1
+174,AEROFLEX,Aeroflex Industries Limited,,2,1,1,0,0,2026-01-28,2025-07-15,,,81,0,1
+175,AGI,AGI Greenpac Limited,,2,1,0,1,0,2026-04-27,,2026-04-21,,96,0,1
+176,AGROPHOS,Agro Phos India Limited,,2,1,0,1,0,2025-08-14,,2026-06-11,,64,0,1
+177,AIAENG,AIA Engineering Limited,Electrical Equipment,2,1,0,1,0,2025-09-15,,2026-04-20,,64,0,1
+178,AJRINFRA,AJR INFRA AND TOLLING LIMITED,,2,0,1,0,1,,2026-06-18,,2025-08-11,22,0,1
+179,AKASH,Akash Infra Projects Limited,,2,1,1,0,0,2025-08-14,2025-07-25,,,52,0,1
+180,AKI,AKI India Limited,,2,1,0,1,0,2026-05-15,,2026-01-09,,53,0,1
+181,AKSHAR,Akshar Spintex Limited,,2,1,1,0,0,2026-02-13,2025-10-18,,,44,0,1
+182,AKSHARCHEM,AksharChem India Limited,,2,1,0,1,0,2025-07-25,,2026-05-13,,51,0,1
+183,ALBERTDAVD,Albert David Limited,,2,1,0,1,0,2026-05-12,,2026-05-30,,62,0,1
+184,ALGOQUANT,Algoquant Fintech Limited,,2,1,1,0,0,2026-05-29,2026-01-30,,,18,0,1
+185,ALKALI,Alkali Metals Limited,Chemicals - Inorganic,2,1,0,1,0,2025-07-11,,2026-06-09,,34,0,1
+186,ALKEM,Alkem Laboratories Limited,,2,0,1,1,0,,2026-04-24,2026-04-24,,135,0,1
+187,ALLCARGO,Allcargo Logistics Limited,Travel And Transport,2,1,1,0,0,2025-11-15,2025-11-15,,,119,0,1
+188,ALLDIGI,Alldigi Tech Limited,,2,0,1,1,0,,2026-05-26,2026-05-26,,65,0,1
+189,ALOKINDS,Alok Industries Limited,,2,1,1,0,0,2025-09-04,2026-04-28,,,46,0,1
+190,AMBER,Amber Enterprises India Limited,,2,1,0,1,0,2025-07-12,,2026-06-19,,133,0,1
+191,ANUHPHR,Anuh Pharma Limited,,2,1,1,0,0,2026-05-20,2026-02-06,,,74,0,1
+192,APCL,Anjani Portland Cement Limited,,2,1,1,0,0,2025-08-12,2025-07-15,,,42,0,1
+193,APLAPOLLO,APL Apollo Tubes Limited,Steel And Steel Products,2,1,0,1,0,2025-08-11,,2026-06-08,,68,0,1
+194,APOLSINHOT,Apollo Sindoori Hotels Limited,,2,1,1,0,0,2025-08-13,2026-03-20,,,38,0,1
+195,ARCHIES,Archies Limited,Printing And Publishing,2,0,1,1,0,,2026-02-26,2026-06-02,,66,0,1
+196,ARIHANTCAP,Arihant Capital Markets Limited,,2,0,1,1,0,,2026-05-21,2026-05-21,,69,0,1
+197,ARIS,Arisinfra Solutions Limited,,2,1,1,0,0,2025-07-13,2025-07-13,,,149,0,1
+198,ARVIND,Arvind Limited,Textile Products,2,1,1,0,0,2025-07-29,2025-12-30,,,107,0,1
+199,ASAHIINDIA,Asahi India Glass Limited,Auto Ancillaries,2,1,1,0,0,2025-07-30,2025-07-30,,,62,0,1
+200,ASAHISONG,Asahi Songwon Colors Limited,Dyes And Pigments,2,1,1,0,0,2025-07-29,2026-04-09,,,63,0,1
+201,ASAL,Automotive Stampings and Assemblies Limited,Auto Ancillaries,2,1,1,0,0,2026-04-25,2025-08-13,,,38,0,1
+202,ASIL,Amit Spinning Industries Limited,Textiles - Cotton,2,1,0,0,1,2025-08-15,,,2026-02-14,26,0,1
+203,ASTEC,Astec LifeSciences Limited,Pesticides And Agrochemicals,2,0,1,1,0,,2026-01-30,2026-06-05,,91,0,1
+204,ASTRAMICRO,Astra Microwave Products Limited,Telecommunication - Equipment,2,1,1,0,0,2025-08-13,2026-02-12,,,92,0,1
+205,ASTRAZEN,AstraZeneca Pharma India Limited,Pharmaceuticals,2,0,1,1,0,,2025-11-10,2026-06-13,,77,0,1
+206,AUTOIND,Autoline Industries Limited,Auto Ancillaries,2,1,1,0,0,2026-05-15,2026-03-18,,,80,0,1
+207,AVANTIFEED,Avanti Feeds Limited,,2,0,1,1,0,,2026-05-28,2026-06-13,,64,0,1
+208,AYE,Aye Finance Limited,,2,1,1,0,0,2026-04-27,2026-05-06,,,49,0,1
+209,AZAD,Azad Engineering Limited,,2,1,1,0,0,2025-09-08,2025-09-08,,,78,0,1
+210,BAJEL,Bajel Projects Limited,,2,1,1,0,0,2025-08-18,2026-05-27,,,70,0,1
+211,BALAXI,BALAXI PHARMACEUTICALS LIMITED,,2,1,1,0,0,2026-05-28,2026-01-28,,,54,0,1
+212,BALKRISHNA,Balkrishna Paper Mills Limited,,2,1,1,0,0,2025-08-13,2026-05-22,,,48,0,1
+213,BALLARPUR,Ballarpur Industries Limited,Paper And Paper Products,2,1,1,0,0,2025-11-11,2025-12-31,,,72,0,1
+214,BALPHARMA,Bal Pharma Limited,Pharmaceuticals,2,0,1,1,0,,2026-06-24,2026-05-12,,38,0,1
+215,BALRAMCHIN,Balrampur Chini Mills Limited,Sugar,2,1,0,1,0,2026-05-15,,2026-04-28,,107,0,1
+216,BALUFORGE,Balu Forge Industries Limited,,2,1,1,0,0,2025-09-04,2026-05-25,,,78,0,1
+217,BANARISUG,Bannari Amman Sugars Limited,Sugar,2,1,0,1,0,2026-05-27,,2026-05-21,,41,0,1
+218,BANCOINDIA,Banco Products (I) Limited,Auto Ancillaries,2,1,1,0,0,2025-08-08,2026-04-16,,,62,0,1
+219,BANDHANBNK,Bandhan Bank Limited,,2,0,1,1,0,,2026-06-29,2026-06-29,,134,0,1
+220,BANG,Bang Overseas Limited,Textile Products,2,1,1,0,0,2026-05-29,2025-10-18,,,39,0,1
+221,BANKA,Banka BioLoo Limited,,2,1,1,0,0,2025-09-11,2026-04-17,,,62,0,1
+222,BANSWRAS,Banswara Syntex Limited,Textiles - Synthetic,2,0,1,1,0,,2026-05-19,2026-05-19,,66,0,1
+223,BATAINDIA,Bata India Limited,Leather And Leather Products,2,1,0,1,0,2025-08-11,,2026-04-28,,83,0,1
+224,BESTAGRO,Best Agrolife Limited,,2,1,1,0,0,2025-08-14,2025-10-29,,,99,0,1
+225,BHAGCHEM,Bhagiradha Chemicals & Industries Limited,,2,1,1,0,0,2026-05-19,2026-02-10,,,74,0,1
+226,BIGBLOC,Bigbloc Construction Limited,,2,1,1,0,0,2026-04-21,2025-07-18,,,79,0,1
+227,BIOCON,Biocon Limited,Pharmaceuticals,2,1,1,0,0,2026-05-07,2025-07-09,,,193,0,1
+228,BIOFILCHEM,Biofil Chemicals & Pharmaceuticals Limited,-,2,1,1,0,0,2025-08-12,2025-09-29,,,40,0,1
+229,BLAL,BEML Land Assets Limited,,2,1,1,0,0,2026-06-02,2026-04-16,,,29,0,1
+230,BLS,BLS International Services Limited,,2,1,0,1,0,2026-05-19,,2026-06-01,,98,0,1
+231,BLUESTONE,BlueStone Jewellery and Lifestyle Limited,,2,1,1,0,0,2026-01-14,2026-06-30,,,106,0,1
+232,BMWVENTLTD,BMW Ventures Limited,,2,1,1,0,0,2026-05-27,2026-05-27,,,42,0,1
+233,BORANA,Borana Weaves Limited,,2,1,0,1,0,2026-05-25,,2026-06-01,,50,0,1
+234,BOROLTD,Borosil Limited,,2,1,1,0,0,2026-05-19,2025-10-01,,,60,0,1
+235,BORORENEW,BOROSIL RENEWABLES LIMITED,,2,1,1,0,0,2026-05-12,2025-08-01,,,106,0,1
+236,BOROSCI,Borosil Scientific Limited,,2,0,1,1,0,,2026-05-20,2026-05-20,,40,0,1
+237,BRIGADE,Brigade Enterprises Limited,Construction,2,1,1,0,0,2026-01-30,2025-08-22,,,164,0,1
+238,BRNL,Bharat Road Network Limited,,2,1,0,1,0,2025-08-12,,2026-04-19,,35,0,1
+239,BVCL,Barak Valley Cements Limited,Cement And Cement Products,2,1,1,0,0,2025-08-14,2025-07-09,,,53,0,1
+240,CARBORUNIV,Carborundum Universal Limited,Abrasives,2,0,1,1,0,,2025-08-07,2026-06-26,,74,0,1
+241,CEINSYS,Ceinsys Tech Limited,,2,1,0,1,0,2026-03-18,,2026-04-30,,32,0,1
+242,CENTUM,Centum Electronics Limited,Electronics - Industrial,2,1,0,1,0,2026-05-15,,2025-08-05,,100,0,1
+243,CEWATER,Concord Enviro Systems Limited,,2,1,1,0,0,2025-08-08,2025-08-08,,,91,0,1
+244,CGCL,Capri Global Capital Limited,,2,1,1,0,0,2025-09-26,2025-08-01,,,167,0,1
+245,CHAMBLFERT,Chambal Fertilizers & Chemicals Limited,Fertilisers,2,0,1,1,0,,2025-11-04,2026-05-23,,134,0,1
+246,CHOLAHLDNG,Cholamandalam Financial Holdings Limited,,2,0,1,1,0,,2026-05-08,2026-06-13,,58,0,1
+247,CINELINE,Cineline India Limited,,2,1,1,0,0,2025-09-26,2025-10-09,,,43,0,1
+248,CIPLA,Cipla Limited,Pharmaceuticals,2,1,1,0,0,2026-05-13,2026-01-23,,,117,0,1
+249,COHANCE,Cohance Lifesciences Limited,,2,0,1,1,0,,2026-06-17,2026-04-27,,95,0,1
+250,CORONA,CORONA Remedies Limited,,2,1,1,0,0,2026-05-11,2026-05-11,,,59,0,1
+251,CSLFINANCE,CSL Finance Limited,,2,1,0,1,0,2025-08-12,,2026-05-05,,61,0,1
+252,CURAA,Cura Technologies Limited,,2,1,1,0,0,2026-03-03,2025-12-04,,,37,0,1
+253,DABUR,Dabur India Limited,Personal Care,2,1,0,1,0,2025-08-08,,2026-04-28,,116,0,1
+254,DBOL,Dhampur Bio Organics Limited,,2,1,0,1,0,2025-07-28,,2026-05-07,,80,0,1
+255,DBSTOCKBRO,DB (International) Stock Brokers Limited,Finance,2,1,1,0,0,2025-09-04,2026-04-21,,,31,0,1
+256,DCM,DCM  Limited,Textiles - Cotton,2,1,1,0,0,2025-08-14,2025-12-12,,,53,0,1
+257,DCXINDIA,DCX Systems Limited,,2,1,1,0,0,2025-12-05,2025-08-18,,,67,0,1
+258,DEEDEV,DEE Development Engineers Limited,,2,1,1,0,0,2026-02-11,2026-01-06,,,109,0,1
+259,DEEPINDS,Deep Industries Limited,,2,1,1,0,0,2025-08-04,2025-08-04,,,96,0,1
+260,DELHIVERY,Delhivery Limited,,2,0,1,1,0,,2025-11-05,2026-05-16,,131,0,1
+261,DELPHIFX,DELPHI WORLD MONEY LIMITED,,2,1,0,1,0,2025-08-12,,2026-06-03,,70,0,1
+262,DGCONTENT,Digicontent Limited,,2,0,1,1,0,,2026-05-19,2026-05-19,,33,0,1
+263,DHUNINV,Dhunseri Investments Limited,Finance,2,1,1,0,0,2025-08-14,2025-12-19,,,39,0,1
+264,DIACABS,Diamond Power Infrastructure Limited,,2,0,1,1,0,,2026-06-10,2026-06-06,,100,0,1
+265,DIGISPICE,DiGiSPICE Technologies Limited,,2,1,0,1,0,2025-09-29,,2025-08-07,,70,0,1
+266,DIGJAMLMTD,Digjam Limited,,2,1,1,0,0,2025-08-14,2025-08-04,,,55,0,1
+267,DNAMEDIA,Diligent Media Corporation Limited,,2,0,1,1,0,,2025-08-26,2026-06-05,,55,0,1
+268,DOLATALGO,Dolat Algotech Limited,,2,1,1,0,0,2025-08-13,2025-07-08,,,45,0,1
+269,DONEAR,Donear Industries Limited,Textile Products,2,1,1,0,0,2025-08-14,2025-08-14,,,67,0,1
+270,DPWIRES,D P Wires Limited,,2,1,0,0,1,2026-03-11,,,2025-08-12,33,0,1
+271,EIFFL,Euro India Fresh Foods Limited,,2,1,1,0,0,2025-08-27,2025-07-09,,,78,0,1
+272,ELECTCAST,Electrosteel Castings Limited,Castings/Forgings,2,0,1,1,0,,2026-06-11,2026-06-11,,72,0,1
+273,ELGIEQUIP,Elgi Equipments Limited,Compressors / Pumps,2,1,1,0,0,2026-05-27,2025-08-12,,,87,0,1
+274,EMAMILTD,Emami Limited,Personal Care,2,1,1,0,0,2025-08-29,2025-07-31,,,75,0,1
+275,EMMBI,Emmbi Industries Limited,Packaging,2,0,1,1,0,,2025-10-04,2026-06-30,,44,0,1
+276,EMMVEE,Emmvee Photovoltaic Power Limited,,2,0,1,1,0,,2025-11-18,2026-06-17,,64,0,1
+277,EMSLIMITED,EMS Limited,,2,1,1,0,0,2025-08-12,2026-01-17,,,88,0,1
+278,ENTERO,Entero Healthcare Solutions Limited,,2,1,0,1,0,2025-09-18,,2026-06-12,,94,0,1
+279,EPACKPEB,EPack Prefab Technologies Limited,,2,0,1,1,0,,2026-01-15,2026-05-30,,72,0,1
+280,EQUITASBNK,Equitas Small Finance Bank Limited,,2,1,1,0,0,2026-05-14,2026-06-30,,,130,0,1
+281,ESSARSHPNG,Essar Shipping Limited,Shipping,2,1,1,0,0,2025-09-30,2025-08-28,,,52,0,1
+282,EUREKAFORB,Eureka Forbes Limited,,2,1,1,0,0,2026-05-19,2025-08-11,,,64,0,1
+283,EUROTEXIND,Eurotex Industries and Exports Limited,Textiles - Cotton,2,1,1,0,0,2025-08-07,2026-03-16,,,37,0,1
+284,EXCELSOFT,Excelsoft Technologies Limited,,2,0,1,1,0,,2026-02-07,2026-06-01,,56,0,1
+285,EXICOM,Exicom Tele-Systems Limited,,2,1,0,1,0,2025-08-11,,2026-06-26,,82,0,1
+286,EXXARO,Exxaro Tiles Limited,,2,1,1,0,0,2026-05-05,2025-09-06,,,40,0,1
+287,FEDDERELEC,Fedders Electric and Engineering Limited,,2,1,1,0,0,2025-08-13,2025-12-12,,,30,0,1
+288,FEDERALBNK,The Federal Bank  Limited,Banks,2,1,1,0,0,2026-01-15,2026-04-29,,,258,0,1
+289,FEDFINA,Fedbank Financial Services Limited,,2,0,1,1,0,,2025-07-28,2026-05-14,,169,0,1
+290,FIBERWEB,Fiberweb (India) Limited,,2,0,1,1,0,,2026-01-30,2026-04-30,,53,0,1
+291,FIEMIND,Fiem Industries Limited,Auto Ancillaries,2,1,0,1,0,2026-05-30,,2026-05-30,,57,0,1
+292,FINCABLES,Finolex Cables Limited,Cables - Power,2,0,1,1,0,,2025-11-14,2026-05-21,,69,0,1
+293,FINOPB,Fino Payments Bank Limited,,2,1,1,0,0,2025-07-30,2025-08-20,,,141,0,1
+294,FIRSTCRY,Brainbees Solutions Limited,,2,1,1,0,0,2025-09-19,2025-12-26,,,98,0,1
+295,FRACTAL,Fractal Analytics Limited,,2,0,1,1,0,,2026-02-16,2026-04-30,,50,0,1
+296,FSL,Firstsource Solutions Limited,Computers - Software,2,0,1,1,0,,2025-08-25,2026-04-28,,122,0,1
+297,FUSION,Fusion Finance Limited,,2,1,1,0,0,2025-09-30,2025-08-17,,,143,0,1
+298,GCSL,Gretex Corporate Services Limited,,2,1,0,1,0,2026-05-07,,2026-05-07,,86,0,1
+299,GEECEE,GeeCee Ventures Limited,Chemicals - Organic,2,1,1,0,0,2025-08-06,2025-07-03,,,80,0,1
+300,GEMAROMA,Gem Aromatics Limited,,2,1,1,0,0,2026-05-21,2025-11-07,,,109,0,1
+301,GENESYS,Genesys International Corporation Limited,Computers - Software,2,1,1,0,0,2026-01-16,2026-06-01,,,73,0,1
+302,GESHIP,The Great Eastern Shipping Company Limited,Shipping,2,1,0,1,0,2025-08-01,,2026-04-24,,116,0,1
+303,GFSTEELS,Grand Foundry Limited,,2,1,1,0,0,2025-09-18,2026-01-06,,,73,0,1
+304,GICHSGFIN,GIC Housing Finance Limited,Finance - Housing,2,0,1,1,0,,2026-06-30,2026-05-15,,89,0,1
+305,GICRE,General Insurance Corporation of India,,2,0,1,1,0,,2025-11-12,2026-06-18,,82,0,1
+306,GILLETTE,Gillette India Limited,Personal Care,2,0,1,1,0,,2026-05-27,2026-06-12,,66,0,1
+307,GKENERGY,GK Energy Limited,,2,1,1,0,0,2026-05-13,2026-03-10,,,69,0,1
+308,GLOBE,GLOBE ENTERPRISES (INDIA) LIMITED,,2,1,0,1,0,2025-07-08,,2026-03-24,,44,0,1
+309,GMRAIRPORT,GMR AIRPORTS LIMITED,,2,1,0,1,0,2025-07-29,,2025-12-16,,105,0,1
+310,GOLDTECH,AION-TECH SOLUTIONS LIMITED,Computers - Software,2,1,0,1,0,2025-08-29,,2026-04-27,,82,0,1
+311,GREENLAM,Greenlam Industries Limited,,2,1,0,1,0,2025-08-01,,2026-05-30,,64,0,1
+312,GREENPLY,Greenply Industries Limited,Construction,2,1,1,0,0,2025-08-25,2025-07-29,,,102,0,1
+313,GRINFRA,G R Infraprojects Limited,,2,1,0,1,0,2026-02-06,,2025-11-10,,123,0,1
+314,GROBTEA,The Grob Tea Company Limited,,2,1,0,1,0,2026-05-13,,2026-05-13,,60,0,1
+315,GRSE,Garden Reach Shipbuilders & Engineers Limited,,2,1,0,1,0,2025-08-08,,2026-03-24,,75,0,1
+316,GSLSU,Global Surfaces Limited,,2,1,1,0,0,2025-08-05,2025-07-16,,,64,0,1
+317,GSPCROP,GSP Crop Science Limited,,2,1,1,0,0,2026-05-26,2026-05-26,,,30,0,1
+318,GSPL,Gujarat State Petronet Limited,Gas,2,1,1,0,0,2025-08-12,2025-08-12,,,74,0,1
+319,GTL,GTL Limited,Telecommunication - Services,2,1,1,0,0,2025-09-04,2025-08-06,,,35,0,1
+320,GUJRAFFIA,Gujarat Raffia Industries Limited,-,2,1,1,0,0,2025-07-15,2025-08-01,,,46,0,1
+321,GULFOILLUB,Gulf Oil Lubricants India Limited,,2,1,1,0,0,2025-08-13,2025-12-22,,,85,0,1
+322,GVPIL,GE Power India Limited,,2,1,1,0,0,2026-05-11,2026-03-13,,,67,0,1
+323,HALDER,Halder Venture Limited,,2,1,0,1,0,2026-03-26,,2026-03-26,,41,0,1
+324,HALEOSLABS,HALEOS LABS LIMITED,,2,1,0,1,0,2026-05-29,,2026-05-29,,54,0,1
+325,HERANBA,Heranba Industries Limited,,2,1,1,0,0,2025-10-16,2025-08-12,,,51,0,1
+326,HESTERBIO,Hester Biosciences Limited,,2,0,1,1,0,,2025-11-20,2026-05-12,,59,0,1
+327,HGS,Hinduja Global Solutions Limited,Computers - Software,2,1,1,0,0,2025-08-06,2025-09-03,,,89,0,1
+328,HINDPETRO,Hindustan Petroleum Corporation Limited,Refineries,2,1,1,0,0,2025-09-10,2025-07-31,,,116,0,1
+329,HIRECT,Hind Rectifiers Limited,Electronics - Industrial,2,0,1,1,0,,2025-11-04,2026-05-16,,113,0,1
+330,HISARMETAL,Hisar Metal Industries Limited,,2,1,0,1,0,2026-05-30,,2026-05-30,,57,0,1
+331,HLVLTD,HLV LIMITED,,2,1,1,0,0,2026-05-12,2025-11-14,,,32,0,1
+332,HMAAGRO,HMA Agro Industries Limited,,2,1,0,1,0,2025-08-04,,2026-06-13,,92,0,1
+333,HONAUT,Honeywell Automation India Limited,Electronics - Industrial,2,0,1,1,0,,2026-04-20,2026-04-20,,36,0,1
+334,HPAL,HP Adhesives Limited,,2,1,1,0,0,2025-08-08,2025-08-08,,,67,0,1
+335,HSCL,Himadri Speciality Chemical Limited,,2,1,1,0,0,2025-08-22,2025-07-15,,,114,0,1
+336,HUDCO,Housing & Urban Development Corporation Limited,,2,1,1,0,0,2025-09-13,2025-11-06,,,111,0,1
+337,HUHTAMAKI,Huhtamaki India Limited,,2,0,1,1,0,,2025-09-09,2026-04-27,,75,0,1
+338,IBULLSLTD,Indiabulls Limited,,2,1,1,0,0,2025-07-18,2025-10-31,,,80,0,1
+339,ICIL,Indo Count Industries Limited,Textiles - Cotton,2,0,1,1,0,,2026-02-13,2026-02-11,,79,0,1
+340,IDEA,Vodafone Idea Limited,Telecommunication - Services,2,0,1,1,0,,2025-10-03,2026-05-16,,125,0,1
+341,IEL,Indiabulls Enterprises Limited,,2,1,1,0,0,2025-07-25,2025-07-25,,,21,0,1
+342,IFGLEXPOR,IFGL Refractories Limited,,2,1,0,1,0,2025-08-27,,2026-05-07,,102,0,1
+343,IGIL,International Gemological Institute Limited,,2,0,1,1,0,,2026-06-15,2026-06-15,,77,0,1
+344,IGL,Indraprastha Gas Limited,Gas,2,1,1,0,0,2025-07-30,2026-05-18,,,48,0,1
+345,IITL,Industrial Investment Trust Limited,Construction,2,1,1,0,0,2026-05-23,2025-08-06,,,59,0,1
+346,IMAGICAA,Imagicaaworld Entertainment Limited,,2,0,1,1,0,,2026-05-15,2026-05-15,,54,0,1
+347,IMPAL,India Motor Parts and Accessories Limited,Auto Ancillaries,2,0,1,1,0,,2025-07-30,2026-05-08,,39,0,1
+348,INA,Insolation Energy Limited,,2,1,0,1,0,2026-05-25,,2026-06-30,,41,0,1
+349,INDHOTEL,The Indian Hotels Company Limited,Hotels,2,1,1,0,0,2026-05-11,2026-02-12,,,96,0,1
+350,INDIQUBE,Indiqube Spaces Limited,,2,1,1,0,0,2025-08-12,2026-02-25,,,93,0,1
+351,INDOBORAX,Indo Borax & Chemicals Limited,,2,1,1,0,0,2026-05-21,2026-02-25,,,82,0,1
+352,INDORAMA,Indo Rama Synthetics (India) Limited,Textiles - Synthetic,2,0,1,1,0,,2025-10-01,2026-05-29,,41,0,1
+353,INDOTHAI,Indo Thai Securities Limited,Finance,2,1,1,0,0,2025-09-27,2026-01-07,,,83,0,1
+354,INDUSFILA,Indus Fila Limited,Textiles - Synthetic,2,1,1,0,0,2025-09-30,2026-02-16,,,46,0,1
+355,INFOMEDIA,Infomedia Press Limited,Printing And Publishing,2,1,1,0,0,2025-07-14,2025-11-14,,,25,0,1
+356,INSECTICID,Insecticides (India) Limited,Pesticides And Agrochemicals,2,1,0,1,0,2026-05-28,,2026-05-13,,82,0,1
+357,IOB,Indian Overseas Bank,Banks,2,1,1,0,0,2025-07-02,2026-02-27,,,113,0,1
+358,IPL,India Pesticides Limited,,2,1,0,1,0,2025-08-19,,2026-06-06,,75,0,1
+359,IRCON,Ircon International Limited,,2,1,1,0,0,2025-08-06,2026-05-07,,,102,0,1
+360,IRFC,Indian Railway Finance Corporation Limited,-,2,1,1,0,0,2025-12-16,2026-06-30,,,108,0,1
+361,IRIS,IRIS RegTech Solutions Limited,,2,1,1,0,0,2026-05-15,2025-08-13,,,98,0,1
+362,ISFT,Intrasoft Technologies Limited,Computers - Software,2,1,1,0,0,2025-08-14,2026-01-14,,,43,0,1
+363,ISHANCH,Ishan Dyes and Chemicals Limited,,2,1,1,0,0,2026-03-21,2026-01-27,,,57,0,1
+364,ITI,ITI Limited,Telecommunication - Equipment,2,1,1,0,0,2025-11-13,2026-05-02,,,71,0,1
+365,J&KBANK,The Jammu & Kashmir Bank Limited,Banks,2,1,1,0,0,2025-08-27,2025-07-17,,,141,0,1
+366,JAGSNPHARM,Jagsonpal Pharmaceuticals Limited,Pharmaceuticals,2,0,1,1,0,,2025-07-08,2026-05-18,,92,0,1
+367,JAYBARMARU,Jay Bharat Maruti Limited,Auto Ancillaries,2,1,0,1,0,2026-05-19,,2026-02-06,,75,0,1
+368,JETFREIGHT,Jet Freight Logistics Limited,,2,1,0,1,0,2025-08-14,,2026-04-29,,83,0,1
+369,JINDWORLD,Jindal Worldwide Limited,Textile Products,2,1,0,0,1,2025-08-21,,,2026-02-13,53,0,1
+370,JLHL,Jupiter Life Line Hospitals Limited,,2,1,1,0,0,2026-05-15,2025-08-01,,,67,0,1
+371,JNKINDIA,JNK India Limited,,2,1,1,0,0,2026-05-20,2025-12-16,,,67,0,1
+372,JPOLYINVST,Jindal Poly Investment and Finance Company Limited,,2,0,1,1,0,,2025-09-12,2026-05-09,,36,0,1
+373,JSFB,Jana Small Finance Bank Limited,,2,1,1,0,0,2025-08-29,2025-07-14,,,101,0,1
+374,JSL,Jindal Stainless Limited,Steel And Steel Products,2,0,1,1,0,,2026-06-25,2026-06-25,,127,0,1
+375,JSLL,Jeena Sikho Lifecare Limited,,2,1,1,0,0,2025-08-14,2025-08-01,,,142,0,1
+376,JSWCEMENT,JSW Cement Limited,,2,1,1,0,0,2025-09-02,2025-08-14,,,82,0,1
+377,JTLIND,JTL INDUSTRIES LIMITED,,2,1,1,0,0,2026-05-11,2025-09-12,,,87,0,1
+378,JUBLPHARMA,Jubilant Pharmova Limited,,2,0,1,1,0,,2025-07-29,2026-05-22,,87,0,1
+379,JYOTISTRUC,Jyoti Structures Limited,Transmission Towers,2,1,0,1,0,2025-08-14,,2026-05-29,,64,0,1
+380,KABRAEXTRU,Kabra Extrusion Technik Limited,Engineering,2,0,1,1,0,,2026-04-27,2026-04-28,,53,0,1
+381,KALAMANDIR,Sai Silks (Kalamandir) Limited,,2,1,0,1,0,2025-07-25,,2026-05-06,,83,0,1
+382,KALPATARU,Kalpataru Limited,,2,1,1,0,0,2025-09-02,2025-09-02,,,92,0,1
+383,KAMOPAINTS,Kamdhenu Ventures Limited,,2,1,1,0,0,2025-08-14,2025-09-17,,,65,0,1
+384,KANSAINER,Kansai Nerolac Paints Limited,Paints,2,1,1,0,0,2026-05-06,2025-07-25,,,76,0,1
+385,KAPSTON,Kapston Services Limited,,2,1,1,0,0,2025-08-04,2026-01-27,,,48,0,1
+386,KAVDEFENCE,Kavveri Defence & Wireless Technologies Limited,,2,1,1,0,0,2025-08-29,2025-08-30,,,57,0,1
+387,KAYA,Kaya Limited,,2,1,1,0,0,2025-08-05,2026-04-03,,,56,0,1
+388,KDDL,KDDL Limited,,2,1,0,1,0,2025-09-16,,2026-06-22,,59,0,1
+389,KERNEX,Kernex Microsystems (India) Limited,Computers - Software,2,1,1,0,0,2025-08-14,2025-09-30,,,46,0,1
+390,KICL,Kalyani Investment Company Limited,Finance,2,1,1,0,0,2025-09-17,2025-10-29,,,47,0,1
+391,KIOCL,KIOCL Limited,,2,1,1,0,0,2025-11-14,2025-12-20,,,37,0,1
+392,KIRLOSIND,Kirloskar Industries Limited,Finance,2,1,1,0,0,2026-05-19,2025-08-29,,,208,0,1
+393,KITEX,Kitex Garments Limited,Textile Products,2,1,0,1,0,2026-01-16,,2026-06-06,,48,0,1
+394,KMSUGAR,K.M.Sugar Mills Limited,Sugar,2,1,1,0,0,2026-05-18,2025-08-07,,,46,0,1
+395,KOTYARK,Kotyark Industries Limited,,2,1,1,0,0,2026-01-13,2026-01-29,,,81,0,1
+396,KRBL,KRBL Limited,Food And Food Processing,2,1,1,0,0,2025-08-07,2026-02-17,,,105,0,1
+397,KRIDHANINF,Kridhan Infra Limited,,2,1,1,0,0,2025-11-06,2025-10-30,,,45,0,1
+398,KRN,KRN Heat Exchanger and Refrigeration Limited,,2,1,1,0,0,2025-08-18,2026-05-14,,,106,0,1
+399,KRSNAA,Krsnaa Diagnostics Limited,,2,1,1,0,0,2025-09-26,2026-01-15,,,97,0,1
+400,KRYSTAL,Krystal Integrated Services Limited,,2,1,1,0,0,2026-05-07,2026-01-02,,,130,0,1
+401,KSHITIJPOL,Kshitij Polyline Limited,,2,1,1,0,0,2025-09-04,2025-08-01,,,49,0,1
+402,KSL,Kalyani Steels Limited,Steel And Steel Products,2,1,1,0,0,2025-08-22,2026-05-08,,,59,0,1
+403,KSOILS,K S Oils Limited,Solvent Extraction,2,1,1,0,0,2025-08-12,2026-04-13,,,136,0,1
+404,KSR,KSR Footwear Limited,,2,0,1,1,0,,2026-07-01,2026-07-01,,16,0,1
+405,LATENTVIEW,Latent View Analytics Limited,,2,1,1,0,0,2026-05-16,2025-11-05,,,81,0,1
+406,LAXMIDENTL,Laxmi Dental Limited,,2,1,1,0,0,2026-03-26,2025-10-24,,,89,0,1
+407,LCCINFOTEC,LCC Infotech Limited,Computers - Software,2,1,1,0,0,2025-08-08,2026-03-05,,,40,0,1
+408,LEMERITE,Le Merite Exports Limited,,2,1,1,0,0,2025-12-05,2025-07-10,,,63,0,1
+409,LENSKART,Lenskart Solutions Limited,,2,1,1,0,0,2026-05-20,2025-11-29,,,64,0,1
+410,LGBBROSLTD,LG Balakrishnan & Bros Limited,Auto Ancillaries,2,1,0,1,0,2026-05-02,,2026-05-02,,57,0,1
+411,LGHL,Laxmi Goldorna House Limited,,2,1,1,0,0,2026-01-06,2025-11-15,,,47,0,1
+412,LOTUSEYE,Lotus Eye Hospital and Institute Limited,Miscellaneous,2,1,1,0,0,2026-05-26,2026-02-09,,,44,0,1
+413,LOVABLE,Lovable Lingerie Limited,Textile Products,2,1,1,0,0,2025-09-30,2025-08-14,,,28,0,1
+414,LOYALTEX,Loyal Textile Mills Limited,,2,0,1,1,0,,2025-12-29,2026-06-10,,37,0,1
+415,LT,Larsen & Toubro Limited,Engineering,2,1,1,0,0,2026-01-15,2026-05-05,,,167,0,1
+416,LTFOODS,LT Foods Limited,,2,1,0,1,0,2026-01-20,,2026-05-07,,117,0,1
+417,LTTS,L&T Technology Services Limited,,2,1,1,0,0,2026-01-15,2026-04-22,,,112,0,1
+418,LUMAXTECH,Lumax Auto Technologies Limited,Auto Ancillaries,2,1,1,0,0,2025-08-12,2025-08-07,,,114,0,1
+419,LUXIND,Lux Industries Limited,,2,1,0,1,0,2026-05-21,,2026-06-27,,58,0,1
+420,M&M,Mahindra & Mahindra Limited,Automobiles - 4 Wheelers,2,1,1,0,0,2025-08-01,2025-07-11,,,254,0,1
+421,MAGADSUGAR,Magadh Sugar & Energy Limited,,2,0,1,1,0,,2025-08-05,2026-06-08,,59,0,1
+422,MAHABANK,Bank of Maharashtra,Banks,2,1,1,0,0,2025-12-26,2025-10-17,,,98,0,1
+423,MAHAPEXLTD,Maha Rashtra Apex Corporation Limited,-,2,0,1,1,0,,2026-05-26,2026-05-26,,37,0,1
+424,MAHEPC,Mahindra EPC Irrigation Limited,,2,1,1,0,0,2026-01-16,2026-04-21,,,80,0,1
+425,MAHSEAMLES,Maharashtra Seamless Limited,Steel And Steel Products,2,1,0,1,0,2025-07-30,,2026-06-30,,70,0,1
+426,MAITHANALL,Maithan Alloys Limited,Metals,2,1,0,1,0,2025-09-27,,2026-05-07,,100,0,1
+427,MAMATA,Mamata Machinery Limited,,2,1,0,1,0,2025-08-08,,2026-05-29,,58,0,1
+428,MANAKALUCO,Manaksia Aluminium Company Limited,,2,1,1,0,0,2025-08-08,2025-11-28,,,59,0,1
+429,MANAPPURAM,Manappuram Finance Limited,Finance,2,0,1,1,0,,2026-01-29,2026-05-05,,112,0,1
+430,MANGALAM,Mangalam Drugs And Organics Limited,Pharmaceuticals,2,0,1,0,1,,2026-01-15,,2025-11-13,73,0,1
+431,MANGLMCEM,Mangalam Cement Limited,Cement And Cement Products,2,1,0,1,0,2025-07-28,,2026-05-13,,60,0,1
+432,MANORG,Mangalam Organics Limited,,2,1,1,0,0,2026-05-29,2026-06-23,,,61,0,1
+433,MARATHON,Marathon Nextgen Realty Limited,,2,1,0,1,0,2026-05-27,,2026-06-10,,77,0,1
+434,MASTEK,Mastek Limited,Computers - Software,2,1,1,0,0,2025-09-18,2025-08-29,,,126,0,1
+435,MEDANTA,Global Health Limited,,2,1,0,1,0,2025-08-07,,2026-05-14,,131,0,1
+436,MEDIASSIST,Medi Assist Healthcare Services Limited,,2,1,0,1,0,2026-01-29,,2025-11-05,,113,0,1
+437,MEDPLUS,Medplus Health Services Limited,,2,0,1,1,0,,2026-05-20,2026-05-20,,178,0,1
+438,MENONBE,Menon Bearings Limited,,2,1,1,0,0,2026-05-14,2026-03-03,,,74,0,1
+439,METROBRAND,Metro Brands Limited,,2,1,1,0,0,2025-09-18,2025-09-18,,,110,0,1
+440,MFSL,Max Financial Services Limited,,2,1,1,0,0,2025-08-07,2025-08-07,,,116,0,1
+441,MHLXMIRU,Mahalaxmi Rubtech Limited,,2,1,1,0,0,2026-03-11,2025-10-10,,,38,0,1
+442,MIDHANI,Mishra Dhatu Nigam Limited,,2,1,1,0,0,2025-08-13,2025-08-13,,,63,0,1
+443,MODTHREAD,Modern Threads (India) Limited,-,2,1,1,0,0,2025-08-14,2026-01-07,,,35,0,1
+444,MOIL,MOIL Limited,Metals,2,1,0,1,0,2025-09-12,,2026-04-15,,76,0,1
+445,MOL,Meghmani Organics Limited,,2,0,1,1,0,,2026-05-14,2026-05-14,,70,0,1
+446,MOTHERSON,Samvardhana Motherson International Limited,,2,1,1,0,0,2026-05-20,2025-10-29,,,217,0,1
+447,MRF,MRF Limited,Tyres,2,1,1,0,0,2026-05-07,2026-05-07,,,60,0,1
+448,MTARTECH,Mtar Technologies Limited,,2,1,1,0,0,2025-08-05,2025-11-28,,,88,0,1
+449,MUTHOOTMF,Muthoot Microfin Limited,,2,1,0,1,0,2026-05-06,,2026-05-06,,135,0,1
+450,MWL,Mangalam Worldwide Limited,,2,1,1,0,0,2025-07-02,2026-01-05,,,92,0,1
+451,NAGAFERT,Nagarjuna Fertilizers and Chemicals Limited,,2,1,0,0,1,2025-11-14,,,2026-05-30,71,0,1
+452,NAM-INDIA,Nippon Life India Asset Management Limited,,2,0,1,1,0,,2026-01-02,2026-04-27,,134,0,1
+453,NATCAPSUQ,Natural Capsules Limited,,2,0,1,1,0,,2026-04-25,2026-04-25,,78,0,1
+454,NAVNETEDUL,Navneet Education Limited,,2,1,1,0,0,2025-08-07,2026-02-09,,,63,0,1
+455,NAZARA,Nazara Technologies Limited,,2,1,1,0,0,2026-05-12,2025-08-12,,,111,0,1
+456,NDGL,Naga Dhunseri Group Limited,,2,1,1,0,0,2025-08-18,2026-02-12,,,33,0,1
+457,NECCLTD,North Eastern Carrying Corporation Limited,,2,1,1,0,0,2025-08-07,2025-08-07,,,50,0,1
+458,NELCO,NELCO Limited,Computers - Hardware,2,1,0,1,0,2026-02-21,,2026-06-23,,51,0,1
+459,NEPHROPLUS,Nephrocare Health Services Limited,,2,1,1,0,0,2026-05-19,2025-12-22,,,60,0,1
+460,NEWGEN,Newgen Software Technologies Limited,,2,1,0,1,0,2026-04-30,,2026-06-10,,93,0,1
+461,NGIL,Nakoda Group of Industries Limited,,2,1,1,0,0,2025-09-17,2025-09-19,,,54,0,1
+462,NIACL,The New India Assurance Company Limited,,2,1,1,0,0,2025-09-11,2025-07-15,,,74,0,1
+463,NINSYS,NINtec Systems Limited,,2,1,0,1,0,2025-09-27,,2026-05-08,,64,0,1
+464,NITIRAJ,Nitiraj Engineers Limited,,2,0,1,1,0,,2026-06-01,2026-06-01,,38,0,1
+465,NIVABUPA,Niva Bupa Health Insurance Company Limited,,2,0,1,1,0,,2025-10-31,2026-05-08,,88,0,1
+466,NKIND,NK Industries Limited,-,2,1,1,0,0,2025-09-29,2026-01-02,,,29,0,1
+467,NLCINDIA,NLC India Limited,,2,1,1,0,0,2025-09-11,2025-10-29,,,145,0,1
+468,NORBTEAEXP,Norben Tea & Exports Limited,Tea And Coffee,2,1,1,0,0,2026-05-26,2025-12-11,,,40,0,1
+469,NRBBEARING,NRB Bearing Limited,Bearings,2,1,1,0,0,2025-11-10,2025-10-24,,,91,0,1
+470,NTPCGREEN,NTPC Green Energy Limited,,2,1,1,0,0,2025-08-29,2026-03-25,,,78,0,1
+471,NUCLEUS,Nucleus Software Exports Limited,Computers - Software,2,0,1,1,0,,2025-08-20,2026-06-05,,92,0,1
+472,OAL,Oriental Aromatics Limited,,2,1,0,1,0,2026-05-20,,2026-05-20,,67,0,1
+473,OILCOUNTUB,Oil Country Tubular Limited,Steel And Steel Products,2,0,1,1,0,,2025-08-07,2026-04-24,,47,0,1
+474,OLAELEC,Ola Electric Mobility Limited,,2,1,1,0,0,2025-09-08,2025-09-12,,,167,0,1
+475,OMAXE,Omaxe Limited,Construction,2,1,1,0,0,2025-08-13,2025-08-06,,,130,0,1
+476,ONGC,Oil & Natural Gas Corporation Limited,Oil Exploration/Production,2,1,1,0,0,2025-09-12,2025-11-01,,,124,0,1
+477,ONMOBILE,OnMobile Global Limited,Telecommunication - Services,2,1,1,0,0,2025-08-13,2026-06-24,,,56,0,1
+478,ORIENTALTL,Oriental Trimex Limited,Construction,2,0,1,1,0,,2025-10-10,2026-06-08,,46,0,1
+479,ORIENTBELL,Orient Bell Limited,Ceramics And Sanitaryware,2,1,1,0,0,2026-05-19,2025-08-05,,,71,0,1
+480,ORIENTCEM,Orient Cement Limited,,2,1,1,0,0,2025-07-03,2026-01-09,,,91,0,1
+481,ORIENTPPR,Orient Paper & Industries Limited,Cement And Cement Products,2,1,0,1,0,2026-05-09,,2026-06-29,,47,0,1
+482,ORIENTTECH,Orient Technologies Limited,,2,0,1,1,0,,2025-11-11,2026-05-27,,80,0,1
+483,ORISSAMINE,The Orissa Minerals Development Company Limited,Mining,2,1,1,0,0,2025-09-26,2025-11-18,,,43,0,1
+484,OSWALPUMPS,Oswal Pumps Limited,,2,0,1,1,0,,2026-06-20,2026-06-21,,85,0,1
+485,PALASHSECU,Palash Securities Limited,,2,1,1,0,0,2025-08-14,2025-08-07,,,44,0,1
+486,PARAS,Paras Defence and Space Technologies Limited,,2,1,1,0,0,2026-05-13,2026-04-06,,,72,0,1
+487,PASHUPATI,Pashupati Cotspin Limited,,2,1,1,0,0,2025-08-30,2025-08-13,,,40,0,1
+488,PATINTLOG,Patel Integrated Logistics Limited,Travel And Transport,2,1,1,0,0,2025-08-05,2026-01-30,,,81,0,1
+489,PEARLPOLY,Pearl Polymers Limited,Plastic And Plastic Products,2,1,1,0,0,2025-08-12,2025-09-08,,,38,0,1
+490,PFOCUS,Prime Focus Limited,Media & Entertainment,2,1,1,0,0,2025-08-13,2025-11-12,,,85,0,1
+491,PGHH,Procter & Gamble Hygiene and Health Care Limited,Personal Care,2,0,1,1,0,,2026-02-24,2026-05-28,,61,0,1
+492,PGIL,Pearl Global Industries Limited,Textile Products,2,1,0,1,0,2026-05-14,,2026-06-06,,80,0,1
+493,PHOENIXLTD,The Phoenix Mills Limited,Construction,2,1,1,0,0,2026-04-27,2025-09-29,,,144,0,1
+494,PIIND,PI Industries Limited,Pesticides And Agrochemicals,2,1,0,1,0,2026-05-19,,2026-05-19,,110,0,1
+495,PLATIND,Platinum Industries Limited,,2,1,1,0,0,2025-08-14,2025-07-16,,,62,0,1
+496,PNBHOUSING,PNB Housing Finance Limited,,2,1,0,1,0,2026-01-21,,2025-10-28,,143,0,1
+497,PNGJL,P N Gadgil Jewellers Limited,,2,1,1,0,0,2026-05-14,2025-12-18,,,112,0,1
+498,POLYCAB,Polycab India Limited,,2,1,1,0,0,2026-05-06,2025-10-17,,,133,0,1
+499,POLYPLEX,Polyplex Corporation Limited,Packaging,2,1,0,1,0,2025-07-28,,2026-05-23,,49,0,1
+500,PRAJIND,Praj Industries Limited,Engineering,2,1,1,0,0,2025-08-13,2026-05-28,,,71,0,1
+501,PRAXIS,Praxis Home Retail Limited,,2,1,1,0,0,2025-09-02,2025-07-14,,,65,0,1
+502,PREMIERPOL,Premier Polyfilm Limited,Plastic And Plastic Products,2,1,0,0,1,2026-03-16,,,2025-11-13,63,0,1
+503,PRICOLLTD,Pricol Limited,,2,1,0,1,0,2025-07-10,,2026-05-14,,101,0,1
+504,PRIMO,Primo Chemicals Limited,,2,1,0,1,0,2025-10-01,,2026-05-05,,55,0,1
+505,PRINCEPIPE,Prince Pipes And Fittings Limited,,2,1,1,0,0,2026-05-19,2026-02-24,,,59,0,1
+506,PRSMJOHNSN,Prism Johnson Limited,,2,1,1,0,0,2025-08-07,2026-03-02,,,67,0,1
+507,PRUDMOULI,Prudential Sugar Corporation Limited,-,2,1,1,0,0,2025-11-06,2026-04-15,,,49,0,1
+508,PUNJABCHEM,Punjab Chemicals & Crop Protection Limited,Pesticides And Agrochemicals,2,1,1,0,0,2025-07-29,2025-09-12,,,67,0,1
+509,PURVA,Puravankara Limited,Construction,2,1,1,0,0,2026-05-18,2025-08-08,,,153,0,1
+510,QUADFUTURE,Quadrant Future Tek Limited,,2,1,1,0,0,2025-07-29,2025-07-29,,,61,0,1
+511,RADIOCITY,Music Broadcast Limited,,2,1,1,0,0,2025-09-17,2025-07-25,,,59,0,1
+512,RAJRILTD,Raj Rayon Industries Limited,,2,0,1,1,0,,2026-05-14,2026-05-14,,35,0,1
+513,RAJSREESUG,Rajshree Sugars & Chemicals Limited,Sugar,2,1,1,0,0,2025-08-14,2026-05-20,,,53,0,1
+514,RAMASTEEL,Rama Steel Tubes Limited,,2,1,1,0,0,2025-08-12,2025-08-12,,,56,0,1
+515,RAMRAT,Ram Ratna Wires Limited,,2,1,1,0,0,2026-05-26,2026-02-06,,,67,0,1
+516,RATEGAIN,Rategain Travel Technologies Limited,,2,1,0,1,0,2025-08-07,,2026-05-11,,152,0,1
+517,RAYMOND,Raymond Limited,Textile Products,2,1,1,0,0,2025-08-04,2025-12-02,,,108,0,1
+518,RBLBANK,RBL Bank Limited,,2,1,1,0,0,2025-07-18,2025-12-30,,,252,0,1
+519,RECLTD,REC Limited,Financial Institution,2,1,1,0,0,2025-09-16,2025-12-01,,,89,0,1
+520,REDTAPE,Redtape Limited,,2,1,1,0,0,2026-05-26,2025-08-14,,,82,0,1
+521,REGAAL,Regaal Resources Limited,,2,1,1,0,0,2026-05-27,2025-08-25,,,70,0,1
+522,RELIGARE,Religare Enterprises Limited,Finance,2,1,1,0,0,2025-08-12,2025-08-12,,,121,0,1
+523,RELINFRA,Reliance Infrastructure Limited,Power,2,1,0,1,0,2026-01-24,,2026-06-13,,95,0,1
+524,RELTD,Ravindra Energy Limited,,2,1,1,0,0,2025-08-06,2025-08-06,,,89,0,1
+525,REMSONSIND,Remsons Industries Limited,Auto Ancillaries,2,1,0,1,0,2025-08-11,,2026-06-19,,72,0,1
+526,RHETAN,Rhetan TMT Limited,,2,0,1,1,0,,2026-04-30,2026-04-30,,34,0,1
+527,RHIM,RHI MAGNESITA INDIA LIMITED,,2,1,0,1,0,2025-08-08,,2026-06-30,,85,0,1
+528,RITCO,Ritco Logistics Limited,,2,1,0,1,0,2026-01-01,,2026-05-05,,79,0,1
+529,RITES,RITES Limited,,2,1,1,0,0,2025-08-06,2026-03-19,,,118,0,1
+530,RKEC,RKEC Projects Limited,,2,0,1,0,1,,2026-03-23,,2026-05-29,27,0,1
+531,ROHLTD,Royal Orchid Hotels Limited,Hotels,2,1,1,0,0,2025-08-13,2026-02-14,,,132,0,1
+532,ROTO,Roto Pumps Limited,,2,1,0,1,0,2025-08-14,,2026-05-01,,50,0,1
+533,RPGLIFE,RPG Life Sciences Limited,Pharmaceuticals,2,1,1,0,0,2025-07-25,2025-10-17,,,78,0,1
+534,RPTECH,Rashi Peripherals Limited,,2,1,1,0,0,2026-06-23,2025-10-31,,,78,0,1
+535,RRKABEL,R R Kabel Limited,,2,1,1,0,0,2025-09-01,2025-10-31,,,70,0,1
+536,RSYSTEMS,R Systems International Limited,Computers - Software,2,0,1,1,0,,2026-04-30,2026-04-30,,111,0,1
+537,RUPA,Rupa & Company Limited,Textile Products,2,1,1,0,0,2026-05-26,2025-10-31,,,64,0,1
+538,RVHL,Ravinder Heights Limited,,2,1,1,0,0,2025-08-08,2025-08-08,,,48,0,1
+539,RVNL,Rail Vikas Nigam Limited,,2,1,1,0,0,2025-08-29,2025-07-02,,,118,0,1
+540,RVTH,Revathi Equipment India Limited,,2,0,1,1,0,,2026-06-30,2026-06-30,,40,0,1
+541,SADBHIN,Sadbhav Infrastructure Project Limited,,2,1,1,0,0,2025-10-03,2025-11-13,,,45,0,1
+542,SAGILITY,SAGILITY LIMITED,,2,1,1,0,0,2025-07-30,2026-02-14,,,99,0,1
+543,SAHLIBHFI,Shalibhadra Finance Limited,,2,0,1,1,0,,2026-04-16,2026-04-22,,20,0,1
+544,SALZERELEC,Salzer Electronics Limited,,2,1,1,0,0,2026-05-23,2026-02-11,,,70,0,1
+545,SAMBHAAV,Sambhaav Media Limited,Printing And Publishing,2,1,0,1,0,2026-05-20,,2026-05-23,,41,0,1
+546,SAMBHV,Sambhv Steel Tubes Limited,,2,1,0,1,0,2025-08-30,,2026-05-09,,91,0,1
+547,SANDESH,The Sandesh Limited,Printing And Publishing,2,0,1,1,0,,2025-08-05,2026-05-05,,46,0,1
+548,SANDUMA,Sandur Manganese & Iron Ores Limited,,2,1,1,0,0,2026-05-07,2025-11-12,,,73,0,1
+549,SANGAMIND,Sangam (India) Limited,Textiles - Synthetic,2,1,0,1,0,2026-04-22,,2026-05-05,,56,0,1
+550,SANGHVIMOV,Sanghvi Movers Limited,Engineering,2,1,1,0,0,2026-05-20,2025-08-06,,,76,0,1
+551,SANGINITA,Sanginita Chemicals Limited,,2,0,1,1,0,,2025-08-01,2026-04-25,,48,0,1
+552,SANOFICONR,Sanofi Consumer Healthcare India Limited,,2,1,1,0,0,2026-02-25,2025-08-04,,,51,0,1
+553,SARLAPOLY,Sarla Performance Fibers Limited,Textiles - Synthetic,2,1,1,0,0,2026-04-22,2025-09-05,,,57,0,1
+554,SARVESHWAR,Sarveshwar Foods Limited,,2,0,1,0,1,,2025-08-05,,2026-06-23,100,0,1
+555,SBIN,State Bank of India,Banks,2,1,1,0,0,2025-11-15,2025-11-29,,,191,0,1
+556,SCPL,Sheetal Cool Products Limited,,2,1,1,0,0,2025-08-05,2026-01-03,,,44,0,1
+557,SDBL,Som Distilleries & Breweries Limited,,2,0,1,1,0,,2026-04-27,2026-04-27,,87,0,1
+558,SEDEMAC,SEDEMAC Mechatronics Limited,,2,1,1,0,0,2026-05-18,2026-03-12,,,28,0,1
+559,SELMC,SEL Manufacturing Company Limited,,2,1,1,0,0,2025-08-14,2025-07-08,,,45,0,1
+560,SEPC,SEPC Limited,,2,1,0,1,0,2025-09-30,,2026-06-24,,95,0,1
+561,SHANTI,Shanti Overseas (India) Limited,,2,1,1,0,0,2025-09-27,2025-12-11,,,45,0,1
+562,SHANTIGEAR,Shanthi Gears Limited,Auto Ancillaries,2,1,1,0,0,2026-01-16,2026-03-19,,,55,0,1
+563,SHAREINDIA,Share India Securities Limited,,2,1,0,1,0,2025-07-30,,2026-06-03,,120,0,1
+564,SHIVAUM,Shiv Aum Steels Limited,,2,1,1,0,0,2025-09-06,2025-08-01,,,42,0,1
+565,SHK,S H Kelkar and Company Limited,,2,1,1,0,0,2025-08-08,2025-07-03,,,88,0,1
+566,SHOPERSTOP,Shoppers Stop Limited,Miscellaneous,2,1,1,0,0,2026-05-05,2026-02-10,,,108,0,1
+567,SHREEJISPG,Shreeji Shipping Global Limited,,2,1,1,0,0,2025-10-27,2025-10-27,,,50,0,1
+568,SHRENIK,Shrenik Limited,,2,1,1,0,0,2026-05-23,2025-07-30,,,28,0,1
+569,SHRIPISTON,Shriram Pistons & Rings Limited,,2,0,1,1,0,,2026-06-15,2026-06-15,,103,0,1
+570,SHRIRAMFIN,Shriram Finance Limited,,2,1,1,0,0,2026-04-24,2026-04-24,,,313,0,1
+571,SHRIRAMPPS,Shriram Properties Limited,,2,1,1,0,0,2025-09-29,2026-02-16,,,75,0,1
+572,SIGNPOST,Signpost India Limited,,2,1,1,0,0,2025-09-03,2025-07-04,,,96,0,1
+573,SINTERCOM,Sintercom India Limited,,2,1,1,0,0,2025-09-26,2025-11-05,,,41,0,1
+574,SNOWMAN,Snowman Logistics Limited,,2,0,1,1,0,,2025-08-25,2026-04-21,,76,0,1
+575,SOFTTECH,Softtech Engineers Limited,,2,1,1,0,0,2025-08-14,2025-09-16,,,63,0,1
+576,SOLARA,Solara Active Pharma Sciences Limited,,2,1,1,0,0,2026-05-15,2025-11-05,,,96,0,1
+577,SOLARWORLD,Solarworld Energy Solutions Limited,,2,1,0,1,0,2025-10-17,,2026-05-24,,76,0,1
+578,SOLEX,Solex Energy Limited,,2,1,1,0,0,2025-08-25,2025-08-05,,,84,0,1
+579,SONACOMS,Sona BLW Precision Forgings Limited,,2,0,1,1,0,,2026-03-20,2026-06-16,,88,0,1
+580,SOUTHWEST,South West Pinnacle Exploration Limited,,2,1,1,0,0,2025-08-12,2025-08-12,,,70,0,1
+581,SPENCERS,Spencer's Retail Limited,,2,1,1,0,0,2025-07-30,2025-09-19,,,64,0,1
+582,SPIC,Southern Petrochemicals Industries Corporation  Limited,Fertilisers,2,1,1,0,0,2026-01-15,2026-02-13,,,53,0,1
+583,STANLEY,Stanley Lifestyles Limited,,2,1,1,0,0,2026-06-22,2025-07-17,,,110,0,1
+584,STERTOOLS,Sterling Tools Limited,Fastners,2,1,1,0,0,2026-05-15,2025-12-15,,,81,0,1
+585,STLNETWORK,STL Networks Limited,,2,1,0,1,0,2026-05-08,,2026-06-13,,87,0,1
+586,STUDDS,Studds Accessories Limited,,2,1,1,0,0,2026-05-23,2026-05-23,,,49,0,1
+587,STYLAMIND,Stylam Industries Limited,,2,1,1,0,0,2025-08-29,2025-08-29,,,94,0,1
+588,STYLEBAAZA,Baazar Style Retail Limited,,2,1,0,1,0,2025-08-01,,2026-04-30,,135,0,1
+589,SUDARCOLOR,Sudarshan Colorants India Limited,,2,1,1,0,0,2025-07-13,2025-07-16,,,78,0,1
+590,SUDARSCHEM,Sudarshan Chemical Industries Limited,Dyes And Pigments,2,1,0,0,1,2025-07-26,,,2025-10-01,109,0,1
+591,SULA,Sula Vineyards Limited,,2,0,1,1,0,,2025-12-24,2026-05-19,,81,0,1
+592,SUNCLAY,Sundaram Clayton Limited,,2,1,1,0,0,2026-05-14,2025-07-08,,,42,0,1
+593,SUNDRMBRAK,Sundaram Brake Linings Limited,Auto Ancillaries,2,0,1,1,0,,2026-02-06,2026-05-25,,43,0,1
+594,SUNDROP,Sundrop Brands Limited,,2,1,1,0,0,2025-08-05,2025-10-29,,,72,0,1
+595,SURAJEST,Suraj Estate Developers Limited,,2,1,0,1,0,2025-10-27,,2026-04-29,,97,0,1
+596,SUVIDHAA,Suvidhaa Infoserve Limited,,2,1,1,0,0,2025-08-13,2026-02-09,,,52,0,1
+597,SVLL,Shree Vasu Logistics Limited,,2,1,1,0,0,2026-05-29,2025-07-15,,,52,0,1
+598,SVPGLOB,SVP GLOBAL TEXTILES LIMITED,,2,0,1,1,0,,2026-04-16,2026-04-20,,28,0,1
+599,SWANCORP,SWAN CORP LIMITED,,2,1,1,0,0,2026-05-29,2025-09-16,,,70,0,1
+600,SWIGGY,Swiggy Limited,,2,1,1,0,0,2025-07-25,2025-07-25,,,79,0,1
+601,SYNGENE,Syngene International Limited,,2,1,1,0,0,2026-04-29,2026-04-29,,,106,0,1
+602,SYRMA,Syrma SGS Technology Limited,,2,1,1,0,0,2025-09-01,2025-08-05,,,102,0,1
+603,TANLA,Tanla Platforms Limited,Computers - Software,2,1,1,0,0,2026-01-14,2025-07-28,,,62,0,1
+604,TARAPUR,Tarapur Transformers Limited,Power,2,1,1,0,0,2025-08-28,2025-11-13,,,32,0,1
+605,TARIL,Transformers And Rectifiers (India) Limited,,2,1,1,0,0,2026-01-12,2025-07-08,,,81,0,1
+606,TARSONS,Tarsons Products Limited,,2,1,0,1,0,2026-05-22,,2026-06-15,,67,0,1
+607,TASTYBITE,Tasty Bite Eatables Limited,,2,1,0,1,0,2025-08-08,,2026-06-05,,46,0,1
+608,TATACAP,Tata Capital Limited,-,2,1,0,1,0,2026-01-15,,2026-05-06,,81,0,1
+609,TATAELXSI,Tata Elxsi Limited,Computers - Software,2,0,1,1,0,,2025-07-07,2026-04-27,,90,0,1
+610,TATVA,Tatva Chintan Pharma Chem Limited,,2,1,1,0,0,2026-05-16,2025-10-31,,,73,0,1
+611,TEGA,Tega Industries Limited,,2,1,0,1,0,2025-12-02,,2026-04-24,,110,0,1
+612,TEMBO,Tembo Global Industries Limited,,2,1,1,0,0,2025-07-10,2025-07-15,,,139,0,1
+613,TERASOFT,Tera Software Limited,,2,0,1,1,0,,2026-06-26,2026-06-26,,51,0,1
+614,TEXINFRA,Texmaco Infrastructure & Holdings Limited,Construction,2,1,1,0,0,2026-01-22,2025-08-07,,,77,0,1
+615,TGBHOTELS,TGB Banquets And Hotels Limited,,2,1,1,0,0,2025-08-13,2026-02-13,,,32,0,1
+616,THYROCARE,Thyrocare Technologies Limited,,2,1,0,1,0,2025-10-14,,2026-05-07,,99,0,1
+617,TIMKEN,Timken India Limited,Bearings,2,1,0,1,0,2025-07-31,,2026-04-24,,62,0,1
+618,TINNARUBR,Tinna Rubber and Infrastructure Limited,,2,1,1,0,0,2025-08-06,2026-03-16,,,74,0,1
+619,TIPSFILMS,Tips Films Limited,,2,1,1,0,0,2025-08-14,2026-02-12,,,39,0,1
+620,TMCV,Tata Motors Limited,,2,0,1,1,0,,2026-05-13,2026-05-13,,79,0,1
+621,TNPL,Tamil Nadu Newsprint & Papers Limited,Paper And Paper Products,2,1,0,1,0,2025-07-25,,2026-06-30,,113,0,1
+622,TPHQ,Teamo Productions HQ Limited,,2,0,1,1,0,,2026-05-30,2026-05-30,,28,0,1
+623,TREL,Transindia Real Estate Limited,,2,1,0,1,0,2026-05-14,,2026-05-12,,51,0,1
+624,TRU,TruCap Finance Limited,,2,0,1,1,0,,2025-11-13,2026-05-25,,49,0,1
+625,TRUALT,TruAlt Bioenergy Limited,,2,1,1,0,0,2026-05-22,2025-10-28,,,53,0,1
+626,TTL,T T Limited,Textile Products,2,0,1,1,0,,2026-06-20,2026-06-20,,106,0,1
+627,TULSI,Tulsi Extrusions Limited,Plastic And Plastic Products,2,0,1,0,1,,2025-08-13,,2025-08-07,19,0,1
+628,TVSELECT,TVS Electronics Limited,Computers - Hardware,2,1,0,1,0,2025-08-13,,2026-04-24,,67,0,1
+629,TVVISION,TV Vision Limited,,2,1,1,0,0,2025-08-07,2025-08-07,,,31,0,1
+630,UDS,Updater Services Limited,,2,1,1,0,0,2025-08-05,2025-08-05,,,89,0,1
+631,UGROCAP,Ugro Capital Limited,,2,1,0,1,0,2026-04-20,,2026-05-06,,176,0,1
+632,ULTRACEMCO,UltraTech Cement Limited,Cement And Cement Products,2,1,1,0,0,2025-08-20,2025-12-03,,,130,0,1
+633,UNIECOM,Unicommerce Esolutions Limited,,2,1,0,1,0,2025-08-12,,2026-06-05,,89,0,1
+634,UNIENTER,Uniphos Enterprises Limited,Trading,2,1,1,0,0,2026-05-27,2026-05-27,,,31,0,1
+635,UNIINFO,Uniinfo Telecom Services Limited,,2,1,0,1,0,2025-09-05,,2026-06-20,,37,0,1
+636,UNIMECH,Unimech Aerospace and Manufacturing Limited,,2,1,1,0,0,2026-01-27,2025-07-08,,,81,0,1
+637,UNITEDPOLY,United Polyfab Gujarat Limited,,2,1,1,0,0,2025-09-06,2025-07-04,,,51,0,1
+638,URJA,Urja Global Limited,,2,0,1,1,0,,2025-10-10,2026-04-30,,39,0,1
+639,USK,Udayshivakumar Infra Limited,,2,1,1,0,0,2025-08-20,2025-08-20,,,50,0,1
+640,UTKARSHBNK,Utkarsh Small Finance Bank Limited,,2,0,1,1,0,,2026-06-20,2026-06-20,,113,0,1
+641,VARROC,Varroc Engineering Limited,,2,0,1,1,0,,2025-07-18,2025-07-18,,164,0,1
+642,VASWANI,Vaswani Industries Limited,Steel And Steel Products,2,1,0,0,1,2025-10-08,,,2026-02-14,49,0,1
+643,VBL,Varun Beverages Limited,,2,1,1,0,0,2026-04-27,2025-07-29,,,79,0,1
+644,VEDL,Vedanta Limited,,2,1,0,1,0,2026-04-29,,2026-04-29,,220,0,1
+645,VENTIVE,Ventive Hospitality Limited,,2,1,0,1,0,2026-05-12,,2025-11-13,,77,0,1
+646,VESUVIUS,Vesuvius India Limited,Refractories,2,1,1,0,0,2026-02-26,2025-09-10,,,46,0,1
+647,VIKRAN,Vikran Engineering Limited,,2,1,1,0,0,2026-02-14,2026-06-01,,,92,0,1
+648,VINCOFE,Vintage Coffee And Beverages Limited,,2,1,1,0,0,2026-01-12,2025-10-04,,,71,0,1
+649,VINNY,Vinny Overseas Limited,,2,1,1,0,0,2026-05-20,2025-07-30,,,25,0,1
+650,VIPULLTD,Vipul Limited,,2,0,1,1,0,,2025-08-14,2026-06-05,,56,0,1
+651,VISAKAIND,Visaka Industries Limited,Cement And Cement Products,2,1,1,0,0,2026-05-18,2026-05-18,,,58,0,1
+652,VISL,Vedanta Iron and Steel Limited,,2,1,1,0,0,2026-07-01,2026-06-16,,,8,0,1
+653,VITAL,Vital Chemtech Limited,,2,1,1,0,0,2026-03-24,2025-07-05,,,54,0,1
+654,VLEGOV,VL E-Governance & IT Solutions Limited,,2,1,1,0,0,2025-08-02,2025-08-04,,,33,0,1
+655,VMM,Vishal Mega Mart Limited,,2,1,0,1,0,2025-08-13,,2026-06-05,,101,0,1
+656,VMSTMT,VMS TMT Limited,,2,0,1,1,0,,2026-03-27,2026-04-29,,38,0,1
+657,WAAREEINDO,Indosolar Limited,,2,1,1,0,0,2026-04-20,2026-03-20,,,69,0,1
+658,WAKEFIT,Wakefit Innovations Limited,,2,1,1,0,0,2026-05-21,2025-12-31,,,52,0,1
+659,WEBELSOLAR,Websol Energy System Limited,Electrical Equipment,2,0,1,1,0,,2026-05-30,2026-05-30,,63,0,1
+660,WELSPUNLIV,Welspun Living Limited,,2,0,1,1,0,,2025-07-30,2026-04-30,,82,0,1
+661,YATRA,Yatra Online Limited,,2,1,1,0,0,2025-08-08,2025-11-30,,,93,0,1
+662,YESBANK,Yes Bank Limited,Banks,2,0,1,1,0,,2026-04-06,2026-05-20,,165,0,1
+663,YUKEN,Yuken India Limited,,2,1,1,0,0,2026-05-26,2025-07-31,,,36,0,1
+664,ZEELEARN,Zee Learn Limited,Miscellaneous,2,1,1,0,0,2026-03-25,2025-11-06,,,61,0,1
+665,ZEEMEDIA,Zee Media Corporation Limited,,2,1,0,1,0,2025-09-26,,2026-05-05,,83,0,1
+666,ZFCVINDIA,ZF Commercial Vehicle Control Systems India Limited,,2,0,1,1,0,,2026-03-20,2026-04-27,,94,0,1
+667,ZODIAC,Zodiac Energy Limited,,2,1,0,1,0,2026-05-25,,2026-06-30,,71,0,1
+668,ZUARIIND,ZUARI INDUSTRIES LIMITED,,2,1,1,0,0,2025-08-12,2026-02-13,,,111,0,1
+669,360ONE,360 ONE WAM LIMITED,,1,1,0,0,0,2026-04-21,,,,134,0,0
+670,3MINDIA,3M India Limited,Trading,1,0,0,1,0,,,2026-04-23,,69,0,0
+671,AAATECH,Aaa Technologies Limited,,1,0,1,0,0,,2026-03-06,,,83,0,0
+672,AADHARHFC,Aadhar Housing Finance Limited,,1,1,0,0,0,2026-05-05,,,,125,0,0
+673,AAREYDRUGS,Aarey Drugs & Pharmaceuticals Limited,,1,1,0,0,0,2025-09-03,,,,29,0,0
+674,AARTIDRUGS,Aarti Drugs Limited,Pharmaceuticals,1,1,0,0,0,2026-05-15,,,,62,0,0
+675,AARTIIND,Aarti Industries Limited,Chemicals - Speciality,1,1,0,0,0,2026-05-04,,,,71,0,0
+676,AARTIPHARM,Aarti Pharmalabs Limited,,1,1,0,0,0,2026-05-25,,,,72,0,0
+677,AARTISURF,Aarti Surfactants Limited,,1,1,0,0,0,2026-05-09,,,,40,0,0
+678,ABCAPITAL,Aditya Birla Capital Limited,,1,0,0,1,0,,,2026-05-31,,163,0,0
+679,ABINFRA,A B Infrabuild Limited,,1,1,0,0,0,2025-08-08,,,,46,0,0
+680,ABLBL,Aditya Birla Lifestyle Brands Limited,,1,0,1,0,0,,2025-11-04,,,51,0,0
+681,ABSLAMC,Aditya Birla Sun Life AMC Limited,,1,0,0,1,0,,,2026-06-22,,81,0,0
+682,ACCELYA,Accelya Solutions India Limited,Computers - Software,1,1,0,0,0,2025-07-31,,,,36,0,0
+683,ACE,Action Construction Equipment Limited,Electrical Equipment,1,1,0,0,0,2025-08-08,,,,89,0,0
+684,ACI,Archean Chemical Industries Limited,,1,1,0,0,0,2026-05-12,,,,66,0,0
+685,ACMESOLAR,Acme Solar Holdings Limited,,1,0,0,1,0,,,2026-05-08,,204,0,0
+686,ACUTAAS,Acutaas Chemicals Limited,,1,0,0,1,0,,,2026-05-18,,67,0,0
+687,ADANIENT,Adani Enterprises Limited,Trading,1,1,0,0,0,2026-04-30,,,,179,0,0
+688,ADANIPORTS,Adani Ports and Special Economic Zone Limited,Shipping,1,1,0,0,0,2026-04-30,,,,143,0,0
+689,ADANIPOWER,Adani Power Limited,Power,1,0,1,0,0,,2026-03-17,,,118,0,0
+690,ADL,Archidply Decor Limited,,1,1,0,0,0,2025-08-13,,,,33,0,0
+691,ADVANCE,Advance Agrolife Limited,,1,0,1,0,0,,2025-10-08,,,44,0,0
+692,ADVANIHOTR,Advani Hotels & Resorts (India) Limited,Hotels,1,0,1,0,0,,2026-02-20,,,54,0,0
+693,ADVENZYMES,Advanced Enzyme Technologies Limited,,1,1,0,0,0,2025-07-31,,,,64,0,0
+694,AEGISLOG,Aegis Logistics Limited,,1,1,0,0,0,2026-05-29,,,,93,0,0
+695,AEGISVOPAK,Aegis Vopak Terminals Limited,,1,1,0,0,0,2026-05-28,,,,81,0,0
+696,AEPL,Artemis Electricals and Projects Limited,,1,1,0,0,0,2026-05-30,,,,17,0,0
+697,AEQUS,Aequs Limited,,1,0,1,0,0,,2026-03-24,,,71,0,0
+698,AEROENTER,Aeroflex Enterprises Limited,,1,1,0,0,0,2025-11-13,,,,63,0,0
+699,AERONEU,Aeroflex Neu Limited,,1,1,0,0,0,2025-07-25,,,,37,0,0
+700,AETHER,Aether Industries Limited,,1,1,0,0,0,2025-09-13,,,,67,0,0
+701,AFCONS,Afcons Infrastructure Limited,,1,1,0,0,0,2025-08-08,,,,137,0,0
+702,AFFLE,Affle 3i Limited,,1,1,0,0,0,2025-07-26,,,,105,0,0
+703,AFFORDABLE,Affordable Robotic & Automation Limited,,1,1,0,0,0,2025-12-12,,,,65,0,0
+704,AFIL,Akme Fintrade (India) Limited,,1,1,0,0,0,2025-08-13,,,,123,0,0
+705,AGARIND,Agarwal Industrial Corporation Limited,,1,0,1,0,0,,2025-08-26,,,52,0,0
+706,AGARWALEYE,Dr. Agarwal's Health Care Limited,,1,1,0,0,0,2025-11-12,,,,77,0,0
+707,AGIIL,Agi Infra Limited,,1,1,0,0,0,2026-05-20,,,,77,0,0
+708,AGRITECH,Agri-Tech (India) Limited,,1,1,0,0,0,2026-02-12,,,,27,0,0
+709,AHCL,Anlon Healthcare Limited,,1,0,1,0,0,,2026-02-09,,,88,0,0
+710,AHLEAST,Asian Hotels (East) Limited,Hotels,1,0,0,0,1,,,,2026-05-30,25,0,0
+711,AHLUCONT,Ahluwalia Contracts (India) Limited,Construction,1,1,0,0,0,2025-08-14,,,,78,0,0
+712,AIFL,Ashapura Intimates Fashion Limited,,1,0,1,0,0,,2026-05-04,,,53,0,0
+713,AIRAN,Airan Limited,,1,1,0,0,0,2025-09-30,,,,26,0,0
+714,AIROLAM,Airo Lam limited,,1,1,0,0,0,2026-06-25,,,,29,0,0
+715,AJMERA,Ajmera Realty & Infra India Limited,Construction,1,1,0,0,0,2026-05-25,,,,91,0,0
+716,AJOONI,Ajooni Biotech Limited,,1,1,0,0,0,2025-08-29,,,,57,0,0
+717,AKUMS,Akums Drugs and Pharmaceuticals Limited,,1,1,0,0,0,2026-05-14,,,,89,0,0
+718,ALEMBICLTD,Alembic Limited,Pharmaceuticals,1,0,1,0,0,,2026-01-01,,,47,0,0
+719,ALICON,Alicon Castalloy Limited,Auto Ancillaries,1,0,1,0,0,,2025-11-06,,,50,0,0
+720,ALIVUS,Alivus Life Sciences Limited,,1,1,0,0,0,2025-09-08,,,,68,0,0
+721,ALLTIME,All Time Plastics Limited,,1,0,0,1,0,,,2026-05-01,,54,0,0
+722,ALPA,Alpa Laboratories Limited,Pharmaceuticals,1,0,1,0,0,,2026-02-25,,,20,0,0
+723,ALPHAGEO,Alphageo (India) Limited,Oil Exploration/Production,1,1,0,0,0,2025-09-26,,,,37,0,0
+724,AMAGI,Amagi Media Labs Limited,,1,0,1,0,0,,2026-01-21,,,55,0,0
+725,AMANTA,Amanta Healthcare Limited,,1,1,0,0,0,2026-05-19,,,,59,0,0
+726,AMDIND,AMD Industries Limited,Packaging,1,0,1,0,0,,2025-07-31,,,20,0,0
+727,AMIRCHAND,Amir Chand Jagdish Kumar (Exports) Limited,,1,1,0,0,0,2026-05-18,,,,26,0,0
+728,AMNPLST,Amines & Plasticizers Limited,,1,1,0,0,0,2025-08-12,,,,53,0,0
+729,ANANDRATHI,Anand Rathi Wealth Limited,,1,0,1,0,0,,2025-07-11,,,101,0,0
+730,ANDHRAPAP,ANDHRA PAPER LIMITED,,1,1,0,0,0,2025-08-09,,,,61,0,0
+731,ANGELONE,Angel One Limited,,1,0,0,1,0,,,2026-05-08,,139,0,0
+732,ANTGRAPHIC,Antarctica Limited,Packaging,1,0,1,0,0,,2025-10-04,,,37,0,0
+733,ANTHEM,Anthem Biosciences Limited,,1,1,0,0,0,2026-04-22,,,,62,0,0
+734,ANUP,The Anup Engineering Limited,,1,1,0,0,0,2026-05-28,,,,85,0,0
+735,APARINDS,Apar Industries Limited,Lubricants,1,1,0,0,0,2026-05-28,,,,89,0,0
+736,APCOTEXIND,Apcotex Industries Limited,Miscellaneous,1,0,1,0,0,,2025-07-30,,,87,0,0
+737,APEX,Apex Frozen Foods Limited,,1,1,0,0,0,2025-09-06,,,,40,0,0
+738,APOLLOPIPE,Apollo Pipes Limited,,1,1,0,0,0,2025-09-26,,,,73,0,0
+739,APOLLOTYRE,Apollo Tyres Limited,Tyres,1,1,0,0,0,2026-05-14,,,,96,0,0
+740,APTECHT,Aptech Limited,Computers - Software,1,1,0,0,0,2025-08-04,,,,75,0,0
+741,ARE&M,Amara Raja Energy & Mobility Limited,,1,1,0,0,0,2026-05-25,,,,91,0,0
+742,ARENTERP,Rajdarshan Industries Limited,-,1,0,1,0,0,,2025-08-25,,,30,0,0
+743,ARMANFIN,Arman Financial Services Limited,,1,0,1,0,0,,2026-05-27,,,83,0,0
+744,AROGRANITE,Aro Granite Industries Limited,Miscellaneous,1,1,0,0,0,2026-05-15,,,,34,0,0
+745,ARSSBL,Anand Rathi Share and Stock Brokers Limited,,1,1,0,0,0,2026-04-14,,,,75,0,0
+746,ARTEMISMED,Artemis Medicare Services Limited,,1,1,0,0,0,2025-11-11,,,,72,0,0
+747,ARVINDFASN,Arvind Fashions Limited,,1,1,0,0,0,2026-05-06,,,,100,0,0
+748,ASALCBR,Associated Alcohols & Breweries Ltd.,,1,0,1,0,0,,2025-11-08,,,96,0,0
+749,ASHIANA,Ashiana Housing Limited,Construction,1,1,0,0,0,2026-05-27,,,,114,0,0
+750,ASHIMASYN,Ashima Limited,Textile Products,1,0,0,1,0,,,2026-05-01,,54,0,0
+751,ASIANPAINT,Asian Paints Limited,Paints,1,1,0,0,0,2026-03-26,,,,92,0,0
+752,ASIANTILES,Asian Granito India Limited,Ceramics And Sanitaryware,1,0,1,0,0,,2025-11-12,,,89,0,0
+753,ASKAUTOLTD,ASK Automotive Limited,,1,1,0,0,0,2026-05-19,,,,81,0,0
+754,ATALREAL,Atal Realtech Limited,,1,0,1,0,0,,2025-10-07,,,37,0,0
+755,ATAM,Atam Valves Limited,,1,1,0,0,0,2025-08-30,,,,46,0,0
+756,ATGL,Adani Total Gas Limited,,1,0,1,0,0,,2025-09-30,,,76,0,0
+757,ATHERENERG,Ather Energy Limited,,1,1,0,0,0,2026-04-23,,,,98,0,0
+758,ATNINTER,ATN International Limited,Finance,1,0,1,0,0,,2026-06-22,,,28,0,0
+759,ATULAUTO,Atul Auto Limited,,1,1,0,0,0,2025-08-07,,,,61,0,0
+760,AUBANK,AU Small Finance Bank Limited,,1,0,1,0,0,,2025-09-10,,,119,0,0
+761,AUROPHARMA,Aurobindo Pharma Limited,Pharmaceuticals,1,1,0,0,0,2026-05-21,,,,155,0,0
+762,AURUM,Aurum PropTech Limited,,1,0,1,0,0,,2026-04-23,,,90,0,0
+763,AUSOMENT,Ausom Enterprise Limited,Trading,1,1,0,0,0,2025-08-07,,,,45,0,0
+764,AVANTEL,Avantel Limited,,1,1,0,0,0,2026-04-26,,,,78,0,0
+765,AVROIND,AVRO INDIA LIMITED,,1,1,0,0,0,2025-08-30,,,,71,0,0
+766,AVTNPL,AVT Natural Products Limited,Food And Food Processing,1,0,0,1,0,,,2026-06-09,,33,0,0
+767,AWFIS,Awfis Space Solutions Limited,,1,0,1,0,0,,2025-09-26,,,97,0,0
+768,AWL,AWL Agri Business Limited,,1,0,1,0,0,,2025-11-03,,,94,0,0
+769,AXITA,Axita Cotton Limited,,1,1,0,0,0,2025-08-11,,,,45,0,0
+770,AYMSYNTEX,AYM Syntex Limited,,1,0,0,1,0,,,2026-05-30,,65,0,0
+771,BAFNAPH,Bafna Pharmaceuticals Limited,,1,1,0,0,0,2026-03-27,,,,35,0,0
+772,BAGFILMS,B.A.G Films and Media Limited,Media & Entertainment,1,0,1,0,0,,2026-07-01,,,59,0,0
+773,BAIDFIN,Baid Finserv Limited,,1,1,0,0,0,2025-08-07,,,,74,0,0
+774,BAJAJFINSV,Bajaj Finserv Limited,Finance,1,1,0,0,0,2026-04-30,,,,84,0,0
+775,BAJAJHLDNG,Bajaj Holdings & Investment Limited,Finance,1,0,1,0,0,,2025-07-25,,,37,0,0
+776,BAJAJINDEF,Indef Manufacturing Limited,,1,1,0,0,0,2025-08-12,,,,36,0,0
+777,BALAJEE,Shree Tirupati Balajee Agro Trading Company Limited,,1,1,0,0,0,2025-08-28,,,,47,0,0
+778,BALKRISIND,Balkrishna Industries Limited,Tyres,1,0,1,0,0,,2026-06-17,,,97,0,0
+779,BALMLAWRIE,Balmer Lawrie & Company Limited,Travel And Transport,1,1,0,0,0,2025-07-03,,,,82,0,0
+780,BANARBEADS,Banaras Beads Limited,Gems Jewellery And Watches,1,1,0,0,0,2025-08-11,,,,76,0,0
+781,BANKBARODA,Bank of Baroda,Banks,1,0,1,0,0,,2025-08-30,,,134,0,0
+782,BANKINDIA,Bank of India,Banks,1,0,1,0,0,,2026-01-27,,,174,0,0
+783,BASF,BASF India Limited,Chemicals - Speciality,1,1,0,0,0,2025-08-13,,,,54,0,0
+784,BASML,Bannari Amman Spinning Mills Limited,Textiles - Cotton,1,1,0,0,0,2026-05-29,,,,49,0,0
+785,BBOX,Black Box Limited,,1,1,0,0,0,2026-01-16,,,,106,0,0
+786,BBTC,The Bombay Burmah Trading Corporation Limited,Food And Food Processing,1,1,0,0,0,2025-08-19,,,,53,0,0
+787,BBTCL,B&B Triplewall Containers Limited,,1,1,0,0,0,2025-08-14,,,,34,0,0
+788,BCG,Brightcom Group Limited,,1,0,1,0,0,,2026-01-19,,,70,0,0
+789,BCONCEPTS,Brand Concepts Limited,,1,1,0,0,0,2025-09-06,,,,89,0,0
+790,BDL,Bharat Dynamics Limited,,1,1,0,0,0,2025-09-16,,,,50,0,0
+791,BEARDSELL,Beardsell Limited,Plastic And Plastic Products,1,1,0,0,0,2025-08-12,,,,37,0,0
+792,BECTORFOOD,Mrs. Bectors Food Specialities Limited,,1,0,1,0,0,,2025-11-12,,,85,0,0
+793,BEDMUTHA,Bedmutha Industries Limited,Steel And Steel Products,1,0,1,0,0,,2025-09-29,,,28,0,0
+794,BEL,Bharat Electronics Limited,Electronics - Industrial,1,1,0,0,0,2025-07-28,,,,81,0,0
+795,BELLACASA,Bella Casa Fashion & Retail Limited,,1,1,0,0,0,2025-08-07,,,,51,0,0
+796,BEML,BEML Limited,Engineering,1,1,0,0,0,2026-06-05,,,,85,0,0
+797,BFUTILITIE,BF Utilities Limited,Construction,1,1,0,0,0,2026-02-13,,,,88,0,0
+798,BHAGYANGR,Bhagyanagar India Limited,,1,0,1,0,0,,2025-07-30,,,72,0,0
+799,BHARATCOAL,Bharat Coking Coal Limited,,1,0,1,0,0,,2026-05-30,,,41,0,0
+800,BHARATIDIL,Bharati Defence and Infrastructure Limited,,1,1,0,0,0,2026-01-19,,,,49,0,0
+801,BHARATRAS,Bharat Rasayan Limited,Pesticides And Agrochemicals,1,0,0,1,0,,,2026-06-30,,71,0,0
+802,BHARATWIRE,Bharat Wire Ropes Limited,,1,1,0,0,0,2025-08-11,,,,57,0,0
+803,BHARTIARTL,Bharti Airtel Limited,Telecommunication - Services,1,1,0,0,0,2026-03-10,,,,209,0,0
+804,BHEL,Bharat Heavy Electricals Limited,Electrical Equipment,1,1,0,0,0,2025-08-19,,,,105,0,0
+805,BIKAJI,Bikaji Foods International Limited,,1,1,0,0,0,2025-09-16,,,,109,0,0
+806,BIL,Bhartiya International Limited,Leather And Leather Products,1,1,0,0,0,2025-12-05,,,,47,0,0
+807,BIRLACABLE,Birla Cable Limited,,1,1,0,0,0,2025-09-13,,,,40,0,0
+808,BIRLACORPN,Birla Corporation Limited,Cement And Cement Products,1,1,0,0,0,2025-09-16,,,,86,0,0
+809,BIRLAMONEY,Aditya Birla Money Limited,Finance,1,0,0,1,0,,,2026-04-27,,39,0,0
+810,BIRLANU,BirlaNu Limited,,1,1,0,0,0,2026-05-12,,,,70,0,0
+811,BLBLIMITED,BLB Limited,Finance,1,1,0,0,0,2025-08-19,,,,42,0,0
+812,BLISSGVS,Bliss GVS Pharma Limited,Pharmaceuticals,1,1,0,0,0,2025-07-29,,,,89,0,0
+813,BLKASHYAP,B. L. Kashyap and Sons Limited,Construction,1,1,0,0,0,2025-08-14,,,,39,0,0
+814,BLSE,BLS E-Services Limited,,1,1,0,0,0,2025-11-10,,,,52,0,0
+815,BLUECOAST,Blue Coast Hotels Limited,Hotels,1,1,0,0,0,2025-08-06,,,,38,0,0
+816,BLUEDART,Blue Dart Express Limited,Travel And Transport,1,0,1,0,0,,2025-07-29,,,77,0,0
+817,BLUEJET,Blue Jet Healthcare Limited,,1,1,0,0,0,2025-08-22,,,,61,0,0
+818,BLUESTARCO,Blue Star Limited,Airconditioners,1,0,0,1,0,,,2026-04-30,,83,0,0
+819,BLUSPRING,Bluspring Enterprises Limited,,1,1,0,0,0,2025-07-31,,,,73,0,0
+820,BOHRAIND,Bohra Industries Limited,,1,1,0,0,0,2025-09-30,,,,57,0,0
+821,BOMDYEING,Bombay Dyeing & Mfg Company Limited,Textiles - Synthetic,1,0,1,0,0,,2026-03-27,,,66,0,0
+822,BONLON,Bonlon Industries Limited,,1,1,0,0,0,2026-05-30,,,,17,0,0
+823,BOSCH-HCIL,BOSCH HOME COMFORT INDIA LIMITED,,1,0,1,0,0,,2026-03-24,,,38,0,0
+824,BOSCHLTD,Bosch Limited,Auto Ancillaries,1,0,1,0,0,,2026-02-17,,,96,0,0
+825,BPCL,Bharat Petroleum Corporation Limited,Refineries,1,1,0,0,0,2025-09-17,,,,98,0,0
+826,BRIGHOTEL,Brigade Hotel Ventures Limited,,1,1,0,0,0,2025-12-16,,,,79,0,0
+827,BROOKS,Brooks Laboratories Limited,Pharmaceuticals,1,1,0,0,0,2025-09-26,,,,38,0,0
+828,BSE,BSE Limited,,1,0,1,0,0,,2026-06-05,,,158,0,0
+829,BSHSL,Bombay Super Hybrid Seeds Limited,,1,1,0,0,0,2026-05-25,,,,37,0,0
+830,BSL,BSL Limited,Textile Products,1,1,0,0,0,2025-09-01,,,,60,0,0
+831,BTML,Bodhi Tree Multimedia Limited,,1,1,0,0,0,2026-05-30,,,,58,0,0
+832,BUTTERFLY,Butterfly Gandhimathi Appliances Limited,,1,1,0,0,0,2026-05-11,,,,49,0,0
+833,CALSOFT,California Software Company Limited,Computers - Software,1,1,0,0,0,2026-01-09,,,,38,0,0
+834,CAMLINFINE,Camlin Fine Sciences Limited,,1,1,0,0,0,2026-01-16,,,,93,0,0
+835,CANFINHOME,Can Fin Homes Limited,Finance - Housing,1,1,0,0,0,2025-08-20,,,,142,0,0
+836,CANHLIFE,Canara HSBC Life Insurance Company Limited,,1,1,0,0,0,2026-06-16,,,,63,0,0
+837,CAPACITE,Capacit'e Infraprojects Limited,,1,1,0,0,0,2025-08-11,,,,76,0,0
+838,CAPILLARY,Capillary Technologies India Limited,,1,1,0,0,0,2026-05-06,,,,52,0,0
+839,CAPITALSFB,Capital Small Finance Bank Limited,,1,1,0,0,0,2025-08-01,,,,103,0,0
+840,CAPTRUST,Capital Trust Limited,,1,1,0,0,0,2026-03-11,,,,32,0,0
+841,CARERATING,CARE Ratings Limited,Finance,1,1,0,0,0,2026-05-13,,,,106,0,0
+842,CARYSIL,CARYSIL LIMITED,,1,1,0,0,0,2025-08-12,,,,90,0,0
+843,CASTROLIND,Castrol India Limited,,1,0,1,0,0,,2025-07-07,,,74,0,0
+844,CCL,CCL Products (India) Limited,Tea And Coffee,1,1,0,0,0,2025-08-05,,,,63,0,0
+845,CDSL,Central Depository Services (India) Limited,,1,1,0,0,0,2025-08-14,,,,94,0,0
+846,CELEBRITY,Celebrity Fashions Limited,Textile Products,1,0,1,0,0,,2025-07-29,,,39,0,0
+847,CEMPRO,Cemindia Projects Limited,,1,1,0,0,0,2025-11-05,,,,89,0,0
+848,CENTENKA,Century Enka Limited,Textiles - Synthetic,1,1,0,0,0,2025-08-12,,,,68,0,0
+849,CENTRALBK,Central Bank of India,Banks,1,1,0,0,0,2025-12-22,,,,96,0,0
+850,CENTRUM,Centrum Capital Limited,,1,1,0,0,0,2026-05-21,,,,66,0,0
+851,CENTURYPLY,Century Plyboards (India) Limited,Construction,1,1,0,0,0,2025-09-18,,,,79,0,0
+852,CEREBRAINT,Cerebra Integrated Technologies Limited,,1,1,0,0,0,2025-08-13,,,,34,0,0
+853,CHEMBOND,Chembond Material Technologies Limited,,1,1,0,0,0,2025-08-14,,,,62,0,0
+854,CHEMCON,Chemcon Speciality Chemicals Limited,,1,1,0,0,0,2026-05-21,,,,46,0,0
+855,CHEMFAB,Chemfab Alkalis Limited,,1,1,0,0,0,2026-05-13,,,,49,0,0
+856,CHEMPLASTS,Chemplast Sanmar Limited,,1,0,1,0,0,,2026-03-20,,,69,0,0
+857,CHENNPETRO,Chennai Petroleum Corporation Limited,Refineries,1,0,1,0,0,,2026-06-26,,,50,0,0
+858,CHOICEIN,Choice International Limited,,1,1,0,0,0,2025-07-11,,,,75,0,0
+859,CIEINDIA,CIE Automotive India Limited,,1,1,0,0,0,2026-02-19,,,,86,0,0
+860,CIFL,Capital India Finance Limited,,1,1,0,0,0,2025-07-16,,,,65,0,0
+861,CIGNITITEC,Cigniti Technologies Limited,,1,0,1,0,0,,2025-10-24,,,41,0,0
+862,CLCIND,CLC Industries Limited,,1,1,0,0,0,2026-02-17,,,,36,0,0
+863,CLEAN,Clean Science and Technology Limited,,1,1,0,0,0,2025-07-17,,,,103,0,0
+864,CLEANMAX,Clean Max Enviro Energy Solutions Limited,,1,0,1,0,0,,2026-03-05,,,82,0,0
+865,CMPDI,Central Mine Planning & Design Institute Limited,,1,1,0,0,0,2026-05-20,,,,29,0,0
+866,CMSINFO,CMS Info Systems Limited,,1,1,0,0,0,2025-08-22,,,,71,0,0
+867,CNL,Creative Newtech Limited,,1,0,1,0,0,,2026-04-14,,,67,0,0
+868,COALINDIA,Coal India Limited,Mining,1,1,0,0,0,2025-08-29,,,,156,0,0
+869,COCHINSHIP,Cochin Shipyard Limited,,1,1,0,0,0,2025-08-12,,,,73,0,0
+870,COLPAL,Colgate Palmolive (India) Limited,Personal Care,1,0,1,0,0,,2025-08-14,,,61,0,0
+871,COMPUSOFT,Compucom Software Limited,Computers - Software,1,1,0,0,0,2025-09-30,,,,41,0,0
+872,COMSYN,Commercial Syn Bags Limited,,1,1,0,0,0,2025-09-04,,,,51,0,0
+873,CONCORDBIO,Concord Biotech Limited,,1,0,1,0,0,,2025-12-08,,,71,0,0
+874,CONFIPET,Confidence Petroleum India Limited,,1,1,0,0,0,2025-12-30,,,,56,0,0
+875,COROMANDEL,Coromandel International Limited,Fertilisers,1,1,0,0,0,2026-05-07,,,,89,0,0
+876,COSMOFIRST,COSMO FIRST LIMITED,,1,0,0,1,0,,,2026-05-14,,79,0,0
+877,CPCAP,CP Capital Limited,,1,1,0,0,0,2025-08-13,,,,49,0,0
+878,CPEDU,Career Point Edutech Limited,,1,1,0,0,0,2025-09-18,,,,37,0,0
+879,CPPLUS,Aditya Infotech Limited,,1,0,0,1,0,,,2026-05-25,,81,0,0
+880,CRAFTSMAN,Craftsman Automation Limited,,1,1,0,0,0,2026-05-07,,,,113,0,0
+881,CREDITACC,CREDITACCESS GRAMEEN LIMITED,,1,0,1,0,0,,2025-08-09,,,131,0,0
+882,CREST,Crest Ventures Limited,,1,1,0,0,0,2026-05-22,,,,68,0,0
+883,CRISIL,CRISIL Limited,Finance,1,0,1,0,0,,2026-04-30,,,69,0,0
+884,CROWN,Crown Lifters Limited,,1,1,0,0,0,2025-07-07,,,,43,0,0
+885,CSBBANK,CSB Bank Limited,,1,1,0,0,0,2026-05-26,,,,118,0,0
+886,CUMMINSIND,Cummins India Limited,Diesel Engines,1,1,0,0,0,2026-05-27,,,,106,0,0
+887,CUPID,Cupid Limited,,1,0,0,1,0,,,2026-05-15,,93,0,0
+888,CYBERMEDIA,Cyber Media (India) Limited,Printing And Publishing,1,1,0,0,0,2025-09-08,,,,70,0,0
+889,CYIENT,Cyient Limited,,1,0,1,0,0,,2026-03-03,,,149,0,0
+890,DALBHARAT,Dalmia Bharat Limited,,1,1,0,0,0,2026-05-23,,,,91,0,0
+891,DAMODARIND,Damodar Industries Limited,,1,0,1,0,0,,2025-12-31,,,56,0,0
+892,DATAMATICS,Datamatics Global Services Limited,Computers - Software,1,1,0,0,0,2026-05-21,,,,91,0,0
+893,DBL,Dilip Buildcon Limited,,1,1,0,0,0,2026-01-19,,,,85,0,0
+894,DCAL,Dishman Carbogen Amcis Limited,,1,1,0,0,0,2025-09-29,,,,72,0,0
+895,DCBBANK,DCB Bank Limited,,1,1,0,0,0,2025-07-31,,,,116,0,0
+896,DCI,DC Infotech and Communication Limited,,1,1,0,0,0,2025-10-01,,,,48,0,0
+897,DCMNVL,DCM Nouvelle Limited,,1,0,1,0,0,,2025-07-04,,,43,0,0
+898,DCMSHRIRAM,DCM Shriram Limited,,1,1,0,0,0,2025-08-12,,,,120,0,0
+899,DCW,DCW Limited,Chemicals - Inorganic,1,1,0,0,0,2025-08-08,,,,98,0,0
+900,DEEPAKFERT,Deepak Fertilizers and Petrochemicals Corporation Limited,Chemicals - Inorganic,1,1,0,0,0,2025-07-29,,,,106,0,0
+901,DELTACORP,Delta Corp Limited,Construction,1,1,0,0,0,2026-04-22,,,,45,0,0
+902,DEN,Den Networks Limited,Media & Entertainment,1,1,0,0,0,2025-08-22,,,,38,0,0
+903,DENORA,De Nora India Limited,Electrical Equipment,1,0,1,0,0,,2025-08-06,,,43,0,0
+904,DENTA,Denta Water and Infra Solutions Limited,,1,1,0,0,0,2026-05-25,,,,71,0,0
+905,DEVX,Dev Accelerator Limited,,1,1,0,0,0,2025-10-07,,,,68,0,0
+906,DHAMPURSUG,Dhampur Sugar Mills Limited,Sugar,1,0,1,0,0,,2025-10-03,,,68,0,0
+907,DHANBANK,Dhanlaxmi Bank Limited,Banks,1,1,0,0,0,2025-08-26,,,,35,0,0
+908,DHANI,Dhani Services Limited,,1,1,0,0,0,2025-07-25,,,,30,0,0
+909,DHARMAJ,Dharmaj Crop Guard Limited,,1,1,0,0,0,2025-08-08,,,,60,0,0
+910,DHRUV,Dhruv Consultancy Services Limited,,1,1,0,0,0,2025-11-13,,,,79,0,0
+911,DIAMINESQ,Diamines & Chemicals Limited,,1,1,0,0,0,2026-05-18,,,,47,0,0
+912,DIAMONDYD,Prataap Snacks Limited,,1,0,1,0,0,,2025-09-13,,,46,0,0
+913,DIFFNKG,Diffusion Engineers Limited,,1,1,0,0,0,2026-05-16,,,,90,0,0
+914,DIGIDRIVE,Digidrive Distributors Limited,,1,1,0,0,0,2025-09-12,,,,24,0,0
+915,DIL,Debock Industries Limited,,1,0,1,0,0,,2025-07-31,,,23,0,0
+916,DIVGIITTS,Divgi Torqtransfer Systems Limited,,1,1,0,0,0,2025-08-07,,,,87,0,0
+917,DJML,DJ Mediaprint & Logistics Limited,,1,1,0,0,0,2025-09-11,,,,42,0,0
+918,DLF,DLF Limited,Construction,1,1,0,0,0,2025-08-04,,,,78,0,0
+919,DMART,Avenue Supermarts Limited,,1,0,0,1,0,,,2026-05-14,,113,0,0
+920,DMCC,DMCC SPECIALITY CHEMICALS LIMITED,,1,0,1,0,0,,2025-12-03,,,71,0,0
+921,DODLA,Dodla Dairy Limited,,1,1,0,0,0,2026-04-24,,,,74,0,0
+922,DOLLAR,Dollar Industries Limited,,1,0,0,1,0,,,2025-08-14,,79,0,0
+923,DOLPHIN,Dolphin Offshore Enterprises (India) Limited,,1,1,0,0,0,2026-05-05,,,,36,0,0
+924,DOMS,DOMS Industries Limited,,1,1,0,0,0,2026-05-18,,,,77,0,0
+925,DREAMFOLKS,Dreamfolks Services Limited,,1,1,0,0,0,2026-05-29,,,,78,0,0
+926,DRREDDY,Dr. Reddy's Laboratories Limited,Pharmaceuticals,1,1,0,0,0,2026-05-12,,,,132,0,0
+927,DSSL,Dynacons Systems & Solutions Limited,Computers - Software,1,1,0,0,0,2026-02-14,,,,79,0,0
+928,DYCL,Dynamic Cables Limited,,1,1,0,0,0,2026-05-12,,,,61,0,0
+929,DYNAMATECH,Dynamatic Technologies Limited,Compressors / Pumps,1,0,0,1,0,,,2026-05-19,,50,0,0
+930,E2E,E2E Networks Limited,,1,0,0,1,0,,,2026-06-12,,93,0,0
+931,EBGNG,GNG Electronics Limited,,1,1,0,0,0,2025-11-04,,,,70,0,0
+932,ECLERX,eClerx Services Limited,Computers - Software,1,1,0,0,0,2026-03-12,,,,113,0,0
+933,ECOSMOBLTY,Ecos (India) Mobility & Hospitality Limited,,1,1,0,0,0,2025-08-12,,,,75,0,0
+934,EDELWEISS,Edelweiss Financial Services Limited,Finance,1,0,0,1,0,,,2026-04-30,,92,0,0
+935,EFCIL,EFC (I) Limited,,1,1,0,0,0,2025-09-08,,,,97,0,0
+936,EICHERMOT,Eicher Motors Limited,Automobiles - 4 Wheelers,1,1,0,0,0,2025-07-31,,,,120,0,0
+937,EIEL,Enviro Infra Engineers Limited,,1,1,0,0,0,2025-08-29,,,,104,0,0
+938,EKC,Everest Kanto Cylinder Limited,Gas,1,1,0,0,0,2025-08-13,,,,53,0,0
+939,ELECON,Elecon Engineering Company Limited,Engineering,1,0,1,0,0,,2026-01-08,,,93,0,0
+940,ELECTHERM,Electrotherm (India) Limited,Steel And Steel Products,1,1,0,0,0,2025-10-24,,,,52,0,0
+941,ELGIRUBCO,Elgi Rubber Company Limited,Tyres,1,1,0,0,0,2025-07-08,,,,62,0,0
+942,ELLEN,Ellenbarrie Industrial Gases Limited,,1,1,0,0,0,2026-05-22,,,,55,0,0
+943,EMAMIREAL,Emami Realty Limited,,1,1,0,0,0,2025-08-12,,,,56,0,0
+944,EMCURE,Emcure Pharmaceuticals Limited,,1,0,1,0,0,,2025-11-21,,,85,0,0
+945,EMIL,Electronics Mart India Limited,,1,1,0,0,0,2025-08-28,,,,76,0,0
+946,EMUDHRA,eMudhra Limited,,1,1,0,0,0,2026-05-06,,,,114,0,0
+947,ENGINERSIN,Engineers India Limited,Engineering,1,1,0,0,0,2025-09-16,,,,77,0,0
+948,ENRIN,Siemens Energy India Limited,,1,1,0,0,0,2026-02-13,,,,49,0,0
+949,EPIGRAL,Epigral Limited,,1,0,1,0,0,,2025-09-03,,,83,0,0
+950,EPL,EPL Limited,,1,1,0,0,0,2025-08-05,,,,92,0,0
+951,EQUIPPP,Equippp Social Impact Technologies Limited,,1,1,0,0,0,2025-09-06,,,,42,0,0
+952,ERIS,Eris Lifesciences Limited,,1,1,0,0,0,2025-08-13,,,,84,0,0
+953,EROSMEDIA,Eros International Media Limited,Media & Entertainment,1,0,0,0,1,,,,2025-08-14,48,0,0
+954,ESABINDIA,Esab India Limited,Electrodes,1,0,0,1,0,,,2026-04-30,,32,0,0
+955,ESCORTS,Escorts Kubota Limited,Automobiles - 4 Wheelers,1,1,0,0,0,2025-07-16,,,,213,0,0
+956,ESSENTIA,Integra Essentia Limited,,1,0,1,0,0,,2026-05-02,,,49,0,0
+957,ESTER,Ester Industries Limited,Packaging,1,1,0,0,0,2026-05-13,,,,106,0,0
+958,ETERNAL,ETERNAL LIMITED,,1,1,0,0,0,2025-08-21,,,,67,0,0
+959,ETHOSLTD,Ethos Limited,,1,1,0,0,0,2025-09-15,,,,89,0,0
+960,EUROBOND,Euro Panel Products Limited,,1,0,0,1,0,,,2026-05-22,,66,0,0
+961,EUROPRATIK,Euro Pratik Sales Limited,,1,1,0,0,0,2026-02-07,,,,65,0,0
+962,EVERESTIND,Everest Industries Limited,Cement And Cement Products,1,1,0,0,0,2025-08-04,,,,72,0,0
+963,EXCELINDUS,Excel Industries Limited,Pesticides And Agrochemicals,1,0,0,1,0,,,2026-05-15,,61,0,0
+964,EXPLEOSOL,Expleo Solutions Limited,,1,1,0,0,0,2025-08-21,,,,54,0,0
+965,FACT,Fertilizers and Chemicals Travancore Limited,Fertilisers,1,1,0,0,0,2025-09-26,,,,60,0,0
+966,FAIRCHEMOR,Fairchem Organics Limited,,1,0,1,0,0,,2025-11-07,,,60,0,0
+967,FCL,Fineotex Chemical Limited,,1,1,0,0,0,2025-08-12,,,,102,0,0
+968,FCONSUMER,Future Consumer Limited,,1,0,0,0,1,,,,2026-05-29,64,0,0
+969,FCSSOFT,FCS Software Solutions Limited,Computers - Software,1,1,0,0,0,2025-08-19,,,,29,0,0
+970,FILATEX,Filatex India Limited,Textiles - Synthetic,1,1,0,0,0,2025-09-26,,,,50,0,0
+971,FINPIPE,Finolex Industries Limited,Plastic And Plastic Products,1,1,0,0,0,2025-08-02,,,,67,0,0
+972,FISCHER,Fischer Medical Ventures Limited,,1,0,1,0,0,,2026-01-30,,,79,0,0
+973,FIVESTAR,Five-Star Business Finance Limited,,1,1,0,0,0,2025-09-10,,,,132,0,0
+974,FLAIR,Flair Writing Industries Limited,,1,1,0,0,0,2025-07-25,,,,86,0,0
+975,FLUOROCHEM,Gujarat Fluorochemicals Limited,,1,1,0,0,0,2026-05-29,,,,78,0,0
+976,FMGOETZE,Federal-Mogul Goetze (India) Limited.,Auto Ancillaries,1,0,1,0,0,,2025-08-11,,,46,0,0
+977,FMNL,Future Market Networks Limited,Miscellaneous,1,1,0,0,0,2025-09-26,,,,48,0,0
+978,FOODSIN,Foods & Inns Limited,,1,1,0,0,0,2025-08-13,,,,58,0,0
+979,FORCEMOT,FORCE MOTORS LTD,,1,0,0,1,0,,,2026-06-01,,68,0,0
+980,FORTIS,Fortis Healthcare Limited,Miscellaneous,1,1,0,0,0,2025-08-06,,,,153,0,0
+981,FOSECOIND,Foseco India Limited,Chemicals - Speciality,1,1,0,0,0,2026-02-25,,,,68,0,0
+982,GABRIEL,Gabriel India Limited,Auto Ancillaries,1,1,0,0,0,2026-05-27,,,,84,0,0
+983,GAEL,Gujarat Ambuja Exports Limited,Solvent Extraction,1,1,0,0,0,2025-08-02,,,,62,0,0
+984,GAIL,GAIL (India) Limited,Gas,1,0,1,0,0,,2026-02-27,,,106,0,0
+985,GALAPREC,Gala Precision Engineering Limited,,1,1,0,0,0,2026-05-14,,,,65,0,0
+986,GALAXYSURF,Galaxy Surfactants Limited,,1,0,0,1,0,,,2026-05-15,,54,0,0
+987,GALLANTT,Gallantt Ispat Limited,Steel And Steel Products,1,0,0,1,0,,,2026-05-05,,74,0,0
+988,GAMMONIND,Gammon India Limited,Construction,1,1,0,0,0,2026-05-30,,,,10,0,0
+989,GANECOS,Ganesha Ecosphere Limited,,1,1,0,0,0,2025-09-27,,,,61,0,0
+990,GANESHBE,Ganesh Benzoplast Limited,,1,0,1,0,0,,2026-02-13,,,54,0,0
+991,GANESHHOU,GANESH HOUSING LIMITED,,1,1,0,0,0,2026-05-29,,,,53,0,0
+992,GANGAFORGE,Ganga Forging Limited,,1,1,0,0,0,2026-05-29,,,,33,0,0
+993,GANGESSECU,Ganges Securities Limited,,1,1,0,0,0,2026-05-14,,,,33,0,0
+994,GARFIBRES,Garware Technical Fibres Limited,,1,1,0,0,0,2025-09-02,,,,90,0,0
+995,GARUDA,Garuda Construction and Engineering Limited,,1,1,0,0,0,2025-07-18,,,,53,0,0
+996,GAUDIUMIVF,Gaudium IVF and Women Health Limited,,1,1,0,0,0,2026-03-18,,,,30,0,0
+997,GAYAHWS,Gayatri Highways Limited,,1,1,0,0,0,2025-08-12,,,,50,0,0
+998,GBGLOBAL,GB Global Limited,,1,1,0,0,0,2026-05-30,,,,49,0,0
+999,GEEKAYWIRE,Geekay Wires Limited,,1,1,0,0,0,2026-05-28,,,,62,0,0
+1000,GENCON,Generic Engineering Construction and Projects Limited,,1,1,0,0,0,2025-09-06,,,,33,0,0
+1001,GENUSPOWER,Genus Power Infrastructures Limited,Electronics - Industrial,1,0,1,0,0,,2026-05-16,,,90,0,0
+1002,GFLLIMITED,GFL Limited,,1,1,0,0,0,2025-08-13,,,,25,0,0
+1003,GHCL,GHCL Limited,Chemicals - Inorganic,1,1,0,0,0,2026-05-05,,,,115,0,0
+1004,GHCLTEXTIL,GHCL Textiles Limited,,1,1,0,0,0,2026-06-27,,,,99,0,0
+1005,GILLANDERS,Gillanders Arbuthnot & Company Limited,Textiles - Synthetic,1,0,1,0,0,,2025-08-07,,,32,0,0
+1006,GINNIFILA,Ginni Filaments Limited,Textiles - Cotton,1,1,0,0,0,2025-08-05,,,,45,0,0
+1007,GIPCL,Gujarat Industries Power Company Limited,Power,1,1,0,0,0,2025-08-12,,,,69,0,0
+1008,GLAND,Gland Pharma Limited,,1,0,0,1,0,,,2026-06-15,,103,0,0
+1009,GLAXO,GlaxoSmithKline Pharmaceuticals Limited,Pharmaceuticals,1,0,0,1,0,,,2026-05-29,,82,0,0
+1010,GLOBAL,Global Education Limited,,1,0,1,0,0,,2025-10-18,,,75,0,0
+1011,GLOBALE,Globale Tessile Limited,,1,0,1,0,0,,2025-07-07,,,31,0,0
+1012,GLOBECIVIL,Globe Civil Projects Limited,,1,1,0,0,0,2025-09-30,,,,74,0,0
+1013,GLOSTERLTD,Gloster Limited,,1,1,0,0,0,2025-08-13,,,,30,0,0
+1014,GLOTTIS,Glottis Limited,,1,1,0,0,0,2025-10-27,,,,55,0,0
+1015,GMMPFAUDLR,GMM Pfaudler Limited,,1,0,1,0,0,,2026-05-21,,,71,0,0
+1016,GMRP&UI,GMR Power and Urban Infra Limited,,1,1,0,0,0,2025-07-30,,,,57,0,0
+1017,GNA,GNA Axles Limited,,1,1,0,0,0,2026-01-06,,,,28,0,0
+1018,GNFC,Gujarat Narmada Valley Fertilizers and Chemicals Limited,Fertilisers,1,1,0,0,0,2025-08-06,,,,130,0,0
+1019,GOACARBON,Goa Carbon Limited,Metals,1,1,0,0,0,2026-05-07,,,,53,0,0
+1020,GOCOLORS,Go Fashion (India) Limited,,1,1,0,0,0,2025-08-01,,,,95,0,0
+1021,GODAVARIB,Godavari Biorefineries Limited,,1,1,0,0,0,2025-09-30,,,,90,0,0
+1022,GODFRYPHLP,Godfrey Phillips India Limited,Cigarettes,1,1,0,0,0,2025-09-04,,,,71,0,0
+1023,GODIGIT,Go Digit General Insurance Limited,,1,1,0,0,0,2026-04-28,,,,83,0,0
+1024,GODREJAGRO,Godrej Agrovet Limited,,1,0,0,1,0,,,2026-06-22,,93,0,0
+1025,GODREJCP,Godrej Consumer Products Limited,Personal Care,1,0,0,1,0,,,2026-04-30,,111,0,0
+1026,GODREJPROP,Godrej Properties Limited,Construction,1,1,0,0,0,2025-08-01,,,,94,0,0
+1027,GOKULAGRO,Gokul Agro Resources Limited,,1,1,0,0,0,2025-08-12,,,,60,0,0
+1028,GOODLUCK,Goodluck India Limited,,1,1,0,0,0,2025-11-08,,,,69,0,0
+1029,GOPAL,Gopal Snacks Limited,,1,1,0,0,0,2025-09-27,,,,84,0,0
+1030,GOYALALUM,Goyal Aluminiums Limited,,1,0,1,0,0,,2026-01-02,,,25,0,0
+1031,GPIL,Godawari Power And Ispat limited,Steel And Steel Products,1,1,0,0,0,2026-05-19,,,,189,0,0
+1032,GRAPHITE,Graphite India Limited,Electrodes,1,0,0,1,0,,,2026-05-22,,77,0,0
+1033,GRAVITA,Gravita India Limited,Mining,1,1,0,0,0,2026-05-07,,,,208,0,0
+1034,GREAVESCOT,Greaves Cotton Limited,Diesel Engines,1,0,1,0,0,,2026-03-13,,,105,0,0
+1035,GRINDWELL,Grindwell Norton Limited,Abrasives,1,0,1,0,0,,2025-12-12,,,63,0,0
+1036,GRMOVER,GRM Overseas Limited,,1,1,0,0,0,2025-08-27,,,,75,0,0
+1037,GROWW,Billionbrains Garage Ventures Limited,,1,1,0,0,0,2026-04-20,,,,64,0,0
+1038,GRPLTD,GRP Limited,,1,0,1,0,0,,2026-04-07,,,50,0,0
+1039,GSFC,Gujarat State Fertilizers & Chemicals Limited,Fertilisers,1,1,0,0,0,2025-08-07,,,,98,0,0
+1040,GSS,GSS Infotech Limited,Computers - Software,1,1,0,0,0,2025-09-08,,,,35,0,0
+1041,GTPL,GTPL Hathway Limited,,1,1,0,0,0,2025-09-26,,,,54,0,0
+1042,GUFICBIO,Gufic Biosciences Limited,Pharmaceuticals,1,1,0,0,0,2025-08-13,,,,68,0,0
+1043,GUJGASLTD,Gujarat Gas Limited,,1,1,0,0,0,2025-08-05,,,,112,0,0
+1044,GVPTECH,GVP Infotech Limited,,1,0,1,0,0,,2025-09-02,,,47,0,0
+1045,GVT&D,GE Vernova T&D India Limited,,1,1,0,0,0,2026-05-18,,,,94,0,0
+1046,HAL,Hindustan Aeronautics Limited,,1,1,0,0,0,2025-09-12,,,,57,0,0
+1047,HAPPYFORGE,Happy Forgings Limited,,1,1,0,0,0,2026-05-21,,,,80,0,0
+1048,HARIOMPIPE,Hariom Pipe Industries Limited,,1,1,0,0,0,2025-08-08,,,,87,0,0
+1049,HARRMALAYA,Harrisons  Malayalam Limited,Tea And Coffee,1,0,1,0,0,,2026-04-13,,,36,0,0
+1050,HARSHA,Harsha Engineers International Limited,,1,1,0,0,0,2025-09-12,,,,53,0,0
+1051,HATSUN,Hatsun Agro Product Limited,,1,1,0,0,0,2026-01-19,,,,76,0,0
+1052,HAVELLS,Havells India Limited,Electrical Equipment,1,0,0,1,0,,,2026-04-22,,83,0,0
+1053,HAVISHA,Sri Havisha Hospitality and Infrastructure Limited,,1,1,0,0,0,2025-08-12,,,,32,0,0
+1054,HBSL,HB Stockholdings Limited,,1,0,1,0,0,,2025-08-08,,,40,0,0
+1055,HCC,Hindustan Construction Company Limited,Construction,1,1,0,0,0,2025-08-12,,,,69,0,0
+1056,HCL-INSYS,HCL Infosystems Limited,Computers - Hardware,1,1,0,0,0,2025-09-17,,,,60,0,0
+1057,HDFCBANK,HDFC Bank Limited,Banks,1,0,1,0,0,,2026-06-29,,,130,0,0
+1058,HEADSUP,Heads UP Ventures Limited,,1,1,0,0,0,2026-01-22,,,,36,0,0
+1059,HEALTHX,Health X Platform Limited,,1,1,0,0,0,2026-05-30,,,,76,0,0
+1060,HECPROJECT,HEC Infra Projects Limited,,1,1,0,0,0,2025-08-01,,,,67,0,0
+1061,HEIDELBERG,HeidelbergCement India Limited,Cement And Cement Products,1,1,0,0,0,2025-07-29,,,,58,0,0
+1062,HEMIPROP,Hemisphere Properties India Limited,,1,1,0,0,0,2025-09-11,,,,47,0,0
+1063,HEROMOTOCO,Hero MotoCorp Limited,Automobiles - 2 And 3 Wheelers,1,0,1,0,0,,2025-11-13,,,125,0,0
+1064,HEXAGON,Hexagon Nutrition Limited,,1,1,0,0,0,2026-06-30,,,,5,0,0
+1065,HIMATSEIDE,Himatsingka Seide Limited,Textile Products,1,1,0,0,0,2025-08-12,,,,85,0,0
+1066,HINDCOMPOS,Hindustan Composites Limited,Auto Ancillaries,1,1,0,0,0,2025-08-08,,,,49,0,0
+1067,HINDCOPPER,Hindustan Copper Limited,Metals,1,1,0,0,0,2025-09-11,,,,104,0,0
+1068,HINDUNILVR,Hindustan Unilever Limited,Diversified,1,0,1,0,0,,2025-08-21,,,117,0,0
+1069,HITECH,Hi-Tech Pipes Limited,,1,1,0,0,0,2026-05-28,,,,69,0,0
+1070,HITECHCORP,Hitech Corporation Limited,,1,0,0,1,0,,,2026-05-08,,43,0,0
+1071,HLEGLAS,HLE Glascoat Limited,,1,1,0,0,0,2026-05-18,,,,60,0,0
+1072,HMT,HMT Limited,Automobiles - 4 Wheelers,1,0,0,0,1,,,,2026-05-20,47,0,0
+1073,HNDFDS,Hindustan Foods Limited,,1,1,0,0,0,2026-01-16,,,,79,0,0
+1074,HONDAPOWER,Honda India Power Products Limited,Electrical Equipment,1,1,0,0,0,2026-05-26,,,,71,0,0
+1075,HUBTOWN,Hubtown Limited,Construction,1,1,0,0,0,2025-09-26,,,,97,0,0
+1076,HYUNDAI,Hyundai Motor India Limited,,1,1,0,0,0,2025-07-30,,,,112,0,0
+1077,ICEMAKE,Ice Make Refrigeration Limited,,1,1,0,0,0,2025-08-07,,,,50,0,0
+1078,ICICIAMC,ICICI Prudential Asset Management Company Limited,,1,0,1,0,0,,2025-12-19,,,59,0,0
+1079,ICICIGI,ICICI Lombard General Insurance Company Limited,,1,1,0,0,0,2026-04-15,,,,137,0,0
+1080,ICICIPRULI,ICICI Prudential Life Insurance Company Limited,,1,1,0,0,0,2026-04-14,,,,197,0,0
+1081,ICRA,ICRA Limited,Finance,1,1,0,0,0,2025-12-12,,,,77,0,0
+1082,IDEAFORGE,Ideaforge Technology Limited,,1,1,0,0,0,2025-07-31,,,,77,0,0
+1083,IDFCFIRSTB,IDFC First Bank Limited,,1,1,0,0,0,2026-02-22,,,,111,0,0
+1084,IEX,Indian Energy Exchange Limited,,1,1,0,0,0,2026-01-06,,,,102,0,0
+1085,IFBAGRO,IFB Agro Industries Limited,Brew/Distilleries,1,1,0,0,0,2025-07-28,,,,49,0,0
+1086,IFBIND,IFB Industries Limited,Consumer Durables,1,1,0,0,0,2025-07-29,,,,65,0,0
+1087,IFCI,IFCI Limited,Financial Institution,1,1,0,0,0,2025-09-11,,,,60,0,0
+1088,IGCL,Indogulf Cropsciences Limited,,1,1,0,0,0,2026-03-18,,,,76,0,0
+1089,IGPL,IG Petrochemicals Limited,Petrochemicals,1,0,0,1,0,,,2026-05-18,,56,0,0
+1090,IIFLCAPS,IIFL Capital Services Limited,,1,1,0,0,0,2026-05-04,,,,120,0,0
+1091,IKIO,IKIO Technologies Limited,,1,1,0,0,0,2025-08-21,,,,68,0,0
+1092,IKS,Inventurus Knowledge Solutions Limited,,1,1,0,0,0,2025-08-01,,,,111,0,0
+1093,INDBANK,Indbank Merchant Banking Services Limited,Finance,1,0,1,0,0,,2025-07-18,,,25,0,0
+1094,INDIACEM,The India Cements Limited,Cement And Cement Products,1,0,0,1,0,,,2026-06-23,,68,0,0
+1095,INDIAMART,Indiamart Intermesh Limited,,1,1,0,0,0,2026-01-20,,,,144,0,0
+1096,INDIANB,Indian Bank,Banks,1,1,0,0,0,2025-10-01,,,,95,0,0
+1097,INDIANCARD,Indian Card Clothing Company Limited,Textiles - Synthetic,1,1,0,0,0,2025-08-14,,,,23,0,0
+1098,INDIASHLTR,India Shelter Finance Corporation Limited,,1,1,0,0,0,2025-07-29,,,,106,0,0
+1099,INDIGO,InterGlobe Aviation Limited,,1,0,0,1,0,,,2026-05-05,,146,0,0
+1100,INDIGOPNTS,Indigo Paints Limited,,1,1,0,0,0,2025-08-07,,,,56,0,0
+1101,INDNIPPON,India Nippon Electricals Limited,Auto Ancillaries,1,1,0,0,0,2025-08-13,,,,49,0,0
+1102,INDOAMIN,Indo Amines Limited,,1,1,0,0,0,2025-08-12,,,,46,0,0
+1103,INDOFARM,Indo Farm Equipment Limited,,1,1,0,0,0,2025-08-12,,,,64,0,0
+1104,INDOSTAR,IndoStar Capital Finance Limited,,1,1,0,0,0,2025-09-26,,,,95,0,0
+1105,INDOTECH,Indo Tech Transformers Limited,Electrical Equipment,1,1,0,0,0,2025-08-12,,,,51,0,0
+1106,INDOWIND,Indowind Energy Limited,Power,1,1,0,0,0,2025-09-30,,,,55,0,0
+1107,INDSWFTLAB,Ind-Swift Laboratories Limited,Pharmaceuticals,1,0,0,1,0,,,2026-06-22,,77,0,0
+1108,INDUSINDBK,IndusInd Bank Limited,Banks,1,1,0,0,0,2025-08-29,,,,168,0,0
+1109,INFY,Infosys Limited,Computers - Software,1,1,0,0,0,2025-07-08,,,,220,0,0
+1110,INGERRAND,Ingersoll Rand (India) Limited,Compressors / Pumps,1,1,0,0,0,2025-11-13,,,,32,0,0
+1111,INNOVACAP,Innova Captab Limited,,1,1,0,0,0,2026-05-25,,,,73,0,0
+1112,INNOVANA,Innovana Thinklabs Limited,,1,1,0,0,0,2025-09-05,,,,49,0,0
+1113,INNOVISION,Innovision Limited,,1,0,0,1,0,,,2026-06-03,,41,0,0
+1114,INOXGREEN,Inox Green Energy Services Limited,,1,1,0,0,0,2025-08-14,,,,81,0,0
+1115,INSPIRISYS,Inspirisys Solutions Limited,,1,1,0,0,0,2026-01-18,,,,44,0,0
+1116,INTELLECT,Intellect Design Arena Limited,,1,0,1,0,0,,2025-07-25,,,176,0,0
+1117,INTENTECH,Intense Technologies Limited,,1,0,0,1,0,,,2026-06-04,,57,0,0
+1118,INTLCONV,International Conveyors Limited,,1,1,0,0,0,2025-08-14,,,,45,0,0
+1119,IONEXCHANG,ION Exchange (India) Limited,,1,1,0,0,0,2026-05-26,,,,59,0,0
+1120,IRB,IRB Infrastructure Developers Limited,Construction,1,1,0,0,0,2026-01-15,,,,118,0,0
+1121,IREDA,Indian Renewable Energy Development Agency Limited,,1,1,0,0,0,2025-09-12,,,,75,0,0
+1122,IRISDOREME,Iris Clothings Limited,,1,1,0,0,0,2025-08-08,,,,66,0,0
+1123,ISGEC,Isgec Heavy Engineering Limited,,1,0,1,0,0,,2025-07-08,,,122,0,0
+1124,ITC,ITC Limited,Cigarettes,1,1,0,0,0,2025-07-25,,,,84,0,0
+1125,ITCHOTELS,ITC Hotels Limited,,1,1,0,0,0,2025-08-11,,,,55,0,0
+1126,IVP,IVP Limited,Chemicals - Organic,1,1,0,0,0,2026-05-21,,,,44,0,0
+1127,IVRCLINFRA,IVRCL Limited,Construction,1,1,0,0,0,2026-03-11,,,,8,0,0
+1128,IZMO,IZMO Limited,,1,1,0,0,0,2026-05-27,,,,58,0,0
+1129,JAGRAN,Jagran Prakashan Limited,Printing And Publishing,1,1,0,0,0,2025-09-19,,,,76,0,0
+1130,JARO,Jaro Institute of Technology Management and Research Limited,,1,1,0,0,0,2026-01-23,,,,53,0,0
+1131,JASH,Jash Engineering Limited,,1,1,0,0,0,2025-08-07,,,,93,0,0
+1132,JETAIRWAYS,Jet Airways (India) Limited,Travel And Transport,1,0,1,0,0,,2025-09-01,,,9,0,0
+1133,JGCHEM,J.G.Chemicals Limited,,1,1,0,0,0,2026-05-14,,,,66,0,0
+1134,JHS,JHS Svendgaard Laboratories Limited,Personal Care,1,1,0,0,0,2026-02-10,,,,47,0,0
+1135,JINDALSAW,Jindal Saw Limited,Steel And Steel Products,1,1,0,0,0,2026-04-27,,,,94,0,0
+1136,JINDALSTEL,JINDAL STEEL LIMITED,Steel And Steel Products,1,0,1,0,0,,2025-10-04,,,96,0,0
+1137,JINDRILL,Jindal Drilling And Industries Limited,Oil Exploration/Production,1,1,0,0,0,2025-07-30,,,,52,0,0
+1138,JISLDVREQS,Jain Irrigation Systems Limited,-,1,0,0,1,0,,,2026-04-25,,46,0,0
+1139,JISLJALEQS,Jain Irrigation Systems Limited,Plastic And Plastic Products,1,0,0,1,0,,,2026-04-25,,51,0,0
+1140,JKCEMENT,JK Cement Limited,Cement And Cement Products,1,0,1,0,0,,2025-08-15,,,94,0,0
+1141,JKIPL,Jinkushal Industries Limited,,1,1,0,0,0,2026-04-25,,,,51,0,0
+1142,JMA,Jullundur Motor Agency (Delhi) Limited,,1,1,0,0,0,2025-08-28,,,,46,0,0
+1143,JSWDULUX,JSW Dulux Limited,,1,1,0,0,0,2025-08-05,,,,153,0,0
+1144,JSWENERGY,JSW Energy Limited,Power,1,0,1,0,0,,2025-11-17,,,180,0,0
+1145,JSWHL,JSW Holdings Limited,,1,1,0,0,0,2026-05-28,,,,32,0,0
+1146,JUBLCPL,Jubilant Agri and Consumer Products Limited,,1,1,0,0,0,2025-08-26,,,,45,0,0
+1147,JUBLFOOD,Jubilant Foodworks Limited,Food And Food Processing,1,1,0,0,0,2025-11-13,,,,90,0,0
+1148,JUBLINGREA,Jubilant Ingrevia Limited,,1,1,0,0,0,2026-05-26,,,,91,0,0
+1149,JWL,Jupiter Wagons Limited,,1,0,1,0,0,,2025-07-15,,,85,0,0
+1150,KALYANIFRG,Kalyani Forge Limited,Castings/Forgings,1,0,1,0,0,,2025-07-10,,,58,0,0
+1151,KAMATHOTEL,Kamat Hotels (I) Limited,Hotels,1,0,1,0,0,,2026-04-06,,,55,0,0
+1152,KAMDHENU,Kamdhenu Limited,,1,1,0,0,0,2025-08-11,,,,79,0,0
+1153,KANANIIND,Kanani Industries Limited,Gems Jewellery And Watches,1,1,0,0,0,2026-01-07,,,,31,0,0
+1154,KANPRPLA,Kanpur Plastipack Limited,,1,1,0,0,0,2026-01-06,,,,81,0,0
+1155,KARURVYSYA,Karur Vysya Bank Limited,Banks,1,0,0,1,0,,,2026-07-01,,159,0,0
+1156,KCPSUGIND,KCP Sugar and Industries Corporation Limited,Sugar,1,1,0,0,0,2025-08-13,,,,53,0,0
+1157,KEC,KEC International Limited,Transmission Towers,1,1,0,0,0,2025-07-28,,,,117,0,0
+1158,KEEPLEARN,DSJ Keep Learning Limited,,1,0,1,0,0,,2025-11-05,,,34,0,0
+1159,KESORAMIND,Kesoram Industries Limited,Tyres,1,0,1,0,0,,2025-07-14,,,49,0,0
+1160,KHADIM,Khadim India Limited,,1,1,0,0,0,2025-08-16,,,,51,0,0
+1161,KHAICHEM,Khaitan Chemicals & Fertilizers Limited,,1,1,0,0,0,2025-10-29,,,,61,0,0
+1162,KIRIINDUS,Kiri Industries Limited,Dyes And Pigments,1,1,0,0,0,2025-08-11,,,,76,0,0
+1163,KIRLOSBROS,Kirloskar Brothers Limited,Compressors / Pumps,1,1,0,0,0,2026-05-13,,,,94,0,0
+1164,KIRLOSENG,Kirloskar Oil Engines Limited,Diesel Engines,1,1,0,0,0,2025-08-06,,,,188,0,0
+1165,KNAGRI,KN Agri Resources Limited,,1,1,0,0,0,2026-05-30,,,,33,0,0
+1166,KOHINOOR,Kohinoor Foods Limited,Food And Food Processing,1,0,1,0,0,,2025-11-17,,,44,0,0
+1167,KOKUYOCMLN,Kokuyo Camlin Limited,Miscellaneous,1,0,0,1,0,,,2025-08-01,,53,0,0
+1168,KOLTEPATIL,Kolte - Patil Developers Limited,Construction,1,1,0,0,0,2025-08-29,,,,80,0,0
+1169,KOTAKBANK,Kotak Mahindra Bank Limited,Banks,1,0,1,0,0,,2025-09-01,,,158,0,0
+1170,KOTARISUG,Kothari Sugars And Chemicals Limited,Sugar,1,1,0,0,0,2025-08-07,,,,35,0,0
+1171,KOTHARIPET,Kothari Petrochemicals Limited,Trading,1,1,0,0,0,2025-08-06,,,,34,0,0
+1172,KPEL,K.P. Energy Limited,,1,1,0,0,0,2026-05-07,,,,90,0,0
+1173,KPIGREEN,KPI Green Energy Limited,,1,1,0,0,0,2026-05-06,,,,130,0,0
+1174,KPITTECH,KPIT Technologies Limited,,1,0,1,0,0,,2026-01-29,,,119,0,0
+1175,KPRMILL,K.P.R. Mill Limited,Textile Products,1,1,0,0,0,2025-11-04,,,,70,0,0
+1176,KRISHIVAL,Krishival Foods Limited,,1,0,0,1,0,,,2025-07-11,,103,0,0
+1177,KRISHNADEF,Krishna Defence and Allied Industries Limited,,1,0,1,0,0,,2026-04-08,,,57,0,0
+1178,KRONOX,Kronox Lab Sciences Limited,,1,1,0,0,0,2025-07-25,,,,31,0,0
+1179,KROSS,Kross Limited,,1,1,0,0,0,2025-07-10,,,,72,0,0
+1180,KSB,Ksb Limited,,1,1,0,0,0,2025-11-11,,,,48,0,0
+1181,KSCL,Kaveri Seed Company Limited,Food And Food Processing,1,1,0,0,0,2026-04-16,,,,55,0,0
+1182,KSHINTL,KSH International Limited,,1,0,1,0,0,,2026-01-05,,,55,0,0
+1183,KSOLVES,Ksolves India Limited,,1,1,0,0,0,2025-09-27,,,,68,0,0
+1184,KUANTUM,Kuantum Papers Limited,,1,1,0,0,0,2026-05-26,,,,73,0,0
+1185,KUNDANMM,Kundan Minerals and Metals Limited,,1,0,0,1,0,,,2026-07-01,,51,0,0
+1186,KWIL,Kwality Wall's (India) Limited,,1,1,0,0,0,2026-02-20,,,,44,0,0
+1187,LAL,Lorenzini Apparels Limited,,1,0,1,0,0,,2026-05-13,,,36,0,0
+1188,LALPATHLAB,Dr. Lal Path Labs Ltd.,,1,1,0,0,0,2026-04-30,,,,83,0,0
+1189,LAMBODHARA,Lambodhara Textiles Limited,,1,1,0,0,0,2026-05-30,,,,33,0,0
+1190,LANCORHOL,Lancor Holdings Limited,,1,1,0,0,0,2025-08-13,,,,46,0,0
+1191,LANDMARK,Landmark Cars Limited,,1,1,0,0,0,2026-05-26,,,,85,0,0
+1192,LAOPALA,La Opala RG Limited,Miscellaneous,1,1,0,0,0,2026-05-30,,,,58,0,0
+1193,LATTEYS,Latteys Industries Limited,,1,0,1,0,0,,2026-01-19,,,27,0,0
+1194,LAURUSLABS,Laurus Labs Limited,,1,1,0,0,0,2026-03-12,,,,80,0,0
+1195,LAXMIINDIA,Laxmi India Finance Limited,,1,0,0,1,0,,,2026-05-02,,75,0,0
+1196,LEEL,LEEL Electricals Limited,,1,0,1,0,0,,2025-12-06,,,54,0,0
+1197,LEMONTREE,Lemon Tree Hotels Limited,,1,1,0,0,0,2025-09-26,,,,156,0,0
+1198,LEXUS,Lexus Granito (India) Limited,,1,1,0,0,0,2026-03-24,,,,41,0,0
+1199,LFIC,Lakshmi Finance & Industrial Corporation Limited,,1,1,0,0,0,2026-06-17,,,,38,0,0
+1200,LGEINDIA,LG Electronics India Limited,,1,1,0,0,0,2026-05-21,,,,75,0,0
+1201,LIBAS,Libas Consumer Products Limited,,1,1,0,0,0,2025-08-06,,,,40,0,0
+1202,LICHSGFIN,LIC Housing Finance Limited,Finance - Housing,1,1,0,0,0,2025-08-29,,,,70,0,0
+1203,LIKHITHA,Likhitha Infrastructure Limited,,1,1,0,0,0,2026-05-27,,,,38,0,0
+1204,LINCOLN,Lincoln Pharmaceuticals Limited,,1,1,0,0,0,2025-08-07,,,,43,0,0
+1205,LINDEINDIA,Linde India Limited,Gas,1,0,1,0,0,,2025-12-05,,,55,0,0
+1206,LLOYDSENT,Lloyds Enterprises Limited,,1,1,0,0,0,2026-05-08,,,,114,0,0
+1207,LMW,LMW Limited,,1,1,0,0,0,2026-05-20,,,,61,0,0
+1208,LOKESHMACH,Lokesh Machines Limited,Engineering,1,0,1,0,0,,2025-08-12,,,62,0,0
+1209,LORDSCHLO,Lords Chloro Alkali Limited,,1,1,0,0,0,2026-05-28,,,,76,0,0
+1210,LOTUSDEV,Sri Lotus Developers and Realty Limited,,1,1,0,0,0,2025-08-26,,,,88,0,0
+1211,LTM,LTM Limited,,1,0,1,0,0,,2026-04-23,,,131,0,0
+1212,LUPIN,Lupin Limited,Pharmaceuticals,1,1,0,0,0,2026-05-07,,,,176,0,0
+1213,LXCHEM,Laxmi Organic Industries Limited,,1,0,1,0,0,,2026-04-10,,,96,0,0
+1214,LYKALABS,Lyka Labs Limited,Pharmaceuticals,1,0,1,0,0,,2025-08-01,,,50,0,0
+1215,LYPSAGEMS,Lypsa Gems & Jewellery Limited,,1,1,0,0,0,2025-08-13,,,,38,0,0
+1216,M&MFIN,Mahindra & Mahindra Financial Services Limited,Finance,1,0,0,1,0,,,2026-04-24,,132,0,0
+1217,MAANALU,Maan Aluminium Limited,Aluminium,1,0,1,0,0,,2025-08-12,,,59,0,0
+1218,MADHAV,Madhav Marbles and Granites Limited,Construction,1,1,0,0,0,2025-09-30,,,,38,0,0
+1219,MADRASFERT,Madras Fertilizers Limited,Fertilisers,1,1,0,0,0,2025-09-09,,,,45,0,0
+1220,MAHESHWARI,Maheshwari Logistics Limited,,1,1,0,0,0,2025-10-01,,,,46,0,0
+1221,MAHLIFE,Mahindra Lifespace Developers Limited,Construction,1,0,1,0,0,,2025-08-05,,,141,0,0
+1222,MAHSCOOTER,Maharashtra Scooters Limited,Auto Ancillaries,1,0,1,0,0,,2025-07-25,,,37,0,0
+1223,MALLCOM,Mallcom (India) Limited,,1,1,0,0,0,2025-08-04,,,,55,0,0
+1224,MALUPAPER,Malu Paper Mills Limited,Paper And Paper Products,1,1,0,0,0,2025-08-21,,,,32,0,0
+1225,MANAKCOAT,Manaksia Coated Metals & Industries Limited,,1,1,0,0,0,2025-07-03,,,,88,0,0
+1226,MANAKSIA,Manaksia Limited,Steel And Steel Products,1,1,0,0,0,2025-07-30,,,,46,0,0
+1227,MANAKSTEEL,Manaksia Steels Limited,,1,1,0,0,0,2025-07-29,,,,44,0,0
+1228,MANALIPETC,Manali Petrochemicals Limited,Petrochemicals,1,0,1,0,0,,2025-10-03,,,96,0,0
+1229,MANBA,Manba Finance Limited,,1,1,0,0,0,2025-07-02,,,,81,0,0
+1230,MANCREDIT,Mangal Credit and Fincorp Limited,,1,1,0,0,0,2025-08-05,,,,46,0,0
+1231,MANKIND,Mankind Pharma Limited,,1,0,0,1,0,,,2026-05-19,,100,0,0
+1232,MANOMAY,Manomay Tex India Limited,,1,1,0,0,0,2026-05-22,,,,37,0,0
+1233,MANORAMA,Manorama Industries Limited,,1,1,0,0,0,2025-07-25,,,,76,0,0
+1234,MANYAVAR,Vedant Fashions Limited,,1,1,0,0,0,2025-09-05,,,,95,0,0
+1235,MARALOVER,Maral Overseas Limited,Textiles - Cotton,1,1,0,0,0,2026-05-07,,,,62,0,0
+1236,MARKOLINES,Markolines Pavement Technologies Limited,,1,1,0,0,0,2025-10-15,,,,47,0,0
+1237,MARUTI,Maruti Suzuki India Limited,Automobiles - 4 Wheelers,1,1,0,0,0,2025-07-31,,,,143,0,0
+1238,MASTERTR,Master Trust Limited,,1,1,0,0,0,2025-10-03,,,,43,0,0
+1239,MAXESTATES,Max Estates Limited,,1,0,0,1,0,,,2026-05-22,,100,0,0
+1240,MAXHEALTH,Max Healthcare Institute Limited,,1,1,0,0,0,2026-05-21,,,,111,0,0
+1241,MAXIND,Max India Limited,,1,0,0,1,0,,,2026-07-01,,112,0,0
+1242,MAYURUNIQ,Mayur Uniquoters Ltd,Textile Products,1,1,0,0,0,2025-09-19,,,,62,0,0
+1243,MAZDA,Mazda Limited,,1,1,0,0,0,2025-08-05,,,,32,0,0
+1244,MAZDOCK,Mazagon Dock Shipbuilders Limited,,1,1,0,0,0,2025-09-11,,,,57,0,0
+1245,MBECL,Mcnally Bharat Engineering Company Limited,Engineering,1,0,1,0,0,,2026-05-06,,,49,0,0
+1246,MBEL,M & B Engineering Limited,,1,1,0,0,0,2025-09-09,,,,64,0,0
+1247,MCL,M TEK COPPER LIMITED,,1,1,0,0,0,2025-07-29,,,,82,0,0
+1248,MCLEODRUSS,Mcleod Russel India Limited,Tea And Coffee,1,1,0,0,0,2025-08-14,,,,56,0,0
+1249,MEDICO,Medico Remedies Limited,,1,0,1,0,0,,2025-08-08,,,33,0,0
+1250,MEGASTAR,Megastar Foods Limited,,1,0,1,0,0,,2026-05-05,,,55,0,0
+1251,METROPOLIS,Metropolis Healthcare Limited,,1,1,0,0,0,2026-05-13,,,,76,0,0
+1252,MFML,Mahalaxmi Fabric Mills Limited,,1,0,1,0,0,,2026-03-06,,,31,0,0
+1253,MGEL,Mangalam Global Enterprise Limited,,1,1,0,0,0,2026-04-18,,,,61,0,0
+1254,MGL,Mahanagar Gas Limited,,1,1,0,0,0,2025-08-25,,,,93,0,0
+1255,MIDWESTLTD,Midwest Limited,,1,0,1,0,0,,2026-04-30,,,44,0,0
+1256,MINDACORP,Minda Corporation Limited,Auto Ancillaries,1,0,1,0,0,,2025-11-14,,,73,0,0
+1257,MINDTECK,Mindteck (India) Limited,,1,0,0,1,0,,,2026-05-06,,75,0,0
+1258,MIRCELECTR,MIRC Electronics Limited,Consumer Durables,1,1,0,0,0,2025-11-15,,,,79,0,0
+1259,MITCON,MITCON Consultancy & Engineering Services Limited,,1,0,0,1,0,,,2026-04-30,,43,0,0
+1260,MITTAL,Mittal Life Style Limited,,1,1,0,0,0,2025-07-07,,,,40,0,0
+1261,MKPL,M K Proteins Limited,,1,1,0,0,0,2025-08-05,,,,36,0,0
+1262,MMFL,MM Forgings Limited,Castings/Forgings,1,1,0,0,0,2025-08-06,,,,61,0,0
+1263,MMTC,MMTC Limited,Trading,1,1,0,0,0,2025-09-26,,,,73,0,0
+1264,MODINATUR,Modi Naturals Limited,,1,1,0,0,0,2026-05-13,,,,35,0,0
+1265,MODIRUBBER,Modi Rubber Limited,-,1,0,0,1,0,,,2026-05-15,,30,0,0
+1266,MODISONLTD,MODISON LIMITED,,1,1,0,0,0,2026-05-22,,,,48,0,0
+1267,MOLDTECH,Mold-Tek Technologies Limited,,1,0,1,0,0,,2025-07-31,,,70,0,0
+1268,MONARCH,Monarch Networth Capital Limited,,1,1,0,0,0,2026-01-16,,,,36,0,0
+1269,MONEYBOXX,Moneyboxx Finance Limited,,1,1,0,0,0,2025-10-30,,,,73,0,0
+1270,MONTECARLO,Monte Carlo Fashions Limited,,1,1,0,0,0,2025-09-29,,,,70,0,0
+1271,MOREPENLAB,Morepen Laboratories Limited,Pharmaceuticals,1,1,0,0,0,2026-05-26,,,,66,0,0
+1272,MRPL,Mangalore Refinery and Petrochemicals Limited,Refineries,1,1,0,0,0,2025-07-18,,,,71,0,0
+1273,MSTCLTD,Mstc Limited,,1,1,0,0,0,2025-09-15,,,,63,0,0
+1274,MTEDUCARE,MT Educare Limited,Miscellaneous,1,1,0,0,0,2025-08-13,,,,50,0,0
+1275,MTNL,Mahanagar Telephone Nigam Limited,Telecommunication - Services,1,1,0,0,0,2025-09-12,,,,129,0,0
+1276,MUFIN,Mufin Green Finance Limited,,1,1,0,0,0,2025-08-14,,,,79,0,0
+1277,MUKANDLTD,Mukand Limited,Steel And Steel Products,1,0,1,0,0,,2025-07-02,,,43,0,0
+1278,MUKKA,Mukka Proteins Limited,,1,1,0,0,0,2025-09-18,,,,98,0,0
+1279,MUKTAARTS,Mukta Arts Limited,Media & Entertainment,1,1,0,0,0,2026-05-22,,,,43,0,0
+1280,MUNJALSHOW,Munjal Showa Limited,Auto Ancillaries,1,0,1,0,0,,2025-11-14,,,43,0,0
+1281,MUTHOOTCAP,Muthoot Capital Services Limited,,1,1,0,0,0,2025-08-05,,,,97,0,0
+1282,MUTHOOTFIN,Muthoot Finance Limited,Finance,1,1,0,0,0,2025-09-02,,,,101,0,0
+1283,MVGJL,Manoj Vaibhav Gems N Jewellers Limited,,1,1,0,0,0,2025-08-11,,,,32,0,0
+1284,NAGREEKCAP,Nagreeka Capital & Infrastructure Limited,Finance,1,0,1,0,0,,2026-01-22,,,31,0,0
+1285,NAGREEKEXP,Nagreeka Exports Limited,Textiles - Cotton,1,0,1,0,0,,2026-03-14,,,51,0,0
+1286,NAHARINDUS,Nahar Industrial Enterprises Limited,Textiles - Synthetic,1,1,0,0,0,2025-09-29,,,,41,0,0
+1287,NAHARPOLY,Nahar Poly Films Limited,Packaging,1,0,1,0,0,,2026-03-23,,,47,0,0
+1288,NATCOPHARM,Natco Pharma Limited,Pharmaceuticals,1,0,1,0,0,,2026-02-12,,,79,0,0
+1289,NATIONALUM,National Aluminium Company Limited,Aluminium,1,1,0,0,0,2025-08-07,,,,89,0,0
+1290,NAVKARURB,Navkar Urbanstructure Limited,,1,1,0,0,0,2025-08-13,,,,49,0,0
+1291,NBCC,NBCC (India) Limited,Construction,1,1,0,0,0,2025-08-30,,,,123,0,0
+1292,NCC,NCC Limited,Construction,1,0,1,0,0,,2026-03-27,,,81,0,0
+1293,NDL,Nandan Denim Limited,,1,1,0,0,0,2025-08-06,,,,42,0,0
+1294,NDRAUTO,Ndr Auto Components Limited,,1,1,0,0,0,2025-07-10,,,,93,0,0
+1295,NECLIFE,Nectar Lifesciences Limited,Pharmaceuticals,1,1,0,0,0,2025-08-14,,,,89,0,0
+1296,NESTLEIND,Nestle India Limited,Food And Food Processing,1,0,1,0,0,,2026-01-16,,,103,0,0
+1297,NETWORK18,Network18 Media & Investments Limited,Finance,1,1,0,0,0,2025-07-03,,,,35,0,0
+1298,NEULANDLAB,Neuland Laboratories Limited,Pharmaceuticals,1,1,0,0,0,2026-01-30,,,,101,0,0
+1299,NGLFINE,NGL Fine-Chem Limited,,1,0,1,0,0,,2026-01-05,,,41,0,0
+1300,NILAINFRA,Nila Infrastructures Limited,,1,1,0,0,0,2026-05-02,,,,46,0,0
+1301,NILASPACES,Nila Spaces Limited,,1,1,0,0,0,2026-05-07,,,,41,0,0
+1302,NIMBSPROJ,Nimbus Projects Limited,,1,1,0,0,0,2026-05-27,,,,32,0,0
+1303,NIRAJISPAT,Niraj Ispat Industries Limited,,1,0,1,0,0,,2025-07-02,,,47,0,0
+1304,NITINFIRE,Nitin Fire Protection Industries Limited,Miscellaneous,1,1,0,0,0,2025-10-31,,,,25,0,0
+1305,NMDC,NMDC Limited,Mining,1,0,1,0,0,,2025-07-03,,,71,0,0
+1306,NOCIL,NOCIL Limited,Chemicals - Speciality,1,1,0,0,0,2026-05-07,,,,64,0,0
+1307,NORTHARC,Northern Arc Capital Limited,,1,1,0,0,0,2025-08-25,,,,64,0,0
+1308,NRAIL,N R Agarwal Industries Limited,,1,0,1,0,0,,2026-05-12,,,52,0,0
+1309,NTPC,NTPC Limited,Power,1,1,0,0,0,2025-07-29,,,,166,0,0
+1310,NUVAMA,Nuvama Wealth Management Limited,,1,1,0,0,0,2026-05-19,,,,110,0,0
+1311,NYKAA,FSN E-Commerce Ventures Limited,,1,0,1,0,0,,2025-08-12,,,90,0,0
+1312,OBEROIRLTY,Oberoi Realty Limited,Construction,1,0,0,1,0,,,2026-04-30,,101,0,0
+1313,ODIGMA,Odigma Consultancy Solutions Limited,,1,0,1,0,0,,2026-03-13,,,35,0,0
+1314,OIL,Oil India Limited,Oil Exploration/Production,1,1,0,0,0,2025-08-12,,,,109,0,0
+1315,OLECTRA,Olectra Greentech Limited,,1,1,0,0,0,2025-08-25,,,,66,0,0
+1316,OMAXAUTO,Omax Autos Limited,Auto Ancillaries,1,1,0,0,0,2026-01-14,,,,34,0,0
+1317,OMINFRAL,OM INFRA LIMITED,,1,1,0,0,0,2026-05-15,,,,38,0,0
+1318,OMNI,Omnitech Engineering Limited,,1,0,1,0,0,,2026-03-05,,,29,0,0
+1319,OMPOWER,Om Power Transmission Limited,,1,1,0,0,0,2026-05-19,,,,21,0,0
+1320,ONEPOINT,One Point One Solutions Limited,,1,1,0,0,0,2025-09-04,,,,81,0,0
+1321,ONESOURCE,Onesource Specialty Pharma Limited,,1,1,0,0,0,2025-07-08,,,,75,0,0
+1322,ONWARDTEC,Onward Technologies Limited,Computers - Software,1,0,1,0,0,,2025-07-09,,,79,0,0
+1323,ORCHPHARMA,Orchid Pharma Limited,,1,1,0,0,0,2025-08-12,,,,57,0,0
+1324,ORICONENT,Oricon Enterprises Limited,,1,0,0,1,0,,,2026-05-29,,64,0,0
+1325,ORIENTCER,ORIENT CERATECH LIMITED,,1,0,1,0,0,,2026-04-08,,,56,0,0
+1326,ORIENTELEC,Orient Electric Limited,,1,1,0,0,0,2025-07-25,,,,88,0,0
+1327,ORKLAINDIA,Orkla India Limited,,1,1,0,0,0,2026-05-19,,,,47,0,0
+1328,OSWALSEEDS,ShreeOswal Seeds And Chemicals Limited,,1,1,0,0,0,2025-08-07,,,,47,0,0
+1329,PACEDIGITK,Pace Digitek Limited,,1,0,1,0,0,,2025-10-06,,,95,0,0
+1330,PAGEIND,Page Industries Limited,Textile Products,1,1,0,0,0,2026-05-21,,,,50,0,0
+1331,PAISALO,Paisalo Digital Limited,,1,1,0,0,0,2025-09-30,,,,137,0,0
+1332,PAKKA,PAKKA LIMITED,,1,0,1,0,0,,2026-06-16,,,62,0,0
+1333,PANACEABIO,Panacea Biotec Limited,Pharmaceuticals,1,0,1,0,0,,2025-12-15,,,77,0,0
+1334,PANACHE,Panache Digilife Limited,,1,1,0,0,0,2026-04-29,,,,54,0,0
+1335,PAR,Par Drugs and Chemicals Limited,,1,1,0,0,0,2025-09-28,,,,55,0,0
+1336,PARACABLES,Paramount Communications Limited,Cables - Power,1,0,1,0,0,,2026-05-13,,,70,0,0
+1337,PARASPETRO,Paras Petrofils Limited,Textiles - Synthetic,1,0,1,0,0,,2025-07-30,,,26,0,0
+1338,PARKHOSPS,Park Medi World Limited,,1,1,0,0,0,2026-05-15,,,,55,0,0
+1339,PARKHOTELS,Apeejay Surrendra Park Hotels Limited,,1,1,0,0,0,2026-05-26,,,,70,0,0
+1340,PASUPTAC,Pasupati Acrylon Limited,,1,1,0,0,0,2025-09-18,,,,61,0,0
+1341,PATANJALI,Patanjali Foods Limited,,1,1,0,0,0,2025-07-28,,,,99,0,0
+1342,PAVNAIND,Pavna Industries Limited,,1,1,0,0,0,2025-07-02,,,,62,0,0
+1343,PCBL,PCBL Chemical Limited,,1,1,0,0,0,2025-11-14,,,,122,0,0
+1344,PCJEWELLER,PC Jeweller Limited,Gems Jewellery And Watches,1,1,0,0,0,2025-08-01,,,,80,0,0
+1345,PEL,Piramal Enterprises Limited,Pharmaceuticals,1,0,1,0,0,,2025-07-29,,,41,0,0
+1346,PENIND,Pennar Industries Limited,Steel And Steel Products,1,1,0,0,0,2026-01-22,,,,71,0,0
+1347,PENINLAND,Peninsula Land Limited,Construction,1,1,0,0,0,2025-08-06,,,,50,0,0
+1348,PETRONET,Petronet LNG Limited,Gas,1,1,0,0,0,2025-07-25,,,,98,0,0
+1349,PFIZER,Pfizer Limited,Pharmaceuticals,1,1,0,0,0,2026-05-12,,,,31,0,0
+1350,PFS,PTC India Financial Services Limited,Finance,1,1,0,0,0,2025-07-09,,,,86,0,0
+1351,PGHL,Procter & Gamble Health Limited,,1,0,1,0,0,,2025-09-16,,,52,0,0
+1352,PIGL,Power & Instrumentation (Gujarat) Limited,,1,0,1,0,0,,2026-04-03,,,91,0,0
+1353,PINELABS,Pine Labs Limited,,1,1,0,0,0,2025-12-17,,,,70,0,0
+1354,PIONEEREMB,Pioneer Embroideries Limited,Textile Products,1,1,0,0,0,2026-03-11,,,,39,0,0
+1355,PKTEA,The Peria Karamalai Tea & Produce Company Limited,,1,0,1,0,0,,2025-11-14,,,35,0,0
+1356,PLAZACABLE,Plaza Wires Limited,,1,1,0,0,0,2026-05-29,,,,31,0,0
+1357,PNB,Punjab National Bank,Banks,1,1,0,0,0,2025-12-12,,,,137,0,0
+1358,PNBGILTS,PNB Gilts Limited,Finance,1,0,1,0,0,,2025-11-28,,,46,0,0
+1359,PNC,Pritish Nandy Communications Limited,Media & Entertainment,1,1,0,0,0,2025-11-14,,,,52,0,0
+1360,PNCINFRA,PNC Infratech Limited,,1,0,1,0,0,,2026-05-19,,,99,0,0
+1361,PNGSREVA,PNGS Reva Diamond Jewellery Limited,,1,1,0,0,0,2026-03-13,,,,45,0,0
+1362,PODDARMENT,Poddar Pigments Limited,,1,0,1,0,0,,2025-09-30,,,52,0,0
+1363,POLYMED,Poly Medicure Limited,Pharmaceuticals,1,1,0,0,0,2025-08-08,,,,109,0,0
+1364,POONAWALLA,Poonawalla Fincorp Limited,,1,1,0,0,0,2025-07-08,,,,178,0,0
+1365,POWERICA,Powerica Limited,,1,1,0,0,0,2026-05-28,,,,41,0,0
+1366,POWERMECH,Power Mech Projects Limited,,1,0,1,0,0,,2025-07-12,,,79,0,0
+1367,PPAP,PPAP Automotive Limited,Auto Ancillaries,1,1,0,0,0,2026-01-09,,,,61,0,0
+1368,PPLPHARMA,Piramal Pharma Limited,,1,0,1,0,0,,2026-01-29,,,84,0,0
+1369,PRABHA,Prabha Energy Limited,,1,1,0,0,0,2026-05-22,,,,71,0,0
+1370,PRAENG,Prajay Engineers Syndicate Limited,Construction,1,1,0,0,0,2025-08-14,,,,28,0,0
+1371,PRAKASHSTL,Prakash Steelage Limited,Steel And Steel Products,1,1,0,0,0,2025-09-27,,,,33,0,0
+1372,PRECAM,Precision Camshafts Limited,,1,1,0,0,0,2026-01-20,,,,58,0,0
+1373,PRECOT,Precot Limited,Textiles - Cotton,1,0,1,0,0,,2025-11-14,,,34,0,0
+1374,PREMEXPLN,Premier Explosives Limited,,1,1,0,0,0,2025-08-12,,,,79,0,0
+1375,PRITI,Priti International Limited,,1,0,1,0,0,,2026-03-07,,,38,0,0
+1376,PRITIKAUTO,Pritika Auto Industries Limited,,1,1,0,0,0,2025-08-13,,,,43,0,0
+1377,PRIVISCL,Privi Speciality Chemicals Limited,,1,1,0,0,0,2026-05-11,,,,73,0,0
+1378,PROSTARM,Prostarm Info Systems Limited,,1,1,0,0,0,2025-08-14,,,,101,0,0
+1379,PROTEAN,Protean eGov Technologies Limited,,1,0,1,0,0,,2025-08-04,,,107,0,0
+1380,PRUDENT,Prudent Corporate Advisory Services Limited,,1,1,0,0,0,2026-05-07,,,,68,0,0
+1381,PSB,Punjab & Sind Bank,Banks,1,1,0,0,0,2025-08-05,,,,67,0,0
+1382,PSPPROJECT,PSP Projects Limited,,1,1,0,0,0,2025-07-30,,,,79,0,0
+1383,PVRINOX,PVR INOX Limited,,1,0,0,1,0,,,2026-05-25,,79,0,0
+1384,PVSL,Popular Vehicles and Services Limited,,1,0,0,1,0,,,2026-05-04,,142,0,0
+1385,PWL,Physicswallah Limited,,1,1,0,0,0,2026-05-27,,,,65,0,0
+1386,PYRAMID,Pyramid Technoplast Limited,,1,0,1,0,0,,2025-11-11,,,57,0,0
+1387,QUINTEGRA,Quintegra Solutions Limited,Computers - Software,1,1,0,0,0,2025-08-26,,,,38,0,0
+1388,RADAAN,Radaan Mediaworks India Limited,Media & Entertainment,1,0,1,0,0,,2026-02-13,,,37,0,0
+1389,RADIANTCMS,Radiant Cash Management Services Limited,,1,1,0,0,0,2026-05-29,,,,58,0,0
+1390,RADICO,Radico Khaitan Limited,Brew/Distilleries,1,1,0,0,0,2026-05-06,,,,99,0,0
+1391,RAILTEL,Railtel Corporation Of India Limited,,1,1,0,0,0,2025-08-20,,,,164,0,0
+1392,RAINBOW,Rainbow Childrens Medicare Limited,,1,1,0,0,0,2026-05-23,,,,70,0,0
+1393,RAJESHEXPO,Rajesh Exports Limited,Gems Jewellery And Watches,1,0,1,0,0,,2025-10-09,,,40,0,0
+1394,RAJMET,Rajnandini Metal Limited,,1,1,0,0,0,2025-08-13,,,,46,0,0
+1395,RALLIS,Rallis India Limited,Pesticides And Agrochemicals,1,0,0,1,0,,,2026-06-24,,90,0,0
+1396,RAMKY,Ramky Infrastructure Limited,Construction,1,0,1,0,0,,2026-05-27,,,77,0,0
+1397,RANASUG,Rana Sugars Limited,Sugar,1,0,0,1,0,,,2026-06-25,,48,0,0
+1398,RANEHOLDIN,Rane Holdings Limited,Finance,1,0,1,0,0,,2026-03-26,,,87,0,0
+1399,RATNAMANI,Ratnamani Metals & Tubes Limited,Steel And Steel Products,1,1,0,0,0,2025-09-09,,,,76,0,0
+1400,RATNAVEER,Ratnaveer Precision Engineering Limited,,1,0,0,1,0,,,2026-05-01,,78,0,0
+1401,RAYMONDREL,Raymond Realty Limited,,1,1,0,0,0,2026-05-05,,,,83,0,0
+1402,RBA,Restaurant Brands Asia Limited,,1,0,1,0,0,,2025-10-07,,,88,0,0
+1403,RBZJEWEL,RBZ Jewellers Limited,,1,1,0,0,0,2025-08-12,,,,55,0,0
+1404,RCF,Rashtriya Chemicals and Fertilizers Limited,Fertilisers,1,1,0,0,0,2025-08-12,,,,88,0,0
+1405,REGENCERAM,Regency Ceramics Limited,Ceramics And Sanitaryware,1,1,0,0,0,2025-09-30,,,,31,0,0
+1406,RELAXO,Relaxo Footwears Limited,Leather And Leather Products,1,0,1,0,0,,2025-07-30,,,81,0,0
+1407,RELCHEMQ,Reliance Chemotex Industries Limited,,1,1,0,0,0,2025-08-14,,,,53,0,0
+1408,RELIABLE,Reliable Data Services Limited,,1,1,0,0,0,2026-01-09,,,,44,0,0
+1409,RELIANCE,Reliance Industries Limited,Refineries,1,1,0,0,0,2025-08-30,,,,158,0,0
+1410,REPL,Rudrabhishek Enterprises Limited,,1,0,1,0,0,,2025-09-04,,,47,0,0
+1411,RETAIL,JHS Svendgaard Retail Ventures Limited,,1,1,0,0,0,2025-08-13,,,,48,0,0
+1412,RGL,Renaissance Global Limited,,1,1,0,0,0,2026-02-13,,,,63,0,0
+1413,RHL,Robust Hotels Limited,,1,1,0,0,0,2025-11-11,,,,41,0,0
+1414,RISHABH,Rishabh Instruments Limited,,1,1,0,0,0,2026-01-27,,,,78,0,0
+1415,RKDL,Ravi Kumar Distilleries Limited,Brew/Distilleries,1,1,0,0,0,2025-09-19,,,,41,0,0
+1416,RKFORGE,Ramkrishna Forgings Limited,Castings/Forgings,1,1,0,0,0,2025-07-08,,,,100,0,0
+1417,RKSWAMY,R K Swamy Limited,,1,1,0,0,0,2026-05-19,,,,54,0,0
+1418,RMC,RMC Switchgears Limited,,1,1,0,0,0,2026-05-30,,,,25,0,0
+1419,RMDRIP,R M Drip and Sprinklers Systems Limited,,1,0,0,0,1,,,,2025-09-13,57,0,0
+1420,RML,Rane (Madras) Limited,Auto Ancillaries,1,0,1,0,0,,2026-03-20,,,78,0,0
+1421,ROML,Raj Oil Mills Limited,,1,1,0,0,0,2025-09-29,,,,60,0,0
+1422,RPSGVENT,RPSG VENTURES LIMITED,,1,1,0,0,0,2025-09-11,,,,60,0,0
+1423,RSL,Rajputana Stainless Limited,,1,1,0,0,0,2026-05-25,,,,17,0,0
+1424,RSSOFTWARE,R. S. Software (India) Limited,Computers - Software,1,0,0,0,1,,,,2026-01-23,22,0,0
+1425,RSWM,RSWM Limited,Textiles - Synthetic,1,1,0,0,0,2025-09-08,,,,111,0,0
+1426,RTNINDIA,RattanIndia Enterprises Limited,,1,1,0,0,0,2025-08-12,,,,40,0,0
+1427,RTNPOWER,RattanIndia Power Limited,,1,1,0,0,0,2025-09-01,,,,27,0,0
+1428,RUBYMILLS,The Ruby Mills Limited,Textile Products,1,1,0,0,0,2025-11-13,,,,48,0,0
+1429,RUCHINFRA,Ruchi Infrastructure Limited,Food And Food Processing,1,1,0,0,0,2025-08-08,,,,44,0,0
+1430,RUCHIRA,Ruchira Papers Limited,Paper And Paper Products,1,1,0,0,0,2025-09-30,,,,61,0,0
+1431,RUDRA,Rudra Global Infra Products Limited,,1,1,0,0,0,2026-05-02,,,,10,0,0
+1432,RUSHIL,Rushil Decor Limited,Construction,1,1,0,0,0,2026-05-29,,,,79,0,0
+1433,SAATVIKGL,Saatvik Green Energy Limited,,1,0,1,0,0,,2025-12-22,,,89,0,0
+1434,SADHNANIQ,Sadhana Nitrochem Limited,,1,0,1,0,0,,2025-12-01,,,78,0,0
+1435,SAFARI,Safari Industries (India) Limited,,1,0,0,1,0,,,2026-05-19,,76,0,0
+1436,SAGARDEEP,Sagardeep Alloys Limited,,1,0,1,0,0,,2025-11-18,,,44,0,0
+1437,SAGCEM,Sagar Cements Limited,Cement And Cement Products,1,1,0,0,0,2026-01-21,,,,62,0,0
+1438,SAHYADRI,Sahyadri Industries Limited,,1,1,0,0,0,2026-05-09,,,,55,0,0
+1439,SAKAR,Sakar Healthcare Limited,,1,1,0,0,0,2026-05-06,,,,59,0,0
+1440,SAKHTISUG,Sakthi Sugars Limited,Sugar,1,1,0,0,0,2025-08-13,,,,43,0,0
+1441,SAKUMA,Sakuma Exports Limited,Trading,1,1,0,0,0,2025-10-01,,,,35,0,0
+1442,SALASAR,Salasar Techno Engineering Limited,,1,1,0,0,0,2025-08-13,,,,46,0,0
+1443,SALONA,Salona Cotspin Limited,,1,1,0,0,0,2026-02-09,,,,44,0,0
+1444,SAMHI,Samhi Hotels Limited,,1,1,0,0,0,2025-07-03,,,,97,0,0
+1445,SAMPANN,Sampann Utpadan India Limited,,1,1,0,0,0,2025-09-28,,,,44,0,0
+1446,SANSTAR,Sanstar Limited,,1,1,0,0,0,2025-08-14,,,,70,0,0
+1447,SAPPHIRE,Sapphire Foods India Limited,,1,0,0,1,0,,,2026-04-28,,102,0,0
+1448,SAREGAMA,Saregama India Limited,Media & Entertainment,1,0,1,0,0,,2025-07-14,,,90,0,0
+1449,SASKEN,Sasken Technologies Limited,Computers - Software,1,0,0,1,0,,,2026-05-01,,94,0,0
+1450,SATIA,Satia Industries Limited,,1,1,0,0,0,2026-05-23,,,,49,0,0
+1451,SBC,SBC Exports Limited,,1,1,0,0,0,2026-05-05,,,,46,0,0
+1452,SBCL,Shivalik Bimetal Controls Limited,,1,1,0,0,0,2025-08-13,,,,82,0,0
+1453,SBGLP,Suratwwala Business Group Limited,,1,1,0,0,0,2026-05-27,,,,37,0,0
+1454,SBICARD,SBI Cards and Payment Services Limited,,1,1,0,0,0,2025-07-14,,,,160,0,0
+1455,SBILIFE,SBI Life Insurance Company Limited,,1,1,0,0,0,2025-09-11,,,,74,0,0
+1456,SCHAEFFLER,Schaeffler India Limited,,1,1,0,0,0,2025-10-31,,,,90,0,0
+1457,SCI,Shipping Corporation Of India Limited,Shipping,1,1,0,0,0,2025-08-08,,,,107,0,0
+1458,SCILAL,Shipping Corporation of India Land and Assets Limited,,1,1,0,0,0,2025-08-06,,,,56,0,0
+1459,SCODATUBES,Scoda Tubes Limited,,1,1,0,0,0,2025-09-01,,,,56,0,0
+1460,SECMARK,SecMark Consultancy Limited,,1,1,0,0,0,2025-08-13,,,,33,0,0
+1461,SECURCRED,SecUR Credentials Limited,,1,1,0,0,0,2026-03-06,,,,19,0,0
+1462,SECURKLOUD,SECUREKLOUD TECHNOLOGIES LIMITED,,1,1,0,0,0,2025-08-14,,,,44,0,0
+1463,SEJALLTD,Sejal Glass Limited,,1,1,0,0,0,2025-09-30,,,,89,0,0
+1464,SEMAC,Semac Construction Limited,,1,1,0,0,0,2025-08-11,,,,43,0,0
+1465,SENCO,Senco Gold Limited,,1,1,0,0,0,2025-07-25,,,,102,0,0
+1466,SENORES,Senores Pharmaceuticals Limited,,1,0,1,0,0,,2026-06-10,,,96,0,0
+1467,SERVOTECH,Servotech Renewable Power System Limited,,1,1,0,0,0,2025-08-30,,,,88,0,0
+1468,SESHAPAPER,Seshasayee Paper and Boards Limited,Paper And Paper Products,1,1,0,0,0,2026-05-12,,,,46,0,0
+1469,SFL,Sheela Foam Limited,,1,1,0,0,0,2025-07-17,,,,97,0,0
+1470,SGFIN,SG Finserve Limited,,1,0,1,0,0,,2025-10-13,,,82,0,0
+1471,SGIL,Synergy Green Industries Limited,,1,1,0,0,0,2025-07-17,,,,54,0,0
+1472,SGMART,SG Mart Limited,,1,0,1,0,0,,2025-10-30,,,45,0,0
+1473,SHADOWFAX,Shadowfax Technologies Limited,,1,1,0,0,0,2026-05-14,,,,44,0,0
+1474,SHAHALLOYS,Shah Alloys Limited,Steel And Steel Products,1,1,0,0,0,2026-06-13,,,,35,0,0
+1475,SHAKTIPUMP,Shakti Pumps (India) Limited,Electronics - Industrial,1,1,0,0,0,2025-08-01,,,,124,0,0
+1476,SHALBY,Shalby Limited,,1,0,1,0,0,,2025-10-24,,,91,0,0
+1477,SHANKARA,Shankara Building Products Limited,,1,0,1,0,0,,2025-10-03,,,53,0,0
+1478,SHANTIGOLD,Shanti Gold International Limited,,1,0,1,0,0,,2025-08-01,,,70,0,0
+1479,SHEKHAWATI,Shekhawati Industries Limited,,1,0,0,1,0,,,2026-06-22,,35,0,0
+1480,SHIVAMAUTO,Shivam Autotech Limited,Auto Ancillaries,1,0,1,0,0,,2026-07-01,,,46,0,0
+1481,SHIVAMILLS,Shiva Mills Limited,,1,1,0,0,0,2025-08-21,,,,35,0,0
+1482,SHIVATEX,Shiva Texyarn Limited,,1,1,0,0,0,2025-08-21,,,,39,0,0
+1483,SHREERAMA,Shree Rama Multi-Tech Limited,Packaging,1,0,1,0,0,,2025-08-05,,,36,0,0
+1484,SHREYANIND,Shreyans Industries Limited,Paper And Paper Products,1,0,1,0,0,,2026-06-01,,,28,0,0
+1485,SHYAMCENT,Shyam Century Ferrous Limited,,1,0,1,0,0,,2026-01-07,,,41,0,0
+1486,SHYAMMETL,Shyam Metalics and Energy Limited,,1,1,0,0,0,2026-01-15,,,,129,0,0
+1487,SICALLOG,Sical Logistics Limited,,1,1,0,0,0,2025-09-02,,,,77,0,0
+1488,SIGMAADV,SIGMA ADVANCED SYSTEMS LIMITED,,1,0,1,0,0,,2026-05-25,,,94,0,0
+1489,SIGNATURE,Signatureglobal (India) Limited,,1,1,0,0,0,2025-08-07,,,,83,0,0
+1490,SIKKO,Sikko Industries Limited,,1,1,0,0,0,2025-08-11,,,,53,0,0
+1491,SIL,Standard Industries Limited,Trading,1,1,0,0,0,2026-05-13,,,,32,0,0
+1492,SILLYMONKS,Silly Monks Entertainment Limited,,1,0,1,0,0,,2026-05-30,,,36,0,0
+1493,SINCLAIR,Sinclairs Hotels Limited,,1,1,0,0,0,2025-08-06,,,,36,0,0
+1494,SIYSIL,Siyaram Silk Mills Limited,Textiles - Synthetic,1,0,1,0,0,,2025-11-04,,,92,0,0
+1495,SJVN,SJVN Limited,Power,1,0,1,0,0,,2025-11-10,,,89,0,0
+1496,SKFINDUS,SKF India (Industrial) Limited,,1,1,0,0,0,2026-05-12,,,,22,0,0
+1497,SKMEGGPROD,SKM Egg Products Export (India) Limited,Food And Food Processing,1,1,0,0,0,2026-02-09,,,,59,0,0
+1498,SMARTLINK,Smartlink Holdings Limited,Computers - Hardware,1,1,0,0,0,2026-05-13,,,,38,0,0
+1499,SMARTWORKS,Smartworks Coworking Spaces Limited,,1,1,0,0,0,2025-09-01,,,,113,0,0
+1500,SMCGLOBAL,SMC Global Securities Limited,,1,1,0,0,0,2026-05-02,,,,95,0,0
+1501,SMLT,Sarthak Metals Limited,,1,0,1,0,0,,2025-08-16,,,33,0,0
+1502,SMSPHARMA,SMS Pharmaceuticals Limited,Pharmaceuticals,1,1,0,0,0,2026-05-22,,,,75,0,0
+1503,SOBHA,Sobha Limited,Construction,1,0,0,1,0,,,2026-05-04,,84,0,0
+1504,SOMATEX,Soma Textiles & Industries Limited,Textiles - Cotton,1,1,0,0,0,2026-03-11,,,,60,0,0
+1505,SOMICONVEY,Somi Conveyor Beltings Limited,,1,1,0,0,0,2025-08-12,,,,36,0,0
+1506,SOUTHBANK,The South Indian Bank Limited,Banks,1,1,0,0,0,2025-08-20,,,,138,0,0
+1507,SPAL,S. P. Apparels Limited,,1,1,0,0,0,2025-08-06,,,,76,0,0
+1508,SPANDANA,Spandana Sphoorty Financial Limited,,1,1,0,0,0,2025-07-15,,,,98,0,0
+1509,SPARC,Sun Pharma Advanced Research Company Limited,Pharmaceuticals,1,1,0,0,0,2026-05-25,,,,51,0,0
+1510,SPECTRUM,Spectrum Electrical Industries Limited,,1,1,0,0,0,2025-09-07,,,,42,0,0
+1511,SPLIL,SPL Industries Limited,Textile Products,1,1,0,0,0,2025-08-13,,,,51,0,0
+1512,SPORTKING,Sportking India Limited,,1,1,0,0,0,2025-08-02,,,,79,0,0
+1513,SRF,SRF Limited,Textiles - Synthetic,1,0,1,0,0,,2025-10-27,,,81,0,0
+1514,SRHHYPOLTD,Sree Rayalaseema Hi-Strength Hypo Limited,Chemicals - Inorganic,1,1,0,0,0,2026-05-30,,,,43,0,0
+1515,SRM,SRM Contractors Limited,,1,1,0,0,0,2025-07-09,,,,63,0,0
+1516,STALLION,Stallion India Fluorochemicals Limited,,1,0,0,1,0,,,2026-04-22,,84,0,0
+1517,STAR,Strides Pharma Science Limited,Pharmaceuticals,1,1,0,0,0,2025-07-28,,,,81,0,0
+1518,STARPAPER,Star Paper Mills Limited,Paper And Paper Products,1,1,0,0,0,2025-08-14,,,,37,0,0
+1519,STARTECK,Starteck Finance Limited,,1,1,0,0,0,2026-05-13,,,,18,0,0
+1520,STEELXIND,STEEL EXCHANGE INDIA LIMITED,,1,0,1,0,0,,2026-02-11,,,103,0,0
+1521,STEL,Stel Holdings Limited,Finance,1,0,1,0,0,,2025-12-31,,,35,0,0
+1522,STLTECH,Sterlite Technologies Limited,,1,0,1,0,0,,2025-07-25,,,125,0,0
+1523,STYL,Seshaasai Technologies Limited,,1,1,0,0,0,2026-05-18,,,,49,0,0
+1524,STYRENIX,Styrenix Performance Materials Limited,,1,1,0,0,0,2026-05-16,,,,69,0,0
+1525,SUBEXLTD,Subex Limited,,1,1,0,0,0,2025-09-29,,,,81,0,0
+1526,SUKHJITS,Sukhjit Starch & Chemicals Limited,,1,1,0,0,0,2026-05-27,,,,50,0,0
+1527,SUMICHEM,Sumitomo Chemical India Limited,,1,0,1,0,0,,2025-08-04,,,44,0,0
+1528,SUMIT,Sumit Woods Limited,,1,1,0,0,0,2025-08-11,,,,57,0,0
+1529,SUNDARAM,Sundaram Multi Pap Limited,Paper And Paper Products,1,1,0,0,0,2025-08-12,,,,45,0,0
+1530,SUNTECK,Sunteck Realty Limited,Construction,1,1,0,0,0,2026-04-21,,,,83,0,0
+1531,SUNTV,Sun TV Network Limited,Media & Entertainment,1,1,0,0,0,2025-08-07,,,,41,0,0
+1532,SUPERHOUSE,Superhouse Limited,,1,1,0,0,0,2025-11-14,,,,39,0,0
+1533,SUPERSPIN,Super Spinning Mills Limited,Textiles - Cotton,1,1,0,0,0,2026-05-26,,,,47,0,0
+1534,SUPREME,Supreme Holdings & Hospitality (India) Limited,,1,1,0,0,0,2026-04-29,,,,26,0,0
+1535,SUPREMEIND,Supreme Industries Limited,Plastic And Plastic Products,1,1,0,0,0,2026-04-27,,,,71,0,0
+1536,SUPRIYA,Supriya Lifescience Limited,,1,1,0,0,0,2025-08-13,,,,67,0,0
+1537,SURAJLTD,Suraj Limited,,1,1,0,0,0,2026-01-24,,,,38,0,0
+1538,SURANAT&P,Surana Telecom and Power Limited,Cables - Power,1,1,0,0,0,2025-09-03,,,,43,0,0
+1539,SURYALAXMI,Suryalakshmi Cotton Mills Limited,Textiles - Cotton,1,1,0,0,0,2025-09-30,,,,37,0,0
+1540,SURYAROSNI,Surya Roshni Limited,Steel And Steel Products,1,1,0,0,0,2025-08-13,,,,77,0,0
+1541,SURYODAY,Suryoday Small Finance Bank Limited,,1,1,0,0,0,2025-07-28,,,,100,0,0
+1542,SUVEN,Suven Life Sciences Limited,Pharmaceuticals,1,0,1,0,0,,2026-01-29,,,50,0,0
+1543,SUYOG,Suyog Telematics Limited,,1,1,0,0,0,2025-08-12,,,,72,0,0
+1544,SUZLON,Suzlon Energy Limited,Electrical Equipment,1,0,1,0,0,,2025-10-29,,,121,0,0
+1545,SWELECTES,Swelect Energy Systems Limited,Power,1,1,0,0,0,2026-05-22,,,,79,0,0
+1546,SWSOLAR,Sterling and Wilson Renewable Energy Limited,,1,1,0,0,0,2025-08-21,,,,101,0,0
+1547,SYNCOMF,Syncom Formulations (India) Limited,,1,1,0,0,0,2025-08-08,,,,39,0,0
+1548,SYSTMTXC,Systematix Corporate Services Limited,,1,1,0,0,0,2026-04-29,,,,50,0,0
+1549,TAINWALCHM,Tainwala Chemical and Plastic (I) Limited,Plastic And Plastic Products,1,1,0,0,0,2026-05-20,,,,46,0,0
+1550,TALBROAUTO,Talbros Automotive Components Limited,Auto Ancillaries,1,0,0,1,0,,,2026-06-02,,77,0,0
+1551,TARACHAND,Tara Chand InfraLogistic Solutions Limited,,1,1,0,0,0,2025-07-18,,,,97,0,0
+1552,TARC,TARC Limited,,1,1,0,0,0,2025-08-12,,,,47,0,0
+1553,TATACHEM,Tata Chemicals Limited,Chemicals - Inorganic,1,0,1,0,0,,2025-10-01,,,88,0,0
+1554,TATACONSUM,TATA CONSUMER PRODUCTS LIMITED,,1,1,0,0,0,2026-03-06,,,,106,0,0
+1555,TATATECH,Tata Technologies Limited,,1,0,1,0,0,,2025-11-28,,,103,0,0
+1556,TBOTEK,TBO Tek Limited,,1,1,0,0,0,2026-05-28,,,,91,0,0
+1557,TBZ,Tribhovandas Bhimji Zaveri Limited,Gems Jewellery And Watches,1,1,0,0,0,2025-08-06,,,,45,0,0
+1558,TCC,TCC Concept Limited,,1,1,0,0,0,2026-05-23,,,,13,0,0
+1559,TCI,Transport Corporation of India Limited,Travel And Transport,1,0,1,0,0,,2025-07-28,,,99,0,0
+1560,TCIFINANCE,TCI Finance Limited,Finance,1,0,1,0,0,,2025-08-06,,,30,0,0
+1561,TCS,Tata Consultancy Services Limited,Computers - Software,1,1,0,0,0,2026-02-28,,,,181,0,0
+1562,TDPOWERSYS,TD Power Systems Limited,Electrical Equipment,1,1,0,0,0,2025-08-06,,,,86,0,0
+1563,TEAMGTY,Team India Guaranty Limited,,1,0,0,1,0,,,2026-05-22,,61,0,0
+1564,TEAMLEASE,Teamlease Services Limited,,1,0,1,0,0,,2025-07-31,,,69,0,0
+1565,TEXRAIL,Texmaco Rail & Engineering Limited,Engineering,1,1,0,0,0,2026-01-22,,,,142,0,0
+1566,TFCILTD,Tourism Finance Corporation of India Limited,Financial Institution,1,1,0,0,0,2025-07-10,,,,54,0,0
+1567,TFL,Transwarranty Finance Limited,Finance,1,1,0,0,0,2025-07-31,,,,41,0,0
+1568,THANGAMAYL,Thangamayil Jewellery Limited,Gems Jewellery And Watches,1,0,1,0,0,,2025-12-16,,,38,0,0
+1569,THEINVEST,The Investment Trust Of India Limited,,1,1,0,0,0,2025-08-25,,,,46,0,0
+1570,THELEELA,Leela Palaces Hotels & Resorts Limited,,1,1,0,0,0,2025-08-22,,,,87,0,0
+1571,THEMISMED,Themis Medicare Limited,Pharmaceuticals,1,0,1,0,0,,2026-02-13,,,58,0,0
+1572,THERMAX,Thermax Limited,Electrical Equipment,1,1,0,0,0,2025-08-01,,,,91,0,0
+1573,THOMASCOOK,Thomas Cook  (India)  Limited,Travel And Transport,1,1,0,0,0,2025-09-03,,,,192,0,0
+1574,THOMASCOTT,Thomas Scott (India) Limited,Miscellaneous,1,1,0,0,0,2026-05-30,,,,55,0,0
+1575,TIINDIA,Tube Investments of India Limited,,1,1,0,0,0,2026-06-29,,,,78,0,0
+1576,TIJARIA,Tijaria Polypipes Limited,Plastic And Plastic Products,1,1,0,0,0,2025-09-08,,,,30,0,0
+1577,TIL,TIL Limited,Engineering,1,1,0,0,0,2026-06-01,,,,58,0,0
+1578,TIMETECHNO,Time Technoplast Limited,Plastic And Plastic Products,1,1,0,0,0,2025-08-13,,,,88,0,0
+1579,TIPSMUSIC,Tips Music Limited,,1,1,0,0,0,2026-01-16,,,,101,0,0
+1580,TIRUMALCHM,Thirumalai Chemicals Limited,Chemicals - Organic,1,0,1,0,0,,2025-08-14,,,56,0,0
+1581,TIRUPATIFL,Tirupati Forge Limited,,1,1,0,0,0,2025-07-11,,,,44,0,0
+1582,TITAGARH,TITAGARH RAIL SYSTEMS LIMITED,,1,1,0,0,0,2025-08-11,,,,96,0,0
+1583,TITAN,Titan Company Limited,Gems Jewellery And Watches,1,0,0,1,0,,,2026-06-22,,118,0,0
+1584,TMB,Tamilnad Mercantile Bank Limited,,1,1,0,0,0,2025-08-08,,,,136,0,0
+1585,TMPV,Tata Motors Passenger Vehicles Limited,,1,0,0,1,0,,,2026-05-14,,147,0,0
+1586,TNPETRO,Tamilnadu PetroProducts Limited,Petrochemicals,1,1,0,0,0,2025-08-12,,,,80,0,0
+1587,TNTELE,Tamilnadu Telecommunication Limited,Cables - Telecom,1,1,0,0,0,2026-06-23,,,,23,0,0
+1588,TOKYOPLAST,Tokyo Plast International Limited,Plastic And Plastic Products,1,1,0,0,0,2025-08-14,,,,40,0,0
+1589,TOLINS,Tolins Tyres Limited,,1,1,0,0,0,2025-09-03,,,,64,0,0
+1590,TOTAL,Total Transport Systems Limited,,1,1,0,0,0,2025-08-06,,,,64,0,0
+1591,TOUCHWOOD,Touchwood Entertainment Limited,,1,0,1,0,0,,2026-02-20,,,42,0,0
+1592,TRACXN,Tracxn Technologies Limited,,1,1,0,0,0,2026-05-25,,,,74,0,0
+1593,TRANSRAILL,Transrail Lighting Limited,,1,0,0,1,0,,,2026-06-22,,86,0,0
+1594,TRANSWORLD,TRANSWORLD SHIPPING LINES LIMITED,,1,1,0,0,0,2025-08-23,,,,56,0,0
+1595,TREJHARA,TREJHARA SOLUTIONS LIMITED,,1,1,0,0,0,2025-08-12,,,,50,0,0
+1596,TRENT,Trent Limited,Miscellaneous,1,0,0,1,0,,,2025-11-07,,114,0,0
+1597,TRF,TRF Limited,Engineering,1,0,1,0,0,,2025-12-11,,,36,0,0
+1598,TRIGYN,Trigyn Technologies Limited,Computers - Software,1,0,1,0,0,,2025-11-14,,,46,0,0
+1599,TRITURBINE,Triveni Turbine Limited,Electrical Equipment,1,1,0,0,0,2025-11-10,,,,74,0,0
+1600,TRIVENI,Triveni Engineering & Industries Limited,Sugar,1,1,0,0,0,2026-05-29,,,,85,0,0
+1601,TTKPRESTIG,TTK Prestige Limited,Consumer Durables,1,1,0,0,0,2026-05-22,,,,96,0,0
+1602,TTML,Tata Teleservices (Maharashtra) Limited,Telecommunication - Services,1,0,1,0,0,,2025-09-17,,,55,0,0
+1603,TVSSCS,TVS Supply Chain Solutions Limited,,1,1,0,0,0,2025-08-08,,,,112,0,0
+1604,UBL,United Breweries Limited,Brew/Distilleries,1,1,0,0,0,2025-08-07,,,,85,0,0
+1605,UCAL,UCAL LIMITED,,1,0,0,1,0,,,2026-06-30,,33,0,0
+1606,UFBL,United Foodbrands Limited,,1,1,0,0,0,2025-07-31,,,,95,0,0
+1607,UFLEX,UFLEX Limited,Packaging,1,1,0,0,0,2025-08-28,,,,77,0,0
+1608,UFO,UFO Moviez India Limited,,1,0,0,1,0,,,2025-09-02,,61,0,0
+1609,UGARSUGAR,The Ugar Sugar Works Limited,Sugar,1,1,0,0,0,2025-07-10,,,,30,0,0
+1610,UNIDT,United Drilling Tools Limited,,1,1,0,0,0,2025-07-30,,,,79,0,0
+1611,UNIONBANK,Union Bank of India,Banks,1,0,1,0,0,,2026-01-28,,,143,0,0
+1612,UNITDSPR,United Spirits Limited,,1,1,0,0,0,2025-11-21,,,,108,0,0
+1613,UNITEDTEA,The United Nilgiri Tea Estates Company Limited,Tea And Coffee,1,1,0,0,0,2026-05-20,,,,38,0,0
+1614,UNIVCABLES,Universal Cables Limited,Cables - Power,1,0,1,0,0,,2025-11-12,,,53,0,0
+1615,UNOMINDA,UNO Minda Limited,,1,1,0,0,0,2026-05-16,,,,154,0,0
+1616,URAVIDEF,Uravi Defence and Technology Limited,,1,1,0,0,0,2025-08-29,,,,52,0,0
+1617,URBANCO,Urban Company Limited,,1,1,0,0,0,2026-05-08,,,,103,0,0
+1618,USHAMART,Usha Martin Limited,Steel And Steel Products,1,1,0,0,0,2026-04-30,,,,75,0,0
+1619,UTIAMC,UTI Asset Management Company Limited,,1,1,0,0,0,2025-10-18,,,,118,0,0
+1620,UTTAMSUGAR,Uttam Sugar Mills Limited,Sugar,1,1,0,0,0,2026-05-16,,,,45,0,0
+1621,VADILALIND,Vadilal Industries Limited,Food And Food Processing,1,1,0,0,0,2025-07-14,,,,25,0,0
+1622,VAKRANGEE,Vakrangee Limited,,1,0,1,0,0,,2025-10-30,,,40,0,0
+1623,VALIANTORG,Valiant Organics Limited,,1,1,0,0,0,2026-05-16,,,,58,0,0
+1624,VAML,Vedanta Aluminium Metal Limited,,1,1,0,0,0,2026-07-01,,,,6,0,0
+1625,VARDMNPOLY,Vardhman Polytex Limited,Textiles - Cotton,1,1,0,0,0,2025-08-28,,,,88,0,0
+1626,VENUSPIPES,Venus Pipes & Tubes Limited,,1,1,0,0,0,2026-05-26,,,,68,0,0
+1627,VENUSREM,Venus Remedies Limited,Pharmaceuticals,1,1,0,0,0,2026-01-12,,,,67,0,0
+1628,VERANDA,Veranda Learning Solutions Limited,,1,1,0,0,0,2025-11-04,,,,126,0,0
+1629,VERTOZ,Vertoz Limited,,1,0,1,0,0,,2026-03-12,,,65,0,0
+1630,VETO,Veto Switchgears And Cables Limited,,1,1,0,0,0,2026-05-28,,,,38,0,0
+1631,VGL,VARVEE GLOBAL LIMITED,,1,1,0,0,0,2025-09-30,,,,110,0,0
+1632,VGUARD,V-Guard Industries Limited,Electronics - Industrial,1,1,0,0,0,2026-05-12,,,,87,0,0
+1633,VHL,Vardhman Holdings Limited,Finance,1,0,1,0,0,,2025-11-17,,,44,0,0
+1634,VHLTD,Viceroy Hotels Limited,,1,1,0,0,0,2025-08-08,,,,67,0,0
+1635,VIJIFIN,Viji Finance Limited,,1,1,0,0,0,2025-09-02,,,,70,0,0
+1636,VINATIORGA,Vinati Organics Limited,Chemicals - Speciality,1,0,1,0,0,,2025-11-05,,,62,0,0
+1637,VINDHYATEL,Vindhya Telelinks Limited,Cables - Telecom,1,1,0,0,0,2025-09-13,,,,58,0,0
+1638,VIPCLOTHNG,VIP Clothing Limited,,1,1,0,0,0,2025-08-06,,,,60,0,0
+1639,VISHNU,Vishnu Chemicals Limited,,1,1,0,0,0,2026-05-30,,,,105,0,0
+1640,VMART,V-Mart Retail Limited,Miscellaneous,1,0,0,1,0,,,2026-06-10,,88,0,0
+1641,VOLTAMP,Voltamp Transformers Limited,Electrical Equipment,1,1,0,0,0,2025-11-08,,,,37,0,0
+1642,VRLLOG,VRL Logistics Limited,,1,1,0,0,0,2025-08-06,,,,44,0,0
+1643,VSTIND,VST Industries Limited,Cigarettes,1,1,0,0,0,2026-01-29,,,,37,0,0
+1644,VSTL,Vibhor Steel Tubes Limited,,1,1,0,0,0,2025-08-12,,,,84,0,0
+1645,VSTTILLERS,V.S.T Tillers Tractors Limited,Automobiles - 4 Wheelers,1,1,0,0,0,2025-09-11,,,,77,0,0
+1646,WAAREERTL,Waaree Renewable Technologies Limited,,1,1,0,0,0,2025-08-26,,,,108,0,0
+1647,WABAG,VA Tech Wabag Limited,Engineering,1,0,1,0,0,,2026-05-21,,,100,0,0
+1648,WANBURY,Wanbury Limited,Pharmaceuticals,1,1,0,0,0,2025-09-18,,,,58,0,0
+1649,WEALTH,Wealth First Portfolio Managers Limited,,1,1,0,0,0,2025-08-04,,,,63,0,0
+1650,WEL,Wonder Electricals Limited,,1,1,0,0,0,2025-08-12,,,,50,0,0
+1651,WELCORP,Welspun Corp Limited,Steel And Steel Products,1,0,0,1,0,,,2026-05-22,,102,0,0
+1652,WELENT,Welspun Enterprises Limited,,1,1,0,0,0,2025-08-04,,,,86,0,0
+1653,WELINV,Welspun Investments and Commercials Limited,Finance,1,1,0,0,0,2025-09-02,,,,21,0,0
+1654,WESTLIFE,WESTLIFE FOODWORLD LIMITED,,1,1,0,0,0,2025-09-11,,,,56,0,0
+1655,WEWORK,WeWork India Management Limited,,1,1,0,0,0,2026-05-21,,,,80,0,0
+1656,WHIRLPOOL,Whirlpool of India Limited,Consumer Durables,1,0,0,1,0,,,2026-07-01,,78,0,0
+1657,WILLAMAGOR,Williamson Magor & Company Limited,Finance,1,1,0,0,0,2025-09-11,,,,44,0,0
+1658,WIPRO,Wipro Limited,Computers - Software,1,1,0,0,0,2025-07-17,,,,185,0,0
+1659,WOCKPHARMA,Wockhardt Limited,Pharmaceuticals,1,1,0,0,0,2026-05-04,,,,59,0,0
+1660,WORTHPERI,Worth Peripherals Limited,,1,0,1,0,0,,2025-12-12,,,43,0,0
+1661,WSI,W S Industries (I) Limited,Electrical Equipment,1,1,0,0,0,2025-08-07,,,,77,0,0
+1662,XCHANGING,Xchanging Solutions Limited,Computers - Software,1,1,0,0,0,2025-07-18,,,,43,0,0
+1663,XELPMOC,Xelpmoc Design And Tech Limited,,1,1,0,0,0,2026-05-29,,,,48,0,0
+1664,XPROINDIA,Xpro India Limited,Packaging,1,1,0,0,0,2025-08-02,,,,66,0,0
+1665,YASHO,Yasho Industries Limited,,1,1,0,0,0,2026-02-12,,,,80,0,0
+1666,YATHARTH,Yatharth Hospital & Trauma Care Services Limited,,1,1,0,0,0,2025-08-05,,,,89,0,0
+1667,ZEEL,Zee Entertainment Enterprises Limited,Media & Entertainment,1,0,0,1,0,,,2026-05-15,,88,0,0
+1668,ZENITHSTL,Zenith Steel Pipes & Industries Limited,,1,0,1,0,0,,2026-02-07,,,33,0,0
+1669,ZENSARTECH,Zensar Technologies Limited,Computers - Software,1,1,0,0,0,2026-04-24,,,,79,0,0
+1670,ZENTEC,Zen Technologies Limited,,1,0,1,0,0,,2025-11-02,,,114,0,0
+1671,ZIMLAB,Zim Laboratories Limited,,1,1,0,0,0,2025-08-07,,,,89,0,0
+1672,ZUARI,Zuari Agro Chemicals Limited,Fertilisers,1,0,0,1,0,,,2026-06-03,,80,0,0
+1673,ZYDUSWELL,Zydus Wellness Limited,Food And Food Processing,1,1,0,0,0,2025-07-30,,,,98,0,0
+1674,20MICRONS,20 Microns Limited,Metals,0,0,0,0,0,,,,,43,0,0
+1675,21STCENMGM,21st Century Management Services Limited,Finance,0,0,0,0,0,,,,,35,0,0
+1676,3IINFOLTD,3i Infotech Limited,,0,0,0,0,0,,,,,100,0,0
+1677,3PLAND,3P Land Holdings Limited,,0,0,0,0,0,,,,,39,0,0
+1678,63MOONS,63 moons technologies limited,,0,0,0,0,0,,,,,43,0,0
+1679,AAKASH,Aakash Exploration Services Limited,,0,0,0,0,0,,,,,27,0,0
+1680,AARNAV,Aarnav Fashions Limited,,0,0,0,0,0,,,,,4,0,0
+1681,AARON,Aaron Industries Limited,,0,0,0,0,0,,,,,63,0,0
+1682,AARTECH,Aartech Solonics Limited,,0,0,0,0,0,,,,,39,0,0
+1683,AARVI,Aarvi Encon Limited,,0,0,0,0,0,,,,,41,0,0
+1684,ABB,ABB India Limited,Electrical Equipment,0,0,0,0,0,,,,,73,0,0
+1685,ACEINTEG,Ace Integrated Solutions Limited,,0,0,0,0,0,,,,,38,0,0
+1686,ACL,Andhra Cements Limited,,0,0,0,0,0,,,,,44,0,0
+1687,ADANIGREEN,Adani Green Energy Limited,,0,0,0,0,0,,,,,142,0,0
+1688,ADOR,Ador Welding Limited,,0,0,0,0,0,,,,,61,0,0
+1689,ADROITINFO,Adroit Infotech Limited,,0,0,0,0,0,,,,,42,0,0
+1690,ADSL,Allied Digital Services Limited,Computers - Hardware,0,0,0,0,0,,,,,74,0,0
+1691,ADVAIT,Advait Energy Transitions Limited,,0,0,0,0,0,,,,,42,0,0
+1692,ADVENTHTL,Advent Hotels International Limited,,0,0,0,0,0,,,,,32,0,0
+1693,AHLADA,Ahlada Engineers Limited,,0,0,0,0,0,,,,,33,0,0
+1694,AHLWEST,Asian Hotels (West) Limited,Hotels,0,0,0,0,0,,,,,48,0,0
+1695,AJANTPHARM,Ajanta Pharma Limited,Pharmaceuticals,0,0,0,0,0,,,,,58,0,0
+1696,AKG,Akg Exim Limited,,0,0,0,0,0,,,,,53,0,0
+1697,ALANKIT,Alankit Limited,,0,0,0,0,0,,,,,26,0,0
+1698,ALKYLAMINE,Alkyl Amines Chemicals Limited,Chemicals - Speciality,0,0,0,0,0,,,,,55,0,0
+1699,ALMONDZ,Almondz Global Securities Limited,Finance,0,0,0,0,0,,,,,76,0,0
+1700,AMBICAAGAR,Ambica Agarbathies & Aroma industries Limited,-,0,0,0,0,0,,,,,24,0,0
+1701,AMBIKCO,Ambika Cotton Mills Limited,Textiles - Cotton,0,0,0,0,0,,,,,38,0,0
+1702,AMJLAND,Amj Land Holdings Limited,,0,0,0,0,0,,,,,40,0,0
+1703,AMRUTANJAN,Amrutanjan Health Care Limited,Pharmaceuticals,0,0,0,0,0,,,,,49,0,0
+1704,ANANTRAJ,Anant Raj Limited,Construction,0,0,0,0,0,,,,,78,0,0
+1705,ANDHRSUGAR,The Andhra Sugars Limited,Chemicals - Inorganic,0,0,0,0,0,,,,,31,0,0
+1706,ANMOL,Anmol India Limited,,0,0,0,0,0,,,,,36,0,0
+1707,ANTELOPUS,Antelopus Selan Energy Limited,,0,0,0,0,0,,,,,51,0,0
+1708,APOLLOHOSP,Apollo Hospitals Enterprise Limited,Miscellaneous,0,0,0,0,0,,,,,89,0,0
+1709,APTUS,Aptus Value Housing Finance India Limited,,0,0,0,0,0,,,,,91,0,0
+1710,ARCHIDPLY,Archidply Industries Limited,Miscellaneous,0,0,0,0,0,,,,,38,0,0
+1711,ARCOTECH,Arcotech Limited,,0,0,0,0,0,,,,,24,0,0
+1712,ARFIN,Arfin India Limited,,0,0,0,0,0,,,,,44,0,0
+1713,ARIES,Aries Agro Limited,Fertilisers,0,0,0,0,0,,,,,37,0,0
+1714,ARKADE,Arkade Developers Limited,,0,0,0,0,0,,,,,81,0,0
+1715,ARROWGREEN,Arrow Greentech Limited,,0,0,0,0,0,,,,,47,0,0
+1716,ARTNIRMAN,Art Nirman Limited,,0,0,0,0,0,,,,,31,0,0
+1717,ARVEE,Arvee Laboratories (India) Limited,,0,0,0,0,0,,,,,19,0,0
+1718,ASHAPURMIN,Ashapura Minechem Limited,Mining,0,0,0,0,0,,,,,72,0,0
+1719,ASHOKA,Ashoka Buildcon Limited,Construction,0,0,0,0,0,,,,,95,0,0
+1720,ASHOKLEY,Ashok Leyland Limited,Automobiles - 4 Wheelers,0,0,0,0,0,,,,,100,0,0
+1721,ASIANENE,Asian Energy Services Limited,,0,0,0,0,0,,,,,92,0,0
+1722,ASMS,Avio Smart Market Stack Limited,,0,0,0,0,0,,,,,90,0,0
+1723,ASPINWALL,Aspinwall and Company Limited,,0,0,0,0,0,,,,,30,0,0
+1724,ASTERDM,Aster DM Healthcare Limited,,0,0,0,0,0,,,,,129,0,0
+1725,ASTRAL,Astral Limited,Plastic And Plastic Products,0,0,0,0,0,,,,,70,0,0
+1726,ATCOM,Atcom Technologies Limited,-,0,0,0,0,0,,,,,28,0,0
+1727,ATL,Allcargo Terminals Limited,,0,0,0,0,0,,,,,119,0,0
+1728,ATLANTAELE,Atlanta Electricals Limited,,0,0,0,0,0,,,,,71,0,0
+1729,ATLASCYCLE,Atlas Cycles (Haryana) Limited,Cycles,0,0,0,0,0,,,,,29,0,0
+1730,ATUL,Atul Limited,Chemicals - Speciality,0,0,0,0,0,,,,,40,0,0
+1731,AURIONPRO,Aurionpro Solutions Limited,Computers - Software,0,0,0,0,0,,,,,80,0,0
+1732,AUTOAXLES,Automotive Axles Limited,Auto Ancillaries,0,0,0,0,0,,,,,54,0,0
+1733,AVADHSUGAR,Avadh Sugar & Energy Limited,,0,0,0,0,0,,,,,50,0,0
+1734,AVALON,Avalon Technologies Limited,,0,0,0,0,0,,,,,48,0,0
+1735,AVL,Aditya Vision Limited,,0,0,0,0,0,,,,,66,0,0
+1736,AVONMORE,Avonmore Capital & Management Services Limited,,0,0,0,0,0,,,,,55,0,0
+1737,AWHCL,Antony Waste Handling Cell Limited,,0,0,0,0,0,,,,,65,0,0
+1738,AXISBANK,Axis Bank Limited,Banks,0,0,0,0,0,,,,,218,0,0
+1739,AXISCADES,AXISCADES Technologies Limited,,0,0,0,0,0,,,,,113,0,0
+1740,BAJAJ-AUTO,Bajaj Auto Limited,Automobiles - 2 And 3 Wheelers,0,0,0,0,0,,,,,140,0,0
+1741,BAJAJHCARE,Bajaj Healthcare Limited,,0,0,0,0,0,,,,,63,0,0
+1742,BAJAJHFL,Bajaj Housing Finance Limited,,0,0,0,0,0,,,,,77,0,0
+1743,BAJAJHIND,Bajaj Hindusthan Sugar Limited,Sugar,0,0,0,0,0,,,,,38,0,0
+1744,BAJFINANCE,Bajaj Finance Limited,Finance,0,0,0,0,0,,,,,89,0,0
+1745,BALAMINES,Balaji Amines Limited,Chemicals - Inorganic,0,0,0,0,0,,,,,71,0,0
+1746,BANSALWIRE,Bansal Wire Industries Limited,,0,0,0,0,0,,,,,81,0,0
+1747,BBL,Bharat Bijlee Limited,Electrical Equipment,0,0,0,0,0,,,,,39,0,0
+1748,BCLIND,Bcl Industries Limited,,0,0,0,0,0,,,,,60,0,0
+1749,BCPL,BCPL Railway Infrastructure Limited,,0,0,0,0,0,,,,,22,0,0
+1750,BEPL,Bhansali Engineering Polymers Limited,Petrochemicals,0,0,0,0,0,,,,,44,0,0
+1751,BERGEPAINT,Berger Paints (I) Limited,Paints,0,0,0,0,0,,,,,62,0,0
+1752,BETA,Beta Drugs Limited,,0,0,0,0,0,,,,,64,0,0
+1753,BFINVEST,BF Investment Limited,Finance,0,0,0,0,0,,,,,58,0,0
+1754,BGLOBAL,Bharatiya Global Infomedia Limited,Computers - Software,0,0,0,0,0,,,,,23,0,0
+1755,BHAGERIA,Bhageria Industries Limited,,0,0,0,0,0,,,,,60,0,0
+1756,BHANDARI,Bhandari Hosiery Exports Limited,,0,0,0,0,0,,,,,44,0,0
+1757,BHARATFORG,Bharat Forge Limited,Castings/Forgings,0,0,0,0,0,,,,,142,0,0
+1758,BHARATGEAR,Bharat Gears Limited,Auto Ancillaries,0,0,0,0,0,,,,,38,0,0
+1759,BHARATSE,Bharat Seats Limited,,0,0,0,0,0,,,,,53,0,0
+1760,BKMINDST,Bkm Industries Limited,,0,0,0,0,0,,,,,15,0,0
+1761,BLUECHIP,Blue Chip India Limited,Finance,0,0,0,0,0,,,,,24,0,0
+1762,BODALCHEM,Bodal Chemicals Limited,Dyes And Pigments,0,0,0,0,0,,,,,47,0,0
+1763,BPL,BPL Limited,Consumer Durables,0,0,0,0,0,,,,,33,0,0
+1764,BSOFT,BIRLASOFT LIMITED,,0,0,0,0,0,,,,,89,0,0
+1765,BUILDPRO,Shankara Buildpro Limited,,0,0,0,0,0,,,,,36,0,0
+1766,CAMS,Computer Age Management Services Limited,,0,0,0,0,0,,,,,129,0,0
+1767,CANBK,Canara Bank,Banks,0,0,0,0,0,,,,,129,0,0
+1768,CANTABIL,Cantabil Retail India Limited,Miscellaneous,0,0,0,0,0,,,,,69,0,0
+1769,CAPLIPOINT,Caplin Point Laboratories Limited,,0,0,0,0,0,,,,,51,0,0
+1770,CARTRADE,Cartrade Tech Limited,,0,0,0,0,0,,,,,80,0,0
+1771,CCAVENUE,AvenuesAI Limited,,0,0,0,0,0,,,,,94,0,0
+1772,CCCL,Consolidated Construction Consortium Limited,Construction,0,0,0,0,0,,,,,52,0,0
+1773,CCHHL,Country Club Hospitality & Holidays Limited,,0,0,0,0,0,,,,,21,0,0
+1774,CEATLTD,CEAT Limited,Tyres,0,0,0,0,0,,,,,178,0,0
+1775,CELLO,Cello World Limited,,0,0,0,0,0,,,,,78,0,0
+1776,CENTEXT,Century Extrusions Limited,Aluminium,0,0,0,0,0,,,,,42,0,0
+1777,CERA,Cera Sanitaryware Limited,Ceramics And Sanitaryware,0,0,0,0,0,,,,,66,0,0
+1778,CESC,CESC Limited,Power,0,0,0,0,0,,,,,96,0,0
+1779,CGPOWER,CG Power and Industrial Solutions Limited,,0,0,0,0,0,,,,,130,0,0
+1780,CHALET,Chalet Hotels Limited,,0,0,0,0,0,,,,,94,0,0
+1781,CHEMBONDCH,Chembond Chemicals Limited,,0,0,0,0,0,,,,,32,0,0
+1782,CHEVIOT,Cheviot Company Limited,,0,0,0,0,0,,,,,45,0,0
+1783,CHOLAFIN,Cholamandalam Investment and Finance Company Limited,Finance,0,0,0,0,0,,,,,96,0,0
+1784,CINEVISTA,Cinevista Limited,Media & Entertainment,0,0,0,0,0,,,,,34,0,0
+1785,CLEDUCATE,CL Educate Limited,,0,0,0,0,0,,,,,60,0,0
+1786,CLSEL,Chaman Lal Setia Exports Limited,,0,0,0,0,0,,,,,74,0,0
+1787,CMRGREEN,CMR Green Technologies Limited,,0,0,0,0,0,,,,,4,0,0
+1788,COASTCORP,Coastal Corporation Limited,,0,0,0,0,0,,,,,35,0,0
+1789,COFFEEDAY,Coffee Day Enterprises Limited,,0,0,0,0,0,,,,,41,0,0
+1790,COFORGE,Coforge Limited,,0,0,0,0,0,,,,,181,0,0
+1791,CONSOFINVT,Consolidated Finvest & Holdings Limited,Finance,0,0,0,0,0,,,,,33,0,0
+1792,CONTROLPR,Control Print Limited,,0,0,0,0,0,,,,,56,0,0
+1793,CORALFINAC,Coral India Finance & Housing Limited,-,0,0,0,0,0,,,,,30,0,0
+1794,CORDSCABLE,Cords Cable Industries Limited,Miscellaneous,0,0,0,0,0,,,,,58,0,0
+1795,COUNCODOS,Country Condo's Limited,Pharmaceuticals,0,0,0,0,0,,,,,21,0,0
+1796,CUB,City Union Bank Limited,Banks,0,0,0,0,0,,,,,133,0,0
+1797,CUBEXTUB,Cubex Tubings Limited,Metals,0,0,0,0,0,,,,,23,0,0
+1798,CYBERPP,Cyber Media (India) Limited,,0,0,0,0,0,,,,,1,0,0
+1799,CYBERTECH,Cybertech Systems And Software Limited,Computers - Software,0,0,0,0,0,,,,,58,0,0
+1800,CYIENTDLM,Cyient DLM Limited,,0,0,0,0,0,,,,,76,0,0
+1801,DALMIASUG,Dalmia Bharat Sugar and Industries Limited,Sugar,0,0,0,0,0,,,,,55,0,0
+1802,DAMCAPITAL,Dam Capital Advisors Limited,,0,0,0,0,0,,,,,24,0,0
+1803,DATAPATTNS,Data Patterns (India) Limited,,0,0,0,0,0,,,,,54,0,0
+1804,DBCORP,D.B.Corp Limited,Printing And Publishing,0,0,0,0,0,,,,,57,0,0
+1805,DBREALTY,Valor Estate Limited,Construction,0,0,0,0,0,,,,,69,0,0
+1806,DCMFINSERV,DCM Financial Services Limited,-,0,0,0,0,0,,,,,33,0,0
+1807,DCMSIL,DCM Shriram International Limited,,0,0,0,0,0,,,,,31,0,0
+1808,DCMSRIND,DCM Shriram Industries Limited,,0,0,0,0,0,,,,,59,0,0
+1809,DDEVPLSTIK,Ddev Plastiks Industries Limited,,0,0,0,0,0,,,,,95,0,0
+1810,DECCANCE,Deccan Cements Limited,Cement And Cement Products,0,0,0,0,0,,,,,44,0,0
+1811,DEEPAKNTR,Deepak Nitrite Limited,Chemicals - Organic,0,0,0,0,0,,,,,69,0,0
+1812,DELTAMAGNT,Delta Manufacturing Limited,Auto Ancillaries,0,0,0,0,0,,,,,34,0,0
+1813,DEVIT,Dev Information Technology Limited,,0,0,0,0,0,,,,,104,0,0
+1814,DEVYANI,Devyani International Limited,,0,0,0,0,0,,,,,82,0,0
+1815,DHANUKA,Dhanuka Agritech Limited,Pesticides And Agrochemicals,0,0,0,0,0,,,,,76,0,0
+1816,DHARSUGAR,Dharani Sugars & Chemicals Limited,Sugar,0,0,0,0,0,,,,,52,0,0
+1817,DIVISLAB,Divi's Laboratories Limited,Pharmaceuticals,0,0,0,0,0,,,,,45,0,0
+1818,DIXON,Dixon Technologies (India) Limited,,0,0,0,0,0,,,,,160,0,0
+1819,DLINKINDIA,D-Link (India) Limited,Computers - Hardware,0,0,0,0,0,,,,,37,0,0
+1820,DPABHUSHAN,D. P. Abhushan Limited,,0,0,0,0,0,,,,,56,0,0
+1821,DRCSYSTEMS,DRC Systems India Limited,,0,0,0,0,0,,,,,29,0,0
+1822,DSFCL,DCM Shriram Fine Chemicals Limited,,0,0,0,0,0,,,,,31,0,0
+1823,DTIL,Dhunseri Tea & Industries Limited,-,0,0,0,0,0,,,,,38,0,0
+1824,DVL,Dhunseri Ventures Limited,,0,0,0,0,0,,,,,39,0,0
+1825,DWARKESH,Dwarikesh Sugar Industries Limited,Sugar,0,0,0,0,0,,,,,60,0,0
+1826,DYNPRO,Dynemic Products Limited,,0,0,0,0,0,,,,,33,0,0
+1827,EASEMYTRIP,Easy Trip Planners Limited,,0,0,0,0,0,,,,,96,0,0
+1828,EIDPARRY,EID Parry India Limited,Sugar,0,0,0,0,0,,,,,76,0,0
+1829,EIHAHOTELS,EIH Associated Hotels Limited,Hotels,0,0,0,0,0,,,,,42,0,0
+1830,EIHOTEL,EIH Limited,Hotels,0,0,0,0,0,,,,,55,0,0
+1831,EIMCOELECO,Eimco Elecon (India) Limited,Engineering,0,0,0,0,0,,,,,59,0,0
+1832,ELDEHSG,Eldeco Housing And Industries Limited,,0,0,0,0,0,,,,,51,0,0
+1833,ELIN,Elin Electronics Limited,,0,0,0,0,0,,,,,56,0,0
+1834,ENDURANCE,Endurance Technologies Limited,,0,0,0,0,0,,,,,91,0,0
+1835,ENERGYDEV,Energy Development Company Limited,Power,0,0,0,0,0,,,,,18,0,0
+1836,ENIL,Entertainment Network (India) Limited,Media & Entertainment,0,0,0,0,0,,,,,63,0,0
+1837,ERAINFRA,Era Infra Engineering Limited,Construction,0,0,0,0,0,,,,,1,0,0
+1838,ESAFSFB,ESAF Small Finance Bank Limited,,0,0,0,0,0,,,,,99,0,0
+1839,EVEREADY,Eveready Industries India Limited,Electrical Equipment,0,0,0,0,0,,,,,85,0,0
+1840,EXIDEIND,Exide Industries Limited,Auto Ancillaries,0,0,0,0,0,,,,,65,0,0
+1841,FABTECH,Fabtech Technologies Limited,,0,0,0,0,0,,,,,81,0,0
+1842,FDC,FDC Limited,Pharmaceuticals,0,0,0,0,0,,,,,51,0,0
+1843,FINEORG,Fine Organic Industries Limited,,0,0,0,0,0,,,,,50,0,0
+1844,FINKURVE,Finkurve Financial Services Limited,,0,0,0,0,0,,,,,98,0,0
+1845,GANDHITUBE,Gandhi Special Tubes Limited,Steel And Steel Products,0,0,0,0,0,,,,,46,0,0
+1846,GANESHCP,Ganesh Consumer Products Limited,,0,0,0,0,0,,,,,66,0,0
+1847,GATECH,GACM Technologies Limited,,0,0,0,0,0,,,,,46,0,0
+1848,GATECHDVR,GACM Technologies Limited,,0,0,0,0,0,,,,,46,0,0
+1849,GATEWAY,Gateway Distriparks Limited,,0,0,0,0,0,,,,,77,0,0
+1850,GENUSPAPER,Genus Paper & Boards Limited,,0,0,0,0,0,,,,,37,0,0
+1851,GEOJITFSL,Geojit Financial Services Limited,,0,0,0,0,0,,,,,59,0,0
+1852,GICL,Globe International Carriers Limited,,0,0,0,0,0,,,,,54,0,0
+1853,GKWLIMITED,GKW Limited,Steel And Steel Products,0,0,0,0,0,,,,,36,0,0
+1854,GLFL,Gujarat Lease Financing Limited,Finance,0,0,0,0,0,,,,,23,0,0
+1855,GLOBALVECT,Global Vectra Helicorp Limited,Travel And Transport,0,0,0,0,0,,,,,27,0,0
+1856,GLOBUSSPR,Globus Spirits Limited,Brew/Distilleries,0,0,0,0,0,,,,,80,0,0
+1857,GMBREW,GM Breweries Limited,Brew/Distilleries,0,0,0,0,0,,,,,29,0,0
+1858,GMDCLTD,Gujarat Mineral Development Corporation Limited,Mining,0,0,0,0,0,,,,,45,0,0
+1859,GOCLCORP,GOCL Corporation Limited,,0,0,0,0,0,,,,,52,0,0
+1860,GODREJIND,Godrej Industries Limited,Chemicals - Inorganic,0,0,0,0,0,,,,,75,0,0
+1861,GOKEX,Gokaldas Exports Limited,Textile Products,0,0,0,0,0,,,,,62,0,0
+1862,GOKUL,Gokul Refoils and Solvent Limited,Food And Food Processing,0,0,0,0,0,,,,,29,0,0
+1863,GOLDENTOBC,Golden Tobacco Limited,Cigarettes,0,0,0,0,0,,,,,2,0,0
+1864,GOLDIAM,Goldiam International Limited,Gems Jewellery And Watches,0,0,0,0,0,,,,,98,0,0
+1865,GPPL,Gujarat Pipavav Port Limited,Shipping,0,0,0,0,0,,,,,37,0,0
+1866,GPTHEALTH,GPT Healthcare Limited,,0,0,0,0,0,,,,,61,0,0
+1867,GPTINFRA,GPT Infraprojects Limited,,0,0,0,0,0,,,,,84,0,0
+1868,GRADIENTE,Gradiente Infotainment Limited,,0,0,0,0,0,,,,,10,0,0
+1869,GRANULES,Granules India Limited,Pharmaceuticals,0,0,0,0,0,,,,,72,0,0
+1870,GREENPANEL,Greenpanel Industries Limited,,0,0,0,0,0,,,,,62,0,0
+1871,GREENPOWER,Orient Green Power Company Limited,Power,0,0,0,0,0,,,,,63,0,0
+1872,GTECJAINX,G-TEC JAINX EDUCATION LIMITED,,0,0,0,0,0,,,,,37,0,0
+1873,GUJALKALI,Gujarat Alkalies and Chemicals Limited,Chemicals - Inorganic,0,0,0,0,0,,,,,89,0,0
+1874,GUJAPOLLO,Gujarat Apollo Industries Limited,Engineering,0,0,0,0,0,,,,,25,0,0
+1875,GUJTHEM,Gujarat Themis Biosyn Limited,,0,0,0,0,0,,,,,66,0,0
+1876,HAPPSTMNDS,Happiest Minds Technologies Limited,,0,0,0,0,0,,,,,98,0,0
+1877,HATHWAY,Hathway Cable & Datacom Limited,Media & Entertainment,0,0,0,0,0,,,,,29,0,0
+1878,HBLENGINE,HBL Engineering Limited,,0,0,0,0,0,,,,,29,0,0
+1879,HCLTECH,HCL Technologies Limited,Computers - Software,0,0,0,0,0,,,,,189,0,0
+1880,HDBFS,HDB Financial Services Limited,,0,0,0,0,0,,,,,91,0,0
+1881,HDFCAMC,HDFC Asset Management Company Limited,,0,0,0,0,0,,,,,74,0,0
+1882,HDFCLIFE,HDFC Life Insurance Company Limited,,0,0,0,0,0,,,,,71,0,0
+1883,HERCULES,HERCULES INVESTMENTS LIMITED,Electrical Equipment,0,0,0,0,0,,,,,21,0,0
+1884,HERITGFOOD,Heritage Foods Limited,Food And Food Processing,0,0,0,0,0,,,,,112,0,0
+1885,HEXATRADEX,Hexa Tradex Limited,Trading,0,0,0,0,0,,,,,26,0,0
+1886,HEXT,Hexaware Technologies Limited,,0,0,0,0,0,,,,,132,0,0
+1887,HFCL,HFCL Limited,Telecommunication - Equipment,0,0,0,0,0,,,,,140,0,0
+1888,HGM,HandsOn Global Management (HGM) Limited,,0,0,0,0,0,,,,,59,0,0
+1889,HIKAL,Hikal Limited,Pharmaceuticals,0,0,0,0,0,,,,,83,0,0
+1890,HILINFRA,Highway Infrastructure Limited,,0,0,0,0,0,,,,,110,0,0
+1891,HILTON,Hilton Metal Forging Limited,Castings/Forgings,0,0,0,0,0,,,,,54,0,0
+1892,HINDALCO,Hindalco Industries Limited,Aluminium,0,0,0,0,0,,,,,129,0,0
+1893,HINDCON,Hindcon Chemicals Limited,,0,0,0,0,0,,,,,28,0,0
+1894,HINDMOTOR,Hindustan Motors Limited,Automobiles - 4 Wheelers,0,0,0,0,0,,,,,2,0,0
+1895,HINDMOTORS,Hindustan Motors Limited,Automobiles - 4 Wheelers,0,0,0,0,0,,,,,16,0,0
+1896,HINDOILEXP,Hindustan Oil Exploration Company Limited,Oil Exploration/Production,0,0,0,0,0,,,,,70,0,0
+1897,HMVL,Hindustan Media Ventures Limited,Printing And Publishing,0,0,0,0,0,,,,,45,0,0
+1898,HPL,HPL Electric & Power Limited,,0,0,0,0,0,,,,,54,0,0
+1899,HTMEDIA,HT Media Limited,Printing And Publishing,0,0,0,0,0,,,,,54,0,0
+1900,HYBRIDFIN,Hybrid Financial Services Limited,,0,0,0,0,0,,,,,29,0,0
+1901,ICDSLTD,ICDS Limited,-,0,0,0,0,0,,,,,30,0,0
+1902,ICICIBANK,ICICI Bank Limited,Banks,0,0,0,0,0,,,,,205,0,0
+1903,ICSA,ICSA (India) Limited,Construction,0,0,0,0,0,,,,,9,0,0
+1904,IDBI,IDBI Bank Limited,Banks,0,0,0,0,0,,,,,76,0,0
+1905,IGARASHI,Igarashi Motors India Limited,Auto Ancillaries,0,0,0,0,0,,,,,48,0,0
+1906,IL&FSENGG,IL&FS Engineering and Construction Company Limited,Construction,0,0,0,0,0,,,,,46,0,0
+1907,IL&FSTRANS,IL&FS Transportation Networks Limited,Travel And Transport,0,0,0,0,0,,,,,17,0,0
+1908,IMFA,Indian Metals & Ferro Alloys Limited,Metals,0,0,0,0,0,,,,,65,0,0
+1909,INCREDIBLE,INCREDIBLE INDUSTRIES LIMITED,,0,0,0,0,0,,,,,42,0,0
+1910,INDGN,Indegene Limited,,0,0,0,0,0,,,,,98,0,0
+1911,INDIAGLYCO,India Glycols Limited,Chemicals - Organic,0,0,0,0,0,,,,,88,0,0
+1912,INDIANHUME,Indian Hume Pipe Company Limited,Construction,0,0,0,0,0,,,,,46,0,0
+1913,INDOCO,Indoco Remedies Limited,Pharmaceuticals,0,0,0,0,0,,,,,70,0,0
+1914,INDRAMEDCO,Indraprastha Medical Corporation Limited,Miscellaneous,0,0,0,0,0,,,,,34,0,0
+1915,INDSWFTLTD,Ind-Swift Limited,Pharmaceuticals,0,0,0,0,0,,,,,8,0,0
+1916,INDTERRAIN,Indian Terrain Fashions Limited,Textile Products,0,0,0,0,0,,,,,53,0,0
+1917,INFOBEAN,InfoBeans Technologies Limited,,0,0,0,0,0,,,,,88,0,0
+1918,INOXINDIA,INOX India Limited,,0,0,0,0,0,,,,,108,0,0
+1919,INOXWIND,Inox Wind Limited,,0,0,0,0,0,,,,,82,0,0
+1920,INTERARCH,Interarch Building Solutions Limited,,0,0,0,0,0,,,,,104,0,0
+1921,INVENTURE,Inventure Growth & Securities Limited,Finance,0,0,0,0,0,,,,,36,0,0
+1922,IOC,Indian Oil Corporation Limited,Refineries,0,0,0,0,0,,,,,78,0,0
+1923,IOLCP,IOL Chemicals and Pharmaceuticals Limited,Pharmaceuticals,0,0,0,0,0,,,,,83,0,0
+1924,IPCALAB,IPCA Laboratories Limited,Pharmaceuticals,0,0,0,0,0,,,,,58,0,0
+1925,ITDC,India Tourism Development Corporation Limited,,0,0,0,0,0,,,,,45,0,0
+1926,IVALUE,Ivalue Infosolutions Limited,,0,0,0,0,0,,,,,50,0,0
+1927,IWEL,Inox Wind Energy Limited,,0,0,0,0,0,,,,,1,0,0
+1928,IXIGO,Le Travenues Technology Limited,,0,0,0,0,0,,,,,240,0,0
+1929,JAIBALAJI,Jai Balaji Industries Limited,Steel And Steel Products,0,0,0,0,0,,,,,48,0,0
+1930,JAICORPLTD,Jai Corp Limited,Plastic And Plastic Products,0,0,0,0,0,,,,,56,0,0
+1931,JAIPURKURT,Nandani Creation Limited,,0,0,0,0,0,,,,,28,0,0
+1932,JAMNAAUTO,Jamna Auto Industries Limited,Auto Ancillaries,0,0,0,0,0,,,,,60,0,0
+1933,JAYAGROGN,Jayant Agro Organics Limited,Solvent Extraction,0,0,0,0,0,,,,,35,0,0
+1934,JAYKAY,Jaykay Enterprises Limited,,0,0,0,0,0,,,,,35,0,0
+1935,JAYNECOIND,Jayaswal Neco Industries Limited,Steel And Steel Products,0,0,0,0,0,,,,,57,0,0
+1936,JAYSREETEA,Jayshree Tea & Industries Limited,Tea And Coffee,0,0,0,0,0,,,,,17,0,0
+1937,JBMA,JBM Auto Limited,Auto Ancillaries,0,0,0,0,0,,,,,51,0,0
+1938,JINDALPHOT,Jindal Photo Limited,Miscellaneous,0,0,0,0,0,,,,,36,0,0
+1939,JITFINFRA,JITF Infralogistics Limited,,0,0,0,0,0,,,,,34,0,0
+1940,JKIL,J.Kumar Infraprojects Limited,Construction,0,0,0,0,0,,,,,57,0,0
+1941,JKLAKSHMI,JK Lakshmi Cement Limited,Cement And Cement Products,0,0,0,0,0,,,,,66,0,0
+1942,JKTYRE,JK Tyre & Industries Limited,Tyres,0,0,0,0,0,,,,,85,0,0
+1943,JMFINANCIL,JM Financial Limited,Finance,0,0,0,0,0,,,,,69,0,0
+1944,JOCIL,Jocil Limited,Chemicals - Organic,0,0,0,0,0,,,,,7,0,0
+1945,JSWINFRA,JSW Infrastructure Limited,,0,0,0,0,0,,,,,123,0,0
+1946,JSWSTEEL,JSW Steel Limited,Steel And Steel Products,0,0,0,0,0,,,,,140,0,0
+1947,JTEKTINDIA,Jtekt India Limited,,0,0,0,0,0,,,,,86,0,0
+1948,JYOTHYLAB,Jyothy Labs Limited,Personal Care,0,0,0,0,0,,,,,122,0,0
+1949,JYOTICNC,Jyoti CNC Automation Limited,,0,0,0,0,0,,,,,76,0,0
+1950,KAKATCEM,Kakatiya Cement Sugar & Industries Limited,Cement And Cement Products,0,0,0,0,0,,,,,50,0,0
+1951,KALYANI,Kalyani Commercials Limited,,0,0,0,0,0,,,,,34,0,0
+1952,KALYANKJIL,Kalyan Jewellers India Limited,,0,0,0,0,0,,,,,76,0,0
+1953,KANORICHEM,Kanoria Chemicals & Industries Limited,Chemicals - Inorganic,0,0,0,0,0,,,,,48,0,0
+1954,KARMAENG,Karma Energy Limited,Power,0,0,0,0,0,,,,,33,0,0
+1955,KAUSHALYA,Kaushalya Infrastructure Development Corporation Limited,Construction,0,0,0,0,0,,,,,28,0,0
+1956,KCP,KCP Limited,Cement And Cement Products,0,0,0,0,0,,,,,31,0,0
+1957,KEI,KEI Industries Limited,Miscellaneous,0,0,0,0,0,,,,,96,0,0
+1958,KELLTONTEC,Kellton Tech Solutions Limited,,0,0,0,0,0,,,,,76,0,0
+1959,KEYFINSERV,Keynote Financial Services Limited,,0,0,0,0,0,,,,,55,0,0
+1960,KFINTECH,Kfin Technologies Limited,,0,0,0,0,0,,,,,136,0,0
+1961,KHAITANLTD,Khaitan (India) Limited,Trading,0,0,0,0,0,,,,,37,0,0
+1962,KHANDSE,Khandwala Securities Limited,Finance,0,0,0,0,0,,,,,25,0,0
+1963,KILITCH,Kilitch Drugs (India) Limited,Pharmaceuticals,0,0,0,0,0,,,,,49,0,0
+1964,KIMS,Krishna Institute of Medical Sciences Limited,,0,0,0,0,0,,,,,93,0,0
+1965,KINGFA,Kingfa Science & Technology (India) Limited,,0,0,0,0,0,,,,,54,0,0
+1966,KIRLPNU,Kirloskar Pneumatic Company Limited,,0,0,0,0,0,,,,,128,0,0
+1967,KISSHT,OnEMI Technology Solutions Limited,,0,0,0,0,0,,,,,23,0,0
+1968,KKCL,Kewal Kiran Clothing Limited,Textile Products,0,0,0,0,0,,,,,55,0,0
+1969,KMEW,Knowledge Marine & Engineering Works Limited,,0,0,0,0,0,,,,,97,0,0
+1970,KNRCON,KNR Constructions Limited,Construction,0,0,0,0,0,,,,,67,0,0
+1971,KOPRAN,Kopran Limited,Pharmaceuticals,0,0,0,0,0,,,,,49,0,0
+1972,KOTHARIPRO,Kothari Products Limited,Trading,0,0,0,0,0,,,,,34,0,0
+1973,KPIL,Kalpataru Projects International Limited,,0,0,0,0,0,,,,,120,0,0
+1974,KREBSBIO,Krebs Biochemicals and Industries Limited,-,0,0,0,0,0,,,,,34,0,0
+1975,KRISHANA,Krishana Phoschem Limited,,0,0,0,0,0,,,,,87,0,0
+1976,KRITI,Kriti Industries (India) Limited,,0,0,0,0,0,,,,,64,0,0
+1977,KRITINUT,Kriti Nutrients Limited,,0,0,0,0,0,,,,,45,0,0
+1978,KSERASERA,KSS Limited,Media & Entertainment,0,0,0,0,0,,,,,13,0,0
+1979,LAGNAM,Lagnam Spintex Limited,,0,0,0,0,0,,,,,14,0,0
+1980,LANDSMILL,Landsmill Green Limited,,0,0,0,0,0,,,,,61,0,0
+1981,LIBERTSHOE,Liberty Shoes Limited,Leather And Leather Products,0,0,0,0,0,,,,,17,0,0
+1982,LINC,Linc Limited,,0,0,0,0,0,,,,,57,0,0
+1983,LLOYDPP,Lloyds Enterprises Limited,,0,0,0,0,0,,,,,1,0,0
+1984,LLOYDSENGG,LLOYDS ENGINEERING WORKS LIMITED,,0,0,0,0,0,,,,,109,0,0
+1985,LLOYDSME,Lloyds Metals And Energy Limited,,0,0,0,0,0,,,,,146,0,0
+1986,LODHA,Lodha Developers Limited,,0,0,0,0,0,,,,,104,0,0
+1987,LPDC,Landmark Property Development Company Limited,Construction,0,0,0,0,0,,,,,29,0,0
+1988,LTF,L&T Finance Limited,,0,0,0,0,0,,,,,108,0,0
+1989,MACPOWER,Macpower CNC Machines Limited,,0,0,0,0,0,,,,,63,0,0
+1990,MAGNUM,Magnum Ventures Limited,Paper And Paper Products,0,0,0,0,0,,,,,51,0,0
+1991,MAHASTEEL,Mahamaya Steel Industries Limited,,0,0,0,0,0,,,,,49,0,0
+1992,MANGCHEFER,Mangalore Chemicals & Fertilizers Limited,Pesticides And Agrochemicals,0,0,0,0,0,,,,,26,0,0
+1993,MANINDS,Man Industries (India) Limited,Steel And Steel Products,0,0,0,0,0,,,,,96,0,0
+1994,MANINFRA,Man Infraconstruction Limited,Construction,0,0,0,0,0,,,,,76,0,0
+1995,MANUGRAPH,Manugraph India Limited,Electronics - Industrial,0,0,0,0,0,,,,,26,0,0
+1996,MAPMYINDIA,C.E. Info Systems Limited,,0,0,0,0,0,,,,,71,0,0
+1997,MARICO,Marico Limited,Personal Care,0,0,0,0,0,,,,,112,0,0
+1998,MARINE,Marine Electricals (India) Limited,,0,0,0,0,0,,,,,76,0,0
+1999,MARKSANS,Marksans Pharma Limited,Pharmaceuticals,0,0,0,0,0,,,,,83,0,0
+2000,MARSONS,Marsons Limited,,0,0,0,0,0,,,,,17,0,0
+2001,MASFIN,MAS Financial Services Limited,,0,0,0,0,0,,,,,83,0,0
+2002,MASKINVEST,Mask Investments Limited,,0,0,0,0,0,,,,,32,0,0
+2003,MATRIMONY,Matrimony.Com Limited,,0,0,0,0,0,,,,,63,0,0
+2004,MAWANASUG,Mawana Sugars Limited,Sugar,0,0,0,0,0,,,,,63,0,0
+2005,MBAPL,Madhya Bharat Agro Products Limited,,0,0,0,0,0,,,,,82,0,0
+2006,MBLINFRA,MBL Infrastructure Limited,Construction,0,0,0,0,0,,,,,40,0,0
+2007,MCDHOLDING,McDowell Holdings Limited,Finance,0,0,0,0,0,,,,,2,0,0
+2008,MEDICAMEQ,Medicamen Biotech Limited,,0,0,0,0,0,,,,,29,0,0
+2009,MEESHO,Meesho Limited,,0,0,0,0,0,,,,,65,0,0
+2010,MERCURYEV,Mercury Ev-Tech Limited,,0,0,0,0,0,,,,,3,0,0
+2011,MICEL,MIC Electronics Limited,,0,0,0,0,0,,,,,67,0,0
+2012,MMP,MMP Industries Limited,,0,0,0,0,0,,,,,48,0,0
+2013,MOBIKWIK,One Mobikwik Systems Limited,,0,0,0,0,0,,,,,92,0,0
+2014,MODIS,Modis Navnirman Limited,,0,0,0,0,0,,,,,38,0,0
+2015,MOHITIND,Mohit Industries Limited,Textile Products,0,0,0,0,0,,,,,31,0,0
+2016,MOKSH,Moksh Ornaments Limited,,0,0,0,0,0,,,,,64,0,0
+2017,MOLDTKPAC,Mold-Tek Packaging Limited,,0,0,0,0,0,,,,,64,0,0
+2018,MOSCHIP,Moschip Technologies Limited,,0,0,0,0,0,,,,,65,0,0
+2019,MOTILALOFS,Motilal Oswal Financial Services Limited,Finance,0,0,0,0,0,,,,,101,0,0
+2020,MOTISONS,Motisons Jewellers Limited,,0,0,0,0,0,,,,,63,0,0
+2021,MOTOGENFIN,The Motor & General Finance Limited,Finance,0,0,0,0,0,,,,,34,0,0
+2022,MPHASIS,MphasiS Limited,Computers - Software,0,0,0,0,0,,,,,97,0,0
+2023,MSPL,MSP Steel & Power Limited,Steel And Steel Products,0,0,0,0,0,,,,,70,0,0
+2024,MUFTI,Credo Brands Marketing Limited,,0,0,0,0,0,,,,,46,0,0
+2025,MUNJALAU,Munjal Auto Industries Limited,Auto Ancillaries,0,0,0,0,0,,,,,38,0,0
+2026,MURUDCERA,Murudeshwar Ceramics Limited,Ceramics And Sanitaryware,0,0,0,0,0,,,,,21,0,0
+2027,NAHARCAP,Nahar Capital and Financial Services Limited,Finance,0,0,0,0,0,,,,,38,0,0
+2028,NAHARSPING,Nahar Spinning Mills Limited,Textiles - Synthetic,0,0,0,0,0,,,,,44,0,0
+2029,NARMADA,Narmada Agrobase Limited,,0,0,0,0,0,,,,,46,0,0
+2030,NATHBIOGEN,Nath Bio-Genes (India) Limited,,0,0,0,0,0,,,,,27,0,0
+2031,NAVA,NAVA LIMITED,,0,0,0,0,0,,,,,60,0,0
+2032,NAVINFLUOR,Navin Fluorine International Limited,Chemicals - Inorganic,0,0,0,0,0,,,,,112,0,0
+2033,NAVKARCORP,Navkar Corporation Limited,,0,0,0,0,0,,,,,72,0,0
+2034,NBIFIN,N. B. I. Industrial Finance Company Limited,,0,0,0,0,0,,,,,40,0,0
+2035,NCLIND,NCL Industries Limited,Cement And Cement Products,0,0,0,0,0,,,,,69,0,0
+2036,NDLVENTURE,NDL Ventures Limited,,0,0,0,0,0,,,,,45,0,0
+2037,NDTV,New Delhi Television Limited,Media & Entertainment,0,0,0,0,0,,,,,70,0,0
+2038,NELCAST,Nelcast Limited,Castings/Forgings,0,0,0,0,0,,,,,57,0,0
+2039,NEOGEN,Neogen Chemicals Limited,,0,0,0,0,0,,,,,124,0,0
+2040,NESCO,Nesco Limited,Miscellaneous,0,0,0,0,0,,,,,58,0,0
+2041,NETWEB,Netweb Technologies India Limited,,0,0,0,0,0,,,,,89,0,0
+2042,NEXTMEDIA,Next Mediaworks Limited,Media & Entertainment,0,0,0,0,0,,,,,17,0,0
+2043,NH,Narayana Hrudayalaya Ltd.,,0,0,0,0,0,,,,,112,0,0
+2044,NIITLTD,NIIT Limited,Computers - Software,0,0,0,0,0,,,,,94,0,0
+2045,NIITMTS,NIIT Learning Systems Limited,,0,0,0,0,0,,,,,114,0,0
+2046,NILKAMAL,Nilkamal Limited,Plastic And Plastic Products,0,0,0,0,0,,,,,47,0,0
+2047,NIPPOBATRY,Indo-National Limited,Electrical Equipment,0,0,0,0,0,,,,,56,0,0
+2048,NIRAJ,Niraj Cement Structurals Limited,,0,0,0,0,0,,,,,53,0,0
+2049,NITINSPIN,Nitin Spinners Limited,Textiles - Cotton,0,0,0,0,0,,,,,57,0,0
+2050,NOIDATOLL,Noida Toll Bridge Company Limited,Construction,0,0,0,0,0,,,,,54,0,0
+2051,NPST,Network People Services Technologies Limited,,0,0,0,0,0,,,,,97,0,0
+2052,NSIL,Nalwa Sons Investments Limited,Finance,0,0,0,0,0,,,,,38,0,0
+2053,NSLNISP,NMDC Steel Limited,,0,0,0,0,0,,,,,30,0,0
+2054,NUVOCO,Nuvoco Vistas Corporation Limited,,0,0,0,0,0,,,,,120,0,0
+2055,OBCL,Orissa Bengal Carrier Limited,,0,0,0,0,0,,,,,35,0,0
+2056,OCCL,Oriental Carbon & Chemicals Limited,,0,0,0,0,0,,,,,4,0,0
+2057,OCCLLTD,OCCL Limited,,0,0,0,0,0,,,,,41,0,0
+2058,OFSS,Oracle Financial Services Software Limited,Computers - Software,0,0,0,0,0,,,,,63,0,0
+2059,ONIDA,Onida Electronics Limited,,0,0,0,0,0,,,,,2,0,0
+2060,OPTIEMUS,Optiemus Infracom Limited,,0,0,0,0,0,,,,,94,0,0
+2061,ORCHASP,Orchasp Limited,,0,0,0,0,0,,,,,40,0,0
+2062,ORIENTHOT,Oriental Hotels Limited,Hotels,0,0,0,0,0,,,,,47,0,0
+2063,ORIENTLTD,Orient Press Limited,Packaging,0,0,0,0,0,,,,,31,0,0
+2064,ORTINGLOBE,ORTIN GLOBAL LIMITED,,0,0,0,0,0,,,,,37,0,0
+2065,PALREDTEC,Palred Technologies Limited,,0,0,0,0,0,,,,,23,0,0
+2066,PANAMAPET,Panama Petrochem Limited,Lubricants,0,0,0,0,0,,,,,30,0,0
+2067,PANSARI,Pansari Developers Limited,,0,0,0,0,0,,,,,29,0,0
+2068,PARADEEP,Paradeep Phosphates Limited,,0,0,0,0,0,,,,,95,0,0
+2069,PARAGMILK,Parag Milk Foods Limited,,0,0,0,0,0,,,,,56,0,0
+2070,PATELENG,Patel Engineering Limited,Construction,0,0,0,0,0,,,,,114,0,0
+2071,PATELRMART,Patel Retail Limited,,0,0,0,0,0,,,,,68,0,0
+2072,PAUSHAKLTD,Paushak Limited,,0,0,0,0,0,,,,,36,0,0
+2073,PAYTM,One 97 Communications Limited,,0,0,0,0,0,,,,,118,0,0
+2074,PDMJEPAPER,Pudumjee Paper Products Limited,,0,0,0,0,0,,,,,56,0,0
+2075,PDSL,PDS Limited,,0,0,0,0,0,,,,,109,0,0
+2076,PERSISTENT,Persistent Systems Limited,Computers - Software,0,0,0,0,0,,,,,239,0,0
+2077,PGEL,PG Electroplast Limited,Consumer Durables,0,0,0,0,0,,,,,72,0,0
+2078,PICCADIL,Piccadily Agro Industries Limited,,0,0,0,0,0,,,,,84,0,0
+2079,PIDILITIND,Pidilite Industries Limited,Chemicals - Speciality,0,0,0,0,0,,,,,127,0,0
+2080,PILANIINVS,Pilani Investment and Industries Corporation Limited,,0,0,0,0,0,,,,,67,0,0
+2081,PILITA,PIL ITALICA LIFESTYLE LIMITED,,0,0,0,0,0,,,,,31,0,0
+2082,PIRAMALFIN,Piramal Finance Limited,,0,0,0,0,0,,,,,94,0,0
+2083,PITTIENG,Pitti Engineering Limited,,0,0,0,0,0,,,,,85,0,0
+2084,PIXTRANS,Pix Transmissions Limited,,0,0,0,0,0,,,,,37,0,0
+2085,PLASTIBLEN,Plastiblends India Limited,Plastic And Plastic Products,0,0,0,0,0,,,,,26,0,0
+2086,POCL,Pondy Oxides & Chemicals Limited,,0,0,0,0,0,,,,,94,0,0
+2087,PODDARHOUS,Poddar Housing and Development Limited,,0,0,0,0,0,,,,,22,0,0
+2088,POKARNA,Pokarna Limited,,0,0,0,0,0,,,,,54,0,0
+2089,POLICYBZR,PB Fintech Limited,,0,0,0,0,0,,,,,92,0,0
+2090,PONNIERODE,Ponni Sugars (Erode) Limited,Sugar,0,0,0,0,0,,,,,44,0,0
+2091,POWERINDIA,Hitachi Energy India Limited,,0,0,0,0,0,,,,,85,0,0
+2092,PPL,Prakash Pipes Limited,,0,0,0,0,0,,,,,46,0,0
+2093,PRAKASH,Prakash Industries Limited,Steel And Steel Products,0,0,0,0,0,,,,,47,0,0
+2094,PRECWIRE,Precision Wires India Limited,Metals,0,0,0,0,0,,,,,71,0,0
+2095,PRESTIGE,Prestige Estates Projects Limited,Construction,0,0,0,0,0,,,,,78,0,0
+2096,PRIMESECU,Prime Securities Limited,Finance,0,0,0,0,0,,,,,31,0,0
+2097,PROZONER,Prozone Realty Limited,,0,0,0,0,0,,,,,72,0,0
+2098,PTC,PTC India Limited,Power,0,0,0,0,0,,,,,95,0,0
+2099,PTCIL,PTC Industries Limited,,0,0,0,0,0,,,,,70,0,0
+2100,PTL,PTL Enterprises Limited,Miscellaneous,0,0,0,0,0,,,,,42,0,0
+2101,QMSMEDI,QMS Medical Allied Services Limited,,0,0,0,0,0,,,,,3,0,0
+2102,QPOWER,Quality Power Electrical Equipments Limited,,0,0,0,0,0,,,,,94,0,0
+2103,QUICKHEAL,Quick Heal Technologies Limited,,0,0,0,0,0,,,,,76,0,0
+2104,RACLGEAR,RACL Geartech Limited,,0,0,0,0,0,,,,,76,0,0
+2105,RADHIKAJWE,Radhika Jeweltech Limited,,0,0,0,0,0,,,,,19,0,0
+2106,RAIN,Rain Industries Limited,,0,0,0,0,0,,,,,73,0,0
+2107,RAJRATAN,Rajratan Global Wire Limited,,0,0,0,0,0,,,,,60,0,0
+2108,RAJTV,Raj Television Network Limited,Media & Entertainment,0,0,0,0,0,,,,,43,0,0
+2109,RAMANEWS,Shree Rama Newsprint Limited,Paper And Paper Products,0,0,0,0,0,,,,,27,0,0
+2110,RAMAPHO,Rama Phosphates Limited,,0,0,0,0,0,,,,,38,0,0
+2111,RAMCOCEM,The Ramco Cements Limited,,0,0,0,0,0,,,,,77,0,0
+2112,RAMCOIND,Ramco Industries Limited,Cement And Cement Products,0,0,0,0,0,,,,,54,0,0
+2113,RAMCOSYS,Ramco Systems Limited,Computers - Software,0,0,0,0,0,,,,,60,0,0
+2114,REDINGTON,Redington Limited,Trading,0,0,0,0,0,,,,,67,0,0
+2115,REFEX,Refex Industries Limited,Gas,0,0,0,0,0,,,,,124,0,0
+2116,RENUKA,Shree Renuka Sugars Limited,Sugar,0,0,0,0,0,,,,,41,0,0
+2117,REPCOHOME,Repco Home Finance Limited,Finance - Housing,0,0,0,0,0,,,,,103,0,0
+2118,REPRO,Repro India Limited,Printing And Publishing,0,0,0,0,0,,,,,41,0,0
+2119,RICOAUTO,Rico Auto Industries Limited,Auto Ancillaries,0,0,0,0,0,,,,,61,0,0
+2120,RIIL,Reliance Industrial Infrastructure Limited,Engineering,0,0,0,0,0,,,,,30,0,0
+2121,RMCL,Radha Madhav Corporation Limited,Packaging,0,0,0,0,0,,,,,47,0,0
+2122,RNAVAL,Reliance Naval and Engineering Limited,,0,0,0,0,0,,,,,3,0,0
+2123,RNBDENIMS,R&B Denims Limited,,0,0,0,0,0,,,,,27,0,0
+2124,ROLEXRINGS,Rolex Rings Limited,,0,0,0,0,0,,,,,74,0,0
+2125,ROSSARI,Rossari Biotech Limited,,0,0,0,0,0,,,,,76,0,0
+2126,ROSSELLIND,Rossell India Limited,Tea And Coffee,0,0,0,0,0,,,,,29,0,0
+2127,ROSSTECH,Rossell Techsys Limited,,0,0,0,0,0,,,,,67,0,0
+2128,RPEL,Raghav Productivity Enhancers Limited,,0,0,0,0,0,,,,,38,0,0
+2129,RUBFILA,Rubfila International Limited,,0,0,0,0,0,,,,,32,0,0
+2130,RUBICON,Rubicon Research Limited,,0,0,0,0,0,,,,,44,0,0
+2131,RUSTOMJEE,Keystone Realtors Limited,,0,0,0,0,0,,,,,87,0,0
+2132,S&SPOWER,S&S Power Switchgears Limited,-,0,0,0,0,0,,,,,43,0,0
+2133,SAIL,Steel Authority of India Limited,Steel And Steel Products,0,0,0,0,0,,,,,48,0,0
+2134,SAILIFE,Sai Life Sciences Limited,,0,0,0,0,0,,,,,94,0,0
+2135,SAIPARENT,Sai Parenterals Limited,,0,0,0,0,0,,,,,20,0,0
+2136,SAKSOFT,Saksoft Limited,Computers - Software,0,0,0,0,0,,,,,52,0,0
+2137,SAMMAANCAP,Sammaan Capital Limited,,0,0,0,0,0,,,,,365,0,0
+2138,SANATHAN,Sanathan Textiles Limited,,0,0,0,0,0,,,,,62,0,0
+2139,SANGHIIND,Sanghi Industries Limited,Cement And Cement Products,0,0,0,0,0,,,,,48,0,0
+2140,SANOFI,Sanofi India Limited,Pharmaceuticals,0,0,0,0,0,,,,,83,0,0
+2141,SANSERA,Sansera Engineering Limited,,0,0,0,0,0,,,,,78,0,0
+2142,SANWARIA,Sanwaria Consumer Limited,Food And Food Processing,0,0,0,0,0,,,,,24,0,0
+2143,SARDAEN,Sarda Energy & Minerals Limited,Steel And Steel Products,0,0,0,0,0,,,,,84,0,0
+2144,SATIN,Satin Creditcare Network Limited,,0,0,0,0,0,,,,,92,0,0
+2145,SAYAJIHOTL,Sayaji Hotels Limited,Hotels,0,0,0,0,0,,,,,2,0,0
+2146,SBFC,SBFC Finance Limited,,0,0,0,0,0,,,,,88,0,0
+2147,SCHAND,S Chand And Company Limited,,0,0,0,0,0,,,,,56,0,0
+2148,SEAMECLTD,Seamec Limited,Shipping,0,0,0,0,0,,,,,143,0,0
+2149,SETL,Standard Engineering Technology Limited,,0,0,0,0,0,,,,,74,0,0
+2150,SEYAIND,Seya Industries Limited,,0,0,0,0,0,,,,,12,0,0
+2151,SGL,STL Global Limited,Textile Products,0,0,0,0,0,,,,,32,0,0
+2152,SHAH,Shah Metacorp Limited,,0,0,0,0,0,,,,,89,0,0
+2153,SHAILY,Shaily Engineering Plastics Limited,,0,0,0,0,0,,,,,68,0,0
+2154,SHARDACROP,Sharda Cropchem Limited,,0,0,0,0,0,,,,,52,0,0
+2155,SHARDAMOTR,Sharda Motor Industries Limited,,0,0,0,0,0,,,,,51,0,0
+2156,SHILCTECH,Shilchar Technologies Limited,,0,0,0,0,0,,,,,22,0,0
+2157,SHILPAMED,Shilpa Medicare Limited,Pharmaceuticals,0,0,0,0,0,,,,,98,0,0
+2158,SHIVALIK,Shivalik Rasayan Limited,,0,0,0,0,0,,,,,32,0,0
+2159,SHRADHA,Shradha Realty Limited,,0,0,0,0,0,,,,,100,0,0
+2160,SHREDIGCEM,Shree Digvijay Cement Co.Ltd,,0,0,0,0,0,,,,,81,0,0
+2161,SHREECEM,SHREE CEMENT LIMITED,Cement And Cement Products,0,0,0,0,0,,,,,107,0,0
+2162,SHREEPUSHK,Shree Pushkar Chemicals & Fertilisers Limited,,0,0,0,0,0,,,,,64,0,0
+2163,SHYAMTEL,Shyam Telecom Limited,Telecommunication - Services,0,0,0,0,0,,,,,30,0,0
+2164,SIEMENS,Siemens Limited,Electrical Equipment,0,0,0,0,0,,,,,56,0,0
+2165,SIGACHI,Sigachi Industries Limited,,0,0,0,0,0,,,,,56,0,0
+2166,SIGMA,Sigma Solve Limited,,0,0,0,0,0,,,,,52,0,0
+2167,SILGO,Silgo Retail Limited,,0,0,0,0,0,,,,,99,0,0
+2168,SILINV,SIL Investments Limited,Finance,0,0,0,0,0,,,,,42,0,0
+2169,SIMPLEXINF,Simplex Infrastructures Limited,Construction,0,0,0,0,0,,,,,53,0,0
+2170,SINDHUTRAD,Sindhu Trade Links Limited,,0,0,0,0,0,,,,,35,0,0
+2171,SINGERIND,Singer India Limited,,0,0,0,0,0,,,,,22,0,0
+2172,SIRCA,Sirca Paints India Limited,,0,0,0,0,0,,,,,61,0,0
+2173,SIS,SIS LIMITED,,0,0,0,0,0,,,,,85,0,0
+2174,SJS,S.J.S. Enterprises Limited,,0,0,0,0,0,,,,,83,0,0
+2175,SKIPPER,Skipper Limited,,0,0,0,0,0,,,,,115,0,0
+2176,SOLARINDS,Solar Industries India Limited,Chemicals - Speciality,0,0,0,0,0,,,,,79,0,0
+2177,SOMANYCERA,Somany Ceramics Limited,Ceramics And Sanitaryware,0,0,0,0,0,,,,,89,0,0
+2178,SONAMLTD,SONAM LIMITED,,0,0,0,0,0,,,,,46,0,0
+2179,SONATSOFTW,Sonata Software Limited,Computers - Software,0,0,0,0,0,,,,,105,0,0
+2180,SOTL,Savita Oil Technologies Limited,Lubricants,0,0,0,0,0,,,,,38,0,0
+2181,SPCENET,Spacenet Enterprises India Limited,,0,0,0,0,0,,,,,51,0,0
+2182,SPECIALITY,Speciality Restaurants Limited,Hotels,0,0,0,0,0,,,,,69,0,0
+2183,SPLPETRO,Supreme Petrochem Limited,,0,0,0,0,0,,,,,88,0,0
+2184,SPMLINFRA,SPML Infra Limited,Construction,0,0,0,0,0,,,,,109,0,0
+2185,SRD,Shankar Lal Rampal Dye-Chem Limited,,0,0,0,0,0,,,,,48,0,0
+2186,SREEL,Sreeleathers Limited,,0,0,0,0,0,,,,,25,0,0
+2187,SRGHFL,SRG Housing Finance Limited,,0,0,0,0,0,,,,,68,0,0
+2188,SRTL,Shree Ram Twistex Limited,,0,0,0,0,0,,,,,17,0,0
+2189,SSDL,Saraswati Saree Depot Limited,,0,0,0,0,0,,,,,59,0,0
+2190,STARCEMENT,Star Cement Limited,,0,0,0,0,0,,,,,80,0,0
+2191,STEELCAS,Steelcast Limited,,0,0,0,0,0,,,,,45,0,0
+2192,STEELCITY,Steel City Securities Limited,,0,0,0,0,0,,,,,49,0,0
+2193,SUBROS,Subros Limited,Auto Ancillaries,0,0,0,0,0,,,,,61,0,0
+2194,SUDEEPPHRM,Sudeep Pharma Limited,,0,0,0,0,0,,,,,36,0,0
+2195,SUMMITSEC,Summit Securities Limited,Finance,0,0,0,0,0,,,,,40,0,0
+2196,SUNDARMFIN,Sundaram Finance Limited,Finance,0,0,0,0,0,,,,,79,0,0
+2197,SUNDRMFAST,Sundram Fasteners Limited,Fastners,0,0,0,0,0,,,,,89,0,0
+2198,SUNFLAG,Sunflag Iron And Steel Company Limited,Steel And Steel Products,0,0,0,0,0,,,,,36,0,0
+2199,SUNPHARMA,Sun Pharmaceutical Industries Limited,Pharmaceuticals,0,0,0,0,0,,,,,97,0,0
+2200,SUPRAJIT,Suprajit Engineering Limited,Auto Ancillaries,0,0,0,0,0,,,,,69,0,0
+2201,SUPREMEINF,Supreme Infrastructure India Limited,Construction,0,0,0,0,0,,,,,53,0,0
+2202,SUTLEJTEX,Sutlej Textiles and Industries Limited,Textiles - Cotton,0,0,0,0,0,,,,,65,0,0
+2203,SYMPHONY,Symphony Limited,Consumer Durables,0,0,0,0,0,,,,,114,0,0
+2204,TAJGVK,Taj GVK Hotels & Resorts Limited,Hotels,0,0,0,0,0,,,,,73,0,0
+2205,TARMAT,Tarmat Limited,Construction,0,0,0,0,0,,,,,31,0,0
+2206,TATAINVEST,Tata Investment Corporation Limited,Finance,0,0,0,0,0,,,,,50,0,0
+2207,TATAPOWER,Tata Power Company Limited,Power,0,0,0,0,0,,,,,126,0,0
+2208,TATASTEEL,Tata Steel Limited,Steel And Steel Products,0,0,0,0,0,,,,,163,0,0
+2209,TCIEXP,TCI Express Limited,,0,0,0,0,0,,,,,75,0,0
+2210,TCPLPACK,TCPL Packaging Limited,,0,0,0,0,0,,,,,61,0,0
+2211,TECHM,Tech Mahindra Limited,Computers - Software,0,0,0,0,0,,,,,128,0,0
+2212,TECHNOE,Techno Electric & Engineering Company Limited,,0,0,0,0,0,,,,,56,0,0
+2213,TECILCHEM,TECIL Chemicals and Hydro Power Limited,-,0,0,0,0,0,,,,,25,0,0
+2214,TEJASNET,Tejas Networks Limited,,0,0,0,0,0,,,,,92,0,0
+2215,TENNIND,Tenneco Clean Air India Limited,,0,0,0,0,0,,,,,52,0,0
+2216,TEXMOPIPES,Texmo Pipes and Products Limited,Plastic And Plastic Products,0,0,0,0,0,,,,,33,0,0
+2217,THEJO,Thejo Engineering Limited,,0,0,0,0,0,,,,,39,0,0
+2218,TIGERLOGS,Tiger Logistics (India) Limited,,0,0,0,0,0,,,,,46,0,0
+2219,TIIL,Technocraft Industries (India) Limited,Steel And Steel Products,0,0,0,0,0,,,,,51,0,0
+2220,TORNTPHARM,Torrent Pharmaceuticals Limited,Pharmaceuticals,0,0,0,0,0,,,,,97,0,0
+2221,TORNTPOWER,Torrent Power Limited,Power,0,0,0,0,0,,,,,91,0,0
+2222,TPLPLASTEH,TPL Plastech Limited,,0,0,0,0,0,,,,,31,0,0
+2223,TRAVELFOOD,Travel Food Services Limited,,0,0,0,0,0,,,,,68,0,0
+2224,TSFINV,TSF INVESTMENTS LIMITED,,0,0,0,0,0,,,,,40,0,0
+2225,TTKHLTCARE,TTK Healthcare Limited,,0,0,0,0,0,,,,,59,0,0
+2226,TURTLEMINT,Turtlemint Fintech Solutions Limited,,0,0,0,0,0,,,,,2,0,0
+2227,TVSHLTD,TVS Holdings Limited,,0,0,0,0,0,,,,,39,0,0
+2228,TVSMOTOR,TVS Motor Company Limited,Automobiles - 2 And 3 Wheelers,0,0,0,0,0,,,,,141,0,0
+2229,TVSSRICHAK,TVS Srichakra Limited,Tyres,0,0,0,0,0,,,,,71,0,0
+2230,TVTODAY,TV Today Network Limited,Media & Entertainment,0,0,0,0,0,,,,,43,0,0
+2231,UCOBANK,UCO Bank,Banks,0,0,0,0,0,,,,,78,0,0
+2232,UDAICEMENT,Udaipur Cement Works Limited,,0,0,0,0,0,,,,,4,0,0
+2233,UEL,Ujaas Energy Limited,,0,0,0,0,0,,,,,76,0,0
+2234,UJJIVANSFB,Ujjivan Small Finance Bank Limited,,0,0,0,0,0,,,,,126,0,0
+2235,UMAEXPORTS,Uma Exports Limited,,0,0,0,0,0,,,,,40,0,0
+2236,UMESLTD,Usha Martin Education & Solutions Limited,Computers - Software,0,0,0,0,0,,,,,28,0,0
+2237,UMIYA-MRO,UMIYA BUILDCON LIMITED,,0,0,0,0,0,,,,,25,0,0
+2238,UNICHEMLAB,Unichem Laboratories Limited,Pharmaceuticals,0,0,0,0,0,,,,,50,0,0
+2239,UNIPARTS,Uniparts India Limited,,0,0,0,0,0,,,,,90,0,0
+2240,UNIVAFOODS,Univa Foods Limited,,0,0,0,0,0,,,,,30,0,0
+2241,UNIVASTU,Univastu India Limited,,0,0,0,0,0,,,,,87,0,0
+2242,UNIVPHOTO,Universus Photo Imagings Limited,,0,0,0,0,0,,,,,50,0,0
+2243,UPL,UPL Limited,,0,0,0,0,0,,,,,87,0,0
+2244,UTLSOLAR,Fujiyama Power Systems Limited,,0,0,0,0,0,,,,,53,0,0
+2245,UYFINCORP,U. Y. Fincorp Limited,,0,0,0,0,0,,,,,32,0,0
+2246,V2RETAIL,V2 Retail Limited,Miscellaneous,0,0,0,0,0,,,,,61,0,0
+2247,VAIBHAVGBL,Vaibhav Global Limited,Gems Jewellery And Watches,0,0,0,0,0,,,,,89,0,0
+2248,VAISHALI,Vaishali Pharma Limited,,0,0,0,0,0,,,,,35,0,0
+2249,VARDHACRLC,Vardhman Acrylics Limited,Textiles - Synthetic,0,0,0,0,0,,,,,37,0,0
+2250,VASCONEQ,Vascon Engineers Limited,Construction,0,0,0,0,0,,,,,71,0,0
+2251,VEDPOWER,Vedanta Power Limited,,0,0,0,0,0,,,,,5,0,0
+2252,VENKEYS,Venky's (India) Limited,Food And Food Processing,0,0,0,0,0,,,,,23,0,0
+2253,VIDHIING,Vidhi Specialty Food Ingredients Limited,,0,0,0,0,0,,,,,48,0,0
+2254,VIKASECO,Vikas EcoTech Limited,,0,0,0,0,0,,,,,34,0,0
+2255,VIKASLIFE,Vikas Lifecare Limited,,0,0,0,0,0,,,,,48,0,0
+2256,VIMTALABS,Vimta Labs Limited,Pharmaceuticals,0,0,0,0,0,,,,,74,0,0
+2257,VINYLINDIA,Vinyl Chemicals (India) Limited,Trading,0,0,0,0,0,,,,,66,0,0
+2258,VIRINCHI,Virinchi Limited,,0,0,0,0,0,,,,,64,0,0
+2259,VISHWARAJ,Vishwaraj Sugar Industries Limited,,0,0,0,0,0,,,,,17,0,0
+2260,VIVIANA,Viviana Power Tech Limited,,0,0,0,0,0,,,,,12,0,0
+2261,VIVIDHA,Visagar Polytex Limited,Textile Products,0,0,0,0,0,,,,,30,0,0
+2262,VIYASH,Viyash Scientific Limited,,0,0,0,0,0,,,,,111,0,0
+2263,VLSFINANCE,VLS Finance Limited,Finance,0,0,0,0,0,,,,,58,0,0
+2264,VOEPL,Virtuoso Optoelectronics Limited,,0,0,0,0,0,,,,,1,0,0
+2265,VOGL,Vedanta Oil and Gas Limited,,0,0,0,0,0,,,,,6,0,0
+2266,VOLTAS,Voltas Limited,Engineering,0,0,0,0,0,,,,,74,0,0
+2267,VRAJ,Vraj Iron and Steel Limited,,0,0,0,0,0,,,,,52,0,0
+2268,VSSL,Vardhman Special Steels Limited,Steel And Steel Products,0,0,0,0,0,,,,,86,0,0
+2269,VTL,Vardhman Textiles Limited,Textiles - Cotton,0,0,0,0,0,,,,,84,0,0
+2270,WALCHANNAG,Walchandnagar Industries Limited,Engineering,0,0,0,0,0,,,,,72,0,0
+2271,WCIL,Western Carriers (India) Limited,,0,0,0,0,0,,,,,80,0,0
+2272,WEIZMANIND,Weizmann Limited,Textile Products,0,0,0,0,0,,,,,38,0,0
+2273,WENDT,Wendt (India) Limited,Abrasives,0,0,0,0,0,,,,,43,0,0
+2274,WEWIN,WE WIN LIMITED,,0,0,0,0,0,,,,,53,0,0
+2275,WHEELS,Wheels India Limited,Auto Ancillaries,0,0,0,0,0,,,,,66,0,0
+2276,WINDLAS,Windlas Biotech Limited,,0,0,0,0,0,,,,,78,0,0
+2277,WIPL,The Western India Plywoods Limited,,0,0,0,0,0,,,,,12,0,0
+2278,WONDERLA,Wonderla Holidays Limited,,0,0,0,0,0,,,,,61,0,0
+2279,WSTCSTPAPR,West Coast Paper Mills Limited,Paper And Paper Products,0,0,0,0,0,,,,,61,0,0
+2280,XTGLOBAL,Xtglobal Infotech Limited,,0,0,0,0,0,,,,,64,0,0
+2281,ZENITHEXPO,Zenith Exports Limited,Textiles - Cotton,0,0,0,0,0,,,,,57,0,0
+2282,ZODIACLOTH,Zodiac Clothing Company Limited,Textile Products,0,0,0,0,0,,,,,49,0,0
+2283,ZOTA,Zota Health Care LImited,,0,0,0,0,0,,,,,118,0,0
+2284,ZYDUSLIFE,Zydus Lifesciences Limited,,0,0,0,0,0,,,,,188,0,0

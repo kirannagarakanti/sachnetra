@@ -1,0 +1,4 @@
+# Keep the forward-freeze seal artifacts byte-stable across checkouts.
+# core.autocrlf=true would otherwise rewrite these to CRLF and break the committed SHA-256 (the seal).
+scripts/research/output/freeze/*.csv -text
+scripts/research/output/freeze/*.json -text

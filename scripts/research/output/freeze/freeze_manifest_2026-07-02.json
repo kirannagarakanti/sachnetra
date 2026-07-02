@@ -1,0 +1,52 @@
+{
+  "what": "Forward FREEZE — sealed governance prediction over the live listed universe.",
+  "freeze_date": "2026-07-02",
+  "window": {
+    "start": "2025-07-02",
+    "end_exclusive": "2026-07-02",
+    "lookback_months": 12,
+    "note": "half-open [start, end_exclusive) — complete IST days only; the in-progress freeze day is excluded"
+  },
+  "universe_size": 2284,
+  "universe_definition": "symbols with >=1 filing in the window (excl. already-in-CIRP); NOT every listed name — the +12m base-rate denominator must be computed over this same population",
+  "excluded_already_in_cirp": 90,
+  "flag_definitions": [
+    {
+      "flag": "F1_auditor",
+      "regex": "auditor"
+    },
+    {
+      "flag": "F3_kmp",
+      "regex": "chief financial|\\bcfo\\b|company secretary|key managerial"
+    },
+    {
+      "flag": "F4_director",
+      "regex": "(director|board).{0,40}(resign|cessation|vacat)|(resign|cessation).{0,20}director"
+    },
+    {
+      "flag": "F6_late",
+      "regex": "delay.{0,30}(result|financ)|non[- ]?submission.{0,30}(result|financ)|extension.{0,20}(result|filing)"
+    }
+  ],
+  "score_formula": "equal-weight binary presence of the 4 flags (0..4); no fitted weights; no threshold tuning",
+  "operating_points": {
+    "top5pct_cutoff_rank": 115,
+    "flagged_top5pct": 115,
+    "flagged_score_ge2": 668
+  },
+  "limits": [
+    "pledge + RPT are NOT in the automated score (PDF-locked / listed-only) — this is the ~4-flag headline score",
+    "~2yr filing depth caps this at a ~12-month-lead \"end-of-cycle\" monitor, not a 24-month leading indicator",
+    "moat caveat: these flags are SEBI Reg-30 24h disclosures — a positive result proves signal exists, not edge"
+  ],
+  "evaluation_rule_preregistered": {
+    "when": "2027-07-02",
+    "how": "pull NEW IBBI/NCLT admissions + first-default/rating-D events in (freeze_date, +12m] from PUBLIC sources; compute the fraction of the top-5% flagged list that hit an event vs the universe base rate",
+    "build_signal": "lift >= 3x base rate with flags dated before the distress event",
+    "note": "decided now, before the outcome exists; do not move after seeing 2027 data"
+  },
+  "csv_file": "freeze_universe_2026-07-02.csv",
+  "csv_sha256": "358910bb206ddd7d2c75ae3f9b284a0b260589389539214804a37f4235c736f9",
+  "git_commit": "FILL AFTER COMMIT (the commit hash + timestamp is the seal)",
+  "reproducibility": "Authoritative seal = the committed git blob. Verify via `git show <commit>:<path> | sha256sum`, NOT a working-copy re-hash (core.autocrlf can rewrite line endings — a .gitattributes keeps these files -text) and NOT a re-run (reproduces the hash only if no past-day rows were backfilled between runs)."
+}
