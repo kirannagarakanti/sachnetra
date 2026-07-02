@@ -1,0 +1,281 @@
+{
+  "generated": "2026-06-26T11:38:35.751Z",
+  "candidateRows": 9257,
+  "byCategory": [
+    {
+      "category": "Updates",
+      "n": 919
+    },
+    {
+      "category": "Disclosure under SEBI Takeover Regulations",
+      "n": 7820
+    },
+    {
+      "category": "Public Announcement-Open Offer",
+      "n": 105
+    },
+    {
+      "category": "General Updates",
+      "n": 238
+    },
+    {
+      "category": "Name and Symbol Change",
+      "n": 2
+    },
+    {
+      "category": "Open Offer",
+      "n": 23
+    },
+    {
+      "category": "Corporate Insolvency Resolution Process",
+      "n": 2
+    },
+    {
+      "category": "Giving guarantees/indemnity/ becoming a surety for third party",
+      "n": 2
+    },
+    {
+      "category": "Copy of Newspaper Publication",
+      "n": 24
+    },
+    {
+      "category": "Certificate under SEBI (Depositories and Participants) Regulations, 2018",
+      "n": 8
+    },
+    {
+      "category": "Trading Window",
+      "n": 9
+    },
+    {
+      "category": "Analysts/Institutional Investor Meet/Con. Call Updates",
+      "n": 16
+    },
+    {
+      "category": "Agreements",
+      "n": 2
+    },
+    {
+      "category": "Outcome of Board Meeting",
+      "n": 14
+    },
+    {
+      "category": "Others",
+      "n": 1
+    },
+    {
+      "category": "Name Change",
+      "n": 1
+    },
+    {
+      "category": "Amendment to AOA/MOA",
+      "n": 1
+    },
+    {
+      "category": "Shareholders meeting",
+      "n": 11
+    },
+    {
+      "category": "Investor Presentation",
+      "n": 9
+    },
+    {
+      "category": "Disclosure of material issue",
+      "n": 15
+    },
+    {
+      "category": "Press Release",
+      "n": 7
+    },
+    {
+      "category": "Post Offer Public Announcement",
+      "n": 6
+    },
+    {
+      "category": "Change in Management",
+      "n": 3
+    },
+    {
+      "category": "Suspension of Trading",
+      "n": 1
+    },
+    {
+      "category": "Spurt in Volume",
+      "n": 2
+    },
+    {
+      "category": "Resignation",
+      "n": 2
+    },
+    {
+      "category": "Action(s) taken or orders passed",
+      "n": 3
+    },
+    {
+      "category": "Disclosure under SEBI (PIT) Reg 2015",
+      "n": 3
+    },
+    {
+      "category": "Appointment",
+      "n": 2
+    },
+    {
+      "category": "Financial Result Updates",
+      "n": 1
+    },
+    {
+      "category": "News Verification",
+      "n": 2
+    },
+    {
+      "category": "Credit Rating- Revision",
+      "n": 1
+    },
+    {
+      "category": "Book Closure",
+      "n": 1
+    },
+    {
+      "category": "Acquisition",
+      "n": 1
+    }
+  ],
+  "bySubBucket": [
+    {
+      "bucket": "sast_wrapper_no_pledge_word",
+      "rows": 9167,
+      "symbols": 2219,
+      "first": "2024-05-31",
+      "last": "2026-06-25"
+    },
+    {
+      "bucket": "pledge_release",
+      "rows": 41,
+      "symbols": 28,
+      "first": "2024-06-27",
+      "last": "2026-06-25"
+    },
+    {
+      "bucket": "pledge_other",
+      "rows": 24,
+      "symbols": 21,
+      "first": "2024-07-23",
+      "last": "2026-05-27"
+    },
+    {
+      "bucket": "pledge_increase",
+      "rows": 25,
+      "symbols": 15,
+      "first": "2024-06-03",
+      "last": "2026-05-27"
+    }
+  ],
+  "examples": {
+    "pledge_increase": [
+      "2026-04-23  COFORGE  Coforge Limited has informed the Exchange about Creation of hypothecate/mortgage/ pledge a",
+      "2026-05-27  GSPCROP  GSP Crop Science Limited has informed the Exchange regarding 'Intimation regarding creatio",
+      "2026-03-24  RESPONIND  Responsive Industries Limited has informed the Exchange regarding 'Disclosure for creation",
+      "2026-03-11  EMSLIMITED  Ems Limited has informed the Exchange regarding 'In compliance with Regulation 31(1) of SE",
+      "2026-03-10  EMSLIMITED  Ems Limited has informed the Exchange regarding 'Intimation regarding  creation of pledge ",
+      "2026-03-09  RESPONIND  Responsive Industries Limited has informed the Exchange regarding 'Revised disclosure for ",
+      "2026-03-07  RESPONIND  Responsive Industries Limited has informed the Exchange regarding 'Disclosure for creation",
+      "2026-02-26  AIIL  Authum Investment & Infrastructure Limited has informed the Exchange about announcement un",
+      "2026-02-24  RESPONIND  Responsive Industries Limited has informed the Exchange regarding 'Disclosure for creation",
+      "2026-02-19  SILGO  Silgo Retail Limited has informed the Exchange regarding 'Disclosure under Regulation 31(1",
+      "2026-01-28  SAMHI  Samhi Hotels Limited has informed the Exchange about the necessary details as required und",
+      "2026-01-03  ROLEXRINGS  Rolex Rings Limited has informed the Exchange regarding 'SAST DISCLOSURE FOR CREATION OF P",
+      "2025-12-31  EMSLIMITED  Ems Limited has informed the Exchange regarding 'Disclosure regarding Creation of Pledge a",
+      "2025-10-28  SAMHI  Samhi Hotels Limited has informed the Exchange about the relevant details as required unde",
+      "2025-10-03  RESPONIND  Responsive Industries Limited has informed the Exchange regarding 'Submission of revised d",
+      "2025-10-01  RESPONIND  Responsive Industries Limited has informed the Exchange regarding 'Submission of disclosur",
+      "2025-09-10  OLAELEC  Ola Electric Mobility Limited has informed the Exchange about General Updates regarding cr",
+      "2025-05-06  DICIND  In furtherance of our earlier disclosure dated 31.01.2025, regarding the invocation of arb",
+      "2025-03-27  SSWL  Steel Strips Wheels Limited has informed the Exchange regarding 'Tariff Proclamation- No E",
+      "2025-02-07  KALYANKJIL  The Exchange has sought clarification from Kalyan Jewellers India Limited with respect to ",
+      "2025-02-06  KALYANKJIL  The Exchange has sought clarification from Kalyan Jewellers India Limited with respect to ",
+      "2025-01-07  MANKIND  Mankind Pharma Limited has informed the Exchange about creation of pledge on the shares of",
+      "2024-11-15  MANKIND  Creation of Pledge on the shares of Bharat Serums and Vaccines Limited",
+      "2024-06-21  RPPINFRA  R.P.P. Infra Projects Limited has informed the Exchange regarding 'Pledge creation in the ",
+      "2024-06-03  OMAXE  Omaxe Limited has informed the Exchange about Acquisition of 33,33,400 equity shares havin"
+    ],
+    "pledge_release": [
+      "2026-05-20  GAYAHWS  Gayatri Highways Limited has informed the Exchange about with respect to Release of Pledge",
+      "2026-04-30  FINKURVE  Finkurve Financial Services Limited has informed the Exchange regarding 'Revised Disclosur",
+      "2026-04-30  RESPONIND  Responsive Industries Limited has informed the Exchange regarding 'Disclosure for release ",
+      "2026-04-24  TAJGVK  Taj GVK Hotels & Resorts Limited has informed the Exchange regarding 'Release of Pledge of",
+      "2026-04-14  FINKURVE  Finkurve Financial Services Limited has informed the Exchange regarding 'Disclosure regard",
+      "2026-04-08  FINKURVE  Finkurve Financial Services Limited has informed the Exchange regarding 'Disclosure regard",
+      "2026-04-08  ANDHRSUGAR  The Andhra Sugars Limited has informed the Exchange regarding 'The Andhra Sugars Limited h",
+      "2026-03-25  EMSLIMITED  Ems Limited has informed the Exchange regarding 'In compliance with Regulation 31(1) and 3",
+      "2026-03-25  INDIANHUME  Announcement Under Regulation 30 Of SEBI (LODR), Regulations, 2015 - Release Of Shares Ple",
+      "2026-03-18  MANGALAM  Ajay Ramniwas dhoot has submitted to  the Exchange a copy of Disclosure pursuant to Regula",
+      "2026-03-18  MANGALAM  Shree Rasbihari trading and Investment private Ltd has submitted to  the Exchange  a copyo",
+      "2026-03-18  MANGALAM  Aditya Ramniwas Dhoot has submitted the Exchange a copy of Disclosure pursuant to Regulati",
+      "2026-03-17  EMSLIMITED  Ems Limited has informed the Exchange regarding 'In compliance with Regulation 31(1) and 3",
+      "2026-03-11  EMSLIMITED  Ems Limited has informed the Exchange regarding 'Intimation regarding release of Pledged S",
+      "2026-02-17  NRAIL  Rajendra Agarwal,Reena Agarwal ,Raunak Agarwal has submitted to  the Exchange a copy of Di",
+      "2025-12-23  CUPID  Cupid Limited has informed the Exchange regarding a press release dated December 23, 2025,",
+      "2025-09-26  NRAIL  N R Agarwal Industries Limited has informed the Exchange that in continuation to our earli",
+      "2025-09-26  TICL  Twamev Construction and Infrastructure Limited has informed the Exchange about Release of ",
+      "2025-09-26  TICL  Mr. Tarun Chaturvedi has informed Twamev Construction and Infrastructure Limited regarding",
+      "2025-09-03  TICL  Twamev Construction and Infrastructure Limited has informed the Exchange regarding 'Releas",
+      "2025-09-03  TICL  Twamev Construction and Infrastructure Limited has informed that Tarun Chaturvedi has info",
+      "2025-07-30  SUPREMEINF  With reference to the aforesaid regulation, please find attached the disclosures regarding",
+      "2025-05-02  MANKIND  Release of Pledge on the shares of Bharat Serums and Vaccines Limited, wholly owned subsid",
+      "2025-04-07  ANDHRSUGAR  The Andhra Sugars Limited has informed the Exchange regarding 'Disclosure by the promoter(",
+      "2025-03-28  MCLOUD  Magellanic Cloud Limited has informed the Exchange regarding 'Disclosure under Regulation "
+    ],
+    "pledge_other": [
+      "2026-05-13  GOACARBON  Goa Carbon Limited has informed the Exchange regarding 'the intimation under Regulation 7(",
+      "2026-05-27  CLEANMAX  Outcome of Risk Management Committee of the Board of Directors of the Company today i.e. 2",
+      "2026-04-09  NOVAAGRI  Nova Agritech Limited has informed the Exchange regarding 'Encumbrance (Annual Disclosure)",
+      "2026-04-08  HALEOSLABS  HALEOS LABS LIMITED has informed the Exchange regarding 'Encumbrance (Annual Disclosure)'.",
+      "2026-04-04  GOYALALUM  Goyal Aluminiums Limited has informed the Exchange regarding 'The disclosure pertains to t",
+      "2025-12-31  TAJGVK  Taj GVK Hotels & Resorts Limited has informed the Exchange regarding 'Pledge of shares'.",
+      "2025-12-23  TFL  Transwarranty Finance Limited has informed the Exchange regarding 'Loan availment and pled",
+      "2025-12-09  IDEA  Vodafone Idea Limited has informed the Exchange about Issuance of Corporate Guarantee and ",
+      "2025-11-10  MARKSANS  Marksans Pharma Limited has informed the Exchange regarding 'Observance of Vigilance Aware",
+      "2025-05-29  SAMHI  Samhi Hotels Limited has informed the Exchange about update on extending a corporate guara",
+      "2025-05-07  JETFREIGHT  Jet Freight Logistics Limited has informed the Exchange regarding 'Update on Pledge of 22,",
+      "2025-04-05  HALEOSLABS  SMS Lifesciences India Limited has informed the Exchange regarding 'Encumbrance (Annual Di",
+      "2025-04-05  NOVAAGRI  Nova Agritech Limited has informed the Exchange regarding 'Encumbrance (Annual Disclosure)",
+      "2025-04-04  DHARSUGAR  Dharani Sugars & Chemicals Limited has informed the Exchange regarding 'Regulation 31(4) E",
+      "2025-04-02  TERASOFT  Annual Disclosure of encumbrance pursuant to Regulation 31(4) of SEBI (Substantial Acquisi",
+      "2025-04-02  AMBIKCO  Ambika Cotton Mills Limited has informed the Exchange regarding 'Disclosure Under Regulati",
+      "2025-03-06  CAPACITE  In continuation of our notice dated March 03, 2025, we wish to inform that, the Board of D",
+      "2025-02-19  IRB  IRB Infrastructure Developers Limited has informed the Exchange regarding Clarification on",
+      "2025-02-02  E2E  E2E Networks Limited has informed the Exchange about Clarification on certain queries w.r.",
+      "2024-12-04  STEELXIND  STEEL EXCHANGE INDIA LIMITED has informed the Exchange regarding 'Intimation for update on",
+      "2024-09-30  VEDL  Vedanta Limited provided disclosure for encumbrance of shares, in terms of Regulations 31(",
+      "2024-08-20  CELEBRITY  Celebrity Fashions Limited has informed the Exchange regarding 'Pledge of Shares by promot",
+      "2024-08-07  GMMPFAUDLR  GMM Pfaudler Limited has informed the Exchange regarding 'Extension and modification of ex",
+      "2024-07-23  CELEBRITY  Celebrity Fashions Limited has informed the Exchange regarding 'Disclosure regarding Pledg"
+    ],
+    "sast_wrapper_no_pledge_word": [
+      "2026-05-22  LANDMARK  Landmark Cars Limited has informed the Exchange regarding 'Application received from Perso",
+      "2026-05-22  RATNAMANI   M. N. SANGHVI FAMILY TRUST      has Submitted to the Exchange a copy of Disclosure under ",
+      "2026-05-22  AJRINFRA   Gammon Power Limited has Submitted to the Exchange a copy of Disclosure under Regulation ",
+      "2026-05-22  ARTNIRMAN  Art Nirman Limited has Submitted to the Exchange a copy of Disclosure under Regulation 31(",
+      "2026-05-22  GANGAFORGE   Hiralal Tilva has Submitted to the Exchange a copy of Disclosure under Regulation 31(4) o",
+      "2026-05-22  TCIEXP  Dharmpal Agarwal has Submitted to the Exchange a copy of Disclosure under Regulation 31(4)",
+      "2026-05-22  GHCL   Pashupatinath Commercial Pvt. Ltd.has Submitted to the Exchange a copy of Disclosure unde",
+      "2026-05-22  DDEVPLSTIK  Ddev Plastiks Industries Limited has Submitted to the Exchange a copy of Disclosure under ",
+      "2026-05-22  GHCL   Lhonak Enternational Pvt. Ltd. has Submitted to the Exchange a copy of Disclosure under R",
+      "2026-05-22  JSLL  Manish Grover has Submitted to the Exchange a copy of Disclosure under Regulation 31(4) of",
+      "2026-05-22  RATNAMANI   PRAKASH M. SANGHVI has Submitted to the Exchange a copy of Disclosure under Regulation 31",
+      "2026-05-22  GHCL   ALANKAR COMMERCIAL PVT LTD has Submitted to the Exchange a copy of Disclosure under Regul",
+      "2026-05-22  WABAG   S Varadarajan has Submitted to the Exchange a copy of Disclosure under Regulation 31(4) o",
+      "2026-05-22  SAMMAANCAP  Citigroup Global Markets India Private Limited (Manager to the Offer) has submitted to the",
+      "2026-05-22  GRINFRA  Ajendra Agarwal, Pankaj Agarwal, Vikas Agarwal has Submitted to the Exchange a copy of Dis",
+      "2026-05-22  OMAXE  Jai Bhagwan Goel has Submitted to the Exchange a copy of Disclosure under Regulation 31(4)",
+      "2026-05-22  OMAXE   Jai Bhagwan Goel  has Submitted to the Exchange a copy of Disclosure under Regulation 31(",
+      "2026-05-22  MEDPLUS   Lone Furrow Investment Private Limited has Submitted to the Exchange a copy of Disclosure",
+      "2026-05-22  OMAXE  Sushma Goel has Submitted to the Exchange a copy of Disclosure under Regulation 31(4) of t",
+      "2026-05-22  AJOONI  Ajooni Biotech Limited has Submitted to the Exchange a copy of Disclosure under Regulation",
+      "2026-05-22  HINDCOMPOS  Rasoi Ltd has Submitted to the Exchange a copy of Disclosure under Regulation 31(4) of the",
+      "2026-05-22  MEDPLUS   , Agilemed Investment Private Limited has Submitted to the Exchange a copy of Disclosure ",
+      "2026-05-22  PRITI   PRITI LOHIYA has Submitted to the Exchange a copy of Disclosure under Regulation 31(4) of",
+      "2026-05-22  PRITI   RITESH LOHIYA has Submitted to the Exchange a copy of Disclosure under Regulation 31(4) o",
+      "2026-05-22  PRITI   RITESH LOHIYA HUF has Submitted to the Exchange a copy of Disclosure under Regulation 31("
+    ]
+  }
+}

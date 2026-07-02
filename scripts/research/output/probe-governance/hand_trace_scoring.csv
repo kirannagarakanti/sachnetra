@@ -1,0 +1,37 @@
+pair_id,role,symbol,company,industry,T0,window_start,window_end,window_coverage_pct,F1_auditor,F3_kmp,F4_director,F6_delayed,partial_score_4,F2_pledge_pct__FILL,F5_rpt__optional,notes
+P1,CASE,SIGIND,Signet Industries,,2025-06-11,2023-12-11,2024-12-11,53,0,0,0,0,0,,,window partly pre-2024 (truncated coverage)
+P1,CONTROL,APOLLOPIPE,Apollo Pipes Limited,,2025-06-11,2023-12-11,2024-12-11,53,0,1,0,0,1,,,PROPOSED control — VERIFY same sector/size & no distress; swap if wrong
+P2,CASE,GENSOL,Gensol Engineering,,2025-06-13,2023-12-13,2024-12-13,54,1,1,0,0,2,,,window partly pre-2024 (truncated coverage)
+P2,CONTROL,KPIGREEN,KPI Green Energy Limited,,2025-06-13,2023-12-13,2024-12-13,54,0,0,0,0,0,,,PROPOSED control — VERIFY same sector/size & no distress; swap if wrong
+P3,CASE,PREMIER,Premier Ltd,Electrical Equipment,2025-06-20,2023-12-20,2024-12-20,56,0,0,0,0,0,,,window partly pre-2024 (truncated coverage)
+P3,CONTROL,GREAVESCOT,Greaves Cotton Limited,Electrical Equipment,2025-06-20,2023-12-20,2024-12-20,56,0,0,0,0,0,,,PROPOSED control — VERIFY same sector/size & no distress; swap if wrong
+P4,CASE,XLENERGY,XL Energy,Electrical Equipment,2025-06-24,2023-12-24,2024-12-24,57,0,0,0,0,0,,,window partly pre-2024 (truncated coverage)
+P4,CONTROL,WEBELSOLAR,Websol Energy System Limited,Electrical Equipment,2025-06-24,2023-12-24,2024-12-24,57,1,0,0,0,1,,,PROPOSED control — VERIFY same sector/size & no distress; swap if wrong
+P5,CASE,MARSHALL,Marshall Machines,,2025-08-25,2024-02-25,2025-02-25,74,1,0,0,1,2,,,
+P5,CONTROL,MACPOWER,Macpower CNC Machines Limited,,2025-08-25,2024-02-25,2025-02-25,74,0,1,0,0,1,,,PROPOSED control — VERIFY same sector/size & no distress; swap if wrong
+P6,CASE,AGSTRA,AGS Transact Technologies,,2025-09-01,2024-03-01,2025-03-01,75,0,1,0,0,1,,,
+P6,CONTROL,CMSINFO,CMS Info Systems Limited,,2025-09-01,2024-03-01,2025-03-01,75,0,0,0,0,0,,,PROPOSED control — VERIFY same sector/size & no distress; swap if wrong
+P7,CASE,RHFL,Reliance Home Finance,,2025-09-16,2024-03-16,2025-03-16,79,0,1,0,0,1,,,
+P7,CONTROL,HOMEFIRST,Home First Finance Company India Limited,,2025-09-16,2024-03-16,2025-03-16,79,1,0,0,0,1,,,PROPOSED control — VERIFY same sector/size & no distress; swap if wrong
+P8,CASE,FSC,Future Supply Chain Solutions,,2025-10-27,2024-04-27,2025-04-27,91,0,0,0,0,0,,,
+P8,CONTROL,MAHLOG,Mahindra Logistics Limited,,2025-10-27,2024-04-27,2025-04-27,91,1,0,0,0,1,,,PROPOSED control — VERIFY same sector/size & no distress; swap if wrong
+P9,CASE,BILVYAPAR,BIL Vyapar (ex-Binani),,2025-11-13,2024-05-13,2025-05-13,95,0,0,0,0,0,,,
+P9,CONTROL,ORIENTCEM,Orient Cement Limited,,2025-11-13,2024-05-13,2025-05-13,95,1,1,0,0,2,,,PROPOSED control — VERIFY same sector/size & no distress; swap if wrong
+P10,CASE,SABEVENTS,Sab Events & Governance Now Media,,2025-12-02,2024-06-02,2025-06-02,100,1,1,0,0,2,,,
+P10,CONTROL,NAZARA,Nazara Technologies Limited,,2025-12-02,2024-06-02,2025-06-02,100,0,1,0,0,1,,,PROPOSED control — VERIFY same sector/size & no distress; swap if wrong
+P11,CASE,GOENKA,Goenka Diamond & Jewels,Gems Jewellery And Watches,2025-12-10,2024-06-10,2025-06-10,100,0,1,0,0,1,,,
+P11,CONTROL,GOLDIAM,Goldiam International Limited,Gems Jewellery And Watches,2025-12-10,2024-06-10,2025-06-10,100,0,0,0,0,0,,,PROPOSED control — VERIFY same sector/size & no distress; swap if wrong
+P12,CASE,SANCO,Sanco Industries,,2025-12-23,2024-06-23,2025-06-23,100,1,0,0,0,1,,,
+P12,CONTROL,CORDSCABLE,Cords Cable Industries Limited,,2025-12-23,2024-06-23,2025-06-23,100,1,0,0,0,1,,,PROPOSED control — VERIFY same sector/size & no distress; swap if wrong
+P13,CASE,VIVIMEDLAB,Vivimed Labs,Chemicals - Speciality,2026-02-13,2024-08-13,2025-08-13,100,0,0,0,1,1,,,
+P13,CONTROL,KOPRAN,Kopran Limited,Chemicals - Speciality,2026-02-13,2024-08-13,2025-08-13,100,0,0,0,0,0,,,PROPOSED control — VERIFY same sector/size & no distress; swap if wrong
+P14,CASE,WINSOME,Winsome Yarns,Textiles - Cotton,2026-04-17,2024-10-17,2025-10-17,100,1,0,0,1,2,,,
+P14,CONTROL,NITINSPIN,Nitin Spinners Limited,Textiles - Cotton,2026-04-17,2024-10-17,2025-10-17,100,1,0,0,0,1,,,PROPOSED control — VERIFY same sector/size & no distress; swap if wrong
+P15,CASE,PARSVNATH,Parsvnath Developers,Construction,2026-04-30,2024-10-30,2025-10-30,100,0,1,0,1,2,,,
+P15,CONTROL,ASHIANA,Ashiana Housing Limited,Construction,2026-04-30,2024-10-30,2025-10-30,100,0,0,0,0,0,,,PROPOSED control — VERIFY same sector/size & no distress; swap if wrong
+P16,CASE,OSIAHYPER,Osia Hyper Retail,,2026-05-04,2024-11-04,2025-11-04,100,1,0,0,0,1,,,
+P16,CONTROL,V2RETAIL,V2 Retail Limited,,2026-05-04,2024-11-04,2025-11-04,100,0,0,0,0,0,,,PROPOSED control — VERIFY same sector/size & no distress; swap if wrong
+P17,CASE,ASTRON,Astron Paper & Board Mill,,2026-05-15,2024-11-15,2025-11-15,100,1,1,0,0,2,,,
+P17,CONTROL,SESHAPAPER,Seshasayee Paper and Boards Limited,,2026-05-15,2024-11-15,2025-11-15,100,1,1,0,0,2,,,PROPOSED control — VERIFY same sector/size & no distress; swap if wrong
+P18,CASE,AKSHOPTFBR,Aksh Optifibre,Cables - Telecom,2026-06-20,2024-12-20,2025-12-20,100,0,1,0,0,1,,,
+P18,CONTROL,VINDHYATEL,Vindhya Telelinks Limited,Cables - Telecom,2026-06-20,2024-12-20,2025-12-20,100,1,0,0,0,1,,,PROPOSED control — VERIFY same sector/size & no distress; swap if wrong

@@ -1,0 +1,254 @@
+{
+  "generated": "2026-06-26T10:53:16.475Z",
+  "window": {
+    "from": null,
+    "to": null
+  },
+  "shape": {
+    "n": 333614,
+    "symbols": 2396,
+    "first": "2024-05-30",
+    "last": "2026-06-26"
+  },
+  "topCategories": [
+    {
+      "category": "Analysts/Institutional Investor Meet/Con. Call Updates",
+      "n": 45291
+    },
+    {
+      "category": "Updates",
+      "n": 31003
+    },
+    {
+      "category": "Copy of Newspaper Publication",
+      "n": 29308
+    },
+    {
+      "category": "General Updates",
+      "n": 25772
+    },
+    {
+      "category": "Outcome of Board Meeting",
+      "n": 24507
+    },
+    {
+      "category": "Shareholders meeting",
+      "n": 20740
+    },
+    {
+      "category": "Trading Window",
+      "n": 17624
+    },
+    {
+      "category": "Certificate under SEBI (Depositories and Participants) Regulations, 2018",
+      "n": 16061
+    },
+    {
+      "category": "Press Release",
+      "n": 14244
+    },
+    {
+      "category": "Loss of Share Certificates",
+      "n": 11233
+    },
+    {
+      "category": "Disclosure under SEBI Takeover Regulations",
+      "n": 7820
+    },
+    {
+      "category": "Investor Presentation",
+      "n": 7260
+    },
+    {
+      "category": "Appointment",
+      "n": 6211
+    },
+    {
+      "category": "Financial Result Updates",
+      "n": 4959
+    },
+    {
+      "category": "Change in Management",
+      "n": 4618
+    },
+    {
+      "category": "Record Date",
+      "n": 4018
+    },
+    {
+      "category": "ESOP/ESOS/ESPS",
+      "n": 3773
+    },
+    {
+      "category": "Change in Director(s)",
+      "n": 3172
+    },
+    {
+      "category": "Resignation",
+      "n": 3103
+    },
+    {
+      "category": "Dividend",
+      "n": 2898
+    },
+    {
+      "category": "Credit Rating",
+      "n": 2808
+    },
+    {
+      "category": "Integrated Filing- Financial",
+      "n": 2515
+    },
+    {
+      "category": "Allotment of Securities",
+      "n": 2280
+    },
+    {
+      "category": "Acquisition",
+      "n": 2090
+    },
+    {
+      "category": "Monitoring Agency Report",
+      "n": 2077
+    },
+    {
+      "category": "Action(s) taken or orders passed",
+      "n": 1963
+    },
+    {
+      "category": "Spurt in Volume",
+      "n": 1942
+    },
+    {
+      "category": "Bagging/Receiving of orders/contracts",
+      "n": 1914
+    },
+    {
+      "category": "Clarification - Financial Results",
+      "n": 1788
+    },
+    {
+      "category": "Cessation",
+      "n": 1719
+    },
+    {
+      "category": "Change in Auditors",
+      "n": 1547
+    },
+    {
+      "category": "Statement of deviation(s) or variation(s) under Reg. 32",
+      "n": 1513
+    },
+    {
+      "category": "Price movement",
+      "n": 1352
+    },
+    {
+      "category": "Reply to Clarification- Financial results",
+      "n": 1315
+    },
+    {
+      "category": "Corporate Insolvency Resolution Process",
+      "n": 1283
+    },
+    {
+      "category": "Pendency of Litigation(s)/dispute(s) or the outcome impacting the Company",
+      "n": 1143
+    },
+    {
+      "category": "Action(s) initiated or orders passed",
+      "n": 1061
+    },
+    {
+      "category": "Book Closure",
+      "n": 1023
+    },
+    {
+      "category": "News Verification",
+      "n": 927
+    },
+    {
+      "category": "Disclosure of material issue",
+      "n": 865
+    }
+  ],
+  "buckets": [
+    {
+      "bucket": "LABEL rating_to_D",
+      "rows": 5541,
+      "symbols": 1408,
+      "first": "2024-05-31",
+      "last": "2026-06-25"
+    },
+    {
+      "bucket": "FEAT auditor",
+      "rows": 4789,
+      "symbols": 1756,
+      "first": "2024-05-30",
+      "last": "2026-06-25"
+    },
+    {
+      "bucket": "FEAT kmp_cfo_cs",
+      "rows": 4240,
+      "symbols": 1373,
+      "first": "2024-05-30",
+      "last": "2026-06-25"
+    },
+    {
+      "bucket": "FEAT director_resign",
+      "rows": 3808,
+      "symbols": 1352,
+      "first": "2024-05-31",
+      "last": "2026-06-25"
+    },
+    {
+      "bucket": "LABEL insolvency_nclt_ibc",
+      "rows": 1992,
+      "symbols": 330,
+      "first": "2024-05-31",
+      "last": "2026-06-26"
+    },
+    {
+      "bucket": "LABEL default_disclosure",
+      "rows": 435,
+      "symbols": 119,
+      "first": "2024-05-31",
+      "last": "2026-06-17"
+    },
+    {
+      "bucket": "FEAT related_party",
+      "rows": 308,
+      "symbols": 204,
+      "first": "2024-05-30",
+      "last": "2026-06-08"
+    },
+    {
+      "bucket": "FEAT delayed_results",
+      "rows": 191,
+      "symbols": 86,
+      "first": "2024-05-30",
+      "last": "2026-06-23"
+    },
+    {
+      "bucket": "FEAT pledge",
+      "rows": 90,
+      "symbols": 55,
+      "first": "2024-06-03",
+      "last": "2026-06-25"
+    },
+    {
+      "bucket": "LABEL delisting",
+      "rows": 89,
+      "symbols": 54,
+      "first": "2024-06-02",
+      "last": "2026-06-15"
+    },
+    {
+      "bucket": "LABEL rating_to_D(refined)",
+      "rows": 28,
+      "symbols": 16,
+      "first": "2024-09-30",
+      "last": "2026-06-12"
+    }
+  ]
+}

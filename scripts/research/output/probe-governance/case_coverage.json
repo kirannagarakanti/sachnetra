@@ -1,0 +1,315 @@
+[
+  {
+    "arm": "RECENT",
+    "symbol": "RHFL",
+    "found": true,
+    "n": 86,
+    "isin": "INE217K07AB6",
+    "name": "Reliance Home Finance Limited",
+    "first": "2024-05-31",
+    "last": "2026-06-24",
+    "counts": {
+      "insolvency": 32,
+      "director_resign": 6,
+      "kmp_cfo_cs": 2
+    }
+  },
+  {
+    "arm": "RECENT",
+    "symbol": "IVRCLINFRA",
+    "found": true,
+    "n": 28,
+    "isin": "INE875A01025",
+    "name": "IVRCL Limited",
+    "first": "2024-06-21",
+    "last": "2026-03-11",
+    "counts": {
+      "auditor": 1,
+      "insolvency": 1
+    }
+  },
+  {
+    "arm": "RECENT",
+    "symbol": "ERAINFRA",
+    "found": true,
+    "n": 1,
+    "isin": "INE039E01020",
+    "name": "Era Infra Engineering Limited",
+    "first": "2025-12-03",
+    "last": "2025-12-03",
+    "counts": {}
+  },
+  {
+    "arm": "RECENT",
+    "symbol": "GAMMONIND",
+    "found": true,
+    "n": 10,
+    "isin": "INE259B01020",
+    "name": "Gammon India Limited",
+    "first": "2026-02-25",
+    "last": "2026-06-24",
+    "counts": {
+      "auditor": 1
+    }
+  },
+  {
+    "arm": "RECENT",
+    "symbol": "VAKRANGEE",
+    "found": true,
+    "n": 128,
+    "isin": "INE051B01021",
+    "name": "Vakrangee Limited",
+    "first": "2024-06-03",
+    "last": "2026-06-24",
+    "counts": {
+      "insolvency": 1,
+      "kmp_cfo_cs": 2,
+      "director_resign": 4
+    }
+  },
+  {
+    "arm": "RECENT",
+    "symbol": "SETUINFRA",
+    "found": true,
+    "n": 23,
+    "isin": "INE023M01027",
+    "name": "Setubandhan Infrastructure Limited",
+    "first": "2024-06-28",
+    "last": "2026-05-30",
+    "counts": {
+      "insolvency": 8
+    }
+  },
+  {
+    "arm": "RECENT",
+    "symbol": "AIFL",
+    "found": true,
+    "n": 67,
+    "isin": "INE428O01016",
+    "name": "Ashapura Intimates Fashion Limited",
+    "first": "2024-06-05",
+    "last": "2026-06-02",
+    "counts": {
+      "kmp_cfo_cs": 1,
+      "insolvency": 1
+    }
+  },
+  {
+    "arm": "RECENT",
+    "symbol": "GOENKA",
+    "found": true,
+    "n": 38,
+    "isin": "INE516K01016",
+    "name": "Goenka Diamond and Jewels Limited",
+    "first": "2024-06-29",
+    "last": "2026-06-25",
+    "counts": {
+      "insolvency": 2,
+      "kmp_cfo_cs": 2
+    }
+  },
+  {
+    "arm": "RECENT",
+    "symbol": "QUINTEGRA",
+    "found": true,
+    "n": 73,
+    "isin": "INE033B01011",
+    "name": "Quintegra Solutions Limited",
+    "first": "2024-06-25",
+    "last": "2026-06-26",
+    "counts": {
+      "insolvency": 1,
+      "auditor": 1,
+      "director_resign": 2
+    }
+  },
+  {
+    "arm": "RECENT",
+    "symbol": "INDUSFILA",
+    "found": true,
+    "n": 55,
+    "isin": "INE025I01012",
+    "name": "Indus Fila Limited",
+    "first": "2025-02-05",
+    "last": "2026-06-12",
+    "counts": {
+      "auditor": 7,
+      "kmp_cfo_cs": 2,
+      "insolvency": 1,
+      "director_resign": 2
+    }
+  },
+  {
+    "arm": "RECENT",
+    "symbol": "VIVIMEDLAB",
+    "found": true,
+    "n": 79,
+    "isin": "INE526G01013",
+    "name": "Vivimed Labs Limited",
+    "first": "2024-06-15",
+    "last": "2026-06-25",
+    "counts": {
+      "insolvency": 4
+    }
+  },
+  {
+    "arm": "RECENT",
+    "symbol": "FLEXITUFF",
+    "found": true,
+    "n": 111,
+    "isin": "INE060J01017",
+    "name": "Flexituff Ventures International Limited",
+    "first": "2024-06-21",
+    "last": "2026-06-25",
+    "counts": {
+      "kmp_cfo_cs": 4,
+      "default": 2,
+      "director_resign": 3,
+      "auditor": 7
+    }
+  },
+  {
+    "arm": "RECENT",
+    "symbol": "FEDDERELEC",
+    "found": true,
+    "n": 90,
+    "isin": "INE249C01011",
+    "name": "Fedders Electric and Engineering Limited",
+    "first": "2024-06-12",
+    "last": "2026-02-23",
+    "counts": {
+      "insolvency": 1,
+      "kmp_cfo_cs": 6,
+      "auditor": 6,
+      "director_resign": 1
+    }
+  },
+  {
+    "arm": "RECENT",
+    "symbol": "SABEVENTS",
+    "found": true,
+    "n": 89,
+    "isin": "INE860T01019",
+    "name": "Sab Events & Governance Now Media Limited",
+    "first": "2024-06-26",
+    "last": "2026-06-25",
+    "counts": {
+      "insolvency": 11,
+      "director_resign": 4,
+      "auditor": 2,
+      "kmp_cfo_cs": 5
+    }
+  },
+  {
+    "arm": "RECENT",
+    "symbol": "AKSHOPTFBR",
+    "found": true,
+    "n": 86,
+    "isin": "INE523B01011",
+    "name": "Aksh Optifibre Limited",
+    "first": "2024-06-26",
+    "last": "2026-06-22",
+    "counts": {
+      "auditor": 1,
+      "kmp_cfo_cs": 2,
+      "insolvency": 4
+    }
+  },
+  {
+    "arm": "RECENT",
+    "symbol": "PARSVNATH",
+    "found": true,
+    "n": 107,
+    "isin": "INE561H01018",
+    "name": "Parsvnath Developers Limited",
+    "first": "2024-06-13",
+    "last": "2026-06-25",
+    "counts": {
+      "insolvency": 6,
+      "kmp_cfo_cs": 2,
+      "director_resign": 1
+    }
+  },
+  {
+    "arm": "FAMOUS",
+    "symbol": "DHFL",
+    "found": false,
+    "n": 0,
+    "isin": "",
+    "name": "",
+    "first": "",
+    "last": "",
+    "counts": {}
+  },
+  {
+    "arm": "FAMOUS",
+    "symbol": "COX&KINGS",
+    "found": false,
+    "n": 0,
+    "isin": "",
+    "name": "",
+    "first": "",
+    "last": "",
+    "counts": {}
+  },
+  {
+    "arm": "FAMOUS",
+    "symbol": "JETAIRWAYS",
+    "found": true,
+    "n": 19,
+    "isin": "INE802G01018",
+    "name": "Jet Airways (India) Limited",
+    "first": "2024-07-09",
+    "last": "2026-04-09",
+    "counts": {
+      "kmp_cfo_cs": 2
+    }
+  },
+  {
+    "arm": "FAMOUS",
+    "symbol": "RELCAPITAL",
+    "found": true,
+    "n": 26,
+    "isin": "INE013A01015",
+    "name": "Reliance Capital Limited",
+    "first": "2024-06-07",
+    "last": "2025-02-12",
+    "counts": {
+      "insolvency": 13,
+      "auditor": 1
+    }
+  },
+  {
+    "arm": "FAMOUS",
+    "symbol": "SINTEX",
+    "found": false,
+    "n": 0,
+    "isin": "",
+    "name": "",
+    "first": "",
+    "last": "",
+    "counts": {}
+  },
+  {
+    "arm": "FAMOUS",
+    "symbol": "FRL",
+    "found": false,
+    "n": 0,
+    "isin": "",
+    "name": "",
+    "first": "",
+    "last": "",
+    "counts": {}
+  },
+  {
+    "arm": "FAMOUS",
+    "symbol": "BARTRONICS",
+    "found": false,
+    "n": 0,
+    "isin": "",
+    "name": "",
+    "first": "",
+    "last": "",
+    "counts": {}
+  }
+]
